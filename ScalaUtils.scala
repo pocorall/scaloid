@@ -15,12 +15,13 @@
  */
 package net.pocorall.android.util
 
-import android.content.{DialogInterface, Context}
-import android.app.AlertDialog
+import android.content.{Intent, DialogInterface, Context}
+import android.app.{Activity, AlertDialog}
 import android.view.View
+import android.net.Uri
 
 object ScalaUtils {
-  def alert(context: Context, titleId: Int, textId: Int) {
+  def alert(context: Context)(titleId: Int, textId: Int) {
     val builder: AlertDialog.Builder = new AlertDialog.Builder(context)
     builder.setTitle(titleId)
     builder.setMessage(textId)
@@ -31,6 +32,13 @@ object ScalaUtils {
     builder.show()
   }
 
+  /**
+   * Launches a new activity for a give uri. For example, opens a web browser for http protocols.
+   */
+  def openUri(activity: Activity)(uri: String) {
+    activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
+  }
+
   implicit def function2ViewOnClickListener[F](f: View => F): View.OnClickListener =
     new View.OnClickListener() {
       def onClick(view: View) {
@@ -38,14 +46,14 @@ object ScalaUtils {
       }
     }
 
-  implicit def function2ViewOnClickListener[F](f: => F): View.OnClickListener =
+  implicit def function02ViewOnClickListener[F](f: => F): View.OnClickListener =
     new View.OnClickListener() {
       def onClick(view: View) {
         f
       }
     }
 
-  implicit def function2runnable[F](f: => F): Runnable =
+  implicit def function02runnable[F](f: => F): Runnable =
     new Runnable() {
       def run() {
         f
