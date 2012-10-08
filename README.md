@@ -18,7 +18,7 @@ helpButton.setOnClickListener {
 is reduced to:
 
 ```
-helpButton.setOnClickListener (Log.i("pocorall", "pressed!"))
+helpButton.setOnClickListener(Log.i("pocorall", "pressed!"))
 ```
 
 For a multi-line block:
@@ -31,10 +31,9 @@ helpButton.setOnClickListener {
 }
 ```
 
-
 # Import it to your project
 
-For now, Android-Scala-Common is a single-file project. Just copy ScalaUtils.java and paset it to your project. Enjoy!
+For now, Android-Scala-Common is a single-file project. Just copy ScalaUtils.scala and paset it to your project. Enjoy!
 
 # Let's make it together!
 
@@ -43,3 +42,9 @@ This project is very early stage, and I will grow it constantly. If you have any
 ### License
 
 This software is licensed under the Apache 2 license.
+
+# Recommended resources
+
+To set up a Maven project that build Android app written in Scala, please refer https://github.com/rohansingh/android-scala-test.
+
+A delicate problem related to implicit conversion for mult-line block is discussed at  http://stackoverflow.com/questions/12774840/scala-passing-function-parameter-which-does-not-have-parameter.
