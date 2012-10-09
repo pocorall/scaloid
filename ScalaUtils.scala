@@ -56,42 +56,42 @@ object ScalaUtils {
     activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
   }
 
-  implicit def func2ViewOnClickListener[F](f: View => F): View.OnClickListener =
+  implicit def func2ViewOnClickListener(f: View => Unit): View.OnClickListener =
     new View.OnClickListener() {
       def onClick(view: View) {
         f(view)
       }
     }
 
-  implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
+  implicit def lazy2ViewOnClickListener(f: => Unit): View.OnClickListener =
     new View.OnClickListener() {
       def onClick(view: View) {
         f
       }
     }
 
-  implicit def func2DialogOnClickListener[F](f: (DialogInterface, Int) => F): DialogInterface.OnClickListener =
+  implicit def func2DialogOnClickListener(f: (DialogInterface, Int) => Unit): DialogInterface.OnClickListener =
     new DialogInterface.OnClickListener {
-      def onClick(dialog: DialogInterface, whichButton: Int) {
-        f(dialog, whichButton)
+      def onClick(dialog: DialogInterface, which: Int) {
+        f(dialog, which)
       }
     }
 
-  implicit def lazy2DialogOnClickListener[F](f: => F): DialogInterface.OnClickListener =
+  implicit def lazy2DialogOnClickListener(f: => Unit): DialogInterface.OnClickListener =
     new DialogInterface.OnClickListener {
       def onClick(dialog: DialogInterface, which: Int) {
         f
       }
     }
 
-  implicit def func2runnable[F](f: () => F): Runnable =
+  implicit def func2runnable(f: () => Unit): Runnable =
     new Runnable() {
       def run() {
         f()
       }
     }
 
-  implicit def lazy2runnable[F](f: => F): Runnable =
+  implicit def lazy2runnable(f: => Unit): Runnable =
     new Runnable() {
       def run() {
         f
