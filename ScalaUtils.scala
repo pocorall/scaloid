@@ -15,10 +15,16 @@
  */
 package net.pocorall.android.util
 
-import android.content.{Intent, DialogInterface, Context}
-import android.app.{Activity, AlertDialog}
+import android.content._
+import android.app.{NotificationManager, Activity, AlertDialog}
 import android.view.View
 import android.net.Uri
+import android.os.{Looper, Handler, Vibrator}
+import android.media.RingtoneManager
+import collection.mutable.ArrayBuffer
+import android.util.Log
+import android.app.Service
+
 
 object ScalaUtils {
   def alert(context: Context)(titleId: Int, textId: Int) {
@@ -39,31 +45,87 @@ object ScalaUtils {
     activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
   }
 
-  implicit def function2ViewOnClickListener[F](f: View => F): View.OnClickListener =
+  implicit def func2ViewOnClickListener[F](f: View => F): View.OnClickListener =
     new View.OnClickListener() {
       def onClick(view: View) {
         f(view)
       }
     }
 
-  implicit def function02ViewOnClickListener[F](f: => F): View.OnClickListener =
+  implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     new View.OnClickListener() {
       def onClick(view: View) {
         f
       }
     }
 
-  implicit def function02runnable[F](f: => F): Runnable =
+  implicit def func2runnable[F](f: () => F): Runnable =
+    new Runnable() {
+      def run() {
+        f()
+      }
+    }
+
+  implicit def lazy2runnable[F](f: => F): Runnable =
     new Runnable() {
       def run() {
         f
       }
     }
 
-  implicit def function2runnable[F](f: () => F): Runnable =
-    new Runnable() {
-      def run() {
-        f()
-      }
+
+}
+
+trait ContextUtil extends Context {
+  def vibrator: Vibrator = getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
+
+  def notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[NotificationManager]
+
+  def playNotificationRing() {
+    val notificationRing = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+    val r = RingtoneManager.getRingtone(this, notificationRing)
+    if (r != null) {
+      r.play()
     }
+  }
+}
+
+/**
+ * Provides handler instance and runOnUiThread() utility method.
+ */
+trait RunOnUiThread {
+  val handler = new Handler(Looper.getMainLooper)
+
+  def runOnUiThread(f: => Unit) {
+    handler.post(new Runnable() {
+      def run() {
+        f
+      }
+    })
+  }
+}
+
+/**
+ * Automatically unregisters BroadcastReceiver when onDestroy() called
+ */
+trait UnregisterReceiver extends Service {
+  val receiverList = new ArrayBuffer[BroadcastReceiver]()
+
+  override def registerReceiver(receiver: BroadcastReceiver, filter: IntentFilter): Intent = {
+    receiverList += receiver
+    super.registerReceiver(receiver, filter)
+  }
+
+  override def onDestroy() {
+    Log.i("tocplus", "Unregister " + receiverList.size + " BroadcastReceivers.")
+    for (receiver <- receiverList) try {
+      unregisterReceiver(receiver)
+    } catch {
+      // Suppress "Receiver not registered" exception
+      // Refer to http://stackoverflow.com/questions/2682043/how-to-check-if-receiver-is-registered-in-android
+      case e: IllegalArgumentException => e.printStackTrace()
+    }
+
+    super.onDestroy()
+  }
 }

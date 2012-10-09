@@ -26,9 +26,29 @@ For a multi-line block:
 ```
 helpButton.setOnClickListener {
   (v: View) =>
-  Log.i("pocorall", "pressed!")
-  Log.i("pocorall", v.toString())
+    Log.i("pocorall", "pressed!")
+    Log.i("pocorall", v.toString())
 }
+```
+
+# Traits
+
+Trait ContextUtil includes several shortcuts for frequently used android idioms.
+
+Instead of:
+
+```
+val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[NotificationManager]
+notificationManager.notify(R.string.someString, notification)
+val vibrator = getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
+vibrator.vibrate(500)
+```
+
+extend ContextUtil for your Activities or Services, and use like this:
+
+```
+vibrator.vibrate(500)
+notificationManager.notify(R.string.someString, notification)
 ```
 
 # Import it to your project
