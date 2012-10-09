@@ -37,7 +37,9 @@ helpButton.setOnClickListener {
 
 Trait ContextUtil includes several shortcuts for frequently used android idioms.
 
-Instead of:
+#### System services
+
+Getting system service objects become much simpler. Instead of:
 
 ```
 val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[NotificationManager]
@@ -46,7 +48,7 @@ val vibrator = getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
 vibrator.vibrate(500)
 ```
 
-extend ContextUtil for your Activities or Services, and use like this:
+, use like this:
 
 ```
 notificationManager.notify(R.string.someString, notification)
@@ -69,7 +71,7 @@ runOnUiThread {
 }
 ```
 
-extend trait RunOnUiThread and use it like this:
+, extend trait RunOnUiThread and use it like this:
 
 ```
 runOnUiThread(Log.i("I am running", "for any context"))
