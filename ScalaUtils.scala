@@ -70,6 +70,20 @@ object ScalaUtils {
       }
     }
 
+  implicit def func2DialogOnClickListener[F](f: (DialogInterface, Int) => F): DialogInterface.OnClickListener =
+    new DialogInterface.OnClickListener {
+      def onClick(dialog: DialogInterface, whichButton: Int) {
+        f(dialog, whichButton)
+      }
+    }
+
+  implicit def lazy2DialogOnClickListener[F](f: => F): DialogInterface.OnClickListener =
+    new DialogInterface.OnClickListener {
+      def onClick(dialog: DialogInterface, which: Int) {
+        f
+      }
+    }
+
   implicit def func2runnable[F](f: () => F): Runnable =
     new Runnable() {
       def run() {
