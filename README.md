@@ -2,7 +2,7 @@
 
 Scala is cool. Writing Android application with Scala is also a cool idea. Because Android exposes Java API, we need some wrapper and utility library to leverage full power of Scala. android-scala-common is an initial attempt to provide this.
 
-# Implicit conversions
+## Implicit conversions
 This library employs several implicit conversions. 
 
 ```
@@ -31,13 +31,13 @@ helpButton.setOnClickListener {
 }
 ```
 
-# Traits
+## Traits
 
 ### ContextUtil
 
 Trait ContextUtil includes several shortcuts for frequently used android idioms.
 
-#### System services
+**System services**
 
 Getting system service objects become much simpler. Instead of:
 
@@ -91,11 +91,11 @@ class MyService extends Service with UnregisterReceiverService {
 }
 ```
 
-# Import it to your project
+## Import it to your project
 
 For now, android-scala-common is a single-file project. Just copy ScalaUtils.scala and paste it to your project. Enjoy!
 
-# Let's make it together!
+## Let's make it together!
 
 This project is very early stage, and I will grow it constantly. If you have any idea to improve this library, feel free to open issues or post patches.
 
