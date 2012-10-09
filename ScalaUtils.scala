@@ -164,14 +164,8 @@ trait RunOnUiThread {
   }
 }
 
-
 trait UnregisterReceiver extends Context {
   val receiverList = new ArrayBuffer[BroadcastReceiver]()
-
-  override def registerReceiver(receiver: BroadcastReceiver, filter: IntentFilter): Intent = {
-    receiverList += receiver
-    super.registerReceiver(receiver, filter)
-  }
 
   protected def unregister() {
     Log.i("tocplus", "Unregister " + receiverList.size + " BroadcastReceivers.")
@@ -189,6 +183,11 @@ trait UnregisterReceiver extends Context {
  * Automatically unregisters BroadcastReceiver when onDestroy() called
  */
 trait UnregisterReceiverService extends Service with UnregisterReceiver {
+  override def registerReceiver(receiver: BroadcastReceiver, filter: IntentFilter): Intent = {
+    receiverList += receiver
+    super.registerReceiver(receiver, filter)
+  }
+
   override def onDestroy() {
     unregister()
     super.onDestroy()
