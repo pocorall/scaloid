@@ -63,16 +63,30 @@ Instead of:
 runOnUiThread {
   new Runnable() {
 	def run() {
-	  Log.i("I am running", "only for activity class")
+	  Log.i("I am running", "only for Activity class")
 	}
   }
 }
 ```
 
-extend RunOnUiThread and use it like this:
+extend trait RunOnUiThread and use it like this:
 
 ```
 runOnUiThread(Log.i("I am running", "for any context"))
+```
+
+### UnregisterReceiverService
+
+When you registered BroadcastReceiver with Context.registerReceiver() you have to unregister it to prevent memory leak. Trait UnregisterReceiverService handles these chores for you by just extend it for your Service.
+
+```
+class MyService extends Service with UnregisterReceiverService {
+  def func() {
+    // ...
+	registerReceiver(receiver, intentFilter)
+	// Done! automatically unregistered at onDestroy()
+  }
+}
 ```
 
 # Import it to your project
