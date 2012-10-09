@@ -33,6 +33,8 @@ helpButton.setOnClickListener {
 
 # Traits
 
+### ContextUtil
+
 Trait ContextUtil includes several shortcuts for frequently used android idioms.
 
 Instead of:
@@ -47,8 +49,30 @@ vibrator.vibrate(500)
 extend ContextUtil for your Activities or Services, and use like this:
 
 ```
-vibrator.vibrate(500)
 notificationManager.notify(R.string.someString, notification)
+vibrator.vibrate(500)
+```
+
+### RunOnUiThread
+
+Provides Scala version of runOnUiThread() implementation. You can use it anywhere other than class Activity.
+
+Instead of:
+
+```
+runOnUiThread {
+  new Runnable() {
+	def run() {
+	  Log.i("I am running", "only for activity class")
+	}
+  }
+}
+```
+
+extend RunOnUiThread and use it like this:
+
+```
+runOnUiThread(Log.i("I am running", "for any context"))
 ```
 
 # Import it to your project
