@@ -114,6 +114,15 @@ object ScalaUtils {
   def spinnerDialog(title: String, message: String)(implicit context: Context) {
     ProgressDialog.show(context, title, message, true)
   }
+
+  def pendingService(intent: Intent)(implicit context: Context) =
+    PendingIntent.getService(context, 0, intent, 0)
+
+  def pendingActivity(intent: Intent)(implicit context: Context) =
+    PendingIntent.getActivity(context, 0, intent, 0)
+
+  def pendingActivity[T](implicit context: Context, mt: ClassManifest[T]) =
+    PendingIntent.getActivity(context, 0, newIntent[T], 0)
 }
 
 import ScalaUtils._
