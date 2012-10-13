@@ -32,7 +32,7 @@ helpButton.setOnClickListener {
 ## Context as implicit parameter
 Many methods in Android API requires an instance of a class Context. Providing this for every method calls results a clumsy code. We employs implicit parameter to elliminate this. Just declare an implicit value that represents current context:
 
-   implicit val context = ...
+    implicit val context = ...
 
 or just extend ContextUtil. Then the codes that required Context, for example:
 
@@ -96,10 +96,9 @@ runOnUiThread {
 
 , extend trait RunOnUiThread and use it like this:
 
-```
-runOnUiThread(Log.i("I am running", "for any context"))
-```
+    runOnUiThread(Log.i("I am running", "for any context"))
 
+	
 ### UnregisterReceiverService
 
 When you registered BroadcastReceiver with Context.registerReceiver() you have to unregister it to prevent memory leak. Trait UnregisterReceiverService handles these chores for you by just extend it for your Service.
