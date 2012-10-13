@@ -37,19 +37,21 @@ Many methods in Android API requires an instance of a class Context. Providing t
 or just extend ContextUtil. Then the codes that required Context, for example:
 
 ```
-val intent = new Intent(context, classOf[MyActivity])
+new Intent(context, classOf[MyActivity])
 startService(new Intent(context, classOf[MyService]))
 Toast.makeText(context, "hi, there!", Toast.LENGTH_SHORT).show()
-val dialog = ProgressDialog.show(context, "Dialog", "working...", true)
+ProgressDialog.show(context, "Dialog", "working...", true)
+PendingIntent.getActivity(context, 0, new Intent(context, classOf[MyActivity]), 0)
 ```
 
 is reduced to:
 
 ```
-val intent = newIntent[MyActivity]
+newIntent[MyActivity]
 startService[MyService]
 toast("hi, there!")
-val dialog = spinnerDialog("Dialog", "working...")
+spinnerDialog("Dialog", "working...")
+pendingActivity[MyActivity]
 ```
    
 ## Traits
