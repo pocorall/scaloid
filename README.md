@@ -17,9 +17,7 @@ helpButton.setOnClickListener {
 
 is reduced to:
 
-```
-helpButton.setOnClickListener(Log.i("pocorall", "pressed!"))
-```
+    helpButton.setOnClickListener(Log.i("pocorall", "pressed!"))
 
 For a multi-line block:
 
@@ -31,6 +29,29 @@ helpButton.setOnClickListener {
 }
 ```
 
+## Context as implicit parameter
+Many methods in Android API requires an instance of a class Context. Providing this for every method calls results a clumsy code. We employs implicit parameter to elliminate this. Just declare an implicit value that represents current context:
+
+   implicit val context = ...
+
+or just extend ContextUtil. Then the codes that required Context, for example:
+
+```
+val intent = new Intent(context, classOf[MyActivity])
+startService(new Intent(context, classOf[MyService]))
+Toast.makeText(context, "hi, there!", Toast.LENGTH_SHORT).show()
+val dialog = ProgressDialog.show(context, "Dialog", "working...", true)
+```
+
+is reduced to:
+
+```
+val intent = newIntent[MyActivity]
+startService[MyService]
+toast("hi, there!")
+val dialog = spinnerDialog("Dialog", "working...")
+```
+   
 ## Traits
 
 ### ContextUtil
@@ -39,7 +60,7 @@ Trait ContextUtil includes several shortcuts for frequently used android idioms.
 
 **System services**
 
-Getting system service objects become much simpler. Instead of:
+Getting system service objects become much simpler.
 
 ```
 val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[NotificationManager]
@@ -48,12 +69,14 @@ val vibrator = getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
 vibrator.vibrate(500)
 ```
 
-, use like this:
+is reduced to:
 
 ```
 notificationManager.notify(R.string.someString, notification)
 vibrator.vibrate(500)
 ```
+
+All of the system service accessors described in Android API level 10 are defined.
 
 ### RunOnUiThread
 
@@ -86,7 +109,7 @@ class MyService extends Service with UnregisterReceiverService {
   def func() {
     // ...
 	registerReceiver(receiver, intentFilter)
-	// Done! automatically unregistered at onDestroy()
+	// Done! automatically unregistered at UnregisterReceiverService.onDestroy()
   }
 }
 ```

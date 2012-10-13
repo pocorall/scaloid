@@ -15,7 +15,7 @@
  */
 package net.pocorall.android.util
 
-import android.content._
+
 import android.app._
 import admin.DevicePolicyManager
 import android.view.{WindowManager, LayoutInflater, View}
@@ -24,7 +24,7 @@ import android.os._
 import android.media.{AudioManager, RingtoneManager}
 import collection.mutable.ArrayBuffer
 import android.util.Log
-import android.content.Context._
+
 import android.text.ClipboardManager
 import android.view.accessibility.AccessibilityManager
 import android.accounts.AccountManager
@@ -35,10 +35,13 @@ import android.hardware.SensorManager
 import storage.StorageManager
 import android.telephony.TelephonyManager
 import android.net.wifi.WifiManager
+import android.content
+import content._
+import android.widget.Toast
 
 
 object ScalaUtils {
-  def alert(context: Context)(titleId: Int, textId: Int) {
+  def alert(titleId: Int, textId: Int)(implicit context: Context) {
     val builder: AlertDialog.Builder = new AlertDialog.Builder(context)
     builder.setTitle(titleId)
     builder.setMessage(textId)
@@ -52,54 +55,68 @@ object ScalaUtils {
   /**
    * Launches a new activity for a give uri. For example, opens a web browser for http protocols.
    */
-  def openUri(activity: Activity)(uri: String) {
-    activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
+  def openUri(uri: String)(implicit context: Context) {
+    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
   }
 
-  implicit def func2ViewOnClickListener(f: View => Unit): View.OnClickListener =
+  implicit def func2ViewOnClickListener[F](f: View => F): View.OnClickListener =
     new View.OnClickListener() {
       def onClick(view: View) {
         f(view)
       }
     }
 
-  implicit def lazy2ViewOnClickListener(f: => Unit): View.OnClickListener =
+  implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     new View.OnClickListener() {
       def onClick(view: View) {
         f
       }
     }
 
-  implicit def func2DialogOnClickListener(f: (DialogInterface, Int) => Unit): DialogInterface.OnClickListener =
+  implicit def func2DialogOnClickListener[F](f: (DialogInterface, Int) => F): DialogInterface.OnClickListener =
     new DialogInterface.OnClickListener {
       def onClick(dialog: DialogInterface, which: Int) {
         f(dialog, which)
       }
     }
 
-  implicit def lazy2DialogOnClickListener(f: => Unit): DialogInterface.OnClickListener =
+  implicit def lazy2DialogOnClickListener[F](f: => F): DialogInterface.OnClickListener =
     new DialogInterface.OnClickListener {
       def onClick(dialog: DialogInterface, which: Int) {
         f
       }
     }
 
-  implicit def func2runnable(f: () => Unit): Runnable =
+  implicit def func2runnable[F](f: () => F): Runnable =
     new Runnable() {
       def run() {
         f()
       }
     }
 
-  implicit def lazy2runnable(f: => Unit): Runnable =
+  implicit def lazy2runnable[F](f: => F): Runnable =
     new Runnable() {
       def run() {
         f
       }
     }
 
+  def newIntent[T](implicit context: Context, mt: ClassManifest[T]) = new content.Intent(context, mt.erasure)
 
+  def toast(message: String)(implicit context: Context) {
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+  }
+
+  def longToast(message: String)(implicit context: Context) {
+    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+  }
+
+  def spinnerDialog(title: String, message: String)(implicit context: Context) {
+    ProgressDialog.show(context, title, message, true)
+  }
 }
+
+import ScalaUtils._
 
 trait ContextUtil extends Context {
   def accessibilityManager: AccessibilityManager = getSystemService(Context.ACCESSIBILITY_SERVICE).asInstanceOf[AccessibilityManager]
@@ -161,6 +178,16 @@ trait ContextUtil extends Context {
       r.play()
     }
   }
+
+  implicit val context = this
+
+  def startActivity[T: ClassManifest] {
+    startActivity(newIntent[T])
+  }
+
+  def startService[T: ClassManifest] {
+    startService(newIntent[T])
+  }
 }
 
 /**
@@ -197,7 +224,24 @@ trait UnregisterReceiver extends Context {
  * Automatically unregisters BroadcastReceiver when onDestroy() called
  */
 trait UnregisterReceiverService extends Service with UnregisterReceiver {
-  override def registerReceiver(receiver: BroadcastReceiver, filter: IntentFilter): Intent = {
+  override def registerReceiver(receiver: BroadcastReceiver, filter: IntentFilter): android.content.Intent = {
+    receiverList += receiver
+    super.registerReceiver(receiver, filter)
+  }
+
+  override def onDestroy() {
+    unregister()
+    super.onDestroy()
+  }
+}
+
+/**
+ * Automatically unregisters BroadcastReceiver when onDestroy() called
+ */
+trait UnregisterReceiverActivity extends Activity with UnregisterReceiver {
+  // TODO: can we merge UnregisterReceiverActivity and UnregisterReceiverService?
+  // Please submit a patch if you know a better solution.
+  override def registerReceiver(receiver: BroadcastReceiver, filter: IntentFilter): android.content.Intent = {
     receiverList += receiver
     super.registerReceiver(receiver, filter)
   }
