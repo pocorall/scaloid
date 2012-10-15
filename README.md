@@ -34,7 +34,7 @@ Many methods in Android API requires an instance of a class Context. Providing t
 
     implicit val context = ...
 
-or just extend ContextUtil. Then the codes that required Context, for example:
+or just extend ContextUtil, which defines it for you. Then the codes that required Context, for example:
 
 ```
 new Intent(context, classOf[MyActivity])
@@ -42,6 +42,7 @@ startService(new Intent(context, classOf[MyService]))
 Toast.makeText(context, "hi, there!", Toast.LENGTH_SHORT).show()
 ProgressDialog.show(context, "Dialog", "working...", true)
 PendingIntent.getActivity(context, 0, new Intent(context, classOf[MyActivity]), 0)
+PendingIntent.getService(context, 0, new Intent(context, classOf[MyService]), 0)
 ```
 
 is reduced to:
@@ -52,6 +53,7 @@ startService[MyService]
 toast("hi, there!")
 spinnerDialog("Dialog", "working...")
 pendingActivity[MyActivity]
+pendingService[MyService]
 ```
    
 ## Traits
