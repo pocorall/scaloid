@@ -38,6 +38,7 @@ import android.net.wifi.WifiManager
 import android.content
 import content._
 import android.widget.Toast
+import android.preference.PreferenceManager
 
 
 object ScalaUtils {
@@ -111,9 +112,8 @@ object ScalaUtils {
     Toast.makeText(context, message, Toast.LENGTH_LONG).show()
   }
 
-  def spinnerDialog(title: String, message: String)(implicit context: Context) {
+  def spinnerDialog(title: String, message: String)(implicit context: Context): ProgressDialog =
     ProgressDialog.show(context, title, message, true)
-  }
 
   def pendingService(intent: Intent)(implicit context: Context) =
     PendingIntent.getService(context, 0, intent, 0)
@@ -180,13 +180,20 @@ trait ContextUtil extends Context {
 
   def windowManager: WindowManager = getSystemService(Context.WINDOW_SERVICE).asInstanceOf[WindowManager]
 
-  def playNotificationRing() {
-    val notificationRing = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-    val r = RingtoneManager.getRingtone(this, notificationRing)
+  def notificationSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+
+  def ringtoneSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
+
+  def alarmSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+
+  def play(uri: Uri = notificationSound) {
+    val r = RingtoneManager.getRingtone(this, uri)
     if (r != null) {
       r.play()
     }
   }
+
+  implicit def stringToUri(str: String): Uri = Uri.parse(str)
 
   implicit val context = this
 
@@ -218,7 +225,7 @@ trait UnregisterReceiver extends Context {
   val receiverList = new ArrayBuffer[BroadcastReceiver]()
 
   protected def unregister() {
-    Log.i("tocplus", "Unregister " + receiverList.size + " BroadcastReceivers.")
+    Log.i("ScalaUtils", "Unregister " + receiverList.size + " BroadcastReceivers.")
     for (receiver <- receiverList) try {
       unregisterReceiver(receiver)
     } catch {
@@ -258,5 +265,11 @@ trait UnregisterReceiverActivity extends Activity with UnregisterReceiver {
   override def onDestroy() {
     unregister()
     super.onDestroy()
+  }
+}
+
+trait FollowParentBackButton extends Activity {
+  override def onBackPressed() {
+    getParent.onBackPressed()
   }
 }

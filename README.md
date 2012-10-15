@@ -80,6 +80,21 @@ vibrator.vibrate(500)
 
 All of the system service accessors described in Android API level 10 are defined.
 
+**Play ringtones**
+
+Just play default notification ringtone:
+
+    play()
+	
+, specify ringtone resources:
+
+    play("content://media/internal/audio/media/50")
+	
+, or specify default resource Uris:
+	
+	play(alarmSound)
+
+	
 ### RunOnUiThread
 
 Provides Scala version of runOnUiThread() implementation. You can use it anywhere other than class Activity.
