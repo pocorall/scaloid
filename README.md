@@ -100,12 +100,12 @@ Just play default notification ringtone:
 	
 ### Trait RunOnUiThread
 
-Provides Scala version of `runOnUiThread()` implementation. You can use it anywhere other than class Activity.
+Android API provides `runOnUiThread()` only for class `Activity`. Trait `RunOnUiThread` provides Scala version of `runOnUiThread()` for anywhere other than `Activity`.
 
 Instead of:
 
 ```
-runOnUiThread {
+activity.runOnUiThread {
   new Runnable() {
 	def run() {
 	  Log.i("I am running", "only for Activity class")
@@ -114,7 +114,7 @@ runOnUiThread {
 }
 ```
 
-, extend trait RunOnUiThread and use it like this:
+, extend trait `RunOnUiThread` and use it like this:
 
     runOnUiThread(Log.i("I am running", "for any context"))
 
@@ -132,6 +132,33 @@ class MyService extends Service with UnregisterReceiverService {
   }
 }
 ```
+
+## Implicit conversions for resource Ids
+
+Android API provides two versions of methods for string resources; One is for CharSequence, another is for Int as a parameter ID. If you write a middleware classes for Android, you also have to expose methods for every combinations of two versions of resources:
+
+```
+def alert(titleId:Int, textId:Int)(implicit context:Context) = {
+  alert(context.getText(titleId), context.getText(textId))
+}
+
+def alert(titleId:Int, text:CharSequence)(implicit context:Context) = {
+  alert(context.getText(titleId), text)
+}
+
+def alert(titleId:CharSequence, textId:Int)(implicit context:Context) = {
+  alert(title, context.getText(textId))
+}
+
+def alert(title:CharSequence, text:CharSequence) = ...
+```
+
+This is not a smart way. Use type `TextResource` instead. 
+
+    def alert(title:TextResource, text:TextResource) = ...
+	
+Then implicit conversions take care about these resource type conversions.
+
 
 ## Import it to your project
 
