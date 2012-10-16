@@ -55,10 +55,14 @@ spinnerDialog("Dialog", "working...")
 pendingActivity[MyActivity]
 pendingService[MyService]
 ```
+
+Import these implicit conversion definitions in your code as shown below:
+
+    import net.pocorall.android.util.ScalaUtils._
    
 ## Traits
 
-### ContextUtil
+### Trait ContextUtil
 
 Trait ContextUtil includes several shortcuts for frequently used android idioms.
 
@@ -97,7 +101,7 @@ Just play default notification ringtone:
 	play(alarmSound)
 
 	
-### RunOnUiThread
+### Trait RunOnUiThread
 
 Provides Scala version of runOnUiThread() implementation. You can use it anywhere other than class Activity.
 
@@ -118,7 +122,7 @@ runOnUiThread {
     runOnUiThread(Log.i("I am running", "for any context"))
 
 	
-### UnregisterReceiverService
+### Trait UnregisterReceiverService
 
 When you registered BroadcastReceiver with Context.registerReceiver() you have to unregister it to prevent memory leak. Trait UnregisterReceiverService handles these chores for you by just extend it for your Service.
 
