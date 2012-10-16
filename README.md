@@ -133,9 +133,9 @@ class MyService extends Service with UnregisterReceiverService {
 }
 ```
 
-## Implicit conversions for resource Ids
+## Implicit conversions for resource IDs
 
-Android API provides two versions of methods for string resources; One is for CharSequence, another is for Int as a parameter ID. If you write a middleware classes for Android, you also have to expose methods for every combinations of two versions of resources:
+Android API provides two versions of methods for string resources; One is for `CharSequence`, another is for `Int` as a parameter ID. If you write a middleware classes for Android, you also have to expose methods for every combinations of two versions of resources:
 
 ```
 def alert(titleId:Int, textId:Int)(implicit context:Context) = {
@@ -153,7 +153,7 @@ def alert(titleId:CharSequence, textId:Int)(implicit context:Context) = {
 def alert(title:CharSequence, text:CharSequence) = ...
 ```
 
-This is not a smart way. Use type `TextResource` instead. 
+This is not a smart way. Use type `TextResource` instead: 
 
     def alert(title:TextResource, text:TextResource) = ...
 	
