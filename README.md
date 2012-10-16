@@ -29,12 +29,12 @@ helpButton.setOnClickListener {
 }
 ```
 
-## Context as implicit parameter
-Many methods in Android API requires an instance of a class Context. Providing this for every method calls results a clumsy code. We employs implicit parameter to elliminate this. Just declare an implicit value that represents current context:
+## Context as an implicit parameter
+Many methods in Android API requires an instance of a class `Context`. Providing this for every method calls results a clumsy code. We employs implicit parameter to elliminate this. Just declare an implicit value that represents current context:
 
     implicit val context = ...
 
-or just extend ContextUtil, which defines it for you. Then the codes that required Context, for example:
+or just extend trait `ContextUtil`, which defines it for you. Then the codes that required `Context`, for example:
 
 ```
 new Intent(context, classOf[MyActivity])
@@ -56,15 +56,12 @@ pendingActivity[MyActivity]
 pendingService[MyService]
 ```
 
-Import these implicit conversion definitions in your code as shown below:
-
-    import net.pocorall.android.util.ScalaUtils._
    
 ## Traits
 
 ### Trait ContextUtil
 
-Trait ContextUtil includes several shortcuts for frequently used android idioms.
+Trait `ContextUtil` includes several shortcuts for frequently used android idioms.
 
 **System services**
 
@@ -103,7 +100,7 @@ Just play default notification ringtone:
 	
 ### Trait RunOnUiThread
 
-Provides Scala version of runOnUiThread() implementation. You can use it anywhere other than class Activity.
+Provides Scala version of `runOnUiThread()` implementation. You can use it anywhere other than class Activity.
 
 Instead of:
 
@@ -124,7 +121,7 @@ runOnUiThread {
 	
 ### Trait UnregisterReceiverService
 
-When you registered BroadcastReceiver with Context.registerReceiver() you have to unregister it to prevent memory leak. Trait UnregisterReceiverService handles these chores for you by just extend it for your Service.
+When you registered `BroadcastReceiver` with `Context.registerReceiver()` you have to unregister it to prevent memory leak. Trait UnregisterReceiverService handles these chores for you by just extend it for your Service.
 
 ```
 class MyService extends Service with UnregisterReceiverService {
@@ -138,7 +135,7 @@ class MyService extends Service with UnregisterReceiverService {
 
 ## Import it to your project
 
-For now, android-scala-common is a single-file project. Just copy ScalaUtils.scala and paste it to your project. Enjoy!
+For now, android-scala-common is a single-file project. Just copy `common.scala` and paste it to your project and `import net.pocorall.android.common._`. Enjoy!
 
 ## Let's make it together!
 
