@@ -89,11 +89,11 @@ Just play default notification ringtone:
 
     play()
 	
-, specify ringtone resources:
+, specify ringtone resources as `String`:
 
     play("content://media/internal/audio/media/50")
 	
-, or specify default resource Uris:
+, or specify resource `Uri`s:
 	
 	play(alarmSound)
 
@@ -135,7 +135,7 @@ class MyService extends Service with UnregisterReceiverService {
 
 ## Implicit conversions for resource IDs
 
-Android API provides two versions of methods for string resources; One for `CharSequence`, the other for `Int` as a resource ID. If you write a middleware classes for Android, you also have to expose methods for every combinations of two versions of resources:
+Android API provides two versions of methods for string resources; One for `CharSequence`, the other for `Int` as a resource ID. If you write a functions that handles Android resource, you also have to expose methods for every combinations of two versions of resources:
 
 ```
 def alert(titleId:Int, textId:Int)(implicit context:Context) = {
