@@ -43,6 +43,7 @@ Toast.makeText(context, "hi, there!", Toast.LENGTH_SHORT).show()
 ProgressDialog.show(context, "Dialog", "working...", true)
 PendingIntent.getActivity(context, 0, new Intent(context, classOf[MyActivity]), 0)
 PendingIntent.getService(context, 0, new Intent(context, classOf[MyService]), 0)
+PreferenceManager.getDefaultSharedPreferences(context)
 ```
 
 is reduced to:
@@ -54,6 +55,7 @@ toast("hi, there!")
 spinnerDialog("Dialog", "working...")
 pendingActivity[MyActivity]
 pendingService[MyService]
+defaultSharedPreferences
 ```
 
    

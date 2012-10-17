@@ -52,6 +52,7 @@ import android.net.wifi.WifiManager
 import android.content
 import content._
 import android.widget.Toast
+import android.preference.PreferenceManager
 
 
 package object common {
@@ -144,6 +145,7 @@ package object common {
   def pendingActivity[T](implicit context: Context, mt: ClassManifest[T]) =
     PendingIntent.getActivity(context, 0, newIntent[T], 0)
 
+  def defaultSharedPreferences(implicit context: Context): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
   trait ContextUtil extends Context {
     def accessibilityManager: AccessibilityManager = getSystemService(Context.ACCESSIBILITY_SERVICE).asInstanceOf[AccessibilityManager]
