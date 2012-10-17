@@ -53,6 +53,7 @@ import android.content
 import content._
 import android.widget.Toast
 import android.preference.PreferenceManager
+import android.view.WindowManager.LayoutParams._
 
 
 package object common {
@@ -145,6 +146,12 @@ package object common {
   def pendingActivity[T](implicit context: Context, mt: ClassManifest[T]) =
     PendingIntent.getActivity(context, 0, newIntent[T], 0)
 
+  def notificationSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+
+  def ringtoneSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
+
+  def alarmSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+
   def defaultSharedPreferences(implicit context: Context): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
   trait ContextUtil extends Context {
@@ -199,12 +206,6 @@ package object common {
     def wifiManager: WifiManager = getSystemService(Context.WIFI_SERVICE).asInstanceOf[WifiManager]
 
     def windowManager: WindowManager = getSystemService(Context.WINDOW_SERVICE).asInstanceOf[WindowManager]
-
-    def notificationSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-
-    def ringtoneSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
-
-    def alarmSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
 
     def play(uri: Uri = notificationSound) {
       val r = RingtoneManager.getRingtone(this, uri)
@@ -290,6 +291,17 @@ package object common {
     override def onBackPressed() {
       val p = getParent
       if (p != null) p.onBackPressed()
+    }
+  }
+
+  /**
+   * Turn screen on and show the activity even if the screen is locked.
+   * This is useful when notify some important information.
+   */
+  trait ScreenOnActivity extends Activity {
+    override def onCreate(savedInstanceState: Bundle) {
+      super.onCreate(savedInstanceState)
+      getWindow.addFlags(FLAG_DISMISS_KEYGUARD | FLAG_SHOW_WHEN_LOCKED | FLAG_TURN_SCREEN_ON | FLAG_KEEP_SCREEN_ON)
     }
   }
 
