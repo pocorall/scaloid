@@ -97,31 +97,32 @@ package object common {
 
   implicit def func2ViewOnLongClickListener(f: View => Boolean): View.OnLongClickListener =
     new View.OnLongClickListener() {
-      def onLongClick(view: View) {
+      def onLongClick(view: View): Boolean = {
         f(view)
       }
     }
 
   implicit def lazy2ViewOnLongClickListener(f: => Boolean): View.OnLongClickListener =
     new View.OnLongClickListener() {
-      def onLongClick(view: View) {
+      def onLongClick(view: View): Boolean = {
         f
       }
     }
 
-  implicit def func2ViewOnDragListener(f: View => Boolean): View.OnDragListener =
-    new View.OnDragListener() {
-      def onDrag(view: View, dragEvent: DragEvent) {
-        f(view)
-      }
-    }
-
-  implicit def lazy2ViewOnDragListener(f: => Boolean): View.OnDragListener =
-    new View.OnDragListener() {
-      def onDrag(view: View, dragEvent: DragEvent) {
-        f
-      }
-    }
+  // requires API level 11 or higher
+  //  implicit def func2ViewOnDragListener(f: View => Boolean): View.OnDragListener =
+  //    new View.OnDragListener() {
+  //      def onDrag(view: View, dragEvent: DragEvent) {
+  //        f(view)
+  //      }
+  //    }
+  //
+  //  implicit def lazy2ViewOnDragListener(f: => Boolean): View.OnDragListener =
+  //    new View.OnDragListener() {
+  //      def onDrag(view: View, dragEvent: DragEvent) {
+  //        f
+  //      }
+  //    }
 
   implicit def func2ViewOnFocusChangeListener[F](f: (View, Boolean) => F): OnFocusChangeListener =
     new OnFocusChangeListener {
@@ -167,6 +168,20 @@ package object common {
       }
     }
 
+
+  implicit def func2OnKeyListener(f: (View, Int, KeyEvent) => Boolean): View.OnKeyListener =
+    new View.OnKeyListener {
+      def onKey(v: View, keyCode: Int, event: KeyEvent): Boolean = {
+        f(v, keyCode, event)
+      }
+    }
+
+  implicit def lazy2OnKeyListener(f: => Boolean): View.OnKeyListener =
+    new View.OnKeyListener {
+      def onKey(view: View, actionId: Int, event: KeyEvent): Boolean = {
+        f
+      }
+    }
 
   implicit def func2runnable[F](f: () => F): Runnable =
     new Runnable() {
