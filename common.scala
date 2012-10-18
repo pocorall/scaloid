@@ -32,7 +32,7 @@ package net.pocorall.android
 
 import android.app._
 import admin.DevicePolicyManager
-import android.view.{WindowManager, LayoutInflater, View}
+import android.view._
 import android.net.{ConnectivityManager, Uri}
 import android.os._
 import android.media.{AudioManager, RingtoneManager}
@@ -51,9 +51,10 @@ import android.telephony.TelephonyManager
 import android.net.wifi.WifiManager
 import android.content
 import content._
-import android.widget.Toast
+import android.widget.{TextView, Toast}
 import android.preference.PreferenceManager
 import android.view.WindowManager.LayoutParams._
+import android.view.View.OnFocusChangeListener
 
 
 package object common {
@@ -94,6 +95,49 @@ package object common {
       }
     }
 
+  implicit def func2ViewOnLongClickListener(f: View => Boolean): View.OnLongClickListener =
+    new View.OnLongClickListener() {
+      def onLongClick(view: View) {
+        f(view)
+      }
+    }
+
+  implicit def lazy2ViewOnLongClickListener(f: => Boolean): View.OnLongClickListener =
+    new View.OnLongClickListener() {
+      def onLongClick(view: View) {
+        f
+      }
+    }
+
+  implicit def func2ViewOnDragListener(f: View => Boolean): View.OnDragListener =
+    new View.OnDragListener() {
+      def onDrag(view: View, dragEvent: DragEvent) {
+        f(view)
+      }
+    }
+
+  implicit def lazy2ViewOnDragListener(f: => Boolean): View.OnDragListener =
+    new View.OnDragListener() {
+      def onDrag(view: View, dragEvent: DragEvent) {
+        f
+      }
+    }
+
+  implicit def func2ViewOnFocusChangeListener[F](f: (View, Boolean) => F): OnFocusChangeListener =
+    new OnFocusChangeListener {
+      def onFocusChange(v: View, hasFocus: Boolean) {
+        f(v, hasFocus)
+      }
+    }
+
+  implicit def lazy2ViewOnFocusChangeListener[F](f: => F): OnFocusChangeListener =
+    new OnFocusChangeListener {
+      def onFocusChange(v: View, hasFocus: Boolean) {
+        f
+      }
+    }
+
+
   implicit def func2DialogOnClickListener[F](f: (DialogInterface, Int) => F): DialogInterface.OnClickListener =
     new DialogInterface.OnClickListener {
       def onClick(dialog: DialogInterface, which: Int) {
@@ -107,6 +151,22 @@ package object common {
         f
       }
     }
+
+
+  implicit def func2OnEditorActionListener(f: (TextView, Int, KeyEvent) => Boolean): TextView.OnEditorActionListener =
+    new TextView.OnEditorActionListener {
+      def onEditorAction(view: TextView, actionId: Int, event: KeyEvent): Boolean = {
+        f(view, actionId, event)
+      }
+    }
+
+  implicit def lazy2OnEditorActionListener(f: => Boolean): TextView.OnEditorActionListener =
+    new TextView.OnEditorActionListener {
+      def onEditorAction(view: TextView, actionId: Int, event: KeyEvent): Boolean = {
+        f
+      }
+    }
+
 
   implicit def func2runnable[F](f: () => F): Runnable =
     new Runnable() {
@@ -287,6 +347,12 @@ package object common {
     }
   }
 
+  /**
+   * Follows a parent's action of onBackPressed().
+   * When an activity is a tab that hosted by TabActivity, you may want a common back-button action for each tab.
+   *
+   * Please refer http://stackoverflow.com/questions/2796050/key-events-in-tabactivities
+   */
   trait FollowParentBackButton extends Activity {
     override def onBackPressed() {
       val p = getParent
@@ -296,7 +362,7 @@ package object common {
 
   /**
    * Turn screen on and show the activity even if the screen is locked.
-   * This is useful when notify some important information.
+   * This is useful when notifying some important information.
    */
   trait ScreenOnActivity extends Activity {
     override def onCreate(savedInstanceState: Bundle) {
