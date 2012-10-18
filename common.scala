@@ -195,7 +195,7 @@ package object common {
       def afterTextChanged(p1: Editable) {}
     }
 
-  implicit def func2TextWatcher[F](f: (Editable) => F): TextWatcher =
+  implicit def f2TextWatcher[F](f: (Editable) => F): TextWatcher =
     new TextWatcher {
       def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
 
