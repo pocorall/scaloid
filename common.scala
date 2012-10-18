@@ -39,7 +39,7 @@ import android.media.{AudioManager, RingtoneManager}
 import collection.mutable.ArrayBuffer
 import android.util.Log
 
-import android.text.ClipboardManager
+import android.text.{Editable, TextWatcher, ClipboardManager}
 import android.view.accessibility.AccessibilityManager
 import android.accounts.AccountManager
 import android.view.inputmethod.InputMethodManager
@@ -108,6 +108,7 @@ package object common {
         f
       }
     }
+
 
   // requires API level 11 or higher
   //  implicit def func2ViewOnDragListener(f: View => Boolean): View.OnDragListener =
@@ -182,6 +183,40 @@ package object common {
         f
       }
     }
+
+  implicit def func2TextWatcher[F](f: (CharSequence, Int, Int, Int) => F): TextWatcher =
+    new TextWatcher {
+      def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+        f(s, start, before, count)
+      }
+
+      def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
+
+      def afterTextChanged(p1: Editable) {}
+    }
+
+  implicit def func2TextWatcher[F](f: (Editable) => F): TextWatcher =
+    new TextWatcher {
+      def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+
+      def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
+
+      def afterTextChanged(editable: Editable) {
+        f(editable)
+      }
+    }
+
+  implicit def lazy2TextWatcher[F](f: => F): TextWatcher =
+    new TextWatcher {
+      def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+        f
+      }
+
+      def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
+
+      def afterTextChanged(p1: Editable) {}
+    }
+
 
   implicit def func2runnable[F](f: () => F): Runnable =
     new Runnable() {
