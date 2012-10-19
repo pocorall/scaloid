@@ -3,7 +3,8 @@
 Scala is cool. Writing Android application with Scala is also a cool idea. Because Android exposes Java API, we need some wrapper and utility library to leverage full power of Scala. android-scala-common is an initial attempt to provide this.
 
 Benefits:
- * **Write elegant Android software**
+ * **Write elegant Android software**<br/>
+   Read later part of this document to see how android-scala-common greatly improve your code.
  * **Simple to use**<br/> 
    This is a single-file project. Just copy-and-paste into your project!
  * **Maintained actively**<br/>
