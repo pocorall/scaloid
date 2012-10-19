@@ -336,6 +336,10 @@ package object common {
     def startService[T: ClassManifest] {
       startService(newIntent[T])
     }
+
+    def stopService[T: ClassManifest] {
+      stopService(newIntent[T])
+    }
   }
 
   /**
@@ -433,3 +437,4 @@ package object common {
   }
 
 }
+
