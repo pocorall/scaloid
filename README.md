@@ -176,11 +176,11 @@ For now, android-scala-common is a single-file project. Just copy `common.scala`
 
 ## Let's make it together!
 
-This project is very early stage, and I will grow it constantly. If you have any idea to improve this library, feel free to open issues or post patches.
+This project is in early stages, and I will grow it constantly. If you have any idea to improve this library, feel free to open issues or post patches.
 
 ### License
 
-This software is licensed under the Apache 2 license.
+This software is licensed under the [Apache 2 license](http://www.apache.org/licenses/LICENSE-2.0.html).
 
 ### Recommended resources
 
