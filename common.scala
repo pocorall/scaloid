@@ -63,12 +63,13 @@ package object common {
 
   implicit def resourceIdToTextResource(id: Int)(implicit context: Context): TextResource = context.getText(id)
 
-  def alert(titleId: TextResource, textId: TextResource)(implicit context: Context) {
+  def alert(titleId: TextResource, textId: TextResource, clickCallback: => Unit = {})(implicit context: Context) {
     val builder: AlertDialog.Builder = new AlertDialog.Builder(context)
     builder.setTitle(titleId)
     builder.setMessage(textId)
     builder.setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener {
       def onClick(dialog: DialogInterface, which: Int) {
+        clickCallback
       }
     })
     builder.show()
