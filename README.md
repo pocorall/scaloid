@@ -4,9 +4,9 @@ Scala is cool. Writing Android application with Scala is also a cool idea. Becau
 
 Benefits:
  * **Write elegant Android software**
- * **Simple to use:** 
+ * **Simple to use**<br/> 
    This is a single-file project. Just copy-and-paste into your project!
- * **Maintained actively**
+ * **Maintained actively**<br/>
    This project is originally created to be used for my own Android project. First principle of this project is "working right".
 
 ## Implicit conversions
