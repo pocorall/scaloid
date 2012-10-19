@@ -128,7 +128,7 @@ activity.runOnUiThread {
 
     runOnUiThread(Log.i("I am running", "for any context"))
 
-	
+
 ### Trait UnregisterReceiverService
 
 When you registered `BroadcastReceiver` with `Context.registerReceiver()` you have to unregister it to prevent memory leak. Trait UnregisterReceiverService handles these chores for you by just extend it for your Service.
@@ -142,6 +142,16 @@ class MyService extends Service with UnregisterReceiverService {
   }
 }
 ```
+
+### Trait ActivityUtil
+
+Instead of
+
+    findViewById(R.id.login).asInstanceOf[Button]
+
+use this shortcut:
+
+    find[Button](R.id.login)
 
 ## Implicit conversions for resource IDs
 

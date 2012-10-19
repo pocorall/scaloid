@@ -237,6 +237,8 @@ package object common {
 
   def newIntent[T](implicit context: Context, mt: ClassManifest[T]) = new content.Intent(context, mt.erasure)
 
+  def newTextView(implicit context: Context): TextView = new TextView(context)
+
   def toast(message: String)(implicit context: Context) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
   }
@@ -337,6 +339,14 @@ package object common {
   }
 
   /**
+   * Provides utility methods for Activity
+   */
+  trait ActivityUtil extends Activity {
+    def find[V <: android.view.View](id: Int): V = findViewById(id).asInstanceOf[V]
+  }
+
+
+  /**
    * Provides handler instance and runOnUiThread() utility method.
    */
   trait RunOnUiThread {
@@ -423,4 +433,3 @@ package object common {
   }
 
 }
-
