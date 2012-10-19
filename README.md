@@ -174,6 +174,8 @@ Then implicit conversions will take care about these resource type conversions.
 
 For now, android-scala-common is a single-file project. Just copy `common.scala` and paste it to your project and `import net.pocorall.android.common._`. Enjoy!
 
+ * This project can be built with Android API level 10 or higher.
+
 ## Let's make it together!
 
 This project is in early stages, and I will grow it constantly. If you have any idea to improve this library, feel free to open issues or post patches.
