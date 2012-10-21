@@ -55,15 +55,14 @@ import android.widget.{Button, TextView, Toast}
 import android.preference.PreferenceManager
 import android.view.WindowManager.LayoutParams._
 import android.view.View.{OnClickListener, OnFocusChangeListener}
+import android.graphics.drawable.Drawable
 
 
 package object common {
-  /** A tag type for a safer implicit conversion from resource Id. */
-  type TextResource = CharSequence
 
-  implicit def resourceIdToTextResource(id: Int)(implicit context: Context): TextResource = context.getText(id)
+  implicit def resourceIdToTextResource(id: Int)(implicit context: Context): CharSequence = context.getText(id)
 
-  def alert(titleId: TextResource, textId: TextResource, clickCallback: => Unit = {})(implicit context: Context) {
+  def alert(titleId: CharSequence, textId: CharSequence, clickCallback: => Unit = {})(implicit context: Context) {
     val builder: AlertDialog.Builder = new AlertDialog.Builder(context)
     builder.setTitle(titleId)
     builder.setMessage(textId)
@@ -233,13 +232,34 @@ package object common {
       }
     }
 
+  implicit def int2Drawable(resourceId: Int)(implicit context: Context): Drawable = {
+    context.getResources.getDrawable(resourceId)
+  }
+
+  class AlertDialogBuilder(title: CharSequence, message: CharSequence)(implicit context: Context) extends AlertDialog.Builder(context) {
+    setTitle(title)
+    setMessage(message)
+
+    def positiveButton(name: CharSequence, onClick: (DialogInterface, Int) => Unit): AlertDialogBuilder = {
+      setPositiveButton(name, func2DialogOnClickListener(onClick))
+      this
+    }
+
+    def negativeButton(name: CharSequence, onClick: (DialogInterface, Int) => Unit = (d, _) => {
+      d.cancel()
+    }): AlertDialogBuilder = {
+      setNegativeButton(name, func2DialogOnClickListener(onClick))
+      this
+    }
+  }
+
   implicit def stringToUri(str: String): Uri = Uri.parse(str)
 
   def newIntent[T](implicit context: Context, mt: ClassManifest[T]) = new content.Intent(context, mt.erasure)
 
   def newTextView(implicit context: Context): TextView = new TextView(context)
 
-  def newButton(text: TextResource, onClickListener: OnClickListener)(implicit context: Context): Button = {
+  def newButton(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context): Button = {
     val btn = new Button(context)
     btn.setText(text)
     btn.setOnClickListener(onClickListener)
