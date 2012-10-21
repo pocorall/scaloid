@@ -51,6 +51,21 @@ button.setOnClickListener {
 }
 ```
 
+A part of available implicit conversions is:
+
+    String => Uri
+	Int => TextResource
+	( => Any) => OnClickListener
+	( => Boolean) => OnLongClickListener
+	((View, Boolean) => Any) => OnFocusChangeListener
+	( => Boolean) => OnEditorActionListener
+	( => Boolean) => OnKeyListener
+	((CharSequence, Int, Int, Int) => Any) => TextWatcher
+	( => Any) => Runnable
+	
+There are more implicit conversions available. Check the source code as needed.
+	
+
 ## Context as an implicit parameter
 Many methods in Android API requires an instance of a class `Context`. Providing this for every method calls results a clumsy code. We employs implicit parameter to elliminate this. Just declare an implicit value that represents current context:
 
