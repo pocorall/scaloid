@@ -54,7 +54,8 @@ button.setOnClickListener {
 Some of available implicit conversions are shown below:
 
     String => Uri
-	Int => TextResource
+	Int => CharSequence
+	Int => Drawable
 	( => Any) => OnClickListener
 	( => Boolean) => OnLongClickListener
 	((View, Boolean) => Any) => OnFocusChangeListener
@@ -181,33 +182,20 @@ Instead of
 use this shortcut:
 
     find[Button](R.id.login)
-
-## Implicit conversions for resource IDs
-
-Android API provides two versions of methods for string resources; One for `CharSequence`, the other for `Int` as a resource ID. If you write a functions that handles Android resource, you also have to expose methods for every combinations of two versions of resources:
-
-```
-def alert(titleId:Int, textId:Int)(implicit context:Context) = {
-  alert(context.getText(titleId), context.getText(textId))
-}
-
-def alert(titleId:Int, text:CharSequence)(implicit context:Context) = {
-  alert(context.getText(titleId), text)
-}
-
-def alert(titleId:CharSequence, textId:Int)(implicit context:Context) = {
-  alert(title, context.getText(textId))
-}
-
-def alert(title:CharSequence, text:CharSequence) = ...
-```
-
-This is not a smart way. Use type `TextResource` instead: 
-
-    def alert(title:TextResource, text:TextResource) = ...
 	
-Then implicit conversions will take care about these resource type conversions.
+## Classes
 
+### Class AlertDialogBuilder
+
+A scala-style builder for AlertDialog.
+
+    new AlertDialogBuilder("Exit", "Do you really want to exit?")
+      .positiveButton("Exit", (_, _) => {
+      // cleanup the application
+      finish()
+    })
+      .negativeButton("Cancel")
+      .show()
 
 ## Import it to your project
 
