@@ -30,23 +30,21 @@ is reduced to:
 This library employs several implicit conversions. 
 
 ```
-helpButton.setOnClickListener {
-  new OnClickListener {
-	def onClick(dialog: DialogInterface, which: Int) {
-	  Log.i("pocorall", "pressed!")
-	}
+button.setOnClickListener(new OnClickListener {
+  def onClick(v:View) {
+    Log.i("pocorall", "pressed!")
   }
-}
+})
 ```
 
 is reduced to:
 
-    helpButton.setOnClickListener(Log.i("pocorall", "pressed!"))
+    button.setOnClickListener(Log.i("pocorall", "pressed!"))
 
 For a multi-line block:
 
 ```
-helpButton.setOnClickListener {
+button.setOnClickListener {
   (v: View) =>
     Log.i("pocorall", "pressed!")
     Log.i("pocorall", v.toString())
