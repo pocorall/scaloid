@@ -51,7 +51,7 @@ button.setOnClickListener {
 }
 ```
 
-A part of available implicit conversions is:
+Some of available implicit conversions are shown below:
 
     String => Uri
 	Int => TextResource
