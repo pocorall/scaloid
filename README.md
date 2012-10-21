@@ -18,7 +18,7 @@ is reduced to:
 	layout.addView(newButton("send", sendMessage()))
 
 
-Benefits:
+### Benefits
  * **Write elegant Android software**<br/>
    Read later part of this document to see how android-scala-common greatly improve your code.
  * **Simple to use**<br/> 
