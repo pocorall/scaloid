@@ -51,10 +51,10 @@ import android.telephony.TelephonyManager
 import android.net.wifi.WifiManager
 import android.content
 import content._
-import android.widget.{TextView, Toast}
+import android.widget.{Button, TextView, Toast}
 import android.preference.PreferenceManager
 import android.view.WindowManager.LayoutParams._
-import android.view.View.OnFocusChangeListener
+import android.view.View.{OnClickListener, OnFocusChangeListener}
 
 
 package object common {
@@ -238,6 +238,13 @@ package object common {
   def newIntent[T](implicit context: Context, mt: ClassManifest[T]) = new content.Intent(context, mt.erasure)
 
   def newTextView(implicit context: Context): TextView = new TextView(context)
+
+  def newButton(text: TextResource, onClickListener: OnClickListener)(implicit context: Context): Button = {
+    val btn = new Button(context)
+    btn.setText(text)
+    btn.setOnClickListener(onClickListener)
+    btn
+  }
 
   def toast(message: String)(implicit context: Context) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()

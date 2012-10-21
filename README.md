@@ -2,6 +2,22 @@
 
 Scala is cool. Writing Android application with Scala is also a cool idea. Because Android exposes Java API, we need some wrapper and utility library to leverage full power of Scala. android-scala-common is an initial attempt to provide this.
 
+For example, the code block shown below:
+
+	val button = new Button(context)
+	button.setText("send")
+	button.setOnClickListener(new OnClickListener() {
+	  def onClick(v: View) {
+		sendMessage()
+	  }
+	})
+	layout.addView(button)
+
+is reduced to:	
+	
+	layout.addView(newButton("send", sendMessage()))
+
+
 Benefits:
  * **Write elegant Android software**<br/>
    Read later part of this document to see how android-scala-common greatly improve your code.
