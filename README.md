@@ -27,7 +27,7 @@ is reduced to:
    This project is originally created to be used for my own Android app. The first principle of this project is "working right".
 
 ## Implicit conversions
-This library employs several implicit conversions. 
+This library employs several implicit conversions. A code block:
 
 ```
 button.setOnClickListener(new OnClickListener {
