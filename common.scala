@@ -355,6 +355,7 @@ package object common {
     }
 
     implicit val context = this
+    implicit val tag = LoggerTag(this.getClass.getName)
 
     def startActivity[T: ClassManifest] {
       startActivity(newIntent[T])
@@ -461,6 +462,34 @@ package object common {
       super.onCreate(savedInstanceState)
       getWindow.addFlags(FLAG_DISMISS_KEYGUARD | FLAG_SHOW_WHEN_LOCKED | FLAG_TURN_SCREEN_ON)
     }
+  }
+
+  case class LoggerTag(tag: String)
+
+  private def loggingText(str: String, t: Throwable) = str + (if (t == null) "" else "\n" + Log.getStackTraceString(t))
+
+  def verbose(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
+    if (Log.isLoggable(tag.tag, Log.VERBOSE)) Log.v(tag.tag, loggingText(str, t))
+  }
+
+  def debug(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
+    if (Log.isLoggable(tag.tag, Log.DEBUG)) Log.d(tag.tag, loggingText(str, t))
+  }
+
+  def info(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
+    if (Log.isLoggable(tag.tag, Log.INFO)) Log.i(tag.tag, loggingText(str, t))
+  }
+
+  def warn(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
+    if (Log.isLoggable(tag.tag, Log.WARN)) Log.w(tag.tag, loggingText(str, t))
+  }
+
+  def error(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
+    if (Log.isLoggable(tag.tag, Log.ERROR)) Log.e(tag.tag, loggingText(str, t))
+  }
+
+  def wtf(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
+    if (Log.isLoggable(tag.tag, Log.ASSERT)) Log.wtf(tag.tag, loggingText(str, t))
   }
 
 }

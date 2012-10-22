@@ -183,6 +183,22 @@ use this shortcut:
 
     find[Button](R.id.login)
 	
+## Logging
+
+Unlike other logging frameworks, Android Logging API requires a `String` tag for every log calls. We elliminate this by introducing implicit parameter. Define an implicit value type of `LoggerTag` as shown:
+
+    implicit val tag = LoggerTag(this.getClass.getName)
+
+or, trait `ContextUtil` defines this by default for you. Then you can simply log like this:
+
+	info("hello " + world)
+
+other functions for every log levels(verbose, debug, info, warn, error, wtf) are available. A 'String' parameter passed with 'info()' is a lazy argument, and evaluated only if the logging is possible. Therefore the example shown above is equivalent to:
+	
+	val tag = this.getClass.getName
+	if(Log.isLoggable(tag, Log.INFO)) Log.i(tag, "hello " + world)
+
+	
 ## Classes
 
 ### Class AlertDialogBuilder
