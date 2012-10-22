@@ -187,7 +187,7 @@ use this shortcut:
 
 ### Class AlertDialogBuilder
 
-A scala-style builder for AlertDialog.
+A Scala-style builder for AlertDialog.
 
     new AlertDialogBuilder("Exit the app", "Do you really want to exit?")
       .positiveButton("Exit", (_, _) => {

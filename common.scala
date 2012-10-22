@@ -77,8 +77,8 @@ package object common {
   /**
    * Launches a new activity for a give uri. For example, opens a web browser for http protocols.
    */
-  def openUri(uri: String)(implicit context: Context) {
-    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
+  def openUri(uri: Uri)(implicit context: Context) {
+    context.startActivity(new Intent(Intent.ACTION_VIEW, uri))
   }
 
   implicit def func2ViewOnClickListener[F](f: View => F): View.OnClickListener =
@@ -459,7 +459,7 @@ package object common {
   trait ScreenOnActivity extends Activity {
     override def onCreate(savedInstanceState: Bundle) {
       super.onCreate(savedInstanceState)
-      getWindow.addFlags(FLAG_DISMISS_KEYGUARD | FLAG_SHOW_WHEN_LOCKED | FLAG_TURN_SCREEN_ON | FLAG_KEEP_SCREEN_ON)
+      getWindow.addFlags(FLAG_DISMISS_KEYGUARD | FLAG_SHOW_WHEN_LOCKED | FLAG_TURN_SCREEN_ON)
     }
   }
 
