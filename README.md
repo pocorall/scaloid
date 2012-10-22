@@ -193,7 +193,7 @@ or, trait `ContextUtil` defines this by default for you. Then you can simply log
 
 	info("hello " + world)
 
-other functions for every log levels(verbose, debug, info, warn, error, wtf) are available. A 'String' parameter passed with 'info()' is a lazy argument, and evaluated only if the logging is possible. Therefore the example shown above is equivalent to:
+Other functions for every log levels(verbose, debug, info, warn, error, wtf) are available. A `String` parameter passed with `info()` is a lazy argument, and evaluated only if the logging is possible. Therefore the example shown above is equivalent to:
 	
 	val tag = this.getClass.getName
 	if(Log.isLoggable(tag, Log.INFO)) Log.i(tag, "hello " + world)
