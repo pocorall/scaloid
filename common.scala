@@ -58,6 +58,11 @@ import android.view.View.{OnClickListener, OnFocusChangeListener}
 import android.graphics.drawable.Drawable
 
 
+case class LoggerTag(_tag: String) {
+  private val MAX_TAG_LEN = 22
+  val tag = if (_tag.length < MAX_TAG_LEN) _tag else ":" + _tag.substring(_tag.length - (MAX_TAG_LEN - 1), _tag.length)
+}
+
 package object common {
 
   implicit def resourceIdToTextResource(id: Int)(implicit context: Context): CharSequence = context.getText(id)
@@ -463,8 +468,6 @@ package object common {
       getWindow.addFlags(FLAG_DISMISS_KEYGUARD | FLAG_SHOW_WHEN_LOCKED | FLAG_TURN_SCREEN_ON)
     }
   }
-
-  case class LoggerTag(tag: String)
 
   private def loggingText(str: String, t: Throwable) = str + (if (t == null) "" else "\n" + Log.getStackTraceString(t))
 

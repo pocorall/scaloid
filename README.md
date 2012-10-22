@@ -187,7 +187,7 @@ use this shortcut:
 
 Unlike other logging frameworks, Android Logging API requires a `String` tag for every log calls. We elliminate this by introducing implicit parameter. Define an implicit value type of `LoggerTag` as shown:
 
-    implicit val tag = LoggerTag(this.getClass.getName)
+    implicit val tag = LoggerTag("MyAppTag")
 
 or, extend trait `ContextUtil` which defines this by default. Then you can simply log like this:
 
@@ -195,7 +195,7 @@ or, extend trait `ContextUtil` which defines this by default. Then you can simpl
 
 Other functions for every log levels(verbose, debug, info, warn, error, wtf) are available. A `String` parameter passed with `info()` is a lazy argument, and evaluated only if the logging is possible. Therefore the example shown above is equivalent to:
 	
-	val tag = this.getClass.getName
+	val tag = "MyAppTag"
 	if(Log.isLoggable(tag, Log.INFO)) Log.i(tag, "hello " + world)
 
 	
