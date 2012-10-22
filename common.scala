@@ -299,7 +299,11 @@ package object common {
 
   def defaultSharedPreferences(implicit context: Context): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
-  trait ContextUtil extends Context {
+  trait TagUtil {
+    implicit val tag = LoggerTag(this.getClass.getName)
+  }
+
+  trait ContextUtil extends Context with TagUtil {
     def accessibilityManager: AccessibilityManager = getSystemService(Context.ACCESSIBILITY_SERVICE).asInstanceOf[AccessibilityManager]
 
     def accountManager: AccountManager = getSystemService(Context.ACCOUNT_SERVICE).asInstanceOf[AccountManager]
@@ -360,7 +364,6 @@ package object common {
     }
 
     implicit val context = this
-    implicit val tag = LoggerTag(this.getClass.getName)
 
     def startActivity[T: ClassManifest] {
       startActivity(newIntent[T])

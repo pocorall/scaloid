@@ -189,7 +189,7 @@ Unlike other logging frameworks, Android Logging API requires a `String` tag for
 
     implicit val tag = LoggerTag("MyAppTag")
 
-or, extend trait `ContextUtil` which defines this by default. Then you can simply log like this:
+or, extend trait `TagUtil` or `ContextUtil` which defines this by default. Then you can simply log like this:
 
 	info("hello " + world)
 
