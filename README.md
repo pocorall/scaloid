@@ -121,7 +121,7 @@ notificationManager.notify(R.string.someString, notification)
 vibrator.vibrate(500)
 ```
 
-All of the system service accessors described in Android API level 10 are defined.
+All of the system service accessors available in Android API level 10 are defined.
 
 **Play ringtones**
 
