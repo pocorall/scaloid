@@ -116,10 +116,8 @@ vibrator.vibrate(500)
 
 is reduced to:
 
-```
-notificationManager.notify(R.string.someString, notification)
-vibrator.vibrate(500)
-```
+    notificationManager.notify(R.string.someString, notification)
+    vibrator.vibrate(500)
 
 All of the system service accessors available in Android API level 10 are defined.
 
@@ -163,7 +161,7 @@ Using this, an asynchronous job can be run like this:
 		runOnUiThread(alert("Done!", result))
 	}
 	
-Compare the code above with the code using `AsyncTask`, which is shown below. It is a great win as it describes your idea clealy.
+Compare the code above with the code using `AsyncTask`, which is shown below. It is a great win as it exposes your idea clealy.
 
     new AsyncTask[String, Void, String] {
       def doInBackground(params: Array[String]) = {
