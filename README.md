@@ -144,20 +144,36 @@ Android API provides `runOnUiThread()` only for class `Activity`. Trait `RunOnUi
 
 Instead of:
 
-```
-activity.runOnUiThread {
-  new Runnable() {
-	def run() {
-	  Log.i("I am running", "only for Activity class")
-	}
-  }
-}
-```
+    activity.runOnUiThread {
+      new Runnable() {
+	    def run() {
+	      info("Running only for Activity class")
+    	}
+      }
+    }
 
 , extend trait `RunOnUiThread` and use it like this:
 
-    runOnUiThread(Log.i("I am running", "for any context"))
+    runOnUiThread(info("Running for any context"))
 
+Using this, asynchronous job can be run like this: 
+
+    spawn {
+		val result = doSomeJobTakesSomeTime(params)
+		runOnUiThread(alert("Done!", result))
+	}
+	
+Compare the code above with the code using `AsyncTask`, which is shown below. It is a great win as it describes your idea clealy.
+
+    new AsyncTask[String, Void, String] {
+      def doInBackground(params: Array[String]) = {
+        doSomeJobTakesSomeTime(params)
+      }
+
+      override def onPostExecute(result: String) {
+        alert("Done!", result)
+      }
+    }.execute("param")
 
 ### Trait UnregisterReceiverService
 
@@ -205,13 +221,23 @@ Other functions for every log levels(verbose, debug, info, warn, error, wtf) are
 
 A Scala-style builder for AlertDialog.
 
-    new AlertDialogBuilder("Exit the app", "Do you really want to exit?")
-      .positiveButton("Exit", (_, _) => {
+    new AlertDialogBuilder(R.string.title, R.string.message) {
+      neutralButton()
+    }.show()
+	
+This displays an alert dialog with given string resources. We provide an equivalent shortcut:
+
+    alert(R.string.title, R.string.messag)	
+	
+Also you can build more complex dialog:
+	
+    new AlertDialogBuilder("Exit the app", "Do you really want to exit?") {
+      positiveButton("Exit", (_, _) => {
           // cleanup the application
           finish()
         })
-      .negativeButton("Cancel")
-      .show()
+      negativeButton("Cancel")
+    }.show()
 
 ## Import it to your project
 

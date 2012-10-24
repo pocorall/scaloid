@@ -67,23 +67,19 @@ package object common {
 
   implicit def resourceIdToTextResource(id: Int)(implicit context: Context): CharSequence = context.getText(id)
 
-  def alert(titleId: CharSequence, textId: CharSequence, clickCallback: => Unit = {})(implicit context: Context) {
-    val builder: AlertDialog.Builder = new AlertDialog.Builder(context)
-    builder.setTitle(titleId)
-    builder.setMessage(textId)
-    builder.setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener {
-      def onClick(dialog: DialogInterface, which: Int) {
-        clickCallback
-      }
-    })
-    builder.show()
-  }
 
   /**
    * Launches a new activity for a give uri. For example, opens a web browser for http protocols.
    */
   def openUri(uri: Uri)(implicit context: Context) {
     context.startActivity(new Intent(Intent.ACTION_VIEW, uri))
+  }
+
+  def play(uri: Uri = notificationSound)(implicit context: Context) {
+    val r = RingtoneManager.getRingtone(context, uri)
+    if (r != null) {
+      r.play()
+    }
   }
 
   implicit def func2ViewOnClickListener[F](f: View => F): View.OnClickListener =
@@ -241,21 +237,52 @@ package object common {
     context.getResources.getDrawable(resourceId)
   }
 
-  class AlertDialogBuilder(title: CharSequence, message: CharSequence)(implicit context: Context) extends AlertDialog.Builder(context) {
-    setTitle(title)
-    setMessage(message)
+  class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = null)(implicit context: Context) extends AlertDialog.Builder(context) {
+    if (_title != null) setTitle(_title)
+    if (_message != null) setMessage(_message)
 
-    def positiveButton(name: CharSequence, onClick: (DialogInterface, Int) => Unit): AlertDialogBuilder = {
+    def positiveButton(name: CharSequence = android.R.string.yes, onClick: (DialogInterface, Int) => Unit = (_, _) => {}): AlertDialogBuilder = {
       setPositiveButton(name, func2DialogOnClickListener(onClick))
       this
     }
 
-    def negativeButton(name: CharSequence, onClick: (DialogInterface, Int) => Unit = (d, _) => {
+    def neutralButton(name: CharSequence = android.R.string.ok, onClick: (DialogInterface, Int) => Unit = (_, _) => {}): AlertDialogBuilder = {
+      setNeutralButton(name, func2DialogOnClickListener(onClick))
+      this
+    }
+
+    def negativeButton(name: CharSequence = android.R.string.no, onClick: (DialogInterface, Int) => Unit = (d, _) => {
       d.cancel()
     }): AlertDialogBuilder = {
       setNegativeButton(name, func2DialogOnClickListener(onClick))
       this
     }
+
+    var tit: CharSequence = null
+
+    def title_=(str: CharSequence) = {
+      tit = str
+      setTitle(str)
+    }
+
+    def title = tit
+
+    var msg: CharSequence = null
+
+    def message_=(str: CharSequence) = {
+      tit = str
+      setMessage(str)
+    }
+
+    def message = tit
+  }
+
+  def alert(title: CharSequence, text: CharSequence, clickCallback: => Unit = {})(implicit context: Context) {
+    new AlertDialogBuilder(title, text) {
+      neutralButton(android.R.string.ok, (_, _) => {
+        clickCallback
+      })
+    }.show()
   }
 
   implicit def stringToUri(str: String): Uri = Uri.parse(str)
@@ -355,13 +382,6 @@ package object common {
     def wifiManager: WifiManager = getSystemService(Context.WIFI_SERVICE).asInstanceOf[WifiManager]
 
     def windowManager: WindowManager = getSystemService(Context.WINDOW_SERVICE).asInstanceOf[WindowManager]
-
-    def play(uri: Uri = notificationSound) {
-      val r = RingtoneManager.getRingtone(this, uri)
-      if (r != null) {
-        r.play()
-      }
-    }
 
     implicit val context = this
 
