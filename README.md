@@ -125,7 +125,7 @@ All of the system service accessors available in Android API level 10 are define
 
 **Play ringtones**
 
-Just play default notification ringtone:
+Just play the default notification ringtone:
 
     play()
 	
