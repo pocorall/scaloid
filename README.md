@@ -159,7 +159,7 @@ Instead of:
 Using this, asynchronous job can be run like this: 
 
     spawn {
-		val result = doSomeJobTakesSomeTime(params)
+		val result = doAJobTakesSomeTime(params)
 		runOnUiThread(alert("Done!", result))
 	}
 	
@@ -167,7 +167,7 @@ Compare the code above with the code using `AsyncTask`, which is shown below. It
 
     new AsyncTask[String, Void, String] {
       def doInBackground(params: Array[String]) = {
-        doSomeJobTakesSomeTime(params)
+        doAJobTakesSomeTime(params)
       }
 
       override def onPostExecute(result: String) {
