@@ -147,16 +147,16 @@ Instead of:
     activity.runOnUiThread {
       new Runnable() {
 	    def run() {
-	      info("Running only for Activity class")
+	      info("Running only in Activity class")
     	}
       }
     }
 
 , extend trait `RunOnUiThread` and use it like this:
 
-    runOnUiThread(info("Running for any context"))
+    runOnUiThread(info("Running in any context"))
 
-Using this, asynchronous job can be run like this: 
+Using this, an asynchronous job can be run like this: 
 
     spawn {
 		val result = doAJobTakesSomeTime(params)
