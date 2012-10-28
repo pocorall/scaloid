@@ -26,6 +26,7 @@ is reduced to:
  * **Maintained actively**<br/>
    This project is originally created to be used for my own Android app. The first principle of this project is "working right".
 
+   
 ## Implicit conversions
 This library employs several implicit conversions. A code block:
 
@@ -212,6 +213,21 @@ Other functions for every log levels(verbose, debug, info, warn, error, wtf) are
 	val tag = "MyAppTag"
 	if(Log.isLoggable(tag, Log.INFO)) Log.i(tag, "hello " + world)
 
+
+### Scala getters and setters ([incomplete](#Roadmap))
+
+Compared with Java style getters and setters, for example:
+
+    val textView = new TextView(context)
+	textView.setText("Hello")
+	textView.setTextSize(15)
+	
+that of Scala style clearly reveals the nature of the operations as show below:
+
+    val textView = newTextView
+    textView.text = "Hello"
+    textView.textSize = 15
+
 	
 ## Classes
 
@@ -256,3 +272,15 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * To set up a Maven project that build Android app written in Scala, please refer https://github.com/rohansingh/android-scala-test.
 
 * A delicate problem related to implicit conversion for mult-line block is discussed at  http://stackoverflow.com/questions/12774840/scala-passing-function-parameter-which-does-not-have-parameter.
+
+## Roadmap
+
+* **Cover full Android API versions** <br/>
+  Currently, only API level 10 is supported. New features introduced above that level are not covered and android-scala-common may not be compiled with below the API level.
+  Some of the features to be covered are:
+  1. Fragment
+  1. New system services
+
+* **Completely implement Scala getters and setters** <br/>
+  A few accessors are currently ported into the Scala style.
+
