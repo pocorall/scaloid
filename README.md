@@ -214,7 +214,7 @@ Other functions for every log levels(verbose, debug, info, warn, error, wtf) are
 	if(Log.isLoggable(tag, Log.INFO)) Log.i(tag, "hello " + world)
 
 
-### Scala getters and setters ([incomplete](#Roadmap))
+## Scala getters and setters ([incomplete](#roadmap))
 
 Compared with Java style getters and setters, for example:
 
