@@ -76,9 +76,6 @@ Many methods in Android API requires an instance of a class `Context`. Providing
 or just extend trait `ContextUtil`, which defines it for you. Then the codes that required `Context`, for example:
 
 ```
-new Intent(context, classOf[MyActivity])
-startService(new Intent(context, classOf[MyService]))
-Toast.makeText(context, "hi, there!", Toast.LENGTH_SHORT).show()
 ProgressDialog.show(context, "Dialog", "working...", true)
 PendingIntent.getActivity(context, 0, new Intent(context, classOf[MyActivity]), 0)
 PendingIntent.getService(context, 0, new Intent(context, classOf[MyService]), 0)
@@ -88,15 +85,40 @@ PreferenceManager.getDefaultSharedPreferences(context)
 is reduced to:
 
 ```
-newIntent[MyActivity]
-startService[MyService]
-toast("hi, there!")
 spinnerDialog("Dialog", "working...")
 pendingActivity[MyActivity]
 pendingService[MyService]
 defaultSharedPreferences
 ```
 
+**Intent**
+
+    new Intent(context, classOf[MyActivity])
+
+is reduced to:
+
+    newIntent[MyActivity]
+
+**Starting and stopping service**
+
+    startService(new Intent(context, classOf[MyService]))
+    stopService(new Intent(context, classOf[MyService]))	
+
+is reduced to:
+
+    startService[MyService]
+    stopService[MyService]
+	
+
+**Toast**
+    
+    Toast.makeText(context, "hi, there!", Toast.LENGTH_SHORT).show()
+
+is reduced to:
+
+    toast("hi, there!")
+   
+   
    
 ## Traits
 
