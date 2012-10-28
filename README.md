@@ -206,9 +206,13 @@ Unlike other logging frameworks, Android Logging API requires a `String` tag for
 
 or, extend trait `TagUtil` or `ContextUtil` which defines this by default. Then you can simply log like this:
 
+	warn("Something happened!")
+
+Other functions for every log levels(verbose, debug, info, warn, error, wtf) are available. 
+
 	info("hello " + world)
 
-Other functions for every log levels(verbose, debug, info, warn, error, wtf) are available. A `String` parameter passed with `info()` is a lazy argument, and evaluated only if the logging is possible. Therefore the example shown above is equivalent to:
+A `String` parameter passed with `info()` is a lazy argument, and evaluated only if the logging is possible. Therefore the example shown above is equivalent to:
 	
 	val tag = "MyAppTag"
 	if(Log.isLoggable(tag, Log.INFO)) Log.i(tag, "hello " + world)
