@@ -212,7 +212,7 @@ Other functions for every log levels(verbose, debug, info, warn, error, wtf) are
 
 	info("hello " + world)
 
-A `String` parameter passed with `info()` is a lazy argument, and evaluated only if the logging is possible. Therefore the example shown above is equivalent to:
+A `String` parameter passed with `info()` is a lazy argument, so it is evaluated only if the logging is possible. Therefore the example shown above is equivalent to:
 	
 	val tag = "MyAppTag"
 	if(Log.isLoggable(tag, Log.INFO)) Log.i(tag, "hello " + world)
