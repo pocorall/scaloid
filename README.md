@@ -285,3 +285,5 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
   A few accessors are currently ported into the Scala style.
 
 * **Build a dedicated website**
+* **Write a complete API document**
+* **Write the Beginner's guide**
