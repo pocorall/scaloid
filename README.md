@@ -211,7 +211,7 @@ Compare the code above with the code using `AsyncTask`, which is shown below. It
 When you registered `BroadcastReceiver` with `Context.registerReceiver()` you have to unregister it to prevent memory leak. Trait UnregisterReceiverService handles these chores for you by just extend it for your Service.
 
 ```
-class MyService extends Service with UnregisterReceiverService {
+class MyService extends UnregisterReceiverService {
   def func() {
     // ...
 	registerReceiver(receiver, intentFilter)
