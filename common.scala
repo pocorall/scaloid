@@ -56,6 +56,8 @@ import android.preference.PreferenceManager
 import android.view.WindowManager.LayoutParams._
 import android.view.View.{OnClickListener, OnFocusChangeListener}
 import android.graphics.drawable.Drawable
+import java.lang.CharSequence
+import scala.Int
 
 
 case class LoggerTag(_tag: String) {
@@ -95,6 +97,92 @@ package object common {
         f
       }
     }
+
+  class RichView(view: View) {
+    def onClick(f: => Unit) {
+      view.setOnClickListener(new OnClickListener {
+        def onClick(view: View) {
+          f
+        }
+      })
+    }
+  }
+
+  implicit def view2RichView(view: View) = new RichView(view)
+
+  class RichTextView(view: TextView) {
+
+    def beforeTextChanged(f: (CharSequence, Int, Int, Int) => Unit) {
+      view.addTextChangedListener(new TextWatcher {
+        def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+          f(s, start, before, count)
+        }
+
+        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
+
+        def afterTextChanged(p1: Editable) {}
+      })
+    }
+
+    def beforeTextChanged(f: => Unit) {
+      view.addTextChangedListener(new TextWatcher {
+        def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+          f
+        }
+
+        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
+
+        def afterTextChanged(p1: Editable) {}
+      })
+    }
+
+    def onTextChanged(f: => Unit) {
+      view.addTextChangedListener(new TextWatcher {
+        def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+
+        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {
+          f
+        }
+
+        def afterTextChanged(p1: Editable) {}
+      })
+    }
+
+    def afterTextChanged(f: => Unit) {
+      view.addTextChangedListener(new TextWatcher {
+        def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+
+        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
+
+        def afterTextChanged(p1: Editable) {
+          f
+        }
+      })
+    }
+
+    def onEditorAction(f: (TextView, Int, KeyEvent) => Boolean) {
+      view.setOnEditorActionListener(new TextView.OnEditorActionListener {
+        def onEditorAction(view: TextView, actionId: Int, event: KeyEvent): Boolean = {
+          f(view, actionId, event)
+        }
+      })
+    }
+
+    def textSize_=(size: Float) {
+      view.setTextSize(size)
+    }
+
+    def textSize: Float = view.getTextSize
+
+    def text_=(txt: CharSequence) {
+      view.setText(txt)
+    }
+
+    def text: CharSequence = view.getText
+  }
+
+  implicit def view2RichTextView(view: TextView) = new RichTextView(view)
+
 
   implicit def func2ViewOnLongClickListener(f: View => Boolean): View.OnLongClickListener =
     new View.OnLongClickListener() {
@@ -156,20 +244,12 @@ package object common {
     }
 
 
-  implicit def func2OnEditorActionListener(f: (TextView, Int, KeyEvent) => Boolean): TextView.OnEditorActionListener =
-    new TextView.OnEditorActionListener {
-      def onEditorAction(view: TextView, actionId: Int, event: KeyEvent): Boolean = {
-        f(view, actionId, event)
-      }
-    }
-
   implicit def lazy2OnEditorActionListener(f: => Boolean): TextView.OnEditorActionListener =
     new TextView.OnEditorActionListener {
       def onEditorAction(view: TextView, actionId: Int, event: KeyEvent): Boolean = {
         f
       }
     }
-
 
   implicit def func2OnKeyListener(f: (View, Int, KeyEvent) => Boolean): View.OnKeyListener =
     new View.OnKeyListener {
@@ -184,40 +264,6 @@ package object common {
         f
       }
     }
-
-  implicit def func2TextWatcher[F](f: (CharSequence, Int, Int, Int) => F): TextWatcher =
-    new TextWatcher {
-      def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-        f(s, start, before, count)
-      }
-
-      def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
-
-      def afterTextChanged(p1: Editable) {}
-    }
-
-  implicit def f2TextWatcher[F](f: (Editable) => F): TextWatcher =
-    new TextWatcher {
-      def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-
-      def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
-
-      def afterTextChanged(editable: Editable) {
-        f(editable)
-      }
-    }
-
-  implicit def lazy2TextWatcher[F](f: => F): TextWatcher =
-    new TextWatcher {
-      def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-        f
-      }
-
-      def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
-
-      def afterTextChanged(p1: Editable) {}
-    }
-
 
   implicit def func2runnable[F](f: () => F): Runnable =
     new Runnable() {
@@ -277,7 +323,7 @@ package object common {
     def message = tit
   }
 
-  def alert(title: CharSequence, text: CharSequence, clickCallback: => Unit = {})(implicit context: Context) {
+  @inline def alert(title: CharSequence, text: CharSequence, clickCallback: => Unit = {})(implicit context: Context) {
     new AlertDialogBuilder(title, text) {
       neutralButton(android.R.string.ok, (_, _) => {
         clickCallback
@@ -285,104 +331,131 @@ package object common {
     }.show()
   }
 
-  implicit def stringToUri(str: String): Uri = Uri.parse(str)
+  @inline implicit def stringToUri(str: String): Uri = Uri.parse(str)
 
-  def newIntent[T](implicit context: Context, mt: ClassManifest[T]) = new content.Intent(context, mt.erasure)
+  @inline def newIntent[T](implicit context: Context, mt: ClassManifest[T]) = new content.Intent(context, mt.erasure)
 
-  def newTextView(implicit context: Context): TextView = new TextView(context)
+  @inline def newTextView(implicit context: Context): TextView = new TextView(context)
 
-  def newButton(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context): Button = {
+  @inline def newButton(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context): Button = {
     val btn = new Button(context)
     btn.setText(text)
     btn.setOnClickListener(onClickListener)
     btn
   }
 
-  def toast(message: String)(implicit context: Context) {
+  @inline def toast(message: String)(implicit context: Context) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
   }
 
-  def longToast(message: String)(implicit context: Context) {
+  @inline def longToast(message: String)(implicit context: Context) {
     Toast.makeText(context, message, Toast.LENGTH_LONG).show()
   }
 
-  def spinnerDialog(title: String, message: String)(implicit context: Context): ProgressDialog =
+  @inline def spinnerDialog(title: String, message: String)(implicit context: Context): ProgressDialog =
     ProgressDialog.show(context, title, message, true)
 
-  def pendingService(intent: Intent)(implicit context: Context) =
+  @inline def pendingService(intent: Intent)(implicit context: Context) =
     PendingIntent.getService(context, 0, intent, 0)
 
-  def pendingActivity(intent: Intent)(implicit context: Context) =
+  @inline def pendingActivity(intent: Intent)(implicit context: Context) =
     PendingIntent.getActivity(context, 0, intent, 0)
 
-  def pendingActivity[T](implicit context: Context, mt: ClassManifest[T]) =
+  @inline def pendingActivity[T](implicit context: Context, mt: ClassManifest[T]) =
     PendingIntent.getActivity(context, 0, newIntent[T], 0)
 
-  def notificationSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+  @inline def notificationSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
-  def ringtoneSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
+  @inline def ringtoneSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
 
-  def alarmSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+  @inline def alarmSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
 
-  def defaultSharedPreferences(implicit context: Context): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+  @inline def defaultSharedPreferences(implicit context: Context): SharedPreferences =
+    PreferenceManager.getDefaultSharedPreferences(context)
 
   trait TagUtil {
     implicit val tag = LoggerTag(this.getClass.getName)
   }
 
+  @inline def accessibilityManager(implicit context: Context): AccessibilityManager =
+    context.getSystemService(Context.ACCESSIBILITY_SERVICE).asInstanceOf[AccessibilityManager]
+
+  @inline def accountManager(implicit context: Context): AccountManager =
+    context.getSystemService(Context.ACCOUNT_SERVICE).asInstanceOf[AccountManager]
+
+  @inline def activityManager(implicit context: Context): ActivityManager =
+    context.getSystemService(Context.ACTIVITY_SERVICE).asInstanceOf[ActivityManager]
+
+  @inline def alarmManager(implicit context: Context): AlarmManager =
+    context.getSystemService(Context.ALARM_SERVICE).asInstanceOf[AlarmManager]
+
+  @inline def audioManager(implicit context: Context): AudioManager =
+    context.getSystemService(Context.AUDIO_SERVICE).asInstanceOf[AudioManager]
+
+  @inline def clipboardManager(implicit context: Context): ClipboardManager =
+    context.getSystemService(Context.CLIPBOARD_SERVICE).asInstanceOf[ClipboardManager]
+
+  @inline def connectivityManager(implicit context: Context): ConnectivityManager =
+    context.getSystemService(Context.CONNECTIVITY_SERVICE).asInstanceOf[ConnectivityManager]
+
+  @inline def devicePolicyManager(implicit context: Context): DevicePolicyManager =
+    context.getSystemService(Context.DEVICE_POLICY_SERVICE).asInstanceOf[DevicePolicyManager]
+
+  @inline def downloadManager(implicit context: Context): DownloadManager =
+    context.getSystemService(Context.DOWNLOAD_SERVICE).asInstanceOf[DownloadManager]
+
+  @inline def dropBoxManager(implicit context: Context): DropBoxManager =
+    context.getSystemService(Context.DROPBOX_SERVICE).asInstanceOf[DropBoxManager]
+
+  @inline def inputMethodManager(implicit context: Context): InputMethodManager =
+    context.getSystemService(Context.INPUT_METHOD_SERVICE).asInstanceOf[InputMethodManager]
+
+  @inline def keyguardManager(implicit context: Context): KeyguardManager =
+    context.getSystemService(Context.KEYGUARD_SERVICE).asInstanceOf[KeyguardManager]
+
+  @inline def layoutInflater(implicit context: Context): LayoutInflater =
+    context.getSystemService(Context.LAYOUT_INFLATER_SERVICE).asInstanceOf[LayoutInflater]
+
+  @inline def locationManager(implicit context: Context): LocationManager =
+    context.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
+
+  @inline def nfcManager(implicit context: Context): NfcManager =
+    context.getSystemService(Context.NFC_SERVICE).asInstanceOf[NfcManager]
+
+  @inline def notificationManager(implicit context: Context): NotificationManager =
+    context.getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[NotificationManager]
+
+  @inline def powerManager(implicit context: Context): PowerManager =
+    context.getSystemService(Context.POWER_SERVICE).asInstanceOf[PowerManager]
+
+  @inline def searchManager(implicit context: Context): SearchManager =
+    context.getSystemService(Context.SEARCH_SERVICE).asInstanceOf[SearchManager]
+
+  @inline def sensorManager(implicit context: Context): SensorManager =
+    context.getSystemService(Context.SENSOR_SERVICE).asInstanceOf[SensorManager]
+
+  @inline def storageManager(implicit context: Context): StorageManager =
+    context.getSystemService(Context.STORAGE_SERVICE).asInstanceOf[StorageManager]
+
+  @inline def telephonyManager(implicit context: Context): TelephonyManager =
+    context.getSystemService(Context.TELEPHONY_SERVICE).asInstanceOf[TelephonyManager]
+
+  @inline def uiModeManager(implicit context: Context): UiModeManager =
+    context.getSystemService(Context.UI_MODE_SERVICE).asInstanceOf[UiModeManager]
+
+  @inline def vibrator(implicit context: Context): Vibrator =
+    context.getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
+
+  @inline def wallpaperManager(implicit context: Context): WallpaperManager =
+    context.getSystemService(Context.WALLPAPER_SERVICE).asInstanceOf[WallpaperManager]
+
+  @inline def wifiManager(implicit context: Context): WifiManager =
+    context.getSystemService(Context.WIFI_SERVICE).asInstanceOf[WifiManager]
+
+  @inline def windowManager(implicit context: Context): WindowManager =
+    context.getSystemService(Context.WINDOW_SERVICE).asInstanceOf[WindowManager]
+
   trait ContextUtil extends Context with TagUtil {
-    def accessibilityManager: AccessibilityManager = getSystemService(Context.ACCESSIBILITY_SERVICE).asInstanceOf[AccessibilityManager]
-
-    def accountManager: AccountManager = getSystemService(Context.ACCOUNT_SERVICE).asInstanceOf[AccountManager]
-
-    def activityManager: ActivityManager = getSystemService(Context.ACTIVITY_SERVICE).asInstanceOf[ActivityManager]
-
-    def alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE).asInstanceOf[AlarmManager]
-
-    def audioManager: AudioManager = getSystemService(Context.AUDIO_SERVICE).asInstanceOf[AudioManager]
-
-    def clipboardManager: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE).asInstanceOf[ClipboardManager]
-
-    def connectivityManager: ConnectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE).asInstanceOf[ConnectivityManager]
-
-    def devicePolicyManager: DevicePolicyManager = getSystemService(Context.DEVICE_POLICY_SERVICE).asInstanceOf[DevicePolicyManager]
-
-    def downloadManager: DownloadManager = getSystemService(Context.DOWNLOAD_SERVICE).asInstanceOf[DownloadManager]
-
-    def dropBoxManager: DropBoxManager = getSystemService(Context.DROPBOX_SERVICE).asInstanceOf[DropBoxManager]
-
-    def inputMethodManager: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE).asInstanceOf[InputMethodManager]
-
-    def keyguardManager: KeyguardManager = getSystemService(Context.KEYGUARD_SERVICE).asInstanceOf[KeyguardManager]
-
-    def layoutInflater: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE).asInstanceOf[LayoutInflater]
-
-    def locationManager: LocationManager = getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
-
-    def nfcManager: NfcManager = getSystemService(Context.NFC_SERVICE).asInstanceOf[NfcManager]
-
-    def notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[NotificationManager]
-
-    def powerManager: PowerManager = getSystemService(Context.POWER_SERVICE).asInstanceOf[PowerManager]
-
-    def searchManager: SearchManager = getSystemService(Context.SEARCH_SERVICE).asInstanceOf[SearchManager]
-
-    def sensorManager: SensorManager = getSystemService(Context.SENSOR_SERVICE).asInstanceOf[SensorManager]
-
-    def storageManager: StorageManager = getSystemService(Context.STORAGE_SERVICE).asInstanceOf[StorageManager]
-
-    def telephonyManager: TelephonyManager = getSystemService(Context.TELEPHONY_SERVICE).asInstanceOf[TelephonyManager]
-
-    def uiModeManager: UiModeManager = getSystemService(Context.UI_MODE_SERVICE).asInstanceOf[UiModeManager]
-
-    def vibrator: Vibrator = getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
-
-    def wallpaperManager: WallpaperManager = getSystemService(Context.WALLPAPER_SERVICE).asInstanceOf[WallpaperManager]
-
-    def wifiManager: WifiManager = getSystemService(Context.WIFI_SERVICE).asInstanceOf[WifiManager]
-
-    def windowManager: WindowManager = getSystemService(Context.WINDOW_SERVICE).asInstanceOf[WindowManager]
-
     implicit val context = this
 
     def startActivity[T: ClassManifest] {
@@ -492,29 +565,29 @@ package object common {
     }
   }
 
-  private def loggingText(str: String, t: Throwable) = str + (if (t == null) "" else "\n" + Log.getStackTraceString(t))
+  @inline private def loggingText(str: String, t: Throwable) = str + (if (t == null) "" else "\n" + Log.getStackTraceString(t))
 
-  def verbose(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
+  @inline def verbose(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
     if (Log.isLoggable(tag.tag, Log.VERBOSE)) Log.v(tag.tag, loggingText(str, t))
   }
 
-  def debug(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
+  @inline def debug(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
     if (Log.isLoggable(tag.tag, Log.DEBUG)) Log.d(tag.tag, loggingText(str, t))
   }
 
-  def info(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
+  @inline def info(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
     if (Log.isLoggable(tag.tag, Log.INFO)) Log.i(tag.tag, loggingText(str, t))
   }
 
-  def warn(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
+  @inline def warn(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
     if (Log.isLoggable(tag.tag, Log.WARN)) Log.w(tag.tag, loggingText(str, t))
   }
 
-  def error(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
+  @inline def error(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
     if (Log.isLoggable(tag.tag, Log.ERROR)) Log.e(tag.tag, loggingText(str, t))
   }
 
-  def wtf(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
+  @inline def wtf(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
     if (Log.isLoggable(tag.tag, Log.ASSERT)) Log.wtf(tag.tag, loggingText(str, t))
   }
 
