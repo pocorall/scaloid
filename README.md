@@ -284,3 +284,4 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Completely implement Scala getters and setters** <br/>
   A few accessors are currently ported into the Scala style.
 
+* ** Build a dedicated website **
