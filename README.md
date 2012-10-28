@@ -222,7 +222,7 @@ Compared with Java style getters and setters, for example:
 	textView.setText("Hello")
 	textView.setTextSize(15)
 	
-that of Scala style clearly reveals the nature of the operations as show below:
+that of Scala style clearly reveals the nature of the operations as shown below:
 
     val textView = newTextView
     textView.text = "Hello"
