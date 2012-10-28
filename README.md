@@ -277,6 +277,9 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 
 * A delicate problem related to implicit conversion for mult-line block is discussed at  http://stackoverflow.com/questions/12774840/scala-passing-function-parameter-which-does-not-have-parameter.
 
+* If you want to see an example of using this library, check a [scala port of apidemos app](https://github.com/pocorall/android-apidemos-scala).
+
+
 ## Roadmap
 
 * **Cover full Android API versions** <br/>
