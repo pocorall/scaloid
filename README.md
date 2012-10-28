@@ -75,21 +75,6 @@ Many methods in Android API requires an instance of a class `Context`. Providing
 
 or just extend trait `ContextUtil`, which defines it for you. Then the codes that required `Context`, for example:
 
-```
-ProgressDialog.show(context, "Dialog", "working...", true)
-PendingIntent.getActivity(context, 0, new Intent(context, classOf[MyActivity]), 0)
-PendingIntent.getService(context, 0, new Intent(context, classOf[MyService]), 0)
-PreferenceManager.getDefaultSharedPreferences(context)
-```
-
-is reduced to:
-
-```
-spinnerDialog("Dialog", "working...")
-pendingActivity[MyActivity]
-pendingService[MyService]
-defaultSharedPreferences
-```
 
 **Intent**
 
@@ -118,7 +103,32 @@ is reduced to:
 
     toast("hi, there!")
    
-   
+**Dialog**
+
+    ProgressDialog.show(context, "Dialog", "working...", true)
+
+is reduced to:
+
+    spinnerDialog("Dialog", "working...")
+
+**Pending intent**
+
+    PendingIntent.getActivity(context, 0, new Intent(context, classOf[MyActivity]), 0)
+    PendingIntent.getService(context, 0, new Intent(context, classOf[MyService]), 0)
+
+is reduced to:
+
+    pendingActivity[MyActivity]
+    pendingService[MyService]
+
+**DefaultSharedPreferences**
+
+    PreferenceManager.getDefaultSharedPreferences(context)
+
+is reduced to:
+
+    defaultSharedPreferences
+
    
 ## Traits
 
