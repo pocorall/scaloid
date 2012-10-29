@@ -5,7 +5,6 @@
  * Less painful Android development with Scala
  *
  *
- * Android-scala-common version 0.1-SNAPSHOT
  * https://github.com/pocorall/android-scala-common
  *
  *
