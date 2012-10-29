@@ -129,7 +129,28 @@ is reduced to:
 
     defaultSharedPreferences
 
-   
+
+**Play ringtones**
+
+Just play the default notification ringtone:
+
+    play()
+	
+, specify ringtone resources as a `String`:
+
+    play("content://media/internal/audio/media/50")
+	
+, or specify a resource `Uri`:
+	
+	play(alarmSound)
+
+**View resources**
+
+This opens a web browser (or another view assigned to `http` protocol).
+
+   	openUri("http://google.com")
+
+	
 ## Traits
 
 ### Trait ContextUtil
@@ -153,20 +174,6 @@ is reduced to:
     vibrator.vibrate(500)
 
 All of the system service accessors available in Android API level 10 are defined.
-
-**Play ringtones**
-
-Just play the default notification ringtone:
-
-    play()
-	
-, specify ringtone resources as a `String`:
-
-    play("content://media/internal/audio/media/50")
-	
-, or specify a resource `Uri`:
-	
-	play(alarmSound)
 
 	
 ### Trait RunOnUiThread
