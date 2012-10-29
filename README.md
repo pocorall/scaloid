@@ -77,7 +77,7 @@ Methods `onClick()` and `onLongClick()` are defined in `RichView`. We omit `set.
 	
 **RichTextView**
 
-Methods `beforeTextChanged()`, `onTextChanged()`, and `afterTextChanged()` are defined in `RichTextView`. It is more convenient than using `TextWatcher` directly. For example:
+Methods `beforeTextChanged()`, `onTextChanged()`, and `afterTextChanged()` are defined in `RichTextView`, which can be implicitly converted from `TextView`. It is more convenient than using `TextWatcher` directly. For example:
 
     inputField.beforeTextChanged(saveTextStatus())
 
