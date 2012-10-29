@@ -53,7 +53,7 @@ import content._
 import android.widget.{Button, TextView, Toast}
 import android.preference.PreferenceManager
 import android.view.WindowManager.LayoutParams._
-import android.view.View.{OnClickListener, OnFocusChangeListener}
+import android.view.View.{OnLongClickListener, OnClickListener, OnFocusChangeListener}
 import android.graphics.drawable.Drawable
 import java.lang.CharSequence
 import scala.Int
@@ -101,6 +101,14 @@ package object common {
     def onClick(f: => Unit) {
       view.setOnClickListener(new OnClickListener {
         def onClick(view: View) {
+          f
+        }
+      })
+    }
+
+    def onLongClick(f: => Boolean) {
+      view.setOnLongClickListener(new OnLongClickListener {
+        def onLongClick(view: View): Boolean = {
           f
         }
       })
