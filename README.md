@@ -282,7 +282,7 @@ A `String` parameter passed with `info()` is a lazy argument, so it is evaluated
 	if(Log.isLoggable(tag, Log.INFO)) Log.i(tag, "hello " + world)
 
 
-## Scala getters and setters ([incomplete](#roadmap))
+## Scala getters and setters
 
 Compared with Java style getters and setters, for example:
 
@@ -296,6 +296,7 @@ that of Scala style clearly reveals the nature of the operations as shown below:
     textView.text = "Hello"
     textView.textSize = 15
 
+Note: Currently, this feature is not supported completely. Check our [roadmap](#roadmap).
 	
 ## Classes
 
