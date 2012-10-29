@@ -69,7 +69,7 @@ There are more implicit conversions available. Check the source code as needed.
 	
 
 ## Context as an implicit parameter
-Many methods in Android API requires an instance of a class `Context`. Providing this for every method calls results a clumsy code. We employs implicit parameter to elliminate this. Just declare an implicit value that represents current context:
+Many methods in Android API requires an instance of a class `Context`. Providing this for every method calls results a clumsy code. We employs an implicit parameter to elliminate this. Just declare an implicit value that represents current context:
 
     implicit val context = ...
 
