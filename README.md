@@ -282,10 +282,7 @@ This displays an alert dialog with given string resources. We provide an equival
 Also you can build a more complex dialog:
 	
     new AlertDialogBuilder("Exit the app", "Do you really want to exit?") {
-      positiveButton("Exit", (_, _) => {
-          // cleanup the application
-          finish()
-        })
+      positiveButton("Exit", finishTheApplication())
       negativeButton("Cancel")
     }.show()
 

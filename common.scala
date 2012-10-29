@@ -2,11 +2,11 @@
  *
  *
  *
- *
  * Less painful Android development with Scala
  *
- * https://github.com/pocorall/android-scala-common
  *
+ * Android-scala-common version 0.1-SNAPSHOT
+ * https://github.com/pocorall/android-scala-common
  *
  *
  *
@@ -287,15 +287,31 @@ package object common {
     if (_title != null) setTitle(_title)
     if (_message != null) setMessage(_message)
 
-    def positiveButton(name: CharSequence = android.R.string.yes, onClick: (DialogInterface, Int) => Unit = (_, _) => {}): AlertDialogBuilder = {
+
+    def positiveButton(name: CharSequence = android.R.string.yes, onClick: => Unit = {}): AlertDialogBuilder =
+      positiveButton(name, (_, _) => {
+        onClick
+      })
+
+    def positiveButton(name: CharSequence, onClick: (DialogInterface, Int) => Unit): AlertDialogBuilder = {
       setPositiveButton(name, func2DialogOnClickListener(onClick))
       this
     }
 
-    def neutralButton(name: CharSequence = android.R.string.ok, onClick: (DialogInterface, Int) => Unit = (_, _) => {}): AlertDialogBuilder = {
+    def neutralButton(name: CharSequence = android.R.string.ok, onClick: => Unit = {}): AlertDialogBuilder =
+      neutralButton(name, (_, _) => {
+        onClick
+      })
+
+    def neutralButton(name: CharSequence, onClick: (DialogInterface, Int) => Unit): AlertDialogBuilder = {
       setNeutralButton(name, func2DialogOnClickListener(onClick))
       this
     }
+
+    def negativeButton(name: CharSequence, onClick: => Unit): AlertDialogBuilder =
+      negativeButton(name, (_, _) => {
+        onClick
+      })
 
     def negativeButton(name: CharSequence = android.R.string.no, onClick: (DialogInterface, Int) => Unit = (d, _) => {
       d.cancel()
@@ -325,9 +341,7 @@ package object common {
 
   @inline def alert(title: CharSequence, text: CharSequence, clickCallback: => Unit = {})(implicit context: Context) {
     new AlertDialogBuilder(title, text) {
-      neutralButton(android.R.string.ok, (_, _) => {
-        clickCallback
-      })
+      neutralButton(android.R.string.ok, clickCallback)
     }.show()
   }
 
