@@ -73,7 +73,7 @@ This library defines an implicit conversion `View => RichView`. `RichView` defin
 
     find[Button](R.id.search).onClick(openUri("http://google.com"))
 
-Methods `onClick` and `onLongClick` are defined in `RichView`. We omit `set...`, `add...`, `...Listener` from the method name, which is less significant.
+Methods `onClick` and `onLongClick` are defined in `RichView`. We omit `set...`, `add...`, and `...Listener` from the method name, which is less significant.
 	
 **RichTextView**
 
