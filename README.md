@@ -67,7 +67,32 @@ Some of available implicit conversions are shown below:
 	
 There are more implicit conversions available. Check the source code as needed.
 	
+**RichView**
 
+This library defines an implicit conversion `View => RichView`. `RichView` defines additional method for more convenient access to the `View`. For example:
+
+    find[Button](R.id.search).onClick(openUri("http://google.com"))
+
+Methods `onClick` and `onLongClick` are defined in `RichView`. We omit `set...`, `add...`, `...Listener` from the method name, which is less significant.
+	
+**RichTextView**
+
+Methods `beforeTextChanged`, `onTextChanged`, and `afterTextChanged` are defined in `RichTextView`. It is more convenient than using `TextWatcher` directly. For example:
+
+    inputField.beforeTextChanged(saveTextStatus())
+
+is equivalent to:	
+	
+    view.addTextChangedListener(new TextWatcher {
+      def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+        saveTextStatus()
+      }
+
+      def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
+
+      def afterTextChanged(p1: Editable) {}
+    })
+	
 ## Context as an implicit parameter
 Many methods in Android API requires an instance of a class `Context`. Providing this for every method calls results a clumsy code. We employs an implicit parameter to elliminate this. Just declare an implicit value that represents current context:
 
