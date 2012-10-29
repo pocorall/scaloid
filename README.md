@@ -73,7 +73,7 @@ Many methods in Android API requires an instance of a class `Context`. Providing
 
     implicit val context = ...
 
-or just extend trait `ContextUtil`, which defines it for you. Then the codes that required `Context`, for example:
+or just extend trait `ContextUtil`, which defines it for you. Then the codes that required `Context` becomes much simpler, for example:
 
 
 **Intent**
