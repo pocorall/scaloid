@@ -286,6 +286,22 @@ Also you can build a more complex dialog:
       negativeButton("Cancel")
     }.show()
 
+The code above is equivalent to:
+
+    new AlertDialog.Builder(context)
+      .setTitle("Exit the app")
+      .setMessage("Do you really want to exit?")
+      .setPositiveButton("Exit", new DialogInterface.OnClickListener {
+        def onClick(dialog: DialogInterface, which: Int) {
+          finishTheApplication()
+        }
+      })
+      .setNegativeButton("Cancel", new DialogInterface.OnClickListener {
+        def onClick(dialog: DialogInterface, which: Int) {
+          dialog.cancel()
+        }
+      }).show()	
+	
 ## Import it to your project
 
 For now, android-scala-common is a single-file project. Just copy `common.scala` and paste it to your project and declare `import net.pocorall.android.common._`. Enjoy!
