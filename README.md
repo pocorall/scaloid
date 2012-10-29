@@ -369,6 +369,8 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Completely implement Scala getters and setters** <br/>
   A few accessors are currently ported into the Scala style.
 
+* **Build an example Android app**
+  Finish [scala port of apidemos app](https://github.com/pocorall/android-apidemos-scala) and try another.
 * **Build a dedicated website**
 * **Write a complete API document**
 * **Write the Beginner's guide**
