@@ -160,11 +160,11 @@ Just play the default notification ringtone:
 
     play()
 	
-, specify ringtone resources as `String`:
+, specify ringtone resources as a `String`:
 
     play("content://media/internal/audio/media/50")
 	
-, or specify resource `Uri`s:
+, or specify a resource `Uri`:
 	
 	play(alarmSound)
 
