@@ -83,7 +83,7 @@ Methods `beforeTextChanged`, `onTextChanged`, and `afterTextChanged` are defined
 
 is equivalent to:	
 	
-    view.addTextChangedListener(new TextWatcher {
+    inputField.addTextChangedListener(new TextWatcher {
       def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
         saveTextStatus()
       }
