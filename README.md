@@ -67,7 +67,7 @@ Some of available implicit conversions are shown below:
 	
 There are more implicit conversions available. Check the source code as needed.
 	
-**RichView**
+**Class RichView**
 
 This library defines an implicit conversion `View => RichView`. `RichView` defines additional method for more convenient access to the `View`. For example:
 
@@ -75,7 +75,7 @@ This library defines an implicit conversion `View => RichView`. `RichView` defin
 
 Methods `onClick()` and `onLongClick()` are defined in `RichView`. We omit `set...`, `add...`, and `...Listener` from the method name, which is less significant.
 	
-**RichTextView**
+**Class RichTextView**
 
 Methods `beforeTextChanged()`, `onTextChanged()`, and `afterTextChanged()` are defined in `RichTextView`, which can be implicitly converted from `TextView`. It is more convenient than using `TextWatcher` directly. For example:
 
