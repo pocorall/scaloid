@@ -365,6 +365,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
   Some of the features to be covered are:
   1. Fragment
   1. New system services
+  1. Action bar
 
 * **Completely implement Scala getters and setters** <br/>
   A few accessors are currently ported into the Scala style.
@@ -374,5 +375,5 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Build a dedicated website**
 * **Write a complete API document**
 * **Write the Beginner's guide**
-* **Cover full listener shortcuts**
+* **Cover full listener shortcuts** <br/>
   Such as EditTextPreference.setOnPreferenceChangeListener
