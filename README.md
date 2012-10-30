@@ -361,7 +361,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 ## Roadmap
 
 * **Cover full Android API versions** <br/>
-  Currently, only API level 10 is supported. New features introduced above that level are not covered and android-scala-common may not be compiled with below the API level.
+  Currently, only API level 10 is supported. New features introduced above that level are not covered and android-scala-common may not be compiled with below that API level.
   Some of the features to be covered are:
   1. Fragment
   1. New system services
@@ -374,3 +374,5 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Build a dedicated website**
 * **Write a complete API document**
 * **Write the Beginner's guide**
+* **Cover full listener shortcuts**
+  Such as EditTextPreference.setOnPreferenceChangeListener
