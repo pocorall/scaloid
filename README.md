@@ -378,3 +378,6 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Cover full listener shortcuts** <br/>
   Such as EditTextPreference.setOnPreferenceChangeListener
 * **Cover openGL ES**
+* **Automatically unregister SensorEventListener onStop()**
+* **Support google services** <br/>
+  including Google Cloud Messaging (GCM)
