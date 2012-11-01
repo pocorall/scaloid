@@ -106,6 +106,14 @@ package object common {
       })
     }
 
+    def onClick(f: View => Unit) {
+      view.setOnClickListener(new OnClickListener {
+        def onClick(view: View) {
+          f(view)
+        }
+      })
+    }
+
     def onLongClick(f: => Boolean) {
       view.setOnLongClickListener(new OnLongClickListener {
         def onLongClick(view: View): Boolean = {
@@ -496,9 +504,8 @@ package object common {
    * Provides utility methods for Activity
    */
   trait ActivityUtil extends Activity {
-    def find[V <: android.view.View](id: Int): V = findViewById(id).asInstanceOf[V]
+    def find[V <: View](id: Int): V = findViewById(id).asInstanceOf[V]
   }
-
 
   /**
    * Provides handler instance and runOnUiThread() utility method.
