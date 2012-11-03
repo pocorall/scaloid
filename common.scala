@@ -121,6 +121,14 @@ package object common {
         }
       })
     }
+
+    def onLongClick(f: View => Boolean) {
+      view.setOnLongClickListener(new OnLongClickListener {
+        def onLongClick(view: View): Boolean = {
+          f(view)
+        }
+      })
+    }
   }
 
   implicit def view2RichView(view: View) = new RichView(view)
@@ -163,6 +171,31 @@ package object common {
       })
     }
 
+
+    def onTextChanged(f: (CharSequence, Int, Int, Int) => Unit) {
+      view.addTextChangedListener(new TextWatcher {
+        def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+
+        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {
+          f(p1, p2, p3, p4)
+        }
+
+        def afterTextChanged(p1: Editable) {}
+      })
+    }
+
+    def afterTextChanged(f: Editable => Unit) {
+      view.addTextChangedListener(new TextWatcher {
+        def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+
+        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
+
+        def afterTextChanged(p1: Editable) {
+          f(p1)
+        }
+      })
+    }
+
     def afterTextChanged(f: => Unit) {
       view.addTextChangedListener(new TextWatcher {
         def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
@@ -170,6 +203,14 @@ package object common {
         def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
 
         def afterTextChanged(p1: Editable) {
+          f
+        }
+      })
+    }
+
+    def onEditorAction(f: => Boolean) {
+      view.setOnEditorActionListener(new TextView.OnEditorActionListener {
+        def onEditorAction(view: TextView, actionId: Int, event: KeyEvent): Boolean = {
           f
         }
       })
