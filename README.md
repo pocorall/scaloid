@@ -15,7 +15,7 @@ For example, the code block shown below:
 
 is reduced to:	
 	
-	layout.addView(newButton("send", sendMessage()))
+	layout += newButton("send", sendMessage())
 
 
 ### Benefits
@@ -23,9 +23,10 @@ is reduced to:
    Read later part of this document to see how android-scala-common greatly improve your code.
  * **Simple to use**<br/> 
    This is a single-file project. Just copy-and-paste into your project!
+ * **Compatible with Android API**<br/>
+   You can use both style of android-scala-common and Java Android API. You can gradually improve your legacy code.
  * **Maintained actively**<br/>
    This project is originally created to be used for my own Android app. The first principle of this project is "working right".
-
    
 ## Implicit conversions
 This library employs several implicit conversions. A code block:
