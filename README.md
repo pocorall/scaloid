@@ -29,31 +29,7 @@ is reduced to:
    This project is originally created to be used for my own Android app. The first principle of this project is "working right".
    
 ## Implicit conversions
-This library employs several implicit conversions. A code block:
-
-```
-button.setOnClickListener(new OnClickListener {
-  def onClick(v:View) {
-    Log.i("pocorall", "pressed!")
-  }
-})
-```
-
-is reduced to:
-
-    button.setOnClickListener(Log.i("pocorall", "pressed!"))
-
-For a multi-line block:
-
-```
-button.setOnClickListener {
-  (v: View) =>
-    Log.i("pocorall", "pressed!")
-    Log.i("pocorall", v.toString())
-}
-```
-
-Some of available implicit conversions are shown below:
+This library employs several implicit conversions. Some of available implicit conversions are shown below:
 
     String => Uri
 	Int => CharSequence
@@ -74,7 +50,14 @@ This library defines an implicit conversion `View => RichView`. `RichView` defin
 
     find[Button](R.id.search).onClick(openUri("http://google.com"))
 
-Methods `onClick()` and `onLongClick()` are defined in `RichView`. We omit `set...`, `add...`, and `...Listener` from the method name, which is less significant.
+All of listener-appending methods such as `onClick()` and `onLongClick()` are defined in `RichView`. Some conventions we employed are:
+
+ * We omit `set...`, `add...`, and `...Listener` from the method name, which is less significant.
+ * Every methods has two versions of parameters overriden. One is a lazy parameter, and another is a full parameter setup defined in original Android API. For example, these two usages are valid:
+ 
+    button.onClick(info("pressed"))
+	button.onClick(v:View => info("pressed a button "+v))
+	
 	
 **Class RichTextView**
 
