@@ -337,6 +337,21 @@ package object common {
     }
 
     @inline def text: CharSequence = view.getText
+
+    @inline def maxHeight_=(height: Int) = view.setMaxHeight(height)
+
+    @noEquivalentGetterExists
+    @inline def maxHeight: Int = 0 // view.getMaxHeight // higher than API Level 16
+
+    @inline def maxLines_=(line: Int) = view.setMaxLines(line)
+
+    @noEquivalentGetterExists
+    @inline def maxLines: Int = 0 // view.getMaxLines  // higher than API Level 16
+
+    @inline def linkTextColor_=(color: Int) = view.setLinkTextColor(color)
+
+    @noEquivalentGetterExists
+    @inline def linkTextColor: Int = 0
   }
 
   @inline implicit def view2RichTextView(view: TextView) = new RichTextView(view)
@@ -368,7 +383,19 @@ package object common {
 
   class RichListView(val view: ListView) extends TraitListView
 
-  trait TraitListView extends TraitView[ListView] {
+  trait TraitAbsListView extends TraitView[AbsListView] {
+    def view: AbsListView
+
+    @inline def cacheColorHint_=(color: Int) = view.setCacheColorHint(color)
+
+    @inline def cacheColorHint = view.getCacheColorHint
+
+    @inline def transcriptMode_=(mode: Int) = view.setTranscriptMode(mode)
+
+    @inline def transcriptMode: Int = view.getTranscriptMode
+  }
+
+  trait TraitListView extends TraitAbsListView {
     def view: ListView
 
     @inline def adapter_=(ad: ListAdapter) = view.setAdapter(ad)
@@ -379,6 +406,14 @@ package object common {
 
     @noEquivalentGetterExists
     @inline def selection: Int = 0
+
+    @inline def dividerHeight_=(height: Int) = view.setDividerHeight(height)
+
+    @inline def dividerHeight: Int = view.getDividerHeight
+
+    @inline def divider_=(divider: Drawable) = view.setDivider(divider)
+
+    @inline def divider: Drawable = view.getDivider
   }
 
   @inline implicit def listView2RichListView(lv: android.widget.ListView) = new RichListView(lv)
@@ -573,6 +608,8 @@ package object common {
   @inline implicit def stringToUri(str: String): Uri = Uri.parse(str)
 
   @inline def $Intent[T](implicit context: Context, mt: ClassManifest[T]) = new content.Intent(context, mt.erasure)
+
+  @inline def $Intent[T](action: String)(implicit context: Context, mt: ClassManifest[T]) = $Intent[T].setAction(action)
 
   class $TextView(implicit context: Context) extends TextView(context) with TraitTextView {
     def view = this

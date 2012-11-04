@@ -84,7 +84,7 @@ is equivalent to:
 
 Other `Rich...` classes are also defined to provide additional functionality by implicit conversion. Please check the source code for details.
 	
-Note: providing shortened listeners and scala style getters/setters are not complete for now. Please refer to our [roadmap](#roadmap).
+Note: providing shortened listener-appenders and scala style getters/setters are not complete for now. Please refer to our [roadmap](#roadmap).
 	
 ## Context as an implicit parameter
 Many methods in Android API requires an instance of a class `Context`. Providing this for every method calls results a clumsy code. We employs an implicit parameter to elliminate this. Just declare an implicit value that represents current context:
@@ -265,7 +265,7 @@ or, extend trait `TagUtil` or `ContextUtil` which defines this by default. Then 
 
 	warn("Something happened!")
 
-Other functions for every log levels(verbose, debug, info, warn, error, wtf) are available. 
+Other functions for every log levels(`verbose`, `debug`, `info`, `warn`, `error`, `wtf`) are available. 
 
 	info("hello " + world)
 
@@ -306,7 +306,7 @@ However, if you use it in constructors, compiler cannot find correct implicit co
 	  text = "Hello"    // Compilation Error.
 	}
 	
-Therefore, we extended Android classes with the same name prefixed by dollar($) sign:
+Therefore, we extended Android classes with the same name prefixed by a dollar($) sign:
 	
 	def getInstance = new $TextView {
 	  text = "Hello"    // OK.
