@@ -50,14 +50,14 @@ This library defines an implicit conversion `View => RichView`. `RichView` defin
 
     find[Button](R.id.search).onClick(openUri("http://google.com"))
 
-All of listener-appending methods such as `onClick()` and `onLongClick()` are defined in `RichView`. Some conventions we employed are:
+All of listener-appending methods such as `onKey()`, `onLongClick()`, and `onTouch()` are defined in `RichView`. Some conventions we employed are:
 
  * We omit `set...`, `add...`, and `...Listener` from the method name, which is less significant.
- * Every methods has two versions of parameters overriden. One is a lazy parameter, and another is a full parameter setup defined in original Android API. For example, these two usages are valid:
+ * Every methods has two versions of parameters overriden. One is a lazy parameter, and another is a function has a full parameter setup defined in original Android API. For example, these two usages are valid:
 
 ```
-button.onClick(info("pressed"))
-button.onClick(v:View => info("pressed a button "+v))
+button.onTouch(info("touched"))
+button.onTouch((v:View, e:MotionEvent) => info("touched a button "+v))
 ```	
 	
 **Class RichTextView**
