@@ -273,21 +273,38 @@ A `String` parameter passed with `info()` is a lazy argument, so it is evaluated
 
 Compared with Java style getters and setters, for example:
 
-    def buildMyTextView = {
-      val textView = new TextView(context)
-	  textView.setText("Hello")
-	  textView.setTextSize(15)
-	  textView
+    new TextView(context) {
+	  setText("Hello")
+	  setTextSize(15)
 	}
 	
 that of Scala style clearly reveals the nature of the operations as shown below:
 
-    def buildMyTextView = new $TextView {
+    new $TextView {
       text = "Hello"
       textSize = 15
 	}
 
 Note: Currently, this feature is not supported completely. Check our [roadmap](#roadmap).
+	
+### Dollar-signed($) classes
+
+If you want to use scala style getters/setters, implicit conversion do the magic on native Android objects:
+
+    val v:TextView = ...
+	v.text = "Hello"    // Valid code. Implicit conversion handles this.
+	
+However, if you use it in constructors, compiler cannot find correct implicit conversion:
+	
+    def getInstance = new TextView {
+	  text = "Hello"    // Compilation Error. Implicit conversion worn't work.
+	}
+	
+Therefore, we extended Android classes with the same name prefixed by dollar($) sign:
+	
+	def getInstance = new $TextView {
+	  text = "Hello"    // OK.
+	}
 	
 ## Classes
 
