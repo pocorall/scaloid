@@ -287,7 +287,7 @@ that of Scala style clearly reveals the nature of the operations as shown below:
 
 Note: Currently, this feature is not supported completely. Check our [roadmap](#roadmap).
 	
-### Dollar-signed($) classes
+### Dollar-signed($-ed) classes
 
 If you want to use scala style getters/setters, implicit conversion do the magic on native Android objects:
 
@@ -296,8 +296,8 @@ If you want to use scala style getters/setters, implicit conversion do the magic
 	
 However, if you use it in constructors, compiler cannot find correct implicit conversion:
 	
-    def getInstance = new TextView {
-	  text = "Hello"    // Compilation Error. Implicit conversion worn't work.
+    def getInstance = new TextView(context) {
+	  text = "Hello"    // Compilation Error.
 	}
 	
 Therefore, we extended Android classes with the same name prefixed by dollar($) sign:
@@ -305,6 +305,8 @@ Therefore, we extended Android classes with the same name prefixed by dollar($) 
 	def getInstance = new $TextView {
 	  text = "Hello"    // OK.
 	}
+	
+Aditionally, $-ed classes supports implicit context value and additional syntactic sugars.
 	
 ## Classes
 
