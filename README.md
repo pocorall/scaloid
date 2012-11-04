@@ -53,7 +53,7 @@ This library defines an implicit conversion `View => RichView`. `RichView` defin
 All of listener-appending methods such as `onKey()`, `onLongClick()`, and `onTouch()` are defined in `RichView`. Some conventions we employed are:
 
  * We omit `set...`, `add...`, and `...Listener` from the method name, which is less significant.
- * Every methods has two versions of parameters overriden. One is a lazy parameter, and another is a function has a full parameter setup defined in original Android API. For example, these two usages are valid:
+ * Every methods has two versions of parameters overriden. One is a lazy parameter, and another is a function which has a full parameter defined in original Android API. For example, these two usages are valid:
 
 ```
 button.onTouch(info("touched"))
@@ -346,11 +346,12 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 ## Roadmap
 
 * **Cover full Android API versions** <br/>
-  Currently, only API level 10 is supported. New features introduced above that level are not covered and android-scala-common may not be compiled with below that API level.
+  Currently, only API level 10 is supported. This library may not be compiled with below that API level, and new features introduced above that level are not covered.
   Some of the features to be covered are:
   1. Fragment
   1. New system services
   1. Action bar
+  <br/>
 
 * **Completely implement Scala getters and setters** <br/>
   A few accessors are currently ported into the Scala style.
