@@ -307,7 +307,7 @@ Therefore, we extended Android classes with the same name prefixed by dollar($) 
 	}
 	
 These classes explicitly provides the extra methods that was provided implicitly. 
-Aditionally, $-ed classes supports implicit context value and additional syntactic sugars.
+Aditionally, $-ed classes supports [implicit context value](#context-as-an-implicit-parameter) and additional syntactic sugars.
 	
 ## Classes
 
