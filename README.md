@@ -80,6 +80,12 @@ is equivalent to:
       def afterTextChanged(p1: Editable) {}
     })
 	
+**Other 'Rich' classes**
+
+Other `Rich...` classes are also defined to provide additional functionality by implicit conversion. Please check the source code for details.
+	
+Note: providing shortened listeners and scala style getters/setters are not complete for now. Please refer to our [roadmap](#roadmap).
+	
 ## Context as an implicit parameter
 Many methods in Android API requires an instance of a class `Context`. Providing this for every method calls results a clumsy code. We employs an implicit parameter to elliminate this. Just declare an implicit value that represents current context:
 
