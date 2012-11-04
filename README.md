@@ -59,6 +59,8 @@ All of listener-appending methods such as `onKey()`, `onLongClick()`, and `onTou
 button.onTouch(info("touched"))
 button.onTouch((v:View, e:MotionEvent) => info("touched a button "+v))
 ```	
+
+ * Methods `add...` is abbreviated with function `+=` if it is not a listener-appender.
 	
 **Class RichTextView**
 

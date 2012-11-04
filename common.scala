@@ -50,18 +50,17 @@ import android.telephony.TelephonyManager
 import android.net.wifi.WifiManager
 import android.content
 import content._
-import android.widget.{Button, TextView, Toast}
+import android.widget._
 import android.preference.PreferenceManager
 import android.view.WindowManager.LayoutParams._
 import android.view.View._
 import android.graphics.drawable.Drawable
-import content.DialogInterface.OnKeyListener
 import java.lang.CharSequence
 import scala.Int
 import android.view.ContextMenu.ContextMenuInfo
-import net.pocorall.android.LoggerTag
-import net.pocorall.android.LoggerTag
 import android.text.method.MovementMethod
+import annotation.target.{beanGetter, getter}
+import android.view.ViewGroup.LayoutParams
 
 
 case class LoggerTag(_tag: String) {
@@ -72,7 +71,6 @@ case class LoggerTag(_tag: String) {
 package object common {
 
   implicit def resourceIdToTextResource(id: Int)(implicit context: Context): CharSequence = context.getText(id)
-
 
   /**
    * Launches a new activity for a give uri. For example, opens a web browser for http protocols.
@@ -102,7 +100,11 @@ package object common {
       }
     }
 
-  class RichView[V <: View](view: V) {
+  class RichView[V <: View](val view: V) extends TraitView[V]
+
+  trait TraitView[V <: View] {
+    def view: V
+
     @inline def onClick(f: => Unit) {
       view.setOnClickListener(new OnClickListener {
         def onClick(view: View) {
@@ -190,11 +192,24 @@ package object common {
         def onTouch(v: View, event: MotionEvent) = f(v, event)
       })
     }
+
+    @inline def layoutParams_=(lp: LayoutParams) = view.setLayoutParams(lp)
+
+    @inline def layoutParams = view.getLayoutParams
   }
 
   @inline implicit def view2RichView[V <: View](view: V) = new RichView[V](view)
 
-  class RichTextView(view: TextView) {
+  @inline def newEditText(implicit context: Context) = new android.widget.EditText(context)
+
+  class $EditText(implicit context: Context) extends android.widget.EditText(context) with TraitTextView {
+    def view: TextView = this
+  }
+
+  class RichTextView(val view: TextView) extends TraitTextView
+
+  trait TraitTextView extends TraitView[TextView] {
+    def view: TextView
 
     @inline def beforeTextChanged(f: (CharSequence, Int, Int, Int) => Unit) {
       view.addTextChangedListener(new TextWatcher {
@@ -291,6 +306,10 @@ package object common {
 
     @inline def textSize: Float = view.getTextSize
 
+    @inline def gravity_=(g: Int) = view.setGravity(g)
+
+    @inline def gravity = view.getGravity
+
     @inline def movementMethod_=(movement: MovementMethod) {
       view.setMovementMethod(movement)
     }
@@ -305,6 +324,65 @@ package object common {
   }
 
   @inline implicit def view2RichTextView(view: TextView) = new RichTextView(view)
+
+
+  class RichMenu(menu: Menu) {
+    @inline def +=(txt: CharSequence) = menu.add(txt)
+  }
+
+  @inline implicit def menu2RichMenu(menu: Menu) = new RichMenu(menu)
+
+
+  class RichContextMenu(menu: ContextMenu) {
+    @inline def headerTitle_=(txt: CharSequence) = menu.setHeaderTitle(txt)
+
+    @noEquivalentGetterExists
+    @inline def headerTitle: CharSequence = ""
+  }
+
+  @inline implicit def contextMenu2RichContextMenu(menu: ContextMenu) = new RichContextMenu(menu)
+
+  @getter
+  @beanGetter
+  class noEquivalentGetterExists extends annotation.StaticAnnotation
+
+  class $ListView(implicit context: Context) extends ListView(context) with TraitListView {
+    def view = this
+  }
+
+  class RichListView(val view: ListView) extends TraitListView
+
+  trait TraitListView extends TraitView[ListView] {
+    def view: ListView
+
+    @inline def adapter_=(ad: ListAdapter) = view.setAdapter(ad)
+
+    @inline def adapter = view.getAdapter
+
+    @inline def selection_=(position: Int) = view.setSelection(position)
+
+    @noEquivalentGetterExists
+    @inline def selection: Int = 0
+  }
+
+  @inline implicit def listView2RichListView(lv: android.widget.ListView) = new RichListView(lv)
+
+
+  class RichViewGroup(vg: ViewGroup) {
+    @inline def +=(view: View) = vg.addView(view)
+  }
+
+  @inline implicit def viewGroup2RichViewGroup(viewGroup: ViewGroup) = new RichViewGroup(viewGroup)
+
+  class RichLinearLayout(ll: LinearLayout) {
+    @inline def orientation_=(orient: Int) = ll.setOrientation(orient)
+
+    @inline def orientation = ll.getOrientation
+  }
+
+  @inline implicit def linearLaout2RichLinearLayout(linearLayout: LinearLayout) = new RichLinearLayout(linearLayout)
+
+  @inline def newLinearLayout(implicit context: Context) = new LinearLayout(context)
 
 
   implicit def func2ViewOnLongClickListener(f: View => Boolean): View.OnLongClickListener =
@@ -531,6 +609,14 @@ package object common {
 
   @inline def clipboardManager(implicit context: Context): ClipboardManager =
     context.getSystemService(Context.CLIPBOARD_SERVICE).asInstanceOf[ClipboardManager]
+
+  class RichClipboardManager(cm: ClipboardManager) {
+    def text_=(txt: CharSequence) = cm.setText(txt)
+
+    def text = cm.getText
+  }
+
+  @inline implicit def richClipboardManager(cm: ClipboardManager): RichClipboardManager = new RichClipboardManager(cm)
 
   @inline def connectivityManager(implicit context: Context): ConnectivityManager =
     context.getSystemService(Context.CONNECTIVITY_SERVICE).asInstanceOf[ConnectivityManager]
