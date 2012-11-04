@@ -196,15 +196,31 @@ package object common {
     @inline def layoutParams_=(lp: LayoutParams) = view.setLayoutParams(lp)
 
     @inline def layoutParams = view.getLayoutParams
+
+    @inline def backgroundColor_=(color: Int) = view.setBackgroundColor(color)
+
+    @noEquivalentGetterExists
+    @inline def backgroundColor: Int = 0
   }
 
   @inline implicit def view2RichView[V <: View](view: V) = new RichView[V](view)
 
-  @inline def newEditText(implicit context: Context) = new android.widget.EditText(context)
-
   class $EditText(implicit context: Context) extends android.widget.EditText(context) with TraitTextView {
     def view: TextView = this
   }
+
+  class RichActivity(val activity: Activity) extends TraitActivity
+
+  trait TraitActivity {
+    def activity: Activity
+
+    @inline def contentView_=(view: View) = activity.setContentView(view)
+
+    @noEquivalentGetterExists
+    @inline def contentView: View = null
+  }
+
+  @inline implicit def activity2RichActivity(activity: Activity) = new RichActivity(activity)
 
   class RichTextView(val view: TextView) extends TraitTextView
 
@@ -367,31 +383,30 @@ package object common {
 
   @inline implicit def listView2RichListView(lv: android.widget.ListView) = new RichListView(lv)
 
+  class RichViewGroup(val view: ViewGroup) extends TraitViewGroup
 
-  class RichViewGroup(val viewGroup: ViewGroup) extends TraitViewGroup
+  trait TraitViewGroup extends TraitView[ViewGroup] {
+    def view: ViewGroup
 
-  trait TraitViewGroup {
-    def viewGroup: ViewGroup
-
-    @inline def +=(view: View) = viewGroup.addView(view)
+    @inline def +=(v: View) = view.addView(v)
   }
 
   @inline implicit def viewGroup2RichViewGroup(viewGroup: ViewGroup) = new RichViewGroup(viewGroup)
 
-  class RichLinearLayout(val viewGroup: LinearLayout) extends TraitLinearLayout
+  class RichLinearLayout(val view: LinearLayout) extends TraitLinearLayout
 
   trait TraitLinearLayout extends TraitViewGroup {
-    def viewGroup: LinearLayout
+    def view: LinearLayout
 
-    @inline def orientation_=(orient: Int) = viewGroup.setOrientation(orient)
+    @inline def orientation_=(orient: Int) = view.setOrientation(orient)
 
-    @inline def orientation = viewGroup.getOrientation
+    @inline def orientation = view.getOrientation
   }
 
   @inline implicit def linearLaout2RichLinearLayout(linearLayout: LinearLayout) = new RichLinearLayout(linearLayout)
 
   @inline class $LinearLayout(implicit context: Context) extends LinearLayout(context) with TraitLinearLayout {
-    def viewGroup = this
+    def view = this
   }
 
   implicit def func2ViewOnLongClickListener(f: View => Boolean): View.OnLongClickListener =
@@ -561,11 +576,9 @@ package object common {
 
   @inline def newTextView(implicit context: Context): TextView = new TextView(context)
 
-  @inline def newButton(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context): Button = {
-    val btn = new Button(context)
-    btn.setText(text)
-    btn.setOnClickListener(onClickListener)
-    btn
+  class $Button(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) extends Button(context) {
+    setText(text)
+    setOnClickListener(onClickListener)
   }
 
   @inline def toast(message: String)(implicit context: Context) {
@@ -706,7 +719,9 @@ package object common {
   /**
    * Provides utility methods for Activity
    */
-  trait ActivityUtil extends Activity {
+  trait ActivityUtil extends Activity with TraitActivity {
+    def activity = this
+
     def find[V <: View](id: Int): V = findViewById(id).asInstanceOf[V]
   }
 
