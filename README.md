@@ -54,9 +54,9 @@ All of listener-appending methods such as `onClick()` and `onLongClick()` are de
 
  * We omit `set...`, `add...`, and `...Listener` from the method name, which is less significant.
  * Every methods has two versions of parameters overriden. One is a lazy parameter, and another is a full parameter setup defined in original Android API. For example, these two usages are valid:
- 
+
     button.onClick(info("pressed"))
-	button.onClick(v:View => info("pressed a button "+v))
+    button.onClick(v:View => info("pressed a button "+v))
 	
 	
 **Class RichTextView**
