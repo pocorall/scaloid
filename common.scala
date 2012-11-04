@@ -53,10 +53,14 @@ import content._
 import android.widget.{Button, TextView, Toast}
 import android.preference.PreferenceManager
 import android.view.WindowManager.LayoutParams._
-import android.view.View.{OnLongClickListener, OnClickListener, OnFocusChangeListener}
+import android.view.View._
 import android.graphics.drawable.Drawable
+import content.DialogInterface.OnKeyListener
 import java.lang.CharSequence
 import scala.Int
+import android.view.ContextMenu.ContextMenuInfo
+import net.pocorall.android.LoggerTag
+import net.pocorall.android.LoggerTag
 
 
 case class LoggerTag(_tag: String) {
@@ -127,6 +131,62 @@ package object common {
         def onLongClick(view: View): Boolean = {
           f(view)
         }
+      })
+    }
+
+    def onCreateContextMenu(f: => Unit) {
+      view.setOnCreateContextMenuListener(new OnCreateContextMenuListener {
+        def onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo) {
+          f
+        }
+      })
+    }
+
+    def onCreateContextMenu(f: (ContextMenu, View, ContextMenuInfo) => Unit) {
+      view.setOnCreateContextMenuListener(new OnCreateContextMenuListener {
+        def onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo) {
+          f(menu, v, menuInfo)
+        }
+      })
+    }
+
+    def onFocusChanged(f: => Unit) {
+      view.setOnFocusChangeListener(new OnFocusChangeListener {
+        def onFocusChange(v: View, hasFocus: Boolean) {
+          f
+        }
+      })
+    }
+
+    def onFocusChanged(f: (View, Boolean) => Unit) {
+      view.setOnFocusChangeListener(new OnFocusChangeListener {
+        def onFocusChange(v: View, hasFocus: Boolean) {
+          f(v, hasFocus)
+        }
+      })
+    }
+
+    def onKey(f: => Boolean) {
+      view.setOnKeyListener(new View.OnKeyListener {
+        def onKey(v: View, keyCode: Int, event: KeyEvent) = f
+      })
+    }
+
+    def onKey(f: (View, Int, KeyEvent) => Boolean) {
+      view.setOnKeyListener(new View.OnKeyListener {
+        def onKey(v: View, keyCode: Int, event: KeyEvent) = f(v, keyCode, event)
+      })
+    }
+
+    def onTouch(f: => Boolean) {
+      view.setOnTouchListener(new OnTouchListener {
+        def onTouch(v: View, event: MotionEvent) = f
+      })
+    }
+
+    def onTouch(f: (View, MotionEvent) => Boolean) {
+      view.setOnTouchListener(new OnTouchListener {
+        def onTouch(v: View, event: MotionEvent) = f(v, event)
       })
     }
   }
