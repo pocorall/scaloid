@@ -572,13 +572,23 @@ package object common {
 
   @inline implicit def stringToUri(str: String): Uri = Uri.parse(str)
 
-  @inline def newIntent[T](implicit context: Context, mt: ClassManifest[T]) = new content.Intent(context, mt.erasure)
+  @inline def $Intent[T](implicit context: Context, mt: ClassManifest[T]) = new content.Intent(context, mt.erasure)
 
-  @inline def newTextView(implicit context: Context): TextView = new TextView(context)
+  class $TextView(implicit context: Context) extends TextView(context) with TraitTextView {
+    def view = this
+  }
 
-  class $Button(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) extends Button(context) {
-    setText(text)
-    setOnClickListener(onClickListener)
+  object $Button {
+    def apply(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context): Button = {
+      val button = new Button(context)
+      button.text = text
+      button.setOnClickListener(onClickListener)
+      button
+    }
+  }
+
+  class $Button(implicit context: Context) extends Button(context) with TraitTextView {
+    def view = this
   }
 
   @inline def toast(message: String)(implicit context: Context) {
@@ -599,7 +609,7 @@ package object common {
     PendingIntent.getActivity(context, 0, intent, 0)
 
   @inline def pendingActivity[T](implicit context: Context, mt: ClassManifest[T]) =
-    PendingIntent.getActivity(context, 0, newIntent[T], 0)
+    PendingIntent.getActivity(context, 0, $Intent[T], 0)
 
   @inline def notificationSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
@@ -704,15 +714,15 @@ package object common {
     implicit val context = this
 
     def startActivity[T: ClassManifest] {
-      startActivity(newIntent[T])
+      startActivity($Intent[T])
     }
 
     def startService[T: ClassManifest] {
-      startService(newIntent[T])
+      startService($Intent[T])
     }
 
     def stopService[T: ClassManifest] {
-      stopService(newIntent[T])
+      stopService($Intent[T])
     }
   }
 

@@ -15,7 +15,7 @@ For example, the code block shown below:
 
 is reduced to:	
 	
-	layout += new $Button("send", sendMessage())
+	layout += $Button("send", sendMessage())
 
 
 ### Benefits
@@ -100,7 +100,7 @@ or just extend trait `ContextUtil`, which defines it for you. Then the codes tha
 
 is reduced to:
 
-    newIntent[MyActivity]
+    $Intent[MyActivity]
 
 **Starting and stopping service**
 
