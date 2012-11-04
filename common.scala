@@ -61,6 +61,7 @@ import scala.Int
 import android.view.ContextMenu.ContextMenuInfo
 import net.pocorall.android.LoggerTag
 import net.pocorall.android.LoggerTag
+import android.text.method.MovementMethod
 
 
 case class LoggerTag(_tag: String) {
@@ -101,8 +102,8 @@ package object common {
       }
     }
 
-  class RichView(view: View) {
-    def onClick(f: => Unit) {
+  class RichView[V <: View](view: V) {
+    @inline def onClick(f: => Unit) {
       view.setOnClickListener(new OnClickListener {
         def onClick(view: View) {
           f
@@ -110,7 +111,7 @@ package object common {
       })
     }
 
-    def onClick(f: View => Unit) {
+    @inline def onClick(f: View => Unit) {
       view.setOnClickListener(new OnClickListener {
         def onClick(view: View) {
           f(view)
@@ -118,7 +119,7 @@ package object common {
       })
     }
 
-    def onLongClick(f: => Boolean) {
+    @inline def onLongClick(f: => Boolean) {
       view.setOnLongClickListener(new OnLongClickListener {
         def onLongClick(view: View): Boolean = {
           f
@@ -126,7 +127,7 @@ package object common {
       })
     }
 
-    def onLongClick(f: View => Boolean) {
+    @inline def onLongClick(f: View => Boolean) {
       view.setOnLongClickListener(new OnLongClickListener {
         def onLongClick(view: View): Boolean = {
           f(view)
@@ -134,7 +135,7 @@ package object common {
       })
     }
 
-    def onCreateContextMenu(f: => Unit) {
+    @inline def onCreateContextMenu(f: => Unit) {
       view.setOnCreateContextMenuListener(new OnCreateContextMenuListener {
         def onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo) {
           f
@@ -142,15 +143,15 @@ package object common {
       })
     }
 
-    def onCreateContextMenu(f: (ContextMenu, View, ContextMenuInfo) => Unit) {
+    @inline def onCreateContextMenu(f: (ContextMenu, V, ContextMenuInfo) => Unit) {
       view.setOnCreateContextMenuListener(new OnCreateContextMenuListener {
         def onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo) {
-          f(menu, v, menuInfo)
+          f(menu, v.asInstanceOf[V], menuInfo)
         }
       })
     }
 
-    def onFocusChanged(f: => Unit) {
+    @inline def onFocusChanged(f: => Unit) {
       view.setOnFocusChangeListener(new OnFocusChangeListener {
         def onFocusChange(v: View, hasFocus: Boolean) {
           f
@@ -158,7 +159,7 @@ package object common {
       })
     }
 
-    def onFocusChanged(f: (View, Boolean) => Unit) {
+    @inline def onFocusChanged(f: (View, Boolean) => Unit) {
       view.setOnFocusChangeListener(new OnFocusChangeListener {
         def onFocusChange(v: View, hasFocus: Boolean) {
           f(v, hasFocus)
@@ -166,36 +167,36 @@ package object common {
       })
     }
 
-    def onKey(f: => Boolean) {
+    @inline def onKey(f: => Boolean) {
       view.setOnKeyListener(new View.OnKeyListener {
         def onKey(v: View, keyCode: Int, event: KeyEvent) = f
       })
     }
 
-    def onKey(f: (View, Int, KeyEvent) => Boolean) {
+    @inline def onKey(f: (View, Int, KeyEvent) => Boolean) {
       view.setOnKeyListener(new View.OnKeyListener {
         def onKey(v: View, keyCode: Int, event: KeyEvent) = f(v, keyCode, event)
       })
     }
 
-    def onTouch(f: => Boolean) {
+    @inline def onTouch(f: => Boolean) {
       view.setOnTouchListener(new OnTouchListener {
         def onTouch(v: View, event: MotionEvent) = f
       })
     }
 
-    def onTouch(f: (View, MotionEvent) => Boolean) {
+    @inline def onTouch(f: (View, MotionEvent) => Boolean) {
       view.setOnTouchListener(new OnTouchListener {
         def onTouch(v: View, event: MotionEvent) = f(v, event)
       })
     }
   }
 
-  implicit def view2RichView(view: View) = new RichView(view)
+  @inline implicit def view2RichView[V <: View](view: V) = new RichView[V](view)
 
   class RichTextView(view: TextView) {
 
-    def beforeTextChanged(f: (CharSequence, Int, Int, Int) => Unit) {
+    @inline def beforeTextChanged(f: (CharSequence, Int, Int, Int) => Unit) {
       view.addTextChangedListener(new TextWatcher {
         def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
           f(s, start, before, count)
@@ -207,7 +208,7 @@ package object common {
       })
     }
 
-    def beforeTextChanged(f: => Unit) {
+    @inline def beforeTextChanged(f: => Unit) {
       view.addTextChangedListener(new TextWatcher {
         def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
           f
@@ -219,7 +220,7 @@ package object common {
       })
     }
 
-    def onTextChanged(f: => Unit) {
+    @inline def onTextChanged(f: => Unit) {
       view.addTextChangedListener(new TextWatcher {
         def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
 
@@ -232,7 +233,7 @@ package object common {
     }
 
 
-    def onTextChanged(f: (CharSequence, Int, Int, Int) => Unit) {
+    @inline def onTextChanged(f: (CharSequence, Int, Int, Int) => Unit) {
       view.addTextChangedListener(new TextWatcher {
         def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
 
@@ -244,7 +245,7 @@ package object common {
       })
     }
 
-    def afterTextChanged(f: Editable => Unit) {
+    @inline def afterTextChanged(f: Editable => Unit) {
       view.addTextChangedListener(new TextWatcher {
         def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
 
@@ -256,7 +257,7 @@ package object common {
       })
     }
 
-    def afterTextChanged(f: => Unit) {
+    @inline def afterTextChanged(f: => Unit) {
       view.addTextChangedListener(new TextWatcher {
         def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
 
@@ -268,7 +269,7 @@ package object common {
       })
     }
 
-    def onEditorAction(f: => Boolean) {
+    @inline def onEditorAction(f: => Boolean) {
       view.setOnEditorActionListener(new TextView.OnEditorActionListener {
         def onEditorAction(view: TextView, actionId: Int, event: KeyEvent): Boolean = {
           f
@@ -276,7 +277,7 @@ package object common {
       })
     }
 
-    def onEditorAction(f: (TextView, Int, KeyEvent) => Boolean) {
+    @inline def onEditorAction(f: (TextView, Int, KeyEvent) => Boolean) {
       view.setOnEditorActionListener(new TextView.OnEditorActionListener {
         def onEditorAction(view: TextView, actionId: Int, event: KeyEvent): Boolean = {
           f(view, actionId, event)
@@ -284,20 +285,26 @@ package object common {
       })
     }
 
-    def textSize_=(size: Float) {
+    @inline def textSize_=(size: Float) {
       view.setTextSize(size)
     }
 
-    def textSize: Float = view.getTextSize
+    @inline def textSize: Float = view.getTextSize
 
-    def text_=(txt: CharSequence) {
+    @inline def movementMethod_=(movement: MovementMethod) {
+      view.setMovementMethod(movement)
+    }
+
+    @inline def movementMethod: MovementMethod = view.getMovementMethod
+
+    @inline def text_=(txt: CharSequence) {
       view.setText(txt)
     }
 
-    def text: CharSequence = view.getText
+    @inline def text: CharSequence = view.getText
   }
 
-  implicit def view2RichTextView(view: TextView) = new RichTextView(view)
+  @inline implicit def view2RichTextView(view: TextView) = new RichTextView(view)
 
 
   implicit def func2ViewOnLongClickListener(f: View => Boolean): View.OnLongClickListener =
@@ -404,32 +411,32 @@ package object common {
     if (_message != null) setMessage(_message)
 
 
-    def positiveButton(name: CharSequence = android.R.string.yes, onClick: => Unit = {}): AlertDialogBuilder =
+    @inline def positiveButton(name: CharSequence = android.R.string.yes, onClick: => Unit = {}): AlertDialogBuilder =
       positiveButton(name, (_, _) => {
         onClick
       })
 
-    def positiveButton(name: CharSequence, onClick: (DialogInterface, Int) => Unit): AlertDialogBuilder = {
+    @inline def positiveButton(name: CharSequence, onClick: (DialogInterface, Int) => Unit): AlertDialogBuilder = {
       setPositiveButton(name, func2DialogOnClickListener(onClick))
       this
     }
 
-    def neutralButton(name: CharSequence = android.R.string.ok, onClick: => Unit = {}): AlertDialogBuilder =
+    @inline def neutralButton(name: CharSequence = android.R.string.ok, onClick: => Unit = {}): AlertDialogBuilder =
       neutralButton(name, (_, _) => {
         onClick
       })
 
-    def neutralButton(name: CharSequence, onClick: (DialogInterface, Int) => Unit): AlertDialogBuilder = {
+    @inline def neutralButton(name: CharSequence, onClick: (DialogInterface, Int) => Unit): AlertDialogBuilder = {
       setNeutralButton(name, func2DialogOnClickListener(onClick))
       this
     }
 
-    def negativeButton(name: CharSequence, onClick: => Unit): AlertDialogBuilder =
+    @inline def negativeButton(name: CharSequence, onClick: => Unit): AlertDialogBuilder =
       negativeButton(name, (_, _) => {
         onClick
       })
 
-    def negativeButton(name: CharSequence = android.R.string.no, onClick: (DialogInterface, Int) => Unit = (d, _) => {
+    @inline def negativeButton(name: CharSequence = android.R.string.no, onClick: (DialogInterface, Int) => Unit = (d, _) => {
       d.cancel()
     }): AlertDialogBuilder = {
       setNegativeButton(name, func2DialogOnClickListener(onClick))
@@ -438,21 +445,21 @@ package object common {
 
     var tit: CharSequence = null
 
-    def title_=(str: CharSequence) = {
+    @inline def title_=(str: CharSequence) = {
       tit = str
       setTitle(str)
     }
 
-    def title = tit
+    @inline def title = tit
 
     var msg: CharSequence = null
 
-    def message_=(str: CharSequence) = {
+    @inline def message_=(str: CharSequence) = {
       tit = str
       setMessage(str)
     }
 
-    def message = tit
+    @inline def message = tit
   }
 
   @inline def alert(title: CharSequence, text: CharSequence, clickCallback: => Unit = {})(implicit context: Context) {

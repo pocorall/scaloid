@@ -351,8 +351,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
   1. Fragment
   1. New system services
   1. Action bar
-  <br/>
-
+  
 * **Completely implement Scala getters and setters** <br/>
   A few accessors are currently ported into the Scala style.
 
