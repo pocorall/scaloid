@@ -368,22 +368,31 @@ package object common {
   @inline implicit def listView2RichListView(lv: android.widget.ListView) = new RichListView(lv)
 
 
-  class RichViewGroup(vg: ViewGroup) {
-    @inline def +=(view: View) = vg.addView(view)
+  class RichViewGroup(val viewGroup: ViewGroup) extends TraitViewGroup
+
+  trait TraitViewGroup {
+    def viewGroup: ViewGroup
+
+    @inline def +=(view: View) = viewGroup.addView(view)
   }
 
   @inline implicit def viewGroup2RichViewGroup(viewGroup: ViewGroup) = new RichViewGroup(viewGroup)
 
-  class RichLinearLayout(ll: LinearLayout) {
-    @inline def orientation_=(orient: Int) = ll.setOrientation(orient)
+  class RichLinearLayout(val viewGroup: LinearLayout) extends TraitLinearLayout
 
-    @inline def orientation = ll.getOrientation
+  trait TraitLinearLayout extends TraitViewGroup {
+    def viewGroup: LinearLayout
+
+    @inline def orientation_=(orient: Int) = viewGroup.setOrientation(orient)
+
+    @inline def orientation = viewGroup.getOrientation
   }
 
   @inline implicit def linearLaout2RichLinearLayout(linearLayout: LinearLayout) = new RichLinearLayout(linearLayout)
 
-  @inline def newLinearLayout(implicit context: Context) = new LinearLayout(context)
-
+  @inline class $LinearLayout(implicit context: Context) extends LinearLayout(context) with TraitLinearLayout {
+    def viewGroup = this
+  }
 
   implicit def func2ViewOnLongClickListener(f: View => Boolean): View.OnLongClickListener =
     new View.OnLongClickListener() {
