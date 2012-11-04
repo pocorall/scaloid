@@ -306,6 +306,7 @@ Therefore, we extended Android classes with the same name prefixed by dollar($) 
 	  text = "Hello"    // OK.
 	}
 	
+These classes explicitly provides the extra methods that was provided implicitly. 
 Aditionally, $-ed classes supports implicit context value and additional syntactic sugars.
 	
 ## Classes
