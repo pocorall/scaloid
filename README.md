@@ -15,7 +15,7 @@ For example, the code block shown below:
 
 is reduced to:	
 	
-	layout += newButton("send", sendMessage())
+	layout += new $Button("send", sendMessage())
 
 
 ### Benefits
