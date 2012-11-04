@@ -273,15 +273,19 @@ A `String` parameter passed with `info()` is a lazy argument, so it is evaluated
 
 Compared with Java style getters and setters, for example:
 
-    val textView = new TextView(context)
-	textView.setText("Hello")
-	textView.setTextSize(15)
+    def buildMyTextView = {
+      val textView = new TextView(context)
+	  textView.setText("Hello")
+	  textView.setTextSize(15)
+	  textView
+	}
 	
 that of Scala style clearly reveals the nature of the operations as shown below:
 
-    val textView = newTextView
-    textView.text = "Hello"
-    textView.textSize = 15
+    def buildMyTextView = new $TextView {
+      text = "Hello"
+      textSize = 15
+	}
 
 Note: Currently, this feature is not supported completely. Check our [roadmap](#roadmap).
 	
