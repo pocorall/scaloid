@@ -313,10 +313,14 @@ Therefore, we extended Android classes with the same name prefixed with a dollar
 	}
 	
 These classes explicitly provides the extra methods that was provided implicitly. 
-Aditionally, $-ed classes supports [implicit context value](#context-as-an-implicit-parameter) and additional syntactic sugars.
 
-<sub>**Design considerations on making $-ed classes:** In modern programming language, using package (or namespace) is preferred than prefixing for deferentiating classes has the same name. However, prefixing package name is more verbose than prefixing class name itself (compare with `common.Button` and `$Button`) and can be confused when you imported both packages of Android and android-scala-common. We choose pragmatism rather than discipline.</sub>
-	
+Aditionally, $-ed classes supports [implicit context value](#context-as-an-implicit-parameter) and additional syntactic sugars. For example, many classes has `.apply` methods for creating a new instance:
+
+    $Button("title", onClickBehavior())
+	$Intent[MyActivity]
+
+<sub>**Design considerations on making $-ed classes:** In modern programming language, using package (or namespace) is preferred than prefixing. However, when we use both classes from Android API and android-scala-common, using package name is more verbose than prefixing class name itself (compare with `common.Button` and `$Button`) and can be confused when you use both classes at the same code. We choose pragmatism rather than discipline.</sub>
+
 ## Classes
 
 ### Class AlertDialogBuilder
