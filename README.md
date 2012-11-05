@@ -292,6 +292,23 @@ that of Scala style clearly reveals the nature of the operations as shown below:
 	}
 
 Note: Currently, this feature is not supported completely. Check our [roadmap](#roadmap).
+
+
+### Return value of setters
+
+Setters return the object itself. This feature can be used as a syntactic sugar when a function returning some object. For example, the Java code shown below:
+
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        TextView textView = getGenericView();
+        textView.setText(getGroup(groupPosition).toString());
+        return textView;
+    }
+
+is reduced to:
+
+    def getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View, parent: ViewGroup): View =
+      getGenericView.text = getGroup(groupPosition).toString
+
 	
 ### Dollar-signed($-ed) classes
 
@@ -314,7 +331,7 @@ Therefore, we extended Android classes with the same name prefixed with a dollar
 	
 These classes explicitly provides the extra methods that was provided implicitly. 
 
-Aditionally, $-ed classes supports [implicit context value](#context-as-an-implicit-parameter) and additional syntactic sugars. For example, many classes has `.apply` methods for creating a new instance:
+Aditionally, $-ed classes supports [implicit context value](#context-as-an-implicit-parameter) and additional syntactic sugars. For example, many classes has `.apply(...)` methods for creating a new instance:
 
     $Button("title", onClickBehavior())
 	$Intent[MyActivity]
