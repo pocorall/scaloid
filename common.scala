@@ -105,99 +105,117 @@ package object common {
   trait TraitView[V <: View] {
     def view: V
 
-    @inline def onClick(f: => Unit) {
+    @inline def onClick(f: => Unit): V = {
       view.setOnClickListener(new OnClickListener {
         def onClick(view: View) {
           f
         }
       })
+      view
     }
 
-    @inline def onClick(f: View => Unit) {
+    @inline def onClick(f: View => Unit): V = {
       view.setOnClickListener(new OnClickListener {
         def onClick(view: View) {
           f(view)
         }
       })
+      view
     }
 
-    @inline def onLongClick(f: => Boolean) {
+    @inline def onLongClick(f: => Boolean): V = {
       view.setOnLongClickListener(new OnLongClickListener {
         def onLongClick(view: View): Boolean = {
           f
         }
       })
+      view
     }
 
-    @inline def onLongClick(f: View => Boolean) {
+    @inline def onLongClick(f: View => Boolean): V = {
       view.setOnLongClickListener(new OnLongClickListener {
         def onLongClick(view: View): Boolean = {
           f(view)
         }
       })
+      view
     }
 
-    @inline def onCreateContextMenu(f: => Unit) {
+    @inline def onCreateContextMenu(f: => Unit): V = {
       view.setOnCreateContextMenuListener(new OnCreateContextMenuListener {
         def onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo) {
           f
         }
       })
+      view
     }
 
-    @inline def onCreateContextMenu(f: (ContextMenu, V, ContextMenuInfo) => Unit) {
+    @inline def onCreateContextMenu(f: (ContextMenu, V, ContextMenuInfo) => Unit): V = {
       view.setOnCreateContextMenuListener(new OnCreateContextMenuListener {
         def onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo) {
           f(menu, v.asInstanceOf[V], menuInfo)
         }
       })
+      view
     }
 
-    @inline def onFocusChanged(f: => Unit) {
+    @inline def onFocusChanged(f: => Unit): V = {
       view.setOnFocusChangeListener(new OnFocusChangeListener {
         def onFocusChange(v: View, hasFocus: Boolean) {
           f
         }
       })
+      view
     }
 
-    @inline def onFocusChanged(f: (View, Boolean) => Unit) {
+    @inline def onFocusChanged(f: (View, Boolean) => Unit): V = {
       view.setOnFocusChangeListener(new OnFocusChangeListener {
         def onFocusChange(v: View, hasFocus: Boolean) {
           f(v, hasFocus)
         }
       })
+      view
     }
 
-    @inline def onKey(f: => Boolean) {
+    @inline def onKey(f: => Boolean): V = {
       view.setOnKeyListener(new View.OnKeyListener {
         def onKey(v: View, keyCode: Int, event: KeyEvent) = f
       })
+      view
     }
 
-    @inline def onKey(f: (View, Int, KeyEvent) => Boolean) {
+    @inline def onKey(f: (View, Int, KeyEvent) => Boolean): V = {
       view.setOnKeyListener(new View.OnKeyListener {
         def onKey(v: View, keyCode: Int, event: KeyEvent) = f(v, keyCode, event)
       })
+      view
     }
 
-    @inline def onTouch(f: => Boolean) {
+    @inline def onTouch(f: => Boolean): V = {
       view.setOnTouchListener(new OnTouchListener {
         def onTouch(v: View, event: MotionEvent) = f
       })
+      view
     }
 
-    @inline def onTouch(f: (View, MotionEvent) => Boolean) {
+    @inline def onTouch(f: (View, MotionEvent) => Boolean): V = {
       view.setOnTouchListener(new OnTouchListener {
         def onTouch(v: View, event: MotionEvent) = f(v, event)
       })
+      view
     }
 
-    @inline def layoutParams_=(lp: LayoutParams) = view.setLayoutParams(lp)
+    @inline def layoutParams_=(lp: LayoutParams): V = {
+      view.setLayoutParams(lp)
+      view
+    }
 
     @inline def layoutParams = view.getLayoutParams
 
-    @inline def backgroundColor_=(color: Int) = view.setBackgroundColor(color)
+    @inline def backgroundColor_=(color: Int): V = {
+      view.setBackgroundColor(color)
+      view
+    }
 
     @noEquivalentGetterExists
     @inline def backgroundColor: Int = 0
@@ -205,8 +223,8 @@ package object common {
 
   @inline implicit def view2RichView[V <: View](view: V) = new RichView[V](view)
 
-  class $EditText(implicit context: Context) extends android.widget.EditText(context) with TraitTextView {
-    def view: TextView = this
+  class $EditText(implicit context: Context) extends android.widget.EditText(context) with TraitTextView[EditText] {
+    def view: EditText = this
   }
 
   class RichActivity(val activity: Activity) extends TraitActivity
@@ -214,7 +232,10 @@ package object common {
   trait TraitActivity {
     def activity: Activity
 
-    @inline def contentView_=(view: View) = activity.setContentView(view)
+    @inline def contentView_=(view: View): Activity = {
+      activity.setContentView(view)
+      activity
+    }
 
     @noEquivalentGetterExists
     @inline def contentView: View = null
@@ -222,12 +243,10 @@ package object common {
 
   @inline implicit def activity2RichActivity(activity: Activity) = new RichActivity(activity)
 
-  class RichTextView(val view: TextView) extends TraitTextView
+  trait TraitTextView[V <: TextView] extends TraitView[V] {
+    def view: V
 
-  trait TraitTextView extends TraitView[TextView] {
-    def view: TextView
-
-    @inline def beforeTextChanged(f: (CharSequence, Int, Int, Int) => Unit) {
+    @inline def beforeTextChanged(f: (CharSequence, Int, Int, Int) => Unit): V = {
       view.addTextChangedListener(new TextWatcher {
         def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
           f(s, start, before, count)
@@ -237,9 +256,10 @@ package object common {
 
         def afterTextChanged(p1: Editable) {}
       })
+      view
     }
 
-    @inline def beforeTextChanged(f: => Unit) {
+    @inline def beforeTextChanged(f: => Unit): V = {
       view.addTextChangedListener(new TextWatcher {
         def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
           f
@@ -249,9 +269,10 @@ package object common {
 
         def afterTextChanged(p1: Editable) {}
       })
+      view
     }
 
-    @inline def onTextChanged(f: => Unit) {
+    @inline def onTextChanged(f: => Unit): V = {
       view.addTextChangedListener(new TextWatcher {
         def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
 
@@ -261,10 +282,11 @@ package object common {
 
         def afterTextChanged(p1: Editable) {}
       })
+      view
     }
 
 
-    @inline def onTextChanged(f: (CharSequence, Int, Int, Int) => Unit) {
+    @inline def onTextChanged(f: (CharSequence, Int, Int, Int) => Unit): V = {
       view.addTextChangedListener(new TextWatcher {
         def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
 
@@ -274,9 +296,10 @@ package object common {
 
         def afterTextChanged(p1: Editable) {}
       })
+      view
     }
 
-    @inline def afterTextChanged(f: Editable => Unit) {
+    @inline def afterTextChanged(f: Editable => Unit): V = {
       view.addTextChangedListener(new TextWatcher {
         def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
 
@@ -286,9 +309,10 @@ package object common {
           f(p1)
         }
       })
+      view
     }
 
-    @inline def afterTextChanged(f: => Unit) {
+    @inline def afterTextChanged(f: => Unit): V = {
       view.addTextChangedListener(new TextWatcher {
         def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
 
@@ -298,63 +322,83 @@ package object common {
           f
         }
       })
+      view
     }
 
-    @inline def onEditorAction(f: => Boolean) {
+    @inline def onEditorAction(f: => Boolean): V = {
       view.setOnEditorActionListener(new TextView.OnEditorActionListener {
         def onEditorAction(view: TextView, actionId: Int, event: KeyEvent): Boolean = {
           f
         }
       })
+      view
     }
 
-    @inline def onEditorAction(f: (TextView, Int, KeyEvent) => Boolean) {
+    @inline def onEditorAction(f: (TextView, Int, KeyEvent) => Boolean): V = {
       view.setOnEditorActionListener(new TextView.OnEditorActionListener {
         def onEditorAction(view: TextView, actionId: Int, event: KeyEvent): Boolean = {
           f(view, actionId, event)
         }
       })
+      view
     }
 
-    @inline def textSize_=(size: Float) {
+    @inline def textSize_=(size: Float): V = {
       view.setTextSize(size)
+      view
     }
 
     @inline def textSize: Float = view.getTextSize
 
-    @inline def gravity_=(g: Int) = view.setGravity(g)
+    @inline def gravity_=(g: Int): V = {
+      view.setGravity(g)
+      view
+    }
 
     @inline def gravity = view.getGravity
 
-    @inline def movementMethod_=(movement: MovementMethod) {
+    @inline def movementMethod_=(movement: MovementMethod): V = {
       view.setMovementMethod(movement)
+      view
     }
 
     @inline def movementMethod: MovementMethod = view.getMovementMethod
 
-    @inline def text_=(txt: CharSequence) {
+    @inline def text_=(txt: CharSequence): V = {
       view.setText(txt)
+      view
     }
 
     @inline def text: CharSequence = view.getText
 
-    @inline def maxHeight_=(height: Int) = view.setMaxHeight(height)
+    @inline def maxHeight_=(height: Int): V = {
+      view.setMaxHeight(height)
+      view
+    }
 
     @noEquivalentGetterExists
     @inline def maxHeight: Int = 0 // view.getMaxHeight // higher than API Level 16
 
-    @inline def maxLines_=(line: Int) = view.setMaxLines(line)
+    @inline def maxLines_=(line: Int): V = {
+      view.setMaxLines(line)
+      view
+    }
 
     @noEquivalentGetterExists
     @inline def maxLines: Int = 0 // view.getMaxLines  // higher than API Level 16
 
-    @inline def linkTextColor_=(color: Int) = view.setLinkTextColor(color)
+    @inline def linkTextColor_=(color: Int): V = {
+      view.setLinkTextColor(color)
+      view
+    }
 
     @noEquivalentGetterExists
     @inline def linkTextColor: Int = 0
   }
 
-  @inline implicit def view2RichTextView(view: TextView) = new RichTextView(view)
+  class RichTextView[V <: TextView](val view: V) extends TraitTextView[V]
+
+  @inline implicit def view2RichTextView[V <: TextView](view: V) = new RichTextView[V](view)
 
 
   class RichMenu(menu: Menu) {
@@ -365,7 +409,7 @@ package object common {
 
 
   class RichContextMenu(menu: ContextMenu) {
-    @inline def headerTitle_=(txt: CharSequence) = menu.setHeaderTitle(txt)
+    @inline def headerTitle_=(txt: CharSequence): ContextMenu = menu.setHeaderTitle(txt)
 
     @noEquivalentGetterExists
     @inline def headerTitle: CharSequence = ""
@@ -377,63 +421,87 @@ package object common {
   @beanGetter
   class noEquivalentGetterExists extends annotation.StaticAnnotation
 
-  class $ListView(implicit context: Context) extends ListView(context) with TraitListView {
+  class $ListView(implicit context: Context) extends ListView(context) with TraitListView[ListView] {
     def view = this
   }
 
-  class RichListView(val view: ListView) extends TraitListView
+  trait TraitAbsListView[V <: AbsListView] extends TraitView[V] {
+    def view: V
 
-  trait TraitAbsListView extends TraitView[AbsListView] {
-    def view: AbsListView
-
-    @inline def cacheColorHint_=(color: Int) = view.setCacheColorHint(color)
+    @inline def cacheColorHint_=(color: Int): V = {
+      view.setCacheColorHint(color)
+      view
+    }
 
     @inline def cacheColorHint = view.getCacheColorHint
 
-    @inline def transcriptMode_=(mode: Int) = view.setTranscriptMode(mode)
+    @inline def transcriptMode_=(mode: Int): V = {
+      view.setTranscriptMode(mode)
+      view
+    }
 
     @inline def transcriptMode: Int = view.getTranscriptMode
   }
 
-  trait TraitListView extends TraitAbsListView {
-    def view: ListView
+  trait TraitListView[V <: ListView] extends TraitAbsListView[V] {
+    def view: V
 
-    @inline def adapter_=(ad: ListAdapter) = view.setAdapter(ad)
+    @inline def adapter_=(ad: ListAdapter): V = {
+      view.setAdapter(ad)
+      view
+    }
 
     @inline def adapter = view.getAdapter
 
-    @inline def selection_=(position: Int) = view.setSelection(position)
+    @inline def selection_=(position: Int): V = {
+      view.setSelection(position)
+      view
+    }
 
     @noEquivalentGetterExists
     @inline def selection: Int = 0
 
-    @inline def dividerHeight_=(height: Int) = view.setDividerHeight(height)
+    @inline def dividerHeight_=(height: Int): V = {
+      view.setDividerHeight(height)
+      view
+    }
 
     @inline def dividerHeight: Int = view.getDividerHeight
 
-    @inline def divider_=(divider: Drawable) = view.setDivider(divider)
+    @inline def divider_=(divider: Drawable): V = {
+      view.setDivider(divider)
+      view
+    }
 
     @inline def divider: Drawable = view.getDivider
   }
 
-  @inline implicit def listView2RichListView(lv: android.widget.ListView) = new RichListView(lv)
+  class RichListView[V <: ListView](val view: V) extends TraitListView[V]
 
-  class RichViewGroup(val view: ViewGroup) extends TraitViewGroup
+  @inline implicit def listView2RichListView[V <: ListView](lv: V) = new RichListView[V](lv)
 
-  trait TraitViewGroup extends TraitView[ViewGroup] {
-    def view: ViewGroup
+  trait TraitViewGroup[V <: ViewGroup] extends TraitView[V] {
+    def view: V
 
-    @inline def +=(v: View) = view.addView(v)
+    @inline def +=(v: View): V = {
+      view.addView(v)
+      view
+    }
   }
 
-  @inline implicit def viewGroup2RichViewGroup(viewGroup: ViewGroup) = new RichViewGroup(viewGroup)
+  class RichViewGroup[V <: ViewGroup](val view: V) extends TraitViewGroup[V]
+
+  @inline implicit def viewGroup2RichViewGroup[V <: ViewGroup](viewGroup: V) = new RichViewGroup[V](viewGroup)
 
   class RichLinearLayout(val view: LinearLayout) extends TraitLinearLayout
 
-  trait TraitLinearLayout extends TraitViewGroup {
+  trait TraitLinearLayout extends TraitViewGroup[LinearLayout] {
     def view: LinearLayout
 
-    @inline def orientation_=(orient: Int) = view.setOrientation(orient)
+    @inline def orientation_=(orient: Int): LinearLayout = {
+      view.setOrientation(orient)
+      view
+    }
 
     @inline def orientation = view.getOrientation
   }
@@ -607,11 +675,11 @@ package object common {
 
   @inline implicit def stringToUri(str: String): Uri = Uri.parse(str)
 
-  @inline def $Intent[T](implicit context: Context, mt: ClassManifest[T]) = new content.Intent(context, mt.erasure)
+  @inline def $Intent[T](implicit context: Context, mt: ClassManifest[T]) = new Intent(context, mt.erasure)
 
-  @inline def $Intent[T](action: String)(implicit context: Context, mt: ClassManifest[T]) = $Intent[T].setAction(action)
+  @inline def $Intent[T](action: String)(implicit context: Context, mt: ClassManifest[T]): Intent = $Intent[T].setAction(action)
 
-  class $TextView(implicit context: Context) extends TextView(context) with TraitTextView {
+  class $TextView(implicit context: Context) extends TextView(context) with TraitTextView[TextView] {
     def view = this
   }
 
@@ -624,7 +692,7 @@ package object common {
     }
   }
 
-  class $Button(implicit context: Context) extends Button(context) with TraitTextView {
+  class $Button(implicit context: Context) extends Button(context) with TraitTextView[Button] {
     def view = this
   }
 
