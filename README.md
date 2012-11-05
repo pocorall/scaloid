@@ -306,7 +306,7 @@ However, if you use it in constructors, compiler cannot find correct implicit co
 	  text = "Hello"    // Compilation Error.
 	}
 	
-Therefore, we extended Android classes with the same name prefixed by a dollar($) sign:
+Therefore, we extended Android classes with the same name prefixed with a dollar($) sign:
 	
 	def getInstance = new $TextView {
 	  text = "Hello"    // OK.
@@ -314,6 +314,8 @@ Therefore, we extended Android classes with the same name prefixed by a dollar($
 	
 These classes explicitly provides the extra methods that was provided implicitly. 
 Aditionally, $-ed classes supports [implicit context value](#context-as-an-implicit-parameter) and additional syntactic sugars.
+
+<sub>**Design considerations on making $-ed classes:** In modern programming language, using package (or namespace) is preferred than prefixing for deferentiating classes has the same name. However, prefixing package name is more verbose than prefixing class name itself (compare with `common.Button` and `$Button`) and can be confused when you imported both packages of Android and android-scala-common. We choose pragmatism rather than discipline.</sub>
 	
 ## Classes
 
