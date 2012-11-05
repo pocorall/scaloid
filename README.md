@@ -309,7 +309,7 @@ is reduced to:
     def getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View, parent: ViewGroup): View =
       getGenericView.text = getGroup(groupPosition).toString
 
-<sub>**Design considerations on returning values:** In C or Java, assinment operator `=` returns a right hand side object. However, chaining assignment operator is very rarelly used in these languages. Assigning the same value to multiple variables might means that your code is badly designed (except some context such as involving intensive mathematical computations). In Scala DSLs, chaining setters are more frequent. For example:</sub>
+<sub>**Design considerations on returning values:** In C or Java, the assinment operator `=` returns a right hand side object. However, chaining assignment operator is very rarelly used in these languages. Assigning the same value to multiple variables might means that your code is badly designed (except some context such as involving intensive mathematical computations). However, in Scala DSLs, chaining setters are more frequent. For example:</sub>
 
     getGenericView text_= getGroup(groupPosition).toString maxHeight_= 10
 	
