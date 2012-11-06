@@ -1,6 +1,6 @@
 # Less painful Android development with Scala
 
-Scala is cool. Writing Android application with Scala is also a cool idea. Because Android exposes Java API, we need some wrapper and utility library to leverage full power of Scala. android-scala-common is an initial attempt to provide this.
+Scala is cool. Writing Android application with Scala is also a cool idea. Because Android exposes Java API, we need some utility library to leverage full power of Scala. android-scala-common is an initial attempt to provide this.
 
 For example, the code block shown below:
 
@@ -309,7 +309,7 @@ is reduced to:
     def getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View, parent: ViewGroup): View =
       getGenericView.text = getGroup(groupPosition).toString
 
-<sub>**Design considerations on returning values:** In C or Java, the assinment operator `=` returns a right hand side object. However, chaining assignment operator is very rarelly used in these languages. Assigning the same value to multiple variables might means that your code is badly designed (except some context such as involving intensive mathematical computations). However, in Scala DSLs, chaining setters are more frequent. For example:</sub>
+<sub>**Design considerations on returning values:** In C or Java, the assinment operator `=` returns a right hand side object. However, chaining assignment operator is very rarelly used in these languages. Assigning the same value to multiple variables might means that your code is badly designed (except some context such as involving intensive mathematical computations). However, in Scala DSLs, setters return a left hand side object, and chaining setters are more frequent. For example:</sub>
 
     getGenericView text_= "hello" maxHeight_= 10
 	
