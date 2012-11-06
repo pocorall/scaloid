@@ -279,10 +279,10 @@ A `String` parameter passed with `info()` is a lazy argument, so it is evaluated
 
 You can use any type of setters listed below:
 
-* Java bean style `obj.setText("Hello")`
-* Assignment style `obj.text = "Hello"`
-* DSL style `obj text "Hello"`
-* Method calling style `obj.text("Hello")`
+* `obj.setText("Hello")` Java bean style
+* `obj.text = "Hello"` Assignment style
+* `obj text "Hello"` DSL style
+* `obj.text("Hello")` Method calling style
 
 Compared with Java style getters and setters, for example:
 
@@ -306,6 +306,7 @@ Or, you can also use chained setters:
 
     new $TextView.text("Hello").textSize(15)	
 
+We recommend "assignment style" and "DSL style". Use assignment style when you emphasize you assigning something, or use DSL style when code length of the assignee is short and need to be chained.
 
 Note: Currently, this feature is not supported completely. Check our [roadmap](#roadmap).
 
