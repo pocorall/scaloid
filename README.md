@@ -277,6 +277,13 @@ A `String` parameter passed with `info()` is a lazy argument, so it is evaluated
 
 ## Scala getters and setters
 
+You can use any type of setters listed below:
+
+* Java bean style `obj.setText("Hello")`
+* Assignment style `obj.text = "Hello"`
+* DSL style `obj text "Hello"`
+* Method calling style `obj.text("Hello")`
+
 Compared with Java style getters and setters, for example:
 
     new TextView(context) {
@@ -291,7 +298,7 @@ that of Scala style clearly reveals the nature of the operations as shown below:
       textSize = 15
 	}
 	
-Or, you can also use chaining setters:
+Or, you can also use chained setters:
 
     new $TextView text "Hello" textSize 15
 	
@@ -299,8 +306,7 @@ Or, you can also use chaining setters:
 
     new $TextView.text("Hello").textSize(15)	
 
-You can use any type of setters shown above.
-	
+
 Note: Currently, this feature is not supported completely. Check our [roadmap](#roadmap).
 
 ### Return value of setters
@@ -320,7 +326,7 @@ is reduced to:
 
 <sub>**Design considerations on returning values:** In C or Java, the assinment operator `=` returns a right hand side object. However, chaining assignment operator is very rarelly used in these languages. Assigning the same value to multiple variables might means that your code is badly designed (except some context such as involving intensive mathematical computations). However, in Scala DSLs, setters return a left hand side object, and chaining setters are more frequent. For example:</sub>
 
-    getGenericView text_= "hello" maxHeight_= 10
+    getGenericView text "hello" maxHeight 10
 	
 ### Dollar-signed($-ed) classes
 
