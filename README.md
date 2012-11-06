@@ -306,7 +306,7 @@ Or, you can also chain the setters:
 
     new $TextView.text("Hello").textSize(15)	
 
-We recommend "assignment style" and "DSL style". Use assignment style when you emphasize you assigning something, or use DSL style when the code length of the assignee is short and need to be chained.
+We recommend "assignment style" and "DSL style". Use assignment style when you emphasize that you are assigning something, or use DSL style when the code length of the assignee is short and need to be chained.
 
 Note: Currently, this feature is not supported completely. Check our [roadmap](#roadmap).
 
@@ -427,7 +427,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
   1. Action bar
   
 * **Completely implement Scala getters and setters** <br/>
-  A few accessors are currently ported into the Scala style.
+  A few accessors are currently ported into the Scala style. There are tons of setters in Android API, covering all of them is a hard working. I examined http://scalamacros.org but it seems not good fit on this problem yet. If you have any good idea, please let me know.
 
 * **Build an example Android app** <br/>
   Finish [scala port of apidemos app](https://github.com/pocorall/android-apidemos-scala) and try another.
