@@ -394,6 +394,11 @@ The code above is equivalent to:
         }
       }).show()	
 	
+## Static fields on interfaces
+
+Android API has some protected interfaces which has static fields, and inherited it in public classes. For example `android.provider.ContactsContract.Contacts` inherits a protected interface `android.provider.ContactsContract.ContactsColumns`, which defines a static field `ContactsColumns.DISPLAY_NAME`. In Java code, you can access it with `Contacts.DISPLAY_NAME`. However, Scala does not support accessing in this way (please refer [this](https://issues.scala-lang.org/browse/SI-1806) and [this](http://www.scala-lang.org/faq/4)). It is a bad news for Android-Scala programmer. So we provide a workaround implimentation for this problem. Just copy-and-paste `Workaround.java` and declare `import net.pocorall.android.Workarounds._`. Then you can use the interfaces publicly which is originally defined as protected.
+
+	
 ## Import it to your project
 
 For now, android-scala-common is a single-file project. Just copy `common.scala` and paste it to your project and declare `import net.pocorall.android.common._`. Enjoy!
