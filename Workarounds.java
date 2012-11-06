@@ -1,8 +1,19 @@
 package net.pocorall.android;
 
-import android.net.Uri;
 import android.provider.ContactsContract;
 
+/**
+ * ## Static fields on protected interfaces
+ * <p/>
+ * Android API has some protected interfaces which has static fields, and inherited it in public classes.
+ * For example `android.provider.ContactsContract.Contacts` inherits a protected interface
+ * `android.provider.ContactsContract.ContactsColumns`, which defines a static field `ContactsColumns.DISPLAY_NAME`.
+ * In Java code, you can access it with `Contacts.DISPLAY_NAME`. However, Scala does not support accessing in this way
+ * (please refer [this](https://issues.scala-lang.org/browse/SI-1806) and [this](http://www.scala-lang.org/faq/4)).
+ * It is a bad news for Android-Scala programmer. So we provide a workaround implementation for this problem. Just
+ * copy-and-paste `Workaround.java` and declare `import net.pocorall.android.Workarounds._`.
+ * Then you can use the interfaces publicly which is originally defined as protected.
+ */
 public class Workarounds {
 	public static interface BaseColumns {
 		static public String _ID = ContactsContract.RawContacts._ID;
