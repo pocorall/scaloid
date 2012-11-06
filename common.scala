@@ -104,8 +104,6 @@ package object common {
       }
     }
 
-  class RichView[V <: View](val view: V) extends TraitView[V]
-
   trait TraitView[V <: View] {
     def view: V
 
@@ -214,6 +212,8 @@ package object common {
       view
     }
 
+    @inline def layoutParams(lp: LayoutParams) = layoutParams_=(lp)
+
     @inline def layoutParams = view.getLayoutParams
 
     @inline def backgroundColor_=(color: Int): V = {
@@ -221,17 +221,19 @@ package object common {
       view
     }
 
+    @inline def backgroundColor(color: Int) = backgroundColor_=(color)
+
     @noEquivalentGetterExists
     @inline def backgroundColor: Int = 0
   }
 
+  class RichView[V <: View](val view: V) extends TraitView[V]
+
   @inline implicit def view2RichView[V <: View](view: V) = new RichView[V](view)
 
-  class $EditText(implicit context: Context) extends android.widget.EditText(context) with TraitTextView[EditText] {
-    def view: EditText = this
+  class $EditText(implicit context: Context) extends EditText(context) with TraitTextView[$EditText] {
+    def view = this
   }
-
-  class RichActivity(val activity: Activity) extends TraitActivity
 
   trait TraitActivity {
     def activity: Activity
@@ -241,9 +243,13 @@ package object common {
       activity
     }
 
+    @inline def contentView(view: View) = contentView_=(view)
+
     @noEquivalentGetterExists
     @inline def contentView: View = null
   }
+
+  class RichActivity(val activity: Activity) extends TraitActivity
 
   @inline implicit def activity2RichActivity(activity: Activity) = new RichActivity(activity)
 
@@ -361,12 +367,16 @@ package object common {
       view
     }
 
+    @inline def gravity(g: Int) = gravity_=(g)
+
     @inline def gravity = view.getGravity
 
     @inline def movementMethod_=(movement: MovementMethod): V = {
       view.setMovementMethod(movement)
       view
     }
+
+    @inline def movementMethod(movement: MovementMethod) = movementMethod_=(movement)
 
     @inline def movementMethod: MovementMethod = view.getMovementMethod
 
@@ -384,6 +394,8 @@ package object common {
       view
     }
 
+    @inline def maxHeight(height: Int) = maxHeight_=(height)
+
     @noEquivalentGetterExists
     @inline def maxHeight: Int = 0 // view.getMaxHeight // higher than API Level 16
 
@@ -392,13 +404,17 @@ package object common {
       view
     }
 
+    @inline def maxLines(line: Int) = maxLines_=(line)
+
     @noEquivalentGetterExists
-    @inline def maxLines: Int = 0 // view.getMaxLines  // higher than API Level 16
+    @inline def maxLines: Int = 0 // view.getMaxLines  // available in API Level 16 or higher
 
     @inline def linkTextColor_=(color: Int): V = {
       view.setLinkTextColor(color)
       view
     }
+
+    @inline def linkTextColor(color: Int) = linkTextColor_=(color)
 
     @noEquivalentGetterExists
     @inline def linkTextColor: Int = 0
@@ -419,23 +435,25 @@ package object common {
   class RichContextMenu(menu: ContextMenu) {
     @inline def headerTitle_=(txt: CharSequence): ContextMenu = menu.setHeaderTitle(txt)
 
+    @inline def headerTitle(txt: CharSequence) = headerTitle_=(txt)
+
     @noEquivalentGetterExists
     @inline def headerTitle: CharSequence = ""
   }
 
   @inline implicit def contextMenu2RichContextMenu(menu: ContextMenu) = new RichContextMenu(menu)
 
-  class $ListView(implicit context: Context) extends ListView(context) with TraitListView[ListView] {
+  class $ListView(implicit context: Context) extends ListView(context) with TraitListView[$ListView] {
     def view = this
   }
 
   trait TraitAbsListView[V <: AbsListView] extends TraitView[V] {
-    def view: V
-
     @inline def cacheColorHint_=(color: Int): V = {
       view.setCacheColorHint(color)
       view
     }
+
+    @inline def cacheColorHint(color: Int) = cacheColorHint_=(color)
 
     @inline def cacheColorHint = view.getCacheColorHint
 
@@ -444,12 +462,12 @@ package object common {
       view
     }
 
+    @inline def transcriptMode(mode: Int) = transcriptMode_=(mode)
+
     @inline def transcriptMode: Int = view.getTranscriptMode
   }
 
   trait TraitListView[V <: ListView] extends TraitAbsListView[V] {
-    def view: V
-
     @inline def adapter_=(ad: ListAdapter): V = {
       view.setAdapter(ad)
       view
@@ -482,11 +500,9 @@ package object common {
 
   class RichListView[V <: ListView](val view: V) extends TraitListView[V]
 
-  @inline implicit def listView2RichListView[V <: ListView](lv: V) = new RichListView[V](lv)
+  @inline implicit def listView2RichListView[V <: ListView](view: V) = new RichListView[V](view)
 
   trait TraitViewGroup[V <: ViewGroup] extends TraitView[V] {
-    def view: V
-
     @inline def +=(v: View): V = {
       view.addView(v)
       view
@@ -497,22 +513,22 @@ package object common {
 
   @inline implicit def viewGroup2RichViewGroup[V <: ViewGroup](viewGroup: V) = new RichViewGroup[V](viewGroup)
 
-  class RichLinearLayout(val view: LinearLayout) extends TraitLinearLayout
-
-  trait TraitLinearLayout extends TraitViewGroup[LinearLayout] {
-    def view: LinearLayout
-
+  trait TraitLinearLayout[V <: LinearLayout] extends TraitViewGroup[V] {
     @inline def orientation_=(orient: Int): LinearLayout = {
       view.setOrientation(orient)
       view
     }
 
+    @inline def orientation(orient: Int) = orientation_=(orient)
+
     @inline def orientation = view.getOrientation
   }
 
-  @inline implicit def linearLaout2RichLinearLayout(linearLayout: LinearLayout) = new RichLinearLayout(linearLayout)
+  class RichLinearLayout[V <: LinearLayout](val view: LinearLayout) extends TraitLinearLayout[V]
 
-  @inline class $LinearLayout(implicit context: Context) extends LinearLayout(context) with TraitLinearLayout {
+  @inline implicit def linearLaout2RichLinearLayout[V <: LinearLayout](linearLayout: V) = new RichLinearLayout[V](linearLayout)
+
+  @inline class $LinearLayout(implicit context: Context) extends LinearLayout(context) with TraitLinearLayout[$LinearLayout] {
     def view = this
   }
 
