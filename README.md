@@ -298,11 +298,11 @@ that of Scala style clearly reveals the nature of the operations as shown below:
       textSize = 15
 	}
 	
-Or, you can also use chained setters:
+Or, you can also chain the setters:
 
     new $TextView text "Hello" textSize 15
 	
-, which is a syntactic sugar of method calling:
+, which is a syntactic sugar of a method calling:
 
     new $TextView.text("Hello").textSize(15)	
 
