@@ -299,6 +299,7 @@ Or, you can also use chaining setters:
 
     new $TextView.text("Hello").textSize(15)	
 
+You can use any type of setters shown above.
 	
 Note: Currently, this feature is not supported completely. Check our [roadmap](#roadmap).
 

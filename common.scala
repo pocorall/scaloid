@@ -70,6 +70,10 @@ case class LoggerTag(_tag: String) {
 
 package object common {
 
+  @getter
+  @beanGetter
+  class noEquivalentGetterExists extends annotation.StaticAnnotation
+
   implicit def resourceIdToTextResource(id: Int)(implicit context: Context): CharSequence = context.getText(id)
 
   /**
@@ -348,6 +352,8 @@ package object common {
       view
     }
 
+    @inline def textSize(size: Float) = textSize_=(size)
+
     @inline def textSize: Float = view.getTextSize
 
     @inline def gravity_=(g: Int): V = {
@@ -368,6 +374,8 @@ package object common {
       view.setText(txt)
       view
     }
+
+    @inline def text(txt: CharSequence) = text_=(txt)
 
     @inline def text: CharSequence = view.getText
 
@@ -416,10 +424,6 @@ package object common {
   }
 
   @inline implicit def contextMenu2RichContextMenu(menu: ContextMenu) = new RichContextMenu(menu)
-
-  @getter
-  @beanGetter
-  class noEquivalentGetterExists extends annotation.StaticAnnotation
 
   class $ListView(implicit context: Context) extends ListView(context) with TraitListView[ListView] {
     def view = this
@@ -679,7 +683,7 @@ package object common {
 
   @inline def $Intent[T](action: String)(implicit context: Context, mt: ClassManifest[T]): Intent = $Intent[T].setAction(action)
 
-  class $TextView(implicit context: Context) extends TextView(context) with TraitTextView[TextView] {
+  class $TextView(implicit context: Context) extends TextView(context) with TraitTextView[$TextView] {
     def view = this
   }
 
@@ -692,7 +696,7 @@ package object common {
     }
   }
 
-  class $Button(implicit context: Context) extends Button(context) with TraitTextView[Button] {
+  class $Button(implicit context: Context) extends Button(context) with TraitTextView[$Button] {
     def view = this
   }
 
