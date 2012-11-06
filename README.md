@@ -302,17 +302,17 @@ Or, you can also use chained setters:
 
     new $TextView text "Hello" textSize 15
 	
-, which is syntactic sugar of method calling:
+, which is a syntactic sugar of method calling:
 
     new $TextView.text("Hello").textSize(15)	
 
-We recommend "assignment style" and "DSL style". Use assignment style when you emphasize you assigning something, or use DSL style when code length of the assignee is short and need to be chained.
+We recommend "assignment style" and "DSL style". Use assignment style when you emphasize you assigning something, or use DSL style when the code length of the assignee is short and need to be chained.
 
 Note: Currently, this feature is not supported completely. Check our [roadmap](#roadmap).
 
 ### Return value of setters
 
-Setters return the object itself. This feature can be used as a syntactic sugar when a function returning some object. For example, the Java code shown below:
+Unlike most setters in Android API, our setters return the object itself. This feature can be used as a syntactic sugar when setters need to be chained or a function returning some object. For example, the Java code shown below:
 
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         TextView textView = getGenericView();
