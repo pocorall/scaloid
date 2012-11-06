@@ -315,7 +315,7 @@ Note: Currently, this feature is not supported completely. Check our [roadmap](#
 
 ### Return value of setters
 
-Unlike most setters in Android API, our setters return the object itself. This feature can be used as a syntactic sugar when setters need to be chained or a function returning some object. For example, a snippet of [Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList1.java?av=h) from ApiDemos is shown below:
+Unlike most setters in Android API, our setters return the object itself. This feature can be used as a syntactic sugar when setters need to be chained or a function returning some object. For example, a snippet of [Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList1.java?av=h) from ApiDemos that is shown below:
 
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         TextView textView = getGenericView();
