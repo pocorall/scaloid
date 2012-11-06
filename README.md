@@ -231,6 +231,9 @@ Compare the code above with the code using `AsyncTask`, which is shown below. It
       }
     }.execute("param")
 
+This pattern can also elliminate `AsyncQueryHandler`. Compare with the [Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList2.java?av=h)
+and a [Scala port](https://github.com/pocorall/android-apidemos-scala/blob/master/src/main/java/com/example/android/apis/view/ExpandableList2.scala) of ApiDemos example app.
+	
 ### Trait UnregisterReceiverService
 
 When you registered `BroadcastReceiver` with `Context.registerReceiver()` you have to unregister it to prevent memory leak. Trait UnregisterReceiverService handles these chores for you by just extend it for your Service.
