@@ -290,9 +290,17 @@ that of Scala style clearly reveals the nature of the operations as shown below:
       text = "Hello"
       textSize = 15
 	}
+	
+Or, you can also use chaining setters:
 
+    new $TextView text "Hello" textSize 15
+	
+, which is syntactic sugar of method calling:
+
+    new $TextView.text("Hello").textSize(15)	
+
+	
 Note: Currently, this feature is not supported completely. Check our [roadmap](#roadmap).
-
 
 ### Return value of setters
 
