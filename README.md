@@ -26,7 +26,7 @@ is reduced to:
  * **Compatible with Android API**<br/>
    You can use both style of android-scala-common and Java Android API. You can gradually improve your legacy code.
  * **Maintained actively**<br/>
-   This project is originally created to be used for my own Android app. The first principle of this project is "working right".
+   This project is originally created to be used for [my own Android app](https://play.google.com/store/apps/details?id=com.tocplus.client.android). The first principle of this project is "working right".
    
 ## Implicit conversions
 This library employs several implicit conversions. Some of available implicit conversions are shown below:
