@@ -36,7 +36,8 @@ public class Workarounds {
 
 	public static interface ContactStatusColumns {
 		static public String CONTACT_PRESENCE = ContactsContract.Contacts.CONTACT_PRESENCE;
-		static public String CONTACT_CHAT_CAPABILITY = ContactsContract.Contacts.CONTACT_CHAT_CAPABILITY;
+		// Not available in API Level 10
+//		static public String CONTACT_CHAT_CAPABILITY = ContactsContract.Contacts.CONTACT_CHAT_CAPABILITY;
 		static public String CONTACT_STATUS = ContactsContract.Contacts.CONTACT_STATUS;
 		static public String CONTACT_STATUS_TIMESTAMP = ContactsContract.Contacts.CONTACT_STATUS_TIMESTAMP;
 		static public String CONTACT_STATUS_RES_PACKAGE = ContactsContract.Contacts.CONTACT_STATUS_RES_PACKAGE;
@@ -53,13 +54,14 @@ public class Workarounds {
 	}
 
 	public static interface ContactNameColumns {
-		static public String DISPLAY_NAME_SOURCE = ContactsContract.RawContacts.DISPLAY_NAME_SOURCE;
-		static public String DISPLAY_NAME_PRIMARY = ContactsContract.RawContacts.DISPLAY_NAME_PRIMARY;
-		static public String DISPLAY_NAME_ALTERNATIVE = ContactsContract.RawContacts.DISPLAY_NAME_ALTERNATIVE;
-		static public String PHONETIC_NAME_STYLE = ContactsContract.RawContacts.PHONETIC_NAME_STYLE;
-		static public String PHONETIC_NAME = ContactsContract.RawContacts.PHONETIC_NAME;
-		static public String SORT_KEY_PRIMARY = ContactsContract.RawContacts.SORT_KEY_PRIMARY;
-		static public String SORT_KEY_ALTERNATIVE = ContactsContract.RawContacts.SORT_KEY_ALTERNATIVE;
+		// Not available in API Level 10
+//		static public String DISPLAY_NAME_SOURCE = ContactsContract.RawContacts.DISPLAY_NAME_SOURCE;
+//		static public String DISPLAY_NAME_PRIMARY = ContactsContract.RawContacts.DISPLAY_NAME_PRIMARY;
+//		static public String DISPLAY_NAME_ALTERNATIVE = ContactsContract.RawContacts.DISPLAY_NAME_ALTERNATIVE;
+//		static public String PHONETIC_NAME_STYLE = ContactsContract.RawContacts.PHONETIC_NAME_STYLE;
+//		static public String PHONETIC_NAME = ContactsContract.RawContacts.PHONETIC_NAME;
+//		static public String SORT_KEY_PRIMARY = ContactsContract.RawContacts.SORT_KEY_PRIMARY;
+//		static public String SORT_KEY_ALTERNATIVE = ContactsContract.RawContacts.SORT_KEY_ALTERNATIVE;
 	}
 
 	public static interface BaseSyncColumns {
