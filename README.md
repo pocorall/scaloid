@@ -28,6 +28,11 @@ is reduced to:
  * **Maintained actively**<br/>
    This project is originally created to be used for [my own Android app](https://play.google.com/store/apps/details?id=com.tocplus.client.android). The first principle of this project is "working right".
    
+### Demos
+
+If you want to see how this library can be used in action, check a [scala port of apidemos app](https://github.com/pocorall/android-apidemos-scala).
+   
+   
 ## Implicit conversions
 This library employs several implicit conversions. Some of available implicit conversions are shown below:
 
@@ -421,8 +426,6 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * To set up a Maven project that build Android app written in Scala, please refer https://github.com/rohansingh/android-scala-test.
 
 * A delicate problem related to implicit conversion for mult-line block is discussed at  http://stackoverflow.com/questions/12774840/scala-passing-function-parameter-which-does-not-have-parameter.
-
-* If you want to see an example of using this library, check a [scala port of apidemos app](https://github.com/pocorall/android-apidemos-scala).
 
 
 ## Roadmap
