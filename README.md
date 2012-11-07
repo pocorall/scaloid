@@ -212,7 +212,7 @@ Instead of:
 
     runOnUiThread(debug("Running in any context"))
 
-Using this, an asynchronous job can be run like this: 
+Using this and importing `scala.concurrent.ops._`, an asynchronous job can be run like this:
 
     spawn {
 		val result = doAJobTakesSomeTime(params)

@@ -207,6 +207,55 @@ package object common {
       view
     }
 
+    @inline def backgroundResource_=(resId: Int): V = {
+      view.setBackgroundResource(resId)
+      view
+    }
+
+    @inline def backgroundResource(resId: Int) = backgroundResource_=(resId)
+
+    @noEquivalentGetterExists
+    @inline def backgroundResource: Int = 0
+
+    @inline def clickable_=(click: Boolean): V = {
+      view.setClickable(click)
+      view
+    }
+
+    @inline def clickable(click: Boolean) = clickable_=(click)
+
+    @noEquivalentGetterExists
+    @inline def clickable: Boolean = true
+
+    @inline def contentDescription_=(desc: CharSequence): V = {
+      view.setContentDescription(desc)
+      view
+    }
+
+    @inline def contentDescription(desc: CharSequence) = contentDescription_=(desc)
+
+    @inline def contentDescription = view.getContentDescription
+
+    @inline def drawingCacheQuality_=(quality: Int): V = {
+      view.setDrawingCacheQuality(quality)
+      view
+    }
+
+    @inline def drawingCacheQuality(quality: Int) = drawingCacheQuality_=(quality)
+
+    @inline def drawingCacheQuality = view.getDrawingCacheQuality
+
+    @inline def scrollbarFadingEnabled_=(fadeScrollbars: Boolean): V = {
+      view.setScrollbarFadingEnabled(fadeScrollbars)
+      view
+    }
+
+    @inline def scrollbarFadingEnabled(fadeScrollbars: Boolean) = scrollbarFadingEnabled_=(fadeScrollbars)
+
+    @noEquivalentGetterExists
+    @inline def scrollbarFadingEnabled = false
+
+
     @inline def layoutParams_=(lp: LayoutParams): V = {
       view.setLayoutParams(lp)
       view
@@ -513,6 +562,32 @@ package object common {
 
   @inline implicit def viewGroup2RichViewGroup[V <: ViewGroup](viewGroup: V) = new RichViewGroup[V](viewGroup)
 
+  trait TraitFrameLayout[V <: FrameLayout] extends TraitViewGroup[V] {
+    @inline def foreground_=(fg: Drawable): V = {
+      view.setForeground(fg)
+      view
+    }
+
+    @inline def foreground(fg: Drawable) = foreground_=(fg)
+
+    @inline def foreground: Drawable = view.getForeground
+
+    @inline def foregroundGravity_=(gravity: Int): V = {
+      view.setForegroundGravity(gravity)
+      view
+    }
+
+    @inline def foregroundGravity(gravity: Int) = foregroundGravity_=(gravity)
+
+    @noEquivalentGetterExists
+    @inline def foregroundGravity: Int = 0 // view.getForegroundGravity // available in API Level 16 or higher
+  }
+
+  class RichFrameLayout[V <: FrameLayout](val view: V) extends TraitFrameLayout[V]
+
+  @inline implicit def frameLayout2RichFrameLayout[V <: FrameLayout](frameLayout: V) = new RichFrameLayout[V](frameLayout)
+
+
   trait TraitLinearLayout[V <: LinearLayout] extends TraitViewGroup[V] {
     @inline def orientation_=(orient: Int): LinearLayout = {
       view.setOrientation(orient)
@@ -524,7 +599,7 @@ package object common {
     @inline def orientation = view.getOrientation
   }
 
-  class RichLinearLayout[V <: LinearLayout](val view: LinearLayout) extends TraitLinearLayout[V]
+  class RichLinearLayout[V <: LinearLayout](val view: V) extends TraitLinearLayout[V]
 
   @inline implicit def linearLaout2RichLinearLayout[V <: LinearLayout](linearLayout: V) = new RichLinearLayout[V](linearLayout)
 
