@@ -449,4 +449,4 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Support Google services** <br/>
   including Google Cloud Messaging (GCM)
 * **Demonstrating non-XML UI layout builder** <br/>
-  Android SDK leverages XML to build UI layouts, because lack of expressiveness of Java language. However, XML considered still a bit verbose, and lacks programmability. We believe that our Scala DSL which builds Android UI layout can achieve both clearity and programmability. We will show how it can be done.
+  Android SDK leverages XML to build UI layouts. However, XML considered still a bit verbose, and lacks programmability. We believe that our Scala DSL which builds Android UI layout can achieve both clearity and programmability. We will show how it can be done.
