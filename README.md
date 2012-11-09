@@ -73,10 +73,10 @@ is reduced to:
 	  this += new $TextView("Sign in") marginBottom "25dip" textSize "24.5sp"
 	  this += $TextView("ID") += $EditText += $TextView("Password")
 	  this += new $EditText() inputType "textPassword"
-	  this += $Button("Sign in", onSigningIn())
+	  this += $Button("Sign in")
 	  this += new $LinearLayout {
-	    this += $Button("Help", onPressHelp())
-		this += $Button("Sign up", onPressSignup())
+	    this += $Button("Help")
+		this += $Button("Sign up")
 	  }
 	} padding "20dip"
 
