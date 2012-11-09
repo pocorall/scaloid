@@ -75,8 +75,7 @@ is reduced to:
 	  this += new $EditText() inputType "textPassword"
 	  this += $Button("Sign in")
 	  this += new $LinearLayout {
-	    this += $Button("Help")
-		this += $Button("Sign up")
+	    this += $Button("Help") += $Button("Sign up")
 	  }
 	} padding "20dip"
 
