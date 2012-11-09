@@ -41,7 +41,6 @@ Android SDK leverages XML to build UI layouts. However, XML considered still a b
             android:layout_height="match_parent" android:padding="20dip">
         <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:text="Sign in"
-                android:layout_gravity="center"
                 android:layout_marginBottom="25dip" android:textSize="24.5sp"/>
         <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:text="ID"/>
@@ -71,9 +70,7 @@ is reduced to:
     contentView = new $LinearLayout {
 	  orientation = VERTICAL
 	  layout
-	  this += new $TextView("Sign in") {
-	    layout Width MATCH_PARENT Height WRAP_CONTENT Gravity CENTER
-	  } marginBottom "25dip" textSize "24.5sp"
+	  this += new $TextView("Sign in") marginBottom "25dip" textSize "24.5sp"
 	  this += $TextView("ID")
 	  this += $EditText
 	  this += $TextView("Password")
