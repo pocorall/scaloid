@@ -71,9 +71,7 @@ is reduced to:
 	  orientation = VERTICAL
 	  layout
 	  this += new $TextView("Sign in") marginBottom "25dip" textSize "24.5sp"
-	  this += $TextView("ID")
-	  this += $EditText
-	  this += $TextView("Password")
+	  this += $TextView("ID") += $EditText += $TextView("Password")
 	  this += new $EditText() inputType "textPassword"
 	  this += $Button("Sign in", onSigningIn())
 	  this += new $LinearLayout {
