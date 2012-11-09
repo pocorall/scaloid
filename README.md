@@ -369,7 +369,7 @@ Note: Using `.apply(String)` method on object `$TextView`, you can further reduc
 
     $TextView("Hello") textSize 15
 
-Note 2: Currently, this feature is not supported completely. Check our [roadmap](#roadmap).
+Note 2: Currently, Assignment or DSL style setters are not covered for all setters from Android API. Check our [roadmap](#roadmap).
 
 ### Return value of setters
 
