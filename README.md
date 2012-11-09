@@ -34,7 +34,7 @@ If you want to see how this library can be used in action, check a [scala port o
 
 ## UI Layout without XML
 
-Android SDK leverages XML to build UI layouts. However, XML considered still a bit verbose, and lacks programmability. This library composes UI layout in Scala DSL style, therefore achieve both clearity and programmability. For example, suppose a legacy XML layout as shown below:
+Android SDK leverages XML to build UI layouts. However, XML considered still a bit verbose, and lacks programmability. Android-scala-common composes UI layout in Scala DSL style, therefore achieve both clearity and programmability. For example, suppose a legacy XML layout as shown below:
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical" android:layout_width="match_parent"
