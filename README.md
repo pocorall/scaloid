@@ -31,7 +31,62 @@ is reduced to:
 ### Demos
 
 If you want to see how this library can be used in action, check a [scala port of apidemos app](https://github.com/pocorall/android-apidemos-scala).
-   
+
+## UI Layout without XML
+
+Android SDK leverages XML to build UI layouts. However, XML considered still a bit verbose, and lacks programmability. This library composes UI layout in Scala DSL style, therefore achieve both clearity and programmability. For example, suppose a legacy XML layout as shown below:
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="match_parent" android:padding="20dip">
+        <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="Sign in"
+                android:layout_gravity="center"
+                android:layout_marginBottom="25dip" android:textSize="24.5sp"/>
+        <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="ID"/>
+        <EditText android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/userId"
+                android:inputType="textUri"/>
+        <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="Password"/>
+        <EditText android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/password"
+                android:inputType="textPassword"/>
+        <Button android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/signin"
+                android:text="Sign in"/>
+        <LinearLayout android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <Button android:text="Help" android:id="@+id/help"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <Button android:text="Sign up" android:id="@+id/signup"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+is reduced to:
+
+    contentView = new $LinearLayout {
+	  orientation = VERTICAL
+	  layout
+	  this += new $TextView("Sign in") {
+	    layout Width MATCH_PARENT Height WRAP_CONTENT Gravity CENTER
+	  } marginBottom "25dip" textSize "24.5sp"
+	  this += $TextView("ID")
+	  this += $EditText
+	  this += $TextView("Password")
+	  this += new $EditText() inputType "textPassword"
+	  this += $Button("Sign in", onSigningIn())
+	  this += new $LinearLayout {
+	    this += $Button("Help", onPressHelp())
+		this += $Button("Sign up", onPressSignup())
+	  }
+	} padding "20dip"
+
+Which one do you prefer?
+
    
 ## Implicit conversions
 This library employs several implicit conversions. Some of available implicit conversions are shown below:

@@ -61,6 +61,7 @@ import android.view.ContextMenu.ContextMenuInfo
 import android.text.method.MovementMethod
 import annotation.target.{beanGetter, getter}
 import android.view.ViewGroup.LayoutParams
+import net.pocorall.android.LoggerTag
 
 
 case class LoggerTag(_tag: String) {
@@ -274,6 +275,10 @@ package object common {
 
     @noEquivalentGetterExists
     @inline def backgroundColor: Int = 0
+
+    def layout[LP <: ViewGroupLayoutParams[_]](implicit defaultLayoutParam: (View) => LP): LP = {
+      defaultLayoutParam(view)
+    }
   }
 
   class RichView[V <: View](val view: V) extends TraitView[V]
@@ -537,12 +542,16 @@ package object common {
       view
     }
 
+    def dividerHeight(height: Int) = dividerHeight_=(height)
+
     @inline def dividerHeight: Int = view.getDividerHeight
 
     @inline def divider_=(divider: Drawable): V = {
       view.setDivider(divider)
       view
     }
+
+    @inline def divider(divider: Drawable) = divider_=(divider)
 
     @inline def divider: Drawable = view.getDivider
   }
@@ -556,6 +565,29 @@ package object common {
       view.addView(v)
       view
     }
+
+    val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
+    val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
+  }
+
+  trait ViewGroupLayoutParams[LP <: ViewGroupLayoutParams[_]] extends ViewGroup.LayoutParams {
+    def lp: LP
+
+    def Width(w: Int): LP = {
+      width = w
+      lp
+    }
+
+    def Height(h: Int): LP = {
+      height = h
+      lp
+    }
+
+    def end: View
+  }
+
+  trait ViewGroupMarginLayoutParams[LP <: ViewGroupMarginLayoutParams[_]] extends ViewGroup.MarginLayoutParams with ViewGroupLayoutParams[LP] {
+    // TODO: def
   }
 
   class RichViewGroup[V <: ViewGroup](val view: V) extends TraitViewGroup[V]
@@ -605,6 +637,25 @@ package object common {
 
   @inline class $LinearLayout(implicit context: Context) extends LinearLayout(context) with TraitLinearLayout[$LinearLayout] {
     def view = this
+
+    val VERTICAL = LinearLayout.VERTICAL
+    val HORIZONTAL = LinearLayout.HORIZONTAL
+
+    implicit def defaultLayoutParams(v: View): LayoutParams = new LayoutParams(v)
+
+    class LayoutParams(v: View) extends LinearLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT) with ViewGroupMarginLayoutParams[LayoutParams] {
+      def lp = this
+
+      v.setLayoutParams(this)
+
+      def Weight(w: Float) = {
+        weight = w
+        this
+      }
+
+      def end: View = v
+    }
+
   }
 
   implicit def func2ViewOnLongClickListener(f: View => Boolean): View.OnLongClickListener =
@@ -779,8 +830,8 @@ package object common {
   }
 
   object $Button {
-    def apply(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context): Button = {
-      val button = new Button(context)
+    def apply(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context): $Button = {
+      val button = new $Button()(context)
       button.text = text
       button.setOnClickListener(onClickListener)
       button
