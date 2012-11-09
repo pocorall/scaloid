@@ -365,7 +365,11 @@ Or, you can also chain the setters:
 
 We recommend "assignment style" and "DSL style". Use assignment style when you emphasize that you are assigning something, or use DSL style when the code length of the assignee is short and need to be chained.
 
-Note: Currently, this feature is not supported completely. Check our [roadmap](#roadmap).
+Note: Using `.apply(String)` method on object `$TextView`, you can further reduce the code above like this:
+
+    $TextView("Hello") textSize 15
+
+Note 2: Currently, this feature is not supported completely. Check our [roadmap](#roadmap).
 
 ### Return value of setters
 
