@@ -70,9 +70,9 @@ is reduced to:
     contentView = new $LinearLayout {
 	  orientation = VERTICAL
 	  layout
-	  this += new $TextView("Sign in") marginBottom "25dip" textSize "24.5sp"
-	  this += $TextView("ID") += $EditText += $TextView("Password")
-	  this += new $EditText() inputType "textPassword"
+	  this += $TextView("Sign in") marginBottom "25dip" textSize "24.5sp"
+	  this += $TextView("ID") += $EditText() += $TextView("Password")
+	  this += $EditText() inputType "textPassword"
 	  this += $Button("Sign in")
 	  this += new $LinearLayout {
 	    this += $Button("Help") += $Button("Sign up")
