@@ -70,18 +70,17 @@ is reduced to:
     contentView = new $LinearLayout {
 	  orientation = VERTICAL
 	  layout
-	  this += $TextView("Sign in") marginBottom "25dip" textSize "24.5sp"
-	  this += $TextView("ID") += $EditText() += $TextView("Password")
-	  this += $EditText() inputType "textPassword"
-	  this += $Button("Sign in")
-	  this += new $LinearLayout {
-	    this += $Button("Help") += $Button("Sign up")
-	  }
-	} padding "20dip"
+	  +=($TextView("Sign in") marginBottom "25dip" textSize "24.5sp")
+	  +=($TextView("ID")) += $EditText() += $TextView("Password")
+	  +=($EditText() inputType "textPassword")
+	  +=($Button("Sign in"))
+	  +=(new $LinearLayout {
+	    +=($Button("Help")) += $Button("Sign up")
+	  })
+    } padding "20dip"
 
 Which one do you prefer?
-
-   
+		
 ## Implicit conversions
 This library employs several implicit conversions. Some of available implicit conversions are shown below:
 
