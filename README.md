@@ -70,16 +70,34 @@ is reduced to:
     new $LinearLayout {
 	  orientation = VERTICAL
 	  layout
+	  val id = $EditText()
+	  val pass = $EditText() inputType "textPassword"
 	  +=($TextView("Sign in") marginBottom "25dip" textSize "24.5sp")
-	  +=($TextView("ID")) += $EditText() += $TextView("Password")
-	  +=($EditText() inputType "textPassword")
+	  +=($TextView("ID")) += id += $TextView("Password") += pass
 	  +=($Button("Sign in"))
 	  +=(new $LinearLayout {
-	    +=($Button("Help")) += $Button("Sign up")
+	    +=($Button("Help")) 
+		+=($Button("Sign up"))
 	  })
     } padding "20dip"
 
-Which one do you prefer?
+Layout mockup shown above is highly programmable. You can easily wire your logic into the layout:
+	
+    new $LinearLayout {
+	  orientation = VERTICAL
+	  layout
+	  val id = $EditText()
+	  val pass = $EditText() inputType "textPassword"
+	  +=($TextView("Sign in") marginBottom "25dip" textSize "24.5sp")
+	  +=($TextView("ID")) += id += $TextView("Password") += pass
+	  +=($Button("Sign in", login(id.text, pass.text)))
+	  +=(new $LinearLayout {
+	    +=($Button("Help", openUri("http://help.url")))
+		+=($Button("Sign up", openUri("http://signup.uri"))
+	  })
+    } padding "20dip"
+
+That's it!	
 		
 ## Implicit conversions
 This library employs several implicit conversions. Some of available implicit conversions are shown below:
