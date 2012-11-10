@@ -90,7 +90,7 @@ Layout mockup shown above is highly programmable. You can easily wire your logic
 	  val pass = $EditText() inputType "textPassword"
 	  +=($TextView("Sign in") marginBottom "25dip" textSize "24.5sp")
 	  +=($TextView("ID")) += id += $TextView("Password") += pass
-	  +=($Button("Sign in", login(id.text, pass.text)))
+	  +=($Button("Sign in"__, login(id.text, pass.text)__))
 	  +=(new $LinearLayout {
 	    +=($Button("Help", openUri("http://help.url")))
 		+=($Button("Sign up", openUri("http://signup.uri"))
