@@ -71,7 +71,7 @@ is reduced to:
 	  orientation = VERTICAL
 	  layout
 	  val id = $EditText()
-	  val pass = $EditText() inputType "textPassword"
+	  val pass = $EditText() inputType TEXT_PASSWORD
 	  +=($TextView("Sign in") marginBottom "25dip" textSize "24.5sp")
 	  +=($TextView("ID")) += id += $TextView("Password") += pass
 	  +=($Button("Sign in"))
@@ -81,16 +81,16 @@ is reduced to:
 	  })
     } padding "20dip"
 
-Layout mockup shown above is highly programmable. You can easily wire your logic into the layout:
+The layout description shown above is highly programmable. You can easily wire your logic into the layout:
 	
     new $LinearLayout {
 	  orientation = VERTICAL
 	  layout
 	  val id = $EditText()
-	  val pass = $EditText() inputType "textPassword"
+	  val pass = $EditText() inputType TEXT_PASSWORD
 	  +=($TextView("Sign in") marginBottom "25dip" textSize "24.5sp")
 	  +=($TextView("ID")) += id += $TextView("Password") += pass
-	  +=($Button("Sign in"__, login(id.text, pass.text)__))
+	  +=($Button("Sign in", login(id.text, pass.text)))
 	  +=(new $LinearLayout {
 	    +=($Button("Help", openUri("http://help.url")))
 		+=($Button("Sign up", openUri("http://signup.uri"))

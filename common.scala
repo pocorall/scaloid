@@ -105,7 +105,33 @@ package object common {
       }
     }
 
-  trait TraitView[V <: View] {
+  trait ConstantsSupport {
+    // android:inputType constants for TextView
+
+    import android.text.InputType._
+
+    val NONE = 0
+    val TEXT = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_NORMAL
+    val TEXT_CAP_CHARACTERS = TYPE_TEXT_FLAG_CAP_CHARACTERS
+    val TEXT_CAP_WORDS = TYPE_TEXT_FLAG_CAP_WORDS
+    val TEXT_CAP_SENTENCES = TYPE_TEXT_FLAG_CAP_SENTENCES
+    val TEXT_AUTO_CORRECT = TYPE_TEXT_FLAG_AUTO_CORRECT
+    val TEXT_AUTO_COMPLETE = TYPE_TEXT_FLAG_AUTO_COMPLETE
+    val TEXT_MULTI_LINE = TYPE_TEXT_FLAG_MULTI_LINE
+    val TEXT_IME_MULTI_LINE = TYPE_TEXT_FLAG_IME_MULTI_LINE
+    val TEXT_NO_SUGGESTIONS = TYPE_TEXT_FLAG_NO_SUGGESTIONS
+    val TEXT_URI = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_URI
+    val TEXT_EMAIL_ADDRESS = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+    val TEXT_EMAIL_SUBJECT = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_EMAIL_SUBJECT
+    val TEXT_SHORT_MESSAGE = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_SHORT_MESSAGE
+    val TEXT_LONG_MESSAGE = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_LONG_MESSAGE
+    val TEXT_PERSION_NAME = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PERSON_NAME
+    val TEXT_POSTAL_ADDRESS = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_POSTAL_ADDRESS
+    val TEXT_PASSWORD = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PASSWORD
+    // TODO: write more (http://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType)
+  }
+
+  trait TraitView[V <: View] extends ConstantsSupport {
     def view: V
 
     @inline def onClick(f: => Unit): V = {
@@ -285,7 +311,7 @@ package object common {
 
   @inline implicit def view2RichView[V <: View](view: V) = new RichView[V](view)
 
-  object $EditText {
+  object $EditText extends $EditText {
     def apply(txt: CharSequence)(implicit context: Context): $EditText = new $EditText() text txt
 
     def apply()(implicit context: Context): $EditText = new $EditText()
@@ -478,6 +504,15 @@ package object common {
 
     @noEquivalentGetterExists
     @inline def linkTextColor: Int = 0
+
+    @inline def inputType_=(tipe: Int): V = {
+      view.setInputType(tipe)
+      view
+    }
+
+    @inline def inputType(tipe: Int) = inputType_=(tipe)
+
+    @inline def inputType: Int = view.getInputType
   }
 
   class RichTextView[V <: TextView](val view: V) extends TraitTextView[V]
