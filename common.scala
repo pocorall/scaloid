@@ -285,6 +285,12 @@ package object common {
 
   @inline implicit def view2RichView[V <: View](view: V) = new RichView[V](view)
 
+  object $EditText {
+    def apply(txt: CharSequence)(implicit context: Context): $EditText = new $EditText() text txt
+
+    def apply()(implicit context: Context): $EditText = new $EditText()
+  }
+
   class $EditText(implicit context: Context) extends EditText(context) with TraitTextView[$EditText] {
     def view = this
   }
@@ -825,12 +831,16 @@ package object common {
 
   @inline def $Intent[T](action: String)(implicit context: Context, mt: ClassManifest[T]): Intent = $Intent[T].setAction(action)
 
+  object $TextView {
+    def apply(txt: CharSequence)(implicit context: Context): $TextView = new $TextView text txt
+  }
+
   class $TextView(implicit context: Context) extends TextView(context) with TraitTextView[$TextView] {
     def view = this
   }
 
   object $Button {
-    def apply(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context): $Button = {
+    def apply(text: CharSequence, onClickListener: OnClickListener = {})(implicit context: Context): $Button = {
       val button = new $Button()(context)
       button.text = text
       button.setOnClickListener(onClickListener)

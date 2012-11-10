@@ -67,7 +67,7 @@ Android SDK leverages XML to build UI layouts. However, XML considered still a b
 
 is reduced to:
 
-    contentView = new $LinearLayout {
+    new $LinearLayout {
 	  orientation = VERTICAL
 	  layout
 	  +=($TextView("Sign in") marginBottom "25dip" textSize "24.5sp")
@@ -503,5 +503,4 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Automatically unregister SensorEventListener onStop()**
 * **Support Google services** <br/>
   including Google Cloud Messaging (GCM)
-* **Demonstrating non-XML UI layout builder** <br/>
-  Android SDK leverages XML to build UI layouts. However, XML considered still a bit verbose, and lacks programmability. We believe that our Scala DSL which builds Android UI layout can achieve both clearity and programmability. We will show how it can be done.
+* <span style="text-decoration: underline;">**Demonstrating non-XML UI layout builder**</span> <br/>
