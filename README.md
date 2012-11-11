@@ -83,19 +83,20 @@ is reduced to:
 
 The layout description shown above is highly programmable. You can easily wire your logic into the layout:
 	
-    new $LinearLayout {
-	  orientation = VERTICAL
-	  layout
-	  val id = $EditText()
-	  val pass = $EditText() inputType TEXT_PASSWORD
-	  +=($TextView("Sign in").marginBottom(25 dip).textSize(24.5 sp))
-	  +=($TextView("ID")) += id += $TextView("Password") += pass
-	  +=($Button("Sign in", signin(id.text, pass.text)))
-	  +=(new $LinearLayout {
-	    +=($Button("Help", openUri("http://help.url")))
-		+=($Button("Sign up", openUri("http://signup.uri"))
-	  })
-    }.padding(20 dip)
+<pre><code>new $LinearLayout {
+  orientation = VERTICAL
+  layout
+  val id = $EditText()
+  val pass = $EditText() inputType TEXT_PASSWORD
+  +=($TextView("Sign in").marginBottom(25 dip).textSize(24.5 sp))
+  +=($TextView("ID")) += id += $TextView("Password") += pass
+  +=($Button("Sign in"<b>, signin(id.text, pass.text)</b>))
+  +=(new $LinearLayout {
+    +=($Button("Help"<b>, openUri("http://help.url")</b>))
+    +=($Button("Sign up"<b>, openUri("http://signup.uri")</b>)
+  })
+}.padding(20 dip)
+</code></pre>
 
 That's it!	
 		
@@ -511,7 +512,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
   A few accessors are currently ported into the Scala style. There are tons of setters in Android API, covering all of them is a hard working. I examined http://scalamacros.org but it seems not good fit on this problem yet. If you have any good idea, please let me know.
 
 * **Build an example Android app** <br/>
-  Finish [scala port of apidemos app](https://github.com/pocorall/android-apidemos-scala) and try another.
+  Finish a [scala port of apidemos app](https://github.com/pocorall/android-apidemos-scala) and try another.
 * **Build a dedicated website**
 * **Write a complete API document**
 * **Write the Beginner's guide**
@@ -521,6 +522,6 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Automatically unregister SensorEventListener onStop()**
 * **Support Google services** <br/>
   including Google Cloud Messaging (GCM)
-* **Write a converter that XML layout into a Scala code**
-  Helps migrate legacy code into android-scala-common. Providing this functionality as an Eclipse or Intellij plugin would be great.
+* **Write a converter that XML layout into a Scala code** <br/>
+  It helps migrate legacy code into android-scala-common. Providing this functionality as an Eclipse or Intellij plugin would be great.
   
