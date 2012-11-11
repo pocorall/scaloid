@@ -72,14 +72,14 @@ is reduced to:
 	  layout
 	  val id = $EditText()
 	  val pass = $EditText() inputType TEXT_PASSWORD
-	  +=($TextView("Sign in") marginBottom "25dip" textSize "24.5sp")
+	  +=($TextView("Sign in").marginBottom(25 dip).textSize(24.5 sp))
 	  +=($TextView("ID")) += id += $TextView("Password") += pass
 	  +=($Button("Sign in"))
 	  +=(new $LinearLayout {
 	    +=($Button("Help")) 
 		+=($Button("Sign up"))
 	  })
-    } padding "20dip"
+    }.padding(20 dip)
 
 The layout description shown above is highly programmable. You can easily wire your logic into the layout:
 	
@@ -88,14 +88,14 @@ The layout description shown above is highly programmable. You can easily wire y
 	  layout
 	  val id = $EditText()
 	  val pass = $EditText() inputType TEXT_PASSWORD
-	  +=($TextView("Sign in") marginBottom "25dip" textSize "24.5sp")
+	  +=($TextView("Sign in").marginBottom(25 dip).textSize(24.5 sp))
 	  +=($TextView("ID")) += id += $TextView("Password") += pass
-	  +=($Button("Sign in", login(id.text, pass.text)))
+	  +=($Button("Sign in", signin(id.text, pass.text)))
 	  +=(new $LinearLayout {
 	    +=($Button("Help", openUri("http://help.url")))
 		+=($Button("Sign up", openUri("http://signup.uri"))
 	  })
-    } padding "20dip"
+    }.padding(20 dip)
 
 That's it!	
 		
@@ -521,4 +521,6 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Automatically unregister SensorEventListener onStop()**
 * **Support Google services** <br/>
   including Google Cloud Messaging (GCM)
-* <span style="text-decoration: underline;">**Demonstrating non-XML UI layout builder**</span> <br/>
+* **Write a converter that XML layout into a Scala code**
+  Helps migrate legacy code into android-scala-common. Providing this functionality as an Eclipse or Intellij plugin would be great.
+  
