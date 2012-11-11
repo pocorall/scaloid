@@ -34,7 +34,7 @@ If you want to see how this library can be used in action, check a [scala port o
 
 **Need help for setup Scala language in Android project?**
 
-* To set up a Maven project that build Android app written in Scala, please refer https://github.com/rohansingh/android-scala-test.
+To set up a Maven project that build Android app written in Scala, please refer https://github.com/rohansingh/android-scala-test.
 
 
 ## UI Layout without XML
@@ -74,7 +74,6 @@ is reduced to:
 
     new $LinearLayout {
 	  orientation = VERTICAL
-	  layout
 	  val id = $EditText()
 	  val pass = $EditText() inputType TEXT_PASSWORD
 	  +=($TextView("Sign in").textSize(24.5 sp).layout.marginBottom(25 dip).end)
@@ -90,7 +89,6 @@ The layout description shown above is highly programmable. You can easily wire y
 	
 <pre><code>new $LinearLayout {
   orientation = VERTICAL
-  layout
   val id = $EditText()
   val pass = $EditText() inputType TEXT_PASSWORD
   +=($TextView("Sign in").textSize(24.5 sp).layout.marginBottom(25 dip).end)
