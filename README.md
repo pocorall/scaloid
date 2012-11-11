@@ -306,7 +306,7 @@ Compare the code above with the code using `AsyncTask`, which is shown below. It
     }.execute("param")
 
 This pattern can also elliminate `AsyncQueryHandler`. Compare with the [original Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList2.java?av=h)
-and a [Scala port](https://github.com/pocorall/android-apidemos-scala/blob/master/src/main/java/com/example/android/apis/view/ExpandableList2.scala) of ApiDemos example app.
+and a [Scala port](https://github.com/pocorall/scaloid-apidemos/blob/master/src/main/java/com/example/android/apis/view/ExpandableList2.scala) of ApiDemos example app.
 	
 ### Trait UnregisterReceiverService
 
@@ -508,7 +508,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
   A few accessors are currently ported into the Scala style. There are tons of setters in Android API, covering all of them is a hard working. I examined http://scalamacros.org but it seems not good fit on this problem yet. If you have any good idea, please let me know.
 
 * **Build an example Android app** <br/>
-  Finish a [scala port of apidemos app](https://github.com/pocorall/android-apidemos-scala) and try another.
+  Finish a [scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos) and try another.
 * **Build a dedicated website**
 * **Write a complete API document**
 * **Write the Beginner's guide**
