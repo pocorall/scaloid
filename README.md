@@ -90,10 +90,10 @@ The layout description shown above is highly programmable. You can easily wire y
   val pass = $EditText() inputType TEXT_PASSWORD
   +=($TextView("Sign in").marginBottom(25 dip).textSize(24.5 sp))
   +=($TextView("ID")) += id += $TextView("Password") += pass
-  +=($Button("Sign in"<b>, signin(id.text, pass.text)</b>))
+  +=($Button("Sign in"<b style="color:red;">, signin(id.text, pass.text)</b>))
   +=(new $LinearLayout {
-    +=($Button("Help"<b>, openUri("http://help.url")</b>))
-    +=($Button("Sign up"<b>, openUri("http://signup.uri")</b>)
+    +=($Button("Help"<b style="color:red;">, openUri("http://help.url")</b>))
+    +=($Button("Sign up"<b style="color:red;">, openUri("http://signup.uri")</b>)
   })
 }.padding(20 dip)
 </code></pre>
