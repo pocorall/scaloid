@@ -1,6 +1,6 @@
 # Less painful Android development with Scala
 
-Scala is cool. Writing Android application with Scala is also a cool idea. Because Android exposes Java API, we need some utility library to leverage full power of Scala. android-scala-common is an initial attempt to provide this.
+Scala is cool. Writing Android application with Scala is also a cool idea. Because Android exposes Java API, we need some utility library to leverage full power of Scala. Scaloid is an initial attempt to provide this.
 
 For example, the code block shown below:
 
@@ -20,11 +20,11 @@ is reduced to:
 
 ### Benefits
  * **Write elegant Android software**<br/>
-   Read later part of this document to see how android-scala-common greatly improve your code.
+   Read later part of this document to see how Scaloid greatly improve your code.
  * **Simple to use**<br/> 
    This is a single-file project. Just copy-and-paste `common.scala` into your project!
  * **Compatible with your legacy code**<br/>
-   You can use both style of android-scala-common and plain-old Java Android API. You can gradually improve your legacy code.
+   You can use both style of Scaloid and plain-old Java Android API. You can gradually improve your legacy code.
  * **Maintained actively**<br/>
    This project is originally created to be used for [my own Android app](https://play.google.com/store/apps/details?id=com.tocplus.client.android). The first principle of this project is "working right".
    
@@ -39,11 +39,11 @@ If you want to see how this library can be used in action, check a [scala port o
 
 ## UI Layout without XML
 
-Android SDK leverages XML to build UI layouts. However, XML considered still a bit verbose, and lacks programmability. Android-scala-common composes UI layout in Scala DSL style, therefore achieve both clearity and programmability. For example, suppose a legacy XML layout as shown below:
+Android SDK leverages XML to build UI layouts. However, XML considered still a bit verbose, and lacks programmability. Scaloid composes UI layout in Scala DSL style, therefore achieve both clearity and programmability. For example, suppose a legacy XML layout as shown below:
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical" android:layout_width="match_parent"
-            android:layout_height="match_parent" android:padding="20dip">
+            android:layout_height="wrap_content" android:padding="20dip">
         <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:text="Sign in"
                 android:layout_marginBottom="25dip" android:textSize="24.5sp"/>
@@ -77,7 +77,7 @@ is reduced to:
 	  layout
 	  val id = $EditText()
 	  val pass = $EditText() inputType TEXT_PASSWORD
-	  +=($TextView("Sign in").marginBottom(25 dip).textSize(24.5 sp))
+	  +=($TextView("Sign in").textSize(24.5 sp).layout.marginBottom(25 dip).end)
 	  +=($TextView("ID")) += id += $TextView("Password") += pass
 	  +=($Button("Sign in"))
 	  +=(new $LinearLayout {
@@ -93,7 +93,7 @@ The layout description shown above is highly programmable. You can easily wire y
   layout
   val id = $EditText()
   val pass = $EditText() inputType TEXT_PASSWORD
-  +=($TextView("Sign in").marginBottom(25 dip).textSize(24.5 sp))
+  +=($TextView("Sign in").textSize(24.5 sp).layout.marginBottom(25 dip).end)
   +=($TextView("ID")) += id += $TextView("Password") += pass
   +=($Button("Sign in"<b style="color:red;">, signin(id.text, pass.text)</b>))
   +=(new $LinearLayout {
@@ -439,7 +439,7 @@ Aditionally, $-ed classes supports [implicit context value](#context-as-an-impli
     $Button("title", onClickBehavior())
 	$Intent[MyActivity]
 
-<sub>**Design considerations on making $-ed classes:** In modern programming language, using package (or namespace) is preferred than prefixing. However, when we use both classes from Android API and android-scala-common, using package name is more verbose than prefixing class name itself (compare with `common.Button` and `$Button`) and can be confused when you use both classes at the same code. We choose pragmatism rather than discipline.</sub>
+<sub>**Design considerations on making $-ed classes:** In modern programming language, using package (or namespace) is preferred than prefixing. However, when we use both classes from Android API and Scaloid, using package name is more verbose than prefixing class name itself (compare with `common.Button` and `$Button`) and can be confused when you use both classes at the same code. We choose pragmatism rather than discipline.</sub>
 
 ## Classes
 
@@ -480,12 +480,12 @@ The code above is equivalent to:
 	
 ## Static fields on protected interfaces
 
-Android API has some protected interfaces which has static fields, and inherited it in public classes. For example `android.provider.ContactsContract.Contacts` inherits a protected interface `android.provider.ContactsContract.ContactsColumns`, which defines a static field `ContactsColumns.DISPLAY_NAME`. In Java code, you can access it with `Contacts.DISPLAY_NAME`. However, Scala does not support accessing in this way (please refer [this](https://issues.scala-lang.org/browse/SI-1806) and [this](http://www.scala-lang.org/faq/4)). It is a bad news for Android-Scala programmer. So we provide a workaround implementation for this problem. Just copy-and-paste `Workaround.java` and declare `import net.pocorall.android.Workarounds._`. Then you can use the interfaces publicly which is originally defined as protected.
+Android API has some protected interfaces which has static fields, and inherited it in public classes. For example `android.provider.ContactsContract.Contacts` inherits a protected interface `android.provider.ContactsContract.ContactsColumns`, which defines a static field `ContactsColumns.DISPLAY_NAME`. In Java code, you can access it with `Contacts.DISPLAY_NAME`. However, Scala does not support accessing in this way (please refer [this](https://issues.scala-lang.org/browse/SI-1806) and [this](http://www.scala-lang.org/faq/4)). It is a bad news for Android-Scala programmer. So we provide a workaround implementation for this problem. Just copy-and-paste `Workaround.java` and declare `import org.scaloid.Workarounds._`. Then you can use the interfaces publicly which is originally defined as protected.
 
 	
 ## Import it to your project
 
-For now, android-scala-common is a single-file project. Just copy `common.scala` and paste it to your project and declare `import net.pocorall.android.common._`. Enjoy!
+For now, Scaloid is a single-file project. Just copy `common.scala` and paste it to your project and declare `import org.scaloid.common._`. Enjoy!
 
  * This project can be built with Android API level 10 or higher, and Scala version 2.9.1 or higher.
 
@@ -522,5 +522,5 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Support Google services** <br/>
   including Google Cloud Messaging (GCM)
 * **Write a converter that XML layout into a Scala code** <br/>
-  It helps migrate legacy code into android-scala-common. Providing this functionality as an Eclipse or Intellij plugin would be great.
+  It helps migrate legacy code into Scaloid. Providing this functionality as an Eclipse or Intellij plugin would be great.
   
