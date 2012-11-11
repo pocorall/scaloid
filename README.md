@@ -32,7 +32,7 @@ is reduced to:
 
 If you want to see how this library can be used in action, check a [scala port of apidemos app](https://github.com/pocorall/android-apidemos-scala).
 
-**Need help using Scala language in Android project?** <br/>
+**Need help using Scala language in your Android project?** <br/>
 Please refer https://github.com/rohansingh/android-scala-test.
 
 
