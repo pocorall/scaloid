@@ -433,6 +433,7 @@ These classes explicitly provides the extra methods that was provided implicitly
 
 Aditionally, $-ed classes supports [implicit context value](#context-as-an-implicit-parameter) and additional syntactic sugars. For example, many classes has `.apply(...)` methods for creating a new instance:
 
+    $TextView("Hello")
     $Button("title", onClickBehavior())
 	$Intent[MyActivity]
 
