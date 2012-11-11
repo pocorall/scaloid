@@ -5,7 +5,7 @@
  * Less painful Android development with Scala
  *
  *
- * https://github.com/pocorall/android-scala-common
+ * http://scaloid.org
  *
  *
  *
@@ -27,7 +27,7 @@
  * under the License.
  */
 
-package net.pocorall.android
+package org.scaloid
 
 import android.app._
 import admin.DevicePolicyManager
@@ -61,13 +61,13 @@ import android.view.ContextMenu.ContextMenuInfo
 import android.text.method.MovementMethod
 import annotation.target.{beanGetter, getter}
 import android.view.ViewGroup.LayoutParams
-import net.pocorall.android.LoggerTag
 
 
 case class LoggerTag(_tag: String) {
   private val MAX_TAG_LEN = 22
   val tag = if (_tag.length < MAX_TAG_LEN) _tag else ":" + _tag.substring(_tag.length - (MAX_TAG_LEN - 1), _tag.length)
 }
+
 
 package object common {
 
@@ -302,8 +302,30 @@ package object common {
     @noEquivalentGetterExists
     @inline def backgroundColor: Int = 0
 
+    @inline def padding(pad: Int): V = {
+      view.setPadding(pad, pad, pad, pad)
+      view
+    }
+
+    val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
+    val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
+
     def layout[LP <: ViewGroupLayoutParams[_]](implicit defaultLayoutParam: (View) => LP): LP = {
       defaultLayoutParam(view)
+    }
+
+    def matchLayout[LP <: ViewGroupLayoutParams[_]](implicit defaultLayoutParam: (View) => LP): LP = {
+      val lp = defaultLayoutParam(view)
+      lp.height = MATCH_PARENT
+      lp.width = MATCH_PARENT
+      lp
+    }
+
+    def wrapLayout[LP <: ViewGroupLayoutParams[_]](implicit defaultLayoutParam: (View) => LP): LP = {
+      val lp = defaultLayoutParam(view)
+      lp.height = WRAP_CONTENT
+      lp.width = WRAP_CONTENT
+      lp
     }
   }
 
@@ -311,7 +333,7 @@ package object common {
 
   @inline implicit def view2RichView[V <: View](view: V) = new RichView[V](view)
 
-  object $EditText extends $EditText {
+  object $EditText {
     def apply(txt: CharSequence)(implicit context: Context): $EditText = new $EditText() text txt
 
     def apply()(implicit context: Context): $EditText = new $EditText()
@@ -562,6 +584,18 @@ package object common {
     @inline def transcriptMode: Int = view.getTranscriptMode
   }
 
+  class UnitConversion(val ext: Double)(implicit context: Context) {
+    def dip: Int = (ext * context.getResources().getDisplayMetrics().density).toInt
+
+    def sp: Int = (ext * context.getResources().getDisplayMetrics().scaledDensity).toInt
+  }
+
+  @inline implicit def Double2unitConversion(ext: Double)(implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
+
+  @inline implicit def Long2unitConversion(ext: Long)(implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
+
+  @inline implicit def Int2unitConversion(ext: Int)(implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
+
   trait TraitListView[V <: ListView] extends TraitAbsListView[V] {
     @inline def adapter_=(ad: ListAdapter): V = {
       view.setAdapter(ad)
@@ -601,14 +635,12 @@ package object common {
 
   @inline implicit def listView2RichListView[V <: ListView](view: V) = new RichListView[V](view)
 
+
   trait TraitViewGroup[V <: ViewGroup] extends TraitView[V] {
     @inline def +=(v: View): V = {
       view.addView(v)
       view
     }
-
-    val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
-    val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
   }
 
   trait ViewGroupLayoutParams[LP <: ViewGroupLayoutParams[_]] extends ViewGroup.LayoutParams {
@@ -628,7 +660,25 @@ package object common {
   }
 
   trait ViewGroupMarginLayoutParams[LP <: ViewGroupMarginLayoutParams[_]] extends ViewGroup.MarginLayoutParams with ViewGroupLayoutParams[LP] {
-    // TODO: def
+    def marginBottom(size: Int): LP = {
+      bottomMargin = size
+      lp
+    }
+
+    def marginTop(size: Int): LP = {
+      topMargin = size
+      lp
+    }
+
+    def marginLeft(size: Int): LP = {
+      leftMargin = size
+      lp
+    }
+
+    def marginRight(size: Int): LP = {
+      rightMargin = size
+      lp
+    }
   }
 
   class RichViewGroup[V <: ViewGroup](val view: V) extends TraitViewGroup[V]
@@ -684,7 +734,7 @@ package object common {
 
     implicit def defaultLayoutParams(v: View): LayoutParams = new LayoutParams(v)
 
-    class LayoutParams(v: View) extends LinearLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT) with ViewGroupMarginLayoutParams[LayoutParams] {
+    class LayoutParams(v: View) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams] {
       def lp = this
 
       v.setLayoutParams(this)

@@ -32,6 +32,11 @@ is reduced to:
 
 If you want to see how this library can be used in action, check a [scala port of apidemos app](https://github.com/pocorall/android-apidemos-scala).
 
+**Need help for setup Scala language in Android project?**
+
+* To set up a Maven project that build Android app written in Scala, please refer https://github.com/rohansingh/android-scala-test.
+
+
 ## UI Layout without XML
 
 Android SDK leverages XML to build UI layouts. However, XML considered still a bit verbose, and lacks programmability. Android-scala-common composes UI layout in Scala DSL style, therefore achieve both clearity and programmability. For example, suppose a legacy XML layout as shown below:
@@ -491,12 +496,6 @@ This project is in early stages, and I will grow it constantly. If you have any 
 ### License
 
 This software is licensed under the [Apache 2 license](http://www.apache.org/licenses/LICENSE-2.0.html).
-
-### Recommended resources
-
-* To set up a Maven project that build Android app written in Scala, please refer https://github.com/rohansingh/android-scala-test.
-
-* A delicate problem related to implicit conversion for mult-line block is discussed at  http://stackoverflow.com/questions/12774840/scala-passing-function-parameter-which-does-not-have-parameter.
 
 
 ## Roadmap
