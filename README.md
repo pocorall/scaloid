@@ -32,9 +32,8 @@ is reduced to:
 
 If you want to see how this library can be used in action, check a [scala port of apidemos app](https://github.com/pocorall/android-apidemos-scala).
 
-**Need help for setup Scala language in Android project?**
-
-To set up a Maven project that build Android app written in Scala, please refer https://github.com/rohansingh/android-scala-test.
+**Need help for setup Scala language in Android project?** <br/>
+Please refer https://github.com/rohansingh/android-scala-test.
 
 
 ## UI Layout without XML
