@@ -92,10 +92,10 @@ The layout description shown above is highly programmable. You can easily wire y
   val pass = $EditText() inputType TEXT_PASSWORD
   +=($TextView("Sign in").textSize(24.5 sp).layout.marginBottom(25 dip).end)
   +=($TextView("ID")) += id += $TextView("Password") += pass
-  +=($Button("Sign in"<b style="color:red;">, signin(id.text, pass.text)</b>))
+  +=($Button("Sign in"<b><i>, signin(id.text, pass.text)</i></b>))
   +=(new $LinearLayout {
-    +=($Button("Help"<b style="color:red;">, openUri("http://help.url")</b>))
-    +=($Button("Sign up"<b style="color:red;">, openUri("http://signup.uri")</b>)
+    +=($Button("Help"<b><i>, openUri("http://help.url")</i></b>))
+    +=($Button("Sign up"<b><i>, openUri("http://signup.uri")</i></b>)
   })
 }.padding(20 dip)
 </code></pre>
@@ -105,20 +105,31 @@ That's it!
 ## Implicit conversions
 This library employs several implicit conversions. Some of available implicit conversions are shown below:
 
+##### Uri conversion
+
     String => Uri
+	
+##### Resource IDs
+	
 	Int => CharSequence
 	Int => Drawable
+	
+##### Listeners	
+	
 	( => Any) => OnClickListener
 	( => Boolean) => OnLongClickListener
 	((View, Boolean) => Any) => OnFocusChangeListener
 	( => Boolean) => OnEditorActionListener
 	( => Boolean) => OnKeyListener
 	((CharSequence, Int, Int, Int) => Any) => TextWatcher
+
+##### Runnable
+	
 	( => Any) => Runnable
 	
 There are more implicit conversions available. Check the source code as needed.
 	
-**Class RichView**
+##### Class RichView
 
 This library defines an implicit conversion `View => RichView`. `RichView` defines additional method for more convenient access to the `View`. For example:
 
@@ -136,7 +147,7 @@ button.onTouch((v:View, e:MotionEvent) => info("touched a button "+v))
 
  * Methods `add...` is abbreviated with function `+=` if it is not a listener-appender.
 	
-**Class RichTextView**
+##### Class RichTextView
 
 Methods `beforeTextChanged()`, `onTextChanged()`, and `afterTextChanged()` are defined in `RichTextView`, which can be implicitly converted from `TextView`. It is more convenient than using `TextWatcher` directly. For example:
 
@@ -154,7 +165,7 @@ is equivalent to:
       def afterTextChanged(p1: Editable) {}
     })
 	
-**Other 'Rich' classes**
+##### Other 'Rich' classes
 
 Other `Rich...` classes are also defined to provide additional functionality by implicit conversion. Please check the source code for details.
 	
@@ -168,7 +179,7 @@ Many methods in Android API requires an instance of a class `Context`. Providing
 or just extend trait `ContextUtil`, which defines it for you. Then the codes that required `Context` becomes much simpler, for example:
 
 
-**Intent**
+##### Intent
 
     new Intent(context, classOf[MyActivity])
 
@@ -176,7 +187,7 @@ is reduced to:
 
     $Intent[MyActivity]
 
-**Starting and stopping service**
+##### Starting and stopping service
 
     startService(new Intent(context, classOf[MyService]))
     stopService(new Intent(context, classOf[MyService]))	
@@ -187,7 +198,7 @@ is reduced to:
     stopService[MyService]
 	
 
-**Toast**
+##### Toast
     
     Toast.makeText(context, "hi, there!", Toast.LENGTH_SHORT).show()
 
@@ -195,7 +206,7 @@ is reduced to:
 
     toast("hi, there!")
    
-**Dialog**
+##### Dialog
 
     ProgressDialog.show(context, "Dialog", "working...", true)
 
@@ -203,7 +214,7 @@ is reduced to:
 
     spinnerDialog("Dialog", "working...")
 
-**Pending intent**
+##### Pending intent
 
     PendingIntent.getActivity(context, 0, new Intent(context, classOf[MyActivity]), 0)
     PendingIntent.getService(context, 0, new Intent(context, classOf[MyService]), 0)
@@ -213,7 +224,7 @@ is reduced to:
     pendingActivity[MyActivity]
     pendingService[MyService]
 
-**DefaultSharedPreferences**
+##### DefaultSharedPreferences
 
     PreferenceManager.getDefaultSharedPreferences(context)
 
@@ -221,8 +232,7 @@ is reduced to:
 
     defaultSharedPreferences
 
-
-**Play ringtones**
+##### Play ringtones
 
 Just play the default notification ringtone:
 
@@ -249,7 +259,7 @@ This opens a web browser (or another view assigned to `http` protocol).
 
 Trait `ContextUtil` includes several shortcuts for frequently used android idioms.
 
-**System services**
+##### System services
 
 Getting system service objects become much simpler.
 
