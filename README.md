@@ -1,4 +1,4 @@
-<div style="float: right"><img src="http://o-n2.com/scaloid_logo.png"></div>
+<p align="center"><img src="http://o-n2.com/scaloid_logo.png"></p>
 
 # Less painful Android development with Scala
 
