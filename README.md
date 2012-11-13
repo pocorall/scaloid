@@ -318,7 +318,7 @@ is reduced to:
     notificationManager.notify(R.string.someString, notification)
     vibrator.vibrate(500)
 
-All of the system service accessors available in Android API level 10 are defined.
+All of the system service accessors available in Android API level 8 are defined.
 
 	
 ### Trait RunOnUiThread
@@ -461,7 +461,7 @@ is reduced to:
 
 <sub>**Design considerations on returning values:** In C or Java, the assinment operator `=` returns a right hand side object. However, chaining assignment operator is very rarelly used in these languages. Assigning the same value to multiple variables might means that your code is badly designed (except some context such as involving intensive mathematical computations). However, in Scala DSLs, setters return a left hand side object, and chaining setters are more frequent. For example:</sub>
 
-    getGenericView text "hello" maxHeight 10
+    getGenericView text "hello" maxHeight 8
 	
 ### Dollar-signed($-ed) classes
 
@@ -538,7 +538,7 @@ Android API has some protected interfaces which has static fields, and inherited
 
 For now, Scaloid is a single-file project. Just copy `common.scala` and paste it to your project and declare `import org.scaloid.common._`. Enjoy!
 
- * This project can be built with Android API level 10 or higher, and Scala version 2.9.1 or higher.
+ * This project can be built with Android API level 8 or higher, and Scala version 2.9.1 or higher.
 
 ## Let's make it together!
 
@@ -552,7 +552,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 ## Roadmap
 
 * **Cover full Android API versions** <br/>
-  Currently, only API level 10 is supported. Scaloid may not be compiled with below that API level, and new features introduced above that level are not covered.
+  Currently, only API level 8 is supported. Scaloid may not be compiled with below that API level, and new features introduced above that level are not covered.
   Some of the features to be covered are:
   1. Fragment
   1. New system services
@@ -573,5 +573,5 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Support Google services** <br/>
   including Google Cloud Messaging (GCM)
 * **Write a converter that XML layout into a Scaloid code** <br/>
-  Providing this functionality as an Eclipse or Intellij plugin would also be great.
+  First version of the converter would be a simple web application. Providing this functionality as an Eclipse or Intellij plugin would also be great.
   
