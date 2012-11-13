@@ -167,50 +167,6 @@ Runnable also covered with [rich](#Rich-classes) and $-ed classes.
 	
 There are more implicit conversions available. Check the source code as needed.
 	
-### Rich classes
-
-##### Class RichView
-
-This library defines an implicit conversion `View => RichView`. `RichView` defines additional method for more convenient access to the `View`. For example:
-
-    find[Button](R.id.search).onClick(openUri("http://google.com"))
-
-All of listener-appending methods such as `onKey()`, `onLongClick()`, and `onTouch()` are defined in `RichView`. Some conventions we employed are:
-
- * We omit `set...`, `add...`, and `...Listener` from the method name, which is less significant.
- * Every methods has two versions of parameters overriden. One is a lazy parameter, and another is a function which has a full parameter defined in original Android API. For example, these two usages are valid:
-
-```
-button.onTouch(info("touched"))
-button.onTouch((v:View, e:MotionEvent) => info("touched a button "+v))
-```	
-
- * Methods `add...` is abbreviated with function `+=` if it is not a listener-appender.
-	
-##### Class RichTextView
-
-Methods `beforeTextChanged()`, `onTextChanged()`, and `afterTextChanged()` are defined in `RichTextView`, which can be implicitly converted from `TextView`. It is more convenient than using `TextWatcher` directly. For example:
-
-    inputField.beforeTextChanged(saveTextStatus())
-
-is equivalent to:	
-	
-    inputField.addTextChangedListener(new TextWatcher {
-      def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-        saveTextStatus()
-      }
-
-      def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
-
-      def afterTextChanged(p1: Editable) {}
-    })
-	
-##### Other 'Rich' classes
-
-Other `Rich...` classes are also defined to provide additional functionality by implicit conversion. Please check the source code for details.
-	
-Note: providing shortened listener-appenders and scala style getters/setters are not complete for now. Please refer to our [roadmap](#roadmap).
-	
 ## Context as an implicit parameter
 Many methods in Android API requires an instance of a class `Context`. Providing this for every method calls results a clumsy code. We employs an implicit parameter to elliminate this. Just declare an implicit value that represents current context:
 
@@ -292,7 +248,52 @@ This opens a web browser (or another view assigned to `http` protocol).
 
    	openUri("http://google.com")
 
+
+## Rich classes
+
+##### Class RichView
+
+This library defines an implicit conversion `View => RichView`. `RichView` defines additional method for more convenient access to the `View`. For example:
+
+    find[Button](R.id.search).onClick(openUri("http://google.com"))
+
+All of listener-appending methods such as `onKey()`, `onLongClick()`, and `onTouch()` are defined in `RichView`. Some conventions we employed are:
+
+ * We omit `set...`, `add...`, and `...Listener` from the method name, which is less significant.
+ * Every methods has two versions of parameters overriden. One is a lazy parameter, and another is a function which has a full parameter defined in original Android API. For example, these two usages are valid:
+
+```
+button.onTouch(info("touched"))
+button.onTouch((v:View, e:MotionEvent) => info("touched a button "+v))
+```	
+
+ * Methods `add...` is abbreviated with function `+=` if it is not a listener-appender.
 	
+##### Class RichTextView
+
+Methods `beforeTextChanged()`, `onTextChanged()`, and `afterTextChanged()` are defined in `RichTextView`, which can be implicitly converted from `TextView`. It is more convenient than using `TextWatcher` directly. For example:
+
+    inputField.beforeTextChanged(saveTextStatus())
+
+is equivalent to:	
+	
+    inputField.addTextChangedListener(new TextWatcher {
+      def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+        saveTextStatus()
+      }
+
+      def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
+
+      def afterTextChanged(p1: Editable) {}
+    })
+	
+##### Other 'Rich' classes
+
+Other `Rich...` classes are also defined to provide additional functionality by implicit conversion. Please check the source code for details.
+	
+Note: providing shortened listener-appenders and scala style getters/setters are not complete for now. Please refer to our [roadmap](#roadmap).
+	
+
 ## Traits
 
 ### Trait ContextUtil
