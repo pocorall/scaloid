@@ -1,6 +1,6 @@
 # Less painful Android development with Scala
 
-Scala is cool. Writing Android application with Scala is also a cool idea. Because Android exposes Java API, we need some utility library to leverage full power of Scala. Scaloid is an initial attempt to provide this.
+Scala is cool. [Writing Android application with Scala](#need-help-using-scala-language-in-your-android-project) is also a cool idea. Because Android exposes Java API, we need some utility library to leverage full power of Scala. Scaloid is a library aimed to simplify your code.
 
 For example, the code block shown below:
 
@@ -32,7 +32,7 @@ is reduced to:
 
 If you want to see how Scaloid can be used in action, check a [scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos).
 
-**Need help using Scala language in your Android project?** <br/>
+##### Need help using Scala language in your Android project?
 Please refer https://github.com/rohansingh/android-scala-test.
 
 
