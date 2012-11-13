@@ -1,4 +1,4 @@
-<div style="float: right">![scaloid_logo](http://o-n2.com/scaloid_logo.png)</div>
+<div style="float: right"><img src="http://o-n2.com/scaloid_logo.png></div>
 
 # Less painful Android development with Scala
 
