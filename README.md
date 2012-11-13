@@ -30,7 +30,7 @@ is reduced to:
    
 ### Demos
 
-If you want to see how this library can be used in action, check a [scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos).
+If you want to see how Scaloid can be used in action, check a [scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos).
 
 **Need help using Scala language in your Android project?** <br/>
 Please refer https://github.com/rohansingh/android-scala-test.
@@ -103,7 +103,7 @@ The layout description shown above is highly programmable. You can easily wire y
 That's it!	
 		
 ## Implicit conversions
-This library employs several implicit conversions. Some of available implicit conversions are shown below:
+Scaloid employs several implicit conversions. Some of available implicit conversions are shown below:
 
 ##### Uri conversion
 
@@ -253,7 +253,7 @@ This opens a web browser (or another view assigned to `http` protocol).
 
 ##### Class RichView
 
-This library defines an implicit conversion `View => RichView`. `RichView` defines additional method for more convenient access to the `View`. For example:
+Scaloid defines an implicit conversion `View => RichView`. `RichView` defines additional method for more convenient access to the `View`. For example:
 
     find[Button](R.id.search).onClick(openUri("http://google.com"))
 
@@ -540,7 +540,7 @@ For now, Scaloid is a single-file project. Just copy `common.scala` and paste it
 
 ## Let's make it together!
 
-This project is in early stages, and I will grow it constantly. If you have any idea to improve this library, feel free to open issues or post patches.
+This project is in early stages, and I will grow it constantly. If you have any idea to improve Scaloid, feel free to open issues or post patches.
 
 ### License
 
@@ -550,7 +550,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 ## Roadmap
 
 * **Cover full Android API versions** <br/>
-  Currently, only API level 10 is supported. This library may not be compiled with below that API level, and new features introduced above that level are not covered.
+  Currently, only API level 10 is supported. Scaloid may not be compiled with below that API level, and new features introduced above that level are not covered.
   Some of the features to be covered are:
   1. Fragment
   1. New system services
