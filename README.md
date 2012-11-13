@@ -109,10 +109,45 @@ This library employs several implicit conversions. Some of available implicit co
 
     String => Uri
 	
+The functions such as [play ringtones](#play-ringtones) `play()` or [open URIs](#open-uris) `openUri()` takes a `Uri` object as a parameter. However, we frequently have URIs as a `String`. Scaloid implicitly converts `String` into `Uri`. Therefore, you can freely use `String` when play a ringtone:
+
+    play("content://media/internal/audio/media/50")
+	
+, open uri:
+
+    openUri("http://google.com")
+
+, or whereever you want.	
+	
 ##### Resource IDs
 	
 	Int => CharSequence
 	Int => Drawable
+	
+Android API provides two versions of methods for string resources; One for `CharSequence`, the other for `Int` as a resource ID. If you write a functions that handles Android resource, you also have to expose methods for every combinations of two versions of resources:
+
+```Scala
+def alert(titleId:Int, textId:Int)(implicit context:Context) = {
+  alert(context.getText(titleId), context.getText(textId))
+}
+
+def alert(titleId:Int, text:CharSequence)(implicit context:Context) = {
+  alert(context.getText(titleId), text)
+}
+
+def alert(titleId:CharSequence, textId:Int)(implicit context:Context) = {
+  alert(title, context.getText(textId))
+}
+
+def alert(title:CharSequence, text:CharSequence) = ...
+```
+
+This is not a smart way. Write only one method that defines the logic:
+
+    def alert(title:CharSequence, text:CharSequence) = ...
+	
+Then implicit conversions will take care about these resource type conversions.
+
 	
 ##### Listeners	
 	
@@ -246,7 +281,7 @@ Just play the default notification ringtone:
 	
 	play(alarmSound)
 
-**View resources**
+##### Open URIs
 
 This opens a web browser (or another view assigned to `http` protocol).
 
