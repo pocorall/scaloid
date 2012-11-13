@@ -1,3 +1,5 @@
+<div style="float: right">![scaloid_logo](http://o-n2.com/scaloid_logo.png)</div>
+
 # Less painful Android development with Scala
 
 Scala is cool. [Writing Android application with Scala](#need-help-using-scala-language-in-your-android-project) is also a cool idea. Because Android exposes Java API, we need some utility library to leverage full power of Scala. Scaloid is a library aimed to simplify your code.
@@ -570,6 +572,6 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Automatically unregister SensorEventListener onStop()**
 * **Support Google services** <br/>
   including Google Cloud Messaging (GCM)
-* **Write a converter that XML layout into a Scala code** <br/>
-  It helps migrate legacy code into Scaloid. Providing this functionality as an Eclipse or Intellij plugin would be great.
+* **Write a converter that XML layout into a Scaloid code** <br/>
+  Providing this functionality as an Eclipse or Intellij plugin would also be great.
   
