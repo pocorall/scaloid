@@ -119,7 +119,7 @@ The functions such as [play ringtones](#play-ringtones) `play()` or [open URIs](
 
     openUri("http://google.com")
 
-, or whereever you want.	
+, or wherever you want.	
 	
 ##### Resource IDs
 	
@@ -147,7 +147,7 @@ This is not a smart way. Write just one method that defines the logic:
 
     def alert(title:CharSequence, text:CharSequence) = ...
 	
-Then implicit conversions will take care about these resource type conversions.
+Then Scaloid implicit conversions will take care about these resource type conversions.
 
 	
 ##### Listeners	
@@ -159,13 +159,13 @@ Then implicit conversions will take care about these resource type conversions.
 	( => Boolean) => OnKeyListener
 	((CharSequence, Int, Int, Int) => Any) => TextWatcher
 
-In Scaloid, listeners can be described in three ways: implicit conversions wich is shown above, [rich class](#Rich-classes), and $-ed class. We recommend to use rich class or $-ed class for listeners. We provide implicit conversions for listeners as an auxiliary way.
+In Scaloid, listeners can be described in three ways: implicit conversions wich is shown above, [rich class](#rich-classes), and $-ed class. We recommend to use rich class or $-ed class for listeners. We provide implicit conversions for listeners as an auxiliary way.
 
 ##### Runnable
 	
 	( => Any) => Runnable
 
-Runnable also covered with [rich](#Rich-classes) and $-ed classes.
+`Runnable` also covered with [rich](#rich-classes) and $-ed classes.
 	
 There are more implicit conversions available. Check the source code as needed.
 	
@@ -246,30 +246,51 @@ Just play the default notification ringtone:
 
 ##### Open URIs
 
-This opens a web browser (or another view assigned to `http` protocol).
+This opens a web browser (or another view assigned to http protocol).
 
    	openUri("http://google.com")
+
+	
+##### System services
+
+Getting system service objects become much simpler.
+
+    val vibrator = getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
+    vibrator.vibrate(500)
+
+is reduced to:
+
+    vibrator.vibrate(500)	
+
+Under the hood, Scaloid defines a function `vibrator` like this:
+
+    implicit def vibrator = getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
+	
+All of the system service accessors available in Android API level 8 are defined.
 
 
 ## Rich classes
 
+For an Android Class `Foo` for example, Scaloid defines an implicit conversion `Foo => RichFoo`. `RichFoo` defines additional method for more convenient access to `Foo`. This is a common pattern in Scala to extend existing API.
+
+
 ##### Class RichView
 
-Scaloid defines an implicit conversion `View => RichView`. `RichView` defines additional method for more convenient access to the `View`. For example:
+All of listener-appending methods such as `onKey()`, `onLongClick()`, and `onTouch()` are defined in `RichView`. For example:
 
     find[Button](R.id.search).onClick(openUri("http://google.com"))
 
-All of listener-appending methods such as `onKey()`, `onLongClick()`, and `onTouch()` are defined in `RichView`. Some conventions we employed are:
+Some conventions we employed for method naming are:
 
  * We omit `set...`, `add...`, and `...Listener` from the method name, which is less significant.
- * Every methods has two versions of parameters overriden. One is a lazy parameter, and another is a function which has a full parameter defined in original Android API. For example, these two usages are valid:
+ * Every methods has two versions of parameters overriden. One is a lazy parameter, and another is a function which has a full parameter defined in the original Android API. For example, these two usages are valid:
 
 ```
 button.onTouch(info("touched"))
 button.onTouch((v:View, e:MotionEvent) => info("touched a button "+v))
 ```	
 
- * Methods `add...` is abbreviated with function `+=` if it is not a listener-appender.
+ * Methods `add...` is abbreviated with a method `+=` if it is not a listener-appender.
 	
 ##### Class RichTextView
 
@@ -293,8 +314,6 @@ is equivalent to:
 
 Other `Rich...` classes are also defined to provide additional functionality by implicit conversion. Please check the source code for details.
 	
-Note: providing shortened listener-appenders and scala style getters/setters are not complete for now. Please refer to our [roadmap](#roadmap).
-	
 
 ## Traits
 
@@ -302,25 +321,7 @@ Note: providing shortened listener-appenders and scala style getters/setters are
 
 Trait `ContextUtil` includes several shortcuts for frequently used android idioms.
 
-##### System services
 
-Getting system service objects become much simpler.
-
-```
-val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[NotificationManager]
-notificationManager.notify(R.string.someString, notification)
-val vibrator = getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
-vibrator.vibrate(500)
-```
-
-is reduced to:
-
-    notificationManager.notify(R.string.someString, notification)
-    vibrator.vibrate(500)
-
-All of the system service accessors available in Android API level 8 are defined.
-
-	
 ### Trait RunOnUiThread
 
 Android API provides `runOnUiThread()` only for class `Activity`. Trait `RunOnUiThread` provides Scala version of `runOnUiThread()` for anywhere other than `Activity`.
