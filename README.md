@@ -10,14 +10,14 @@ For example, the code block shown below:
 	button.setText("send")
 	button.setOnClickListener(new OnClickListener() {
 	  def onClick(v: View) {
-		sendMessage()
+		Toast.makeText(context, "Hello!", Toast.LENGTH_SHORT).show()
 	  }
 	})
 	layout.addView(button)
 
 is reduced to:	
 	
-	layout += $Button("send", sendMessage())
+	layout += $Button("send", toast("Hello!"))
 
 
 ### Benefits
@@ -271,7 +271,7 @@ All of the system service accessors available in Android API level 8 are defined
 
 ## Rich classes
 
-For an Android Class `Foo` for example, Scaloid defines an implicit conversion `Foo => RichFoo`. `RichFoo` defines additional method for more convenient access to `Foo`. This is a common pattern in Scala to extend existing API.
+Suppose an Android class `Foo`, for example, Scaloid defines an implicit conversion `Foo => RichFoo`. `RichFoo` defines additional method for more convenient access to `Foo`. This is a common pattern in Scala to extend existing API.
 
 
 ##### Class RichView
@@ -573,6 +573,6 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Automatically unregister SensorEventListener onStop()**
 * **Support Google services** <br/>
   including Google Cloud Messaging (GCM)
-* **Write a converter that XML layout into a Scaloid code** <br/>
+* **Write a converter that turns XML layout into a Scaloid code** <br/>
   First version of the converter would be a simple web application. Providing this functionality as an Eclipse or Intellij plugin would also be great.
   
