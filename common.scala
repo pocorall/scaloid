@@ -39,7 +39,7 @@ import android.media.{AudioManager, RingtoneManager}
 import collection.mutable.ArrayBuffer
 import android.util.Log
 
-import android.text.{Editable, TextWatcher, ClipboardManager}
+import android.text.{InputFilter, Editable, TextWatcher, ClipboardManager}
 import android.view.accessibility.AccessibilityManager
 import android.accounts.AccountManager
 import android.view.inputmethod.InputMethodManager
@@ -47,8 +47,7 @@ import android.location.LocationManager
 import android.hardware.SensorManager
 import android.telephony.TelephonyManager
 import android.net.wifi.WifiManager
-import android.content
-import content._
+import android.content._
 import android.widget._
 import android.preference.PreferenceManager
 import android.view.WindowManager.LayoutParams._
@@ -61,6 +60,7 @@ import android.text.method.MovementMethod
 import annotation.target.{beanGetter, getter}
 import android.view.ViewGroup.LayoutParams
 import android.widget.TextView.OnEditorActionListener
+import android.graphics.Typeface
 
 
 case class LoggerTag(_tag: String) {
@@ -300,8 +300,173 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def scrollbarFadingEnabled(param: Boolean) = scrollbarFadingEnabled_=(param)
 
+    @inline def scrollbarFadingEnabled: Boolean = base.isScrollbarFadingEnabled
+
+    @inline def focusable_=(param: Boolean) = {
+      base.setFocusable(param)
+      base
+    }
+
+    @inline def focusable(param: Boolean) = focusable_=(param)
+
     @noEquivalentGetterExists
-    @inline def scrollbarFadingEnabled: Boolean = false
+    @inline def focusable: Boolean = false
+
+    @inline def focusableInTouchMode_=(param: Boolean) = {
+      base.setFocusableInTouchMode(param)
+      base
+    }
+
+    @inline def focusableInTouchMode(param: Boolean) = focusableInTouchMode_=(param)
+
+    @inline def focusableInTouchMode: Boolean = base.isFocusableInTouchMode
+
+    @inline def hapticFeedbackEnabled_=(param: Boolean) = {
+      base.setHapticFeedbackEnabled(param)
+      base
+    }
+
+    @inline def hapticFeedbackEnabled(param: Boolean) = hapticFeedbackEnabled_=(param)
+
+    @inline def hapticFeedbackEnabled: Boolean = base.isHapticFeedbackEnabled
+
+    @inline def id_=(param: Int) = {
+      base.setId(param)
+      base
+    }
+
+    @inline def id(param: Int) = id_=(param)
+
+    @inline def id: Int = base.getId
+
+    @inline def scrollContainer_=(param: Boolean) = {
+      base.setScrollContainer(param)
+      base
+    }
+
+    @inline def scrollContainer(param: Boolean) = scrollContainer_=(param)
+
+    @noEquivalentGetterExists
+    @inline def scrollContainer: Boolean = false
+
+    @inline def keepScreenOn_=(param: Boolean) = {
+      base.setKeepScreenOn(param)
+      base
+    }
+
+    @inline def keepScreenOn(param: Boolean) = keepScreenOn_=(param)
+
+    @inline def keepScreenOn: Boolean = base.getKeepScreenOn
+
+    @inline def longClickable_=(param: Boolean) = {
+      base.setLongClickable(param)
+      base
+    }
+
+    @inline def longClickable(param: Boolean) = longClickable_=(param)
+
+    @inline def longClickable: Boolean = base.isLongClickable
+
+    @inline def minimumHeight_=(param: Int) = {
+      base.setMinimumHeight(param)
+      base
+    }
+
+    @inline def minimumHeight(param: Int) = minimumHeight_=(param)
+
+    @noEquivalentGetterExists
+    @inline def minimumHeight: Int = 0
+
+    @inline def minimumWidth_=(param: Int) = {
+      base.setMinimumWidth(param)
+      base
+    }
+
+    @inline def minimumWidth(param: Int) = minimumWidth_=(param)
+
+    @noEquivalentGetterExists
+    @inline def minimumWidth: Int = 0
+
+    @inline def nextFocusDownId_=(param: Int) = {
+      base.setNextFocusDownId(param)
+      base
+    }
+
+    @inline def nextFocusDownId(param: Int) = nextFocusDownId_=(param)
+
+    @inline def nextFocusDownId: Int = base.getNextFocusDownId
+
+    @inline def nextFocusLeftId_=(param: Int) = {
+      base.setNextFocusLeftId(param)
+      base
+    }
+
+    @inline def nextFocusLeftId(param: Int) = nextFocusLeftId_=(param)
+
+    @inline def nextFocusLeftId: Int = base.getNextFocusLeftId
+
+    @inline def nextFocusRightId_=(param: Int) = {
+      base.setNextFocusRightId(param)
+      base
+    }
+
+    @inline def nextFocusRightId(param: Int) = nextFocusRightId_=(param)
+
+    @inline def nextFocusRightId: Int = base.getNextFocusRightId
+
+    @inline def nextFocusUpId_=(param: Int) = {
+      base.setNextFocusUpId(param)
+      base
+    }
+
+    @inline def nextFocusUpId(param: Int) = nextFocusUpId_=(param)
+
+    @inline def nextFocusUpId: Int = base.getNextFocusUpId
+
+    @inline def verticalFadingEdgeEnabled_=(param: Boolean) = {
+      base.setVerticalFadingEdgeEnabled(param)
+      base
+    }
+
+    @inline def verticalFadingEdgeEnabled(param: Boolean) = verticalFadingEdgeEnabled_=(param)
+
+    @inline def verticalFadingEdgeEnabled: Boolean = base.isVerticalFadingEdgeEnabled
+
+    @inline def saveEnabled_=(param: Boolean) = {
+      base.setSaveEnabled(param)
+      base
+    }
+
+    @inline def saveEnabled(param: Boolean) = saveEnabled_=(param)
+
+    @inline def saveEnabled: Boolean = base.isSaveEnabled
+
+    @inline def scrollBarStyle_=(param: Int) = {
+      base.setScrollBarStyle(param)
+      base
+    }
+
+    @inline def scrollBarStyle(param: Int) = scrollBarStyle_=(param)
+
+    @inline def scrollBarStyle: Int = base.getScrollBarStyle
+
+    @inline def soundEffectsEnabled_=(param: Boolean) = {
+      base.setSoundEffectsEnabled(param)
+      base
+    }
+
+    @inline def soundEffectsEnabled(param: Boolean) = soundEffectsEnabled_=(param)
+
+    @inline def soundEffectsEnabled: Boolean = base.isSoundEffectsEnabled
+
+    @inline def visibility_=(param: Int) = {
+      base.setVisibility(param)
+      base
+    }
+
+    @inline def visibility(param: Int) = visibility_=(param)
+
+    @inline def visibility: Int = base.getVisibility
 
     @inline def layoutParams_=(param: LayoutParams) = {
       base.setLayoutParams(param)
@@ -329,7 +494,7 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     }
 
     val FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT
-    val MATCH_PARENT = ViewGroup.LayoutParams.FILL_PARENT
+    val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
     val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
 
     def layout[LP <: ViewGroupLayoutParams[_]](implicit defaultLayoutParam: (View) => LP): LP = {
@@ -474,14 +639,71 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     }
 
 
-    @inline def textSize_=(param: Float) = {
-      base.setTextSize(param)
+    @inline def autoLinkMask_=(param: Int) = {
+      base.setAutoLinkMask(param)
       base
     }
 
-    @inline def textSize(param: Float) = textSize_=(param)
+    @inline def autoLinkMask(param: Int) = autoLinkMask_=(param)
 
-    @inline def textSize: Float = base.getTextSize
+    @inline def autoLinkMask: Int = base.getAutoLinkMask
+
+    @inline def cursorVisible_=(param: Boolean) = {
+      base.setCursorVisible(param)
+      base
+    }
+
+    @inline def cursorVisible(param: Boolean) = cursorVisible_=(param)
+
+    @noEquivalentGetterExists
+    @inline def cursorVisible: Boolean = false
+
+    @inline def compoundDrawablePadding_=(param: Int) = {
+      base.setCompoundDrawablePadding(param)
+      base
+    }
+
+    @inline def compoundDrawablePadding(param: Int) = compoundDrawablePadding_=(param)
+
+    @inline def compoundDrawablePadding: Int = base.getCompoundDrawablePadding
+
+    @inline def inputExtras_=(param: Int) = {
+      base.setInputExtras(param)
+      base
+    }
+
+    @inline def inputExtras(param: Int) = inputExtras_=(param)
+
+    @noEquivalentGetterExists
+    @inline def inputExtras: Int = 0
+
+    @inline def ems_=(param: Int) = {
+      base.setEms(param)
+      base
+    }
+
+    @inline def ems(param: Int) = ems_=(param)
+
+    @noEquivalentGetterExists
+    @inline def ems: Int = 0
+
+    @inline def typeface_=(param: Typeface) = {
+      base.setTypeface(param)
+      base
+    }
+
+    @inline def typeface(param: Typeface) = typeface_=(param)
+
+    @inline def typeface: Typeface = base.getTypeface
+
+    @inline def freezesText_=(param: Boolean) = {
+      base.setFreezesText(param)
+      base
+    }
+
+    @inline def freezesText(param: Boolean) = freezesText_=(param)
+
+    @inline def freezesText: Boolean = base.getFreezesText
 
     @inline def gravity_=(param: Int) = {
       base.setGravity(param)
@@ -491,6 +713,122 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     @inline def gravity(param: Int) = gravity_=(param)
 
     @inline def gravity: Int = base.getGravity
+
+    @inline def height_=(param: Int) = {
+      base.setHeight(param)
+      base
+    }
+
+    @inline def height(param: Int) = height_=(param)
+
+    @inline def height: Int = base.getHeight
+
+    @inline def hint_=(param: CharSequence) = {
+      base.setHint(param)
+      base
+    }
+
+    @inline def hint(param: CharSequence) = hint_=(param)
+
+    @noEquivalentGetterExists
+    @inline def hint: CharSequence = ""
+
+    @inline def imeOptions_=(param: Int) = {
+      base.setImeOptions(param)
+      base
+    }
+
+    @inline def imeOptions(param: Int) = imeOptions_=(param)
+
+    @inline def imeOptions: Int = base.getImeOptions
+
+    @inline def includeFontPadding_=(param: Boolean) = {
+      base.setIncludeFontPadding(param)
+      base
+    }
+
+    @inline def includeFontPadding(param: Boolean) = includeFontPadding_=(param)
+
+    @noEquivalentGetterExists
+    @inline def includeFontPadding: Boolean = false
+
+    @inline def rawInputType_=(param: Int) = {
+      base.setRawInputType(param)
+      base
+    }
+
+    @inline def rawInputType(param: Int) = rawInputType_=(param)
+
+    @noEquivalentGetterExists
+    @inline def rawInputType: Int = 0
+
+    @inline def lines_=(param: Int) = {
+      base.setLines(param)
+      base
+    }
+
+    @inline def lines(param: Int) = lines_=(param)
+
+    @noEquivalentGetterExists
+    @inline def lines: Int = 0
+
+    @inline def linksClickable_=(param: Boolean) = {
+      base.setLinksClickable(param)
+      base
+    }
+
+    @inline def linksClickable(param: Boolean) = linksClickable_=(param)
+
+    @inline def linksClickable: Boolean = base.getLinksClickable
+
+    @inline def marqueeRepeatLimit_=(param: Int) = {
+      base.setMarqueeRepeatLimit(param)
+      base
+    }
+
+    @inline def marqueeRepeatLimit(param: Int) = marqueeRepeatLimit_=(param)
+
+    @noEquivalentGetterExists
+    @inline def marqueeRepeatLimit: Int = 0
+
+    @inline def maxEms_=(param: Int) = {
+      base.setMaxEms(param)
+      base
+    }
+
+    @inline def maxEms(param: Int) = maxEms_=(param)
+
+    @noEquivalentGetterExists
+    @inline def maxEms: Int = 0
+
+    @inline def maxHeight_=(param: Int) = {
+      base.setMaxHeight(param)
+      base
+    }
+
+    @inline def maxHeight(param: Int) = maxHeight_=(param)
+
+    @noEquivalentGetterExists
+    @inline def maxHeight: Int = 0
+
+    @inline def filters_=(param: Array[InputFilter]) = {
+      base.setFilters(param)
+      base
+    }
+
+    @inline def filters(param: Array[InputFilter]) = filters_=(param)
+
+    @noEquivalentGetterExists
+    @inline def filters: Array[InputFilter] = null
+
+    @inline def textSize_=(param: Float) = {
+      base.setTextSize(param)
+      base
+    }
+
+    @inline def textSize(param: Float) = textSize_=(param)
+
+    @inline def textSize: Float = base.getTextSize
 
     @inline def movementMethod_=(param: MovementMethod) = {
       base.setMovementMethod(param)
@@ -509,16 +847,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     @inline def text(param: CharSequence) = text_=(param)
 
     @inline def text: CharSequence = base.getText
-
-    @inline def maxHeight_=(param: Int) = {
-      base.setMaxHeight(param)
-      base
-    }
-
-    @inline def maxHeight(param: Int) = maxHeight_=(param)
-
-    @noEquivalentGetterExists
-    @inline def maxHeight: Int = 0
 
     @inline def maxLines_=(param: Int) = {
       base.setMaxLines(param)
@@ -953,6 +1281,7 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
   @inline def dropBoxManager(implicit context: Context): DropBoxManager =
     context.getSystemService(Context.DROPBOX_SERVICE).asInstanceOf[DropBoxManager]
 
+
   @inline def inputMethodManager(implicit context: Context): InputMethodManager =
     context.getSystemService(Context.INPUT_METHOD_SERVICE).asInstanceOf[InputMethodManager]
 
@@ -966,8 +1295,10 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
     context.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
 
 
+
   @inline def notificationManager(implicit context: Context): NotificationManager =
     context.getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[NotificationManager]
+
 
   @inline def powerManager(implicit context: Context): PowerManager =
     context.getSystemService(Context.POWER_SERVICE).asInstanceOf[PowerManager]
@@ -982,14 +1313,17 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
   @inline def telephonyManager(implicit context: Context): TelephonyManager =
     context.getSystemService(Context.TELEPHONY_SERVICE).asInstanceOf[TelephonyManager]
 
+
   @inline def uiModeManager(implicit context: Context): UiModeManager =
     context.getSystemService(Context.UI_MODE_SERVICE).asInstanceOf[UiModeManager]
+
 
   @inline def vibrator(implicit context: Context): Vibrator =
     context.getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
 
   @inline def wallpaperManager(implicit context: Context): WallpaperManager =
     context.getSystemService(Context.WALLPAPER_SERVICE).asInstanceOf[WallpaperManager]
+
 
   @inline def wifiManager(implicit context: Context): WifiManager =
     context.getSystemService(Context.WIFI_SERVICE).asInstanceOf[WifiManager]
