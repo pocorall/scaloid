@@ -44,9 +44,7 @@ import android.view.accessibility.AccessibilityManager
 import android.accounts.AccountManager
 import android.view.inputmethod.InputMethodManager
 import android.location.LocationManager
-import android.nfc.NfcManager
 import android.hardware.SensorManager
-import storage.StorageManager
 import android.telephony.TelephonyManager
 import android.net.wifi.WifiManager
 import android.content
@@ -92,6 +90,21 @@ package object common {
       r.play()
     }
   }
+
+implicit def func2ViewOnClickListener[F](f: View => F): View.OnClickListener =
+  new View.OnClickListener() {
+    def onClick(view: View) {
+      f(view)
+    }
+  }
+
+implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
+  new View.OnClickListener() {
+    def onClick(view: View) {
+      f
+    }
+  }
+
 
   trait ConstantsSupport {
     // android:inputType constants for TextView
@@ -315,7 +328,8 @@ package object common {
       base
     }
 
-    val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
+    val FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT
+    val MATCH_PARENT = ViewGroup.LayoutParams.FILL_PARENT
     val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
 
     def layout[LP <: ViewGroupLayoutParams[_]](implicit defaultLayoutParam: (View) => LP): LP = {
@@ -935,8 +949,6 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
   @inline def devicePolicyManager(implicit context: Context): DevicePolicyManager =
     context.getSystemService(Context.DEVICE_POLICY_SERVICE).asInstanceOf[DevicePolicyManager]
 
-  @inline def downloadManager(implicit context: Context): DownloadManager =
-    context.getSystemService(Context.DOWNLOAD_SERVICE).asInstanceOf[DownloadManager]
 
   @inline def dropBoxManager(implicit context: Context): DropBoxManager =
     context.getSystemService(Context.DROPBOX_SERVICE).asInstanceOf[DropBoxManager]
@@ -953,8 +965,6 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
   @inline def locationManager(implicit context: Context): LocationManager =
     context.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
 
-  @inline def nfcManager(implicit context: Context): NfcManager =
-    context.getSystemService(Context.NFC_SERVICE).asInstanceOf[NfcManager]
 
   @inline def notificationManager(implicit context: Context): NotificationManager =
     context.getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[NotificationManager]
@@ -968,8 +978,6 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
   @inline def sensorManager(implicit context: Context): SensorManager =
     context.getSystemService(Context.SENSOR_SERVICE).asInstanceOf[SensorManager]
 
-  @inline def storageManager(implicit context: Context): StorageManager =
-    context.getSystemService(Context.STORAGE_SERVICE).asInstanceOf[StorageManager]
 
   @inline def telephonyManager(implicit context: Context): TelephonyManager =
     context.getSystemService(Context.TELEPHONY_SERVICE).asInstanceOf[TelephonyManager]
@@ -1097,6 +1105,20 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
     override def onCreate(savedInstanceState: Bundle) {
       super.onCreate(savedInstanceState)
       getWindow.addFlags(FLAG_DISMISS_KEYGUARD | FLAG_SHOW_WHEN_LOCKED | FLAG_TURN_SCREEN_ON)
+    }
+  }
+
+implicit def func2DialogOnClickListener[F](f: (DialogInterface, Int) => F): DialogInterface.OnClickListener =
+  new DialogInterface.OnClickListener {
+    def onClick(dialog: DialogInterface, which: Int) {
+      f(dialog, which)
+    }
+  }
+
+implicit def lazy2DialogOnClickListener[F](f: => F): DialogInterface.OnClickListener =
+  new DialogInterface.OnClickListener {
+    def onClick(dialog: DialogInterface, which: Int) {
+      f
     }
   }
 

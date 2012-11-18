@@ -192,6 +192,10 @@ is reduced to:
 is reduced to:
 
     toast("hi, there!")
+	
+If you want toast longer:
+
+    longToast("long toast")
    
 ##### Dialog
 
