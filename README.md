@@ -7,7 +7,7 @@ Scala is cool. [Writing Android application with Scala](#need-help-using-scala-l
 For example, the code block shown below:
 
 	val button = new Button(context)
-	button.setText("send")
+	button.setText("Greet")
 	button.setOnClickListener(new OnClickListener() {
 	  def onClick(v: View) {
 		Toast.makeText(context, "Hello!", Toast.LENGTH_SHORT).show()
@@ -17,7 +17,7 @@ For example, the code block shown below:
 
 is reduced to:	
 	
-	layout += $Button("send", toast("Hello!"))
+	layout += $Button("Greet", toast("Hello!"))
 
 
 ### Benefits
@@ -26,7 +26,7 @@ is reduced to:
  * **Simple to use**<br/> 
    This is a single-file project. Just copy-and-paste `common.scala` into your project!
  * **Compatible with your legacy code**<br/>
-   You can use both style of Scaloid and plain-old Java Android API. You can gradually improve your legacy code.
+   You can use both Scaloid and plain-old Java Android API. You can gradually improve your legacy code.
  * **Maintained actively**<br/>
    This project is originally created to be used for [my own Android app](https://play.google.com/store/apps/details?id=com.tocplus.client.android). The first principle of this project is "working right".
    
@@ -150,17 +150,6 @@ This is not a smart way. Write just one method that defines the logic:
 Then Scaloid implicit conversions will take care about these resource type conversions.
 
 	
-##### Listeners	
-	
-	( => Any) => OnClickListener
-	( => Boolean) => OnLongClickListener
-	((View, Boolean) => Any) => OnFocusChangeListener
-	( => Boolean) => OnEditorActionListener
-	( => Boolean) => OnKeyListener
-	((CharSequence, Int, Int, Int) => Any) => TextWatcher
-
-In Scaloid, listeners can be described in three ways: implicit conversions wich is shown above, [rich class](#rich-classes), and $-ed class. We recommend to use rich class or $-ed class for listeners. We provide implicit conversions for listeners as an auxiliary way.
-
 ##### Runnable
 	
 	( => Any) => Runnable
