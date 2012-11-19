@@ -49,7 +49,8 @@ import android.telephony.TelephonyManager
 import android.net.wifi.WifiManager
 import android.content._
 import android.widget._
-import android.preference.PreferenceManager
+import android.preference._
+import android.preference.Preference._
 import android.view.WindowManager.LayoutParams._
 import android.view.View._
 import android.graphics.drawable.Drawable
@@ -153,24 +154,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       base
     }
 
-    @inline def onLongClick(f:  => Boolean): V = {
-      base.setOnLongClickListener(new OnLongClickListener {
-        def onLongClick(p1: View): Boolean = {
-          f
-        }
-      })
-      base
-    }
-
-    @inline def onLongClick(f: (View) => Boolean): V = {
-      base.setOnLongClickListener(new OnLongClickListener {
-        def onLongClick(p1: View): Boolean = {
-          f(p1)
-        }
-      })
-      base
-    }
-
     @inline def onCreateContextMenu(f:  => Unit): V = {
       base.setOnCreateContextMenuListener(new OnCreateContextMenuListener {
         def onCreateContextMenu(p1: ContextMenu, p2: View, p3: ContextMenuInfo): Unit = {
@@ -220,6 +203,24 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       base.setOnKeyListener(new OnKeyListener {
         def onKey(p1: View, p2: Int, p3: KeyEvent): Boolean = {
           f(p1, p2, p3)
+        }
+      })
+      base
+    }
+
+    @inline def onLongClick(f:  => Boolean): V = {
+      base.setOnLongClickListener(new OnLongClickListener {
+        def onLongClick(p1: View): Boolean = {
+          f
+        }
+      })
+      base
+    }
+
+    @inline def onLongClick(f: (View) => Boolean): V = {
+      base.setOnLongClickListener(new OnLongClickListener {
+        def onLongClick(p1: View): Boolean = {
+          f(p1)
         }
       })
       base
@@ -1134,6 +1135,16 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
     @noEquivalentGetterExists
     @inline def foregroundGravity: Int = 0
 
+    @inline def measureAllChildren_=(param: Boolean) = {
+      base.setMeasureAllChildren(param)
+      base
+    }
+
+    @inline def measureAllChildren(param: Boolean) = measureAllChildren_=(param)
+
+    @noEquivalentGetterExists
+    @inline def measureAllChildren: Boolean = false
+
   }
 
 class RichLinearLayout[V <: LinearLayout](val base: V) extends TraitLinearLayout[V]
@@ -1141,6 +1152,34 @@ class RichLinearLayout[V <: LinearLayout](val base: V) extends TraitLinearLayout
 @inline implicit def linearLayout2RichLinearLayout[V <: LinearLayout](linearLayout: V) = new RichLinearLayout[V](linearLayout)
 
   trait TraitLinearLayout[V <: LinearLayout]  extends TraitViewGroup[V] {
+    @inline def baselineAligned_=(param: Boolean) = {
+      base.setBaselineAligned(param)
+      base
+    }
+
+    @inline def baselineAligned(param: Boolean) = baselineAligned_=(param)
+
+    @inline def baselineAligned: Boolean = base.isBaselineAligned
+
+    @inline def baselineAlignedChildIndex_=(param: Int) = {
+      base.setBaselineAlignedChildIndex(param)
+      base
+    }
+
+    @inline def baselineAlignedChildIndex(param: Int) = baselineAlignedChildIndex_=(param)
+
+    @inline def baselineAlignedChildIndex: Int = base.getBaselineAlignedChildIndex
+
+    @inline def gravity_=(param: Int) = {
+      base.setGravity(param)
+      base
+    }
+
+    @inline def gravity(param: Int) = gravity_=(param)
+
+    @noEquivalentGetterExists
+    @inline def gravity: Int = 0
+
     @inline def orientation_=(param: Int) = {
       base.setOrientation(param)
       base
@@ -1172,6 +1211,55 @@ class RichLinearLayout[V <: LinearLayout](val base: V) extends TraitLinearLayout
 
       def end: View = v
     }
+
+  }
+
+class RichEditTextPreference[V <: EditTextPreference](val base: V) extends TraitEditTextPreference[V]
+
+@inline implicit def EditTextPreference2RichEditTextPreference[V <: EditTextPreference](EditTextPreference: V) = new RichEditTextPreference[V](EditTextPreference)
+
+  trait TraitEditTextPreference[V <: EditTextPreference]  {
+  def base: V
+    @inline def onPreferenceChange(f:  => Boolean): V = {
+      base.setOnPreferenceChangeListener(new OnPreferenceChangeListener {
+        def onPreferenceChange(p1: Preference, p2: Object): Boolean = {
+          f
+        }
+      })
+      base
+    }
+
+    @inline def onPreferenceChange(f: (Preference, Object) => Boolean): V = {
+      base.setOnPreferenceChangeListener(new OnPreferenceChangeListener {
+        def onPreferenceChange(p1: Preference, p2: Object): Boolean = {
+          f(p1, p2)
+        }
+      })
+      base
+    }
+
+    @inline def onPreferenceClick(f:  => Boolean): V = {
+      base.setOnPreferenceClickListener(new OnPreferenceClickListener {
+        def onPreferenceClick(p1: Preference): Boolean = {
+          f
+        }
+      })
+      base
+    }
+
+    @inline def onPreferenceClick(f: (Preference) => Boolean): V = {
+      base.setOnPreferenceClickListener(new OnPreferenceClickListener {
+        def onPreferenceClick(p1: Preference): Boolean = {
+          f(p1)
+        }
+      })
+      base
+    }
+
+  }
+
+  @inline class $EditTextPreference(implicit context: Context) extends EditTextPreference(context) with TraitEditTextPreference[$EditTextPreference] {
+    def base = this
 
   }
 
