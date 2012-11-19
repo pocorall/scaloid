@@ -56,7 +56,7 @@ import android.graphics.drawable.Drawable
 import java.lang.CharSequence
 import scala.Int
 import android.view.ContextMenu.ContextMenuInfo
-import android.text.method.MovementMethod
+import android.text.method._
 import annotation.target.{beanGetter, getter}
 import android.view.ViewGroup.LayoutParams
 import android.widget.TextView.OnEditorActionListener
@@ -144,7 +144,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       base
     }
 
-
     @inline def onClick(f: (View) => Unit): V = {
       base.setOnClickListener(new OnClickListener {
         def onClick(p1: View): Unit = {
@@ -153,7 +152,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       })
       base
     }
-
 
     @inline def onLongClick(f:  => Boolean): V = {
       base.setOnLongClickListener(new OnLongClickListener {
@@ -164,7 +162,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       base
     }
 
-
     @inline def onLongClick(f: (View) => Boolean): V = {
       base.setOnLongClickListener(new OnLongClickListener {
         def onLongClick(p1: View): Boolean = {
@@ -173,7 +170,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       })
       base
     }
-
 
     @inline def onCreateContextMenu(f:  => Unit): V = {
       base.setOnCreateContextMenuListener(new OnCreateContextMenuListener {
@@ -184,7 +180,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       base
     }
 
-
     @inline def onCreateContextMenu(f: (ContextMenu, View, ContextMenuInfo) => Unit): V = {
       base.setOnCreateContextMenuListener(new OnCreateContextMenuListener {
         def onCreateContextMenu(p1: ContextMenu, p2: View, p3: ContextMenuInfo): Unit = {
@@ -193,7 +188,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       })
       base
     }
-
 
     @inline def onFocusChange(f:  => Unit): V = {
       base.setOnFocusChangeListener(new OnFocusChangeListener {
@@ -204,7 +198,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       base
     }
 
-
     @inline def onFocusChange(f: (View, Boolean) => Unit): V = {
       base.setOnFocusChangeListener(new OnFocusChangeListener {
         def onFocusChange(p1: View, p2: Boolean): Unit = {
@@ -213,7 +206,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       })
       base
     }
-
 
     @inline def onKey(f:  => Boolean): V = {
       base.setOnKeyListener(new OnKeyListener {
@@ -224,7 +216,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       base
     }
 
-
     @inline def onKey(f: (View, Int, KeyEvent) => Boolean): V = {
       base.setOnKeyListener(new OnKeyListener {
         def onKey(p1: View, p2: Int, p3: KeyEvent): Boolean = {
@@ -233,7 +224,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       })
       base
     }
-
 
     @inline def onTouch(f:  => Boolean): V = {
       base.setOnTouchListener(new OnTouchListener {
@@ -244,7 +234,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       base
     }
 
-
     @inline def onTouch(f: (View, MotionEvent) => Boolean): V = {
       base.setOnTouchListener(new OnTouchListener {
         def onTouch(p1: View, p2: MotionEvent): Boolean = {
@@ -253,7 +242,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       })
       base
     }
-
 
     @inline def backgroundResource_=(param: Int) = {
       base.setBackgroundResource(param)
@@ -548,73 +536,86 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
   @inline implicit def activity2RichActivity(base: Activity) = new RichActivity(base)
 
-  trait TraitTextView[V <: TextView] extends TraitView[V] {
+class RichTextView[V <: TextView](val base: V) extends TraitTextView[V]
+
+@inline implicit def textView2RichTextView[V <: TextView](textView: V) = new RichTextView[V](textView)
+
+  trait TraitTextView[V <: TextView]  extends TraitView[V] {
     def base: V
     @inline def beforeTextChanged(f:  => Unit): V = {
       base.addTextChangedListener(new TextWatcher {
-        def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-          f        }
-
-        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
-
-        def afterTextChanged(p1: Editable) {}
-      })
-      base
-    }
-    @inline def beforeTextChanged(f: (CharSequence, Int, Int, Int) => Unit): V = {
-      base.addTextChangedListener(new TextWatcher {
-        def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-          f(s, start, before, count)        }
-
-        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
-
-        def afterTextChanged(p1: Editable) {}
+        def beforeTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int): Unit = {
+          f
+        }
+        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int): Unit = {
+        }
+        def afterTextChanged(p1: Editable): Unit = {
+        }
       })
       base
     }
 
     @inline def onTextChanged(f:  => Unit): V = {
       base.addTextChangedListener(new TextWatcher {
-        def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-
-        def onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-          f        }
-
-        def afterTextChanged(p1: Editable) {}
-      })
-      base
-    }
-    @inline def onTextChanged(f: (CharSequence, Int, Int, Int) => Unit): V = {
-      base.addTextChangedListener(new TextWatcher {
-        def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-
-        def onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-          f(s, start, before, count)        }
-
-        def afterTextChanged(p1: Editable) {}
+        def beforeTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int): Unit = {
+        }
+        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int): Unit = {
+          f
+        }
+        def afterTextChanged(p1: Editable): Unit = {
+        }
       })
       base
     }
 
     @inline def afterTextChanged(f:  => Unit): V = {
       base.addTextChangedListener(new TextWatcher {
-        def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-
-        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
-
-        def afterTextChanged(editable: Editable) {
-          f        }
+        def beforeTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int): Unit = {
+        }
+        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int): Unit = {
+        }
+        def afterTextChanged(p1: Editable): Unit = {
+          f
+        }
       })
       base
     }
-    @inline def afterTextChanged(f: Editable => Unit): V = {
+
+    @inline def beforeTextChanged(f: (CharSequence, Int, Int, Int) => Unit): V = {
       base.addTextChangedListener(new TextWatcher {
-        def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+        def beforeTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int): Unit = {
+          f(p1, p2, p3, p4)
+        }
+        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int): Unit = {
+        }
+        def afterTextChanged(p1: Editable): Unit = {
+        }
+      })
+      base
+    }
 
-        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
+    @inline def onTextChanged(f: (CharSequence, Int, Int, Int) => Unit): V = {
+      base.addTextChangedListener(new TextWatcher {
+        def beforeTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int): Unit = {
+        }
+        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int): Unit = {
+          f(p1, p2, p3, p4)
+        }
+        def afterTextChanged(p1: Editable): Unit = {
+        }
+      })
+      base
+    }
 
-        def afterTextChanged(editable: Editable) {
-          f(editable)        }
+    @inline def afterTextChanged(f: (Editable) => Unit): V = {
+      base.addTextChangedListener(new TextWatcher {
+        def beforeTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int): Unit = {
+        }
+        def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int): Unit = {
+        }
+        def afterTextChanged(p1: Editable): Unit = {
+          f(p1)
+        }
       })
       base
     }
@@ -628,7 +629,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       base
     }
 
-
     @inline def onEditorAction(f: (TextView, Int, KeyEvent) => Boolean): V = {
       base.setOnEditorActionListener(new OnEditorActionListener {
         def onEditorAction(p1: TextView, p2: Int, p3: KeyEvent): Boolean = {
@@ -637,7 +637,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       })
       base
     }
-
 
     @inline def autoLinkMask_=(param: Int) = {
       base.setAutoLinkMask(param)
@@ -821,6 +820,94 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     @noEquivalentGetterExists
     @inline def filters: Array[InputFilter] = null
 
+    @inline def maxLines_=(param: Int) = {
+      base.setMaxLines(param)
+      base
+    }
+
+    @inline def maxLines(param: Int) = maxLines_=(param)
+
+    @noEquivalentGetterExists
+    @inline def maxLines: Int = 0
+
+    @inline def maxWidth_=(param: Int) = {
+      base.setMaxWidth(param)
+      base
+    }
+
+    @inline def maxWidth(param: Int) = maxWidth_=(param)
+
+    @noEquivalentGetterExists
+    @inline def maxWidth: Int = 0
+
+    @inline def minEms_=(param: Int) = {
+      base.setMinEms(param)
+      base
+    }
+
+    @inline def minEms(param: Int) = minEms_=(param)
+
+    @noEquivalentGetterExists
+    @inline def minEms: Int = 0
+
+    @inline def minHeight_=(param: Int) = {
+      base.setMinHeight(param)
+      base
+    }
+
+    @inline def minHeight(param: Int) = minHeight_=(param)
+
+    @noEquivalentGetterExists
+    @inline def minHeight: Int = 0
+
+    @inline def minLines_=(param: Int) = {
+      base.setMinLines(param)
+      base
+    }
+
+    @inline def minLines(param: Int) = minLines_=(param)
+
+    @noEquivalentGetterExists
+    @inline def minLines: Int = 0
+
+    @inline def minWidth_=(param: Int) = {
+      base.setMinWidth(param)
+      base
+    }
+
+    @inline def minWidth(param: Int) = minWidth_=(param)
+
+    @noEquivalentGetterExists
+    @inline def minWidth: Int = 0
+
+    @inline def transformationMethod_=(param: TransformationMethod) = {
+      base.setTransformationMethod(param)
+      base
+    }
+
+    @inline def transformationMethod(param: TransformationMethod) = transformationMethod_=(param)
+
+    @inline def transformationMethod: TransformationMethod = base.getTransformationMethod
+
+    @inline def privateImeOptions_=(param: String) = {
+      base.setPrivateImeOptions(param)
+      base
+    }
+
+    @inline def privateImeOptions(param: String) = privateImeOptions_=(param)
+
+    @inline def privateImeOptions: String = base.getPrivateImeOptions
+
+    @inline def horizontallyScrolling_=(param: Boolean) = {
+      base.setHorizontallyScrolling(param)
+      base
+    }
+
+    @inline def horizontallyScrolling(param: Boolean) = horizontallyScrolling_=(param)
+
+    @noEquivalentGetterExists
+    @inline def horizontallyScrolling: Boolean = false
+
     @inline def textSize_=(param: Float) = {
       base.setTextSize(param)
       base
@@ -848,16 +935,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def text: CharSequence = base.getText
 
-    @inline def maxLines_=(param: Int) = {
-      base.setMaxLines(param)
-      base
-    }
-
-    @inline def maxLines(param: Int) = maxLines_=(param)
-
-    @noEquivalentGetterExists
-    @inline def maxLines: Int = 0
-
     @inline def linkTextColor_=(param: Int) = {
       base.setLinkTextColor(param)
       base
@@ -879,11 +956,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
 
   }
-
-  class RichTextView[V <: TextView](val base: V) extends TraitTextView[V]
-
-  @inline implicit def view2RichTextView[V <: TextView](base: V) = new RichTextView[V](base)
-
 
   class RichMenu(menu: Menu) {
     @inline def +=(txt: CharSequence) = menu.add(txt)
@@ -945,7 +1017,11 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
   @inline implicit def Int2unitConversion(ext: Int)(implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
 
-  trait TraitListView[V <: ListView] extends TraitAbsListView[V] {
+class RichListView[V <: ListView](val base: V) extends TraitListView[V]
+
+@inline implicit def listView2RichListView[V <: ListView](listView: V) = new RichListView[V](listView)
+
+  trait TraitListView[V <: ListView]  extends TraitAbsListView[V] {
     @inline def adapter_=(param: ListAdapter) = {
       base.setAdapter(param)
       base
@@ -985,12 +1061,11 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
   }
 
-  class RichListView[V <: ListView](val base: V) extends TraitListView[V]
+class RichViewGroup[V <: ViewGroup](val base: V) extends TraitViewGroup[V]
 
-  @inline implicit def listView2RichListView[V <: ListView](view: V) = new RichListView[V](view)
+@inline implicit def viewGroup2RichViewGroup[V <: ViewGroup](viewGroup: V) = new RichViewGroup[V](viewGroup)
 
-
-  trait TraitViewGroup[V <: ViewGroup] extends TraitView[V] {
+  trait TraitViewGroup[V <: ViewGroup]  extends TraitView[V] {
     @inline def +=(v: View): V = {
       base.addView(v)
       base
@@ -1035,16 +1110,11 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     }
   }
 
-  class RichViewGroup[V <: ViewGroup](val base: V) extends TraitViewGroup[V]
-
-  @inline implicit def viewGroup2RichViewGroup[V <: ViewGroup](viewGroup: V) = new RichViewGroup[V](viewGroup)
-
-
 class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
 
 @inline implicit def frameLayout2RichFrameLayout[V <: FrameLayout](frameLayout: V) = new RichFrameLayout[V](frameLayout)
 
-  trait TraitFrameLayout[V <: FrameLayout] extends TraitViewGroup[V] {
+  trait TraitFrameLayout[V <: FrameLayout]  extends TraitViewGroup[V] {
     @inline def foreground_=(param: Drawable) = {
       base.setForeground(param)
       base
@@ -1066,7 +1136,11 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
 
   }
 
-  trait TraitLinearLayout[V <: LinearLayout] extends TraitViewGroup[V] {
+class RichLinearLayout[V <: LinearLayout](val base: V) extends TraitLinearLayout[V]
+
+@inline implicit def linearLayout2RichLinearLayout[V <: LinearLayout](linearLayout: V) = new RichLinearLayout[V](linearLayout)
+
+  trait TraitLinearLayout[V <: LinearLayout]  extends TraitViewGroup[V] {
     @inline def orientation_=(param: Int) = {
       base.setOrientation(param)
       base
@@ -1077,10 +1151,6 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
     @inline def orientation: Int = base.getOrientation
 
   }
-
-  class RichLinearLayout[V <: LinearLayout](val base: V) extends TraitLinearLayout[V]
-
-  @inline implicit def linearLaout2RichLinearLayout[V <: LinearLayout](linearLayout: V) = new RichLinearLayout[V](linearLayout)
 
   @inline class $LinearLayout(implicit context: Context) extends LinearLayout(context) with TraitLinearLayout[$LinearLayout] {
     def base = this
@@ -1483,4 +1553,5 @@ implicit def lazy2DialogOnClickListener[F](f: => F): DialogInterface.OnClickList
   }
 
 }
+
 
