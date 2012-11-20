@@ -1147,6 +1147,25 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
 
   }
 
+@inline class $FrameLayout(implicit context: Context) extends FrameLayout(context) with TraitFrameLayout[$FrameLayout] {
+  def base = this
+
+  implicit def defaultLayoutParams(v: View): LayoutParams = new LayoutParams(v)
+
+  class LayoutParams(v: View) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams] {
+    def base = this
+
+    v.setLayoutParams(this)
+
+    def Gravity(g: Float): LayoutParams = {
+      gravity = g
+      this
+    }
+
+    def end: View = v
+  }
+}
+
 class RichLinearLayout[V <: LinearLayout](val base: V) extends TraitLinearLayout[V]
 
 @inline implicit def linearLayout2RichLinearLayout[V <: LinearLayout](linearLayout: V) = new RichLinearLayout[V](linearLayout)

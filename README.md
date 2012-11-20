@@ -308,6 +308,47 @@ is equivalent to:
 Other `Rich...` classes are also defined to provide additional functionality by implicit conversion. Please check the source code for details.
 	
 
+## Layouts and layout context
+
+In Android API, Layout informations are stored into a `View` object with a method `View.setLayoutParams(ViewGroup.LayoutParams)`. The type of parameter passing into that method is determined by a the type of `Layout` object which contains the `View` object. For example, let us see some Java code shown below:
+
+    LinearLayout layout = new LinearLayout(context);
+	Button button = new Button(context);
+	button.setText("Click");
+	LinearLayout.LayoutParams params = new LinearLayout.LayoutParams();
+	params.weight = 1.0f;	// sets some value
+	button.setLayoutParams(params);
+	layout.addView(button);
+	
+Because the button is appended into the `LinearLayout`, a layout parameter must be `LinearLayout.LayoutParams`, otherwise a ___runtime error___ might be occured. Meanwhile, Scaloid elliminate this burden, still preserving regorous typing of `LayoutParams`. The code shown below is equivalent to the previous Java code:
+
+    val layout = new $LinearLayout {
+	  +=($Button("Click").layout.Weight(1.0f).end)
+    }
+	
+In the anonymous constructor scope, Scaloid provides an implicit function called "layout context". This affects a return type of `.layout` method of the class `$Button`. If we use `$FrameLayout` as a layout context, `.layout` returns `FrameLayout.LayoutParams`, so the code below results ___syntax error___.
+
+    val ll = new $FrameLayout {
+      +=($Button("Click").layout.Weight(1.0f).end) // Syntax error on Weight()
+    }
+
+It is a pragmatical progress towards both simplicity and rigorous type checking.
+	
+##### function `.end`
+
+As we noted, the function `.layout` returns an object type of `ViewGroup.LayoutParams`:
+
+    val params = $Button("Click").layout   // type LayoutParams
+	
+This class provides some setters for chaining:
+	
+    val params = $Button("Click").layout.bottomMargin(100).leftMargin(10)   // type LayoutParams
+	
+if we want use the `Button` object again, Scaloid provides `.end` method returning back to the object:
+	
+	val button = $Button("Click").layout.bottomMargin(100).leftMargin(10).end   // type Button
+
+	
 ## Traits
 
 ### Trait ContextUtil
