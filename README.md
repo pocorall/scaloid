@@ -335,8 +335,8 @@ Because the button is appended into the `LinearLayout`, the layout parameter mus
 	
 In the anonymous constructor scope, Scaloid provides an implicit function called "layout context". This affects a return type of `.layout` method of the class `$Button`. If we use `$FrameLayout` as a layout context, `.layout` returns `FrameLayout.LayoutParams`, so the code below results a ___syntax error___.
 
-    val ll = new $FrameLayout {
-      +=($Button("Click").layout.Weight(1.0f).end) // Syntax error on Weight()
+    val layout = new $FrameLayout {
+      +=($Button("Click").layout.Weight(1.0f).end)   // Syntax error on Weight()
     }
 
 It is a pragmatical progress towards both simplicity and rigorous type checking.
@@ -388,7 +388,7 @@ Using this and importing `scala.concurrent.ops._`, an asynchronous job can be ru
 		runOnUiThread(alert("Done!", result))
 	}
 	
-Compare the code above with the code using `AsyncTask`, which is shown below. It is a great win as it exposes your idea clealy.
+Compare the code above with the code using an Android API `AsyncTask`, which is shown below. It is a great win as it exposes your idea clealy.
 
     new AsyncTask[String, Void, String] {
       def doInBackground(params: Array[String]) = {
