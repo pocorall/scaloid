@@ -316,7 +316,7 @@ Also, we overrides `beforeTextChanged()` with a full parameter defined in the or
 	
 
 
-## Layouts and layout context
+## Layout context
 
 In Android API, layout information are stored into a `View` object with a method `View.setLayoutParams(ViewGroup.LayoutParams)`. A specific type of parameter passing into that method is determined by a the type of `...Layout` object which contains the `View` object. For example, let us see some Java code shown below:
 
@@ -362,10 +362,27 @@ When the layout context is nested, inner-most context is applied:
 	
     val layout = new $FrameLayout {
 	  +=(new $LinearLayout {
-	    +=($Button("Click").layout.Weight(1.0f).end) // in context of $LinearLayout
+	    +=($Button("Click").layout.Weight(1.0f).end)   // in context of $LinearLayout
       })
 	}
 
+#### `matchLayout` and `warpLayout`
+
+When we get a `LayoutParams` from `.layout`, the default values of `height` and `width` property is `height = WRAP_CONTENT` and `width = MATCH_PARENT'. You can override this when you need it:
+
+    $Button("Click").layout.Width(MATCH_PARENT).Height(MATCH_PARENT)
+	
+This is very frequently used idiom. Therefore we use further shorthand:
+
+    $Button("Click").matchLayout
+
+If you want the `View` element to be wrapped,
+
+    $Button("Click").layout.Width(WRAP_CONTENT).Height(WRAP_CONTENT)
+	
+This also be shortened as:
+
+    $Button("Click").wrapLayout
 	
 ## Traits
 
