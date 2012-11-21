@@ -368,11 +368,11 @@ When the layout context is nested, inner-most context is applied:
 
 #### matchLayout and warpLayout
 
-When we get a `LayoutParams` from `.layout`, the default values of `height` and `width` property is `height = WRAP_CONTENT` and `width = MATCH_PARENT'. You can override this when you need it:
+When we get a `LayoutParams` from `.layout`, the default values of `height` and `width` property is `height = WRAP_CONTENT` and `width = MATCH_PARENT`. You can override this when you need it:
 
     $Button("Click").layout.Width(MATCH_PARENT).Height(MATCH_PARENT)
 	
-This is very frequently used idiom. Therefore we use further shorthand:
+This is a very frequently used idiom. Therefore we provide a further shorthand:
 
     $Button("Click").matchLayout
 
