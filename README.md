@@ -383,7 +383,9 @@ If you want the `View` element to be wrapped,
 This also be shortened as:
 
     $Button("Click").wrapLayout
-	
+
+You may think that this is too straightforward if you haven't be in stuck on these `width` and `height` attributes.
+
 ## Traits
 
 ### Trait ContextUtil
