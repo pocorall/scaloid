@@ -28,7 +28,7 @@ is reduced to:
  * **Compatible with your legacy code**<br/>
    You can use both Scaloid and plain-old Java Android API. You can gradually improve your legacy code.
  * **Maintained actively**<br/>
-   This project is originally created to be used for [my own Android app](https://play.google.com/store/apps/details?id=com.tocplus.client.android). The first principle of this project is "working right".
+   Scaloid is a [dogfooding](http://en.wikipedia.org/wiki/Eating_your_own_dog_food) software. This is originally created to be used for [my own Android app](https://play.google.com/store/apps/details?id=com.tocplus.client.android).
    
 ### Demos
 
