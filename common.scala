@@ -1157,7 +1157,7 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
 
     v.setLayoutParams(this)
 
-    def Gravity(g: Float): LayoutParams = {
+    def Gravity(g: Int): LayoutParams = {
       gravity = g
       this
     }
@@ -1660,5 +1660,4 @@ implicit def lazy2DialogOnClickListener[F](f: => F): DialogInterface.OnClickList
   }
 
 }
-
 
