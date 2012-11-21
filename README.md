@@ -170,7 +170,7 @@ Many methods in Android API requires an instance of a class `Context`. Providing
 
     implicit val context = ...
 
-or just extend trait `ContextUtil`, which defines it for you. Then the codes that required `Context` becomes much simpler, for example:
+or just extend trait `$Context`, which defines it for you. Then the codes that required `Context` becomes much simpler, for example:
 
 
 ##### Intent
@@ -368,7 +368,7 @@ When the layout context is nested, inner-most context is applied:
 
 #### matchLayout and warpLayout
 
-When we get a `LayoutParams` from `.layout`, the default values of `height` and `width` property is `height = WRAP_CONTENT` and `width = MATCH_PARENT`. You can override this when you need it:
+When we get a `LayoutParams` from `.layout`, the default values of `width` and `height` property is `width = MATCH_PARENT` and `height = WRAP_CONTENT`. You can override this when you need it:
 
     $Button("Click").layout.Width(MATCH_PARENT).Height(MATCH_PARENT)
 	
@@ -384,13 +384,13 @@ This also be shortened as:
 
     $Button("Click").wrapLayout
 
-You may think that this is too straightforward if you haven't be in stuck on these `width` and `height` attributes.
+You may think that this is too straightforward if you haven't been in stuck on these `width` and `height` attributes.
 
 ## Traits
 
-### Trait ContextUtil
+### Trait $Context
 
-Trait `ContextUtil` includes several shortcuts for frequently used android idioms.
+Trait `$Context` includes several shortcuts for frequently used android idioms.
 
 
 ### Trait RunOnUiThread
@@ -447,7 +447,7 @@ class MyService extends UnregisterReceiverService {
 }
 ```
 
-### Trait ActivityUtil
+### Trait $Activity
 
 Instead of
 
@@ -463,7 +463,7 @@ Unlike other logging frameworks, Android Logging API requires a `String` tag for
 
     implicit val tag = LoggerTag("MyAppTag")
 
-or, extend trait `TagUtil` or `ContextUtil` which defines this by default. Then you can simply log like this:
+or, extend trait `TagUtil` or `$Context` which defines this by default. Then you can simply log like this:
 
 	warn("Something happened!")
 

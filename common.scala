@@ -519,7 +519,11 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     def base = this
   }
 
-  trait TraitActivity {
+class RichActivity[V <: Activity](val base: V) extends TraitActivity[V]
+
+@inline implicit def activity2RichActivity[V <: Activity](activity: V) = new RichActivity[V](activity)
+
+  trait TraitActivity[V <: Activity]  extends RunOnUiThread {
     def base: Activity
     @inline def contentView_=(param: View) = {
       base.setContentView(param)
@@ -531,11 +535,13 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     @noEquivalentGetterExists
     @inline def contentView: View = null
 
+
+    def find[V <: View](id: Int): V = base.findViewById(id).asInstanceOf[V]
   }
 
-  class RichActivity(val base: Activity) extends TraitActivity
-
-  @inline implicit def activity2RichActivity(base: Activity) = new RichActivity(base)
+  trait $Activity extends Activity with $Context with TraitActivity[$Activity] {
+    def base = this
+  }
 
 class RichTextView[V <: TextView](val base: V) extends TraitTextView[V]
 
@@ -1508,7 +1514,7 @@ class RichEditTextPreference[V <: EditTextPreference](val base: V) extends Trait
   @inline def windowManager(implicit context: Context): WindowManager =
     context.getSystemService(Context.WINDOW_SERVICE).asInstanceOf[WindowManager]
 
-  trait ContextUtil extends Context with TagUtil {
+  trait $Context extends Context with TagUtil with RunOnUiThread {
     implicit val context = this
 
     def startActivity[T: ClassManifest] {
@@ -1522,15 +1528,6 @@ class RichEditTextPreference[V <: EditTextPreference](val base: V) extends Trait
     def stopService[T: ClassManifest] {
       stopService($Intent[T])
     }
-  }
-
-  /**
-   * Provides utility methods for Activity
-   */
-  trait ActivityUtil extends Activity with TraitActivity {
-    def base = this
-
-    def find[V <: View](id: Int): V = findViewById(id).asInstanceOf[V]
   }
 
   /**
