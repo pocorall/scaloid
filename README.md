@@ -342,7 +342,7 @@ In the anonymous constructor of '$LinearLayout', Scaloid provides an implicit fu
 
 It is a pragmatical progress towards both simplicity and rigorous type checking.
 	
-#### Function `.end`
+#### Function .end
 
 As we noted, the function `.layout` returns an object type of `ViewGroup.LayoutParams`:
 
@@ -366,7 +366,7 @@ When the layout context is nested, inner-most context is applied:
       })
 	}
 
-#### `matchLayout` and `warpLayout`
+#### matchLayout and warpLayout
 
 When we get a `LayoutParams` from `.layout`, the default values of `height` and `width` property is `height = WRAP_CONTENT` and `width = MATCH_PARENT'. You can override this when you need it:
 
