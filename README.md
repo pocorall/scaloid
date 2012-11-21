@@ -328,7 +328,7 @@ In Android API, layout information are stored into a `View` object with a method
 	button.setLayoutParams(params);
 	layout.addView(button);
 	
-Because the button is appended into the `LinearLayout`, the layout parameter must be `LinearLayout.LayoutParams`, otherwise a ___runtime error___ might be occurred. Meanwhile, Scaloid eliminate this burden, still preserving regorous typing of `LayoutParams`. The code shown below is equivalent to the previous Java code:
+Because the button is appended into the `LinearLayout`, the layout parameter must be `LinearLayout.LayoutParams`, otherwise a ___runtime error___ might be occurred. Meanwhile, Scaloid eliminate this burden, while still preserving regorous typing of `LayoutParams`. The code shown below is equivalent to the previous Java code:
 
     val layout = new $LinearLayout {
 	  +=($Button("Click").layout.Weight(1.0f).end)
@@ -355,6 +355,16 @@ This class provides some setters for chaining:
 if we want use the `$Button` object again, Scaloid provides `.end` method returning back to the object:
 	
 	val button = $Button("Click").layout.bottomMargin(100).leftMargin(10).end   // type $Button
+
+#### Nested layout context
+	
+When the layout context is nested, inner-most context is applied:
+	
+    val layout = new $FrameLayout {
+	  +=(new $LinearLayout {
+	    +=($Button("Click").layout.Weight(1.0f).end) // in context of $LinearLayout
+      })
+	}
 
 	
 ## Traits
