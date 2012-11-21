@@ -153,8 +153,8 @@ Then Scaloid implicit conversions will take care about these resource type conve
 
 A unit is implicitly converted into different measures.
 
-    val conv = (32 dip)
-	val conv2 = (22 sp)
+    val inPixel:Int = (32 dip)
+	val inPixel2:Int = (22 sp)
 
 	
 ##### Runnable
@@ -269,12 +269,12 @@ Under the hood, Scaloid defines a function `vibrator` like this:
 All of the system service accessors available in Android API level 8 are defined.
 
 
-## Rich classes
+## Implicit classes
 
 Suppose an Android class `Foo`, for example, Scaloid defines an implicit conversion `Foo => RichFoo`. `RichFoo` defines additional method for more convenient access to `Foo`. This is a common pattern in Scala to extend existing API.
 
 
-##### Class RichView
+##### Listeners
 
 All of listener-appending methods such as `onKey()`, `onLongClick()`, and `onTouch()` are defined in `RichView`. For example:
 
@@ -292,7 +292,7 @@ button.onTouch((v:View, e:MotionEvent) => info("touched a button "+v))
 
  * Methods `add...` is abbreviated with a method `+=` if it is not a listener-appender.
 	
-##### Class RichTextView
+##### Multiple method listeners
 
 Methods `beforeTextChanged()`, `onTextChanged()`, and `afterTextChanged()` are defined in `RichTextView`, which can be implicitly converted from `TextView`. It is more convenient than using `TextWatcher` directly. For example:
 
@@ -310,10 +310,11 @@ is equivalent to:
       def afterTextChanged(p1: Editable) {}
     })
 	
-##### Other 'Rich' classes
+Also, we overrides `beforeTextChanged()` with a full parameter defined in the original listener:
 
-Other `Rich...` classes are also defined to provide additional functionality by implicit conversion. Please check the source code for details.
+    inputField.beforeTextChanged((s:CharSequence, _:Int, _:Int) => saveText(s))
 	
+
 
 ## Layouts and layout context
 
@@ -388,7 +389,7 @@ Using this and importing `scala.concurrent.ops._`, an asynchronous job can be ru
 		runOnUiThread(alert("Done!", result))
 	}
 	
-Compare the code above with the code using an Android API `AsyncTask`, which is shown below. It is a great win as it exposes your idea clealy.
+Compare the code above with the code using `AsyncTask`, which is shown below. It is a great win as it exposes your idea clealy.
 
     new AsyncTask[String, Void, String] {
       def doInBackground(params: Array[String]) = {
