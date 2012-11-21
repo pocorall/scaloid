@@ -32,7 +32,7 @@ is reduced to:
    
 ### Demos
 
-If you want to see how Scaloid can be used in action, check a [scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos).
+If you want to see how Scaloid can be used in action, check a [Scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos).
 
 ##### Need help using Scala language in your Android project?
 Please refer https://github.com/rohansingh/android-scala-test.
@@ -40,7 +40,7 @@ Please refer https://github.com/rohansingh/android-scala-test.
 
 ## UI Layout without XML
 
-Android SDK leverages XML to build UI layouts. However, XML considered still a bit verbose, and lacks programmability. Scaloid composes UI layout in Scala DSL style, therefore achieve both clearity and programmability. For example, suppose a legacy XML layout as shown below:
+Android SDK leverages XML to build UI layouts. However, XML considered still a bit verbose, and lacks programmability. Scaloid composes UI layout in Scala DSL style, therefore achieve both clarity and programmability. For example, suppose a legacy XML layout as shown below:
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical" android:layout_width="match_parent"
@@ -126,7 +126,7 @@ The functions such as [play ringtones](#play-ringtones) `play()` or [open URIs](
 	Int => CharSequence
 	Int => Drawable
 	
-Android API provides two versions of methods for string resources; One for `CharSequence`, the other for `Int` as a resource ID. If you write a functions that handles Android resource, you also have to expose methods for every combinations of two versions of resources:
+Android API provides two versions of methods for string resources; One for `CharSequence`, the other for `Int` as a resource ID. If you write a function that handles Android resource, you also have to expose methods for every combinations of two versions of resources:
 
 
     def alert(titleId:Int, textId:Int)(implicit context:Context) = {
@@ -166,7 +166,7 @@ A unit is implicitly converted into different measures.
 There are more implicit conversions available. Check the source code as needed.
 	
 ## Context as an implicit parameter
-Many methods in Android API requires an instance of a class `Context`. Providing this for every method calls results a clumsy code. We employs an implicit parameter to elliminate this. Just declare an implicit value that represents current context:
+Many methods in Android API requires an instance of a class `Context`. Providing this for every method calls results a clumsy code. We employ an implicit parameter to eliminate this. Just declare an implicit value that represents current context:
 
     implicit val context = ...
 
@@ -283,7 +283,7 @@ All of listener-appending methods such as `onKey()`, `onLongClick()`, and `onTou
 Some conventions we employed for method naming are:
 
  * We omit `set...`, `add...`, and `...Listener` from the method name, which is less significant.
- * Every methods has two versions of parameters overriden. One is a lazy parameter, and another is a function which has a full parameter defined in the original Android API. For example, these two usages are valid:
+ * Every method has two versions of parameters overridden. One is a lazy parameter, and another is a function which has a full parameter defined in the original Android API. For example, these two usages are valid:
 
 ```
 button.onTouch(info("touched"))
@@ -318,7 +318,7 @@ Also, we overrides `beforeTextChanged()` with a full parameter defined in the or
 
 ## Layouts and layout context
 
-In Android API, layout informations are stored into a `View` object with a method `View.setLayoutParams(ViewGroup.LayoutParams)`. A specific type of parameter passing into that method is determined by a the type of `...Layout` object which contains the `View` object. For example, let us see some Java code shown below:
+In Android API, layout information are stored into a `View` object with a method `View.setLayoutParams(ViewGroup.LayoutParams)`. A specific type of parameter passing into that method is determined by a the type of `...Layout` object which contains the `View` object. For example, let us see some Java code shown below:
 
     LinearLayout layout = new LinearLayout(context);
 	Button button = new Button(context);
@@ -328,7 +328,7 @@ In Android API, layout informations are stored into a `View` object with a metho
 	button.setLayoutParams(params);
 	layout.addView(button);
 	
-Because the button is appended into the `LinearLayout`, the layout parameter must be `LinearLayout.LayoutParams`, otherwise a ___runtime error___ might be occured. Meanwhile, Scaloid elliminate this burden, still preserving regorous typing of `LayoutParams`. The code shown below is equivalent to the previous Java code:
+Because the button is appended into the `LinearLayout`, the layout parameter must be `LinearLayout.LayoutParams`, otherwise a ___runtime error___ might be occurred. Meanwhile, Scaloid eliminate this burden, still preserving regorous typing of `LayoutParams`. The code shown below is equivalent to the previous Java code:
 
     val layout = new $LinearLayout {
 	  +=($Button("Click").layout.Weight(1.0f).end)
@@ -389,7 +389,7 @@ Using this and importing `scala.concurrent.ops._`, an asynchronous job can be ru
 		runOnUiThread(alert("Done!", result))
 	}
 	
-Compare the code above with the code using `AsyncTask`, which is shown below. It is a great win as it exposes your idea clealy.
+Compare the code above with the code using `AsyncTask`, which is shown below. It is a great win as it exposes your idea clearly.
 
     new AsyncTask[String, Void, String] {
       def doInBackground(params: Array[String]) = {
@@ -438,7 +438,7 @@ or, extend trait `TagUtil` or `ContextUtil` which defines this by default. Then 
 
 	warn("Something happened!")
 
-Other functions for every log levels(`verbose`, `debug`, `info`, `warn`, `error`, `wtf`) are available. 
+Other functions for every log levels (`verbose`, `debug`, `info`, `warn`, `error`, `wtf`) are available. 
 
 	info("hello " + world)
 
@@ -502,7 +502,7 @@ is reduced to:
     def getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View, parent: ViewGroup): View =
       getGenericView.text = getGroup(groupPosition).toString
 
-<sub>**Design considerations on returning values:** In C or Java, the assinment operator `=` returns a right hand side object. However, chaining assignment operator is very rarelly used in these languages. Assigning the same value to multiple variables might means that your code is badly designed (except some context such as involving intensive mathematical computations). However, in Scala DSLs, setters return a left hand side object, and chaining setters are more frequent. For example:</sub>
+<sub>**Design considerations on returning values:** In C or Java, the assignment operator `=` returns a right hand side object. However, chaining assignment operator is very rarely used in these languages. Assigning the same value to multiple variables might means that your code is badly designed (except some context such as involving intensive mathematical computations). However, in Scala DSLs, setters return a left hand side object, and chaining setters are more frequent. For example:</sub>
 
     getGenericView text "hello" maxHeight 8
 	
@@ -525,7 +525,7 @@ Therefore, we extended Android classes with the same name prefixed with a dollar
 	  text = "Hello"    // OK.
 	}
 	
-These classes explicitly provides the extra methods that was provided implicitly. 
+These classes explicitly provide the extra methods that was provided implicitly. 
 
 Aditionally, $-ed classes supports [implicit context value](#context-as-an-implicit-parameter) and additional syntactic sugars. For example, many classes has `.apply(...)` methods for creating a new instance:
 
@@ -581,7 +581,7 @@ Android API has some protected interfaces which has static fields, and inherited
 
 For now, Scaloid is a single-file project. Just copy `common.scala` and paste it to your project and declare `import org.scaloid.common._`. Enjoy!
 
- * This project can be built with Android API level 8 or higher, and Scala version 2.9.1 or higher.
+ * This project can be built with Android API level 8 or higher and Scala version 2.9.1 or higher.
 
 ## Let's make it together!
 
@@ -605,7 +605,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
   A few accessors are currently ported into the Scala style. There are tons of setters in Android API, covering all of them is a hard working. I examined http://scalamacros.org but it seems not good fit on this problem yet. If you have any good idea, please let me know.
 
 * **Build an example Android app** <br/>
-  Finish a [scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos) and try another.
+  Finish a [Scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos) and try another.
 * **Build a dedicated website**
 * **Write a complete API document**
 * **Write the Beginner's guide**
@@ -614,7 +614,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Cover openGL ES**
 * **Automatically unregister SensorEventListener onStop()**
 * **Support Google services** <br/>
-  including Google Cloud Messaging (GCM)
+  Including Google Cloud Messaging (GCM)
 * **Write a converter that turns XML layout into a Scaloid code** <br/>
   First version of the converter would be a simple web application. Providing this functionality as an Eclipse or Intellij plugin would also be great.
   
