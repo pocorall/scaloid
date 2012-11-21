@@ -334,7 +334,7 @@ Because the button is appended into the `LinearLayout`, the layout parameter mus
 	  +=($Button("Click").layout.Weight(1.0f).end)
     }
 	
-In the anonymous constructor scope, Scaloid provides an implicit function called "layout context". This affects a return type of `.layout` method of the class `$Button`. If we use `$FrameLayout` as a layout context, `.layout` returns `FrameLayout.LayoutParams`, so the code below results a ___syntax error___.
+In the anonymous constructor of '$LinearLayout', Scaloid provides an implicit function called "layout context". This affects a return type of `.layout` of the class `$Button`. If we use `$FrameLayout` as a layout context, `.layout` returns `FrameLayout.LayoutParams`, so the code below results a ___syntax error___.
 
     val layout = new $FrameLayout {
       +=($Button("Click").layout.Weight(1.0f).end)   // Syntax error on Weight()
