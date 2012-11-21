@@ -151,7 +151,7 @@ Then Scaloid implicit conversions will take care about these resource type conve
 
 ##### Unit conversion
 
-A unit is implicitly converted into different measures.
+A unit can be converted into the pixel unit.
 
     val inPixel:Int = (32 dip)
 	val inPixel2:Int = (22 sp)
