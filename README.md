@@ -566,13 +566,13 @@ Aditionally, $-ed classes supports [implicit context value](#context-as-an-impli
 
 ### Sweet-little sugar
 
-If the setter ends with '...Enabled', Scaloid adds functions named `enable...` and `disable...`. For example:
+If the setter ends with `...Enabled`, Scaloid adds functions named `enable...` and `disable...`. For example:
 
     (new $LinearLayout).disableVerticalScrollBar
 
 , which is equivalent to:
 	
-	(new $LinearLayout).VerticalScrollBarEnabled(false)
+	(new $LinearLayout).verticalScrollBarEnabled(false)
 	
 ## Classes
 
