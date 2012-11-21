@@ -564,6 +564,16 @@ Aditionally, $-ed classes supports [implicit context value](#context-as-an-impli
 
 <sub>**Design considerations on making $-ed classes:** In modern programming language, using package (or namespace) is preferred than prefixing. However, when we use both classes from Android API and Scaloid, using package name is more verbose than prefixing class name itself (compare with `common.Button` and `$Button`) and can be confused when you use both classes at the same code. We choose pragmatism rather than discipline.</sub>
 
+### Sweet-little sugar
+
+If the setter ends with '...Enabled', Scaloid adds functions named `enable...` and `disable...`. For example:
+
+    (new $LinearLayout).disableVerticalScrollBar
+
+, which is equivalent to:
+	
+	(new $LinearLayout).VerticalScrollBarEnabled(false)
+	
 ## Classes
 
 ### Class AlertDialogBuilder

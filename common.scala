@@ -244,260 +244,286 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       base
     }
 
-    @inline def backgroundResource_=(param: Int) = {
-      base.setBackgroundResource(param)
+    @inline def backgroundResource_=(p: Int) = {
+      base.setBackgroundResource(p)
       base
     }
 
-    @inline def backgroundResource(param: Int) = backgroundResource_=(param)
+    @inline def backgroundResource(p: Int) = backgroundResource_=(p)
 
     @noEquivalentGetterExists
     @inline def backgroundResource: Int = 0
 
-    @inline def clickable_=(param: Boolean) = {
-      base.setClickable(param)
+    @inline def clickable_=(p: Boolean) = {
+      base.setClickable(p)
       base
     }
 
-    @inline def clickable(param: Boolean) = clickable_=(param)
+    @inline def clickable(p: Boolean) = clickable_=(p)
 
     @noEquivalentGetterExists
     @inline def clickable: Boolean = true
 
-    @inline def contentDescription_=(param: CharSequence) = {
-      base.setContentDescription(param)
+    @inline def contentDescription_=(p: CharSequence) = {
+      base.setContentDescription(p)
       base
     }
 
-    @inline def contentDescription(param: CharSequence) = contentDescription_=(param)
+    @inline def contentDescription(p: CharSequence) = contentDescription_=(p)
 
     @inline def contentDescription: CharSequence = base.getContentDescription
 
-    @inline def drawingCacheQuality_=(param: Int) = {
-      base.setDrawingCacheQuality(param)
+    @inline def drawingCacheQuality_=(p: Int) = {
+      base.setDrawingCacheQuality(p)
       base
     }
 
-    @inline def drawingCacheQuality(param: Int) = drawingCacheQuality_=(param)
+    @inline def drawingCacheQuality(p: Int) = drawingCacheQuality_=(p)
 
     @inline def drawingCacheQuality: Int = base.getDrawingCacheQuality
 
-    @inline def scrollbarFadingEnabled_=(param: Boolean) = {
-      base.setScrollbarFadingEnabled(param)
+    @inline def enableScrollbarFading = {base.setScrollbarFadingEnabled(true); base}
+    @inline def disableScrollbarFading = {base.setScrollbarFadingEnabled(false); base}
+    @inline def scrollbarFadingEnabled_=(p: Boolean) = {
+      base.setScrollbarFadingEnabled(p)
       base
     }
 
-    @inline def scrollbarFadingEnabled(param: Boolean) = scrollbarFadingEnabled_=(param)
+    @inline def scrollbarFadingEnabled(p: Boolean) = scrollbarFadingEnabled_=(p)
 
     @inline def scrollbarFadingEnabled: Boolean = base.isScrollbarFadingEnabled
 
-    @inline def focusable_=(param: Boolean) = {
-      base.setFocusable(param)
+    @inline def focusable_=(p: Boolean) = {
+      base.setFocusable(p)
       base
     }
 
-    @inline def focusable(param: Boolean) = focusable_=(param)
+    @inline def focusable(p: Boolean) = focusable_=(p)
 
     @noEquivalentGetterExists
     @inline def focusable: Boolean = false
 
-    @inline def focusableInTouchMode_=(param: Boolean) = {
-      base.setFocusableInTouchMode(param)
+    @inline def focusableInTouchMode_=(p: Boolean) = {
+      base.setFocusableInTouchMode(p)
       base
     }
 
-    @inline def focusableInTouchMode(param: Boolean) = focusableInTouchMode_=(param)
+    @inline def focusableInTouchMode(p: Boolean) = focusableInTouchMode_=(p)
 
     @inline def focusableInTouchMode: Boolean = base.isFocusableInTouchMode
 
-    @inline def hapticFeedbackEnabled_=(param: Boolean) = {
-      base.setHapticFeedbackEnabled(param)
+    @inline def enableHapticFeedback = {base.setHapticFeedbackEnabled(true); base}
+    @inline def disableHapticFeedback = {base.setHapticFeedbackEnabled(false); base}
+    @inline def hapticFeedbackEnabled_=(p: Boolean) = {
+      base.setHapticFeedbackEnabled(p)
       base
     }
 
-    @inline def hapticFeedbackEnabled(param: Boolean) = hapticFeedbackEnabled_=(param)
+    @inline def hapticFeedbackEnabled(p: Boolean) = hapticFeedbackEnabled_=(p)
 
     @inline def hapticFeedbackEnabled: Boolean = base.isHapticFeedbackEnabled
 
-    @inline def id_=(param: Int) = {
-      base.setId(param)
+    @inline def id_=(p: Int) = {
+      base.setId(p)
       base
     }
 
-    @inline def id(param: Int) = id_=(param)
+    @inline def id(p: Int) = id_=(p)
 
     @inline def id: Int = base.getId
 
-    @inline def scrollContainer_=(param: Boolean) = {
-      base.setScrollContainer(param)
+    @inline def scrollContainer_=(p: Boolean) = {
+      base.setScrollContainer(p)
       base
     }
 
-    @inline def scrollContainer(param: Boolean) = scrollContainer_=(param)
+    @inline def scrollContainer(p: Boolean) = scrollContainer_=(p)
 
     @noEquivalentGetterExists
     @inline def scrollContainer: Boolean = false
 
-    @inline def keepScreenOn_=(param: Boolean) = {
-      base.setKeepScreenOn(param)
+    @inline def keepScreenOn_=(p: Boolean) = {
+      base.setKeepScreenOn(p)
       base
     }
 
-    @inline def keepScreenOn(param: Boolean) = keepScreenOn_=(param)
+    @inline def keepScreenOn(p: Boolean) = keepScreenOn_=(p)
 
     @inline def keepScreenOn: Boolean = base.getKeepScreenOn
 
-    @inline def longClickable_=(param: Boolean) = {
-      base.setLongClickable(param)
+    @inline def longClickable_=(p: Boolean) = {
+      base.setLongClickable(p)
       base
     }
 
-    @inline def longClickable(param: Boolean) = longClickable_=(param)
+    @inline def longClickable(p: Boolean) = longClickable_=(p)
 
     @inline def longClickable: Boolean = base.isLongClickable
 
-    @inline def minimumHeight_=(param: Int) = {
-      base.setMinimumHeight(param)
+    @inline def minimumHeight_=(p: Int) = {
+      base.setMinimumHeight(p)
       base
     }
 
-    @inline def minimumHeight(param: Int) = minimumHeight_=(param)
+    @inline def minimumHeight(p: Int) = minimumHeight_=(p)
 
     @noEquivalentGetterExists
     @inline def minimumHeight: Int = 0
 
-    @inline def minimumWidth_=(param: Int) = {
-      base.setMinimumWidth(param)
+    @inline def minimumWidth_=(p: Int) = {
+      base.setMinimumWidth(p)
       base
     }
 
-    @inline def minimumWidth(param: Int) = minimumWidth_=(param)
+    @inline def minimumWidth(p: Int) = minimumWidth_=(p)
 
     @noEquivalentGetterExists
     @inline def minimumWidth: Int = 0
 
-    @inline def nextFocusDownId_=(param: Int) = {
-      base.setNextFocusDownId(param)
+    @inline def nextFocusDownId_=(p: Int) = {
+      base.setNextFocusDownId(p)
       base
     }
 
-    @inline def nextFocusDownId(param: Int) = nextFocusDownId_=(param)
+    @inline def nextFocusDownId(p: Int) = nextFocusDownId_=(p)
 
     @inline def nextFocusDownId: Int = base.getNextFocusDownId
 
-    @inline def nextFocusLeftId_=(param: Int) = {
-      base.setNextFocusLeftId(param)
+    @inline def nextFocusLeftId_=(p: Int) = {
+      base.setNextFocusLeftId(p)
       base
     }
 
-    @inline def nextFocusLeftId(param: Int) = nextFocusLeftId_=(param)
+    @inline def nextFocusLeftId(p: Int) = nextFocusLeftId_=(p)
 
     @inline def nextFocusLeftId: Int = base.getNextFocusLeftId
 
-    @inline def nextFocusRightId_=(param: Int) = {
-      base.setNextFocusRightId(param)
+    @inline def nextFocusRightId_=(p: Int) = {
+      base.setNextFocusRightId(p)
       base
     }
 
-    @inline def nextFocusRightId(param: Int) = nextFocusRightId_=(param)
+    @inline def nextFocusRightId(p: Int) = nextFocusRightId_=(p)
 
     @inline def nextFocusRightId: Int = base.getNextFocusRightId
 
-    @inline def nextFocusUpId_=(param: Int) = {
-      base.setNextFocusUpId(param)
+    @inline def nextFocusUpId_=(p: Int) = {
+      base.setNextFocusUpId(p)
       base
     }
 
-    @inline def nextFocusUpId(param: Int) = nextFocusUpId_=(param)
+    @inline def nextFocusUpId(p: Int) = nextFocusUpId_=(p)
 
     @inline def nextFocusUpId: Int = base.getNextFocusUpId
 
-    @inline def verticalFadingEdgeEnabled_=(param: Boolean) = {
-      base.setVerticalFadingEdgeEnabled(param)
+    @inline def enableVerticalFadingEdge = {base.setVerticalFadingEdgeEnabled(true); base}
+    @inline def disableVerticalFadingEdge = {base.setVerticalFadingEdgeEnabled(false); base}
+    @inline def verticalFadingEdgeEnabled_=(p: Boolean) = {
+      base.setVerticalFadingEdgeEnabled(p)
       base
     }
 
-    @inline def verticalFadingEdgeEnabled(param: Boolean) = verticalFadingEdgeEnabled_=(param)
+    @inline def verticalFadingEdgeEnabled(p: Boolean) = verticalFadingEdgeEnabled_=(p)
 
     @inline def verticalFadingEdgeEnabled: Boolean = base.isVerticalFadingEdgeEnabled
 
-    @inline def saveEnabled_=(param: Boolean) = {
-      base.setSaveEnabled(param)
+    @inline def enableVerticalScrollBar = {base.setVerticalScrollBarEnabled(true); base}
+    @inline def disableVerticalScrollBar = {base.setVerticalScrollBarEnabled(false); base}
+    @inline def verticalScrollBarEnabled_=(p: Boolean) = {
+      base.setVerticalScrollBarEnabled(p)
       base
     }
 
-    @inline def saveEnabled(param: Boolean) = saveEnabled_=(param)
+    @inline def verticalScrollBarEnabled(p: Boolean) = verticalScrollBarEnabled_=(p)
+
+    @inline def verticalScrollBarEnabled: Boolean = base.isVerticalScrollBarEnabled
+
+    @inline def enableSave = {base.setSaveEnabled(true); base}
+    @inline def disableSave = {base.setSaveEnabled(false); base}
+    @inline def saveEnabled_=(p: Boolean) = {
+      base.setSaveEnabled(p)
+      base
+    }
+
+    @inline def saveEnabled(p: Boolean) = saveEnabled_=(p)
 
     @inline def saveEnabled: Boolean = base.isSaveEnabled
 
-    @inline def scrollBarStyle_=(param: Int) = {
-      base.setScrollBarStyle(param)
+    @inline def scrollBarStyle_=(p: Int) = {
+      base.setScrollBarStyle(p)
       base
     }
 
-    @inline def scrollBarStyle(param: Int) = scrollBarStyle_=(param)
+    @inline def scrollBarStyle(p: Int) = scrollBarStyle_=(p)
 
     @inline def scrollBarStyle: Int = base.getScrollBarStyle
 
-    @inline def soundEffectsEnabled_=(param: Boolean) = {
-      base.setSoundEffectsEnabled(param)
+    @inline def enableSoundEffects = {base.setSoundEffectsEnabled(true); base}
+    @inline def disableSoundEffects = {base.setSoundEffectsEnabled(false); base}
+    @inline def soundEffectsEnabled_=(p: Boolean) = {
+      base.setSoundEffectsEnabled(p)
       base
     }
 
-    @inline def soundEffectsEnabled(param: Boolean) = soundEffectsEnabled_=(param)
+    @inline def soundEffectsEnabled(p: Boolean) = soundEffectsEnabled_=(p)
 
     @inline def soundEffectsEnabled: Boolean = base.isSoundEffectsEnabled
 
-    @inline def visibility_=(param: Int) = {
-      base.setVisibility(param)
+    @inline def visibility_=(p: Int) = {
+      base.setVisibility(p)
       base
     }
 
-    @inline def visibility(param: Int) = visibility_=(param)
+    @inline def visibility(p: Int) = visibility_=(p)
 
     @inline def visibility: Int = base.getVisibility
 
-    @inline def layoutParams_=(param: LayoutParams) = {
-      base.setLayoutParams(param)
+    @inline def layoutParams_=(p: LayoutParams) = {
+      base.setLayoutParams(p)
       base
     }
 
-    @inline def layoutParams(param: LayoutParams) = layoutParams_=(param)
+    @inline def layoutParams(p: LayoutParams) = layoutParams_=(p)
 
     @inline def layoutParams: LayoutParams = base.getLayoutParams
 
-    @inline def backgroundColor_=(param: Int) = {
-      base.setBackgroundColor(param)
+    @inline def backgroundColor_=(p: Int) = {
+      base.setBackgroundColor(p)
       base
     }
 
-    @inline def backgroundColor(param: Int) = backgroundColor_=(param)
+    @inline def backgroundColor(p: Int) = backgroundColor_=(p)
 
     @noEquivalentGetterExists
     @inline def backgroundColor: Int = 0
 
-
-    @inline def padding(pad: Int): V = {
-      base.setPadding(pad, pad, pad, pad)
+    @inline def padding_=(p: Int) = {
+      base.setPadding(p, p, p, p)
       base
     }
+
+    @inline def padding(p: Int) = padding_=(p)
+
+    @noEquivalentGetterExists
+    @inline def padding: Int = 0
+
 
     val FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT
     val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
     val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
 
-    def layout[LP <: ViewGroupLayoutParams[_]](implicit defaultLayoutParam: (View) => LP): LP = {
+    def layout[LP <: ViewGroupLayoutParams[_]](implicit defaultLayoutParam: (V) => LP): LP = {
       defaultLayoutParam(base)
     }
 
-    def matchLayout[LP <: ViewGroupLayoutParams[_]](implicit defaultLayoutParam: (View) => LP): LP = {
+    def matchLayout[LP <: ViewGroupLayoutParams[_]](implicit defaultLayoutParam: (V) => LP): LP = {
       val lp = defaultLayoutParam(base)
       lp.height = MATCH_PARENT
       lp.width = MATCH_PARENT
       lp
     }
 
-    def wrapLayout[LP <: ViewGroupLayoutParams[_]](implicit defaultLayoutParam: (View) => LP): LP = {
+    def wrapLayout[LP <: ViewGroupLayoutParams[_]](implicit defaultLayoutParam: (V) => LP): LP = {
       val lp = defaultLayoutParam(base)
       lp.height = WRAP_CONTENT
       lp.width = WRAP_CONTENT
@@ -525,12 +551,12 @@ class RichActivity[V <: Activity](val base: V) extends TraitActivity[V]
 
   trait TraitActivity[V <: Activity]  extends RunOnUiThread {
     def base: Activity
-    @inline def contentView_=(param: View) = {
-      base.setContentView(param)
+    @inline def contentView_=(p: View) = {
+      base.setContentView(p)
       base
     }
 
-    @inline def contentView(param: View) = contentView_=(param)
+    @inline def contentView(p: View) = contentView_=(p)
 
     @noEquivalentGetterExists
     @inline def contentView: View = null
@@ -645,319 +671,319 @@ class RichTextView[V <: TextView](val base: V) extends TraitTextView[V]
       base
     }
 
-    @inline def autoLinkMask_=(param: Int) = {
-      base.setAutoLinkMask(param)
+    @inline def autoLinkMask_=(p: Int) = {
+      base.setAutoLinkMask(p)
       base
     }
 
-    @inline def autoLinkMask(param: Int) = autoLinkMask_=(param)
+    @inline def autoLinkMask(p: Int) = autoLinkMask_=(p)
 
     @inline def autoLinkMask: Int = base.getAutoLinkMask
 
-    @inline def cursorVisible_=(param: Boolean) = {
-      base.setCursorVisible(param)
+    @inline def cursorVisible_=(p: Boolean) = {
+      base.setCursorVisible(p)
       base
     }
 
-    @inline def cursorVisible(param: Boolean) = cursorVisible_=(param)
+    @inline def cursorVisible(p: Boolean) = cursorVisible_=(p)
 
     @noEquivalentGetterExists
     @inline def cursorVisible: Boolean = false
 
-    @inline def compoundDrawablePadding_=(param: Int) = {
-      base.setCompoundDrawablePadding(param)
+    @inline def compoundDrawablePadding_=(p: Int) = {
+      base.setCompoundDrawablePadding(p)
       base
     }
 
-    @inline def compoundDrawablePadding(param: Int) = compoundDrawablePadding_=(param)
+    @inline def compoundDrawablePadding(p: Int) = compoundDrawablePadding_=(p)
 
     @inline def compoundDrawablePadding: Int = base.getCompoundDrawablePadding
 
-    @inline def inputExtras_=(param: Int) = {
-      base.setInputExtras(param)
+    @inline def inputExtras_=(p: Int) = {
+      base.setInputExtras(p)
       base
     }
 
-    @inline def inputExtras(param: Int) = inputExtras_=(param)
+    @inline def inputExtras(p: Int) = inputExtras_=(p)
 
     @noEquivalentGetterExists
     @inline def inputExtras: Int = 0
 
-    @inline def ems_=(param: Int) = {
-      base.setEms(param)
+    @inline def ems_=(p: Int) = {
+      base.setEms(p)
       base
     }
 
-    @inline def ems(param: Int) = ems_=(param)
+    @inline def ems(p: Int) = ems_=(p)
 
     @noEquivalentGetterExists
     @inline def ems: Int = 0
 
-    @inline def typeface_=(param: Typeface) = {
-      base.setTypeface(param)
+    @inline def typeface_=(p: Typeface) = {
+      base.setTypeface(p)
       base
     }
 
-    @inline def typeface(param: Typeface) = typeface_=(param)
+    @inline def typeface(p: Typeface) = typeface_=(p)
 
     @inline def typeface: Typeface = base.getTypeface
 
-    @inline def freezesText_=(param: Boolean) = {
-      base.setFreezesText(param)
+    @inline def freezesText_=(p: Boolean) = {
+      base.setFreezesText(p)
       base
     }
 
-    @inline def freezesText(param: Boolean) = freezesText_=(param)
+    @inline def freezesText(p: Boolean) = freezesText_=(p)
 
     @inline def freezesText: Boolean = base.getFreezesText
 
-    @inline def gravity_=(param: Int) = {
-      base.setGravity(param)
+    @inline def gravity_=(p: Int) = {
+      base.setGravity(p)
       base
     }
 
-    @inline def gravity(param: Int) = gravity_=(param)
+    @inline def gravity(p: Int) = gravity_=(p)
 
     @inline def gravity: Int = base.getGravity
 
-    @inline def height_=(param: Int) = {
-      base.setHeight(param)
+    @inline def height_=(p: Int) = {
+      base.setHeight(p)
       base
     }
 
-    @inline def height(param: Int) = height_=(param)
+    @inline def height(p: Int) = height_=(p)
 
     @inline def height: Int = base.getHeight
 
-    @inline def hint_=(param: CharSequence) = {
-      base.setHint(param)
+    @inline def hint_=(p: CharSequence) = {
+      base.setHint(p)
       base
     }
 
-    @inline def hint(param: CharSequence) = hint_=(param)
+    @inline def hint(p: CharSequence) = hint_=(p)
 
     @noEquivalentGetterExists
     @inline def hint: CharSequence = ""
 
-    @inline def imeOptions_=(param: Int) = {
-      base.setImeOptions(param)
+    @inline def imeOptions_=(p: Int) = {
+      base.setImeOptions(p)
       base
     }
 
-    @inline def imeOptions(param: Int) = imeOptions_=(param)
+    @inline def imeOptions(p: Int) = imeOptions_=(p)
 
     @inline def imeOptions: Int = base.getImeOptions
 
-    @inline def includeFontPadding_=(param: Boolean) = {
-      base.setIncludeFontPadding(param)
+    @inline def includeFontPadding_=(p: Boolean) = {
+      base.setIncludeFontPadding(p)
       base
     }
 
-    @inline def includeFontPadding(param: Boolean) = includeFontPadding_=(param)
+    @inline def includeFontPadding(p: Boolean) = includeFontPadding_=(p)
 
     @noEquivalentGetterExists
     @inline def includeFontPadding: Boolean = false
 
-    @inline def rawInputType_=(param: Int) = {
-      base.setRawInputType(param)
+    @inline def rawInputType_=(p: Int) = {
+      base.setRawInputType(p)
       base
     }
 
-    @inline def rawInputType(param: Int) = rawInputType_=(param)
+    @inline def rawInputType(p: Int) = rawInputType_=(p)
 
     @noEquivalentGetterExists
     @inline def rawInputType: Int = 0
 
-    @inline def lines_=(param: Int) = {
-      base.setLines(param)
+    @inline def lines_=(p: Int) = {
+      base.setLines(p)
       base
     }
 
-    @inline def lines(param: Int) = lines_=(param)
+    @inline def lines(p: Int) = lines_=(p)
 
     @noEquivalentGetterExists
     @inline def lines: Int = 0
 
-    @inline def linksClickable_=(param: Boolean) = {
-      base.setLinksClickable(param)
+    @inline def linksClickable_=(p: Boolean) = {
+      base.setLinksClickable(p)
       base
     }
 
-    @inline def linksClickable(param: Boolean) = linksClickable_=(param)
+    @inline def linksClickable(p: Boolean) = linksClickable_=(p)
 
     @inline def linksClickable: Boolean = base.getLinksClickable
 
-    @inline def marqueeRepeatLimit_=(param: Int) = {
-      base.setMarqueeRepeatLimit(param)
+    @inline def marqueeRepeatLimit_=(p: Int) = {
+      base.setMarqueeRepeatLimit(p)
       base
     }
 
-    @inline def marqueeRepeatLimit(param: Int) = marqueeRepeatLimit_=(param)
+    @inline def marqueeRepeatLimit(p: Int) = marqueeRepeatLimit_=(p)
 
     @noEquivalentGetterExists
     @inline def marqueeRepeatLimit: Int = 0
 
-    @inline def maxEms_=(param: Int) = {
-      base.setMaxEms(param)
+    @inline def maxEms_=(p: Int) = {
+      base.setMaxEms(p)
       base
     }
 
-    @inline def maxEms(param: Int) = maxEms_=(param)
+    @inline def maxEms(p: Int) = maxEms_=(p)
 
     @noEquivalentGetterExists
     @inline def maxEms: Int = 0
 
-    @inline def maxHeight_=(param: Int) = {
-      base.setMaxHeight(param)
+    @inline def maxHeight_=(p: Int) = {
+      base.setMaxHeight(p)
       base
     }
 
-    @inline def maxHeight(param: Int) = maxHeight_=(param)
+    @inline def maxHeight(p: Int) = maxHeight_=(p)
 
     @noEquivalentGetterExists
     @inline def maxHeight: Int = 0
 
-    @inline def filters_=(param: Array[InputFilter]) = {
-      base.setFilters(param)
+    @inline def filters_=(p: Array[InputFilter]) = {
+      base.setFilters(p)
       base
     }
 
-    @inline def filters(param: Array[InputFilter]) = filters_=(param)
+    @inline def filters(p: Array[InputFilter]) = filters_=(p)
 
     @noEquivalentGetterExists
     @inline def filters: Array[InputFilter] = null
 
-    @inline def maxLines_=(param: Int) = {
-      base.setMaxLines(param)
+    @inline def maxLines_=(p: Int) = {
+      base.setMaxLines(p)
       base
     }
 
-    @inline def maxLines(param: Int) = maxLines_=(param)
+    @inline def maxLines(p: Int) = maxLines_=(p)
 
     @noEquivalentGetterExists
     @inline def maxLines: Int = 0
 
-    @inline def maxWidth_=(param: Int) = {
-      base.setMaxWidth(param)
+    @inline def maxWidth_=(p: Int) = {
+      base.setMaxWidth(p)
       base
     }
 
-    @inline def maxWidth(param: Int) = maxWidth_=(param)
+    @inline def maxWidth(p: Int) = maxWidth_=(p)
 
     @noEquivalentGetterExists
     @inline def maxWidth: Int = 0
 
-    @inline def minEms_=(param: Int) = {
-      base.setMinEms(param)
+    @inline def minEms_=(p: Int) = {
+      base.setMinEms(p)
       base
     }
 
-    @inline def minEms(param: Int) = minEms_=(param)
+    @inline def minEms(p: Int) = minEms_=(p)
 
     @noEquivalentGetterExists
     @inline def minEms: Int = 0
 
-    @inline def minHeight_=(param: Int) = {
-      base.setMinHeight(param)
+    @inline def minHeight_=(p: Int) = {
+      base.setMinHeight(p)
       base
     }
 
-    @inline def minHeight(param: Int) = minHeight_=(param)
+    @inline def minHeight(p: Int) = minHeight_=(p)
 
     @noEquivalentGetterExists
     @inline def minHeight: Int = 0
 
-    @inline def minLines_=(param: Int) = {
-      base.setMinLines(param)
+    @inline def minLines_=(p: Int) = {
+      base.setMinLines(p)
       base
     }
 
-    @inline def minLines(param: Int) = minLines_=(param)
+    @inline def minLines(p: Int) = minLines_=(p)
 
     @noEquivalentGetterExists
     @inline def minLines: Int = 0
 
-    @inline def minWidth_=(param: Int) = {
-      base.setMinWidth(param)
+    @inline def minWidth_=(p: Int) = {
+      base.setMinWidth(p)
       base
     }
 
-    @inline def minWidth(param: Int) = minWidth_=(param)
+    @inline def minWidth(p: Int) = minWidth_=(p)
 
     @noEquivalentGetterExists
     @inline def minWidth: Int = 0
 
-    @inline def transformationMethod_=(param: TransformationMethod) = {
-      base.setTransformationMethod(param)
+    @inline def transformationMethod_=(p: TransformationMethod) = {
+      base.setTransformationMethod(p)
       base
     }
 
-    @inline def transformationMethod(param: TransformationMethod) = transformationMethod_=(param)
+    @inline def transformationMethod(p: TransformationMethod) = transformationMethod_=(p)
 
     @inline def transformationMethod: TransformationMethod = base.getTransformationMethod
 
-    @inline def privateImeOptions_=(param: String) = {
-      base.setPrivateImeOptions(param)
+    @inline def privateImeOptions_=(p: String) = {
+      base.setPrivateImeOptions(p)
       base
     }
 
-    @inline def privateImeOptions(param: String) = privateImeOptions_=(param)
+    @inline def privateImeOptions(p: String) = privateImeOptions_=(p)
 
     @inline def privateImeOptions: String = base.getPrivateImeOptions
 
-    @inline def horizontallyScrolling_=(param: Boolean) = {
-      base.setHorizontallyScrolling(param)
+    @inline def horizontallyScrolling_=(p: Boolean) = {
+      base.setHorizontallyScrolling(p)
       base
     }
 
-    @inline def horizontallyScrolling(param: Boolean) = horizontallyScrolling_=(param)
+    @inline def horizontallyScrolling(p: Boolean) = horizontallyScrolling_=(p)
 
     @noEquivalentGetterExists
     @inline def horizontallyScrolling: Boolean = false
 
-    @inline def textSize_=(param: Float) = {
-      base.setTextSize(param)
+    @inline def textSize_=(p: Float) = {
+      base.setTextSize(p)
       base
     }
 
-    @inline def textSize(param: Float) = textSize_=(param)
+    @inline def textSize(p: Float) = textSize_=(p)
 
     @inline def textSize: Float = base.getTextSize
 
-    @inline def movementMethod_=(param: MovementMethod) = {
-      base.setMovementMethod(param)
+    @inline def movementMethod_=(p: MovementMethod) = {
+      base.setMovementMethod(p)
       base
     }
 
-    @inline def movementMethod(param: MovementMethod) = movementMethod_=(param)
+    @inline def movementMethod(p: MovementMethod) = movementMethod_=(p)
 
     @inline def movementMethod: MovementMethod = base.getMovementMethod
 
-    @inline def text_=(param: CharSequence) = {
-      base.setText(param)
+    @inline def text_=(p: CharSequence) = {
+      base.setText(p)
       base
     }
 
-    @inline def text(param: CharSequence) = text_=(param)
+    @inline def text(p: CharSequence) = text_=(p)
 
     @inline def text: CharSequence = base.getText
 
-    @inline def linkTextColor_=(param: Int) = {
-      base.setLinkTextColor(param)
+    @inline def linkTextColor_=(p: Int) = {
+      base.setLinkTextColor(p)
       base
     }
 
-    @inline def linkTextColor(param: Int) = linkTextColor_=(param)
+    @inline def linkTextColor(p: Int) = linkTextColor_=(p)
 
     @noEquivalentGetterExists
     @inline def linkTextColor: Int = 0
 
-    @inline def inputType_=(param: Int) = {
-      base.setInputType(param)
+    @inline def inputType_=(p: Int) = {
+      base.setInputType(p)
       base
     }
 
-    @inline def inputType(param: Int) = inputType_=(param)
+    @inline def inputType(p: Int) = inputType_=(p)
 
     @inline def inputType: Int = base.getInputType
 
@@ -972,12 +998,12 @@ class RichTextView[V <: TextView](val base: V) extends TraitTextView[V]
 
 
   class RichContextMenu(base: ContextMenu) {
-    @inline def headerTitle_=(param: CharSequence) = {
-      base.setHeaderTitle(param)
+    @inline def headerTitle_=(p: CharSequence) = {
+      base.setHeaderTitle(p)
       base
     }
 
-    @inline def headerTitle(param: CharSequence) = headerTitle_=(param)
+    @inline def headerTitle(p: CharSequence) = headerTitle_=(p)
 
     @noEquivalentGetterExists
     @inline def headerTitle: CharSequence = ""
@@ -991,21 +1017,21 @@ class RichTextView[V <: TextView](val base: V) extends TraitTextView[V]
   }
 
   trait TraitAbsListView[V <: AbsListView] extends TraitView[V] {
-    @inline def cacheColorHint_=(param: Int) = {
-      base.setCacheColorHint(param)
+    @inline def cacheColorHint_=(p: Int) = {
+      base.setCacheColorHint(p)
       base
     }
 
-    @inline def cacheColorHint(param: Int) = cacheColorHint_=(param)
+    @inline def cacheColorHint(p: Int) = cacheColorHint_=(p)
 
     @inline def cacheColorHint: Int = base.getCacheColorHint
 
-    @inline def transcriptMode_=(param: Int) = {
-      base.setTranscriptMode(param)
+    @inline def transcriptMode_=(p: Int) = {
+      base.setTranscriptMode(p)
       base
     }
 
-    @inline def transcriptMode(param: Int) = transcriptMode_=(param)
+    @inline def transcriptMode(p: Int) = transcriptMode_=(p)
 
     @inline def transcriptMode: Int = base.getTranscriptMode
 
@@ -1029,40 +1055,40 @@ class RichListView[V <: ListView](val base: V) extends TraitListView[V]
 @inline implicit def listView2RichListView[V <: ListView](listView: V) = new RichListView[V](listView)
 
   trait TraitListView[V <: ListView]  extends TraitAbsListView[V] {
-    @inline def adapter_=(param: ListAdapter) = {
-      base.setAdapter(param)
+    @inline def adapter_=(p: ListAdapter) = {
+      base.setAdapter(p)
       base
     }
 
-    @inline def adapter(param: ListAdapter) = adapter_=(param)
+    @inline def adapter(p: ListAdapter) = adapter_=(p)
 
     @inline def adapter: ListAdapter = base.getAdapter
 
-    @inline def selection_=(param: Int) = {
-      base.setSelection(param)
+    @inline def selection_=(p: Int) = {
+      base.setSelection(p)
       base
     }
 
-    @inline def selection(param: Int) = selection_=(param)
+    @inline def selection(p: Int) = selection_=(p)
 
     @noEquivalentGetterExists
     @inline def selection: Int = 0
 
-    @inline def dividerHeight_=(param: Int) = {
-      base.setDividerHeight(param)
+    @inline def dividerHeight_=(p: Int) = {
+      base.setDividerHeight(p)
       base
     }
 
-    @inline def dividerHeight(param: Int) = dividerHeight_=(param)
+    @inline def dividerHeight(p: Int) = dividerHeight_=(p)
 
     @inline def dividerHeight: Int = base.getDividerHeight
 
-    @inline def divider_=(param: Drawable) = {
-      base.setDivider(param)
+    @inline def divider_=(p: Drawable) = {
+      base.setDivider(p)
       base
     }
 
-    @inline def divider(param: Drawable) = divider_=(param)
+    @inline def divider(p: Drawable) = divider_=(p)
 
     @inline def divider: Drawable = base.getDivider
 
@@ -1122,31 +1148,31 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
 @inline implicit def frameLayout2RichFrameLayout[V <: FrameLayout](frameLayout: V) = new RichFrameLayout[V](frameLayout)
 
   trait TraitFrameLayout[V <: FrameLayout]  extends TraitViewGroup[V] {
-    @inline def foreground_=(param: Drawable) = {
-      base.setForeground(param)
+    @inline def foreground_=(p: Drawable) = {
+      base.setForeground(p)
       base
     }
 
-    @inline def foreground(param: Drawable) = foreground_=(param)
+    @inline def foreground(p: Drawable) = foreground_=(p)
 
     @inline def foreground: Drawable = base.getForeground
 
-    @inline def foregroundGravity_=(param: Int) = {
-      base.setForegroundGravity(param)
+    @inline def foregroundGravity_=(p: Int) = {
+      base.setForegroundGravity(p)
       base
     }
 
-    @inline def foregroundGravity(param: Int) = foregroundGravity_=(param)
+    @inline def foregroundGravity(p: Int) = foregroundGravity_=(p)
 
     @noEquivalentGetterExists
     @inline def foregroundGravity: Int = 0
 
-    @inline def measureAllChildren_=(param: Boolean) = {
-      base.setMeasureAllChildren(param)
+    @inline def measureAllChildren_=(p: Boolean) = {
+      base.setMeasureAllChildren(p)
       base
     }
 
-    @inline def measureAllChildren(param: Boolean) = measureAllChildren_=(param)
+    @inline def measureAllChildren(p: Boolean) = measureAllChildren_=(p)
 
     @noEquivalentGetterExists
     @inline def measureAllChildren: Boolean = false
@@ -1156,19 +1182,19 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
 @inline class $FrameLayout(implicit context: Context) extends FrameLayout(context) with TraitFrameLayout[$FrameLayout] {
   def base = this
 
-  implicit def defaultLayoutParams(v: View): LayoutParams = new LayoutParams(v)
+  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
 
-  class LayoutParams(v: View) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams] {
+  class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V]] {
     def base = this
 
     v.setLayoutParams(this)
 
-    def Gravity(g: Int): LayoutParams = {
+    def Gravity(g: Int) = {
       gravity = g
       this
     }
 
-    def end: View = v
+    def end: V = v
   }
 }
 
@@ -1177,40 +1203,40 @@ class RichLinearLayout[V <: LinearLayout](val base: V) extends TraitLinearLayout
 @inline implicit def linearLayout2RichLinearLayout[V <: LinearLayout](linearLayout: V) = new RichLinearLayout[V](linearLayout)
 
   trait TraitLinearLayout[V <: LinearLayout]  extends TraitViewGroup[V] {
-    @inline def baselineAligned_=(param: Boolean) = {
-      base.setBaselineAligned(param)
+    @inline def baselineAligned_=(p: Boolean) = {
+      base.setBaselineAligned(p)
       base
     }
 
-    @inline def baselineAligned(param: Boolean) = baselineAligned_=(param)
+    @inline def baselineAligned(p: Boolean) = baselineAligned_=(p)
 
     @inline def baselineAligned: Boolean = base.isBaselineAligned
 
-    @inline def baselineAlignedChildIndex_=(param: Int) = {
-      base.setBaselineAlignedChildIndex(param)
+    @inline def baselineAlignedChildIndex_=(p: Int) = {
+      base.setBaselineAlignedChildIndex(p)
       base
     }
 
-    @inline def baselineAlignedChildIndex(param: Int) = baselineAlignedChildIndex_=(param)
+    @inline def baselineAlignedChildIndex(p: Int) = baselineAlignedChildIndex_=(p)
 
     @inline def baselineAlignedChildIndex: Int = base.getBaselineAlignedChildIndex
 
-    @inline def gravity_=(param: Int) = {
-      base.setGravity(param)
+    @inline def gravity_=(p: Int) = {
+      base.setGravity(p)
       base
     }
 
-    @inline def gravity(param: Int) = gravity_=(param)
+    @inline def gravity(p: Int) = gravity_=(p)
 
     @noEquivalentGetterExists
     @inline def gravity: Int = 0
 
-    @inline def orientation_=(param: Int) = {
-      base.setOrientation(param)
+    @inline def orientation_=(p: Int) = {
+      base.setOrientation(p)
       base
     }
 
-    @inline def orientation(param: Int) = orientation_=(param)
+    @inline def orientation(p: Int) = orientation_=(p)
 
     @inline def orientation: Int = base.getOrientation
 
@@ -1222,9 +1248,9 @@ class RichLinearLayout[V <: LinearLayout](val base: V) extends TraitLinearLayout
     val VERTICAL = LinearLayout.VERTICAL
     val HORIZONTAL = LinearLayout.HORIZONTAL
 
-    implicit def defaultLayoutParams(v: View): LayoutParams = new LayoutParams(v)
+    implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
 
-    class LayoutParams(v: View) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams] {
+    class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V]] {
       def base = this
 
       v.setLayoutParams(this)
@@ -1234,7 +1260,7 @@ class RichLinearLayout[V <: LinearLayout](val base: V) extends TraitLinearLayout
         this
       }
 
-      def end: View = v
+      def end: V = v
     }
 
   }
