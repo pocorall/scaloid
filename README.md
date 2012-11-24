@@ -384,8 +384,6 @@ This also be shortened as:
 
     $Button("Click").wrapLayout
 
-You may think that this is too straightforward if you haven't been in stuck on these `width` and `height` attributes.
-
 ## Traits
 
 ### Trait $Context
@@ -657,3 +655,20 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Write a converter that turns XML layout into a Scaloid code** <br/>
   First version of the converter would be a simple web application. Providing this functionality as an Eclipse or Intellij plugin would also be great.
   
+  
+## Appendix
+
+### Why Scala rather than Xtend?
+
+Xtend natively supports 1) converting Java bean style getter/setters into the assignment style 2) automatically shorten the clutters when calling one-method callback interface by converting it into closure-like style. Because these are language features, Xtend users can enjoy these features without any wrapper library. We hope that Scala also adopt these benefits soon.
+
+However, We think that Scala is the better alternative on Android platform, because Scala has mature than Xtend and has these advanced features:
+
+ * **Implicit conversion** <br/>
+   Hiding [context object](context-as-an-implicit-parameter), [tag for logging](logging), and [layout context](layout-context) from the parameter list are possible by the Scala's implicit conversion.
+ * **Advanced type system** <br/>
+   Strict typing of [`LayoutParams`](layout-context) can be done by Scala's sophisticated type system. Using Scaloid layout parameter is simple, intuitive, and type-safe.
+ * **Traits** <br/>
+   Many useful features such as [automatic unregistering receivers](trait-unregisterreceiverservice) are implemented as traits which permits multiple inheritance.
+ 
+   
