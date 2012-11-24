@@ -665,9 +665,14 @@ Xtend natively supports 1) converting Java bean style getter/setters into the as
 However, We think that Scala is the better alternative on Android platform, because Scala has mature than Xtend and has these advanced features:
 
 * **Implicit conversion** <br/>
-  Hiding some common values (e.g. [context object](#context-as-an-implicit-parameter), [tag for logging](#logging), and [layout context](#layout-context)) from the parameter list are possible by the Scala's implicit conversion.
+  Check [implicit conversions](#implicit-conversions) section of this document to see how Scaloid leverage this.
+
+* **Implicit parameter** <br/>
+  Hiding some common values (e.g. [context object](#context-as-an-implicit-parameter), [tag for logging](#logging), and [layout context](#layout-context)) from the parameter list are possible by the Scala's implicit parameters.
+
 * **Advanced type system** <br/>
   Using Scaloid [layout parameter](#layout-context) is simple, intuitive, and type-safe.
+
 * **Traits** <br/>
   Many useful features such as [automatic unregistering receivers](#trait-unregisterreceiverservice) are implemented as traits which permits multiple inheritance.
  
