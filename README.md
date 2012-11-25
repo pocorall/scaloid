@@ -253,7 +253,7 @@ This opens a web browser (or another view assigned to http protocol).
 	
 ##### System services
 
-Getting system service objects become much simpler.
+Getting system service objects become much simpler. The following legacy code:
 
     val vibrator = getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
     vibrator.vibrate(500)
@@ -264,9 +264,9 @@ is reduced to:
 
 Under the hood, Scaloid defines a function `vibrator` like this:
 
-    implicit def vibrator = getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
+    def vibrator(implicit context: Context) = getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
 	
-All of the system service accessors available in Android API level 8 are defined (e.g. `audioManager`, `alarmManager`, `notificationManager`, etc.).
+All of the system service accessors available in Android API level 8 are defined (e.g. `audioManager`, `alarmManager`, `notificationManager`, etc.). The name of a system service accessor is the same of its class name, except that the first character is lowercase.
 
 
 ## Implicit classes
