@@ -266,7 +266,7 @@ Under the hood, Scaloid defines a function `vibrator` like this:
 
     def vibrator(implicit ctx: Context) = ctx.getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
 	
-All of the system service accessors available in Android API level 8 are defined (e.g. `audioManager`, `alarmManager`, `notificationManager`, etc.). The name of a system service accessor is the same of its class name, except that the first character is lowercase.
+All of the system service accessors available in Android API level 8 are defined (e.g. `audioManager`, `alarmManager`, `notificationManager`, etc.). The name of a system service accessor is the same of its class name, except that the first character is lowercased.
 
 
 ## Implicit classes

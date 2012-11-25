@@ -550,11 +550,10 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     def base = this
   }
 
-object SEditText {
-  def apply(txt: CharSequence)(implicit context: Context): SEditText = new SEditText() text txt
-
-  def apply()(implicit context: Context): SEditText = new SEditText()
-}
+  object SEditText {
+    def apply()(implicit context: Context): SEditText = new SEditText
+    def apply(txt: CharSequence)(implicit context: Context): SEditText = new SEditText() text txt
+  }
 
   class RichActivity[V <: Activity](val base: V) extends TraitActivity[V]
 
@@ -1008,6 +1007,7 @@ object SEditText {
   }
 
   object STextView {
+    def apply()(implicit context: Context): STextView = new STextView
     def apply(txt: CharSequence)(implicit context: Context): STextView = new STextView text txt
   }
 
@@ -1342,6 +1342,12 @@ object SEditText {
 
   }
 
+
+  object SEditTextPreference {
+    def apply()(implicit context: Context): SEditTextPreference = new SEditTextPreference
+
+  }
+
   implicit def func2runnable[F](f: () => F): Runnable =
     new Runnable() {
       def run() {
@@ -1424,18 +1430,10 @@ object SEditText {
 
   @inline implicit def stringToUri(str: String): Uri = Uri.parse(str)
 
-  @inline def SIntent[T](implicit context: Context, mt: ClassManifest[T]) = new Intent(context, mt.erasure)
+  object SIntent {
+    @inline def apply[T]()(implicit context: Context, mt: ClassManifest[T]) = new Intent(context, mt.erasure)
 
-  @inline def SIntent[T](action: String)(implicit context: Context, mt: ClassManifest[T]): Intent = SIntent[T].setAction(action)
-
-
-  object SButton {
-    def apply(text: CharSequence, onClickListener: OnClickListener = {})(implicit context: Context): SButton = {
-      val button = new SButton()(context)
-      button.text = text
-      button.setOnClickListener(onClickListener)
-      button
-    }
+    @inline def apply[T](action: String)(implicit context: Context, mt: ClassManifest[T]): Intent = SIntent[T].setAction(action)
   }
 
   class RichButton[V <: Button](val base: V) extends TraitButton[V]
@@ -1449,6 +1447,16 @@ object SEditText {
   class SButton(implicit context: Context) extends Button(context) with TraitButton[SButton] {
     def base = this
 
+  }
+
+  object SButton {
+    def apply()(implicit context: Context): SButton = new SButton
+    def apply(text: CharSequence, onClickListener: OnClickListener = {})(implicit context: Context): SButton = {
+      val button = new SButton()(context)
+      button.text = text
+      button.setOnClickListener(onClickListener)
+      button
+    }
   }
 
   @inline def toast(message: String)(implicit context: Context) {
