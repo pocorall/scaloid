@@ -133,8 +133,13 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     // TODO: write more (http://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType)
   }
 
+
+
+  class RichView[V <: View](val base: V) extends TraitView[V]
+
+  @inline implicit def view2RichView[V <: View](view: V) = new RichView[V](view)
+
   trait TraitView[V <: View] extends ConstantsSupport {
-    def base: V
 
     @inline def onClick(f:  => Unit): V = {
       base.setOnClickListener(new OnClickListener {
@@ -529,28 +534,34 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       lp.width = WRAP_CONTENT
       lp
     }
+
+    def base: V
   }
 
-  class RichView[V <: View](val base: V) extends TraitView[V]
+  class RichEditText[V <: EditText](val base: V) extends TraitEditText[V]
 
-  @inline implicit def view2RichView[V <: View](base: V) = new RichView[V](base)
+  @inline implicit def editText2RichEditText[V <: EditText](editText: V) = new RichEditText[V](editText)
 
-  object $EditText {
-    def apply(txt: CharSequence)(implicit context: Context): $EditText = new $EditText() text txt
+  trait TraitEditText[V <: EditText] extends TraitTextView[V] {
 
-    def apply()(implicit context: Context): $EditText = new $EditText()
   }
 
-  class $EditText(implicit context: Context) extends EditText(context) with TraitTextView[$EditText] {
+  class SEditText(implicit context: Context) extends EditText(context) with TraitEditText[SEditText] {
     def base = this
   }
 
-class RichActivity[V <: Activity](val base: V) extends TraitActivity[V]
+object SEditText {
+  def apply(txt: CharSequence)(implicit context: Context): SEditText = new SEditText() text txt
 
-@inline implicit def activity2RichActivity[V <: Activity](activity: V) = new RichActivity[V](activity)
+  def apply()(implicit context: Context): SEditText = new SEditText()
+}
 
-  trait TraitActivity[V <: Activity]  extends RunOnUiThread {
-    def base: Activity
+  class RichActivity[V <: Activity](val base: V) extends TraitActivity[V]
+
+  @inline implicit def activity2RichActivity[V <: Activity](activity: V) = new RichActivity[V](activity)
+
+  trait TraitActivity[V <: Activity] extends RunOnUiThread {
+
     @inline def contentView_=(p: View) = {
       base.setContentView(p)
       base
@@ -561,20 +572,21 @@ class RichActivity[V <: Activity](val base: V) extends TraitActivity[V]
     @noEquivalentGetterExists
     @inline def contentView: View = null
 
+    def base: Activity
 
     def find[V <: View](id: Int): V = base.findViewById(id).asInstanceOf[V]
   }
 
-  trait $Activity extends Activity with $Context with TraitActivity[$Activity] {
+  trait SActivity extends Activity with SContext with TraitActivity[SActivity] {
     def base = this
   }
 
-class RichTextView[V <: TextView](val base: V) extends TraitTextView[V]
+  class RichTextView[V <: TextView](val base: V) extends TraitTextView[V]
 
-@inline implicit def textView2RichTextView[V <: TextView](textView: V) = new RichTextView[V](textView)
+  @inline implicit def textView2RichTextView[V <: TextView](textView: V) = new RichTextView[V](textView)
 
-  trait TraitTextView[V <: TextView]  extends TraitView[V] {
-    def base: V
+  trait TraitTextView[V <: TextView] extends TraitView[V] {
+
     @inline def beforeTextChanged(f:  => Unit): V = {
       base.addTextChangedListener(new TextWatcher {
         def beforeTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int): Unit = {
@@ -987,8 +999,18 @@ class RichTextView[V <: TextView](val base: V) extends TraitTextView[V]
 
     @inline def inputType: Int = base.getInputType
 
+    def base: V
 
   }
+
+  class STextView(implicit context: Context) extends TextView(context) with TraitTextView[STextView] {
+    def base = this
+  }
+
+  object STextView {
+    def apply(txt: CharSequence)(implicit context: Context): STextView = new STextView text txt
+  }
+
 
   class RichMenu(menu: Menu) {
     @inline def +=(txt: CharSequence) = menu.add(txt)
@@ -1012,9 +1034,6 @@ class RichTextView[V <: TextView](val base: V) extends TraitTextView[V]
 
   @inline implicit def contextMenu2RichContextMenu(menu: ContextMenu) = new RichContextMenu(menu)
 
-  class $ListView(implicit context: Context) extends ListView(context) with TraitListView[$ListView] {
-    def base = this
-  }
 
   trait TraitAbsListView[V <: AbsListView] extends TraitView[V] {
     @inline def cacheColorHint_=(p: Int) = {
@@ -1050,11 +1069,12 @@ class RichTextView[V <: TextView](val base: V) extends TraitTextView[V]
 
   @inline implicit def Int2unitConversion(ext: Int)(implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
 
-class RichListView[V <: ListView](val base: V) extends TraitListView[V]
+  class RichListView[V <: ListView](val base: V) extends TraitListView[V]
 
-@inline implicit def listView2RichListView[V <: ListView](listView: V) = new RichListView[V](listView)
+  @inline implicit def listView2RichListView[V <: ListView](listView: V) = new RichListView[V](listView)
 
-  trait TraitListView[V <: ListView]  extends TraitAbsListView[V] {
+  trait TraitListView[V <: ListView] extends TraitAbsListView[V] {
+
     @inline def adapter_=(p: ListAdapter) = {
       base.setAdapter(p)
       base
@@ -1094,12 +1114,17 @@ class RichListView[V <: ListView](val base: V) extends TraitListView[V]
 
   }
 
-class RichViewGroup[V <: ViewGroup](val base: V) extends TraitViewGroup[V]
+  class SListView(implicit context: Context) extends ListView(context) with TraitListView[SListView] {
+    def base = this
+  }
 
-@inline implicit def viewGroup2RichViewGroup[V <: ViewGroup](viewGroup: V) = new RichViewGroup[V](viewGroup)
+  class RichViewGroup[V <: ViewGroup](val base: V) extends TraitViewGroup[V]
 
-  trait TraitViewGroup[V <: ViewGroup]  extends TraitView[V] {
-    @inline def +=(v: View): V = {
+  @inline implicit def viewGroup2RichViewGroup[V <: ViewGroup](viewGroup: V) = new RichViewGroup[V](viewGroup)
+
+  trait TraitViewGroup[V <: ViewGroup] extends TraitView[V] {
+
+    @inline def +=(v: View) = {
       base.addView(v)
       base
     }
@@ -1108,12 +1133,12 @@ class RichViewGroup[V <: ViewGroup](val base: V) extends TraitViewGroup[V]
   trait ViewGroupLayoutParams[LP <: ViewGroupLayoutParams[_]] extends ViewGroup.LayoutParams {
     def base: LP
 
-    def Width(w: Int): LP = {
+    def Width(w: Int) = {
       width = w
       base
     }
 
-    def Height(h: Int): LP = {
+    def Height(h: Int) = {
       height = h
       base
     }
@@ -1122,32 +1147,33 @@ class RichViewGroup[V <: ViewGroup](val base: V) extends TraitViewGroup[V]
   }
 
   trait ViewGroupMarginLayoutParams[LP <: ViewGroupMarginLayoutParams[_]] extends ViewGroup.MarginLayoutParams with ViewGroupLayoutParams[LP] {
-    def marginBottom(size: Int): LP = {
+    def marginBottom(size: Int) = {
       bottomMargin = size
       base
     }
 
-    def marginTop(size: Int): LP = {
+    def marginTop(size: Int) = {
       topMargin = size
       base
     }
 
-    def marginLeft(size: Int): LP = {
+    def marginLeft(size: Int) = {
       leftMargin = size
       base
     }
 
-    def marginRight(size: Int): LP = {
+    def marginRight(size: Int) = {
       rightMargin = size
       base
     }
   }
 
-class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
+  class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
 
-@inline implicit def frameLayout2RichFrameLayout[V <: FrameLayout](frameLayout: V) = new RichFrameLayout[V](frameLayout)
+  @inline implicit def frameLayout2RichFrameLayout[V <: FrameLayout](frameLayout: V) = new RichFrameLayout[V](frameLayout)
 
-  trait TraitFrameLayout[V <: FrameLayout]  extends TraitViewGroup[V] {
+  trait TraitFrameLayout[V <: FrameLayout] extends TraitViewGroup[V] {
+
     @inline def foreground_=(p: Drawable) = {
       base.setForeground(p)
       base
@@ -1179,8 +1205,8 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
 
   }
 
-@inline class $FrameLayout(implicit context: Context) extends FrameLayout(context) with TraitFrameLayout[$FrameLayout] {
-  def base = this
+  class SFrameLayout(implicit context: Context) extends FrameLayout(context) with TraitFrameLayout[SFrameLayout] {
+    def base = this
 
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
 
@@ -1198,11 +1224,12 @@ class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
   }
 }
 
-class RichLinearLayout[V <: LinearLayout](val base: V) extends TraitLinearLayout[V]
+  class RichLinearLayout[V <: LinearLayout](val base: V) extends TraitLinearLayout[V]
 
-@inline implicit def linearLayout2RichLinearLayout[V <: LinearLayout](linearLayout: V) = new RichLinearLayout[V](linearLayout)
+  @inline implicit def linearLayout2RichLinearLayout[V <: LinearLayout](linearLayout: V) = new RichLinearLayout[V](linearLayout)
 
-  trait TraitLinearLayout[V <: LinearLayout]  extends TraitViewGroup[V] {
+  trait TraitLinearLayout[V <: LinearLayout] extends TraitViewGroup[V] {
+
     @inline def baselineAligned_=(p: Boolean) = {
       base.setBaselineAligned(p)
       base
@@ -1242,7 +1269,7 @@ class RichLinearLayout[V <: LinearLayout](val base: V) extends TraitLinearLayout
 
   }
 
-  @inline class $LinearLayout(implicit context: Context) extends LinearLayout(context) with TraitLinearLayout[$LinearLayout] {
+  class SLinearLayout(implicit context: Context) extends LinearLayout(context) with TraitLinearLayout[SLinearLayout] {
     def base = this
 
     val VERTICAL = LinearLayout.VERTICAL
@@ -1265,11 +1292,12 @@ class RichLinearLayout[V <: LinearLayout](val base: V) extends TraitLinearLayout
 
   }
 
-class RichEditTextPreference[V <: EditTextPreference](val base: V) extends TraitEditTextPreference[V]
+  class RichEditTextPreference[V <: EditTextPreference](val base: V) extends TraitEditTextPreference[V]
 
-@inline implicit def EditTextPreference2RichEditTextPreference[V <: EditTextPreference](EditTextPreference: V) = new RichEditTextPreference[V](EditTextPreference)
+  @inline implicit def editTextPreference2RichEditTextPreference[V <: EditTextPreference](editTextPreference: V) = new RichEditTextPreference[V](editTextPreference)
 
-  trait TraitEditTextPreference[V <: EditTextPreference]  {
+  trait TraitEditTextPreference[V <: EditTextPreference] {
+
   def base: V
     @inline def onPreferenceChange(f:  => Boolean): V = {
       base.setOnPreferenceChangeListener(new OnPreferenceChangeListener {
@@ -1309,7 +1337,7 @@ class RichEditTextPreference[V <: EditTextPreference](val base: V) extends Trait
 
   }
 
-  @inline class $EditTextPreference(implicit context: Context) extends EditTextPreference(context) with TraitEditTextPreference[$EditTextPreference] {
+  class SEditTextPreference(implicit context: Context) extends EditTextPreference(context) with TraitEditTextPreference[SEditTextPreference] {
     def base = this
 
   }
@@ -1396,29 +1424,31 @@ class RichEditTextPreference[V <: EditTextPreference](val base: V) extends Trait
 
   @inline implicit def stringToUri(str: String): Uri = Uri.parse(str)
 
-  @inline def $Intent[T](implicit context: Context, mt: ClassManifest[T]) = new Intent(context, mt.erasure)
+  @inline def SIntent[T](implicit context: Context, mt: ClassManifest[T]) = new Intent(context, mt.erasure)
 
-  @inline def $Intent[T](action: String)(implicit context: Context, mt: ClassManifest[T]): Intent = $Intent[T].setAction(action)
+  @inline def SIntent[T](action: String)(implicit context: Context, mt: ClassManifest[T]): Intent = SIntent[T].setAction(action)
 
-  object $TextView {
-    def apply(txt: CharSequence)(implicit context: Context): $TextView = new $TextView text txt
-  }
 
-  class $TextView(implicit context: Context) extends TextView(context) with TraitTextView[$TextView] {
-    def base = this
-  }
-
-  object $Button {
-    def apply(text: CharSequence, onClickListener: OnClickListener = {})(implicit context: Context): $Button = {
-      val button = new $Button()(context)
+  object SButton {
+    def apply(text: CharSequence, onClickListener: OnClickListener = {})(implicit context: Context): SButton = {
+      val button = new SButton()(context)
       button.text = text
       button.setOnClickListener(onClickListener)
       button
     }
   }
 
-  class $Button(implicit context: Context) extends Button(context) with TraitTextView[$Button] {
+  class RichButton[V <: Button](val base: V) extends TraitButton[V]
+
+  @inline implicit def button2RichButton[V <: Button](button: V) = new RichButton[V](button)
+
+  trait TraitButton[V <: Button] extends TraitTextView[V] {
+
+  }
+
+  class SButton(implicit context: Context) extends Button(context) with TraitButton[SButton] {
     def base = this
+
   }
 
   @inline def toast(message: String)(implicit context: Context) {
@@ -1439,7 +1469,7 @@ class RichEditTextPreference[V <: EditTextPreference](val base: V) extends Trait
     PendingIntent.getActivity(context, 0, intent, 0)
 
   @inline def pendingActivity[T](implicit context: Context, mt: ClassManifest[T]) =
-    PendingIntent.getActivity(context, 0, $Intent[T], 0)
+    PendingIntent.getActivity(context, 0, SIntent[T], 0)
 
   @inline def notificationSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
@@ -1540,19 +1570,19 @@ class RichEditTextPreference[V <: EditTextPreference](val base: V) extends Trait
   @inline def windowManager(implicit context: Context): WindowManager =
     context.getSystemService(Context.WINDOW_SERVICE).asInstanceOf[WindowManager]
 
-  trait $Context extends Context with TagUtil with RunOnUiThread {
+  trait SContext extends Context with TagUtil with RunOnUiThread {
     implicit val context = this
 
     def startActivity[T: ClassManifest] {
-      startActivity($Intent[T])
+      startActivity(SIntent[T])
     }
 
     def startService[T: ClassManifest] {
-      startService($Intent[T])
+      startService(SIntent[T])
     }
 
     def stopService[T: ClassManifest] {
-      stopService($Intent[T])
+      stopService(SIntent[T])
     }
   }
 

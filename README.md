@@ -17,7 +17,7 @@ For example, the code block shown below:
 
 is reduced to:	
 	
-	layout += $Button("Greet", toast("Hello!"))
+	layout += SButton("Greet", toast("Hello!"))
 
 
 ### Benefits
@@ -73,31 +73,31 @@ Android SDK leverages XML to build UI layouts. However, XML considered still a b
 
 is reduced to:
 
-    new $LinearLayout {
+    new SLinearLayout {
 	  orientation = VERTICAL
-	  val id = $EditText()
-	  val pass = $EditText() inputType TEXT_PASSWORD
-	  +=($TextView("Sign in").textSize(24.5 sp).layout.marginBottom(25 dip).end)
-	  +=($TextView("ID")) += id += $TextView("Password") += pass
-	  +=($Button("Sign in"))
-	  +=(new $LinearLayout {
-	    +=($Button("Help")) 
-		+=($Button("Sign up"))
+	  val id = SEditText()
+	  val pass = SEditText() inputType TEXT_PASSWORD
+	  +=(STextView("Sign in").textSize(24.5 sp).layout.marginBottom(25 dip).end)
+	  +=(STextView("ID")) += id += STextView("Password") += pass
+	  +=(SButton("Sign in"))
+	  +=(new SLinearLayout {
+	    +=(SButton("Help")) 
+		+=(SButton("Sign up"))
 	  })
     }.padding(20 dip)
 
 The layout description shown above is highly programmable. You can easily wire your logic into the layout:
 	
-<pre><code>new $LinearLayout {
+<pre><code>new SLinearLayout {
   orientation = VERTICAL
-  val id = $EditText()
-  val pass = $EditText() inputType TEXT_PASSWORD
-  +=($TextView("Sign in").textSize(24.5 sp).layout.marginBottom(25 dip).end)
-  +=($TextView("ID")) += id += $TextView("Password") += pass
-  +=($Button("Sign in"<b><i>, signin(id.text, pass.text)</i></b>))
-  +=(new $LinearLayout {
-    +=($Button("Help"<b><i>, openUri("http://help.url")</i></b>))
-    +=($Button("Sign up"<b><i>, openUri("http://signup.uri")</i></b>)
+  val id = SEditText()
+  val pass = SEditText() inputType TEXT_PASSWORD
+  +=(STextView("Sign in").textSize(24.5 sp).layout.marginBottom(25 dip).end)
+  +=(STextView("ID")) += id += STextView("Password") += pass
+  +=(SButton("Sign in"<b><i>, signin(id.text, pass.text)</i></b>))
+  +=(new SLinearLayout {
+    +=(SButton("Help"<b><i>, openUri("http://help.url")</i></b>))
+    +=(SButton("Sign up"<b><i>, openUri("http://signup.uri")</i></b>)
   })
 }.padding(20 dip)
 </code></pre>
@@ -161,7 +161,7 @@ A unit can be converted into the pixel unit.
 	
 	( => Any) => Runnable
 
-`Runnable` also covered with [rich](#rich-classes) and $-ed classes.
+`Runnable` also covered with [rich](#rich-classes) and prefixed classes.
 	
 There are more implicit conversions available. Check the source code as needed.
 	
@@ -170,7 +170,7 @@ Many methods in Android API requires an instance of a class `Context`. Providing
 
     implicit val context = ...
 
-or just extend trait `$Context`, which defines it for you. Then the codes that required `Context` becomes much simpler, for example:
+or just extend trait `SContext`, which defines it for you. Then the codes that required `Context` becomes much simpler, for example:
 
 
 ##### Intent
@@ -179,7 +179,7 @@ or just extend trait `$Context`, which defines it for you. Then the codes that r
 
 is reduced to:
 
-    $Intent[MyActivity]
+    SIntent[MyActivity]
 
 ##### Starting and stopping service
 
@@ -330,14 +330,14 @@ In Android API, layout information are stored into a `View` object with a method
 	
 Because the button is appended into the `LinearLayout`, the layout parameter must be `LinearLayout.LayoutParams`, otherwise a ___runtime error___ might be occurred. Meanwhile, Scaloid eliminate this burden, while still preserving regorous typing of `LayoutParams`. The code shown below is equivalent to the previous Java code:
 
-    val layout = new $LinearLayout {
-	  +=($Button("Click").layout.Weight(1.0f).end)
+    val layout = new SLinearLayout {
+	  +=(SButton("Click").layout.Weight(1.0f).end)
     }
 	
-In the anonymous constructor of '$LinearLayout', Scaloid provides an implicit function called "layout context". This affects a return type of `.layout` of the class `$Button`. If we use `$FrameLayout` as a layout context, `.layout` returns `FrameLayout.LayoutParams`, so the code below results a ___syntax error___.
+In the anonymous constructor of 'SLinearLayout', Scaloid provides an implicit function called "layout context". This affects a return type of `.layout` of the class `SButton`. If we use `SFrameLayout` as a layout context, `.layout` returns `FrameLayout.LayoutParams`, so the code below results a ___syntax error___.
 
-    val layout = new $FrameLayout {
-      +=($Button("Click").layout.Weight(1.0f).end)   // Syntax error on Weight()
+    val layout = new SFrameLayout {
+      +=(SButton("Click").layout.Weight(1.0f).end)   // Syntax error on Weight()
     }
 
 It is a pragmatical progress towards both simplicity and rigorous type checking.
@@ -346,23 +346,23 @@ It is a pragmatical progress towards both simplicity and rigorous type checking.
 
 As we noted, the function `.layout` returns an object type of `ViewGroup.LayoutParams`:
 
-    val params = $Button("Click").layout   // type LayoutParams
+    val params = SButton("Click").layout   // type LayoutParams
 	
 This class provides some setters for chaining:
 	
-    val params = $Button("Click").layout.bottomMargin(100).leftMargin(10)   // type LayoutParams
+    val params = SButton("Click").layout.bottomMargin(100).leftMargin(10)   // type LayoutParams
 	
-if we want use the `$Button` object again, Scaloid provides `.end` method returning back to the object:
+if we want use the `SButton` object again, Scaloid provides `.end` method returning back to the object:
 	
-	val button = $Button("Click").layout.bottomMargin(100).leftMargin(10).end   // type $Button
+	val button = SButton("Click").layout.bottomMargin(100).leftMargin(10).end   // type SButton
 
 #### Nested layout context
 	
 When the layout context is nested, inner-most context is applied:
 	
-    val layout = new $FrameLayout {
-	  +=(new $LinearLayout {
-	    +=($Button("Click").layout.Weight(1.0f).end)   // in context of $LinearLayout
+    val layout = new SFrameLayout {
+	  +=(new SLinearLayout {
+	    +=(SButton("Click").layout.Weight(1.0f).end)   // in context of SLinearLayout
       })
 	}
 
@@ -370,25 +370,25 @@ When the layout context is nested, inner-most context is applied:
 
 When we get a `LayoutParams` from `.layout`, the default values of `width` and `height` property is `width = MATCH_PARENT` and `height = WRAP_CONTENT`. You can override this when you need it:
 
-    $Button("Click").layout.Width(MATCH_PARENT).Height(MATCH_PARENT)
+    SButton("Click").layout.Width(MATCH_PARENT).Height(MATCH_PARENT)
 	
 This is a very frequently used idiom. Therefore we provide a further shorthand:
 
-    $Button("Click").matchLayout
+    SButton("Click").matchLayout
 
 If you want the `View` element to be wrapped,
 
-    $Button("Click").layout.Width(WRAP_CONTENT).Height(WRAP_CONTENT)
+    SButton("Click").layout.Width(WRAP_CONTENT).Height(WRAP_CONTENT)
 	
 This also be shortened as:
 
-    $Button("Click").wrapLayout
+    SButton("Click").wrapLayout
 
 ## Traits
 
-### Trait $Context
+### Trait SContext
 
-Trait `$Context` includes several shortcuts for frequently used android idioms.
+Trait `SContext` includes several shortcuts for frequently used android idioms.
 
 
 ### Trait RunOnUiThread
@@ -445,7 +445,7 @@ class MyService extends UnregisterReceiverService {
 }
 ```
 
-### Trait $Activity
+### Trait SActivity
 
 Instead of
 
@@ -461,7 +461,7 @@ Unlike other logging frameworks, Android Logging API requires a `String` tag for
 
     implicit val tag = LoggerTag("MyAppTag")
 
-or, extend trait `TagUtil` or `$Context` which defines this by default. Then you can simply log like this:
+or, extend trait `TagUtil` or `SContext` which defines this by default. Then you can simply log like this:
 
 	warn("Something happened!")
 
@@ -493,24 +493,24 @@ Compared with Java style getters and setters, for example:
 	
 that of Scala style clearly reveals the nature of the operations as shown below:
 
-    new $TextView {
+    new STextView {
       text = "Hello"
       textSize = 15
 	}
 	
 Or, you can also chain the setters:
 
-    new $TextView text "Hello" textSize 15
+    new STextView text "Hello" textSize 15
 	
 , which is a syntactic sugar of a method calling:
 
-    new $TextView.text("Hello").textSize(15)	
+    new STextView.text("Hello").textSize(15)	
 
 We recommend "assignment style" and "DSL style". Use assignment style when you emphasize that you are assigning something, or use DSL style when the code length of the assignee is short and need to be chained.
 
-Note: Using `.apply(String)` method on object `$TextView`, you can further reduce the code above like this:
+Note: Using `.apply(String)` method on object `STextView`, you can further reduce the code above like this:
 
-    $TextView("Hello") textSize 15
+    STextView("Hello") textSize 15
 
 Note 2: Currently, Assignment or DSL style setters are not covered for all setters from Android API. Check our [roadmap](#roadmap).
 
@@ -533,7 +533,7 @@ is reduced to:
 
     getGenericView text "hello" maxHeight 8
 	
-### Dollar-signed($-ed) classes
+### Prefixed classes
 
 If you want to use scala style getters/setters, implicit conversion do the magic on native Android objects:
 
@@ -546,31 +546,31 @@ However, if you use it in constructors, compiler cannot find correct implicit co
 	  text = "Hello"    // Compilation Error.
 	}
 	
-Therefore, we extended Android classes with the same name prefixed with a dollar($) sign:
+Therefore, we extended Android classes with the same name prefixed with a 'S' character:
 	
-	def getInstance = new $TextView {
+	def getInstance = new STextView {
 	  text = "Hello"    // OK.
 	}
 	
 These classes explicitly provide the extra methods that was provided implicitly. 
 
-Aditionally, $-ed classes supports [implicit context value](#context-as-an-implicit-parameter) and additional syntactic sugars. For example, many classes has `.apply(...)` methods for creating a new instance:
+Aditionally, prefixed classes supports [implicit context value](#context-as-an-implicit-parameter) and additional syntactic sugars. For example, many classes has `.apply(...)` methods for creating a new instance:
 
-    $TextView("Hello")
-    $Button("title", onClickBehavior())
-	$Intent[MyActivity]
+    STextView("Hello")
+    SButton("title", onClickBehavior())
+	SIntent[MyActivity]
 
-<sub>**Design considerations on making $-ed classes:** In modern programming language, using package (or namespace) is preferred than prefixing. However, when we use both classes from Android API and Scaloid, using package name is more verbose than prefixing class name itself (compare with `common.Button` and `$Button`) and can be confused when you use both classes at the same code. We choose pragmatism rather than discipline.</sub>
+<sub>**Design considerations on making prefixed classes:** In modern programming language, using package (or namespace) is preferred than prefixing. However, when we use both classes from Android API and Scaloid, using package name is more verbose than prefixing class name itself (compare with `common.Button` and `SButton`) and can be confused when you use both classes at the same code. We choose pragmatism rather than discipline.</sub>
 
 ### Sweet-little sugar
 
 If the setter ends with `...Enabled`, Scaloid adds functions named `enable...` and `disable...`. For example:
 
-    (new $LinearLayout).disableVerticalScrollBar
+    (new SLinearLayout).disableVerticalScrollBar
 
 , which is equivalent to:
 	
-	(new $LinearLayout).verticalScrollBarEnabled(false)
+	(new SLinearLayout).verticalScrollBarEnabled(false)
 	
 ## Classes
 
@@ -671,7 +671,7 @@ However, We think that Scala is the better alternative on Android platform, beca
   Hiding some common values (e.g. [context object](#context-as-an-implicit-parameter), [tag for logging](#logging), and [layout context](#layout-context)) from the parameter list are possible by the Scala's implicit parameters.
 
 * **Advanced type system** <br/>
-  Using Scaloid [layout parameter](#layout-context) is simple, intuitive, and type-safe.
+  Scaloid [layout parameter](#layout-context) is simple, intuitive, and type-safe.
 
 * **Traits** <br/>
   Many useful features such as [automatic unregistering receivers](#trait-unregisterreceiverservice) are implemented as traits which permits multiple inheritance.
