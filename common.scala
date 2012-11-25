@@ -998,7 +998,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def inputType: Int = base.getInputType
 
-    def base: V
 
   }
 
@@ -1116,6 +1115,10 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
   class SListView(implicit context: Context) extends ListView(context) with TraitListView[SListView] {
     def base = this
+  }
+
+  object SListView {
+    def apply()(implicit context: Context): SListView = new SListView
   }
 
   class RichViewGroup[V <: ViewGroup](val base: V) extends TraitViewGroup[V]
@@ -1298,7 +1301,6 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
   trait TraitEditTextPreference[V <: EditTextPreference] {
 
-  def base: V
     @inline def onPreferenceChange(f:  => Boolean): V = {
       base.setOnPreferenceChangeListener(new OnPreferenceChangeListener {
         def onPreferenceChange(p1: Preference, p2: Object): Boolean = {
@@ -1335,6 +1337,7 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       base
     }
 
+    def base: V
   }
 
   class SEditTextPreference(implicit context: Context) extends EditTextPreference(context) with TraitEditTextPreference[SEditTextPreference] {

@@ -566,11 +566,11 @@ Aditionally, prefixed classes supports [implicit context value](#context-as-an-i
 
 If the setter ends with `...Enabled`, Scaloid adds functions named `enable...` and `disable...`. For example:
 
-    (new SLinearLayout).disableVerticalScrollBar
+    SLinearLayout().disableVerticalScrollBar
 
 , which is equivalent to:
 	
-	(new SLinearLayout).verticalScrollBarEnabled(false)
+	SLinearLayout().verticalScrollBarEnabled(false)
 	
 ## Classes
 
