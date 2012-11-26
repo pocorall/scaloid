@@ -643,12 +643,16 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 
 * **Build an example Android app** <br/>
   Finish a [Scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos) and try another.
+
 * **Build a dedicated website**
 * **Write a complete API document**
 * **Write the Beginner's guide**
+
+* **Build an example of laying out multiple UI**
+
 * **Cover full listener shortcuts** <br/>
   Such as EditTextPreference.setOnPreferenceChangeListener
-* **Cover openGL ES**
+* **Cover openGL ES and renderscript**
 * **Automatically unregister SensorEventListener onStop()**
 * **Support Google services** <br/>
   Including Google Cloud Messaging (GCM)
