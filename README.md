@@ -451,9 +451,11 @@ Instead of
 
     findViewById(R.id.login).asInstanceOf[Button]
 
-use this shortcut:
+use a shorthand:
 
     find[Button](R.id.login)
+
+Although we provide this shorthand, Scaloid recommends to [programmatically laying out UI, not with XML](#ui-layout-without-xml).
 	
 ## Logging
 
