@@ -37,7 +37,19 @@ If you want to see how Scaloid can be used in action, check a [Scala port of api
 ##### Need help using Scala language in your Android project?
 Please refer https://github.com/rohansingh/android-scala-test.
 
+## Features
 
+ * [UI Layout with XML](#ui-layout-without-xml)
+ * [Implicit conversions](#implicit-conversions)
+ * [Shorter representation without context object](#context-as-an-implicit-parameter)
+ * [Shorter listeners](#implicit-classes)
+ * [Asynchronous processing](#trait-runonuithread)
+ * [Smarter logging](#logging)
+ * [Improved getters/setters](#scala-getters-and-setters)
+ * [Concise dialog builder](#class-alertdialogbuilder)
+ 
+...and many other things!
+ 
 ## UI Layout without XML
 
 Android SDK leverages XML to build UI layouts. However, XML considered still a bit verbose, and lacks programmability. Scaloid composes UI layout in Scala DSL style, therefore achieve both clarity and programmability. For example, suppose a legacy XML layout as shown below:
