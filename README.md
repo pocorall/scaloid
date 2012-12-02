@@ -34,7 +34,7 @@ is reduced to:
 
 If you want to see how Scaloid can be used in action, check a [Scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos).
 
-##### Need help using Scala language in your Android project?
+##### Need help using Scala language on your Android project?
 
 There is an out-of-the-box solution. Just [fork this project](https://github.com/rohansingh/android-scala-test) and start your Scala-Android app.
 
@@ -381,7 +381,7 @@ When the layout context is nested, inner-most context is applied:
 
 #### matchLayout and warpLayout
 
-When we get a `LayoutParams` from `.layout`, the default values of `width` and `height` property is `width = MATCH_PARENT` and `height = WRAP_CONTENT`. You can override this when you need it:
+When we get a `LayoutParams` from `.layout`, the default values of `width` and `height` properties are `width = MATCH_PARENT` and `height = WRAP_CONTENT`. You can override this when you need it:
 
     SButton("Click").layout.Width(MATCH_PARENT).Height(MATCH_PARENT)
 	
