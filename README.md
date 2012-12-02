@@ -697,6 +697,7 @@ However, We think that Scala is the better alternative on Android platform, beca
 
 ### Why Scala rather than JRuby?
 
-* Type-safety
+* **Type-safety**
 
-* Runtime performance (your precious battery)
+* **Runtime performance** (your precious battery)<br/>
+  [See benchmarks](http://shootout.alioth.debian.org/)
