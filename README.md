@@ -35,7 +35,8 @@ is reduced to:
 If you want to see how Scaloid can be used in action, check a [Scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos).
 
 ##### Need help using Scala language in your Android project?
-Please refer https://github.com/rohansingh/android-scala-test.
+
+There is an out-of-the-box solution. Just [fork this project](https://github.com/rohansingh/android-scala-test) and start your Scala-Android app.
 
 ## Features
 
