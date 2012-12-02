@@ -526,8 +526,6 @@ Note: Using `.apply(String)` method on object `STextView`, you can further reduc
 
     STextView("Hello") textSize 15
 
-Note 2: Currently, Assignment or DSL style setters are not covered for all setters from Android API. Check our [roadmap](#roadmap).
-
 ### Return value of setters
 
 Unlike most setters in Android API, our setters return the object itself. This feature can be used as a syntactic sugar when setters need to be chained or a function returning some object. For example, a snippet of [Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList1.java?av=h) from ApiDemos that is shown below:
@@ -651,9 +649,6 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
   1. Fragment
   1. New system services
   1. Action bar
-  
-* **Completely implement Scala getters and setters** <br/>
-  A few accessors are currently ported into the Scala style. There are tons of setters in Android API, covering all of them is a hard working. I examined http://scalamacros.org but it seems not good fit on this problem yet. If you have any good idea, please let me know.
 
 * **Build an example Android app** <br/>
   Finish a [Scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos) and try another.
@@ -699,5 +694,5 @@ However, We think that Scala is the better alternative on Android platform, beca
 
 * **Type-safety**
 
-* **Runtime performance** (your precious battery)<br/>
+* **Runtime performance** (and your precious battery)<br/>
   [See benchmarks](http://shootout.alioth.debian.org/)
