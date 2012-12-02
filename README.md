@@ -694,4 +694,9 @@ However, We think that Scala is the better alternative on Android platform, beca
 * **Traits** <br/>
   Many useful features such as [automatic unregistering receivers](#trait-unregisterreceiverservice) are implemented as traits which permits multiple inheritance.
  
-   
+
+### Why Scala rather than JRuby?
+
+* Type-safety
+
+* Runtime performance (your precious battery)
