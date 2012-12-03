@@ -1643,24 +1643,31 @@ def defaultValue[U]: U = {
 
   trait TraitListView[V <: ListView] extends TraitAbsListView[V] {
 
-    @inline def adapter_=(p: ListAdapter) = {
-      base.setAdapter(p)
+    @inline def checkItemIds = base.getCheckItemIds
+
+    @inline def checkedItemIds = base.getCheckedItemIds
+
+    @inline def checkedItemPosition = base.getCheckedItemPosition
+
+    @inline def checkedItemPositions = base.getCheckedItemPositions
+
+    @inline def choiceMode_=(p: Int) = {
+      base.setChoiceMode(p)
       base
     }
 
-    @inline def adapter(p: ListAdapter) = adapter_=(p)
+    @inline def choiceMode(p: Int) = choiceMode_=(p)
 
-    @inline def adapter: ListAdapter = base.getAdapter
+    @inline def choiceMode = base.getChoiceMode
 
-    @inline def selection_=(p: Int) = {
-      base.setSelection(p)
+    @inline def divider_=(p: android.graphics.drawable.Drawable) = {
+      base.setDivider(p)
       base
     }
 
-    @inline def selection(p: Int) = selection_=(p)
+    @inline def divider(p: android.graphics.drawable.Drawable) = divider_=(p)
 
-    @noEquivalentGetterExists
-    @inline def selection: Int = 0
+    @inline def divider = base.getDivider
 
     @inline def dividerHeight_=(p: Int) = {
       base.setDividerHeight(p)
@@ -1669,16 +1676,46 @@ def defaultValue[U]: U = {
 
     @inline def dividerHeight(p: Int) = dividerHeight_=(p)
 
-    @inline def dividerHeight: Int = base.getDividerHeight
+    @inline def dividerHeight = base.getDividerHeight
 
-    @inline def divider_=(p: Drawable) = {
-      base.setDivider(p)
+    @inline def enableFooterDividers = {base.setFooterDividersEnabled(true); base}
+    @inline def disableFooterDividers = {base.setFooterDividersEnabled(false); base}
+    @inline def footerDividersEnabled_=(p: Boolean) = {
+      base.setFooterDividersEnabled(p)
       base
     }
 
-    @inline def divider(p: Drawable) = divider_=(p)
+    @inline def footerDividersEnabled(p: Boolean) = footerDividersEnabled_=(p)
 
-    @inline def divider: Drawable = base.getDivider
+    @noEquivalentGetterExists
+    @inline def footerDividersEnabled: Boolean = defaultValue[Boolean]
+
+    @inline def footerViewsCount = base.getFooterViewsCount
+
+    @inline def enableHeaderDividers = {base.setHeaderDividersEnabled(true); base}
+    @inline def disableHeaderDividers = {base.setHeaderDividersEnabled(false); base}
+    @inline def headerDividersEnabled_=(p: Boolean) = {
+      base.setHeaderDividersEnabled(p)
+      base
+    }
+
+    @inline def headerDividersEnabled(p: Boolean) = headerDividersEnabled_=(p)
+
+    @noEquivalentGetterExists
+    @inline def headerDividersEnabled: Boolean = defaultValue[Boolean]
+
+    @inline def headerViewsCount = base.getHeaderViewsCount
+
+    @inline def itemsCanFocus_=(p: Boolean) = {
+      base.setItemsCanFocus(p)
+      base
+    }
+
+    @inline def itemsCanFocus(p: Boolean) = itemsCanFocus_=(p)
+
+    @inline def itemsCanFocus = base.getItemsCanFocus
+
+    @inline def maxScrollAmount = base.getMaxScrollAmount
 
   }
 
@@ -1695,6 +1732,98 @@ def defaultValue[U]: U = {
   @inline implicit def viewGroup2RichViewGroup[V <: ViewGroup](viewGroup: V) = new RichViewGroup[V](viewGroup)
 
   trait TraitViewGroup[V <: ViewGroup] extends TraitView[V] {
+
+    @inline def enableAlwaysDrawnWithCache = {base.setAlwaysDrawnWithCacheEnabled(true); base}
+    @inline def disableAlwaysDrawnWithCache = {base.setAlwaysDrawnWithCacheEnabled(false); base}
+    @inline def alwaysDrawnWithCacheEnabled_=(p: Boolean) = {
+      base.setAlwaysDrawnWithCacheEnabled(p)
+      base
+    }
+
+    @inline def alwaysDrawnWithCacheEnabled(p: Boolean) = alwaysDrawnWithCacheEnabled_=(p)
+
+    @inline def alwaysDrawnWithCacheEnabled = base.isAlwaysDrawnWithCacheEnabled
+
+    @inline def enableAnimationCache = {base.setAnimationCacheEnabled(true); base}
+    @inline def disableAnimationCache = {base.setAnimationCacheEnabled(false); base}
+    @inline def animationCacheEnabled_=(p: Boolean) = {
+      base.setAnimationCacheEnabled(p)
+      base
+    }
+
+    @inline def animationCacheEnabled(p: Boolean) = animationCacheEnabled_=(p)
+
+    @inline def animationCacheEnabled = base.isAnimationCacheEnabled
+
+    @inline def childCount = base.getChildCount
+
+    @inline def clipChildren_=(p: Boolean) = {
+      base.setClipChildren(p)
+      base
+    }
+
+    @inline def clipChildren(p: Boolean) = clipChildren_=(p)
+
+    @noEquivalentGetterExists
+    @inline def clipChildren: Boolean = defaultValue[Boolean]
+
+    @inline def clipToPadding_=(p: Boolean) = {
+      base.setClipToPadding(p)
+      base
+    }
+
+    @inline def clipToPadding(p: Boolean) = clipToPadding_=(p)
+
+    @noEquivalentGetterExists
+    @inline def clipToPadding: Boolean = defaultValue[Boolean]
+
+    @inline def descendantFocusability_=(p: Int) = {
+      base.setDescendantFocusability(p)
+      base
+    }
+
+    @inline def descendantFocusability(p: Int) = descendantFocusability_=(p)
+
+    @inline def descendantFocusability = base.getDescendantFocusability
+
+    @inline def focusedChild = base.getFocusedChild
+
+    @inline def layoutAnimation_=(p: android.view.animation.LayoutAnimationController) = {
+      base.setLayoutAnimation(p)
+      base
+    }
+
+    @inline def layoutAnimation(p: android.view.animation.LayoutAnimationController) = layoutAnimation_=(p)
+
+    @inline def layoutAnimation = base.getLayoutAnimation
+
+    @inline def layoutAnimationListener_=(p: android.view.animation.Animation.AnimationListener) = {
+      base.setLayoutAnimationListener(p)
+      base
+    }
+
+    @inline def layoutAnimationListener(p: android.view.animation.Animation.AnimationListener) = layoutAnimationListener_=(p)
+
+    @inline def layoutAnimationListener = base.getLayoutAnimationListener
+
+    @inline def onHierarchyChangeListener_=(p: android.view.ViewGroup.OnHierarchyChangeListener) = {
+      base.setOnHierarchyChangeListener(p)
+      base
+    }
+
+    @inline def onHierarchyChangeListener(p: android.view.ViewGroup.OnHierarchyChangeListener) = onHierarchyChangeListener_=(p)
+
+    @noEquivalentGetterExists
+    @inline def onHierarchyChangeListener: android.view.ViewGroup.OnHierarchyChangeListener = defaultValue[android.view.ViewGroup.OnHierarchyChangeListener]
+
+    @inline def persistentDrawingCache_=(p: Int) = {
+      base.setPersistentDrawingCache(p)
+      base
+    }
+
+    @inline def persistentDrawingCache(p: Int) = persistentDrawingCache_=(p)
+
+    @inline def persistentDrawingCache = base.getPersistentDrawingCache
 
     @inline def +=(v: View) = {
       base.addView(v)
@@ -1746,14 +1875,16 @@ def defaultValue[U]: U = {
 
   trait TraitFrameLayout[V <: FrameLayout] extends TraitViewGroup[V] {
 
-    @inline def foreground_=(p: Drawable) = {
+    @inline def considerGoneChildrenWhenMeasuring = base.getConsiderGoneChildrenWhenMeasuring
+
+    @inline def foreground_=(p: android.graphics.drawable.Drawable) = {
       base.setForeground(p)
       base
     }
 
-    @inline def foreground(p: Drawable) = foreground_=(p)
+    @inline def foreground(p: android.graphics.drawable.Drawable) = foreground_=(p)
 
-    @inline def foreground: Drawable = base.getForeground
+    @inline def foreground = base.getForeground
 
     @inline def foregroundGravity_=(p: Int) = {
       base.setForegroundGravity(p)
@@ -1763,7 +1894,7 @@ def defaultValue[U]: U = {
     @inline def foregroundGravity(p: Int) = foregroundGravity_=(p)
 
     @noEquivalentGetterExists
-    @inline def foregroundGravity: Int = 0
+    @inline def foregroundGravity: Int = defaultValue[Int]
 
     @inline def measureAllChildren_=(p: Boolean) = {
       base.setMeasureAllChildren(p)
@@ -1773,7 +1904,7 @@ def defaultValue[U]: U = {
     @inline def measureAllChildren(p: Boolean) = measureAllChildren_=(p)
 
     @noEquivalentGetterExists
-    @inline def measureAllChildren: Boolean = false
+    @inline def measureAllChildren: Boolean = defaultValue[Boolean]
 
   }
 
@@ -1809,7 +1940,7 @@ def defaultValue[U]: U = {
 
     @inline def baselineAligned(p: Boolean) = baselineAligned_=(p)
 
-    @inline def baselineAligned: Boolean = base.isBaselineAligned
+    @inline def baselineAligned = base.isBaselineAligned
 
     @inline def baselineAlignedChildIndex_=(p: Int) = {
       base.setBaselineAlignedChildIndex(p)
@@ -1818,7 +1949,7 @@ def defaultValue[U]: U = {
 
     @inline def baselineAlignedChildIndex(p: Int) = baselineAlignedChildIndex_=(p)
 
-    @inline def baselineAlignedChildIndex: Int = base.getBaselineAlignedChildIndex
+    @inline def baselineAlignedChildIndex = base.getBaselineAlignedChildIndex
 
     @inline def gravity_=(p: Int) = {
       base.setGravity(p)
@@ -1828,7 +1959,17 @@ def defaultValue[U]: U = {
     @inline def gravity(p: Int) = gravity_=(p)
 
     @noEquivalentGetterExists
-    @inline def gravity: Int = 0
+    @inline def gravity: Int = defaultValue[Int]
+
+    @inline def horizontalGravity_=(p: Int) = {
+      base.setHorizontalGravity(p)
+      base
+    }
+
+    @inline def horizontalGravity(p: Int) = horizontalGravity_=(p)
+
+    @noEquivalentGetterExists
+    @inline def horizontalGravity: Int = defaultValue[Int]
 
     @inline def orientation_=(p: Int) = {
       base.setOrientation(p)
@@ -1837,7 +1978,26 @@ def defaultValue[U]: U = {
 
     @inline def orientation(p: Int) = orientation_=(p)
 
-    @inline def orientation: Int = base.getOrientation
+    @inline def orientation = base.getOrientation
+
+    @inline def verticalGravity_=(p: Int) = {
+      base.setVerticalGravity(p)
+      base
+    }
+
+    @inline def verticalGravity(p: Int) = verticalGravity_=(p)
+
+    @noEquivalentGetterExists
+    @inline def verticalGravity: Int = defaultValue[Int]
+
+    @inline def weightSum_=(p: Float) = {
+      base.setWeightSum(p)
+      base
+    }
+
+    @inline def weightSum(p: Float) = weightSum_=(p)
+
+    @inline def weightSum = base.getWeightSum
 
   }
 
