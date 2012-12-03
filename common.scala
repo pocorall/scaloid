@@ -106,6 +106,12 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     }
   }
 
+def defaultValue[U]: U = {
+  class Default[W] {
+    var default: W = _
+  }
+  new Default[U].default
+}
 
   trait ConstantsSupport {
     // android:inputType constants for TextView
@@ -249,6 +255,39 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
       base
     }
 
+    @inline def animation_=(p: android.view.animation.Animation) = {
+      base.setAnimation(p)
+      base
+    }
+
+    @inline def animation(p: android.view.animation.Animation) = animation_=(p)
+
+    @inline def animation = base.getAnimation
+
+    @inline def applicationWindowToken = base.getApplicationWindowToken
+
+    @inline def background = base.getBackground
+
+    @inline def backgroundColor_=(p: Int) = {
+      base.setBackgroundColor(p)
+      base
+    }
+
+    @inline def backgroundColor(p: Int) = backgroundColor_=(p)
+
+    @noEquivalentGetterExists
+    @inline def backgroundColor: Int = defaultValue[Int]
+
+    @inline def backgroundDrawable_=(p: android.graphics.drawable.Drawable) = {
+      base.setBackgroundDrawable(p)
+      base
+    }
+
+    @inline def backgroundDrawable(p: android.graphics.drawable.Drawable) = backgroundDrawable_=(p)
+
+    @noEquivalentGetterExists
+    @inline def backgroundDrawable: android.graphics.drawable.Drawable = defaultValue[android.graphics.drawable.Drawable]
+
     @inline def backgroundResource_=(p: Int) = {
       base.setBackgroundResource(p)
       base
@@ -257,7 +296,11 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     @inline def backgroundResource(p: Int) = backgroundResource_=(p)
 
     @noEquivalentGetterExists
-    @inline def backgroundResource: Int = 0
+    @inline def backgroundResource: Int = defaultValue[Int]
+
+    @inline def baseline = base.getBaseline
+
+    @inline def bottom = base.getBottom
 
     @inline def clickable_=(p: Boolean) = {
       base.setClickable(p)
@@ -266,17 +309,42 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def clickable(p: Boolean) = clickable_=(p)
 
-    @noEquivalentGetterExists
-    @inline def clickable: Boolean = true
+    @inline def clickable = base.isClickable
 
-    @inline def contentDescription_=(p: CharSequence) = {
+    @inline def contentDescription_=(p: java.lang.CharSequence) = {
       base.setContentDescription(p)
       base
     }
 
-    @inline def contentDescription(p: CharSequence) = contentDescription_=(p)
+    @inline def contentDescription(p: java.lang.CharSequence) = contentDescription_=(p)
 
-    @inline def contentDescription: CharSequence = base.getContentDescription
+    @inline def contentDescription = base.getContentDescription
+
+    @inline def context = base.getContext
+
+    @inline def drawableState = base.getDrawableState
+
+    @inline def drawingCache = base.getDrawingCache
+
+    @inline def drawingCacheBackgroundColor_=(p: Int) = {
+      base.setDrawingCacheBackgroundColor(p)
+      base
+    }
+
+    @inline def drawingCacheBackgroundColor(p: Int) = drawingCacheBackgroundColor_=(p)
+
+    @inline def drawingCacheBackgroundColor = base.getDrawingCacheBackgroundColor
+
+    @inline def enableDrawingCache = {base.setDrawingCacheEnabled(true); base}
+    @inline def disableDrawingCache = {base.setDrawingCacheEnabled(false); base}
+    @inline def drawingCacheEnabled_=(p: Boolean) = {
+      base.setDrawingCacheEnabled(p)
+      base
+    }
+
+    @inline def drawingCacheEnabled(p: Boolean) = drawingCacheEnabled_=(p)
+
+    @inline def drawingCacheEnabled = base.isDrawingCacheEnabled
 
     @inline def drawingCacheQuality_=(p: Int) = {
       base.setDrawingCacheQuality(p)
@@ -285,18 +353,39 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def drawingCacheQuality(p: Int) = drawingCacheQuality_=(p)
 
-    @inline def drawingCacheQuality: Int = base.getDrawingCacheQuality
+    @inline def drawingCacheQuality = base.getDrawingCacheQuality
 
-    @inline def enableScrollbarFading = {base.setScrollbarFadingEnabled(true); base}
-    @inline def disableScrollbarFading = {base.setScrollbarFadingEnabled(false); base}
-    @inline def scrollbarFadingEnabled_=(p: Boolean) = {
-      base.setScrollbarFadingEnabled(p)
+    @inline def drawingTime = base.getDrawingTime
+
+    @inline def enableDuplicateParentState = {base.setDuplicateParentStateEnabled(true); base}
+    @inline def disableDuplicateParentState = {base.setDuplicateParentStateEnabled(false); base}
+    @inline def duplicateParentStateEnabled_=(p: Boolean) = {
+      base.setDuplicateParentStateEnabled(p)
       base
     }
 
-    @inline def scrollbarFadingEnabled(p: Boolean) = scrollbarFadingEnabled_=(p)
+    @inline def duplicateParentStateEnabled(p: Boolean) = duplicateParentStateEnabled_=(p)
 
-    @inline def scrollbarFadingEnabled: Boolean = base.isScrollbarFadingEnabled
+    @inline def duplicateParentStateEnabled = base.isDuplicateParentStateEnabled
+
+    @inline def enabled_=(p: Boolean) = {
+      base.setEnabled(p)
+      base
+    }
+
+    @inline def enabled(p: Boolean) = enabled_=(p)
+
+    @inline def enabled = base.isEnabled
+
+    @inline def fadingEdgeLength_=(p: Int) = {
+      base.setFadingEdgeLength(p)
+      base
+    }
+
+    @inline def fadingEdgeLength(p: Int) = fadingEdgeLength_=(p)
+
+    @noEquivalentGetterExists
+    @inline def fadingEdgeLength: Int = defaultValue[Int]
 
     @inline def focusable_=(p: Boolean) = {
       base.setFocusable(p)
@@ -305,8 +394,7 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def focusable(p: Boolean) = focusable_=(p)
 
-    @noEquivalentGetterExists
-    @inline def focusable: Boolean = false
+    @inline def focusable = base.isFocusable
 
     @inline def focusableInTouchMode_=(p: Boolean) = {
       base.setFocusableInTouchMode(p)
@@ -315,7 +403,11 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def focusableInTouchMode(p: Boolean) = focusableInTouchMode_=(p)
 
-    @inline def focusableInTouchMode: Boolean = base.isFocusableInTouchMode
+    @inline def focusableInTouchMode = base.isFocusableInTouchMode
+
+    @inline def focused = base.isFocused
+
+    @inline def handler = base.getHandler
 
     @inline def enableHapticFeedback = {base.setHapticFeedbackEnabled(true); base}
     @inline def disableHapticFeedback = {base.setHapticFeedbackEnabled(false); base}
@@ -326,7 +418,33 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def hapticFeedbackEnabled(p: Boolean) = hapticFeedbackEnabled_=(p)
 
-    @inline def hapticFeedbackEnabled: Boolean = base.isHapticFeedbackEnabled
+    @inline def hapticFeedbackEnabled = base.isHapticFeedbackEnabled
+
+    @inline def height = base.getHeight
+
+    @inline def enableHorizontalFadingEdge = {base.setHorizontalFadingEdgeEnabled(true); base}
+    @inline def disableHorizontalFadingEdge = {base.setHorizontalFadingEdgeEnabled(false); base}
+    @inline def horizontalFadingEdgeEnabled_=(p: Boolean) = {
+      base.setHorizontalFadingEdgeEnabled(p)
+      base
+    }
+
+    @inline def horizontalFadingEdgeEnabled(p: Boolean) = horizontalFadingEdgeEnabled_=(p)
+
+    @inline def horizontalFadingEdgeEnabled = base.isHorizontalFadingEdgeEnabled
+
+    @inline def horizontalFadingEdgeLength = base.getHorizontalFadingEdgeLength
+
+    @inline def enableHorizontalScrollBar = {base.setHorizontalScrollBarEnabled(true); base}
+    @inline def disableHorizontalScrollBar = {base.setHorizontalScrollBarEnabled(false); base}
+    @inline def horizontalScrollBarEnabled_=(p: Boolean) = {
+      base.setHorizontalScrollBarEnabled(p)
+      base
+    }
+
+    @inline def horizontalScrollBarEnabled(p: Boolean) = horizontalScrollBarEnabled_=(p)
+
+    @inline def horizontalScrollBarEnabled = base.isHorizontalScrollBarEnabled
 
     @inline def id_=(p: Int) = {
       base.setId(p)
@@ -335,17 +453,11 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def id(p: Int) = id_=(p)
 
-    @inline def id: Int = base.getId
+    @inline def id = base.getId
 
-    @inline def scrollContainer_=(p: Boolean) = {
-      base.setScrollContainer(p)
-      base
-    }
+    @inline def inEditMode = base.isInEditMode
 
-    @inline def scrollContainer(p: Boolean) = scrollContainer_=(p)
-
-    @noEquivalentGetterExists
-    @inline def scrollContainer: Boolean = false
+    @inline def inTouchMode = base.isInTouchMode
 
     @inline def keepScreenOn_=(p: Boolean) = {
       base.setKeepScreenOn(p)
@@ -354,7 +466,22 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def keepScreenOn(p: Boolean) = keepScreenOn_=(p)
 
-    @inline def keepScreenOn: Boolean = base.getKeepScreenOn
+    @inline def keepScreenOn = base.getKeepScreenOn
+
+    @inline def keyDispatcherState = base.getKeyDispatcherState
+
+    @inline def layoutParams_=(p: android.view.ViewGroup.LayoutParams) = {
+      base.setLayoutParams(p)
+      base
+    }
+
+    @inline def layoutParams(p: android.view.ViewGroup.LayoutParams) = layoutParams_=(p)
+
+    @inline def layoutParams = base.getLayoutParams
+
+    @inline def layoutRequested = base.isLayoutRequested
+
+    @inline def left = base.getLeft
 
     @inline def longClickable_=(p: Boolean) = {
       base.setLongClickable(p)
@@ -363,7 +490,11 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def longClickable(p: Boolean) = longClickable_=(p)
 
-    @inline def longClickable: Boolean = base.isLongClickable
+    @inline def longClickable = base.isLongClickable
+
+    @inline def measuredHeight = base.getMeasuredHeight
+
+    @inline def measuredWidth = base.getMeasuredWidth
 
     @inline def minimumHeight_=(p: Int) = {
       base.setMinimumHeight(p)
@@ -373,7 +504,7 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     @inline def minimumHeight(p: Int) = minimumHeight_=(p)
 
     @noEquivalentGetterExists
-    @inline def minimumHeight: Int = 0
+    @inline def minimumHeight: Int = defaultValue[Int]
 
     @inline def minimumWidth_=(p: Int) = {
       base.setMinimumWidth(p)
@@ -383,7 +514,7 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     @inline def minimumWidth(p: Int) = minimumWidth_=(p)
 
     @noEquivalentGetterExists
-    @inline def minimumWidth: Int = 0
+    @inline def minimumWidth: Int = defaultValue[Int]
 
     @inline def nextFocusDownId_=(p: Int) = {
       base.setNextFocusDownId(p)
@@ -392,7 +523,7 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def nextFocusDownId(p: Int) = nextFocusDownId_=(p)
 
-    @inline def nextFocusDownId: Int = base.getNextFocusDownId
+    @inline def nextFocusDownId = base.getNextFocusDownId
 
     @inline def nextFocusLeftId_=(p: Int) = {
       base.setNextFocusLeftId(p)
@@ -401,7 +532,7 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def nextFocusLeftId(p: Int) = nextFocusLeftId_=(p)
 
-    @inline def nextFocusLeftId: Int = base.getNextFocusLeftId
+    @inline def nextFocusLeftId = base.getNextFocusLeftId
 
     @inline def nextFocusRightId_=(p: Int) = {
       base.setNextFocusRightId(p)
@@ -410,7 +541,7 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def nextFocusRightId(p: Int) = nextFocusRightId_=(p)
 
-    @inline def nextFocusRightId: Int = base.getNextFocusRightId
+    @inline def nextFocusRightId = base.getNextFocusRightId
 
     @inline def nextFocusUpId_=(p: Int) = {
       base.setNextFocusUpId(p)
@@ -419,29 +550,93 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def nextFocusUpId(p: Int) = nextFocusUpId_=(p)
 
-    @inline def nextFocusUpId: Int = base.getNextFocusUpId
+    @inline def nextFocusUpId = base.getNextFocusUpId
 
-    @inline def enableVerticalFadingEdge = {base.setVerticalFadingEdgeEnabled(true); base}
-    @inline def disableVerticalFadingEdge = {base.setVerticalFadingEdgeEnabled(false); base}
-    @inline def verticalFadingEdgeEnabled_=(p: Boolean) = {
-      base.setVerticalFadingEdgeEnabled(p)
+    @inline def onClickListener_=(p: android.view.View.OnClickListener) = {
+      base.setOnClickListener(p)
       base
     }
 
-    @inline def verticalFadingEdgeEnabled(p: Boolean) = verticalFadingEdgeEnabled_=(p)
+    @inline def onClickListener(p: android.view.View.OnClickListener) = onClickListener_=(p)
 
-    @inline def verticalFadingEdgeEnabled: Boolean = base.isVerticalFadingEdgeEnabled
+    @noEquivalentGetterExists
+    @inline def onClickListener: android.view.View.OnClickListener = defaultValue[android.view.View.OnClickListener]
 
-    @inline def enableVerticalScrollBar = {base.setVerticalScrollBarEnabled(true); base}
-    @inline def disableVerticalScrollBar = {base.setVerticalScrollBarEnabled(false); base}
-    @inline def verticalScrollBarEnabled_=(p: Boolean) = {
-      base.setVerticalScrollBarEnabled(p)
+    @inline def onCreateContextMenuListener_=(p: android.view.View.OnCreateContextMenuListener) = {
+      base.setOnCreateContextMenuListener(p)
       base
     }
 
-    @inline def verticalScrollBarEnabled(p: Boolean) = verticalScrollBarEnabled_=(p)
+    @inline def onCreateContextMenuListener(p: android.view.View.OnCreateContextMenuListener) = onCreateContextMenuListener_=(p)
 
-    @inline def verticalScrollBarEnabled: Boolean = base.isVerticalScrollBarEnabled
+    @noEquivalentGetterExists
+    @inline def onCreateContextMenuListener: android.view.View.OnCreateContextMenuListener = defaultValue[android.view.View.OnCreateContextMenuListener]
+
+    @inline def onFocusChangeListener_=(p: android.view.View.OnFocusChangeListener) = {
+      base.setOnFocusChangeListener(p)
+      base
+    }
+
+    @inline def onFocusChangeListener(p: android.view.View.OnFocusChangeListener) = onFocusChangeListener_=(p)
+
+    @inline def onFocusChangeListener = base.getOnFocusChangeListener
+
+    @inline def onKeyListener_=(p: android.view.View.OnKeyListener) = {
+      base.setOnKeyListener(p)
+      base
+    }
+
+    @inline def onKeyListener(p: android.view.View.OnKeyListener) = onKeyListener_=(p)
+
+    @noEquivalentGetterExists
+    @inline def onKeyListener: android.view.View.OnKeyListener = defaultValue[android.view.View.OnKeyListener]
+
+    @inline def onLongClickListener_=(p: android.view.View.OnLongClickListener) = {
+      base.setOnLongClickListener(p)
+      base
+    }
+
+    @inline def onLongClickListener(p: android.view.View.OnLongClickListener) = onLongClickListener_=(p)
+
+    @noEquivalentGetterExists
+    @inline def onLongClickListener: android.view.View.OnLongClickListener = defaultValue[android.view.View.OnLongClickListener]
+
+    @inline def onTouchListener_=(p: android.view.View.OnTouchListener) = {
+      base.setOnTouchListener(p)
+      base
+    }
+
+    @inline def onTouchListener(p: android.view.View.OnTouchListener) = onTouchListener_=(p)
+
+    @noEquivalentGetterExists
+    @inline def onTouchListener: android.view.View.OnTouchListener = defaultValue[android.view.View.OnTouchListener]
+
+    @inline def opaque = base.isOpaque
+
+    @inline def paddingBottom = base.getPaddingBottom
+
+    @inline def paddingLeft = base.getPaddingLeft
+
+    @inline def paddingRight = base.getPaddingRight
+
+    @inline def paddingTop = base.getPaddingTop
+
+    @inline def parent = base.getParent
+
+    @inline def pressed_=(p: Boolean) = {
+      base.setPressed(p)
+      base
+    }
+
+    @inline def pressed(p: Boolean) = pressed_=(p)
+
+    @inline def pressed = base.isPressed
+
+    @inline def resources = base.getResources
+
+    @inline def right = base.getRight
+
+    @inline def rootView = base.getRootView
 
     @inline def enableSave = {base.setSaveEnabled(true); base}
     @inline def disableSave = {base.setSaveEnabled(false); base}
@@ -452,7 +647,7 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def saveEnabled(p: Boolean) = saveEnabled_=(p)
 
-    @inline def saveEnabled: Boolean = base.isSaveEnabled
+    @inline def saveEnabled = base.isSaveEnabled
 
     @inline def scrollBarStyle_=(p: Int) = {
       base.setScrollBarStyle(p)
@@ -461,7 +656,45 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def scrollBarStyle(p: Int) = scrollBarStyle_=(p)
 
-    @inline def scrollBarStyle: Int = base.getScrollBarStyle
+    @inline def scrollBarStyle = base.getScrollBarStyle
+
+    @inline def scrollContainer_=(p: Boolean) = {
+      base.setScrollContainer(p)
+      base
+    }
+
+    @inline def scrollContainer(p: Boolean) = scrollContainer_=(p)
+
+    @noEquivalentGetterExists
+    @inline def scrollContainer: Boolean = defaultValue[Boolean]
+
+    @inline def scrollX = base.getScrollX
+
+    @inline def scrollY = base.getScrollY
+
+    @inline def enableScrollbarFading = {base.setScrollbarFadingEnabled(true); base}
+    @inline def disableScrollbarFading = {base.setScrollbarFadingEnabled(false); base}
+    @inline def scrollbarFadingEnabled_=(p: Boolean) = {
+      base.setScrollbarFadingEnabled(p)
+      base
+    }
+
+    @inline def scrollbarFadingEnabled(p: Boolean) = scrollbarFadingEnabled_=(p)
+
+    @inline def scrollbarFadingEnabled = base.isScrollbarFadingEnabled
+
+    @inline def selected_=(p: Boolean) = {
+      base.setSelected(p)
+      base
+    }
+
+    @inline def selected(p: Boolean) = selected_=(p)
+
+    @inline def selected = base.isSelected
+
+    @inline def shown = base.isShown
+
+    @inline def solidColor = base.getSolidColor
 
     @inline def enableSoundEffects = {base.setSoundEffectsEnabled(true); base}
     @inline def disableSoundEffects = {base.setSoundEffectsEnabled(false); base}
@@ -472,7 +705,48 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def soundEffectsEnabled(p: Boolean) = soundEffectsEnabled_=(p)
 
-    @inline def soundEffectsEnabled: Boolean = base.isSoundEffectsEnabled
+    @inline def soundEffectsEnabled = base.isSoundEffectsEnabled
+
+    @inline def top = base.getTop
+
+    @inline def touchDelegate_=(p: android.view.TouchDelegate) = {
+      base.setTouchDelegate(p)
+      base
+    }
+
+    @inline def touchDelegate(p: android.view.TouchDelegate) = touchDelegate_=(p)
+
+    @inline def touchDelegate = base.getTouchDelegate
+
+    @inline def touchables = base.getTouchables
+
+    @inline def enableVerticalFadingEdge = {base.setVerticalFadingEdgeEnabled(true); base}
+    @inline def disableVerticalFadingEdge = {base.setVerticalFadingEdgeEnabled(false); base}
+    @inline def verticalFadingEdgeEnabled_=(p: Boolean) = {
+      base.setVerticalFadingEdgeEnabled(p)
+      base
+    }
+
+    @inline def verticalFadingEdgeEnabled(p: Boolean) = verticalFadingEdgeEnabled_=(p)
+
+    @inline def verticalFadingEdgeEnabled = base.isVerticalFadingEdgeEnabled
+
+    @inline def verticalFadingEdgeLength = base.getVerticalFadingEdgeLength
+
+    @inline def enableVerticalScrollBar = {base.setVerticalScrollBarEnabled(true); base}
+    @inline def disableVerticalScrollBar = {base.setVerticalScrollBarEnabled(false); base}
+    @inline def verticalScrollBarEnabled_=(p: Boolean) = {
+      base.setVerticalScrollBarEnabled(p)
+      base
+    }
+
+    @inline def verticalScrollBarEnabled(p: Boolean) = verticalScrollBarEnabled_=(p)
+
+    @inline def verticalScrollBarEnabled = base.isVerticalScrollBarEnabled
+
+    @inline def verticalScrollbarWidth = base.getVerticalScrollbarWidth
+
+    @inline def viewTreeObserver = base.getViewTreeObserver
 
     @inline def visibility_=(p: Int) = {
       base.setVisibility(p)
@@ -481,26 +755,13 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def visibility(p: Int) = visibility_=(p)
 
-    @inline def visibility: Int = base.getVisibility
+    @inline def visibility = base.getVisibility
 
-    @inline def layoutParams_=(p: LayoutParams) = {
-      base.setLayoutParams(p)
-      base
-    }
+    @inline def width = base.getWidth
 
-    @inline def layoutParams(p: LayoutParams) = layoutParams_=(p)
+    @inline def windowToken = base.getWindowToken
 
-    @inline def layoutParams: LayoutParams = base.getLayoutParams
-
-    @inline def backgroundColor_=(p: Int) = {
-      base.setBackgroundColor(p)
-      base
-    }
-
-    @inline def backgroundColor(p: Int) = backgroundColor_=(p)
-
-    @noEquivalentGetterExists
-    @inline def backgroundColor: Int = 0
+    @inline def windowVisibility = base.getWindowVisibility
 
     @inline def padding_=(p: Int) = {
       base.setPadding(p, p, p, p)
@@ -689,7 +950,30 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def autoLinkMask(p: Int) = autoLinkMask_=(p)
 
-    @inline def autoLinkMask: Int = base.getAutoLinkMask
+    @inline def autoLinkMask = base.getAutoLinkMask
+
+    @inline def compoundDrawablePadding_=(p: Int) = {
+      base.setCompoundDrawablePadding(p)
+      base
+    }
+
+    @inline def compoundDrawablePadding(p: Int) = compoundDrawablePadding_=(p)
+
+    @inline def compoundDrawablePadding = base.getCompoundDrawablePadding
+
+    @inline def compoundDrawables = base.getCompoundDrawables
+
+    @inline def compoundPaddingBottom = base.getCompoundPaddingBottom
+
+    @inline def compoundPaddingLeft = base.getCompoundPaddingLeft
+
+    @inline def compoundPaddingRight = base.getCompoundPaddingRight
+
+    @inline def compoundPaddingTop = base.getCompoundPaddingTop
+
+    @inline def currentHintTextColor = base.getCurrentHintTextColor
+
+    @inline def currentTextColor = base.getCurrentTextColor
 
     @inline def cursorVisible_=(p: Boolean) = {
       base.setCursorVisible(p)
@@ -699,26 +983,28 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     @inline def cursorVisible(p: Boolean) = cursorVisible_=(p)
 
     @noEquivalentGetterExists
-    @inline def cursorVisible: Boolean = false
+    @inline def cursorVisible: Boolean = defaultValue[Boolean]
 
-    @inline def compoundDrawablePadding_=(p: Int) = {
-      base.setCompoundDrawablePadding(p)
+    @inline def editableFactory_=(p: android.text.Editable.Factory) = {
+      base.setEditableFactory(p)
       base
     }
 
-    @inline def compoundDrawablePadding(p: Int) = compoundDrawablePadding_=(p)
-
-    @inline def compoundDrawablePadding: Int = base.getCompoundDrawablePadding
-
-    @inline def inputExtras_=(p: Int) = {
-      base.setInputExtras(p)
-      base
-    }
-
-    @inline def inputExtras(p: Int) = inputExtras_=(p)
+    @inline def editableFactory(p: android.text.Editable.Factory) = editableFactory_=(p)
 
     @noEquivalentGetterExists
-    @inline def inputExtras: Int = 0
+    @inline def editableFactory: android.text.Editable.Factory = defaultValue[android.text.Editable.Factory]
+
+    @inline def editableText = base.getEditableText
+
+    @inline def ellipsize_=(p: android.text.TextUtils.TruncateAt) = {
+      base.setEllipsize(p)
+      base
+    }
+
+    @inline def ellipsize(p: android.text.TextUtils.TruncateAt) = ellipsize_=(p)
+
+    @inline def ellipsize = base.getEllipsize
 
     @inline def ems_=(p: Int) = {
       base.setEms(p)
@@ -728,16 +1014,39 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     @inline def ems(p: Int) = ems_=(p)
 
     @noEquivalentGetterExists
-    @inline def ems: Int = 0
+    @inline def ems: Int = defaultValue[Int]
 
-    @inline def typeface_=(p: Typeface) = {
-      base.setTypeface(p)
+    @inline def error_=(p: java.lang.CharSequence) = {
+      base.setError(p)
       base
     }
 
-    @inline def typeface(p: Typeface) = typeface_=(p)
+    @inline def error(p: java.lang.CharSequence) = error_=(p)
 
-    @inline def typeface: Typeface = base.getTypeface
+    @inline def error = base.getError
+
+    @inline def extendedPaddingBottom = base.getExtendedPaddingBottom
+
+    @inline def extendedPaddingTop = base.getExtendedPaddingTop
+
+    @inline def extractedText_=(p: android.view.inputmethod.ExtractedText) = {
+      base.setExtractedText(p)
+      base
+    }
+
+    @inline def extractedText(p: android.view.inputmethod.ExtractedText) = extractedText_=(p)
+
+    @noEquivalentGetterExists
+    @inline def extractedText: android.view.inputmethod.ExtractedText = defaultValue[android.view.inputmethod.ExtractedText]
+
+    @inline def filters_=(p: Array[android.text.InputFilter]) = {
+      base.setFilters(p)
+      base
+    }
+
+    @inline def filters(p: Array[android.text.InputFilter]) = filters_=(p)
+
+    @inline def filters = base.getFilters
 
     @inline def freezesText_=(p: Boolean) = {
       base.setFreezesText(p)
@@ -746,7 +1055,7 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def freezesText(p: Boolean) = freezesText_=(p)
 
-    @inline def freezesText: Boolean = base.getFreezesText
+    @inline def freezesText = base.getFreezesText
 
     @inline def gravity_=(p: Int) = {
       base.setGravity(p)
@@ -755,192 +1064,38 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def gravity(p: Int) = gravity_=(p)
 
-    @inline def gravity: Int = base.getGravity
+    @inline def gravity = base.getGravity
 
-    @inline def height_=(p: Int) = {
-      base.setHeight(p)
+    @inline def highlightColor_=(p: Int) = {
+      base.setHighlightColor(p)
       base
     }
 
-    @inline def height(p: Int) = height_=(p)
+    @inline def highlightColor(p: Int) = highlightColor_=(p)
 
-    @inline def height: Int = base.getHeight
+    @noEquivalentGetterExists
+    @inline def highlightColor: Int = defaultValue[Int]
 
-    @inline def hint_=(p: CharSequence) = {
+    @inline def hint_=(p: java.lang.CharSequence) = {
       base.setHint(p)
       base
     }
 
-    @inline def hint(p: CharSequence) = hint_=(p)
+    @inline def hint(p: java.lang.CharSequence) = hint_=(p)
+
+    @inline def hint = base.getHint
+
+    @inline def hintTextColor_=(p: android.content.res.ColorStateList) = {
+      base.setHintTextColor(p)
+      base
+    }
+
+    @inline def hintTextColor(p: android.content.res.ColorStateList) = hintTextColor_=(p)
 
     @noEquivalentGetterExists
-    @inline def hint: CharSequence = ""
+    @inline def hintTextColor: android.content.res.ColorStateList = defaultValue[android.content.res.ColorStateList]
 
-    @inline def imeOptions_=(p: Int) = {
-      base.setImeOptions(p)
-      base
-    }
-
-    @inline def imeOptions(p: Int) = imeOptions_=(p)
-
-    @inline def imeOptions: Int = base.getImeOptions
-
-    @inline def includeFontPadding_=(p: Boolean) = {
-      base.setIncludeFontPadding(p)
-      base
-    }
-
-    @inline def includeFontPadding(p: Boolean) = includeFontPadding_=(p)
-
-    @noEquivalentGetterExists
-    @inline def includeFontPadding: Boolean = false
-
-    @inline def rawInputType_=(p: Int) = {
-      base.setRawInputType(p)
-      base
-    }
-
-    @inline def rawInputType(p: Int) = rawInputType_=(p)
-
-    @noEquivalentGetterExists
-    @inline def rawInputType: Int = 0
-
-    @inline def lines_=(p: Int) = {
-      base.setLines(p)
-      base
-    }
-
-    @inline def lines(p: Int) = lines_=(p)
-
-    @noEquivalentGetterExists
-    @inline def lines: Int = 0
-
-    @inline def linksClickable_=(p: Boolean) = {
-      base.setLinksClickable(p)
-      base
-    }
-
-    @inline def linksClickable(p: Boolean) = linksClickable_=(p)
-
-    @inline def linksClickable: Boolean = base.getLinksClickable
-
-    @inline def marqueeRepeatLimit_=(p: Int) = {
-      base.setMarqueeRepeatLimit(p)
-      base
-    }
-
-    @inline def marqueeRepeatLimit(p: Int) = marqueeRepeatLimit_=(p)
-
-    @noEquivalentGetterExists
-    @inline def marqueeRepeatLimit: Int = 0
-
-    @inline def maxEms_=(p: Int) = {
-      base.setMaxEms(p)
-      base
-    }
-
-    @inline def maxEms(p: Int) = maxEms_=(p)
-
-    @noEquivalentGetterExists
-    @inline def maxEms: Int = 0
-
-    @inline def maxHeight_=(p: Int) = {
-      base.setMaxHeight(p)
-      base
-    }
-
-    @inline def maxHeight(p: Int) = maxHeight_=(p)
-
-    @noEquivalentGetterExists
-    @inline def maxHeight: Int = 0
-
-    @inline def filters_=(p: Array[InputFilter]) = {
-      base.setFilters(p)
-      base
-    }
-
-    @inline def filters(p: Array[InputFilter]) = filters_=(p)
-
-    @noEquivalentGetterExists
-    @inline def filters: Array[InputFilter] = null
-
-    @inline def maxLines_=(p: Int) = {
-      base.setMaxLines(p)
-      base
-    }
-
-    @inline def maxLines(p: Int) = maxLines_=(p)
-
-    @noEquivalentGetterExists
-    @inline def maxLines: Int = 0
-
-    @inline def maxWidth_=(p: Int) = {
-      base.setMaxWidth(p)
-      base
-    }
-
-    @inline def maxWidth(p: Int) = maxWidth_=(p)
-
-    @noEquivalentGetterExists
-    @inline def maxWidth: Int = 0
-
-    @inline def minEms_=(p: Int) = {
-      base.setMinEms(p)
-      base
-    }
-
-    @inline def minEms(p: Int) = minEms_=(p)
-
-    @noEquivalentGetterExists
-    @inline def minEms: Int = 0
-
-    @inline def minHeight_=(p: Int) = {
-      base.setMinHeight(p)
-      base
-    }
-
-    @inline def minHeight(p: Int) = minHeight_=(p)
-
-    @noEquivalentGetterExists
-    @inline def minHeight: Int = 0
-
-    @inline def minLines_=(p: Int) = {
-      base.setMinLines(p)
-      base
-    }
-
-    @inline def minLines(p: Int) = minLines_=(p)
-
-    @noEquivalentGetterExists
-    @inline def minLines: Int = 0
-
-    @inline def minWidth_=(p: Int) = {
-      base.setMinWidth(p)
-      base
-    }
-
-    @inline def minWidth(p: Int) = minWidth_=(p)
-
-    @noEquivalentGetterExists
-    @inline def minWidth: Int = 0
-
-    @inline def transformationMethod_=(p: TransformationMethod) = {
-      base.setTransformationMethod(p)
-      base
-    }
-
-    @inline def transformationMethod(p: TransformationMethod) = transformationMethod_=(p)
-
-    @inline def transformationMethod: TransformationMethod = base.getTransformationMethod
-
-    @inline def privateImeOptions_=(p: String) = {
-      base.setPrivateImeOptions(p)
-      base
-    }
-
-    @inline def privateImeOptions(p: String) = privateImeOptions_=(p)
-
-    @inline def privateImeOptions: String = base.getPrivateImeOptions
+    @inline def hintTextColors = base.getHintTextColors
 
     @inline def horizontallyScrolling_=(p: Boolean) = {
       base.setHorizontallyScrolling(p)
@@ -950,44 +1105,42 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     @inline def horizontallyScrolling(p: Boolean) = horizontallyScrolling_=(p)
 
     @noEquivalentGetterExists
-    @inline def horizontallyScrolling: Boolean = false
+    @inline def horizontallyScrolling: Boolean = defaultValue[Boolean]
 
-    @inline def textSize_=(p: Float) = {
-      base.setTextSize(p)
+    @inline def imeActionId = base.getImeActionId
+
+    @inline def imeActionLabel = base.getImeActionLabel
+
+    @inline def imeOptions_=(p: Int) = {
+      base.setImeOptions(p)
       base
     }
 
-    @inline def textSize(p: Float) = textSize_=(p)
+    @inline def imeOptions(p: Int) = imeOptions_=(p)
 
-    @inline def textSize: Float = base.getTextSize
+    @inline def imeOptions = base.getImeOptions
 
-    @inline def movementMethod_=(p: MovementMethod) = {
-      base.setMovementMethod(p)
+    @inline def includeFontPadding_=(p: Boolean) = {
+      base.setIncludeFontPadding(p)
       base
     }
 
-    @inline def movementMethod(p: MovementMethod) = movementMethod_=(p)
-
-    @inline def movementMethod: MovementMethod = base.getMovementMethod
-
-    @inline def text_=(p: CharSequence) = {
-      base.setText(p)
-      base
-    }
-
-    @inline def text(p: CharSequence) = text_=(p)
-
-    @inline def text: CharSequence = base.getText
-
-    @inline def linkTextColor_=(p: Int) = {
-      base.setLinkTextColor(p)
-      base
-    }
-
-    @inline def linkTextColor(p: Int) = linkTextColor_=(p)
+    @inline def includeFontPadding(p: Boolean) = includeFontPadding_=(p)
 
     @noEquivalentGetterExists
-    @inline def linkTextColor: Int = 0
+    @inline def includeFontPadding: Boolean = defaultValue[Boolean]
+
+    @inline def inputExtras_=(p: Int) = {
+      base.setInputExtras(p)
+      base
+    }
+
+    @inline def inputExtras(p: Int) = inputExtras_=(p)
+
+    @noEquivalentGetterExists
+    @inline def inputExtras: Int = defaultValue[Int]
+
+    @inline def inputMethodTarget = base.isInputMethodTarget
 
     @inline def inputType_=(p: Int) = {
       base.setInputType(p)
@@ -996,7 +1149,311 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def inputType(p: Int) = inputType_=(p)
 
-    @inline def inputType: Int = base.getInputType
+    @inline def inputType = base.getInputType
+
+    @inline def keyListener_=(p: android.text.method.KeyListener) = {
+      base.setKeyListener(p)
+      base
+    }
+
+    @inline def keyListener(p: android.text.method.KeyListener) = keyListener_=(p)
+
+    @inline def keyListener = base.getKeyListener
+
+    @inline def lineCount = base.getLineCount
+
+    @inline def lineHeight = base.getLineHeight
+
+    @inline def lines_=(p: Int) = {
+      base.setLines(p)
+      base
+    }
+
+    @inline def lines(p: Int) = lines_=(p)
+
+    @noEquivalentGetterExists
+    @inline def lines: Int = defaultValue[Int]
+
+    @inline def linkTextColor_=(p: android.content.res.ColorStateList) = {
+      base.setLinkTextColor(p)
+      base
+    }
+
+    @inline def linkTextColor(p: android.content.res.ColorStateList) = linkTextColor_=(p)
+
+    @noEquivalentGetterExists
+    @inline def linkTextColor: android.content.res.ColorStateList = defaultValue[android.content.res.ColorStateList]
+
+    @inline def linkTextColors = base.getLinkTextColors
+
+    @inline def linksClickable_=(p: Boolean) = {
+      base.setLinksClickable(p)
+      base
+    }
+
+    @inline def linksClickable(p: Boolean) = linksClickable_=(p)
+
+    @inline def linksClickable = base.getLinksClickable
+
+    @inline def marqueeRepeatLimit_=(p: Int) = {
+      base.setMarqueeRepeatLimit(p)
+      base
+    }
+
+    @inline def marqueeRepeatLimit(p: Int) = marqueeRepeatLimit_=(p)
+
+    @noEquivalentGetterExists
+    @inline def marqueeRepeatLimit: Int = defaultValue[Int]
+
+    @inline def maxEms_=(p: Int) = {
+      base.setMaxEms(p)
+      base
+    }
+
+    @inline def maxEms(p: Int) = maxEms_=(p)
+
+    @noEquivalentGetterExists
+    @inline def maxEms: Int = defaultValue[Int]
+
+    @inline def maxHeight_=(p: Int) = {
+      base.setMaxHeight(p)
+      base
+    }
+
+    @inline def maxHeight(p: Int) = maxHeight_=(p)
+
+    @noEquivalentGetterExists
+    @inline def maxHeight: Int = defaultValue[Int]
+
+    @inline def maxLines_=(p: Int) = {
+      base.setMaxLines(p)
+      base
+    }
+
+    @inline def maxLines(p: Int) = maxLines_=(p)
+
+    @noEquivalentGetterExists
+    @inline def maxLines: Int = defaultValue[Int]
+
+    @inline def maxWidth_=(p: Int) = {
+      base.setMaxWidth(p)
+      base
+    }
+
+    @inline def maxWidth(p: Int) = maxWidth_=(p)
+
+    @noEquivalentGetterExists
+    @inline def maxWidth: Int = defaultValue[Int]
+
+    @inline def minEms_=(p: Int) = {
+      base.setMinEms(p)
+      base
+    }
+
+    @inline def minEms(p: Int) = minEms_=(p)
+
+    @noEquivalentGetterExists
+    @inline def minEms: Int = defaultValue[Int]
+
+    @inline def minHeight_=(p: Int) = {
+      base.setMinHeight(p)
+      base
+    }
+
+    @inline def minHeight(p: Int) = minHeight_=(p)
+
+    @noEquivalentGetterExists
+    @inline def minHeight: Int = defaultValue[Int]
+
+    @inline def minLines_=(p: Int) = {
+      base.setMinLines(p)
+      base
+    }
+
+    @inline def minLines(p: Int) = minLines_=(p)
+
+    @noEquivalentGetterExists
+    @inline def minLines: Int = defaultValue[Int]
+
+    @inline def minWidth_=(p: Int) = {
+      base.setMinWidth(p)
+      base
+    }
+
+    @inline def minWidth(p: Int) = minWidth_=(p)
+
+    @noEquivalentGetterExists
+    @inline def minWidth: Int = defaultValue[Int]
+
+    @inline def movementMethod_=(p: android.text.method.MovementMethod) = {
+      base.setMovementMethod(p)
+      base
+    }
+
+    @inline def movementMethod(p: android.text.method.MovementMethod) = movementMethod_=(p)
+
+    @inline def movementMethod = base.getMovementMethod
+
+    @inline def onEditorActionListener_=(p: android.widget.TextView.OnEditorActionListener) = {
+      base.setOnEditorActionListener(p)
+      base
+    }
+
+    @inline def onEditorActionListener(p: android.widget.TextView.OnEditorActionListener) = onEditorActionListener_=(p)
+
+    @noEquivalentGetterExists
+    @inline def onEditorActionListener: android.widget.TextView.OnEditorActionListener = defaultValue[android.widget.TextView.OnEditorActionListener]
+
+    @inline def paint = base.getPaint
+
+    @inline def paintFlags_=(p: Int) = {
+      base.setPaintFlags(p)
+      base
+    }
+
+    @inline def paintFlags(p: Int) = paintFlags_=(p)
+
+    @inline def paintFlags = base.getPaintFlags
+
+    @inline def privateImeOptions_=(p: java.lang.String) = {
+      base.setPrivateImeOptions(p)
+      base
+    }
+
+    @inline def privateImeOptions(p: java.lang.String) = privateImeOptions_=(p)
+
+    @inline def privateImeOptions = base.getPrivateImeOptions
+
+    @inline def rawInputType_=(p: Int) = {
+      base.setRawInputType(p)
+      base
+    }
+
+    @inline def rawInputType(p: Int) = rawInputType_=(p)
+
+    @noEquivalentGetterExists
+    @inline def rawInputType: Int = defaultValue[Int]
+
+    @inline def scroller_=(p: android.widget.Scroller) = {
+      base.setScroller(p)
+      base
+    }
+
+    @inline def scroller(p: android.widget.Scroller) = scroller_=(p)
+
+    @noEquivalentGetterExists
+    @inline def scroller: android.widget.Scroller = defaultValue[android.widget.Scroller]
+
+    @inline def selectAllOnFocus_=(p: Boolean) = {
+      base.setSelectAllOnFocus(p)
+      base
+    }
+
+    @inline def selectAllOnFocus(p: Boolean) = selectAllOnFocus_=(p)
+
+    @noEquivalentGetterExists
+    @inline def selectAllOnFocus: Boolean = defaultValue[Boolean]
+
+    @inline def selectionEnd = base.getSelectionEnd
+
+    @inline def selectionStart = base.getSelectionStart
+
+    @inline def singleLine_=(p: Boolean) = {
+      base.setSingleLine(p)
+      base
+    }
+
+    @inline def singleLine(p: Boolean) = singleLine_=(p)
+
+    @noEquivalentGetterExists
+    @inline def singleLine: Boolean = defaultValue[Boolean]
+
+    @inline def spannableFactory_=(p: android.text.Spannable.Factory) = {
+      base.setSpannableFactory(p)
+      base
+    }
+
+    @inline def spannableFactory(p: android.text.Spannable.Factory) = spannableFactory_=(p)
+
+    @noEquivalentGetterExists
+    @inline def spannableFactory: android.text.Spannable.Factory = defaultValue[android.text.Spannable.Factory]
+
+    @inline def text_=(p: java.lang.CharSequence) = {
+      base.setText(p)
+      base
+    }
+
+    @inline def text(p: java.lang.CharSequence) = text_=(p)
+
+    @inline def text = base.getText
+
+    @inline def textColor_=(p: Int) = {
+      base.setTextColor(p)
+      base
+    }
+
+    @inline def textColor(p: Int) = textColor_=(p)
+
+    @noEquivalentGetterExists
+    @inline def textColor: Int = defaultValue[Int]
+
+    @inline def textColors = base.getTextColors
+
+    @inline def textKeepState_=(p: java.lang.CharSequence) = {
+      base.setTextKeepState(p)
+      base
+    }
+
+    @inline def textKeepState(p: java.lang.CharSequence) = textKeepState_=(p)
+
+    @noEquivalentGetterExists
+    @inline def textKeepState: java.lang.CharSequence = defaultValue[java.lang.CharSequence]
+
+    @inline def textScaleX_=(p: Float) = {
+      base.setTextScaleX(p)
+      base
+    }
+
+    @inline def textScaleX(p: Float) = textScaleX_=(p)
+
+    @inline def textScaleX = base.getTextScaleX
+
+    @inline def textSize_=(p: Float) = {
+      base.setTextSize(p)
+      base
+    }
+
+    @inline def textSize(p: Float) = textSize_=(p)
+
+    @inline def textSize = base.getTextSize
+
+    @inline def totalPaddingBottom = base.getTotalPaddingBottom
+
+    @inline def totalPaddingLeft = base.getTotalPaddingLeft
+
+    @inline def totalPaddingRight = base.getTotalPaddingRight
+
+    @inline def totalPaddingTop = base.getTotalPaddingTop
+
+    @inline def transformationMethod_=(p: android.text.method.TransformationMethod) = {
+      base.setTransformationMethod(p)
+      base
+    }
+
+    @inline def transformationMethod(p: android.text.method.TransformationMethod) = transformationMethod_=(p)
+
+    @inline def transformationMethod = base.getTransformationMethod
+
+    @inline def typeface_=(p: android.graphics.Typeface) = {
+      base.setTypeface(p)
+      base
+    }
+
+    @inline def typeface(p: android.graphics.Typeface) = typeface_=(p)
+
+    @inline def typeface = base.getTypeface
+
+    @inline def urls = base.getUrls
 
 
   }
@@ -1042,7 +1499,119 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def cacheColorHint(p: Int) = cacheColorHint_=(p)
 
-    @inline def cacheColorHint: Int = base.getCacheColorHint
+    @inline def cacheColorHint = base.getCacheColorHint
+
+    @inline def drawSelectorOnTop_=(p: Boolean) = {
+      base.setDrawSelectorOnTop(p)
+      base
+    }
+
+    @inline def drawSelectorOnTop(p: Boolean) = drawSelectorOnTop_=(p)
+
+    @noEquivalentGetterExists
+    @inline def drawSelectorOnTop: Boolean = defaultValue[Boolean]
+
+    @inline def enableFastScroll = {base.setFastScrollEnabled(true); base}
+    @inline def disableFastScroll = {base.setFastScrollEnabled(false); base}
+    @inline def fastScrollEnabled_=(p: Boolean) = {
+      base.setFastScrollEnabled(p)
+      base
+    }
+
+    @inline def fastScrollEnabled(p: Boolean) = fastScrollEnabled_=(p)
+
+    @inline def fastScrollEnabled = base.isFastScrollEnabled
+
+    @inline def filterText_=(p: java.lang.String) = {
+      base.setFilterText(p)
+      base
+    }
+
+    @inline def filterText(p: java.lang.String) = filterText_=(p)
+
+    @noEquivalentGetterExists
+    @inline def filterText: java.lang.String = defaultValue[java.lang.String]
+
+    @inline def listPaddingBottom = base.getListPaddingBottom
+
+    @inline def listPaddingLeft = base.getListPaddingLeft
+
+    @inline def listPaddingRight = base.getListPaddingRight
+
+    @inline def listPaddingTop = base.getListPaddingTop
+
+    @inline def onScrollListener_=(p: android.widget.AbsListView.OnScrollListener) = {
+      base.setOnScrollListener(p)
+      base
+    }
+
+    @inline def onScrollListener(p: android.widget.AbsListView.OnScrollListener) = onScrollListener_=(p)
+
+    @noEquivalentGetterExists
+    @inline def onScrollListener: android.widget.AbsListView.OnScrollListener = defaultValue[android.widget.AbsListView.OnScrollListener]
+
+    @inline def recyclerListener_=(p: android.widget.AbsListView.RecyclerListener) = {
+      base.setRecyclerListener(p)
+      base
+    }
+
+    @inline def recyclerListener(p: android.widget.AbsListView.RecyclerListener) = recyclerListener_=(p)
+
+    @noEquivalentGetterExists
+    @inline def recyclerListener: android.widget.AbsListView.RecyclerListener = defaultValue[android.widget.AbsListView.RecyclerListener]
+
+    @inline def enableScrollingCache = {base.setScrollingCacheEnabled(true); base}
+    @inline def disableScrollingCache = {base.setScrollingCacheEnabled(false); base}
+    @inline def scrollingCacheEnabled_=(p: Boolean) = {
+      base.setScrollingCacheEnabled(p)
+      base
+    }
+
+    @inline def scrollingCacheEnabled(p: Boolean) = scrollingCacheEnabled_=(p)
+
+    @inline def scrollingCacheEnabled = base.isScrollingCacheEnabled
+
+    @inline def selector_=(p: android.graphics.drawable.Drawable) = {
+      base.setSelector(p)
+      base
+    }
+
+    @inline def selector(p: android.graphics.drawable.Drawable) = selector_=(p)
+
+    @inline def selector = base.getSelector
+
+    @inline def enableSmoothScrollbar = {base.setSmoothScrollbarEnabled(true); base}
+    @inline def disableSmoothScrollbar = {base.setSmoothScrollbarEnabled(false); base}
+    @inline def smoothScrollbarEnabled_=(p: Boolean) = {
+      base.setSmoothScrollbarEnabled(p)
+      base
+    }
+
+    @inline def smoothScrollbarEnabled(p: Boolean) = smoothScrollbarEnabled_=(p)
+
+    @inline def smoothScrollbarEnabled = base.isSmoothScrollbarEnabled
+
+    @inline def stackFromBottom_=(p: Boolean) = {
+      base.setStackFromBottom(p)
+      base
+    }
+
+    @inline def stackFromBottom(p: Boolean) = stackFromBottom_=(p)
+
+    @inline def stackFromBottom = base.isStackFromBottom
+
+    @inline def textFilter = base.getTextFilter
+
+    @inline def enableTextFilter = {base.setTextFilterEnabled(true); base}
+    @inline def disableTextFilter = {base.setTextFilterEnabled(false); base}
+    @inline def textFilterEnabled_=(p: Boolean) = {
+      base.setTextFilterEnabled(p)
+      base
+    }
+
+    @inline def textFilterEnabled(p: Boolean) = textFilterEnabled_=(p)
+
+    @inline def textFilterEnabled = base.isTextFilterEnabled
 
     @inline def transcriptMode_=(p: Int) = {
       base.setTranscriptMode(p)
@@ -1051,7 +1620,7 @@ implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
 
     @inline def transcriptMode(p: Int) = transcriptMode_=(p)
 
-    @inline def transcriptMode: Int = base.getTranscriptMode
+    @inline def transcriptMode = base.getTranscriptMode
 
 
   }
