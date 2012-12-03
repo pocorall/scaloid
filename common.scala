@@ -49,6 +49,7 @@ import android.telephony.TelephonyManager
 import android.net.wifi.WifiManager
 import android.content._
 import android.widget._
+import android.inputmethodservice._
 import android.preference._
 import android.preference.Preference._
 import android.view.WindowManager.LayoutParams._
@@ -1174,15 +1175,15 @@ def defaultValue[U]: U = {
     @noEquivalentGetterExists
     @inline def lines: Int = defaultValue[Int]
 
-    @inline def linkTextColor_=(p: android.content.res.ColorStateList) = {
+    @inline def linkTextColor_=(p: Int) = {
       base.setLinkTextColor(p)
       base
     }
 
-    @inline def linkTextColor(p: android.content.res.ColorStateList) = linkTextColor_=(p)
+    @inline def linkTextColor(p: Int) = linkTextColor_=(p)
 
     @noEquivalentGetterExists
-    @inline def linkTextColor: android.content.res.ColorStateList = defaultValue[android.content.res.ColorStateList]
+    @inline def linkTextColor: Int = defaultValue[Int]
 
     @inline def linkTextColors = base.getLinkTextColors
 
@@ -1387,15 +1388,15 @@ def defaultValue[U]: U = {
 
     @inline def text = base.getText
 
-    @inline def textColor_=(p: Int) = {
+    @inline def textColor_=(p: android.content.res.ColorStateList) = {
       base.setTextColor(p)
       base
     }
 
-    @inline def textColor(p: Int) = textColor_=(p)
+    @inline def textColor(p: android.content.res.ColorStateList) = textColor_=(p)
 
     @noEquivalentGetterExists
-    @inline def textColor: Int = defaultValue[Int]
+    @inline def textColor: android.content.res.ColorStateList = defaultValue[android.content.res.ColorStateList]
 
     @inline def textColors = base.getTextColors
 
@@ -2190,6 +2191,296 @@ def defaultValue[U]: U = {
       button
     }
   }
+
+  class RichKeyboardView[V <: KeyboardView](val base: V) extends TraitKeyboardView[V]
+
+  @inline implicit def keyboardView2RichKeyboardView[V <: KeyboardView](keyboardView: V) = new RichKeyboardView[V](keyboardView)
+
+  trait TraitKeyboardView[V <: KeyboardView] extends TraitView[V] {
+
+    @inline def keyboard_=(p: android.inputmethodservice.Keyboard) = {
+      base.setKeyboard(p)
+      base
+    }
+
+    @inline def keyboard(p: android.inputmethodservice.Keyboard) = keyboard_=(p)
+
+    @inline def keyboard = base.getKeyboard
+
+    @inline def onKeyboardActionListener_=(p: android.inputmethodservice.KeyboardView.OnKeyboardActionListener) = {
+      base.setOnKeyboardActionListener(p)
+      base
+    }
+
+    @inline def onKeyboardActionListener(p: android.inputmethodservice.KeyboardView.OnKeyboardActionListener) = onKeyboardActionListener_=(p)
+
+    @noEquivalentGetterExists
+    @inline def onKeyboardActionListener: android.inputmethodservice.KeyboardView.OnKeyboardActionListener = defaultValue[android.inputmethodservice.KeyboardView.OnKeyboardActionListener]
+
+    @inline def popupParent_=(p: android.view.View) = {
+      base.setPopupParent(p)
+      base
+    }
+
+    @inline def popupParent(p: android.view.View) = popupParent_=(p)
+
+    @noEquivalentGetterExists
+    @inline def popupParent: android.view.View = defaultValue[android.view.View]
+
+    @inline def enablePreview = {base.setPreviewEnabled(true); base}
+    @inline def disablePreview = {base.setPreviewEnabled(false); base}
+    @inline def previewEnabled_=(p: Boolean) = {
+      base.setPreviewEnabled(p)
+      base
+    }
+
+    @inline def previewEnabled(p: Boolean) = previewEnabled_=(p)
+
+    @inline def previewEnabled = base.isPreviewEnabled
+
+    @inline def enableProximityCorrection = {base.setProximityCorrectionEnabled(true); base}
+    @inline def disableProximityCorrection = {base.setProximityCorrectionEnabled(false); base}
+    @inline def proximityCorrectionEnabled_=(p: Boolean) = {
+      base.setProximityCorrectionEnabled(p)
+      base
+    }
+
+    @inline def proximityCorrectionEnabled(p: Boolean) = proximityCorrectionEnabled_=(p)
+
+    @inline def proximityCorrectionEnabled = base.isProximityCorrectionEnabled
+
+    @inline def shifted = base.isShifted
+
+    @inline def verticalCorrection_=(p: Int) = {
+      base.setVerticalCorrection(p)
+      base
+    }
+
+    @inline def verticalCorrection(p: Int) = verticalCorrection_=(p)
+
+    @noEquivalentGetterExists
+    @inline def verticalCorrection: Int = defaultValue[Int]
+
+   }
+
+  class RichImageView[V <: ImageView](val base: V) extends TraitImageView[V]
+
+  @inline implicit def ImageView2RichImageView[V <: ImageView](ImageView: V) = new RichImageView[V](ImageView)
+
+  trait TraitImageView[V <: ImageView] extends TraitView[V] {
+
+    @inline def adjustViewBounds_=(p: Boolean) = {
+      base.setAdjustViewBounds(p)
+      base
+    }
+
+    @inline def adjustViewBounds(p: Boolean) = adjustViewBounds_=(p)
+
+    @noEquivalentGetterExists
+    @inline def adjustViewBounds: Boolean = defaultValue[Boolean]
+
+    @inline def alpha_=(p: Int) = {
+      base.setAlpha(p)
+      base
+    }
+
+    @inline def alpha(p: Int) = alpha_=(p)
+
+    @noEquivalentGetterExists
+    @inline def alpha: Int = defaultValue[Int]
+
+    @inline def drawable = base.getDrawable
+
+    @inline def imageBitmap_=(p: android.graphics.Bitmap) = {
+      base.setImageBitmap(p)
+      base
+    }
+
+    @inline def imageBitmap(p: android.graphics.Bitmap) = imageBitmap_=(p)
+
+    @noEquivalentGetterExists
+    @inline def imageBitmap: android.graphics.Bitmap = defaultValue[android.graphics.Bitmap]
+
+    @inline def imageDrawable_=(p: android.graphics.drawable.Drawable) = {
+      base.setImageDrawable(p)
+      base
+    }
+
+    @inline def imageDrawable(p: android.graphics.drawable.Drawable) = imageDrawable_=(p)
+
+    @noEquivalentGetterExists
+    @inline def imageDrawable: android.graphics.drawable.Drawable = defaultValue[android.graphics.drawable.Drawable]
+
+    @inline def imageLevel_=(p: Int) = {
+      base.setImageLevel(p)
+      base
+    }
+
+    @inline def imageLevel(p: Int) = imageLevel_=(p)
+
+    @noEquivalentGetterExists
+    @inline def imageLevel: Int = defaultValue[Int]
+
+    @inline def imageMatrix_=(p: android.graphics.Matrix) = {
+      base.setImageMatrix(p)
+      base
+    }
+
+    @inline def imageMatrix(p: android.graphics.Matrix) = imageMatrix_=(p)
+
+    @inline def imageMatrix = base.getImageMatrix
+
+    @inline def imageResource_=(p: Int) = {
+      base.setImageResource(p)
+      base
+    }
+
+    @inline def imageResource(p: Int) = imageResource_=(p)
+
+    @noEquivalentGetterExists
+    @inline def imageResource: Int = defaultValue[Int]
+
+    @inline def imageURI_=(p: android.net.Uri) = {
+      base.setImageURI(p)
+      base
+    }
+
+    @inline def imageURI(p: android.net.Uri) = imageURI_=(p)
+
+    @noEquivalentGetterExists
+    @inline def imageURI: android.net.Uri = defaultValue[android.net.Uri]
+
+    @inline def maxHeight_=(p: Int) = {
+      base.setMaxHeight(p)
+      base
+    }
+
+    @inline def maxHeight(p: Int) = maxHeight_=(p)
+
+    @noEquivalentGetterExists
+    @inline def maxHeight: Int = defaultValue[Int]
+
+    @inline def maxWidth_=(p: Int) = {
+      base.setMaxWidth(p)
+      base
+    }
+
+    @inline def maxWidth(p: Int) = maxWidth_=(p)
+
+    @noEquivalentGetterExists
+    @inline def maxWidth: Int = defaultValue[Int]
+
+    @inline def scaleType_=(p: android.widget.ImageView.ScaleType) = {
+      base.setScaleType(p)
+      base
+    }
+
+    @inline def scaleType(p: android.widget.ImageView.ScaleType) = scaleType_=(p)
+
+    @inline def scaleType = base.getScaleType
+
+   }
+
+  class RichProgressBar[V <: ProgressBar](val base: V) extends TraitProgressBar[V]
+
+  @inline implicit def progressBar2RichProgressBar[V <: ProgressBar](progressBar: V) = new RichProgressBar[V](progressBar)
+
+  trait TraitProgressBar[V <: ProgressBar] extends TraitView[V] {
+
+    @inline def indeterminate_=(p: Boolean) = {
+      base.setIndeterminate(p)
+      base
+    }
+
+    @inline def indeterminate(p: Boolean) = indeterminate_=(p)
+
+    @inline def indeterminate = base.isIndeterminate
+
+    @inline def indeterminateDrawable_=(p: android.graphics.drawable.Drawable) = {
+      base.setIndeterminateDrawable(p)
+      base
+    }
+
+    @inline def indeterminateDrawable(p: android.graphics.drawable.Drawable) = indeterminateDrawable_=(p)
+
+    @inline def indeterminateDrawable = base.getIndeterminateDrawable
+
+    @inline def interpolator_=(p: android.view.animation.Interpolator) = {
+      base.setInterpolator(p)
+      base
+    }
+
+    @inline def interpolator(p: android.view.animation.Interpolator) = interpolator_=(p)
+
+    @inline def interpolator = base.getInterpolator
+
+    @inline def max_=(p: Int) = {
+      base.setMax(p)
+      base
+    }
+
+    @inline def max(p: Int) = max_=(p)
+
+    @inline def max = base.getMax
+
+    @inline def progress_=(p: Int) = {
+      base.setProgress(p)
+      base
+    }
+
+    @inline def progress(p: Int) = progress_=(p)
+
+    @inline def progress = base.getProgress
+
+    @inline def progressDrawable_=(p: android.graphics.drawable.Drawable) = {
+      base.setProgressDrawable(p)
+      base
+    }
+
+    @inline def progressDrawable(p: android.graphics.drawable.Drawable) = progressDrawable_=(p)
+
+    @inline def progressDrawable = base.getProgressDrawable
+
+    @inline def secondaryProgress_=(p: Int) = {
+      base.setSecondaryProgress(p)
+      base
+    }
+
+    @inline def secondaryProgress(p: Int) = secondaryProgress_=(p)
+
+    @inline def secondaryProgress = base.getSecondaryProgress
+
+   }
+
+  class RichSurfaceView[V <: SurfaceView](val base: V) extends TraitSurfaceView[V]
+
+  @inline implicit def surfaceView2RichSurfaceView[V <: SurfaceView](surfaceView: V) = new RichSurfaceView[V](surfaceView)
+
+  trait TraitSurfaceView[V <: SurfaceView] extends TraitView[V] {
+
+    @inline def ZOrderMediaOverlay_=(p: Boolean) = {
+      base.setZOrderMediaOverlay(p)
+      base
+    }
+
+    @inline def ZOrderMediaOverlay(p: Boolean) = ZOrderMediaOverlay_=(p)
+
+    @noEquivalentGetterExists
+    @inline def ZOrderMediaOverlay: Boolean = defaultValue[Boolean]
+
+    @inline def ZOrderOnTop_=(p: Boolean) = {
+      base.setZOrderOnTop(p)
+      base
+    }
+
+    @inline def ZOrderOnTop(p: Boolean) = ZOrderOnTop_=(p)
+
+    @noEquivalentGetterExists
+    @inline def ZOrderOnTop: Boolean = defaultValue[Boolean]
+
+    @inline def holder = base.getHolder
+
+   }
 
   @inline def toast(message: String)(implicit context: Context) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
