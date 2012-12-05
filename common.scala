@@ -59,6 +59,8 @@ import java.lang.CharSequence
 import scala.Int
 import android.view.ContextMenu.ContextMenuInfo
 import android.text.method._
+import android.gesture._
+import android.appwidget._
 import annotation.target.{beanGetter, getter}
 import android.view.ViewGroup.LayoutParams
 import android.widget.TextView.OnEditorActionListener
@@ -1086,15 +1088,15 @@ def defaultValue[U]: U = {
 
     @inline def hint = base.getHint
 
-    @inline def hintTextColor_=(p: Int) = {
+    @inline def hintTextColor_=(p: android.content.res.ColorStateList) = {
       base.setHintTextColor(p)
       base
     }
 
-    @inline def hintTextColor(p: Int) = hintTextColor_=(p)
+    @inline def hintTextColor(p: android.content.res.ColorStateList) = hintTextColor_=(p)
 
     @noEquivalentGetterExists
-    @inline def hintTextColor: Int = defaultValue[Int]
+    @inline def hintTextColor: android.content.res.ColorStateList = defaultValue[android.content.res.ColorStateList]
 
     @inline def hintTextColors = base.getHintTextColors
 
@@ -1175,15 +1177,15 @@ def defaultValue[U]: U = {
     @noEquivalentGetterExists
     @inline def lines: Int = defaultValue[Int]
 
-    @inline def linkTextColor_=(p: android.content.res.ColorStateList) = {
+    @inline def linkTextColor_=(p: Int) = {
       base.setLinkTextColor(p)
       base
     }
 
-    @inline def linkTextColor(p: android.content.res.ColorStateList) = linkTextColor_=(p)
+    @inline def linkTextColor(p: Int) = linkTextColor_=(p)
 
     @noEquivalentGetterExists
-    @inline def linkTextColor: android.content.res.ColorStateList = defaultValue[android.content.res.ColorStateList]
+    @inline def linkTextColor: Int = defaultValue[Int]
 
     @inline def linkTextColors = base.getLinkTextColors
 
@@ -2599,10 +2601,441 @@ def defaultValue[U]: U = {
 
   trait TraitExpandableListView[V <: ExpandableListView] extends TraitListView[V] {
 
-<br />
-<b>Notice</b>:  Undefined index: android.wisget.ExpandableListView in <b>/app/onsquare/common.scala.php</b> on line <b>109</b><br />
-<br />
-<b>Warning</b>:  Invalid argument supplied for foreach() in <b>/app/onsquare/common.scala.php</b> on line <b>111</b><br />
+    @inline def childDivider_=(p: android.graphics.drawable.Drawable) = {
+      base.setChildDivider(p)
+      base
+    }
+
+    @inline def childDivider(p: android.graphics.drawable.Drawable) = childDivider_=(p)
+
+    @noEquivalentGetterExists
+    @inline def childDivider: android.graphics.drawable.Drawable = defaultValue[android.graphics.drawable.Drawable]
+
+    @inline def childIndicator_=(p: android.graphics.drawable.Drawable) = {
+      base.setChildIndicator(p)
+      base
+    }
+
+    @inline def childIndicator(p: android.graphics.drawable.Drawable) = childIndicator_=(p)
+
+    @noEquivalentGetterExists
+    @inline def childIndicator: android.graphics.drawable.Drawable = defaultValue[android.graphics.drawable.Drawable]
+
+    @inline def expandableListAdapter = base.getExpandableListAdapter
+
+    @inline def groupIndicator_=(p: android.graphics.drawable.Drawable) = {
+      base.setGroupIndicator(p)
+      base
+    }
+
+    @inline def groupIndicator(p: android.graphics.drawable.Drawable) = groupIndicator_=(p)
+
+    @noEquivalentGetterExists
+    @inline def groupIndicator: android.graphics.drawable.Drawable = defaultValue[android.graphics.drawable.Drawable]
+
+    @inline def onChildClickListener_=(p: android.widget.ExpandableListView.OnChildClickListener) = {
+      base.setOnChildClickListener(p)
+      base
+    }
+
+    @inline def onChildClickListener(p: android.widget.ExpandableListView.OnChildClickListener) = onChildClickListener_=(p)
+
+    @noEquivalentGetterExists
+    @inline def onChildClickListener: android.widget.ExpandableListView.OnChildClickListener = defaultValue[android.widget.ExpandableListView.OnChildClickListener]
+
+    @inline def onGroupClickListener_=(p: android.widget.ExpandableListView.OnGroupClickListener) = {
+      base.setOnGroupClickListener(p)
+      base
+    }
+
+    @inline def onGroupClickListener(p: android.widget.ExpandableListView.OnGroupClickListener) = onGroupClickListener_=(p)
+
+    @noEquivalentGetterExists
+    @inline def onGroupClickListener: android.widget.ExpandableListView.OnGroupClickListener = defaultValue[android.widget.ExpandableListView.OnGroupClickListener]
+
+    @inline def onGroupCollapseListener_=(p: android.widget.ExpandableListView.OnGroupCollapseListener) = {
+      base.setOnGroupCollapseListener(p)
+      base
+    }
+
+    @inline def onGroupCollapseListener(p: android.widget.ExpandableListView.OnGroupCollapseListener) = onGroupCollapseListener_=(p)
+
+    @noEquivalentGetterExists
+    @inline def onGroupCollapseListener: android.widget.ExpandableListView.OnGroupCollapseListener = defaultValue[android.widget.ExpandableListView.OnGroupCollapseListener]
+
+    @inline def onGroupExpandListener_=(p: android.widget.ExpandableListView.OnGroupExpandListener) = {
+      base.setOnGroupExpandListener(p)
+      base
+    }
+
+    @inline def onGroupExpandListener(p: android.widget.ExpandableListView.OnGroupExpandListener) = onGroupExpandListener_=(p)
+
+    @noEquivalentGetterExists
+    @inline def onGroupExpandListener: android.widget.ExpandableListView.OnGroupExpandListener = defaultValue[android.widget.ExpandableListView.OnGroupExpandListener]
+
+    @inline def selectedGroup_=(p: Int) = {
+      base.setSelectedGroup(p)
+      base
+    }
+
+    @inline def selectedGroup(p: Int) = selectedGroup_=(p)
+
+    @noEquivalentGetterExists
+    @inline def selectedGroup: Int = defaultValue[Int]
+
+    @inline def selectedId = base.getSelectedId
+
+    @inline def selectedPosition = base.getSelectedPosition
+
+   }
+
+trait TraitAbsSpinner[V <: AbsSpinner] extends TraitView[V] {
+   }
+
+  class RichSpinner[V <: Spinner](val base: V) extends TraitSpinner[V]
+
+  @inline implicit def spinner2RichSpinner[V <: Spinner](spinner: V) = new RichSpinner[V](spinner)
+
+  trait TraitSpinner[V <: Spinner] extends TraitAbsSpinner[V] {
+
+    @inline def prompt_=(p: java.lang.CharSequence) = {
+      base.setPrompt(p)
+      base
+    }
+
+    @inline def prompt(p: java.lang.CharSequence) = prompt_=(p)
+
+    @inline def prompt = base.getPrompt
+
+    @inline def promptId_=(p: Int) = {
+      base.setPromptId(p)
+      base
+    }
+
+    @inline def promptId(p: Int) = promptId_=(p)
+
+    @noEquivalentGetterExists
+    @inline def promptId: Int = defaultValue[Int]
+
+   }
+
+  class RichGallery[V <: Gallery](val base: V) extends TraitGallery[V]
+
+  @inline implicit def gallery2RichGallery[V <: Gallery](gallery: V) = new RichGallery[V](gallery)
+
+  trait TraitGallery[V <: Gallery] extends TraitAbsSpinner[V] {
+
+    @inline def animationDuration_=(p: Int) = {
+      base.setAnimationDuration(p)
+      base
+    }
+
+    @inline def animationDuration(p: Int) = animationDuration_=(p)
+
+    @noEquivalentGetterExists
+    @inline def animationDuration: Int = defaultValue[Int]
+
+    @inline def callbackDuringFling_=(p: Boolean) = {
+      base.setCallbackDuringFling(p)
+      base
+    }
+
+    @inline def callbackDuringFling(p: Boolean) = callbackDuringFling_=(p)
+
+    @noEquivalentGetterExists
+    @inline def callbackDuringFling: Boolean = defaultValue[Boolean]
+
+    @inline def gravity_=(p: Int) = {
+      base.setGravity(p)
+      base
+    }
+
+    @inline def gravity(p: Int) = gravity_=(p)
+
+    @noEquivalentGetterExists
+    @inline def gravity: Int = defaultValue[Int]
+
+    @inline def spacing_=(p: Int) = {
+      base.setSpacing(p)
+      base
+    }
+
+    @inline def spacing(p: Int) = spacing_=(p)
+
+    @noEquivalentGetterExists
+    @inline def spacing: Int = defaultValue[Int]
+
+    @inline def unselectedAlpha_=(p: Float) = {
+      base.setUnselectedAlpha(p)
+      base
+    }
+
+    @inline def unselectedAlpha(p: Float) = unselectedAlpha_=(p)
+
+    @noEquivalentGetterExists
+    @inline def unselectedAlpha: Float = defaultValue[Float]
+
+   }
+
+  class RichAbsSeekBar[V <: AbsSeekBar](val base: V) extends TraitAbsSeekBar[V]
+
+  @inline implicit def absSeekBar2RichAbsSeekBar[V <: AbsSeekBar](absSeekBar: V) = new RichAbsSeekBar[V](absSeekBar)
+
+  trait TraitAbsSeekBar[V <: AbsSeekBar] extends TraitProgressBar[V] {
+
+    @inline def keyProgressIncrement_=(p: Int) = {
+      base.setKeyProgressIncrement(p)
+      base
+    }
+
+    @inline def keyProgressIncrement(p: Int) = keyProgressIncrement_=(p)
+
+    @inline def keyProgressIncrement = base.getKeyProgressIncrement
+
+    @inline def thumb_=(p: android.graphics.drawable.Drawable) = {
+      base.setThumb(p)
+      base
+    }
+
+    @inline def thumb(p: android.graphics.drawable.Drawable) = thumb_=(p)
+
+    @noEquivalentGetterExists
+    @inline def thumb: android.graphics.drawable.Drawable = defaultValue[android.graphics.drawable.Drawable]
+
+    @inline def thumbOffset_=(p: Int) = {
+      base.setThumbOffset(p)
+      base
+    }
+
+    @inline def thumbOffset(p: Int) = thumbOffset_=(p)
+
+    @inline def thumbOffset = base.getThumbOffset
+
+   }
+
+  class RichSeekBar[V <: SeekBar](val base: V) extends TraitSeekBar[V]
+
+  @inline implicit def seekBar2RichSeekBar[V <: SeekBar](seekBar: V) = new RichSeekBar[V](seekBar)
+
+  trait TraitSeekBar[V <: SeekBar] extends TraitAbsSeekBar[V] {
+
+    @inline def onSeekBarChangeListener_=(p: android.widget.SeekBar.OnSeekBarChangeListener) = {
+      base.setOnSeekBarChangeListener(p)
+      base
+    }
+
+    @inline def onSeekBarChangeListener(p: android.widget.SeekBar.OnSeekBarChangeListener) = onSeekBarChangeListener_=(p)
+
+    @noEquivalentGetterExists
+    @inline def onSeekBarChangeListener: android.widget.SeekBar.OnSeekBarChangeListener = defaultValue[android.widget.SeekBar.OnSeekBarChangeListener]
+
+   }
+
+  class RichRatingBar[V <: RatingBar](val base: V) extends TraitRatingBar[V]
+
+  @inline implicit def ratingBar2RichRatingBar[V <: RatingBar](ratingBar: V) = new RichRatingBar[V](ratingBar)
+
+  trait TraitRatingBar[V <: RatingBar] extends TraitAbsSeekBar[V] {
+
+    @inline def indicator = base.isIndicator
+
+    @inline def numStars_=(p: Int) = {
+      base.setNumStars(p)
+      base
+    }
+
+    @inline def numStars(p: Int) = numStars_=(p)
+
+    @inline def numStars = base.getNumStars
+
+    @inline def onRatingBarChangeListener_=(p: android.widget.RatingBar.OnRatingBarChangeListener) = {
+      base.setOnRatingBarChangeListener(p)
+      base
+    }
+
+    @inline def onRatingBarChangeListener(p: android.widget.RatingBar.OnRatingBarChangeListener) = onRatingBarChangeListener_=(p)
+
+    @inline def onRatingBarChangeListener = base.getOnRatingBarChangeListener
+
+    @inline def rating_=(p: Float) = {
+      base.setRating(p)
+      base
+    }
+
+    @inline def rating(p: Float) = rating_=(p)
+
+    @inline def rating = base.getRating
+
+    @inline def stepSize_=(p: Float) = {
+      base.setStepSize(p)
+      base
+    }
+
+    @inline def stepSize(p: Float) = stepSize_=(p)
+
+    @inline def stepSize = base.getStepSize
+
+   }
+
+  class RichAppWidgetHostView[V <: AppWidgetHostView](val base: V) extends TraitAppWidgetHostView[V]
+
+  @inline implicit def appWidgetHostView2RichAppWidgetHostView[V <: AppWidgetHostView](appWidgetHostView: V) = new RichAppWidgetHostView[V](appWidgetHostView)
+
+  trait TraitAppWidgetHostView[V <: AppWidgetHostView] extends TraitFrameLayout[V] {
+
+    @inline def appWidgetId = base.getAppWidgetId
+
+    @inline def appWidgetInfo = base.getAppWidgetInfo
+
+   }
+
+  class RichDatePicker[V <: DatePicker](val base: V) extends TraitDatePicker[V]
+
+  @inline implicit def datePicker2RichDatePicker[V <: DatePicker](datePicker: V) = new RichDatePicker[V](datePicker)
+
+  trait TraitDatePicker[V <: DatePicker] extends TraitFrameLayout[V] {
+
+    @inline def dayOfMonth = base.getDayOfMonth
+
+    @inline def month = base.getMonth
+
+    @inline def year = base.getYear
+
+   }
+
+  class RichGestureOverlayView[V <: GestureOverlayView](val base: V) extends TraitGestureOverlayView[V]
+
+  @inline implicit def gestureOverlayView2RichGestureOverlayView[V <: GestureOverlayView](gestureOverlayView: V) = new RichGestureOverlayView[V](gestureOverlayView)
+
+  trait TraitGestureOverlayView[V <: GestureOverlayView] extends TraitFrameLayout[V] {
+
+    @inline def currentStroke = base.getCurrentStroke
+
+    @inline def enableEventsInterception = {base.setEventsInterceptionEnabled(true); base}
+    @inline def disableEventsInterception = {base.setEventsInterceptionEnabled(false); base}
+    @inline def eventsInterceptionEnabled_=(p: Boolean) = {
+      base.setEventsInterceptionEnabled(p)
+      base
+    }
+
+    @inline def eventsInterceptionEnabled(p: Boolean) = eventsInterceptionEnabled_=(p)
+
+    @inline def eventsInterceptionEnabled = base.isEventsInterceptionEnabled
+
+    @inline def enableFade = {base.setFadeEnabled(true); base}
+    @inline def disableFade = {base.setFadeEnabled(false); base}
+    @inline def fadeEnabled_=(p: Boolean) = {
+      base.setFadeEnabled(p)
+      base
+    }
+
+    @inline def fadeEnabled(p: Boolean) = fadeEnabled_=(p)
+
+    @inline def fadeEnabled = base.isFadeEnabled
+
+    @inline def fadeOffset_=(p: Long) = {
+      base.setFadeOffset(p)
+      base
+    }
+
+    @inline def fadeOffset(p: Long) = fadeOffset_=(p)
+
+    @inline def fadeOffset = base.getFadeOffset
+
+    @inline def gesture_=(p: android.gesture.Gesture) = {
+      base.setGesture(p)
+      base
+    }
+
+    @inline def gesture(p: android.gesture.Gesture) = gesture_=(p)
+
+    @inline def gesture = base.getGesture
+
+    @inline def gestureColor_=(p: Int) = {
+      base.setGestureColor(p)
+      base
+    }
+
+    @inline def gestureColor(p: Int) = gestureColor_=(p)
+
+    @inline def gestureColor = base.getGestureColor
+
+    @inline def gesturePath = base.getGesturePath
+
+    @inline def gestureStrokeAngleThreshold_=(p: Float) = {
+      base.setGestureStrokeAngleThreshold(p)
+      base
+    }
+
+    @inline def gestureStrokeAngleThreshold(p: Float) = gestureStrokeAngleThreshold_=(p)
+
+    @inline def gestureStrokeAngleThreshold = base.getGestureStrokeAngleThreshold
+
+    @inline def gestureStrokeLengthThreshold_=(p: Float) = {
+      base.setGestureStrokeLengthThreshold(p)
+      base
+    }
+
+    @inline def gestureStrokeLengthThreshold(p: Float) = gestureStrokeLengthThreshold_=(p)
+
+    @inline def gestureStrokeLengthThreshold = base.getGestureStrokeLengthThreshold
+
+    @inline def gestureStrokeSquarenessTreshold_=(p: Float) = {
+      base.setGestureStrokeSquarenessTreshold(p)
+      base
+    }
+
+    @inline def gestureStrokeSquarenessTreshold(p: Float) = gestureStrokeSquarenessTreshold_=(p)
+
+    @inline def gestureStrokeSquarenessTreshold = base.getGestureStrokeSquarenessTreshold
+
+    @inline def gestureStrokeType_=(p: Int) = {
+      base.setGestureStrokeType(p)
+      base
+    }
+
+    @inline def gestureStrokeType(p: Int) = gestureStrokeType_=(p)
+
+    @inline def gestureStrokeType = base.getGestureStrokeType
+
+    @inline def gestureStrokeWidth_=(p: Float) = {
+      base.setGestureStrokeWidth(p)
+      base
+    }
+
+    @inline def gestureStrokeWidth(p: Float) = gestureStrokeWidth_=(p)
+
+    @inline def gestureStrokeWidth = base.getGestureStrokeWidth
+
+    @inline def gestureVisible_=(p: Boolean) = {
+      base.setGestureVisible(p)
+      base
+    }
+
+    @inline def gestureVisible(p: Boolean) = gestureVisible_=(p)
+
+    @inline def gestureVisible = base.isGestureVisible
+
+    @inline def gesturing = base.isGesturing
+
+    @inline def orientation_=(p: Int) = {
+      base.setOrientation(p)
+      base
+    }
+
+    @inline def orientation(p: Int) = orientation_=(p)
+
+    @inline def orientation = base.getOrientation
+
+    @inline def uncertainGestureColor_=(p: Int) = {
+      base.setUncertainGestureColor(p)
+      base
+    }
+
+    @inline def uncertainGestureColor(p: Int) = uncertainGestureColor_=(p)
+
+    @inline def uncertainGestureColor = base.getUncertainGestureColor
+
    }
 
   @inline def toast(message: String)(implicit context: Context) {
