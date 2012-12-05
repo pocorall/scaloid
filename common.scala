@@ -1086,15 +1086,15 @@ def defaultValue[U]: U = {
 
     @inline def hint = base.getHint
 
-    @inline def hintTextColor_=(p: android.content.res.ColorStateList) = {
+    @inline def hintTextColor_=(p: Int) = {
       base.setHintTextColor(p)
       base
     }
 
-    @inline def hintTextColor(p: android.content.res.ColorStateList) = hintTextColor_=(p)
+    @inline def hintTextColor(p: Int) = hintTextColor_=(p)
 
     @noEquivalentGetterExists
-    @inline def hintTextColor: android.content.res.ColorStateList = defaultValue[android.content.res.ColorStateList]
+    @inline def hintTextColor: Int = defaultValue[Int]
 
     @inline def hintTextColors = base.getHintTextColors
 
@@ -1175,15 +1175,15 @@ def defaultValue[U]: U = {
     @noEquivalentGetterExists
     @inline def lines: Int = defaultValue[Int]
 
-    @inline def linkTextColor_=(p: Int) = {
+    @inline def linkTextColor_=(p: android.content.res.ColorStateList) = {
       base.setLinkTextColor(p)
       base
     }
 
-    @inline def linkTextColor(p: Int) = linkTextColor_=(p)
+    @inline def linkTextColor(p: android.content.res.ColorStateList) = linkTextColor_=(p)
 
     @noEquivalentGetterExists
-    @inline def linkTextColor: Int = defaultValue[Int]
+    @inline def linkTextColor: android.content.res.ColorStateList = defaultValue[android.content.res.ColorStateList]
 
     @inline def linkTextColors = base.getLinkTextColors
 
@@ -1388,15 +1388,15 @@ def defaultValue[U]: U = {
 
     @inline def text = base.getText
 
-    @inline def textColor_=(p: android.content.res.ColorStateList) = {
+    @inline def textColor_=(p: Int) = {
       base.setTextColor(p)
       base
     }
 
-    @inline def textColor(p: android.content.res.ColorStateList) = textColor_=(p)
+    @inline def textColor(p: Int) = textColor_=(p)
 
     @noEquivalentGetterExists
-    @inline def textColor: android.content.res.ColorStateList = defaultValue[android.content.res.ColorStateList]
+    @inline def textColor: Int = defaultValue[Int]
 
     @inline def textColors = base.getTextColors
 
@@ -2452,6 +2452,14 @@ def defaultValue[U]: U = {
 
    }
 
+  class RichAnalogClock[V <: AnalogClock](val base: V) extends TraitAnalogClock[V]
+
+  @inline implicit def analogClock2RichAnalogClock[V <: AnalogClock](analogClock: V) = new RichAnalogClock[V](analogClock)
+
+  trait TraitAnalogClock[V <: AnalogClock] extends TraitView[V] {
+
+   }
+
   class RichSurfaceView[V <: SurfaceView](val base: V) extends TraitSurfaceView[V]
 
   @inline implicit def surfaceView2RichSurfaceView[V <: SurfaceView](surfaceView: V) = new RichSurfaceView[V](surfaceView)
@@ -2480,6 +2488,121 @@ def defaultValue[U]: U = {
 
     @inline def holder = base.getHolder
 
+   }
+
+  class RichViewStub[V <: ViewStub](val base: V) extends TraitViewStub[V]
+
+  @inline implicit def viewStub2RichViewStub[V <: ViewStub](viewStub: V) = new RichViewStub[V](viewStub)
+
+  trait TraitViewStub[V <: ViewStub] extends TraitView[V] {
+
+    @inline def inflatedId_=(p: Int) = {
+      base.setInflatedId(p)
+      base
+    }
+
+    @inline def inflatedId(p: Int) = inflatedId_=(p)
+
+    @inline def inflatedId = base.getInflatedId
+
+    @inline def layoutResource_=(p: Int) = {
+      base.setLayoutResource(p)
+      base
+    }
+
+    @inline def layoutResource(p: Int) = layoutResource_=(p)
+
+    @inline def layoutResource = base.getLayoutResource
+
+    @inline def onInflateListener_=(p: android.view.ViewStub.OnInflateListener) = {
+      base.setOnInflateListener(p)
+      base
+    }
+
+    @inline def onInflateListener(p: android.view.ViewStub.OnInflateListener) = onInflateListener_=(p)
+
+    @noEquivalentGetterExists
+    @inline def onInflateListener: android.view.ViewStub.OnInflateListener = defaultValue[android.view.ViewStub.OnInflateListener]
+
+   }
+
+  class RichGridView[V <: GridView](val base: V) extends TraitGridView[V]
+
+  @inline implicit def gridView2RichGridView[V <: GridView](gridView: V) = new RichGridView[V](gridView)
+
+  trait TraitGridView[V <: GridView] extends TraitAbsListView[V] {
+
+    @inline def columnWidth_=(p: Int) = {
+      base.setColumnWidth(p)
+      base
+    }
+
+    @inline def columnWidth(p: Int) = columnWidth_=(p)
+
+    @noEquivalentGetterExists
+    @inline def columnWidth: Int = defaultValue[Int]
+
+    @inline def gravity_=(p: Int) = {
+      base.setGravity(p)
+      base
+    }
+
+    @inline def gravity(p: Int) = gravity_=(p)
+
+    @noEquivalentGetterExists
+    @inline def gravity: Int = defaultValue[Int]
+
+    @inline def horizontalSpacing_=(p: Int) = {
+      base.setHorizontalSpacing(p)
+      base
+    }
+
+    @inline def horizontalSpacing(p: Int) = horizontalSpacing_=(p)
+
+    @noEquivalentGetterExists
+    @inline def horizontalSpacing: Int = defaultValue[Int]
+
+    @inline def numColumns_=(p: Int) = {
+      base.setNumColumns(p)
+      base
+    }
+
+    @inline def numColumns(p: Int) = numColumns_=(p)
+
+    @noEquivalentGetterExists
+    @inline def numColumns: Int = defaultValue[Int]
+
+    @inline def stretchMode_=(p: Int) = {
+      base.setStretchMode(p)
+      base
+    }
+
+    @inline def stretchMode(p: Int) = stretchMode_=(p)
+
+    @inline def stretchMode = base.getStretchMode
+
+    @inline def verticalSpacing_=(p: Int) = {
+      base.setVerticalSpacing(p)
+      base
+    }
+
+    @inline def verticalSpacing(p: Int) = verticalSpacing_=(p)
+
+    @noEquivalentGetterExists
+    @inline def verticalSpacing: Int = defaultValue[Int]
+
+   }
+
+  class RichExpandableListView[V <: ExpandableListView](val base: V) extends TraitExpandableListView[V]
+
+  @inline implicit def expandableListView2RichExpandableListView[V <: ExpandableListView](expandableListView: V) = new RichExpandableListView[V](expandableListView)
+
+  trait TraitExpandableListView[V <: ExpandableListView] extends TraitListView[V] {
+
+<br />
+<b>Notice</b>:  Undefined index: android.wisget.ExpandableListView in <b>/app/onsquare/common.scala.php</b> on line <b>109</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>/app/onsquare/common.scala.php</b> on line <b>111</b><br />
    }
 
   @inline def toast(message: String)(implicit context: Context) {
