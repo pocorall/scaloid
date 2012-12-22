@@ -289,7 +289,7 @@ Suppose an Android class `Foo`, for example, Scaloid defines an implicit convers
 
 ##### Listeners
 
-Android API defines many listener interface for callback notifications. For example, `View.OnClickListener` is used to be notified when a view is clicked:
+Android API defines many listener interfaces for callback notifications. For example, `View.OnClickListener` is used to be notified when a view is clicked:
 
     find[Button](R.id.search).setOnClickListener(new View.OnClickListener {
 	  def onClick(v:View) {
@@ -301,11 +301,12 @@ Scaloid provides a shortcut that dramatically reduces the length of the code:
 
     find[Button](R.id.search).onClick(openUri("http://google.com"))
 
-All other listener-appending methods such as `onKey()`, `onLongClick()`, and `onTouch()` are defined.
+All other listener-appending methods such as `.onKey()`, `.onLongClick()`, and `.onTouch()` are defined.
 	
 Some conventions we employed for method naming are:
 
- * We omit `set...`, `add...`, and `...Listener` from the method name, which is less significant.
+ * We omit `set...`, `add...`, and `...Listener` from the method name, which is less significant.<br/>
+   For example, `.setOnKeyListener()` becomes `.onKey()`.
  * Every method has two versions of parameters overridden. One is a lazy parameter, and another is a function which has a full parameter defined in the original Android API. For example, these two usages are valid:
 
 ```
@@ -313,7 +314,8 @@ button.onTouch(info("touched"))
 button.onTouch((v:View, e:MotionEvent) => info("touched a button "+v))
 ```	
 
- * Methods `add...` is abbreviated with a method `+=` if it is not a listener-appender.
+ * Methods `add...` is abbreviated with a method `+=` if it is not a listener-appender.<br/>
+   For example, `layout.addView(button)` becomes `layout += button`.
 	
 ##### Multiple method listeners
 
