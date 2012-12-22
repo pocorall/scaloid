@@ -690,7 +690,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 
 Xtend natively supports 1) converting Java bean style getter/setters into the assignment style 2) automatically shorten the clutters when calling one-method callback interface by converting it into closure-like style. Because these are language features, Xtend users can enjoy these features without any wrapper library. We hope that Scala also adopt these benefits soon.
 
-However, We think that Scala is the better alternative on Android platform, because Scala has mature than Xtend and has these advanced features:
+However, We think that Scala is better alternative for Android platform, because Scala has mature than Xtend and has these advanced features:
 
 * **Implicit conversion** <br/>
   Check [implicit conversions](#implicit-conversions) section of this document to see how Scaloid leverage this.
