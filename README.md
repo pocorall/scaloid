@@ -282,17 +282,27 @@ Under the hood, Scaloid defines a function `vibrator` like this:
 All of the system service accessors available in Android API level 8 are defined (e.g. `audioManager`, `alarmManager`, `notificationManager`, etc.). The name of a system service accessor is the same of its class name, except that the first character is lowercased.
 
 
-## Implicit classes
+## Pimped Implicit classes
 
-Suppose an Android class `Foo`, for example, Scaloid defines an implicit conversion `Foo => RichFoo`. `RichFoo` defines additional method for more convenient access to `Foo`. This is a common pattern in Scala to extend existing API.
+Suppose an Android class `Foo`, for example, Scaloid defines an implicit conversion `Foo => RichFoo`. `RichFoo` defines additional methods for more convenient access to `Foo`. This is a common pattern in Scala to extend existing API (see [pimp-my-library](http://www.artima.com/weblogs/viewpost.jsp?thread=179766) pattern). This section describes various features added on existing Android API classes.
 
 
 ##### Listeners
 
-All of listener-appending methods such as `onKey()`, `onLongClick()`, and `onTouch()` are defined in `RichView`. For example:
+Android API defines many listener interface for callback notifications. For example, `View.OnClickListener` is used to be notified when a view is clicked:
+
+    find[Button](R.id.search).setOnClickListener(new View.OnClickListener {
+	  def onClick(v:View) {
+	    openUri("http://google.com")
+	  }
+	})
+	
+Scaloid provides a shortcut that dramatically reduces the length of the code:
 
     find[Button](R.id.search).onClick(openUri("http://google.com"))
 
+All other listener-appending methods such as `onKey()`, `onLongClick()`, and `onTouch()` are defined.
+	
 Some conventions we employed for method naming are:
 
  * We omit `set...`, `add...`, and `...Listener` from the method name, which is less significant.
@@ -327,7 +337,7 @@ Also, we overrides `beforeTextChanged()` with a full parameter defined in the or
 
     inputField.beforeTextChanged((s:CharSequence, _:Int, _:Int) => saveText(s))
 	
-
+Other listeners in Android API can also be accessed in this way.
 
 ## Layout context
 
