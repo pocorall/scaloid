@@ -434,7 +434,7 @@ Instead of:
 
     runOnUiThread(debug("Running in any context"))
 
-Running job asynchronously and notifying it back to UI thread is very common pattern of Android programming. Although Android API provides an helper class `AsyncTask`, implementing such a simple idea is still painful, even when we use Scala:
+It is a very frequently used pattern that running a job asynchronously and notifying it back to UI thread. Although Android API provides an helper class `AsyncTask`, implementing such a simple idea is still painful, even when we use Scala:
 
     new AsyncTask[String, Void, String] {
       def doInBackground(params: Array[String]) = {
@@ -455,7 +455,7 @@ Using `runOnUiThread` and importing `scala.concurrent.ops._`, the asynchronous j
 	
 It is a great win as it exposes your idea clearly.
 
-Just like we throw away `AsyncTask`, we can also elliminate all other helpers for asynchronous job, such as `AsyncQueryHandler`. Compare with the [original Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList2.java?av=h)
+Just like we throw away `AsyncTask`, we can also elliminate all other helpers for asynchronous job, such as `AsyncQueryHandler` and `AsyncTaskLoader`. Compare with the [original Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList2.java?av=h)
 and a [Scala port](https://github.com/pocorall/scaloid-apidemos/blob/master/src/main/java/com/example/android/apis/view/ExpandableList2.scala) of ApiDemos example app.
 	
 ### Trait UnregisterReceiverService
