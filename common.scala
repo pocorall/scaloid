@@ -2689,7 +2689,95 @@ def defaultValue[U]: U = {
 
    }
 
-trait TraitAbsSpinner[V <: AbsSpinner] extends TraitView[V] {
+
+
+
+
+trait TraitAdapterView[V <: AdapterView] extends TraitView[V] {
+    @inline def onItemClick(f:  => Unit): V = {
+      base.setOnItemClickListener(new OnItemClickListener {
+        def onItemClick(p1: View, p2: Int, p3: Long): Unit = {
+          f
+        }
+      })
+      base
+    }
+
+    @inline def onItemClick(f: (View, Int, Long) => Unit): V = {
+      base.setOnItemClickListener(new OnItemClickListener {
+        def onItemClick(p1: View, p2: Int, p3: Long): Unit = {
+          f(p1, p2, p3)
+        }
+      })
+      base
+    }
+
+    @inline def onItemLongClick(f:  => Unit): V = {
+      base.setOnItemLongClickListener(new OnItemLongClickListener {
+        def onItemLongClick(p1: View, p2: Int, p3: Long): Unit = {
+          f
+        }
+      })
+      base
+    }
+
+    @inline def onItemLongClick(f: (View, Int, Long) => Unit): V = {
+      base.setOnItemLongClickListener(new OnItemLongClickListener {
+        def onItemLongClick(p1: View, p2: Int, p3: Long): Unit = {
+          f(p1, p2, p3)
+        }
+      })
+      base
+    }
+
+    @inline def onItemSelected(f:  => Unit): V = {
+      base.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener {
+        def onItemSelected(p1: AdapterView[_], p2: View, p3: Int, p4: Long): Unit = {
+          f
+        }
+        def onNothingSelected(p1: AdapterView[_]): Unit = {
+        }
+      })
+      base
+    }
+
+    @inline def onNothingSelected(f:  => Unit): V = {
+      base.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener {
+        def onItemSelected(p1: AdapterView[_], p2: View, p3: Int, p4: Long): Unit = {
+        }
+        def onNothingSelected(p1: AdapterView[_]): Unit = {
+          f
+        }
+      })
+      base
+    }
+
+    @inline def onItemSelected(f: (AdapterView[_], View, Int, Long) => Unit): V = {
+      base.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener {
+        def onItemSelected(p1: AdapterView[_], p2: View, p3: Int, p4: Long): Unit = {
+          f(p1, p2, p3, p4)
+        }
+        def onNothingSelected(p1: AdapterView[_]): Unit = {
+        }
+      })
+      base
+    }
+
+    @inline def onNothingSelected(f: (AdapterView[_]) => Unit): V = {
+      base.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener {
+        def onItemSelected(p1: AdapterView[_], p2: View, p3: Int, p4: Long): Unit = {
+        }
+        def onNothingSelected(p1: AdapterView[_]): Unit = {
+          f(p1)
+        }
+      })
+      base
+    }
+
+
+}
+
+trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
    }
 
   class RichSpinner[V <: Spinner](val base: V) extends TraitSpinner[V]
@@ -2828,6 +2916,84 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitView[V] {
 
     @noEquivalentGetterExists
     @inline def onSeekBarChangeListener: android.widget.SeekBar.OnSeekBarChangeListener = defaultValue[android.widget.SeekBar.OnSeekBarChangeListener]
+
+    @inline def onProgressChanged(f:  => Unit): V = {
+      base.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener {
+        def onProgressChanged(p1: SeekBar, p2: Int, p3: Boolean): Unit = {
+          f
+        }
+        def onStartTrackingTouch(p1: SeekBar): Unit = {
+        }
+        def onStopTrackingTouch(p1: SeekBar): Unit = {
+        }
+      })
+      base
+    }
+
+    @inline def onStartTrackingTouch(f:  => Unit): V = {
+      base.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener {
+        def onProgressChanged(p1: SeekBar, p2: Int, p3: Boolean): Unit = {
+        }
+        def onStartTrackingTouch(p1: SeekBar): Unit = {
+          f
+        }
+        def onStopTrackingTouch(p1: SeekBar): Unit = {
+        }
+      })
+      base
+    }
+
+    @inline def onStopTrackingTouch(f:  => Unit): V = {
+      base.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener {
+        def onProgressChanged(p1: SeekBar, p2: Int, p3: Boolean): Unit = {
+        }
+        def onStartTrackingTouch(p1: SeekBar): Unit = {
+        }
+        def onStopTrackingTouch(p1: SeekBar): Unit = {
+          f
+        }
+      })
+      base
+    }
+
+    @inline def onProgressChanged(f: (SeekBar, Int, Boolean) => Unit): V = {
+      base.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener {
+        def onProgressChanged(p1: SeekBar, p2: Int, p3: Boolean): Unit = {
+          f(p1, p2, p3)
+        }
+        def onStartTrackingTouch(p1: SeekBar): Unit = {
+        }
+        def onStopTrackingTouch(p1: SeekBar): Unit = {
+        }
+      })
+      base
+    }
+
+    @inline def onStartTrackingTouch(f: (SeekBar) => Unit): V = {
+      base.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener {
+        def onProgressChanged(p1: SeekBar, p2: Int, p3: Boolean): Unit = {
+        }
+        def onStartTrackingTouch(p1: SeekBar): Unit = {
+          f(p1)
+        }
+        def onStopTrackingTouch(p1: SeekBar): Unit = {
+        }
+      })
+      base
+    }
+
+    @inline def onStopTrackingTouch(f: (SeekBar) => Unit): V = {
+      base.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener {
+        def onProgressChanged(p1: SeekBar, p2: Int, p3: Boolean): Unit = {
+        }
+        def onStartTrackingTouch(p1: SeekBar): Unit = {
+        }
+        def onStopTrackingTouch(p1: SeekBar): Unit = {
+          f(p1)
+        }
+      })
+      base
+    }
 
    }
 
@@ -3300,4 +3466,5 @@ implicit def lazy2DialogOnClickListener[F](f: => F): DialogInterface.OnClickList
   }
 
 }
+
 
