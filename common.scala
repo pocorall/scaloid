@@ -33,20 +33,20 @@ package org.scaloid
 import android.app._
 import admin.DevicePolicyManager
 import android.view._
-import android.net.{ConnectivityManager, Uri}
+import android.net._
 import android.os._
-import android.media.{AudioManager, RingtoneManager}
+import android.media._
 import collection.mutable.ArrayBuffer
 import android.util.Log
 
-import android.text.{InputFilter, Editable, TextWatcher, ClipboardManager}
-import android.view.accessibility.AccessibilityManager
-import android.accounts.AccountManager
-import android.view.inputmethod.InputMethodManager
-import android.location.LocationManager
-import android.hardware.SensorManager
-import android.telephony.TelephonyManager
-import android.net.wifi.WifiManager
+import android.text._
+import android.view.accessibility._
+import android.accounts._
+import android.view.inputmethod._
+import android.location._
+import android.hardware._
+import android.telephony._
+import android.net.wifi._
 import android.content._
 import android.widget._
 import android.inputmethodservice._
@@ -64,7 +64,7 @@ import android.appwidget._
 import annotation.target.{beanGetter, getter}
 import android.view.ViewGroup.LayoutParams
 import android.widget.TextView.OnEditorActionListener
-import android.graphics.Typeface
+import android.graphics._
 
 
 case class LoggerTag(_tag: String) {
@@ -2693,38 +2693,40 @@ def defaultValue[U]: U = {
 
 
 
-trait TraitAdapterView[V <: AdapterView] extends TraitView[V] {
+trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
+  import android.widget.AdapterView.OnItemClickListener
+  import android.widget.AdapterView.OnItemLongClickListener
     @inline def onItemClick(f:  => Unit): V = {
       base.setOnItemClickListener(new OnItemClickListener {
-        def onItemClick(p1: View, p2: Int, p3: Long): Unit = {
+        def onItemClick(p1: AdapterView[_], p2: View, p3: Int, p4: Long): Unit = {
           f
         }
       })
       base
     }
 
-    @inline def onItemClick(f: (View, Int, Long) => Unit): V = {
+    @inline def onItemClick(f: (AdapterView[_], View, Int, Long) => Unit): V = {
       base.setOnItemClickListener(new OnItemClickListener {
-        def onItemClick(p1: View, p2: Int, p3: Long): Unit = {
-          f(p1, p2, p3)
+        def onItemClick(p1: AdapterView[_], p2: View, p3: Int, p4: Long): Unit = {
+          f(p1, p2, p3, p4)
         }
       })
       base
     }
 
-    @inline def onItemLongClick(f:  => Unit): V = {
+    @inline def onItemLongClick(f:  => Boolean): V = {
       base.setOnItemLongClickListener(new OnItemLongClickListener {
-        def onItemLongClick(p1: View, p2: Int, p3: Long): Unit = {
+        def onItemLongClick(p1: AdapterView[_], p2: View, p3: Int, p4: Long): Boolean = {
           f
         }
       })
       base
     }
 
-    @inline def onItemLongClick(f: (View, Int, Long) => Unit): V = {
+    @inline def onItemLongClick(f: (AdapterView[_], View, Int, Long) => Boolean): V = {
       base.setOnItemLongClickListener(new OnItemLongClickListener {
-        def onItemLongClick(p1: View, p2: Int, p3: Long): Unit = {
-          f(p1, p2, p3)
+        def onItemLongClick(p1: AdapterView[_], p2: View, p3: Int, p4: Long): Boolean = {
+          f(p1, p2, p3, p4)
         }
       })
       base
