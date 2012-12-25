@@ -366,6 +366,7 @@ In the anonymous constructor of 'SLinearLayout', Scaloid provides an implicit fu
     }
 
 It is a pragmatical progress towards both simplicity and rigorous type checking.
+
 	
 #### Function .end
 
@@ -383,7 +384,7 @@ if we want use the `SButton` object again, Scaloid provides `.end` method return
 
 #### Nested layout context
 	
-When the layout context is nested, inner-most context is applied:
+When the layout context is nested, inner-most layout context is applied:
 	
     val layout = new SFrameLayout {
 	  +=(new SLinearLayout {
@@ -409,6 +410,25 @@ This also be shortened as:
 
     SButton("Click").wrapLayout
 
+#### Naming conventions
+
+Scaloid follows naming of XML attributes of Android API with some improvements. For XML attributes, layout related properties prefixed with `layout_`, while Scaloid does not need it. For boolean type attributes in which default is `false`, Scaloid simply flag it as `true` when the attribute is declared explicitly without parameter. For example:
+
+    new SRelativeLayout {
+	  this += STextView("hello").layout.centerHorizontal.alignParentBottom.end
+	}
+	
+Equivalent XML layout description for `TextView` is:
+
+	<TextView
+		android:id="@+id/helloText"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_alignParentBottom="true"
+		android:text="hello"/>
+		
+		
 ## Traits
 
 ### Trait SContext
