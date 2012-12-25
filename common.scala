@@ -1929,7 +1929,171 @@ def defaultValue[U]: U = {
     def end: V = v
   }
 }
+  class RichRelativeLayout[V <: RelativeLayout](val base: V) extends TraitRelativeLayout[V]
 
+  @inline implicit def relativeLayout2RichRelativeLayout[V <: RelativeLayout](relativeLayout: V) = new RichRelativeLayout[V](relativeLayout)
+
+  trait TraitRelativeLayout[V <: RelativeLayout] extends TraitViewGroup[V] {
+
+    @inline def gravity_=(p: Int) = {
+      base.setGravity(p)
+      base
+    }
+
+    @inline def gravity(p: Int) = gravity_=(p)
+
+    @noEquivalentGetterExists
+    @inline def gravity: Int = defaultValue[Int]
+
+    @inline def horizontalGravity_=(p: Int) = {
+      base.setHorizontalGravity(p)
+      base
+    }
+
+    @inline def horizontalGravity(p: Int) = horizontalGravity_=(p)
+
+    @noEquivalentGetterExists
+    @inline def horizontalGravity: Int = defaultValue[Int]
+
+    @inline def ignoreGravity_=(p: Int) = {
+      base.setIgnoreGravity(p)
+      base
+    }
+
+    @inline def ignoreGravity(p: Int) = ignoreGravity_=(p)
+
+    @noEquivalentGetterExists
+    @inline def ignoreGravity: Int = defaultValue[Int]
+
+    @inline def verticalGravity_=(p: Int) = {
+      base.setVerticalGravity(p)
+      base
+    }
+
+    @inline def verticalGravity(p: Int) = verticalGravity_=(p)
+
+    @noEquivalentGetterExists
+    @inline def verticalGravity: Int = defaultValue[Int]
+
+  }
+  class SRelativeLayout(implicit context: Context) extends RelativeLayout(context) with TraitRelativeLayout[SRelativeLayout] {
+    def base = this
+
+  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+
+  class LayoutParams[V <: View](v: V) extends RelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V]] {
+    def base = this
+
+    v.setLayoutParams(this)
+
+    def Gravity(g: Int) = {
+      gravity = g
+      this
+    }
+
+def above() = {
+  addRule(RelativeLayout.ABOVE)
+  this
+}
+
+def alignBaseline() = {
+  addRule(RelativeLayout.ALIGN_BASELINE)
+  this
+}
+
+def alignBottom() = {
+  addRule(RelativeLayout.ALIGN_BOTTOM)
+  this
+}
+
+//def alignEnd() = {
+//  addRule(RelativeLayout.ALIGN_END)
+//  this
+//}
+
+def alignLeft() = {
+  addRule(RelativeLayout.ALIGN_LEFT)
+  this
+}
+
+def alignParentBottom() = {
+  addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+  this
+}
+
+//def alignParentEnd() = {
+//  addRule(RelativeLayout.ALIGN_PARENT_END)
+//  this
+//}
+
+def alignParentLeft() = {
+  addRule(RelativeLayout.ALIGN_PARENT_LEFT)
+  this
+}
+
+def alignParentRight() = {
+  addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+  this
+}
+
+//def alignParentStart() = {
+//  addRule(RelativeLayout.ALIGN_PARENT_START)
+//  this
+//}
+
+def alignParentTop() = {
+  addRule(RelativeLayout.ALIGN_PARENT_TOP)
+  this
+}
+
+def alignRight() = {
+  addRule(RelativeLayout.ALIGN_RIGHT)
+  this
+}
+
+//def alignStart() = {
+//  addRule(RelativeLayout.ALIGN_START)
+//  this
+//}
+
+def alignTop() = {
+  addRule(RelativeLayout.ALIGN_TOP)
+  this
+}
+
+def below() = {
+  addRule(RelativeLayout.BELOW)
+  this
+}
+
+def leftOf() = {
+  addRule(RelativeLayout.LEFT_OF)
+  this
+}
+
+def rightOf() = {
+  addRule(RelativeLayout.RIGHT_OF)
+  this
+}
+
+def centerHorizontal() = {
+  addRule(RelativeLayout.CENTER_HORIZONTAL)
+  this
+}
+
+def centerInParent() = {
+  addRule(RelativeLayout.CENTER_IN_PARENT)
+  this
+}
+
+def centerVertical() = {
+  addRule(RelativeLayout.CENTER_VERTICAL)
+  this
+}
+
+    def end: V = v
+  }
+}
   class RichLinearLayout[V <: LinearLayout](val base: V) extends TraitLinearLayout[V]
 
   @inline implicit def linearLayout2RichLinearLayout[V <: LinearLayout](linearLayout: V) = new RichLinearLayout[V](linearLayout)
