@@ -22,13 +22,13 @@ is reduced to:
 
 ### Benefits
  * **Write elegant Android software**<br/>
-   Read later part of this document to see how Scaloid greatly improve your code.
+   Scaloid provides concise and type-safe way of writing Android application.
  * **Simple to use**<br/> 
    This is a single-file project. Just copy-and-paste `common.scala` into your project!
  * **Compatible with your legacy code**<br/>
    You can use both Scaloid and plain-old Java Android API. You can gradually improve your legacy code.
  * **Maintained actively**<br/>
-   Scaloid is a [dogfooding](http://en.wikipedia.org/wiki/Eating_your_own_dog_food) software. This is originally created to be used for [my own Android app](https://play.google.com/store/apps/details?id=com.tocplus.client.android).
+   Scaloid is a [dogfooding](http://en.wikipedia.org/wiki/Eating_your_own_dog_food) software. This is originally created to be used for [my own](https://play.google.com/store/apps/details?id=com.soundcorset.client.android) [Android apps](https://play.google.com/store/apps/details?id=com.tocplus.client.android).
    
 ### Demos
 
