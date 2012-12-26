@@ -119,7 +119,7 @@ That's it!
 
 ### Automatic layout converter
 
-Try this!
+This webpage converts Android XML layout into Scaloid layout:
 
 http://layout.scaloid.org
 		
