@@ -116,6 +116,13 @@ The layout description shown above is highly programmable. You can easily wire y
 </code></pre>
 
 That's it!	
+
+### Automatic layout converter
+
+Try this!
+
+http://layout.scaloid.org
+		
 		
 ## Implicit conversions
 Scaloid employs several implicit conversions. Some of available implicit conversions are shown below:
@@ -164,7 +171,7 @@ Then Scaloid implicit conversions will take care about these resource type conve
 
 ##### Unit conversion
 
-A unit can be converted into the pixel unit.
+Units `dip` and `sp` can be converted into the pixel unit.
 
     val inPixel:Int = (32 dip)
 	val inPixel2:Int = (22 sp)
@@ -512,11 +519,11 @@ Unlike other logging frameworks, Android Logging API requires a `String` tag for
 
     implicit val tag = LoggerTag("MyAppTag")
 
-or, extend trait `TagUtil` or `SContext` which defines this by default. Then you can simply log like this:
+or, extend trait `TagUtil` or `SContext` which defines the tag by default. Then you can simply log like this:
 
 	warn("Something happened!")
 
-Other functions for every log levels (`verbose`, `debug`, `info`, `warn`, `error`, `wtf`) are available. 
+Other functions for every log levels (`verbose()`, `debug()`, `info()`, `warn()`, `error()` and `wtf()`) are available. 
 
 	info("hello " + world)
 
@@ -703,7 +710,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Support Google services** <br/>
   Including Google Cloud Messaging (GCM)
 * **Write a converter that turns XML layout into a Scaloid code** <br/>
-  First version of the converter would be a simple web application. Providing this functionality as an Eclipse or Intellij plugin would also be great.
+  A simple web application is demonstrated. Providing this functionality as an Eclipse or Intellij plugin would also be great.
   
   
 ## Appendix
