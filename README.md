@@ -710,7 +710,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Support Google services** <br/>
   Including Google Cloud Messaging (GCM)
 * **Write a converter that turns XML layout into a Scaloid code** <br/>
-  A simple web application is demonstrated. Providing this functionality as an Eclipse or Intellij plugin would also be great.
+  [A simple web application](http://layout.scaloid.org) is demonstrated. Providing this functionality as an Eclipse or Intellij plugin would also be great.
   
   
 ## Appendix
