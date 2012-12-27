@@ -114,7 +114,7 @@ The layout description shown above is highly programmable. You can easily wire y
 }.padding(20 dip)
 </code></pre>
 
-That's it!	
+Because Scaloid layout description is plain Scala code, it is type-safe. Please refer to [layout context](#layout-context) for more details.
 
 ### Automatic layout converter
 
