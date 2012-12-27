@@ -64,8 +64,7 @@ Android SDK leverages XML to build UI layouts. However, XML considered still a b
         <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:text="ID"/>
         <EditText android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/userId"
-                android:inputType="textUri"/>
+                android:layout_height="wrap_content" android:id="@+id/userId"/>
         <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:text="Password"/>
         <EditText android:layout_width="match_parent"
@@ -119,7 +118,7 @@ That's it!
 
 ### Automatic layout converter
 
-This webpage converts Android XML layout into Scaloid layout:
+This converter turns Android XML layout into Scaloid layout:
 
 http://layout.scaloid.org
 		
