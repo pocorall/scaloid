@@ -114,11 +114,11 @@ The layout description shown above is highly programmable. You can easily wire y
 }.padding(20 dip)
 </code></pre>
 
-Because Scaloid layout description is plain Scala code, it is type-safe. Please refer to [layout context](#layout-context) for more details.
+Because a Scaloid layout description is a plain Scala code, it is type-safe. Please refer to [layout context](#layout-context) for more details.
 
 ### Automatic layout converter
 
-This converter turns Android XML layout into Scaloid layout:
+This converter turns an Android XML layout into a Scaloid layout:
 
 http://layout.scaloid.org
 		
