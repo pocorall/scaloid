@@ -781,18 +781,18 @@ def defaultValue[U]: U = {
     val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
     val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
 
-    def layout[LP <: ViewGroupLayoutParams[_]](implicit defaultLayoutParam: (V) => LP): LP = {
+    def layout[LP <: ViewGroupLayoutParams[_,_]](implicit defaultLayoutParam: (V) => LP): LP = {
       defaultLayoutParam(base)
     }
 
-    def matchLayout[LP <: ViewGroupLayoutParams[_]](implicit defaultLayoutParam: (V) => LP): LP = {
+    def matchLayout[LP <: ViewGroupLayoutParams[_,_]](implicit defaultLayoutParam: (V) => LP): LP = {
       val lp = defaultLayoutParam(base)
       lp.height = MATCH_PARENT
       lp.width = MATCH_PARENT
       lp
     }
 
-    def wrapLayout[LP <: ViewGroupLayoutParams[_]](implicit defaultLayoutParam: (V) => LP): LP = {
+    def wrapLayout[LP <: ViewGroupLayoutParams[_,_]](implicit defaultLayoutParam: (V) => LP): LP = {
       val lp = defaultLayoutParam(base)
       lp.height = WRAP_CONTENT
       lp.width = WRAP_CONTENT
@@ -815,7 +815,7 @@ def defaultValue[U]: U = {
   }
 
   object SEditText {
-    def apply()(implicit context: Context): SEditText = new SEditText
+    def apply[LP <: ViewGroupLayoutParams[_,SEditText]]()(implicit context: Context, defaultLayoutParam: (SEditText) => LP): SEditText = (new SEditText).layout.end
     def apply(txt: CharSequence)(implicit context: Context): SEditText = new SEditText() text txt
   }
 
@@ -1466,7 +1466,7 @@ def defaultValue[U]: U = {
   }
 
   object STextView {
-    def apply()(implicit context: Context): STextView = new STextView
+    def apply[LP <: ViewGroupLayoutParams[_,STextView]]()(implicit context: Context, defaultLayoutParam: (STextView) => LP): STextView = (new STextView).layout.end
     def apply(txt: CharSequence)(implicit context: Context): STextView = new STextView text txt
   }
 
@@ -1727,7 +1727,7 @@ def defaultValue[U]: U = {
   }
 
   object SListView {
-    def apply()(implicit context: Context): SListView = new SListView
+    def apply[LP <: ViewGroupLayoutParams[_,SListView]]()(implicit context: Context, defaultLayoutParam: (SListView) => LP): SListView = (new SListView).layout.end
   }
 
   class RichViewGroup[V <: ViewGroup](val base: V) extends TraitViewGroup[V]
@@ -1834,7 +1834,7 @@ def defaultValue[U]: U = {
     }
   }
 
-  trait ViewGroupLayoutParams[LP <: ViewGroupLayoutParams[_]] extends ViewGroup.LayoutParams {
+  trait ViewGroupLayoutParams[LP <: ViewGroupLayoutParams[_,_], V <: View] extends ViewGroup.LayoutParams {
     def base: LP
 
     def Width(w: Int) = {
@@ -1847,10 +1847,10 @@ def defaultValue[U]: U = {
       base
     }
 
-    def end: View
+    def end: V
   }
 
-  trait ViewGroupMarginLayoutParams[LP <: ViewGroupMarginLayoutParams[_]] extends ViewGroup.MarginLayoutParams with ViewGroupLayoutParams[LP] {
+  trait ViewGroupMarginLayoutParams[LP <: ViewGroupMarginLayoutParams[_,_], V <: View] extends ViewGroup.MarginLayoutParams with ViewGroupLayoutParams[LP, V] {
     def marginBottom(size: Int) = {
       bottomMargin = size
       base
@@ -1916,7 +1916,7 @@ def defaultValue[U]: U = {
 
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
 
-  class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V]] {
+  class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
     def base = this
 
     v.setLayoutParams(this)
@@ -1981,7 +1981,7 @@ def defaultValue[U]: U = {
 
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
 
-  class LayoutParams[V <: View](v: V) extends RelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V]] {
+  class LayoutParams[V <: View](v: V) extends RelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
     def base = this
 
     v.setLayoutParams(this)
@@ -2176,7 +2176,7 @@ def centerVertical = {
 
     implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
 
-    class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V]] {
+    class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
       def base = this
 
       v.setLayoutParams(this)
@@ -2243,7 +2243,7 @@ def centerVertical = {
 
 
   object SEditTextPreference {
-    def apply()(implicit context: Context): SEditTextPreference = new SEditTextPreference
+    def apply[LP <: ViewGroupLayoutParams[_,_]]()(implicit context: Context): SEditTextPreference = new SEditTextPreference
 
   }
 
@@ -2349,7 +2349,7 @@ def centerVertical = {
   }
 
   object SButton {
-    def apply()(implicit context: Context): SButton = new SButton
+    def apply[LP <: ViewGroupLayoutParams[_,SButton]]()(implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton = (new SButton).layout.end
     def apply(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context): SButton = {
       apply(text, func2ViewOnClickListener(onClickListener))
     }
@@ -2628,7 +2628,7 @@ def centerVertical = {
   }
 
   object SProgressBar {
-    def apply()(implicit context: Context): SProgressBar = new SProgressBar
+    def apply[LP <: ViewGroupLayoutParams[_,SProgressBar]]()(implicit context: Context, defaultLayoutParam: (SProgressBar) => LP): SProgressBar = (new SProgressBar).layout.end
   }
 
   class RichAnalogClock[V <: AnalogClock](val base: V) extends TraitAnalogClock[V]
@@ -2645,7 +2645,7 @@ def centerVertical = {
   }
 
   object SAnalogClock {
-    def apply()(implicit context: Context): SAnalogClock = new SAnalogClock
+    def apply[LP <: ViewGroupLayoutParams[_,SAnalogClock]]()(implicit context: Context, defaultLayoutParam: (SAnalogClock) => LP): SAnalogClock = (new SAnalogClock).layout.end
   }
 
   class RichSurfaceView[V <: SurfaceView](val base: V) extends TraitSurfaceView[V]
@@ -3002,7 +3002,7 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
   }
 
   object SSpinner {
-    def apply()(implicit context: Context): SSpinner = new SSpinner
+    def apply[LP <: ViewGroupLayoutParams[_,SSpinner]]()(implicit context: Context, defaultLayoutParam: (SSpinner) => LP): SSpinner = (new SSpinner).layout.end
   }
 
   class RichGallery[V <: Gallery](val base: V) extends TraitGallery[V]
@@ -3069,7 +3069,7 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
   }
 
   object SGallery {
-    def apply()(implicit context: Context): SGallery = new SGallery
+    def apply[LP <: ViewGroupLayoutParams[_,SGallery]]()(implicit context: Context, defaultLayoutParam: (SGallery) => LP): SGallery = (new SGallery).layout.end
   }
 
   class RichAbsSeekBar[V <: AbsSeekBar](val base: V) extends TraitAbsSeekBar[V]
@@ -3209,7 +3209,7 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
   }
 
   object SSeekBar {
-    def apply()(implicit context: Context): SSeekBar = new SSeekBar
+    def apply[LP <: ViewGroupLayoutParams[_,SSeekBar]]()(implicit context: Context, defaultLayoutParam: (SSeekBar) => LP): SSeekBar = (new SSeekBar).layout.end
    }
 
   class RichRatingBar[V <: RatingBar](val base: V) extends TraitRatingBar[V]
@@ -3264,7 +3264,7 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
   }
 
   object SRatingBar {
-    def apply()(implicit context: Context): SRatingBar = new SRatingBar
+    def apply[LP <: ViewGroupLayoutParams[_,SRatingBar]]()(implicit context: Context, defaultLayoutParam: (SRatingBar) => LP): SRatingBar = (new SRatingBar).layout.end
   }
 
   class RichAppWidgetHostView[V <: AppWidgetHostView](val base: V) extends TraitAppWidgetHostView[V]
@@ -3299,7 +3299,7 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
   }
 
   object SDatePicker {
-    def apply()(implicit context: Context): SDatePicker = new SDatePicker
+    def apply[LP <: ViewGroupLayoutParams[_,SDatePicker]]()(implicit context: Context, defaultLayoutParam: (SDatePicker) => LP): SDatePicker = (new SDatePicker).layout.end
   }
 
   class RichGestureOverlayView[V <: GestureOverlayView](val base: V) extends TraitGestureOverlayView[V]
