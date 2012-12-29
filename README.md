@@ -40,7 +40,7 @@ There is an out-of-the-box solution. Just [fork this project](https://github.com
 
 ## Features
 
- * [UI Layout with XML](#ui-layout-without-xml)
+ * [UI Layout without XML](#ui-layout-without-xml)
  * [Implicit conversions](#implicit-conversions)
  * [Shorter representation without context object](#context-as-an-implicit-parameter)
  * [Shorter listeners](#implicit-classes)
@@ -316,8 +316,8 @@ Some conventions we employed for method naming are:
  * Every method has two versions of parameters overridden. One is a lazy parameter, and another is a function which has a full parameter defined in the original Android API. For example, these two usages are valid:
 
 ```
-button.onTouch(info("touched"))
-button.onTouch((v:View, e:MotionEvent) => info("touched a button "+v))
+button.onClick(info("touched"))
+button.onClick((v:View) => info("touched a button "+v))
 ```	
 
  * Methods `add...` is abbreviated with a method `+=` if it is not a listener-appender.<br/>
