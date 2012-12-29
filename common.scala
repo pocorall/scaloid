@@ -95,7 +95,7 @@ package object common {
     }
   }
 
-implicit def func2ViewOnClickListener[F](f: View => F): View.OnClickListener =
+implicit def func2ViewOnClickListener[F](f: (View) => F): View.OnClickListener =
   new View.OnClickListener() {
     def onClick(view: View) {
       f(view)
@@ -1991,102 +1991,102 @@ def defaultValue[U]: U = {
       this
     }
 
-def above() = {
+def above = {
   addRule(RelativeLayout.ABOVE)
   this
 }
 
-def alignBaseline() = {
+def alignBaseline = {
   addRule(RelativeLayout.ALIGN_BASELINE)
   this
 }
 
-def alignBottom() = {
+def alignBottom = {
   addRule(RelativeLayout.ALIGN_BOTTOM)
   this
 }
 
-//def alignEnd() = {
+//def alignEnd = {
 //  addRule(RelativeLayout.ALIGN_END)
 //  this
 //}
 
-def alignLeft() = {
+def alignLeft = {
   addRule(RelativeLayout.ALIGN_LEFT)
   this
 }
 
-def alignParentBottom() = {
+def alignParentBottom = {
   addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
   this
 }
 
-//def alignParentEnd() = {
+//def alignParentEnd = {
 //  addRule(RelativeLayout.ALIGN_PARENT_END)
 //  this
 //}
 
-def alignParentLeft() = {
+def alignParentLeft = {
   addRule(RelativeLayout.ALIGN_PARENT_LEFT)
   this
 }
 
-def alignParentRight() = {
+def alignParentRight = {
   addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
   this
 }
 
-//def alignParentStart() = {
+//def alignParentStart = {
 //  addRule(RelativeLayout.ALIGN_PARENT_START)
 //  this
 //}
 
-def alignParentTop() = {
+def alignParentTop = {
   addRule(RelativeLayout.ALIGN_PARENT_TOP)
   this
 }
 
-def alignRight() = {
+def alignRight = {
   addRule(RelativeLayout.ALIGN_RIGHT)
   this
 }
 
-//def alignStart() = {
+//def alignStart = {
 //  addRule(RelativeLayout.ALIGN_START)
 //  this
 //}
 
-def alignTop() = {
+def alignTop = {
   addRule(RelativeLayout.ALIGN_TOP)
   this
 }
 
-def below() = {
+def below = {
   addRule(RelativeLayout.BELOW)
   this
 }
 
-def leftOf() = {
+def leftOf = {
   addRule(RelativeLayout.LEFT_OF)
   this
 }
 
-def rightOf() = {
+def rightOf = {
   addRule(RelativeLayout.RIGHT_OF)
   this
 }
 
-def centerHorizontal() = {
+def centerHorizontal = {
   addRule(RelativeLayout.CENTER_HORIZONTAL)
   this
 }
 
-def centerInParent() = {
+def centerInParent = {
   addRule(RelativeLayout.CENTER_IN_PARENT)
   this
 }
 
-def centerVertical() = {
+def centerVertical = {
   addRule(RelativeLayout.CENTER_VERTICAL)
   this
 }
@@ -2350,6 +2350,10 @@ def centerVertical() = {
 
   object SButton {
     def apply()(implicit context: Context): SButton = new SButton
+    def apply(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context): SButton = {
+      apply(text, func2ViewOnClickListener(onClickListener))
+    }
+
     def apply(text: CharSequence, onClickListener: OnClickListener = {})(implicit context: Context): SButton = {
       val button = new SButton()(context)
       button.text = text
@@ -2618,6 +2622,15 @@ def centerVertical() = {
 
    }
 
+  class SProgressBar(implicit context: Context) extends ProgressBar(context) with TraitProgressBar[SProgressBar] {
+    def base = this
+
+  }
+
+  object SProgressBar {
+    def apply()(implicit context: Context): SProgressBar = new SProgressBar
+  }
+
   class RichAnalogClock[V <: AnalogClock](val base: V) extends TraitAnalogClock[V]
 
   @inline implicit def analogClock2RichAnalogClock[V <: AnalogClock](analogClock: V) = new RichAnalogClock[V](analogClock)
@@ -2625,6 +2638,15 @@ def centerVertical() = {
   trait TraitAnalogClock[V <: AnalogClock] extends TraitView[V] {
 
    }
+
+  class SAnalogClock(implicit context: Context) extends AnalogClock(context) with TraitAnalogClock[SAnalogClock] {
+    def base = this
+
+  }
+
+  object SAnalogClock {
+    def apply()(implicit context: Context): SAnalogClock = new SAnalogClock
+  }
 
   class RichSurfaceView[V <: SurfaceView](val base: V) extends TraitSurfaceView[V]
 
@@ -2655,6 +2677,7 @@ def centerVertical() = {
     @inline def holder = base.getHolder
 
    }
+
 
   class RichViewStub[V <: ViewStub](val base: V) extends TraitViewStub[V]
 
@@ -2973,6 +2996,15 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
 
    }
 
+  class SSpinner(implicit context: Context) extends Spinner(context) with TraitSpinner[SSpinner] {
+    def base = this
+
+  }
+
+  object SSpinner {
+    def apply()(implicit context: Context): SSpinner = new SSpinner
+  }
+
   class RichGallery[V <: Gallery](val base: V) extends TraitGallery[V]
 
   @inline implicit def gallery2RichGallery[V <: Gallery](gallery: V) = new RichGallery[V](gallery)
@@ -3030,6 +3062,15 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
     @inline def unselectedAlpha: Float = defaultValue[Float]
 
    }
+
+  class SGallery(implicit context: Context) extends Gallery(context) with TraitGallery[SGallery] {
+    def base = this
+
+  }
+
+  object SGallery {
+    def apply()(implicit context: Context): SGallery = new SGallery
+  }
 
   class RichAbsSeekBar[V <: AbsSeekBar](val base: V) extends TraitAbsSeekBar[V]
 
@@ -3161,6 +3202,14 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
       base
     }
 
+  }
+  class SSeekBar(implicit context: Context) extends SeekBar(context) with TraitSeekBar[SSeekBar] {
+    def base = this
+
+  }
+
+  object SSeekBar {
+    def apply()(implicit context: Context): SSeekBar = new SSeekBar
    }
 
   class RichRatingBar[V <: RatingBar](val base: V) extends TraitRatingBar[V]
@@ -3209,6 +3258,15 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
 
    }
 
+  class SRatingBar(implicit context: Context) extends RatingBar(context) with TraitRatingBar[SRatingBar] {
+    def base = this
+
+  }
+
+  object SRatingBar {
+    def apply()(implicit context: Context): SRatingBar = new SRatingBar
+  }
+
   class RichAppWidgetHostView[V <: AppWidgetHostView](val base: V) extends TraitAppWidgetHostView[V]
 
   @inline implicit def appWidgetHostView2RichAppWidgetHostView[V <: AppWidgetHostView](appWidgetHostView: V) = new RichAppWidgetHostView[V](appWidgetHostView)
@@ -3234,6 +3292,15 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
     @inline def year = base.getYear
 
    }
+
+  class SDatePicker(implicit context: Context) extends DatePicker(context) with TraitDatePicker[SDatePicker] {
+    def base = this
+
+  }
+
+  object SDatePicker {
+    def apply()(implicit context: Context): SDatePicker = new SDatePicker
+  }
 
   class RichGestureOverlayView[V <: GestureOverlayView](val base: V) extends TraitGestureOverlayView[V]
 
