@@ -2243,7 +2243,7 @@ def centerVertical = {
 
 
   object SEditTextPreference {
-    def apply[LP <: ViewGroupLayoutParams[_,_]]()(implicit context: Context): SEditTextPreference = new SEditTextPreference
+    def apply()(implicit context: Context): SEditTextPreference = new SEditTextPreference
 
   }
 
@@ -3485,16 +3485,16 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
   @inline def audioManager(implicit context: Context): AudioManager =
     context.getSystemService(Context.AUDIO_SERVICE).asInstanceOf[AudioManager]
 
-  @inline def clipboardManager(implicit context: Context): ClipboardManager =
-    context.getSystemService(Context.CLIPBOARD_SERVICE).asInstanceOf[ClipboardManager]
+  @inline def clipboardManager(implicit context: Context): android.text.ClipboardManager =
+    context.getSystemService(Context.CLIPBOARD_SERVICE).asInstanceOf[android.text.ClipboardManager]
 
-  class RichClipboardManager(cm: ClipboardManager) {
+  class RichClipboardManager(cm: android.text.ClipboardManager) {
     def text_=(txt: CharSequence) = cm.setText(txt)
 
     def text = cm.getText
   }
 
-  @inline implicit def richClipboardManager(cm: ClipboardManager): RichClipboardManager = new RichClipboardManager(cm)
+  @inline implicit def richClipboardManager(cm: android.text.ClipboardManager): RichClipboardManager = new RichClipboardManager(cm)
 
   @inline def connectivityManager(implicit context: Context): ConnectivityManager =
     context.getSystemService(Context.CONNECTIVITY_SERVICE).asInstanceOf[ConnectivityManager]
