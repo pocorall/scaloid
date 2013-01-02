@@ -290,7 +290,7 @@ All of the system service accessors available in Android API level 8 are defined
 
 ## Pimped Implicit classes
 
-Suppose an Android class `Foo`, for example, Scaloid defines an implicit conversion `Foo => RichFoo`. `RichFoo` defines additional methods for more convenient access to `Foo`. This is a common pattern in Scala to extend existing API (see [pimp-my-library](http://www.artima.com/weblogs/viewpost.jsp?thread=179766) pattern). This section describes various features added on existing Android API classes.
+Suppose an Android class `Foo`, for example, Scaloid defines an implicit conversion `Foo => RichFoo`. The class `RichFoo` defines additional methods for more convenient access to `Foo`. This is a common pattern in Scala to extend existing API (see [pimp-my-library](http://www.artima.com/weblogs/viewpost.jsp?thread=179766) pattern). This section describes various features added on existing Android API classes.
 
 
 ##### Listeners
@@ -313,7 +313,7 @@ Some conventions we employed for method naming are:
 
  * We omit `set...`, `add...`, and `...Listener` from the method name, which is less significant.<br/>
    For example, `.setOnKeyListener()` becomes `.onKey()`.
- * Every method has two versions of parameters overridden. One is a lazy parameter, and another is a function which has a full parameter defined in the original Android API. For example, these two usages are valid:
+ * Every method has two versions of parameters overridden. One is a lazy parameter, and another is a function which has full parameters defined in the original Android API. For example, these two usages are valid:
 
 ```
 button.onClick(info("touched"))
@@ -341,7 +341,7 @@ is equivalent to:
       def afterTextChanged(p1: Editable) {}
     })
 	
-Also, we overrides `beforeTextChanged()` with a full parameter defined in the original listener:
+Also, we overrides `beforeTextChanged()` with full parameters defined in the original listener:
 
     inputField.beforeTextChanged((s:CharSequence, _:Int, _:Int) => saveText(s))
 	
