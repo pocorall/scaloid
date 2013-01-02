@@ -2,7 +2,7 @@
 
 # Less painful Android development with Scala
 
-Scala is cool. [Writing Android application with Scala](#need-help-using-scala-language-on-your-android-project) is also a cool idea. Because Android exposes Java API, we need some utility library to leverage full power of Scala. Scaloid is a library aimed to simplify your Android code.
+Scala is cool. [Writing Android applications with Scala](#need-help-using-scala-language-on-your-android-project) is also a cool idea. Because Android exposes Java API, we need some utility library to leverage full power of Scala. Scaloid is a library aimed to simplify your Android code.
 
 For example, the code block shown below:
 
@@ -265,7 +265,7 @@ Just play the default notification ringtone:
 
 ##### Open URIs
 
-This opens a web browser (or another view assigned to http protocol).
+This opens a web browser (or another view assigned to the http protocol).
 
    	openUri("http://google.com")
 
@@ -623,7 +623,7 @@ If the setter ends with `...Enabled`, Scaloid adds functions named `enable...` a
 
     SLinearLayout().disableVerticalScrollBar
 
-, which is equivalent to:
+is equivalent to:
 	
 	SLinearLayout().verticalScrollBarEnabled(false)
 	
