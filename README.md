@@ -349,7 +349,7 @@ Other listeners in Android API can also be accessed in this way.
 
 ## Layout context
 
-In Android API, layout information are stored into a `View` object with a method `View.setLayoutParams(ViewGroup.LayoutParams)`. A specific type of parameter passing into that method is determined by a the type of `...Layout` object which contains the `View` object. For example, let us see some Java code shown below:
+In Android API, layout information is stored into a `View` object with a method `View.setLayoutParams(ViewGroup.LayoutParams)`. A specific type of parameter passing into that method is determined by a the type of `...Layout` object which contains the `View` object. For example, let us see some Java code shown below:
 
     LinearLayout layout = new LinearLayout(context);
 	Button button = new Button(context);
@@ -718,13 +718,13 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 
 Xtend natively supports 1) converting Java bean style getter/setters into the assignment style 2) automatically shorten the clutters when calling one-method callback interface by converting it into closure-like style. Because these are language features, Xtend users can enjoy these features without any wrapper library. We hope that Scala also adopt these benefits soon.
 
-However, We think that Scala is a better alternative for Android platform, because Scala has mature than Xtend and has these advanced features:
+However, We think that Scala is a better alternative for Android platform, because Scala is mature than Xtend and has these advanced features:
 
 * **Implicit conversion** <br/>
-  Check [implicit conversions](#implicit-conversions) section of this document to see how Scaloid leverage this.
+  Check [implicit conversions](#implicit-conversions) section to see how Scaloid leverage it.
 
 * **Implicit parameter** <br/>
-  Hiding some common values (e.g. [context object](#context-as-an-implicit-parameter), [tag for logging](#logging), and [layout context](#layout-context)) from the parameter list are possible by the Scala's implicit parameters.
+  Hiding some common values (e.g. [context object](#context-as-an-implicit-parameter), [tag for logging](#logging), and [layout context](#layout-context)) from the parameter list is possible by the Scala's implicit parameters.
 
 * **Advanced type system** <br/>
   Scaloid [layout parameter](#layout-context) is simple, intuitive, and type-safe.
