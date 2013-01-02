@@ -420,13 +420,13 @@ This also be shortened as:
 
 Scaloid follows naming of XML attributes of Android API with some improvements. 
 
-For XML attributes, layout related properties prefixed with `layout_`, while Scaloid does not need it. For boolean type attributes in which default is `false`, Scaloid simply flag it as `true` when the attribute is declared explicitly without parameter. For example:
+For XML attributes, layout related properties prefixed with `layout_`, while Scaloid does not need it. For boolean type attributes in which the default is `false`, Scaloid simply flag it as `true` when the attribute is declared explicitly without any parameter. For example:
 
     new SRelativeLayout {
 	  +=(STextView("hello").layout.centerHorizontal.alignParentBottom.end)
 	}
 	
-Scaloid ommits unnecessary `="true"` for attribute `centerHorizontal`. Equivalent XML layout description for `TextView` is:
+Scaloid omits unnecessary `="true"` for attribute `centerHorizontal`. Equivalent XML layout description for `TextView` is:
 
 	<TextView
 		android:id="@+id/helloText"
