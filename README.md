@@ -147,7 +147,7 @@ The functions such as [play ringtones](#play-ringtones) `play()` or [open URIs](
 	Int => CharSequence
 	Int => Drawable
 	
-Android API provides two versions of methods for string resources; One for `CharSequence`, the other for `Int` as a resource ID. If you write a function that handles Android resource, you also have to expose methods for every combinations of two versions of resources:
+Android API provides two versions of methods for string resources; One for `CharSequence`, the other for `Int` as a resource ID. If you write a function that handles Android resource, you also have to expose methods for every combination of two versions of resources:
 
 
     def alert(titleId:Int, textId:Int)(implicit context:Context) = {
@@ -361,7 +361,7 @@ In Android API, layout information is stored into a `View` object with a method 
 	button.setLayoutParams(params);
 	layout.addView(button);
 	
-Because the button is appended into the `LinearLayout`, the layout parameter must be `LinearLayout.LayoutParams`, otherwise a ___runtime error___ might be occurred. Meanwhile, Scaloid eliminate this burden, while still preserving regorous typing of `LayoutParams`. The code shown below is equivalent to the previous Java code:
+Because the button is appended into the `LinearLayout`, the layout parameter must be `LinearLayout.LayoutParams`, otherwise a ___runtime error___ might be occurred. Meanwhile, Scaloid eliminate this burden, while still preserving rigorous typing of `LayoutParams`. The code shown below is equivalent to the previous Java code:
 
     val layout = new SLinearLayout {
 	  +=(SButton("Click").layout.Weight(1.0f).end)
@@ -406,7 +406,7 @@ When we get a `LayoutParams` from `.layout`, the default values of `width` and `
 
     SButton("Click").layout.Width(MATCH_PARENT).Height(MATCH_PARENT)
 	
-This is a very frequently used idiom. Therefore we provide a further shorthand:
+This is a very frequently used idiom. Therefore we provide further shorthand:
 
     SButton("Click").matchLayout
 
@@ -414,7 +414,7 @@ If you want the `View` element to be wrapped,
 
     SButton("Click").layout.Width(WRAP_CONTENT).Height(WRAP_CONTENT)
 	
-This also be shortened as:
+This is also shortened as:
 
     SButton("Click").wrapLayout
 
@@ -490,7 +490,7 @@ and a [Scala port](https://github.com/pocorall/scaloid-apidemos/blob/master/src/
 	
 ### Trait UnregisterReceiverService
 
-When you registered `BroadcastReceiver` with `Context.registerReceiver()` you have to unregister it to prevent memory leak. Trait UnregisterReceiverService handles these chores for you by just extend it for your Service.
+When you registered `BroadcastReceiver` with `Context.registerReceiver()` you have to unregister it to prevent memory leak. Trait UnregisterReceiverService handles these chores for you by just extends it for your Service.
 
 ```
 class MyService extends UnregisterReceiverService {
@@ -702,7 +702,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Write the Beginner's guide**
 * **Build an example of laying out multiple UI**
 * **Cover full listener shortcuts** <br/>
-* **Cover openGL ES and renderscript**
+* **Cover OpenGL ES and renderscript**
 * **Automatically unregister SensorEventListener onStop()**
 * **Support Google services** <br/>
   Including Google Cloud Messaging (GCM)
@@ -743,10 +743,10 @@ However, We think that Scala is a better alternative for Android platform, becau
 Because programming in Scala on Android is not a widely known practice yet, many people asks me basic questions about using Scala on Android. Here are some frequently asked questions:
 
 ##### How big is the compiled apk?
-For Scala + Android projects, using [proguard](http://proguard.sourceforge.net/) is mandatory. After the library reduced by proguard, overhead caused by the Scala standard library is about several hundreds kilobytes, although it depends on how much you used the library in your code.
+For Scala + Android projects, using [proguard](http://proguard.sourceforge.net/) is mandatory. After the library is reduced by proguard, overhead caused by the Scala standard library is about several hundred kilobytes, although it depends on how much you used the library in your code.
 
 ##### How much slow the application?
-According to a [benchmark](http://shootout.alioth.debian.org/), runtime performance of Scala is a little worse than that of Java. However, because most of the code using Scaloid is wiring UI and core logic, these performace difference is nearly not noticable. Still, the display will consume most of the battery life, not Scala.
+According to a [benchmark](http://shootout.alioth.debian.org/), runtime performance of Scala is a little worse than that of Java. However, because most of the code using Scaloid is wiring UI and core logic, these performance difference is nearly not noticeable. Still, the display will consume most of the battery life, not Scala.
 
 ##### How much slow the compilation?
 Compiling Scala source code and applying proguard takes some time. However, if you have a machine with a multi-core CPU and SSD, it would be a matter of few seconds.
@@ -754,4 +754,4 @@ Compiling Scala source code and applying proguard takes some time. However, if y
 ##### Is it hard to setup a Scala + Android project?
 It's not hard. There is an [out-of-the-box maven project template](https://github.com/rohansingh/android-scala-test).
 
-(I did not tried sbt on Android, Let me know if there are good sample projects on sbt.)
+(I did not try sbt on Android; Let me know if there are good sample projects on sbt.)
