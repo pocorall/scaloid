@@ -38,12 +38,14 @@ If you want to see how Scaloid can be used in action, check a [Scala port of api
 
 There is an out-of-the-box solution. Just [fork this project](https://github.com/rohansingh/android-scala-test) and start your Scala-Android app.
 
+ * [FAQs about Scala on Android](#faqs-about-scala-on-android)
+
 ## Features
 
  * [UI Layout without XML](#ui-layout-without-xml)
  * [Implicit conversions](#implicit-conversions)
  * [Shorter representation without context object](#context-as-an-implicit-parameter)
- * [Shorter listeners](#implicit-classes)
+ * [Shorter listeners](#pimped-implicit-classes)
  * [Asynchronous processing](#trait-runonuithread)
  * [Smarter logging](#logging)
  * [Improved getters/setters](#scala-getters-and-setters)
@@ -738,4 +740,22 @@ However, We think that Scala is a better alternative for Android platform, becau
 * **Type-safety**
 
 * **Runtime performance** (and your precious battery)<br/>
-  [See benchmarks](http://shootout.alioth.debian.org/)
+  See a [benchmark](http://shootout.alioth.debian.org/)
+
+## FAQs about Scala on Android
+
+Because programming in Scala on Android is not a widely known practice yet, many people asks me basic questions about using Scala on Android. Here are some frequently asked questions:
+
+##### How big is the compiled apk?
+For Scala + Android projects, using [proguard](http://proguard.sourceforge.net/) is mandatory. After the library reduced by proguard, overhead caused by the Scala standard library is about several hundreds kilobytes, although it depends on how much you used the library in your code.
+
+##### How much slow the application?
+According to a [benchmark](http://shootout.alioth.debian.org/), runtime performance of Scala is a little worse than that of Java. However, most of the code using Scaloid is wiring between UI and core logic, so these performace difference is nearly not noticable. Still, the display will consume most of the battery life, not Scala.
+
+##### How much slow the compilation?
+Compiling Scala source code and applying proguard takes some time. However, if you have a machine with a multi-core CPU and SSD, it would be a matter of few seconds.
+
+##### Is it hard to setup a Scala + Android project?
+It's not hard. There is an [out-of-the-box maven project template](https://github.com/rohansingh/android-scala-test).
+
+(I did not tried sbt on Android, Let me know if there are good sample projects on sbt.)
