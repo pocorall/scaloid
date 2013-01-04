@@ -697,20 +697,16 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 
 * **Build an example Android app** <br/>
   Finish a [Scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos) and try another.
-
 * **Build a dedicated website**
 * **Write a complete API document**
 * **Write the Beginner's guide**
-
 * **Build an example of laying out multiple UI**
-
 * **Cover full listener shortcuts** <br/>
-  Such as EditTextPreference.setOnPreferenceChangeListener
 * **Cover openGL ES and renderscript**
 * **Automatically unregister SensorEventListener onStop()**
 * **Support Google services** <br/>
   Including Google Cloud Messaging (GCM)
-* **Write a converter that turns XML layout into a Scaloid code** <br/>
+* **Write a converter that turns an XML layout into a Scaloid code** <br/>
   [A simple web application](http://layout.scaloid.org) is demonstrated. Providing this functionality as an Eclipse or Intellij plugin would also be great.
   
   
@@ -742,7 +738,7 @@ However, We think that Scala is a better alternative for Android platform, becau
 * **Runtime performance** (and your precious battery)<br/>
   See a [benchmark](http://shootout.alioth.debian.org/)
 
-## FAQs about Scala on Android
+### FAQs about Scala on Android
 
 Because programming in Scala on Android is not a widely known practice yet, many people asks me basic questions about using Scala on Android. Here are some frequently asked questions:
 
@@ -750,7 +746,7 @@ Because programming in Scala on Android is not a widely known practice yet, many
 For Scala + Android projects, using [proguard](http://proguard.sourceforge.net/) is mandatory. After the library reduced by proguard, overhead caused by the Scala standard library is about several hundreds kilobytes, although it depends on how much you used the library in your code.
 
 ##### How much slow the application?
-According to a [benchmark](http://shootout.alioth.debian.org/), runtime performance of Scala is a little worse than that of Java. However, most of the code using Scaloid is wiring between UI and core logic, so these performace difference is nearly not noticable. Still, the display will consume most of the battery life, not Scala.
+According to a [benchmark](http://shootout.alioth.debian.org/), runtime performance of Scala is a little worse than that of Java. However, because most of the code using Scaloid is wiring UI and core logic, these performace difference is nearly not noticable. Still, the display will consume most of the battery life, not Scala.
 
 ##### How much slow the compilation?
 Compiling Scala source code and applying proguard takes some time. However, if you have a machine with a multi-core CPU and SSD, it would be a matter of few seconds.
