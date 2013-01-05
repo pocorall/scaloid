@@ -2,7 +2,7 @@
 
 # Less painful Android development with Scala
 
-Scala is cool. [Writing Android applications with Scala](#need-help-using-scala-language-on-your-android-project) is also a cool idea. Because Android exposes Java API, we need some utility library to leverage full power of Scala. Scaloid is a library aimed to simplify your Android code.
+Scala is cool. [Writing Android applications with Scala](#need-help-using-scala-language-on-your-android-project) is also a cool idea. Because Android exposes Java APIs, we need some utility library to leverage full power of Scala. Scaloid is a library aimed to simplify your Android code.
 
 For example, the code block shown below:
 
@@ -740,7 +740,7 @@ However, We think that Scala is a better alternative for Android platform, becau
 
 ### FAQs about Scala on Android
 
-Because programming in Scala on Android is not a widely known practice yet, many people asks me basic questions about using Scala on Android. Here are some frequently asked questions:
+Because programming in Scala on Android is not a widely known practice yet, many people asks me basic questions about it. Here are some frequently asked questions:
 
 ##### How big is the compiled apk?
 For Scala + Android projects, using [proguard](http://proguard.sourceforge.net/) is mandatory. After the library is reduced by proguard, overhead caused by the Scala standard library is about several hundred kilobytes, although it depends on how much you used the library in your code.
