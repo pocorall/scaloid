@@ -2,7 +2,7 @@
 
 # Less painful Android development with Scala
 
-Scala is cool. [Writing Android applications with Scala](#need-help-using-scala-language-on-your-android-project) is also a cool idea. Because Android exposes Java APIs, we need some utility library to leverage full power of Scala. Scaloid is a library aimed to simplify your Android code.
+Scala is cool. [Writing Android applications with Scala](#faqs-about-scala-on-android) is also a cool idea. Because Android exposes Java APIs, we need some utility library to leverage full power of Scala. Scaloid is a library aimed to simplify your Android code.
 
 For example, the code block shown below:
 
@@ -45,7 +45,7 @@ There is an out-of-the-box solution. Just [fork this project](https://github.com
  * [UI Layout without XML](#ui-layout-without-xml)
  * [Implicit conversions](#implicit-conversions)
  * [Shorter representation without context object](#context-as-an-implicit-parameter)
- * [Shorter listeners](#pimped-implicit-classes)
+ * [Shorter listeners](#enriched-implicit-classes)
  * [Asynchronous processing](#trait-runonuithread)
  * [Smarter logging](#logging)
  * [Improved getters/setters](#scala-getters-and-setters)
@@ -290,7 +290,7 @@ Under the hood, Scaloid defines a function `vibrator` like this:
 All of the system service accessors available in Android API level 8 are defined (e.g. `audioManager`, `alarmManager`, `notificationManager`, etc.). The name of a system service accessor is the same of its class name, except that the first character is lowercased.
 
 
-## Pimped Implicit classes
+## Enriched Implicit classes
 
 Suppose an Android class `Foo`, for example, Scaloid defines an implicit conversion `Foo => RichFoo`. The class `RichFoo` defines additional methods for more convenient access to `Foo`. This is a common pattern in Scala to extend existing API (see [pimp-my-library](http://www.artima.com/weblogs/viewpost.jsp?thread=179766) pattern). This section describes various features added on existing Android API classes.
 
@@ -487,6 +487,8 @@ It is a great win as it exposes your idea clearly.
 
 Just like we throw away `AsyncTask`, we can also elliminate all other helpers for asynchronous job, such as `AsyncQueryHandler` and `AsyncTaskLoader`. Compare with the [original Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList2.java?av=h)
 and a [Scala port](https://github.com/pocorall/scaloid-apidemos/blob/master/src/main/java/com/example/android/apis/view/ExpandableList2.scala) of ApiDemos example app.
+
+You can freely use any modern task management utility such as [futures and promises](http://docs.scala-lang.org/sips/pending/futures-promises.html).
 	
 ### Trait UnregisterReceiverService
 
