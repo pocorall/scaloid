@@ -202,17 +202,6 @@ is reduced to:
 
     SIntent[MyActivity]
 
-##### Starting and stopping service
-
-    startService(new Intent(context, classOf[MyService]))
-    stopService(new Intent(context, classOf[MyService]))	
-
-is reduced to:
-
-    startService[MyService]
-    stopService[MyService]
-	
-
 ##### Toast
     
     Toast.makeText(context, "hi, there!", Toast.LENGTH_SHORT).show()
@@ -445,11 +434,7 @@ Scaloid omits unnecessary `="true"` for the attribute `centerHorizontal`. Equiva
 		
 ## Traits
 
-### Trait SContext
-
-Trait `SContext` includes several shortcuts for frequently used android idioms.
-
-
+	
 ### Trait RunOnUiThread
 
 Android API provides `runOnUiThread()` only for class `Activity`. Trait `RunOnUiThread` provides Scala version of `runOnUiThread()` for anywhere other than `Activity`.
@@ -494,6 +479,7 @@ and a [Scala port](https://github.com/pocorall/scaloid-apidemos/blob/master/src/
 
 You can freely use any modern task management utility such as [futures and promises](http://docs.scala-lang.org/sips/pending/futures-promises.html).
 	
+	
 ### Trait UnregisterReceiverService
 
 When you registered `BroadcastReceiver` with `Context.registerReceiver()` you have to unregister it to prevent memory leak. Trait UnregisterReceiverService handles these chores for you by just extends it for your Service.
@@ -507,6 +493,29 @@ class MyService extends UnregisterReceiverService {
   }
 }
 ```
+
+### Trait SContext
+
+Trait `SContext` includes several shortcuts for frequently used android idioms, and inherits `TagUtil` and `RunOnUiThread`.
+
+##### Starting and stopping service
+
+    startService(new Intent(context, classOf[MyService]))
+    stopService(new Intent(context, classOf[MyService]))	
+
+is reduced to:
+
+    startService[MyService]
+    stopService[MyService]
+
+##### Starting activity
+
+    startActivity(new Intent(context, classOf[MyActivity]))
+
+is reduced to:
+
+    startActivity[MyActivity]	
+	
 
 ### Trait SActivity
 
