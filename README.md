@@ -351,7 +351,7 @@ Other listeners in Android API can also be accessed in this way.
 
 ## Layout context
 
-In Android API, layout information is stored into a `View` object with a method `View.setLayoutParams(ViewGroup.LayoutParams)`. A specific type of parameter passing into that method is determined by a the type of `...Layout` object which contains the `View` object. For example, let us see some Java code shown below:
+In Android API, layout information is stored into a `View` object via the method `View.setLayoutParams(ViewGroup.LayoutParams)`. A specific type of parameter passing into that method is determined by a the type of `...Layout` object which contains the `View` object. For example, let us see some Java code shown below:
 
     LinearLayout layout = new LinearLayout(context);
 	Button button = new Button(context);
@@ -382,7 +382,7 @@ The method `>>` is overloaded with parameters `>>(width:Int, height:Int)` which 
 	
 #### Method >>
 
-As we noted, the method `<<` returns an object type of `ViewGroup.LayoutParams`:
+As we noted, the method `<<` returns an object which is a type of `ViewGroup.LayoutParams`:
 
     val params = SButton("Click").<<   // type LayoutParams
 	
