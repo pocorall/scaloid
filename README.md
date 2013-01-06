@@ -406,9 +406,9 @@ When the layout context is nested, inner-most layout context is applied:
 
 #### Methods fill and warp
 
-When we get a `LayoutParams` from `<<`, the default values of `width` and `height` properties are `width = MATCH_PARENT` and `height = WRAP_CONTENT`. You can override this when you need it:
+When we get a `LayoutParams` from `<<`, the default values of `width` and `height` properties are `width = FILL_PARENT` and `height = WRAP_CONTENT`. You can override this when you need it:
 
-    SButton("Click").<<(MATCH_PARENT, MATCH_PARENT)
+    SButton("Click").<<(FILL_PARENT, FILL_PARENT)
 	
 This is a very frequently used idiom. Therefore we provide further shorthand:
 
@@ -432,7 +432,7 @@ For XML attributes, layout related properties prefixed with `layout_`, while Sca
 	  +=(STextView("hello").<<.centerHorizontal.alignParentBottom.>>)
 	}
 	
-Scaloid omits unnecessary `="true"` for attribute `centerHorizontal`. Equivalent XML layout description for `TextView` is:
+Scaloid omits unnecessary `="true"` for the attribute `centerHorizontal`. Equivalent XML layout description for `TextView` is:
 
 	<TextView
 		android:id="@+id/helloText"
