@@ -366,7 +366,7 @@ Compared with XML layout description, Scaloid layout is simple and type-safe.
 
 The method `<<` is overloaded with parameters `<<(width:Int, height:Int)` which assignes the size of the view component. For example:
 
-    SButton("Click").<<(40 dip, 30 dip)
+    SButton("Click").<<(40 dip, WRAP_CONTENT)
 	
 	
 #### Method >>
@@ -377,11 +377,11 @@ As we noted, the method `<<` returns an object which is a type of `ViewGroup.Lay
 	
 This class provides some setters for chaining:
 	
-    val params = SButton("Click").<<.bottomMargin(100).leftMargin(10)   // type LayoutParams
+    val params = SButton("Click").<<.marginBottom(100).marginLeft(10)   // type LayoutParams
 	
 if we want use the `SButton` object again, Scaloid provides `>>` method returning back to the object:
 	
-	val button = SButton("Click").<<.bottomMargin(100).leftMargin(10).>>   // type SButton
+	val button = SButton("Click").<<.marginBottom(100).marginLeft(10).>>   // type SButton
 
 #### Nested layout context
 	
