@@ -106,7 +106,7 @@ The layout description shown above is highly programmable. You can easily wire y
   orientation = VERTICAL
   val id = SEditText()
   val pass = SEditText() inputType TEXT_PASSWORD
-  +=(STextView("Sign in").textSize(24.5 sp).<<.marginBottom(25 dip).>>)
+  +=(STextView("Sign in").textSize(24.5 sp).&lt;&lt;.marginBottom(25 dip).&gt;&gt;)
   +=(STextView("ID")) += id += STextView("Password") += pass
   +=(SButton("Sign in"<b><i>, signin(id.text, pass.text)</i></b>))
   +=(new SLinearLayout {
