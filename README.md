@@ -91,7 +91,7 @@ is reduced to:
 	  orientation = VERTICAL
 	  val id = SEditText()
 	  val pass = SEditText() inputType TEXT_PASSWORD
-	  +=(STextView("Sign in").textSize(24.5 sp).layout.marginBottom(25 dip).end)
+	  +=(STextView("Sign in").textSize(24.5 sp).<<.marginBottom(25 dip).>>)
 	  +=(STextView("ID")) += id += STextView("Password") += pass
 	  +=(SButton("Sign in"))
 	  +=(new SLinearLayout {
@@ -106,7 +106,7 @@ The layout description shown above is highly programmable. You can easily wire y
   orientation = VERTICAL
   val id = SEditText()
   val pass = SEditText() inputType TEXT_PASSWORD
-  +=(STextView("Sign in").textSize(24.5 sp).layout.marginBottom(25 dip).end)
+  +=(STextView("Sign in").textSize(24.5 sp).<<.marginBottom(25 dip).>>)
   +=(STextView("ID")) += id += STextView("Password") += pass
   +=(SButton("Sign in"<b><i>, signin(id.text, pass.text)</i></b>))
   +=(new SLinearLayout {
@@ -364,31 +364,35 @@ In Android API, layout information is stored into a `View` object with a method 
 Because the button is appended into the `LinearLayout`, the layout parameter must be `LinearLayout.LayoutParams`, otherwise a ___runtime error___ might be occurred. Meanwhile, Scaloid eliminate this burden, while still preserving rigorous typing of `LayoutParams`. The code shown below is equivalent to the previous Java code:
 
     val layout = new SLinearLayout {
-	  +=(SButton("Click").layout.Weight(1.0f).end)
+	  +=(SButton("Click").<<.Weight(1.0f).>>)
     }
 	
-In the anonymous constructor of 'SLinearLayout', Scaloid provides an implicit function called "layout context". This affects a return type of `.layout` of the class `SButton`. If we use `SFrameLayout` as a layout context, `.layout` returns `FrameLayout.LayoutParams`, so the code below results a ___syntax error___.
+In the anonymous constructor of 'SLinearLayout', Scaloid provides an implicit function called "layout context". This affects a return type of the function `<<` defined in the class `SButton`. If we use `SFrameLayout` as a layout context, the function `<<` returns `FrameLayout.LayoutParams`, so the code below results a ___syntax error___.
 
     val layout = new SFrameLayout {
-      +=(SButton("Click").layout.Weight(1.0f).end)   // Syntax error on Weight()
+      +=(SButton("Click").<<.Weight(1.0f).>>)   // Syntax error on Weight()
     }
 
 It is a pragmatical progress towards both simplicity and rigorous type checking.
 
+The function `>>` is overloaded with parameters `>>(width:Int, height:Int)` which assignes the size of the view component. For example:
+
+    SButton("Click").<<(40 dip, 30 dip)
 	
-#### Function .end
+	
+#### Function >>
 
-As we noted, the function `.layout` returns an object type of `ViewGroup.LayoutParams`:
+As we noted, the function `<<` returns an object type of `ViewGroup.LayoutParams`:
 
-    val params = SButton("Click").layout   // type LayoutParams
+    val params = SButton("Click").<<   // type LayoutParams
 	
 This class provides some setters for chaining:
 	
-    val params = SButton("Click").layout.bottomMargin(100).leftMargin(10)   // type LayoutParams
+    val params = SButton("Click").<<.bottomMargin(100).leftMargin(10)   // type LayoutParams
 	
 if we want use the `SButton` object again, Scaloid provides `.end` method returning back to the object:
 	
-	val button = SButton("Click").layout.bottomMargin(100).leftMargin(10).end   // type SButton
+	val button = SButton("Click").<<.bottomMargin(100).leftMargin(10).>>   // type SButton
 
 #### Nested layout context
 	
@@ -396,27 +400,27 @@ When the layout context is nested, inner-most layout context is applied:
 	
     val layout = new SFrameLayout {
 	  +=(new SLinearLayout {
-	    +=(SButton("Click").layout.Weight(1.0f).end)   // in context of SLinearLayout
+	    +=(SButton("Click").<<.Weight(1.0f).>>)   // in context of SLinearLayout
       })
 	}
 
-#### matchLayout and warpLayout
+#### Functions fill and warp
 
-When we get a `LayoutParams` from `.layout`, the default values of `width` and `height` properties are `width = MATCH_PARENT` and `height = WRAP_CONTENT`. You can override this when you need it:
+When we get a `LayoutParams` from `<<`, the default values of `width` and `height` properties are `width = MATCH_PARENT` and `height = WRAP_CONTENT`. You can override this when you need it:
 
-    SButton("Click").layout.Width(MATCH_PARENT).Height(MATCH_PARENT)
+    SButton("Click").<<(MATCH_PARENT, MATCH_PARENT)
 	
 This is a very frequently used idiom. Therefore we provide further shorthand:
 
-    SButton("Click").matchLayout
+    SButton("Click").<<.fill
 
 If you want the `View` element to be wrapped,
 
-    SButton("Click").layout.Width(WRAP_CONTENT).Height(WRAP_CONTENT)
+    SButton("Click").<<(WRAP_CONTENT, WRAP_CONTENT)
 	
 This is also shortened as:
 
-    SButton("Click").wrapLayout
+    SButton("Click").<<.wrap
 
 #### Naming conventions
 
@@ -425,7 +429,7 @@ Scaloid follows naming of XML attributes of Android API with some improvements.
 For XML attributes, layout related properties prefixed with `layout_`, while Scaloid does not need it. For boolean type attributes in which the default is `false`, Scaloid simply flag it as `true` when the attribute is declared explicitly without any parameter. For example:
 
     new SRelativeLayout {
-	  +=(STextView("hello").layout.centerHorizontal.alignParentBottom.end)
+	  +=(STextView("hello").<<.centerHorizontal.alignParentBottom.>>)
 	}
 	
 Scaloid omits unnecessary `="true"` for attribute `centerHorizontal`. Equivalent XML layout description for `TextView` is:
