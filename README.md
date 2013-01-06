@@ -361,10 +361,10 @@ In the anonymous constructor of 'SLinearLayout', Scaloid provides an implicit fu
     val layout = new SFrameLayout {
       +=(SButton("Click").<<.Weight(1.0f).>>)   // Syntax error on Weight()
     }
+	
+Compared with XML layout description, Scaloid layout is simple and type-safe.
 
-It is a pragmatical progress towards both simplicity and rigorous type checking.
-
-The method `>>` is overloaded with parameters `>>(width:Int, height:Int)` which assignes the size of the view component. For example:
+The method `<<` is overloaded with parameters `<<(width:Int, height:Int)` which assignes the size of the view component. For example:
 
     SButton("Click").<<(40 dip, 30 dip)
 	
