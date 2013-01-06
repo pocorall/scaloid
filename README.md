@@ -367,7 +367,7 @@ Because the button is appended into the `LinearLayout`, the layout parameter mus
 	  +=(SButton("Click").<<.Weight(1.0f).>>)
     }
 	
-In the anonymous constructor of 'SLinearLayout', Scaloid provides an implicit function called "layout context". This affects a return type of the function `<<` defined in the class `SButton`. If we use `SFrameLayout` as a layout context, the function `<<` returns `FrameLayout.LayoutParams`, so the code below results a ___syntax error___.
+In the anonymous constructor of 'SLinearLayout', Scaloid provides an implicit function called "layout context". This affects a return type of the method `<<` defined in the class `SButton`. If we use `SFrameLayout` as a layout context, the method `<<` returns `FrameLayout.LayoutParams`, so the code below results a ___syntax error___.
 
     val layout = new SFrameLayout {
       +=(SButton("Click").<<.Weight(1.0f).>>)   // Syntax error on Weight()
@@ -375,14 +375,14 @@ In the anonymous constructor of 'SLinearLayout', Scaloid provides an implicit fu
 
 It is a pragmatical progress towards both simplicity and rigorous type checking.
 
-The function `>>` is overloaded with parameters `>>(width:Int, height:Int)` which assignes the size of the view component. For example:
+The method `>>` is overloaded with parameters `>>(width:Int, height:Int)` which assignes the size of the view component. For example:
 
     SButton("Click").<<(40 dip, 30 dip)
 	
 	
-#### Function >>
+#### Method >>
 
-As we noted, the function `<<` returns an object type of `ViewGroup.LayoutParams`:
+As we noted, the method `<<` returns an object type of `ViewGroup.LayoutParams`:
 
     val params = SButton("Click").<<   // type LayoutParams
 	
@@ -390,7 +390,7 @@ This class provides some setters for chaining:
 	
     val params = SButton("Click").<<.bottomMargin(100).leftMargin(10)   // type LayoutParams
 	
-if we want use the `SButton` object again, Scaloid provides `.end` method returning back to the object:
+if we want use the `SButton` object again, Scaloid provides `>>` method returning back to the object:
 	
 	val button = SButton("Click").<<.bottomMargin(100).leftMargin(10).>>   // type SButton
 
@@ -404,7 +404,7 @@ When the layout context is nested, inner-most layout context is applied:
       })
 	}
 
-#### Functions fill and warp
+#### Methods fill and warp
 
 When we get a `LayoutParams` from `<<`, the default values of `width` and `height` properties are `width = MATCH_PARENT` and `height = WRAP_CONTENT`. You can override this when you need it:
 
