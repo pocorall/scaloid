@@ -431,6 +431,7 @@ Scaloid omits unnecessary `="true"` for the attribute `centerHorizontal`. Equiva
 		android:layout_alignParentBottom="true"
 		android:text="hello"/>
 		
+For layout methods named with four directions (e.g. `...Top`, `...Right`, `...Bottom` and `...Left`), Scaloid provides an additional method that specifies all properties at once. For example, Because Android XML layout defines `margin...` properties(`marginTop(v:Int)`, `marginRight(v:Int)`, `marginBottom(v:Int)` and `marginLeft(v:Int)`), Scaloid provides an additional `margin(top:Int, right:Int, bottom:Int, left:Int)` method.
 		
 ## Traits
 
@@ -723,6 +724,8 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
   Including Google Cloud Messaging (GCM)
 * **Write a converter that turns an XML layout into a Scaloid code** <br/>
   [A simple web application](http://layout.scaloid.org) is demonstrated. Providing this functionality as an Eclipse or Intellij plugin would also be great.
+* **WISIWIG layout builder** <br/>
+  Would be awesome, right?
   
   
 ## Appendix
