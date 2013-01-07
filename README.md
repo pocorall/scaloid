@@ -442,7 +442,7 @@ or
 
 #### Tip: Style as a function
 
-Android API introduces [styles](http://developer.android.com/guide/topics/ui/themes.html) to shorten common properties on XML layout. Meanwhile, Scaloid layout is an ordinary Scala code. Therefore we can easily apply some style as a function call. Suppose following code that repeats some property:
+Android API introduces [styles](http://developer.android.com/guide/topics/ui/themes.html) to shorten common properties on XML layout. Meanwhile, Scaloid layout is an ordinary Scala code. Therefore we can easily apply some style as a function call. Suppose following code that repeats some properties:
 
     +=(SButton("first").textSize(20 dip).<<.margin(5 dip).>>)
 	+=(SButton("prev").textSize(20 dip).<<.margin(5 dip).>>)
@@ -452,7 +452,6 @@ Android API introduces [styles](http://developer.android.com/guide/topics/ui/the
 Then we can define a function that applies the properties:
 
     def buttonProp(button: SButton) = button.textSize(20 dip).<<.margin(5 dip).>>
-	
 	+=(buttonProp(SButton("first")))
 	+=(buttonProp(SButton("prev")))
 	+=(buttonProp(SButton("next")))
@@ -460,11 +459,9 @@ Then we can define a function that applies the properties:
 	
 Still not satisfying? Let's be more ambitious:
 
-    def addNav(title:String) = +=(SButton(title).textSize(20 dip).<<.margin(5 dip).>>)
-	
+    def addNav(title:CharSequence) = +=(SButton(title).textSize(20 dip).<<.margin(5 dip).>>)
 	List("first", "prev", "next", "last").foreach(addNav _)
-	
-	
+		
 
 ## Traits
 
