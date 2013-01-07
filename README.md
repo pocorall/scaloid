@@ -431,8 +431,16 @@ Scaloid omits unnecessary `="true"` for the attribute `centerHorizontal`. Equiva
 		android:layout_alignParentBottom="true"
 		android:text="hello"/>
 		
-For layout methods named with four directions (e.g. `...Top`, `...Right`, `...Bottom` and `...Left`), Scaloid provides an additional method that specifies all properties at once. For example, Because Android XML layout defines `margin...` properties(`marginTop(v:Int)`, `marginRight(v:Int)`, `marginBottom(v:Int)` and `marginLeft(v:Int)`), Scaloid provides an additional `margin(top:Int, right:Int, bottom:Int, left:Int)` method.
+For layout methods named with four directions (e.g. `...Top`, `...Right`, `...Bottom` and `...Left`), Scaloid provides additional methods that specifies all properties at once. For example, Because Android XML layout defines `margin...` properties(`marginTop(v:Int)`, `marginRight(v:Int)`, `marginBottom(v:Int)` and `marginLeft(v:Int)`), Scaloid provides additional `margin(top:Int, right:Int, bottom:Int, left:Int)` and `margin(amount:Int)` methods that can be used as:
+
+    STextView("hello").<<.margin(5 dip, 10 dip, 5 dip, 10 dip)
+	
+or
+	
+    STextView("hello").<<.margin(10 sp)  // sets the same value for all directions
 		
+
+
 ## Traits
 
 	
