@@ -440,16 +440,16 @@ or
     STextView("hello").<<.margin(10 sp)  // sets the same value for all directions
 		
 
-#### Tip: Style as a function
+#### Tip: Styles on Scaloid
 
-Android API introduces [styles](http://developer.android.com/guide/topics/ui/themes.html) to shorten common properties on XML layout. Meanwhile, Scaloid layout is an ordinary Scala code. Therefore we can easily apply some style as a function call. Suppose following code that repeats some properties:
+Android API introduces [styles](http://developer.android.com/guide/topics/ui/themes.html) to shorten common properties on XML layout. Meanwhile, Scaloid layout is an ordinary Scala code. Therefore we can freely define some functions that works as styles. Suppose following code that repeats some properties:
 
     +=(SButton("first").textSize(20 dip).<<.margin(5 dip).>>)
 	+=(SButton("prev").textSize(20 dip).<<.margin(5 dip).>>)
 	+=(SButton("next").textSize(20 dip).<<.margin(5 dip).>>)
 	+=(SButton("last").textSize(20 dip).<<.margin(5 dip).>>)
 
-Then we can define a function that applies the properties:
+Then we can define a function that applies these properties:
 
     def buttonProp(button: SButton) = button.textSize(20 dip).<<.margin(5 dip).>>
 	+=(buttonProp(SButton("first")))
