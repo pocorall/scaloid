@@ -451,7 +451,7 @@ Android API introduced [styles](http://developer.android.com/guide/topics/ui/the
 
 Then we can define a function that applies these properties:
 
-    def myStyle(button: SButton) = button.textSize(20 dip).<<.margin(5 dip).>>
+    def myStyle = (_: SButton).textSize(20 dip).<<.margin(5 dip).>>
 	+=(myStyle(SButton("first")))
 	+=(myStyle(SButton("prev")))
 	+=(myStyle(SButton("next")))
@@ -459,8 +459,8 @@ Then we can define a function that applies these properties:
 	
 Still not satisfying? Let's be more ambitious:
 
-    def addNav(title:CharSequence) = +=(SButton(title).textSize(20 dip).<<.margin(5 dip).>>)
-	List("first", "prev", "next", "last").foreach(addNav _)
+    def myStyle = (_: SButton).textSize(20 dip).<<.margin(5 dip).>>
+    List("first", "prev", "next", "last").foreach(title => +=(myStyle(SButton(title))))
 		
 
 ## Traits
