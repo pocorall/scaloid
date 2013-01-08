@@ -457,7 +457,7 @@ Then we can define a function that applies these properties:
 	+=(myStyle(SButton("next")))
 	+=(myStyle(SButton("last")))
 	
-Still not satisfying? Let's be more ambitious:
+Still not satisfying? Here we have a shorter one:
 
     def myStyle = (_: SButton).textSize(20 dip).<<.margin(5 dip).>>
     List("first", "prev", "next", "last").foreach(title => +=(myStyle(SButton(title))))
