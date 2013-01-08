@@ -437,12 +437,12 @@ For layout methods named with four directions (e.g. `...Top`, `...Right`, `...Bo
 	
 or
 	
-    STextView("hello").<<.margin(10 sp)  // sets the same value for all directions
+    STextView("hello").<<.margin(10 sp)  // assigns the same value for all directions
 		
 
-#### Tip: Styles on Scaloid
+#### Tip: Styles for programmers
 
-Android API introduces [styles](http://developer.android.com/guide/topics/ui/themes.html) to shorten common properties on XML layout. Meanwhile, Scaloid layout is an ordinary Scala code. Therefore we can freely define some functions that works as styles. Suppose following code that repeats some properties:
+Android API introduced [styles](http://developer.android.com/guide/topics/ui/themes.html) to shorten common properties on XML layout. Meanwhile, Scaloid layout is an ordinary Scala code. Therefore we can freely define some functions that works as styles. Suppose following code that repeats some properties:
 
     +=(SButton("first").textSize(20 dip).<<.margin(5 dip).>>)
 	+=(SButton("prev").textSize(20 dip).<<.margin(5 dip).>>)
