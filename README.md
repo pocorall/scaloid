@@ -396,7 +396,7 @@ is equvalent to:
 
 Because the `apply` methods access to layout context, it cannot be called outside of the layout context. In this case, use the `new` operator instead.
 	
-#### Method >>
+#### Method `>>`
 
 As we noted, the method `<<` returns an object which is a type of `ViewGroup.LayoutParams`:
 
@@ -420,7 +420,7 @@ When the layout context is nested, inner-most layout context is applied:
       })
 	}
 
-#### Methods fill and warp
+#### Methods `fill` and `warp`
 
 When we get a `LayoutParams` from `<<`, the default values of `width` and `height` properties are `width = FILL_PARENT` and `height = WRAP_CONTENT`. You can override this when you need it:
 
@@ -493,7 +493,7 @@ Still not satisfying? Here we have a shorter one:
 ## Traits
 
 	
-### Trait RunOnUiThread
+### Trait `RunOnUiThread`
 
 Android API provides `runOnUiThread()` only for class `Activity`. Trait `RunOnUiThread` provides Scala version of `runOnUiThread()` for anywhere other than `Activity` (e.g. `Service`).
 
@@ -538,7 +538,7 @@ and a [Scala port](https://github.com/pocorall/scaloid-apidemos/blob/master/src/
 Using `spawn` is just an example of asynchronous task processing in Scaloid. You can freely use any modern task management utility such as [futures and promises](http://docs.scala-lang.org/sips/pending/futures-promises.html).
 	
 	
-### Trait UnregisterReceiverService
+### Trait `UnregisterReceiverService`
 
 When you registered `BroadcastReceiver` with `Context.registerReceiver()` you have to unregister it to prevent memory leak. Trait UnregisterReceiverService handles these chores for you by just extends it for your Service.
 
@@ -552,7 +552,7 @@ class MyService extends UnregisterReceiverService {
 }
 ```
 
-### Trait SContext
+### Trait `SContext`
 
 Trait `SContext` includes several shortcuts for frequently used android idioms, and inherits `TagUtil` and `RunOnUiThread`.
 
@@ -575,7 +575,7 @@ is reduced to:
     startActivity[MyActivity]	
 	
 
-### Trait SActivity
+### Trait `SActivity`
 
 Instead of
 
