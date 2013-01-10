@@ -467,7 +467,7 @@ or
 
 #### Tip: Styles for programmers
 
-Android API introduced [styles](http://developer.android.com/guide/topics/ui/themes.html) to reuse common properties on XML layout. Meanwhile, Scaloid layout is an ordinary Scala code. Therefore we can freely define some functions that works as styles. Suppose following code that repeats some properties:
+Android API introduced [styles](http://developer.android.com/guide/topics/ui/themes.html) to reuse common properties on XML layout. Meanwhile, Scaloid layout is an ordinary Scala code. Therefore we can freely define some functions that works as styles. Suppose the following code that repeats some properties:
 
     SButton("first").textSize(20 dip).<<.margin(5 dip).>>
 	SButton("prev").textSize(20 dip).<<.margin(5 dip).>>
@@ -749,7 +749,7 @@ Android API has some protected interfaces which has static fields, and inherited
 	
 ## Import it to your project
 
-##### As an artifact
+#### As an artifact
 Scaloid is released in central maven repository. Declare `import org.scaloid.common._` in your code and add a dependency.
 
 For maven:
@@ -764,12 +764,18 @@ For sbt:
 
     libraryDependencies += "org.scaloid" % "scaloid" % "0.6_8_2.9"
 
-For now, the artifact is compiled with Scala 2.9. If you use Scala 2.10 or higher, import the souce code as shown in the following subsection.
+##### Version number
+Version number of Scaloid is consisted of three parts, separated by a `_` character. The first part is the version of Scaloid. The second is the level of Android API. The last one is the version of Scala. 
 
-##### As the source code
+Please note that Android API provides backward compatibility, while Scala does not provide it in a binary level. For now, the artifact is compiled with Scala 2.9. If you use Scala 2.10 or higher, import the souce code as shown in the following subsection.
+
+
+#### As the source code
 Scaloid is a single-file project. Just copy `common.scala` and paste it to your project and declare `import org.scaloid.common._` in your code.
 
- * This project can be built with Android API level 8 or higher and Scala version 2.9.1 or higher.
+ * Currently, Scaloid can be built with Android API level 8 or higher and Scala version 2.9.1 or higher.
+
+
 
 ## Let's make it together!
 
