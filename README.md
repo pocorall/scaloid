@@ -385,7 +385,7 @@ Usually, `View` components are referenced multiple times in an `Activity`. For e
 	}
 	// ... uses the button somewhere in other methods (e.g. changing text or adding listeners)
 	
-Prefixed classes in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. This method also appends the new component to the layout context that enclose the component. Therefore, the code block above:
+Prefixed classes in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. This methods also append the component to the layout context that enclose the component. Therefore, the code block above:
 	
     button = new SButton() text "Click"
     +=(button)	  
@@ -394,6 +394,7 @@ is equvalent to:
 
     button = SButton("Click")	
 
+Because the `apply` methods access to layout context, it cannot be called outside of the layout context. In this case, use the `new` operator instead.
 	
 #### Method >>
 
