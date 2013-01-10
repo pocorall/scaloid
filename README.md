@@ -24,7 +24,7 @@ is reduced to:
  * **Write elegant Android software**<br/>
    Scaloid provides a concise and type-safe way of writing Android application.
  * **Simple to use**<br/> 
-   This is a single-file project. Just copy-and-paste `common.scala` into your project!
+   [Just add a dependency to your project](#import-it-to-your-project)
  * **Compatible with your legacy code**<br/>
    You can use both Scaloid and plain-old Java Android API. You can gradually improve your legacy code.
  * **Maintained actively**<br/>
@@ -749,7 +749,25 @@ Android API has some protected interfaces which has static fields, and inherited
 	
 ## Import it to your project
 
-For now, Scaloid is a single-file project. Just copy `common.scala` and paste it to your project and declare `import org.scaloid.common._`. Enjoy!
+##### As an artifact
+Scaloid is released in central maven repository. Declare `import org.scaloid.common._` in your code and add a dependency.
+
+For maven:
+
+    <dependency>
+        <groupId>org.scaloid</groupId>
+        <artifactId>scaloid</artifactId>
+        <version>0.6_8_2.9</version>
+    </dependency>
+
+For sbt:
+
+    libraryDependencies += "org.scaloid" % "scaloid" % "0.6_8_2.9"
+
+For now, the artifact is compiled with Scala 2.9. If you use Scala 2.10 or higher, import the souce code as shown in the following subsection.
+
+##### As the source code
+Scaloid is a single-file project. Just copy `common.scala` and paste it to your project and declare `import org.scaloid.common._` in your code.
 
  * This project can be built with Android API level 8 or higher and Scala version 2.9.1 or higher.
 
