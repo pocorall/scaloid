@@ -801,7 +801,8 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Write a complete API document**
 * **Write the Beginner's guide**
 * **Build an example of laying out multiple UI**
-* **Build an example of cascaded layout style (imagine CSS for Android)**
+* **Build an example of cascaded layout style** <br/>
+  Imagine a CSS for Android
 * **Cover full listener shortcuts** <br/>
 * **Cover OpenGL ES and renderscript**
 * **Automatically unregister SensorEventListener onStop()**
