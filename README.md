@@ -370,7 +370,7 @@ The method `<<` is overloaded with parameters `<<(width:Int, height:Int)` which 
 
     SButton("Click").<<(40 dip, WRAP_CONTENT)
 
-#### Operator new and apply method
+#### Operator `new` and method `apply`
 
 Usually, `View` components are referenced multiple times in an `Activity`. For example:
 
