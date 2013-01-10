@@ -749,7 +749,7 @@ Android API has some protected interfaces which has static fields, and inherited
 	
 ## Import it to your project
 
-### As an artifact
+### As a maven artifact
 Scaloid is released in central maven repository. Declare `import org.scaloid.common._` in your code and add a dependency.
 
 For maven:
@@ -765,7 +765,7 @@ For sbt:
     libraryDependencies += "org.scaloid" % "scaloid" % "0.6_8_2.9"
 
 ##### Version number
-Version number of Scaloid is consisted of three parts, separated by a `_` character. The first part is the version of Scaloid, the second is the level of Android API, and the last one is the version of Scala. 
+Version number of Scaloid is consisted of three parts, separated by `_` characters. The first part is the version of Scaloid, the second is the level of Android API, and the last one is the version of Scala. 
 
 Please note that Android API provides backward compatibility, while Scala does not provide it in a binary level. For now, the Scaloid artifact is compiled with Scala 2.9. If you use Scala 2.10 or higher, import the souce code as shown in the following subsection.
 
