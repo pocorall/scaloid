@@ -688,7 +688,7 @@ Aditionally, prefixed classes supports [implicit context value](#context-as-an-i
     SButton("title", onClickBehavior())
 	SIntent[MyActivity]
 
-<sub>**Design considerations on making prefixed classes:** In modern programming language, using package (or namespace) is preferred than prefixing. However, when we use both classes from Android API and Scaloid, using package name is more verbose than prefixing class name itself (compare with `common.Button` and `SButton`) and can be confused when you use both classes at the same code. We choose pragmatism rather than discipline.</sub>
+<sub>**Design considerations on making prefixed classes:** In modern programming language, using packages (or namespaces) are preferred than prefixing. However, when we use both classes from Android API and Scaloid, using a package name is more verbose than prefixing the class name itself (compare with `common.Button` and `SButton`) and can be confused when you use both classes at the same code. We choose pragmatism rather than discipline.</sub>
 
 ### Sweet-little sugar
 
