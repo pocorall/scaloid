@@ -91,9 +91,9 @@ is reduced to:
 	  orientation = VERTICAL
 	  STextView("Sign in").textSize(24.5 sp).<<.marginBottom(25 dip).>>
 	  STextView("ID") 
-	  val id = SEditText()
+	  SEditText()
 	  STextView("Password")
-	  val pass = SEditText() inputType TEXT_PASSWORD
+	  SEditText() inputType TEXT_PASSWORD
 	  SButton("Sign in")
 	  +=(new SLinearLayout {
 	    SButton("Help")
@@ -107,9 +107,9 @@ The layout description shown above is highly programmable. You can easily wire y
   orientation = VERTICAL
   STextView("Sign in").textSize(24.5 sp).&lt;&lt;.marginBottom(25 dip).&gt;&gt;
   STextView("ID")
-  val id = SEditText()
+  <b><i>val id = </i></b>SEditText()
   STextView("Password")
-  val pass = SEditText() inputType TEXT_PASSWORD
+  <b><i>val pass = </i></b>SEditText() inputType TEXT_PASSWORD
   SButton("Sign in"<b><i>, signin(id.text, pass.text)</i></b>)
   +=(new SLinearLayout {
     SButton("Help"<b><i>, openUri("http://help.url")</i></b>)
