@@ -184,7 +184,7 @@ Units `dip` and `sp` can be converted into the pixel unit.
 	
 	( => Any) => Runnable
 
-`Runnable` also covered with [rich](#rich-classes) and prefixed classes.
+`Runnable` also covered with [rich](#rich-classes) and [prefixed classes](#prefixed-classes).
 	
 There are more implicit conversions available. Check the source code as needed.
 	
@@ -385,7 +385,7 @@ Usually, `View` components are referenced multiple times in an `Activity`. For e
 	}
 	// ... uses the button somewhere in other methods (e.g. changing text or adding listeners)
 	
-Prefixed classes in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. This methods also append the component to the layout context that enclose the component. Therefore, the code block above:
+[Prefixed classes](#prefixed-classes) in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. This methods also append the component to the layout context that enclose the component. Therefore, the code block above:
 	
     button = new SButton() text "Click"
     +=(button)	  
