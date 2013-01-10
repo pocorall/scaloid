@@ -1861,7 +1861,7 @@ view
       base
     }
 
-    def parent : ViewGroup
+    def parent : TraitViewGroup[_]
 
     def >> : V
   }
@@ -3763,5 +3763,6 @@ implicit def lazy2DialogOnClickListener[F](f: => F): DialogInterface.OnClickList
   }
 
 }
+
 
 
