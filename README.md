@@ -700,7 +700,7 @@ is equivalent to:
 	
 	new SLinearLayout().verticalScrollBarEnabled(false)
 	
-The option `orientation = VERTICAL` for `SLinearLayout` is frequently used, we provide a shorthand:
+Setting the property `orientation = VERTICAL` for `SLinearLayout` is frequently used, we provide a shorthand:
 
     new SVerticalLayout()
 	
@@ -784,8 +784,8 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
   Including Google Cloud Messaging (GCM)
 * **Write a converter that turns an XML layout into a Scaloid code** <br/>
   [A simple web application](http://layout.scaloid.org) is demonstrated. Providing this functionality as an Eclipse or Intellij plugin would also be great.
-* **WISIWIG layout builder** <br/>
-  Would be awesome, right?
+* **WISIWIG layout builder**
+* **iOS?**
   
   
 ## Appendix
