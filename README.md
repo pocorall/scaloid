@@ -394,7 +394,7 @@ is equvalent to:
 
     button = SButton("Click")	
 
-Because the `apply` methods access to layout context, it cannot be called outside of the layout context. In this case, use the `new` operator instead.
+Because the `apply` methods access to the layout context, it cannot be called outside of the layout context. In this case, use the `new` operator instead.
 	
 #### Method `>>`
 
