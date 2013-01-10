@@ -2227,6 +2227,10 @@ def parent = SLinearLayout.this
 
   }
 
+  class SVerticalLayout(implicit context: Context) extends SLinearLayout {
+    orientation = VERTICAL
+  }
+
   class RichEditTextPreference[V <: EditTextPreference](val base: V) extends TraitEditTextPreference[V]
 
   @inline implicit def editTextPreference2RichEditTextPreference[V <: EditTextPreference](editTextPreference: V) = new RichEditTextPreference[V](editTextPreference)

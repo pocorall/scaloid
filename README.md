@@ -87,8 +87,7 @@ Android SDK leverages XML to build UI layouts. However, XML considered still a b
 
 is reduced to:
 
-    new SLinearLayout {
-	  orientation = VERTICAL
+    new SVerticalLayout {
 	  STextView("Sign in").textSize(24.5 sp).<<.marginBottom(25 dip).>>
 	  STextView("ID") 
 	  SEditText()
@@ -103,14 +102,13 @@ is reduced to:
 
 The layout description shown above is highly programmable. You can easily wire your logic into the layout:
 	
-<pre><code>new SLinearLayout {
-  orientation = VERTICAL
+<pre><code>new SVerticalLayout {
   STextView("Sign in").textSize(24.5 sp).&lt;&lt;.marginBottom(25 dip).&gt;&gt;
   STextView("ID")
-  <b><i>val id = </i></b>SEditText()
+  <b><i>val userId = </i></b>SEditText()
   STextView("Password")
   <b><i>val pass = </i></b>SEditText() inputType TEXT_PASSWORD
-  SButton("Sign in"<b><i>, signin(id.text, pass.text)</i></b>)
+  SButton("Sign in"<b><i>, signin(userId.text, pass.text)</i></b>)
   +=(new SLinearLayout {
     SButton("Help"<b><i>, openUri("http://help.url")</i></b>)
     SButton("Sign up"<b><i>, openUri("http://signup.uri")</i></b>)
