@@ -369,7 +369,31 @@ Compared with XML layout description, Scaloid layout is simple and type-safe.
 The method `<<` is overloaded with parameters `<<(width:Int, height:Int)` which assignes the size of the view component. For example:
 
     SButton("Click").<<(40 dip, WRAP_CONTENT)
+
+#### Operator new and apply method
+
+Usually, `View` components are referenced multiple times in an `Activity`. For example:
+
+    var button: SButton = null 
+    override def onCreate(savedInstanceState: Bundle) {
+	  // ...
+	  new SLinearLayout {
+	    button = new SButton() text "Click"
+        +=(button)	  
+	  }
+	  // ...
+	}
+	// ... uses the button somewhere in other methods (e.g. changing text or adding listeners)
 	
+Prefixed classes in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. This method also appends the new component to the layout context that enclose the component. Therefore, the code block above:
+	
+    button = new SButton() text "Click"
+    +=(button)	  
+
+is equvalent to:
+
+    button = SButton("Click")	
+
 	
 #### Method >>
 

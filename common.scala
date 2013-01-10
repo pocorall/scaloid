@@ -1886,6 +1886,22 @@ view
       rightMargin = size
       base
     }
+
+def margin(size:Int) = {
+bottomMargin = size
+topMargin = size
+leftMargin = size
+rightMargin = size
+base
+}
+
+def margin(top:Int, right:Int, bottom:Int, left:Int) = {
+bottomMargin = bottom
+topMargin = top
+leftMargin = left
+rightMargin = right
+base
+}
   }
 
   class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
