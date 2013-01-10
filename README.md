@@ -17,7 +17,7 @@ For example, the code block shown below:
 
 is reduced to:	
 	
-	layout += SButton("Greet", toast("Hello!"))
+	SButton("Greet", toast("Hello!"))
 
 
 ### Benefits
@@ -89,14 +89,15 @@ is reduced to:
 
     new SLinearLayout {
 	  orientation = VERTICAL
+	  STextView("Sign in").textSize(24.5 sp).<<.marginBottom(25 dip).>>
+	  STextView("ID") 
 	  val id = SEditText()
+	  STextView("Password")
 	  val pass = SEditText() inputType TEXT_PASSWORD
-	  +=(STextView("Sign in").textSize(24.5 sp).<<.marginBottom(25 dip).>>)
-	  +=(STextView("ID")) += id += STextView("Password") += pass
-	  +=(SButton("Sign in"))
+	  SButton("Sign in")
 	  +=(new SLinearLayout {
-	    +=(SButton("Help")) 
-		+=(SButton("Sign up"))
+	    SButton("Help")
+		SButton("Sign up")
 	  })
     }.padding(20 dip)
 
@@ -104,14 +105,15 @@ The layout description shown above is highly programmable. You can easily wire y
 	
 <pre><code>new SLinearLayout {
   orientation = VERTICAL
+  STextView("Sign in").textSize(24.5 sp).&lt;&lt;.marginBottom(25 dip).&gt;&gt;
+  STextView("ID")
   val id = SEditText()
+  STextView("Password")
   val pass = SEditText() inputType TEXT_PASSWORD
-  +=(STextView("Sign in").textSize(24.5 sp).&lt;&lt;.marginBottom(25 dip).&gt;&gt;)
-  +=(STextView("ID")) += id += STextView("Password") += pass
-  +=(SButton("Sign in"<b><i>, signin(id.text, pass.text)</i></b>))
+  SButton("Sign in"<b><i>, signin(id.text, pass.text)</i></b>)
   +=(new SLinearLayout {
-    +=(SButton("Help"<b><i>, openUri("http://help.url")</i></b>))
-    +=(SButton("Sign up"<b><i>, openUri("http://signup.uri")</i></b>)
+    SButton("Help"<b><i>, openUri("http://help.url")</i></b>)
+    SButton("Sign up"<b><i>, openUri("http://signup.uri")</i></b>)
   })
 }.padding(20 dip)
 </code></pre>
@@ -353,13 +355,13 @@ In Android API, layout information is stored into a `View` object via the method
 Because the button is appended into the `LinearLayout`, the layout parameter must be `LinearLayout.LayoutParams`, otherwise a ___runtime error___ might be occurred. Meanwhile, Scaloid eliminate this burden, while still preserving rigorous typing of `LayoutParams`. The code shown below is equivalent to the previous Java code:
 
     val layout = new SLinearLayout {
-	  +=(SButton("Click").<<.Weight(1.0f).>>)
+	  SButton("Click").<<.Weight(1.0f).>>
     }
 	
 In the anonymous constructor of 'SLinearLayout', Scaloid provides an implicit function called "layout context". This affects a return type of the method `<<` defined in the class `SButton`. If we use `SFrameLayout` as a layout context, the method `<<` returns `FrameLayout.LayoutParams`, so the code below results a ___syntax error___.
 
     val layout = new SFrameLayout {
-      +=(SButton("Click").<<.Weight(1.0f).>>)   // Syntax error on Weight()
+      SButton("Click").<<.Weight(1.0f).>>   // Syntax error on Weight()
     }
 	
 Compared with XML layout description, Scaloid layout is simple and type-safe.
@@ -389,7 +391,7 @@ When the layout context is nested, inner-most layout context is applied:
 	
     val layout = new SFrameLayout {
 	  +=(new SLinearLayout {
-	    +=(SButton("Click").<<.Weight(1.0f).>>)   // in context of SLinearLayout
+	    SButton("Click").<<.Weight(1.0f).>>   // in context of SLinearLayout
       })
 	}
 
@@ -418,7 +420,7 @@ Scaloid follows naming of XML attributes of Android API with some improvements.
 For XML attributes, layout related properties prefixed with `layout_`, while Scaloid does not need it. For boolean type attributes in which the default is `false`, Scaloid simply flag it as `true` when the attribute is declared explicitly without any parameter. For example:
 
     new SRelativeLayout {
-	  +=(STextView("hello").<<.centerHorizontal.alignParentBottom.>>)
+	  STextView("hello").<<.centerHorizontal.alignParentBottom.>>
 	}
 	
 Scaloid omits unnecessary `="true"` for the attribute `centerHorizontal`. Equivalent XML layout description for `TextView` is:
@@ -444,23 +446,23 @@ or
 
 Android API introduced [styles](http://developer.android.com/guide/topics/ui/themes.html) to reuse common properties on XML layout. Meanwhile, Scaloid layout is an ordinary Scala code. Therefore we can freely define some functions that works as styles. Suppose following code that repeats some properties:
 
-    +=(SButton("first").textSize(20 dip).<<.margin(5 dip).>>)
-	+=(SButton("prev").textSize(20 dip).<<.margin(5 dip).>>)
-	+=(SButton("next").textSize(20 dip).<<.margin(5 dip).>>)
-	+=(SButton("last").textSize(20 dip).<<.margin(5 dip).>>)
+    SButton("first").textSize(20 dip).<<.margin(5 dip).>>
+	SButton("prev").textSize(20 dip).<<.margin(5 dip).>>
+	SButton("next").textSize(20 dip).<<.margin(5 dip).>>
+	SButton("last").textSize(20 dip).<<.margin(5 dip).>>
 
 Then we can define a function that applies these properties:
 
     def myStyle = (_: SButton).textSize(20 dip).<<.margin(5 dip).>>
-	+=(myStyle(SButton("first")))
-	+=(myStyle(SButton("prev")))
-	+=(myStyle(SButton("next")))
-	+=(myStyle(SButton("last")))
+	myStyle(SButton("first"))
+	myStyle(SButton("prev"))
+	myStyle(SButton("next"))
+	myStyle(SButton("last"))
 	
 Still not satisfying? Here we have a shorter one:
 
     def myStyle = (_: SButton).textSize(20 dip).<<.margin(5 dip).>>
-    List("first", "prev", "next", "last").foreach(title => +=(myStyle(SButton(title))))
+    List("first", "prev", "next", "last").foreach(title => myStyle(SButton(title)))
 		
 
 ## Traits
