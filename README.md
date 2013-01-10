@@ -700,7 +700,7 @@ is equivalent to:
 	
 	new SLinearLayout().verticalScrollBarEnabled(false)
 	
-Setting the property `orientation = VERTICAL` for `SLinearLayout` is frequently used, we provide a shorthand:
+Because setting the property `orientation = VERTICAL` for `SLinearLayout` is frequently used, we provide a shorthand:
 
     new SVerticalLayout()
 	
