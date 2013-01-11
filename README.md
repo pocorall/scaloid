@@ -116,7 +116,7 @@ The layout description shown above is highly programmable. You can easily wire y
 }.padding(20 dip)
 </code></pre>
 
-Because a Scaloid layout description is a plain Scala code, it is type-safe. Please refer to [layout context](#layout-context) for more details.
+Because a Scaloid layout description is plain Scala code, it is type-safe. Please refer to [layout context](#layout-context) for more details.
 
 ### Automatic layout converter
 
@@ -126,7 +126,7 @@ http://layout.scaloid.org
 
 
 ## Implicit conversions
-Scaloid employs several implicit conversions. Some of available implicit conversions are shown below:
+Scaloid employs several implicit conversions. Some of the available implicit conversions are shown below:
 
 ##### Uri conversion
 
@@ -187,11 +187,11 @@ Units `dip` and `sp` can be converted into the pixel unit.
 There are more implicit conversions available. Check the source code as needed.
 
 ## Context as an implicit parameter
-Many methods in Android API requires an instance of a class `Context`. Providing this for every method calls results a clumsy code. We employ an implicit parameter to eliminate this. Just declare an implicit value that represents current context:
+Many methods in the Android API require an instance of a class `Context`. Providing this for every method call results in clumsy code. We employ an implicit parameter to eliminate this. Just declare an implicit value that represents current context:
 
     implicit val context = ...
 
-or just extend trait `SContext`, which defines it for you. Then the codes that required `Context` becomes much simpler, for example:
+or just extend trait `SContext`, which defines it for you. Then the code that required `Context` becomes much simpler, for example:
 
 
 ##### Intent
@@ -210,7 +210,7 @@ is reduced to:
 
     toast("hi, there!")
 
-If you want toast longer:
+If you want a longer toast:
 
     longToast("long toast")
 
@@ -246,11 +246,11 @@ Just play the default notification ringtone:
 
     play()
 
-, specify ringtone resources as a `String`:
+specify ringtone resources as a `String`:
 
     play("content://media/internal/audio/media/50")
 
-, or specify a resource `Uri`:
+or specify a resource `Uri`:
 
 	play(alarmSound)
 
@@ -276,7 +276,7 @@ Under the hood, Scaloid defines a function `vibrator` like this:
 
     def vibrator(implicit ctx: Context) = ctx.getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
 
-All of the system service accessors available in Android API level 8 are defined (e.g. `audioManager`, `alarmManager`, `notificationManager`, etc.). The name of a system service accessor is the same of its class name, except that the first character is lowercased.
+All the system service accessors available in Android API level 8 are defined (e.g. `audioManager`, `alarmManager`, `notificationManager`, etc.). The name of a system service accessor is the same as its class name, except that the first character is lowercased.
 
 
 ## Enriched Implicit classes
@@ -332,7 +332,7 @@ is equivalent to:
       def afterTextChanged(p1: Editable) {}
     })
 
-Also, we overrides `beforeTextChanged()` with full parameters defined in the original listener:
+Also, we override `beforeTextChanged()` with full parameters defined in the original listener:
 
     inputField.beforeTextChanged((s:CharSequence, _:Int, _:Int) => saveText(s))
 
@@ -383,7 +383,7 @@ Usually, `View` components are referenced multiple times in an `Activity`. For e
 	}
 	// ... uses the button somewhere in other methods (e.g. changing text or adding listeners)
 
-[Prefixed classes](#prefixed-classes) in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. This methods also append the component to the layout context that enclose the component. Therefore, the code block from the above example:
+[Prefixed classes](#prefixed-classes) in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. These methods also append the component to the layout context that enclose the component. Therefore, the code block from the above example:
 
     button = new SButton() text "Click"
     +=(button)
@@ -410,7 +410,7 @@ if we want use the `SButton` object again, Scaloid provides `>>` method returnin
 
 #### Nested layout context
 
-When the layout context is nested, inner-most layout context is applied:
+When the layout context is nested, inner-most layout's context is applied:
 
     val layout = new SFrameLayout {
 	  +=(new SLinearLayout {
@@ -438,9 +438,9 @@ This is also shortened as:
 
 #### Naming conventions
 
-Scaloid follows naming of XML attributes of Android API with some improvements.
+Scaloid follows the naming conventions of XML attributes in the Android API with some improvements.
 
-For XML attributes, layout related properties prefixed with `layout_`, while Scaloid does not need it. For boolean type attributes in which the default is `false`, Scaloid simply flag it as `true` when the attribute is declared explicitly without any parameter. For example:
+For XML attributes, layout related properties are prefixed with `layout_` and as you might have guessed, Scaloid does not need it. For boolean attributes, the default is `false`. However, Scaloid flags it as `true` when the attribute is declared explicitly without any parameter. For example:
 
     new SRelativeLayout {
 	  STextView("hello").<<.centerHorizontal.alignParentBottom.>>
@@ -505,15 +505,15 @@ Instead of:
       }
     }
 
-, extend trait `RunOnUiThread` and use it like this:
+extend trait `RunOnUiThread` and use it like this:
 
     runOnUiThread(debug("Running in any context"))
 
-It is a very frequently used pattern that running a job asynchronously and notifying it back to UI thread. Although Android API provides an helper class `AsyncTask`, implementing such a simple idea is still painful, even when we use Scala:
+Running a job asynchronously and notifying the UI thread is a very frequently used pattern. Although Android API provides a helper class `AsyncTask`, implementing such a simple idea is still painful, even when we use Scala:
 
     new AsyncTask[String, Void, String] {
       def doInBackground(params: Array[String]) = {
-        doAJobTakesSomeTime(params)
+        doAJobTakeSomeTime(params)
       }
 
       override def onPostExecute(result: String) {
@@ -524,7 +524,7 @@ It is a very frequently used pattern that running a job asynchronously and notif
 Using `runOnUiThread` and importing `scala.concurrent.ops._`, the asynchronous job shown above can be rewritten like this:
 
     spawn {
-		val result = doAJobTakesSomeTime(params)
+		val result = doAJobTakeSomeTime(params)
 		runOnUiThread(alert("Done!", result))
 	}
 
@@ -538,7 +538,7 @@ Using `spawn` is just an example of asynchronous task processing in Scaloid. You
 
 ### Trait `UnregisterReceiverService`
 
-When you registered `BroadcastReceiver` with `Context.registerReceiver()` you have to unregister it to prevent memory leak. Trait UnregisterReceiverService handles these chores for you by just extends it for your Service.
+When you registere `BroadcastReceiver` with `Context.registerReceiver()` you have to unregister it to prevent memory leak. Trait `UnregisterReceiverService` handles these chores for you. All you need to do is extend your Service.
 
 ```
 class MyService extends UnregisterReceiverService {
@@ -583,11 +583,11 @@ use a shorthand:
 
     find[Button](R.id.login)
 
-Although we provide this shorthand, Scaloid recommends to [programmatically laying out UI, not with XML](#ui-layout-without-xml).
+Although we provide this shorthand, Scaloid recommends [programmatically laying out UI, not with XML](#ui-layout-without-xml).
 
 ## Logging
 
-Unlike other logging frameworks, Android Logging API requires a `String` tag for every log calls. We elliminate this by introducing implicit parameter. Define an implicit value type of `LoggerTag` as shown:
+Unlike other logging frameworks, Android Logging API requires a `String` tag for every log call. We elliminate this by introducing an implicit parameter. Define an implicit value type of `LoggerTag` as shown:
 
     implicit val tag = LoggerTag("MyAppTag")
 
@@ -595,7 +595,7 @@ or, extend trait `TagUtil` or `SContext` which defines the tag by default. Then 
 
 	warn("Something happened!")
 
-Other functions for every log levels (`verbose()`, `debug()`, `info()`, `warn()`, `error()` and `wtf()`) are available.
+Other functions for every log level (`verbose()`, `debug()`, `info()`, `warn()`, `error()` and `wtf()`) are available.
 
 	info("hello " + world)
 
@@ -607,14 +607,14 @@ A `String` parameter passed with `info()` is a lazy argument, so it is evaluated
 
 ## Scala getters and setters
 
-You can use any type of setters listed below:
+You can use any of the setters listed below:
 
 * `obj.setText("Hello")` Java bean style
 * `obj.text = "Hello"` Assignment style
 * `obj text "Hello"` DSL style
 * `obj.text("Hello")` Method calling style
 
-Compared with Java style getters and setters, for example:
+Compared to Java style getters and setters, for example:
 
     new TextView(context) {
 	  setText("Hello")
@@ -632,11 +632,11 @@ Or, you can also chain the setters:
 
     new STextView text "Hello" textSize 15
 
-, which is a syntactic sugar of a method calling:
+which is a syntactic sugar for:
 
     new STextView.text("Hello").textSize(15)
 
-We recommend "assignment style" and "DSL style". Use assignment style when you emphasize that you are assigning something, or use DSL style when the code length of the assignee is short and need to be chained.
+We recommend "assignment style" and "DSL style". Use assignment style when you emphasize that you are assigning something, or use DSL style when the code length of the assignee is short and needs to be chained.
 
 Note: Using `.apply(String)` method on object `STextView`, you can further reduce the code above like this:
 
@@ -644,7 +644,7 @@ Note: Using `.apply(String)` method on object `STextView`, you can further reduc
 
 ### Return value of setters
 
-Unlike most setters in Android API, our setters return the object itself. This feature can be used as a syntactic sugar when setters need to be chained or a function returning some object. For example, a snippet of [Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList1.java?av=h) from ApiDemos that is shown below:
+Unlike most setters in the Android API, our setters return the object itself. This feature can be used as a syntactic sugar when setters need to be chained or a function returning some object. For example, a snippet of [Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList1.java?av=h) from ApiDemos that is shown below:
 
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         TextView textView = getGenericView();
@@ -663,18 +663,18 @@ is reduced to:
 
 ### Prefixed classes
 
-If you want to use scala style getters/setters, implicit conversion do the magic on native Android objects:
+If you want to use scala style getters/setters, implicit conversions do the magic on native Android objects:
 
     val v:TextView = ...
 	v.text = "Hello"    // Valid code. Implicit conversion handles this.
 
-However, if you use it in constructors, compiler cannot find correct implicit conversion:
+However, if you use it in constructors, the compiler will not find the correct implicit conversion:
 
     def getInstance = new TextView(context) {
 	  text = "Hello"    // Compilation Error.
 	}
 
-Therefore, we extended Android classes with the same name prefixed with a 'S' character:
+Therefore, we extended Android classes with the same name prefixed with the 'S' character:
 
 	def getInstance = new STextView {
 	  text = "Hello"    // OK.
@@ -682,7 +682,7 @@ Therefore, we extended Android classes with the same name prefixed with a 'S' ch
 
 These classes explicitly provide the extra methods that was provided implicitly.
 
-Aditionally, prefixed classes supports [implicit context value](#context-as-an-implicit-parameter) and additional syntactic sugars. For example, many classes has `.apply(...)` methods for creating a new instance:
+Aditionally, prefixed classes support [implicit context value](#context-as-an-implicit-parameter) and additional syntactic sugar. For example, many classes have `.apply(...)` methods for creating a new instance:
 
     STextView("Hello")
     SButton("title", onClickBehavior())
@@ -748,7 +748,7 @@ The code above is equivalent to:
 
 ## Static fields on protected interfaces
 
-Android API has some protected interfaces which has static fields, and inherited it in public classes. For example `android.provider.ContactsContract.Contacts` inherits a protected interface `android.provider.ContactsContract.ContactsColumns`, which defines a static field `ContactsColumns.DISPLAY_NAME`. In Java code, you can access to it with `Contacts.DISPLAY_NAME`. However, Scala does not support accessing in this way (please refer [this](https://issues.scala-lang.org/browse/SI-1806) and [this](http://www.scala-lang.org/faq/4)). It is a bad news for Android-Scala programmer. So we provide a workaround implementation for this problem. Just copy-and-paste `Workaround.java` and declare `import org.scaloid.Workarounds._`. Then you can use the interfaces publicly which is originally defined as protected.
+Android API has some protected interfaces which has static fields, and inherited it in public classes. For example `android.provider.ContactsContract.Contacts` inherits a protected interface `android.provider.ContactsContract.ContactsColumns`, which defines a static field `ContactsColumns.DISPLAY_NAME`. In Java code, you can access to it with `Contacts.DISPLAY_NAME`. However, Scala does not support accessing in this way (please refer [this](https://issues.scala-lang.org/browse/SI-1806) and [this](http://www.scala-lang.org/faq/4)). It is bad news for an Android-Scala programmer. So we provide a workaround implementation for this problem. Just copy-and-paste `Workaround.java` and declare `import org.scaloid.Workarounds._`. Then you can use the interfaces publicly which is originally defined as protected.
 
 
 ## Import it to your project
@@ -783,7 +783,7 @@ Scaloid is a single-file project. Just copy `common.scala` and paste it to your 
 
 ## Let's make it together!
 
-This project is in early stages, and I will grow it constantly. If you have any idea to improve Scaloid, feel free to open issues or post patches.
+This project is in its early stages, and I will grow it constantly. If you have any idea to improve Scaloid, feel free to open issues or post patches.
 
 ### License
 
