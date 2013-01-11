@@ -703,6 +703,10 @@ is equivalent to:
 Because setting the property `orientation = VERTICAL` for `SLinearLayout` is frequently used, we provide a shorthand:
 
     new SVerticalLayout()
+
+that is equivalent to:
+
+    new SLinearLayout().orientation(LinearLayout.VERTICAL)
 	
 	
 ## Classes
