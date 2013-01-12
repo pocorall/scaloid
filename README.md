@@ -767,7 +767,7 @@ If you want to see how Scaloid can be used in action, check a [Scala port of api
 ## Import it to your project
 
 ### As a maven artifact
-Scaloid is released in central maven repository.
+Scaloid is released to the central maven repository.
 
 For maven:
 
