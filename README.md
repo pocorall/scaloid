@@ -24,7 +24,7 @@ is reduced to:
  * **Write elegant Android software**<br/>
    Scaloid provides a concise and type-safe way of writing Android application.
  * **Simple to use**<br/> 
-   [Just add a dependency to your project](#import-it-to-your-project)
+   Check our [quick start guide](#quick-start)
  * **Compatible with your legacy code**<br/>
    You can use both Scaloid and plain-old Java Android API. You can gradually improve your legacy code.
  * **Maintained actively**<br/>
@@ -750,11 +750,23 @@ The code above is equivalent to:
 
 Android API has some protected interfaces which has static fields, and inherited it in public classes. For example `android.provider.ContactsContract.Contacts` inherits a protected interface `android.provider.ContactsContract.ContactsColumns`, which defines a static field `ContactsColumns.DISPLAY_NAME`. In Java code, you can access to it with `Contacts.DISPLAY_NAME`. However, Scala does not support accessing in this way (please refer [this](https://issues.scala-lang.org/browse/SI-1806) and [this](http://www.scala-lang.org/faq/4)). It is a bad news for Android-Scala programmer. So we provide a workaround implementation for this problem. Just copy-and-paste `Workaround.java` and declare `import org.scaloid.Workarounds._`. Then you can use the interfaces publicly which is originally defined as protected.
 
+## Quick start
+
+ 1. [Import Scaloid to your project](#import-it-to-your-project)
+ 1. Declare `import org.scaloid.common._` in your code.
+ 1. Modify the signature of your classes
+  * If your class inherits `Activity`, change it to `SActivity`
+  * If your class (indirectly) inherits `Context`, add `trait SContext with LoggerTag`
+  * Otherwise, setting implicit value is required
+
+    implicit val context = ...
+  
+Then, you are ready to use Scaloid.
 	
 ## Import it to your project
 
 ### As a maven artifact
-Scaloid is released in central maven repository. Declare `import org.scaloid.common._` in your code and add a dependency.
+Scaloid is released in central maven repository.
 
 For maven:
 
@@ -775,7 +787,7 @@ Please note that Android API provides backward compatibility, while Scala does n
 
 
 ### As the source code
-Scaloid is a single-file project. Just copy `common.scala` and paste it to your project and declare `import org.scaloid.common._` in your code.
+Scaloid is a single-file project. Just copy `common.scala` and paste it to your project.
 
  * Currently, Scaloid can be built with Android API level 8 or higher and Scala version 2.9.1 or higher.
 
