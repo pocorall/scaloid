@@ -757,10 +757,12 @@ Android API has some protected interfaces which has static fields, and inherited
  1. Modify the signature of your classes
   * If your class inherits `Activity`, change it to `SActivity`
   * If your class (indirectly) inherits `Context`, add `trait SContext with LoggerTag`
-  * Otherwise, setting implicit value is required <br/>
-    `implicit val context = ...`
+  * Otherwise, setting an implicit value is required <br/>
+    `implicit val context: Context = ...`
   
 Then, you are ready to use Scaloid.
+
+If you want to see how Scaloid can be used in action, check a [Scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos).
 	
 ## Import it to your project
 
