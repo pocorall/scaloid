@@ -942,7 +942,7 @@ Android API has some protected interfaces which has static fields, and inherited
   * If your class inherits `Activity`, change it to `SActivity`
   * If your class (indirectly) inherits `Context`, add `trait SContext with LoggerTag`
   * Otherwise, setting an implicit value is required <br/>
-`implicit val context: Context = ...`
+    `implicit val context: Context = ...`
 
 Then, you are ready to use Scaloid.
 
