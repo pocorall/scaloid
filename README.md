@@ -6,18 +6,22 @@ Scala is cool. [Writing Android applications with Scala](#faqs-about-scala-on-an
 
 For example, the code block shown below:
 
-	val button = new Button(context)
-	button.setText("Greet")
-	button.setOnClickListener(new OnClickListener() {
-	  def onClick(v: View) {
-		Toast.makeText(context, "Hello!", Toast.LENGTH_SHORT).show()
-	  }
-	})
-	layout.addView(button)
+```scala
+val button = new Button(context)
+button.setText("Greet")
+button.setOnClickListener(new OnClickListener() {
+  def onClick(v: View) {
+    Toast.makeText(context, "Hello!", Toast.LENGTH_SHORT).show()
+  }
+})
+layout.addView(button)
+```
 
 is reduced to:
 
-	SButton("Greet", toast("Hello!"))
+```scala
+SButton("Greet", toast("Hello!"))
+```  
 
 
 ### Benefits
@@ -57,64 +61,69 @@ There is an out-of-the-box solution. Just [fork this project](https://github.com
 
 Android SDK leverages XML to build UI layouts. However, XML considered still a bit verbose, and lacks programmability. Scaloid composes UI layout in Scala DSL style, therefore achieve both clarity and programmability. For example, suppose a legacy XML layout as shown below:
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="vertical" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:padding="20dip">
-        <TextView android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:text="Sign in"
-                android:layout_marginBottom="25dip" android:textSize="24.5sp"/>
-        <TextView android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:text="ID"/>
-        <EditText android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/userId"/>
-        <TextView android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:text="Password"/>
-        <EditText android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/password"
-                android:inputType="textPassword"/>
-        <Button android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/signin"
-                android:text="Sign in"/>
-        <LinearLayout android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <Button android:text="Help" android:id="@+id/help"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            <Button android:text="Sign up" android:id="@+id/signup"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        </LinearLayout>
+```xml
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:padding="20dip">
+    <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Sign in"
+            android:layout_marginBottom="25dip" android:textSize="24.5sp"/>
+    <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="ID"/>
+    <EditText android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/userId"/>
+    <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Password"/>
+    <EditText android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/password"
+            android:inputType="textPassword"/>
+    <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/signin"
+            android:text="Sign in"/>
+    <LinearLayout android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button android:text="Help" android:id="@+id/help"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <Button android:text="Sign up" android:id="@+id/signup"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
     </LinearLayout>
+</LinearLayout>
+```
 
 is reduced to:
 
-    new SVerticalLayout {
-	  STextView("Sign in").textSize(24.5 sp).<<.marginBottom(25 dip).>>
-	  STextView("ID")
-	  SEditText()
-	  STextView("Password")
-	  SEditText() inputType TEXT_PASSWORD
-	  SButton("Sign in")
-	  +=(new SLinearLayout {
-	    SButton("Help")
-		SButton("Sign up")
-	  })
-    }.padding(20 dip)
+```scala
+new SVerticalLayout {
+  STextView("Sign in").textSize(24.5 sp).<<.marginBottom(25 dip).>>
+  STextView("ID")
+  SEditText()
+  STextView("Password")
+  SEditText() inputType TEXT_PASSWORD
+  SButton("Sign in")
+    += (new SLinearLayout {
+      SButton("Help")
+      SButton("Sign up")
+    })
+}.padding(20 dip)
+```    
 
 The layout description shown above is highly programmable. You can easily wire your logic into the layout:
 
-<pre><code>new SVerticalLayout {
-  STextView("Sign in").textSize(24.5 sp).&lt;&lt;.marginBottom(25 dip).&gt;&gt;
+```scala
+new SVerticalLayout {
+  STextView("Sign in").textSize(24.5 sp).<<.marginBottom(25 dip).>>
   STextView("ID")
-  <b><i>val userId = </i></b>SEditText()
+  val userId = SEditText()
   STextView("Password")
-  <b><i>val pass = </i></b>SEditText() inputType TEXT_PASSWORD
-  SButton("Sign in"<b><i>, signin(userId.text, pass.text)</i></b>)
-  +=(new SLinearLayout {
-    SButton("Help"<b><i>, openUri("http://help.url")</i></b>)
-    SButton("Sign up"<b><i>, openUri("http://signup.uri")</i></b>)
-  })
+  val pass = SEditText() inputType TEXT_PASSWORD
+  SButton("Sign in", signin(userId.text, pass.text))
+    += (new SLinearLayout {
+      SButton("Help", openUri("http://help.url"))
+      SButton("Sign up", openUri("http://signup.uri"))
+    })
 }.padding(20 dip)
-</code></pre>
+```
 
 Because a Scaloid layout description is plain Scala code, it is type-safe. Please refer to [layout context](#layout-context) for more details.
 
@@ -130,43 +139,54 @@ Scaloid employs several implicit conversions. Some of the available implicit con
 
 ##### Uri conversion
 
-    String => Uri
+```scala
+String => Uri
+```    
 
 The functions such as [play ringtones](#play-ringtones) `play()` or [open URIs](#open-uris) `openUri()` takes an instance of `Uri` as a parameter. However, we frequently have URIs as a `String`. Scaloid implicitly converts `String` into `Uri`. Therefore, you can freely use `String` when you play a ringtone:
 
-    play("content://media/internal/audio/media/50")
+```scala
+play("content://media/internal/audio/media/50")
+```    
 
 , open a URI:
 
-    openUri("http://google.com")
+```scala
+openUri("http://google.com")
+```    
 
 , or wherever you want.
 
 ##### Resource IDs
 
-	Int => CharSequence
-	Int => Drawable
+```scala
+Int => CharSequence
+Int => Drawable
+```  
 
 Android API provides two versions of methods for string resources; One for `CharSequence`, the other for `Int` as a resource ID. If you write a function that handles Android resource, you also have to expose methods for every combination of two versions of resources:
 
+```scala
+def alert(titleId:Int, textId:Int)(implicit context:Context) = {
+  alert(context.getText(titleId), context.getText(textId))
+}
 
-    def alert(titleId:Int, textId:Int)(implicit context:Context) = {
-      alert(context.getText(titleId), context.getText(textId))
-    }
+def alert(titleId:Int, text:CharSequence)(implicit context:Context) = {
+  alert(context.getText(titleId), text)
+}
 
-    def alert(titleId:Int, text:CharSequence)(implicit context:Context) = {
-      alert(context.getText(titleId), text)
-    }
+def alert(titleId:CharSequence, textId:Int)(implicit context:Context) = {
+  alert(title, context.getText(textId))
+}
 
-    def alert(titleId:CharSequence, textId:Int)(implicit context:Context) = {
-      alert(title, context.getText(textId))
-    }
-
-    def alert(title:CharSequence, text:CharSequence) = ...
+def alert(title:CharSequence, text:CharSequence) = ...
+```    
 
 This is not a smart way. Write just one method that defines the logic:
 
-    def alert(title:CharSequence, text:CharSequence) = ...
+```scala
+def alert(title:CharSequence, text:CharSequence) = ...
+```    
 
 Then Scaloid implicit conversions will take care about these resource type conversions.
 
@@ -174,13 +194,17 @@ Then Scaloid implicit conversions will take care about these resource type conve
 
 Units `dip` and `sp` can be converted into the pixel unit.
 
-    val inPixel:Int = (32 dip)
-	val inPixel2:Int = (22 sp)
+```scala
+val inPixel:Int = (32 dip)
+val inPixel2:Int = (22 sp)
+```  
 
 
 ##### Runnable
 
-	( => Any) => Runnable
+```scala
+( => Any) => Runnable
+```  
 
 `Runnable` also covered with [rich](#rich-classes) and [prefixed classes](#prefixed-classes).
 
@@ -189,92 +213,130 @@ There are more implicit conversions available. Check the source code as needed.
 ## Context as an implicit parameter
 Many methods in the Android API require an instance of a class `Context`. Providing this for every method call results in clumsy code. We employ an implicit parameter to eliminate this. Just declare an implicit value that represents current context:
 
-    implicit val context = ...
+```scala
+implicit val context = ...
+```    
 
 or just extend trait `SContext`, which defines it for you. Then the code that required `Context` becomes much simpler, for example:
 
 
 ##### Intent
 
-    new Intent(context, classOf[MyActivity])
+```scala
+new Intent(context, classOf[MyActivity])
+```    
 
 is reduced to:
 
-    SIntent[MyActivity]
+```scala
+SIntent[MyActivity]
+```
 
 ##### Toast
 
-    Toast.makeText(context, "hi, there!", Toast.LENGTH_SHORT).show()
+```scala
+Toast.makeText(context, "hi, there!", Toast.LENGTH_SHORT).show()
+```
 
 is reduced to:
 
-    toast("hi, there!")
+```scala
+toast("hi, there!")
+```
 
 If you want a longer toast:
 
-    longToast("long toast")
+```scala
+longToast("long toast")
+```
 
 ##### Dialog
 
-    ProgressDialog.show(context, "Dialog", "working...", true)
+```scala
+ProgressDialog.show(context, "Dialog", "working...", true)
+```
 
 is reduced to:
 
-    spinnerDialog("Dialog", "working...")
+```scala
+spinnerDialog("Dialog", "working...")
+```
 
 ##### Pending intent
 
-    PendingIntent.getActivity(context, 0, new Intent(context, classOf[MyActivity]), 0)
-    PendingIntent.getService(context, 0, new Intent(context, classOf[MyService]), 0)
+```scala
+PendingIntent.getActivity(context, 0, new Intent(context, classOf[MyActivity]), 0)
+PendingIntent.getService(context, 0, new Intent(context, classOf[MyService]), 0)
+```
 
 is reduced to:
 
-    pendingActivity[MyActivity]
-    pendingService[MyService]
+```scala
+pendingActivity[MyActivity]
+pendingService[MyService]
+```
 
 ##### DefaultSharedPreferences
 
-    PreferenceManager.getDefaultSharedPreferences(context)
+```scala
+PreferenceManager.getDefaultSharedPreferences(context)
+```
 
 is reduced to:
 
-    defaultSharedPreferences
+```scala
+defaultSharedPreferences
+```
 
 ##### Play ringtones
 
 Just play the default notification ringtone:
 
-    play()
+```scala
+play()
+```
 
 specify ringtone resources as a `String`:
 
-    play("content://media/internal/audio/media/50")
+```scala
+play("content://media/internal/audio/media/50")
+```
 
 or specify a resource `Uri`:
 
-	play(alarmSound)
+```scala
+play(alarmSound)
+```
 
 ##### Open URIs
 
 This opens a web browser (or another view assigned to the http protocol).
 
-   	openUri("http://google.com")
+```scala
+openUri("http://google.com")
+```
 
 
 ##### System services
 
 Getting system service objects become much simpler. The following legacy code:
 
-    val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
-    vibrator.vibrate(500)
+```scala
+val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
+vibrator.vibrate(500)
+```    
 
 is reduced to:
 
-    vibrator.vibrate(500)
+```scala
+vibrator.vibrate(500)
+```    
 
 Under the hood, Scaloid defines a function `vibrator` like this:
 
-    def vibrator(implicit ctx: Context) = ctx.getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
+```scala
+def vibrator(implicit ctx: Context) = ctx.getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
+```
 
 All the system service accessors available in Android API level 8 are defined (e.g. `audioManager`, `alarmManager`, `notificationManager`, etc.). The name of a system service accessor is the same as its class name, except that the first character is lowercased.
 
@@ -288,15 +350,19 @@ Suppose an Android class `Foo`, for example, Scaloid defines an implicit convers
 
 Android API defines many listener interfaces for callback notifications. For example, `View.OnClickListener` is used to be notified when a view is clicked:
 
-    find[Button](R.id.search).setOnClickListener(new View.OnClickListener {
-	  def onClick(v:View) {
-	    openUri("http://google.com")
-	  }
-	})
+```scala
+find[Button](R.id.search).setOnClickListener(new View.OnClickListener {
+  def onClick(v:View) {
+    openUri("http://google.com")
+  }
+})
+```  
 
 Scaloid provides a shortcut that dramatically reduces the length of the code:
 
-    find[Button](R.id.search).onClick(openUri("http://google.com"))
+```scala
+find[Button](R.id.search).onClick(openUri("http://google.com"))
+```    
 
 All other listener-appending methods such as `.onKey()`, `.onLongClick()`, and `.onTouch()` are defined.
 
@@ -306,7 +372,7 @@ Some conventions we employed for method naming are:
    For example, `.setOnKeyListener()` becomes `.onKey()`.
  * Every method has two versions of parameters overridden. One is a lazy parameter, and another is a function which has full parameters defined in the original Android API. For example, these two usages are valid:
 
-```
+```scala
 button.onClick(info("touched"))
 button.onClick((v:View) => info("touched a button "+v))
 ```
@@ -318,23 +384,29 @@ button.onClick((v:View) => info("touched a button "+v))
 
 Methods `beforeTextChanged()`, `onTextChanged()`, and `afterTextChanged()` are defined in `RichTextView`, which can be implicitly converted from `TextView`. It is more convenient than using `TextWatcher` directly. For example:
 
-    inputField.beforeTextChanged(saveTextStatus())
+```scala
+inputField.beforeTextChanged(saveTextStatus())
+```    
 
 is equivalent to:
 
-    inputField.addTextChangedListener(new TextWatcher {
-      def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-        saveTextStatus()
-      }
+```scala
+inputField.addTextChangedListener(new TextWatcher {
+  def beforeTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+    saveTextStatus()
+  }
 
-      def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
+  def onTextChanged(p1: CharSequence, p2: Int, p3: Int, p4: Int) {}
 
-      def afterTextChanged(p1: Editable) {}
-    })
+  def afterTextChanged(p1: Editable) {}
+})
+```    
 
 Also, we override `beforeTextChanged()` with full parameters defined in the original listener:
 
-    inputField.beforeTextChanged((s:CharSequence, _:Int, _:Int) => saveText(s))
+```scala
+inputField.beforeTextChanged((s:CharSequence, _:Int, _:Int) => saveText(s))
+```    
 
 Other listeners in Android API can also be accessed in this way.
 
@@ -342,55 +414,69 @@ Other listeners in Android API can also be accessed in this way.
 
 In Android API, layout information is stored into a `View` object via the method `View.setLayoutParams(ViewGroup.LayoutParams)`. A specific type of parameter passing into that method is determined by a the type of `...Layout` object which contains the `View` object. For example, let us see some Java code shown below:
 
-    LinearLayout layout = new LinearLayout(context);
-	Button button = new Button(context);
-	button.setText("Click");
-	LinearLayout.LayoutParams params = new LinearLayout.LayoutParams();
-	params.weight = 1.0f;	// sets some value
-	button.setLayoutParams(params);
-	layout.addView(button);
+```java
+LinearLayout layout = new LinearLayout(context);
+Button button = new Button(context);
+button.setText("Click");
+LinearLayout.LayoutParams params = new LinearLayout.LayoutParams();
+params.weight = 1.0f;  // sets some value
+button.setLayoutParams(params);
+layout.addView(button);
+```  
 
 Because the button is appended into the `LinearLayout`, the layout parameter must be `LinearLayout.LayoutParams`, otherwise a ___runtime error___ might be occurred. Meanwhile, Scaloid eliminate this burden, while still preserving rigorous typing of `LayoutParams`. The code shown below is equivalent to the previous Java code:
 
-    val layout = new SLinearLayout {
-	  SButton("Click").<<.Weight(1.0f).>>
-    }
+```scala
+val layout = new SLinearLayout {
+  SButton("Click").<<.Weight(1.0f).>>
+}
+```    
 
 In the anonymous constructor of 'SLinearLayout', Scaloid provides an implicit function called "layout context". This affects a return type of the method `<<` defined in the class `SButton`. If we use `SFrameLayout` as a layout context, the method `<<` returns `FrameLayout.LayoutParams`, so the code below results a ___syntax error___.
 
-    val layout = new SFrameLayout {
-      SButton("Click").<<.Weight(1.0f).>>   // Syntax error on Weight()
-    }
+```scala
+val layout = new SFrameLayout {
+  SButton("Click").<<.Weight(1.0f).>>   // Syntax error on Weight()
+}
+```    
 
 Compared with XML layout description, Scaloid layout is simple and type-safe.
 
 The method `<<` is overloaded with parameters `<<(width:Int, height:Int)` which assignes the size of the view component. For example:
 
-    SButton("Click").<<(40 dip, WRAP_CONTENT)
+```scala
+SButton("Click").<<(40 dip, WRAP_CONTENT)
+```    
 
 #### Operator `new` and method `apply`
 
 Usually, `View` components are referenced multiple times in an `Activity`. For example:
 
-    var button: SButton = null
-    override def onCreate(savedInstanceState: Bundle) {
-	  // ...
-	  new SLinearLayout {
-	    button = new SButton() text "Click"
-        +=(button)
-	  }
-	  // ...
-	}
-	// ... uses the button somewhere in other methods (e.g. changing text or adding listeners)
+```scala
+var button: SButton = null
+override def onCreate(savedInstanceState: Bundle) {
+  // ...
+  new SLinearLayout {
+    button = new SButton() text "Click"
+      +=(button)
+  }
+  // ...
+}
+// ... uses the button somewhere in other methods (e.g. changing text or adding listeners)
+```  
 
 [Prefixed classes](#prefixed-classes) in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. These methods also append the component to the layout context that enclose the component. Therefore, the code block from the above example:
 
-    button = new SButton() text "Click"
-    +=(button)
+```scala
+button = new SButton() text "Click"
+  +=(button)
+```    
 
 is equivalent to:
 
-    button = SButton("Click")
+```scala
+button = SButton("Click")
+```    
 
 Because the `apply` methods access to the layout context, it cannot be called outside of the layout context. In this case, use the `new` operator instead.
 
@@ -398,43 +484,60 @@ Because the `apply` methods access to the layout context, it cannot be called ou
 
 As we noted, the method `<<` returns an object which is a type of `ViewGroup.LayoutParams`:
 
-    val params = SButton("Click").<<   // type LayoutParams
+```scala
+val params = SButton("Click").<<   // type LayoutParams
+```    
 
 This class provides some setters for chaining:
 
-    val params = SButton("Click").<<.marginBottom(100).marginLeft(10)   // type LayoutParams
+```scala
+val params = SButton("Click").<<.marginBottom(100).marginLeft(10)   // type LayoutParams
+```    
 
 if we want use the `SButton` object again, Scaloid provides `>>` method returning back to the object:
 
-	val button = SButton("Click").<<.marginBottom(100).marginLeft(10).>>   // type SButton
+```scala
+val button = SButton("Click").<<.marginBottom(100).marginLeft(10).>>   // type SButton
+```
 
 #### Nested layout context
 
 When the layout context is nested, inner-most layout's context is applied:
 
-    val layout = new SFrameLayout {
-	  +=(new SLinearLayout {
-	    SButton("Click").<<.Weight(1.0f).>>   // in context of SLinearLayout
-      })
-	}
+```scala
+val layout = new SFrameLayout {
+  +=(new SLinearLayout {
+    SButton("Click").<<.Weight(1.0f).>>   // in context of SLinearLayout
+  })
+}
+```
 
 #### Methods `fill` and `warp`
 
 When we get a `LayoutParams` from `<<`, the default values of `width` and `height` properties are `width = FILL_PARENT` and `height = WRAP_CONTENT`. You can override this when you need it:
 
-    SButton("Click").<<(FILL_PARENT, FILL_PARENT)
+```scala
+SButton("Click").<<(FILL_PARENT, FILL_PARENT)
+```
 
 This is a very frequently used idiom. Therefore we provide further shorthand:
 
-    SButton("Click").<<.fill
+```scala
+SButton("Click").<<.fill
+```    
 
 If you want the `View` element to be wrapped,
 
-    SButton("Click").<<(WRAP_CONTENT, WRAP_CONTENT)
+```scala
+SButton("Click").<<(WRAP_CONTENT, WRAP_CONTENT)
+```    
 
 This is also shortened as:
 
-    SButton("Click").<<.wrap
+```scala
+SButton("Click").<<.wrap
+```    
+
 
 #### Naming conventions
 
@@ -442,51 +545,64 @@ Scaloid follows the naming conventions of XML attributes in the Android API with
 
 For XML attributes, layout related properties are prefixed with `layout_` and as you might have guessed, Scaloid does not need it. For boolean attributes, the default is `false`. However, Scaloid flags it as `true` when the attribute is declared explicitly without any parameter. For example:
 
-    new SRelativeLayout {
-	  STextView("hello").<<.centerHorizontal.alignParentBottom.>>
-	}
+```scala
+new SRelativeLayout {
+  STextView("hello").<<.centerHorizontal.alignParentBottom.>>
+}
+```    
 
 Scaloid omits unnecessary `="true"` for the attribute `centerHorizontal`. Equivalent XML layout description for `TextView` is:
 
-	<TextView
-		android:id="@+id/helloText"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_alignParentBottom="true"
-		android:text="hello"/>
+```xml
+<TextView
+    android:id="@+id/helloText"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_alignParentBottom="true"
+    android:text="hello"/>
+```    
 
 For layout methods named with four directions (e.g. `...Top`, `...Right`, `...Bottom` and `...Left`), Scaloid provides additional methods that specifies all properties at once. For example, Because Android XML layout defines `margin...` properties(`marginTop(v:Int)`, `marginRight(v:Int)`, `marginBottom(v:Int)` and `marginLeft(v:Int)`), Scaloid provides additional `margin(top:Int, right:Int, bottom:Int, left:Int)` and `margin(amount:Int)` methods that can be used as:
 
-    STextView("hello").<<.margin(5 dip, 10 dip, 5 dip, 10 dip)
+```scala
+STextView("hello").<<.margin(5 dip, 10 dip, 5 dip, 10 dip)
+```    
 
 or
 
-    STextView("hello").<<.margin(10 sp)  // assigns the same value for all directions
+```scala
+STextView("hello").<<.margin(10 sp)  // assigns the same value for all directions
+```
 
 
 #### Tip: Styles for programmers
 
 Android API introduced [styles](http://developer.android.com/guide/topics/ui/themes.html) to reuse common properties on XML layout. Meanwhile, Scaloid layout is an ordinary Scala code. Therefore we can freely define some functions that works as styles. Suppose the following code that repeats some properties:
 
-    SButton("first").textSize(20 dip).<<.margin(5 dip).>>
-	SButton("prev").textSize(20 dip).<<.margin(5 dip).>>
-	SButton("next").textSize(20 dip).<<.margin(5 dip).>>
-	SButton("last").textSize(20 dip).<<.margin(5 dip).>>
+```scala
+SButton("first").textSize(20 dip).<<.margin(5 dip).>>
+SButton("prev").textSize(20 dip).<<.margin(5 dip).>>
+SButton("next").textSize(20 dip).<<.margin(5 dip).>>
+SButton("last").textSize(20 dip).<<.margin(5 dip).>>
+```  
 
 Then we can define a function that applies these properties:
 
-    def myStyle = (_: SButton).textSize(20 dip).<<.margin(5 dip).>>
-	myStyle(SButton("first"))
-	myStyle(SButton("prev"))
-	myStyle(SButton("next"))
-	myStyle(SButton("last"))
+```scala
+def myStyle = (_: SButton).textSize(20 dip).<<.margin(5 dip).>>
+myStyle(SButton("first"))
+myStyle(SButton("prev"))
+myStyle(SButton("next"))
+myStyle(SButton("last"))
+```  
 
 Still not satisfying? Here we have a shorter one:
 
-    def myStyle = (_: SButton).textSize(20 dip).<<.margin(5 dip).>>
-    List("first", "prev", "next", "last").foreach(title => myStyle(SButton(title)))
-
+```scala
+def myStyle = (_: SButton).textSize(20 dip).<<.margin(5 dip).>>
+List("first", "prev", "next", "last").foreach(title => myStyle(SButton(title)))
+```
 
 ## Traits
 
@@ -497,36 +613,44 @@ Android API provides `runOnUiThread()` only for class `Activity`. Trait `RunOnUi
 
 Instead of:
 
-    activity.runOnUiThread {
-      new Runnable() {
-	    def run() {
-	      debug("Running only in Activity class")
-    	}
-      }
+```scala
+activity.runOnUiThread {
+  new Runnable() {
+    def run() {
+      debug("Running only in Activity class")
     }
+  }
+}
+```    
 
 extend trait `RunOnUiThread` and use it like this:
 
-    runOnUiThread(debug("Running in any context"))
+```scala
+runOnUiThread(debug("Running in any context"))
+```
 
 Running a job asynchronously and notifying the UI thread is a very frequently used pattern. Although Android API provides a helper class `AsyncTask`, implementing such a simple idea is still painful, even when we use Scala:
 
-    new AsyncTask[String, Void, String] {
-      def doInBackground(params: Array[String]) = {
-        doAJobTakeSomeTime(params)
-      }
+```scala
+new AsyncTask[String, Void, String] {
+  def doInBackground(params: Array[String]) = {
+    doAJobTakeSomeTime(params)
+  }
 
-      override def onPostExecute(result: String) {
-        alert("Done!", result)
-      }
-    }.execute("param")
+  override def onPostExecute(result: String) {
+    alert("Done!", result)
+  }
+}.execute("param")
+```    
 
 Using `runOnUiThread` and importing `scala.concurrent.ops._`, the asynchronous job shown above can be rewritten like this:
 
-    spawn {
-		val result = doAJobTakeSomeTime(params)
-		runOnUiThread(alert("Done!", result))
-	}
+```scala
+spawn {
+  val result = doAJobTakeSomeTime(params)
+  runOnUiThread(alert("Done!", result))
+}
+```  
 
 It is a great win as it exposes your idea clearly.
 
@@ -540,12 +664,12 @@ Using `spawn` is just an example of asynchronous task processing in Scaloid. You
 
 When you registere `BroadcastReceiver` with `Context.registerReceiver()` you have to unregister it to prevent memory leak. Trait `UnregisterReceiverService` handles these chores for you. All you need to do is extend your Service.
 
-```
+```scala
 class MyService extends UnregisterReceiverService {
   def func() {
     // ...
-	registerReceiver(receiver, intentFilter)
-	// Done! automatically unregistered at UnregisterReceiverService.onDestroy()
+    registerReceiver(receiver, intentFilter)
+    // Done! automatically unregistered at UnregisterReceiverService.onDestroy()
   }
 }
 ```
@@ -556,32 +680,45 @@ Trait `SContext` includes several shortcuts for frequently used android idioms, 
 
 ##### Starting and stopping service
 
-    startService(new Intent(context, classOf[MyService]))
-    stopService(new Intent(context, classOf[MyService]))
+```scala
+startService(new Intent(context, classOf[MyService]))
+stopService(new Intent(context, classOf[MyService]))
+```    
 
 is reduced to:
 
-    startService[MyService]
-    stopService[MyService]
+```scala
+startService[MyService]
+stopService[MyService]
+```    
+
 
 ##### Starting activity
 
-    startActivity(new Intent(context, classOf[MyActivity]))
+```scala
+startActivity(new Intent(context, classOf[MyActivity]))
+```    
 
 is reduced to:
 
-    startActivity[MyActivity]
+```scala
+startActivity[MyActivity]
+```
 
 
 ### Trait `SActivity`
 
 Instead of
 
-    findViewById(R.id.login).asInstanceOf[Button]
+```scala
+findViewById(R.id.login).asInstanceOf[Button]
+```    
 
 use a shorthand:
 
-    find[Button](R.id.login)
+```scala
+find[Button](R.id.login)
+```    
 
 Although we provide this shorthand, Scaloid recommends [programmatically laying out UI, not with XML](#ui-layout-without-xml).
 
@@ -589,20 +726,28 @@ Although we provide this shorthand, Scaloid recommends [programmatically laying 
 
 Unlike other logging frameworks, Android Logging API requires a `String` tag for every log call. We elliminate this by introducing an implicit parameter. Define an implicit value type of `LoggerTag` as shown:
 
-    implicit val tag = LoggerTag("MyAppTag")
+```scala
+implicit val tag = LoggerTag("MyAppTag")
+```    
 
 or, extend trait `TagUtil` or `SContext` which defines the tag by default. Then you can simply log like this:
 
-	warn("Something happened!")
+```scala
+warn("Something happened!")
+```  
 
 Other functions for every log level (`verbose()`, `debug()`, `info()`, `warn()`, `error()` and `wtf()`) are available.
 
-	info("hello " + world)
+```scala
+info("hello " + world)
+```
 
 A `String` parameter passed with `info()` is a lazy argument, so it is evaluated only if the logging is possible. Therefore the example shown above is equivalent to:
 
-	val tag = "MyAppTag"
-	if(Log.isLoggable(tag, Log.INFO)) Log.i(tag, "hello " + world)
+```scala
+val tag = "MyAppTag"
+if(Log.isLoggable(tag, Log.INFO)) Log.i(tag, "hello " + world)
+```  
 
 
 ## Scala getters and setters
@@ -616,77 +761,100 @@ You can use any of the setters listed below:
 
 Compared to Java style getters and setters, for example:
 
-    new TextView(context) {
-	  setText("Hello")
-	  setTextSize(15)
-	}
+```scala
+new TextView(context) {
+  setText("Hello")
+  setTextSize(15)
+}
+```  
 
 that of Scala style clearly reveals the nature of the operations as shown below:
 
-    new STextView {
-      text = "Hello"
-      textSize = 15
-	}
+```scala
+new STextView {
+  text = "Hello"
+  textSize = 15
+}
+```  
 
 Or, you can also chain the setters:
 
-    new STextView text "Hello" textSize 15
+```scala
+new STextView text "Hello" textSize 15
+```    
 
 which is a syntactic sugar for:
 
-    new STextView.text("Hello").textSize(15)
+```scala
+new STextView.text("Hello").textSize(15)
+```
 
 We recommend "assignment style" and "DSL style". Use assignment style when you emphasize that you are assigning something, or use DSL style when the code length of the assignee is short and needs to be chained.
 
 Note: Using `.apply(String)` method on object `STextView`, you can further reduce the code above like this:
 
-    STextView("Hello") textSize 15
+```scala
+STextView("Hello") textSize 15
+```
+
 
 ### Return value of setters
 
 Unlike most setters in the Android API, our setters return the object itself. This feature can be used as a syntactic sugar when setters need to be chained or a function returning some object. For example, a snippet of [Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList1.java?av=h) from ApiDemos that is shown below:
 
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        TextView textView = getGenericView();
-        textView.setText(getGroup(groupPosition).toString());
-        return textView;
-    }
+```java
+public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+  TextView textView = getGenericView();
+  textView.setText(getGroup(groupPosition).toString());
+  return textView;
+}
+```    
 
 is reduced to:
 
-    def getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View, parent: ViewGroup): View =
-      getGenericView.text = getGroup(groupPosition).toString
+```scala
+def getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View, parent: ViewGroup): View =
+  getGenericView.text = getGroup(groupPosition).toString
+```      
 
 <sub>**Design considerations on returning values:** In C or Java, the assignment operator `=` returns a right hand side object. However, chaining assignment operator is very rarely used in these languages. Assigning the same value to multiple variables might means that your code is badly designed (except some context such as involving intensive mathematical computations). However, in Scala DSLs, setters return a left hand side object, and chaining setters are more frequent. For example:</sub>
 
-    getGenericView text "hello" maxHeight 8
+getGenericView text "hello" maxHeight 8
 
 ### Prefixed classes
 
 If you want to use scala style getters/setters, implicit conversions do the magic on native Android objects:
 
-    val v:TextView = ...
-	v.text = "Hello"    // Valid code. Implicit conversion handles this.
+```scala
+val v: TextView = ...
+v.text = "Hello"    // Valid code. Implicit conversion handles this.
+```
 
 However, if you use it in constructors, the compiler will not find the correct implicit conversion:
 
-    def getInstance = new TextView(context) {
-	  text = "Hello"    // Compilation Error.
-	}
+```scala
+def getInstance = new TextView(context) {
+  text = "Hello"    // Compilation Error.
+}
+```  
 
 Therefore, we extended Android classes with the same name prefixed with the 'S' character:
 
-	def getInstance = new STextView {
-	  text = "Hello"    // OK.
-	}
+```scala
+def getInstance = new STextView {
+  text = "Hello"    // OK.
+}
+```
 
 These classes explicitly provide the extra methods that was provided implicitly.
 
 Aditionally, prefixed classes support [implicit context value](#context-as-an-implicit-parameter) and additional syntactic sugar. For example, many classes have `.apply(...)` methods for creating a new instance:
 
-    STextView("Hello")
-    SButton("title", onClickBehavior())
-	SIntent[MyActivity]
+```scala
+STextView("Hello")
+SButton("title", onClickBehavior())
+SIntent[MyActivity]
+```
 
 <sub>**Design considerations on making prefixed classes:** In modern programming language, using packages (or namespaces) are preferred than prefixing. However, when we use both classes from Android API and Scaloid, using a package name is more verbose than prefixing the class name itself (compare with `common.Button` and `SButton`) and can be confused when you use both classes at the same code. We choose pragmatism rather than discipline.</sub>
 
@@ -694,19 +862,27 @@ Aditionally, prefixed classes support [implicit context value](#context-as-an-im
 
 If the setter ends with `...Enabled`, Scaloid adds functions named `enable...` and `disable...`. For example:
 
-    new SLinearLayout().disableVerticalScrollBar
+```scala
+new SLinearLayout().disableVerticalScrollBar
+```
 
 is equivalent to:
 
-	new SLinearLayout().verticalScrollBarEnabled(false)
+```scala
+new SLinearLayout().verticalScrollBarEnabled(false)
+```
 
 Because setting the property `orientation = VERTICAL` for `SLinearLayout` is frequently used, we provide a shorthand:
 
-    new SVerticalLayout()
+```scala
+new SVerticalLayout()
+```
 
 that is equivalent to:
 
-    new SLinearLayout().orientation(LinearLayout.VERTICAL)
+```scala
+new SLinearLayout().orientation(LinearLayout.VERTICAL)
+```
 
 
 ## Classes
@@ -714,37 +890,45 @@ that is equivalent to:
 ### Class AlertDialogBuilder
 
 A Scala-style builder for AlertDialog.
-
-    new AlertDialogBuilder(R.string.title, R.string.message) {
-      neutralButton()
-    }.show()
+ 
+```scala
+new AlertDialogBuilder(R.string.title, R.string.message) {
+  neutralButton()
+}.show()
+```
 
 This displays an alert dialog with given string resources. We provide an equivalent shortcut:
 
-    alert(R.string.title, R.string.messag)
+```scala
+alert(R.string.title, R.string.message)
+```
 
 Also you can build a more complex dialog:
 
-    new AlertDialogBuilder("Exit the app", "Do you really want to exit?") {
-      positiveButton("Exit", finishTheApplication())
-      negativeButton("Cancel")
-    }.show()
+```scala
+new AlertDialogBuilder("Exit the app", "Do you really want to exit?") {
+  positiveButton("Exit", finishTheApplication())
+  negativeButton("Cancel")
+}.show()
+```
 
 The code above is equivalent to:
 
-    new AlertDialog.Builder(context)
-      .setTitle("Exit the app")
-      .setMessage("Do you really want to exit?")
-      .setPositiveButton("Exit", new DialogInterface.OnClickListener {
-        def onClick(dialog: DialogInterface, which: Int) {
-          finishTheApplication()
-        }
-      })
-      .setNegativeButton("Cancel", new DialogInterface.OnClickListener {
-        def onClick(dialog: DialogInterface, which: Int) {
-          dialog.cancel()
-        }
-      }).show()
+```scala
+new AlertDialog.Builder(context)
+  .setTitle("Exit the app")
+  .setMessage("Do you really want to exit?")
+  .setPositiveButton("Exit", new DialogInterface.OnClickListener {
+    def onClick(dialog: DialogInterface, which: Int) {
+      finishTheApplication()
+    }
+  })
+  .setNegativeButton("Cancel", new DialogInterface.OnClickListener {
+    def onClick(dialog: DialogInterface, which: Int) {
+      dialog.cancel()
+    }
+  }).show()
+```
 
 ## Static fields on protected interfaces
 
@@ -758,12 +942,12 @@ Android API has some protected interfaces which has static fields, and inherited
   * If your class inherits `Activity`, change it to `SActivity`
   * If your class (indirectly) inherits `Context`, add `trait SContext with LoggerTag`
   * Otherwise, setting an implicit value is required <br/>
-    `implicit val context: Context = ...`
-  
+`implicit val context: Context = ...`
+
 Then, you are ready to use Scaloid.
 
 If you want to see how Scaloid can be used in action, check a [Scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos).
-	
+
 ## Import it to your project
 
 ### As a maven artifact
@@ -771,15 +955,19 @@ Scaloid is released to the central maven repository.
 
 For maven:
 
-    <dependency>
-        <groupId>org.scaloid</groupId>
-        <artifactId>scaloid</artifactId>
-        <version>0.6_8_2.9</version>
-    </dependency>
+```xml
+<dependency>
+    <groupId>org.scaloid</groupId>
+    <artifactId>scaloid</artifactId>
+    <version>0.6_8_2.9</version>
+</dependency>
+```
 
 For sbt:
 
-    libraryDependencies += "org.scaloid" % "scaloid" % "0.6_8_2.9"
+```scala
+libraryDependencies += "org.scaloid" % "scaloid" % "0.6_8_2.9"
+```
 
 ##### Version number
 Version number of Scaloid is consisted of three parts, separated by `_` characters. The first part is the version of Scaloid, the second is the level of Android API, and the last one is the version of Scala.
