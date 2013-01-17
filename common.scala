@@ -3501,11 +3501,11 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
 
    }
 
-  @inline def toast(message: String)(implicit context: Context) {
+  @inline def toast(message: CharSequence)(implicit context: Context) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
   }
 
-  @inline def longToast(message: String)(implicit context: Context) {
+  @inline def longToast(message: CharSequence)(implicit context: Context) {
     Toast.makeText(context, message, Toast.LENGTH_LONG).show()
   }
 
