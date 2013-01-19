@@ -59,7 +59,7 @@ There is an out-of-the-box solution. Just [fork this project](https://github.com
 
 ## UI Layout without XML
 
-Android SDK leverages XML to build UI layouts. However, XML considered still a bit verbose, and lacks programmability. Scaloid composes UI layout in Scala DSL style, therefore achieve both clarity and programmability. For example, suppose a legacy XML layout as shown below:
+Android SDK leverages XML to build UI layouts. However, XML is considered still a bit verbose, and lacks programmability. Scaloid composes UI layout in Scala DSL style, therefore achieve both clarity and programmability. For example, suppose a legacy XML layout as shown below:
 
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
