@@ -55,7 +55,7 @@ There is an out-of-the-box solution. Just [fork this project](https://github.com
  * [Improved getters/setters](#scala-getters-and-setters)
  * [Concise dialog builder](#class-alertdialogbuilder)
 
-...and many other things!
+...and many other things! Check the [official Scaloid blog](http://blog.scaloid.org) for news and announcements.
 
 ## UI Layout without XML
 
@@ -985,6 +985,8 @@ Scaloid is a single-file project. Just copy `common.scala` and paste it to your 
 ## Let's make it together!
 
 This project is in its early stages, and I will grow it constantly. If you have any idea to improve Scaloid, feel free to open issues or post patches.
+
+Check the [official Scaloid blog](http://blog.scaloid.org) for news and announcements.
 
 ### License
 
