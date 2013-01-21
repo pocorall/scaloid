@@ -101,10 +101,10 @@ new SVerticalLayout {
   STextView("Password")
   SEditText() inputType TEXT_PASSWORD
   SButton("Sign in")
-    += (new SLinearLayout {
-      SButton("Help")
-      SButton("Sign up")
-    })
+  this += new SLinearLayout {
+    SButton("Help")
+    SButton("Sign up")
+  }
 }.padding(20 dip)
 ```    
 
@@ -118,10 +118,10 @@ new SVerticalLayout {
   STextView("Password")
   val pass = SEditText() inputType TEXT_PASSWORD
   SButton("Sign in", signin(userId.text, pass.text))
-    += (new SLinearLayout {
-      SButton("Help", openUri("http://help.url"))
-      SButton("Sign up", openUri("http://signup.uri"))
-    })
+  this += new SLinearLayout {
+    SButton("Help", openUri("http://help.url"))
+    SButton("Sign up", openUri("http://signup.uri"))
+  }
 }.padding(20 dip)
 ```
 
@@ -458,7 +458,7 @@ override def onCreate(savedInstanceState: Bundle) {
   // ...
   new SLinearLayout {
     button = new SButton() text "Click"
-      +=(button)
+    this += button
   }
   // ...
 }
@@ -469,7 +469,7 @@ override def onCreate(savedInstanceState: Bundle) {
 
 ```scala
 button = new SButton() text "Click"
-  +=(button)
+this += button
 ```    
 
 is equivalent to:
@@ -506,9 +506,9 @@ When the layout context is nested, inner-most layout's context is applied:
 
 ```scala
 val layout = new SFrameLayout {
-  +=(new SLinearLayout {
+  this += new SLinearLayout {
     SButton("Click").<<.Weight(1.0f).>>   // in context of SLinearLayout
-  })
+  }
 }
 ```
 
@@ -578,7 +578,7 @@ STextView("hello").<<.margin(10 sp)  // assigns the same value for all direction
 
 #### Tip: Styles for programmers
 
-Android API introduced [styles](http://developer.android.com/guide/topics/ui/themes.html) to reuse common properties on XML layout. Meanwhile, Scaloid layout is an ordinary Scala code. Therefore we can freely define some functions that works as styles. Suppose the following code that repeats some properties:
+Android SDK introduced [styles](http://developer.android.com/guide/topics/ui/themes.html) to reuse common properties on XML layout. Meanwhile, Scaloid layout is an ordinary Scala code. Therefore we can freely define some functions that works as styles. Suppose the following code that repeats some properties:
 
 ```scala
 SButton("first").textSize(20 dip).<<.margin(5 dip).>>

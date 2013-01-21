@@ -3,13 +3,15 @@
  *
  *
  *
+ *
  * Less painful Android development with Scala
  *
  *
+ *
+ *
+ *
+ * Scaloid version 0.7-SNAPSHOT
  * http://scaloid.org
- *
- *
- *
  *
  *
  *
@@ -3763,6 +3765,4 @@ implicit def lazy2DialogOnClickListener[F](f: => F): DialogInterface.OnClickList
   }
 
 }
-
-
 
