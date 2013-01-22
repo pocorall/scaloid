@@ -262,6 +262,8 @@ is reduced to:
 spinnerDialog("Dialog", "working...")
 ```
 
+Even when you call `toast` or `spinnerDialog` from non-UI thread, you [don't need to mind about threading](#asynchronous-task-processing).
+
 ##### Pending intent
 
 ```scala
