@@ -735,7 +735,7 @@ Although we provide this shorthand, Scaloid recommends [programmatically laying 
 ## Activity as an implicit parameter
 Similar to [Context-as-an-implicit-parameter](#context-as-an-implicit-parameter), `Activity` also provided as an implicit parameter for some methods. Here are an example of the implicits:
 
-#### Automatically allocate `View` ID
+#### Automatically allocate a unique `View` ID
 
 In some context, `View`s needed to have an ID value. Although Android API document exposes that the ID need not be unique, allocating unique ID is virtually mandatory. Scaloid provides a package scope function `getUniqueId`, which returns `Int` type ID that is not allocated by any existing `View` components for given implicit `Activity`. Using this, Scaloid also extended `View` class to add a method `uniqueId`, that assigns a new unique ID if it is not already allocated. 
 
