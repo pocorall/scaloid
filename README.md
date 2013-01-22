@@ -737,7 +737,7 @@ Similar to [Context-as-an-implicit-parameter](#context-as-an-implicit-parameter)
 
 #### Automatically allocate `View` ID
 
-In some context, `View`s needed to have an ID value. Although Android API document exposes the ID need not be unique, allocating unique ID is virtually mandatory. Scaloid provides a package scope function `getUniqueId`, which returns `Int` type ID that is not allocated by any `View` components. Using this, Scaloid also extended `View` class to have the `uniqueId` method, that assigns a new unique ID. 
+In some context, `View`s needed to have an ID value. Although Android API document exposes that the ID need not be unique, allocating unique ID is virtually mandatory. Scaloid provides a package scope function `getUniqueId`, which returns `Int` type ID that is not allocated by any existing `View` components for given implicit `Activity`. Using this, Scaloid also extended `View` class to add a method `uniqueId`, that assigns a new unique ID if it is not already allocated. 
 
 One of the good use case of `uniqueId` is `SRelativeLayout`. This layout context have methods that takes another `View` object as an anchor, such as `below`, `above`, `leftOf` and `rightOf`:
 
