@@ -940,6 +940,8 @@ new AlertDialog.Builder(context)
   }).show()
 ```
 
+When you call `show()` or `alert` from non-UI thread, you [don't have to mind about threading](#asynchronous-task-processing).
+
 ## Static fields on protected interfaces
 
 Android API has some protected interfaces which has static fields, and inherited it in public classes. For example `android.provider.ContactsContract.Contacts` inherits a protected interface `android.provider.ContactsContract.ContactsColumns`, which defines a static field `ContactsColumns.DISPLAY_NAME`. In Java code, you can access to it with `Contacts.DISPLAY_NAME`. However, Scala does not support accessing in this way (please refer [this](https://issues.scala-lang.org/browse/SI-1806) and [this](http://www.scala-lang.org/faq/4)). It is bad news for an Android-Scala programmer. So we provide a workaround implementation for this problem. Just copy-and-paste `Workaround.java` and declare `import org.scaloid.Workarounds._`. Then you can use the interfaces publicly which is originally defined as protected.
@@ -982,7 +984,7 @@ libraryDependencies += "org.scaloid" % "scaloid" % "0.6_8_2.9"
 ##### Version number
 Version number of Scaloid is consisted of three parts, separated by `_` characters. The first part is the version of Scaloid, the second is the level of Android API, and the last one is the version of Scala.
 
-Please note that Android API provides backward compatibility, while Scala does not provide it in a binary level. For now, the Scaloid artifact is compiled with Scala 2.9. If you use Scala 2.10 or higher, import the souce code as shown in the following subsection.
+Please note that Android API provides backward compatibility. Therefore you can use a Scaloid artifact targeted to API level 8 for the Android application using the level 8 or above. In other side, Scala does not provide binary compatibility. For now, the Scaloid artifact is compiled with Scala 2.9. If you use Scala 2.10 or higher, import the souce code as shown in the following subsection.
 
 
 ### As the source code
@@ -1020,14 +1022,14 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Build an example of laying out multiple UI**
 * **Build an example of cascaded layout style** <br/>
   Imagine a CSS for Android
-* **Cover full listener shortcuts** <br/>
+* **Write a converter that turns an XML layout into a Scaloid code** <br/>
+  [A simple web application](http://layout.scaloid.org) is demonstrated. Providing this functionality as an Eclipse or Intellij plugin would also be great.
+* **WISIWIG layout builder**
+* **Cover full listener shortcuts**
 * **Cover OpenGL ES and renderscript**
 * **Automatically unregister SensorEventListener onStop()**
 * **Support Google services** <br/>
   Including Google Cloud Messaging (GCM)
-* **Write a converter that turns an XML layout into a Scaloid code** <br/>
-  [A simple web application](http://layout.scaloid.org) is demonstrated. Providing this functionality as an Eclipse or Intellij plugin would also be great.
-* **WISIWIG layout builder**
 * **iOS?**
 
 

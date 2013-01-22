@@ -778,6 +778,12 @@ def defaultValue[U]: U = {
     @noEquivalentGetterExists
     @inline def padding: Int = 0
 
+    def uniqueId(implicit activity:Activity):Int = {
+      if(base.getId < 0) {
+        base.setId(getUniqueId)
+      }
+      return base.getId
+    }
 
     val FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT
     val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
@@ -823,6 +829,16 @@ view
     }
   }
 
+  val idSequence = new java.util.concurrent.atomic.AtomicInteger(0)
+
+  def getUniqueId(implicit activity:Activity): Int = {
+     var candidate:Int = 0
+     do {
+       candidate = idSequence.incrementAndGet
+     } while(activity.findViewById(candidate) != null)
+     candidate
+  }
+
   class RichActivity[V <: Activity](val base: V) extends TraitActivity[V]
 
   @inline implicit def activity2RichActivity[V <: Activity](activity: V) = new RichActivity[V](activity)
@@ -843,20 +859,22 @@ view
 
     def find[V <: View](id: Int): V = base.findViewById(id).asInstanceOf[V]
 
-def runOnUiThread (f: => Unit)  {
-     if(uiThread == Thread.currentThread) {
-       f
-     } else {
-       handler.post(new Runnable() {
-         def run() {
-           f
-         }
-       })
-     }
-   }
+    def runOnUiThread (f: => Unit)  {
+      if(uiThread == Thread.currentThread) {
+        f
+      } else {
+        handler.post(new Runnable() {
+          def run() {
+            f
+          }
+        })
+      }
+    }
   }
 
   trait SActivity extends Activity with SContext with TraitActivity[SActivity] {
+    override implicit val context = this
+
     def base = this
   }
 
@@ -2039,8 +2057,8 @@ base
       this
     }
 
-def above = {
-  addRule(RelativeLayout.ABOVE)
+def above(otherView: View)(implicit activity: Activity) = {
+  addRule(RelativeLayout.ABOVE, otherView.uniqueId)
   this
 }
 
@@ -2109,18 +2127,18 @@ def alignTop = {
   this
 }
 
-def below = {
-  addRule(RelativeLayout.BELOW)
+def below(otherView: View)(implicit activity: Activity) = {
+  addRule(RelativeLayout.BELOW, otherView.uniqueId)
   this
 }
 
-def leftOf = {
-  addRule(RelativeLayout.LEFT_OF)
+def leftOf(otherView: View)(implicit activity: Activity) = {
+  addRule(RelativeLayout.LEFT_OF, otherView.uniqueId)
   this
 }
 
-def rightOf = {
-  addRule(RelativeLayout.RIGHT_OF)
+def rightOf(otherView: View)(implicit activity: Activity) = {
+  addRule(RelativeLayout.RIGHT_OF, otherView.uniqueId)
   this
 }
 
