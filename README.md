@@ -50,7 +50,7 @@ There is an out-of-the-box solution. Just [fork this project](https://github.com
  * [Implicit conversions](#implicit-conversions)
  * [Shorter representation without context object](#context-as-an-implicit-parameter)
  * [Shorter listeners](#enriched-implicit-classes)
- * [Asynchronous processing](#trait-runonuithread)
+ * [Asynchronous processing](#asynchronous-task-processing)
  * [Smarter logging](#logging)
  * [Improved getters/setters](#scala-getters-and-setters)
  * [Concise dialog builder](#class-alertdialogbuilder)
@@ -604,12 +604,11 @@ def myStyle = (_: SButton).textSize(20 dip).<<.margin(5 dip).>>
 List("first", "prev", "next", "last").foreach(title => myStyle(SButton(title)))
 ```
 
-## Traits
 
 
-### Trait `RunOnUiThread`
+### Asynchronous task processing
 
-Android API provides `runOnUiThread()` only for class `Activity`. Trait `RunOnUiThread` provides Scala version of `runOnUiThread()` for anywhere other than `Activity` (e.g. `Service`).
+Android API provides `runOnUiThread()` only for class `Activity`. Scaloid provides a Scala version of `runOnUiThread()` for anywhere other than `Activity`.
 
 Instead of:
 
@@ -623,7 +622,7 @@ activity.runOnUiThread {
 }
 ```    
 
-extend trait `RunOnUiThread` and use it like this:
+In Scaloid, use it like this:
 
 ```scala
 runOnUiThread(debug("Running in any context"))
@@ -652,6 +651,14 @@ spawn {
 }
 ```  
 
+When you don't want to build sophisticate UI interaction, but just want to show something by calling single Scaloid method (e.g. `alert`, `toast`, and `spinnerDialog`), Scaloid handles `runOnUiThread` for you. Therefore, the code block shown above is reduced to:
+
+```scala
+spawn {
+  alert("Done!", doAJobTakeSomeTime(params))
+}
+```  
+
 It is a great win as it exposes your idea clearly.
 
 Just like we throw away `AsyncTask`, we can also elliminate all other Java helpers for asynchronous job, such as `AsyncQueryHandler` and `AsyncTaskLoader`. Compare with the [original Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList2.java?av=h)
@@ -659,6 +666,7 @@ and a [Scala port](https://github.com/pocorall/scaloid-apidemos/blob/master/src/
 
 Using `spawn` is just an example of asynchronous task processing in Scaloid. You can freely use any modern task management utility such as [futures and promises](http://docs.scala-lang.org/sips/pending/futures-promises.html).
 
+## Traits
 
 ### Trait `UnregisterReceiverService`
 
@@ -676,7 +684,7 @@ class MyService extends UnregisterReceiverService {
 
 ### Trait `SContext`
 
-Trait `SContext` includes several shortcuts for frequently used android idioms, and inherits `TagUtil` and `RunOnUiThread`.
+Trait `SContext` includes several shortcuts for frequently used android idioms, and inherits `TagUtil`.
 
 ##### Starting and stopping service
 

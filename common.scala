@@ -827,7 +827,7 @@ view
 
   @inline implicit def activity2RichActivity[V <: Activity](activity: V) = new RichActivity[V](activity)
 
-  trait TraitActivity[V <: Activity] extends RunOnUiThread {
+  trait TraitActivity[V <: Activity] {
 
     @inline def contentView_=(p: View) = {
       base.setContentView(p)
@@ -842,6 +842,18 @@ view
     def base: Activity
 
     def find[V <: View](id: Int): V = base.findViewById(id).asInstanceOf[V]
+
+def runOnUiThread (f: => Unit)  {
+     if(uiThread == Thread.currentThread) {
+       f
+     } else {
+       handler.post(new Runnable() {
+         def run() {
+           f
+         }
+       })
+     }
+   }
   }
 
   trait SActivity extends Activity with SContext with TraitActivity[SActivity] {
@@ -2361,6 +2373,8 @@ def parent = SLinearLayout.this
     }
 
     @inline def message = tit
+
+    override def show():AlertDialog = runOnUiThread(super.show())
   }
 
   @inline def alert(title: CharSequence, text: CharSequence, clickCallback: => Unit = {})(implicit context: Context) {
@@ -3504,15 +3518,15 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
    }
 
   @inline def toast(message: CharSequence)(implicit context: Context) {
-    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    runOnUiThread(Toast.makeText(context, message, Toast.LENGTH_SHORT).show())
   }
 
   @inline def longToast(message: CharSequence)(implicit context: Context) {
-    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    runOnUiThread(Toast.makeText(context, message, Toast.LENGTH_LONG).show())
   }
 
   @inline def spinnerDialog(title: String, message: String)(implicit context: Context): ProgressDialog =
-    ProgressDialog.show(context, title, message, true)
+    runOnUiThread(ProgressDialog.show(context, title, message, true))
 
   @inline def pendingService(intent: Intent)(implicit context: Context) =
     PendingIntent.getService(context, 0, intent, 0)
@@ -3622,7 +3636,7 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
   @inline def windowManager(implicit context: Context): WindowManager =
     context.getSystemService(Context.WINDOW_SERVICE).asInstanceOf[WindowManager]
 
-  trait SContext extends Context with TagUtil with RunOnUiThread {
+  trait SContext extends Context with TagUtil {
     implicit val context = this
 
     def startActivity[T: ClassManifest] {
@@ -3641,17 +3655,22 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
   /**
    * Provides handler instance and runOnUiThread() utility method.
    */
-  trait RunOnUiThread {
-    val handler = new Handler(Looper.getMainLooper)
+    lazy val handler = new Handler(Looper.getMainLooper)
 
-    def runOnUiThread(f: => Unit) {
-      handler.post(new Runnable() {
-        def run() {
-          f
-        }
-      })
+    lazy val uiThread = Looper.getMainLooper.getThread
+
+    def runOnUiThread[T >: Null](f: => T):T = {
+      if(uiThread == Thread.currentThread) {
+        return f
+      } else {
+        handler.post(new Runnable() {
+          def run() {
+            f
+          }
+        })
+        return null
+      }
     }
-  }
 
   trait UnregisterReceiver extends Context {
     val receiverList = new ArrayBuffer[BroadcastReceiver]()
@@ -3686,7 +3705,7 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
   /**
    * Automatically unregisters BroadcastReceiver when onDestroy() called
    */
-  trait UnregisterReceiverActivity extends Activity with UnregisterReceiver {
+  trait UnregisterReceiverActivity extends SActivity with UnregisterReceiver {
     // TODO: can we merge UnregisterReceiverActivity and UnregisterReceiverService?
     // Please submit a patch if you know a better solution.
     override def registerReceiver(receiver: BroadcastReceiver, filter: IntentFilter): android.content.Intent = {
@@ -3706,7 +3725,7 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
    *
    * Please refer http://stackoverflow.com/questions/2796050/key-events-in-tabactivities
    */
-  trait FollowParentBackButton extends Activity {
+  trait FollowParentBackButton extends SActivity {
     override def onBackPressed() {
       val p = getParent
       if (p != null) p.onBackPressed()
@@ -3717,7 +3736,7 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
    * Turn screen on and show the activity even if the screen is locked.
    * This is useful when notifying some important information.
    */
-  trait ScreenOnActivity extends Activity {
+  trait ScreenOnActivity extends SActivity {
     override def onCreate(savedInstanceState: Bundle) {
       super.onCreate(savedInstanceState)
       getWindow.addFlags(FLAG_DISMISS_KEYGUARD | FLAG_SHOW_WHEN_LOCKED | FLAG_TURN_SCREEN_ON)
@@ -3765,4 +3784,5 @@ implicit def lazy2DialogOnClickListener[F](f: => F): DialogInterface.OnClickList
   }
 
 }
+
 
