@@ -606,7 +606,7 @@ List("first", "prev", "next", "last").foreach(title => myStyle(SButton(title)))
 
 
 
-### Asynchronous task processing
+## Asynchronous task processing
 
 Android API provides `runOnUiThread()` only for class `Activity`. Scaloid provides a Scala version of `runOnUiThread()` for anywhere other than `Activity`.
 
@@ -651,7 +651,7 @@ spawn {
 }
 ```  
 
-When you don't want to build sophisticate UI interaction, but just want to show something by calling single Scaloid method (e.g. `alert`, `toast`, and `spinnerDialog`), Scaloid handles `runOnUiThread` for you. Therefore, the code block shown above is reduced to:
+When you don't want to build sophisticate UI interaction, but just want to show something by calling a single Scaloid method (e.g. `alert`, `toast`, and `spinnerDialog`), Scaloid handles `runOnUiThread` for you. Therefore, the code block shown above is reduced to:
 
 ```scala
 spawn {
