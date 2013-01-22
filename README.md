@@ -262,7 +262,7 @@ is reduced to:
 spinnerDialog("Dialog", "working...")
 ```
 
-Even when you call `toast`, `longToast` or `spinnerDialog` from non-UI thread, you [don't have to mind about threading](#asynchronous-task-processing).
+When you call `toast`, `longToast` or `spinnerDialog` from non-UI thread, you [don't have to mind about threading](#asynchronous-task-processing).
 
 ##### Pending intent
 
