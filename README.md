@@ -732,6 +732,33 @@ find[Button](R.id.login)
 
 Although we provide this shorthand, Scaloid recommends [programmatically laying out UI, not with XML](#ui-layout-without-xml).
 
+## Activity as an implicit parameter
+Similar to [Context-as-an-implicit-parameter](#context-as-an-implicit-parameter), `Activity` also provided as an implicit parameter for some methods. Here are an example of the implicits:
+
+#### Automatically allocate `View` ID
+
+In some context, `View`s needed to have an ID value. Although Android API document exposes the ID need not be unique, allocating unique ID is virtually mandatory. Scaloid provides a package scope function `getUniqueId`, which returns `Int` type ID that is not allocated by any `View` components. Using this, Scaloid also extended `View` class to have the `uniqueId` method, that assigns a new unique ID. 
+
+One of the good use case of `uniqueId` is `SRelativeLayout`. This layout context have methods that takes another `View` object as an anchor, such as `below`, `above`, `leftOf` and `rightOf`:
+
+```scala
+new SRelativeLayout {
+  val btn1 = SButton("Hi")
+  SButton("There").<<.below(btn1)
+}
+```
+
+Here we show the inside of the `below` function:
+
+```scala
+def below(anchor: View)(implicit activity: Activity) = {
+  addRule(RelativeLayout.BELOW, anchor.uniqueId)
+  this
+}
+```
+
+A new unique ID is assigned to the `anchor` if it is not assigned already, and passes it to `addRule` function.
+
 ## Logging
 
 Unlike other logging frameworks, Android Logging API requires a `String` tag for every log call. We elliminate this by introducing an implicit parameter. Define an implicit value type of `LoggerTag` as shown:
@@ -971,14 +998,14 @@ For maven:
 <dependency>
     <groupId>org.scaloid</groupId>
     <artifactId>scaloid</artifactId>
-    <version>0.6_8_2.9</version>
+    <version>0.7_8_2.9</version>
 </dependency>
 ```
 
 For sbt:
 
 ```scala
-libraryDependencies += "org.scaloid" % "scaloid" % "0.6_8_2.9"
+libraryDependencies += "org.scaloid" % "scaloid" % "0.7_8_2.9"
 ```
 
 ##### Version number
