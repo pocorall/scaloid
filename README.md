@@ -1033,7 +1033,15 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 
 ### List of projects using Scaloid
 
-<sub>**Share your experience of using Scaloid** by blogging about it and let me know the URL of the post and your Android application name via pocorall@gmail.com. Then I will add a link to your post here.</sub>
+<table>
+<tbody>
+<tr><td>
+[Soundcorset metronome & tuner](#http://blog.scaloid.org/2013/01/scaloid-powered-soundcorset-metronome.html)
+</td></tr>
+</tbody>
+</table>
+
+<sub>**Share your experience of using Scaloid** by blogging about it and let me know the URL of the post and the name of your Android application via pocorall@gmail.com. Then I will add a link to your post here.</sub>
 
 ## Roadmap
 
