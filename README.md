@@ -1036,7 +1036,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 <table>
 <tbody>
 <tr><td>
-[Soundcorset metronome & tuner](#http://blog.scaloid.org/2013/01/scaloid-powered-soundcorset-metronome.html)
+[Soundcorset metronome & tuner](http://blog.scaloid.org/2013/01/scaloid-powered-soundcorset-metronome.html)
 </td></tr>
 </tbody>
 </table>
