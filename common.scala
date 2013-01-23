@@ -10,7 +10,7 @@
  *
  *
  *
- * Scaloid version 0.7-SNAPSHOT
+ * Scaloid version 0.8-SNAPSHOT
  * http://scaloid.org
  *
  *
@@ -873,7 +873,7 @@ view
   }
 
   trait SActivity extends Activity with SContext with TraitActivity[SActivity] {
-    override implicit val context = this
+    override implicit val ctx = this
 
     def base = this
   }
@@ -3655,7 +3655,7 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
     context.getSystemService(Context.WINDOW_SERVICE).asInstanceOf[WindowManager]
 
   trait SContext extends Context with TagUtil {
-    implicit val context = this
+    implicit val ctx = this
 
     def startActivity[T: ClassManifest] {
       startActivity(SIntent[T])
