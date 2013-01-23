@@ -653,7 +653,7 @@ spawn {
 }
 ```  
 
-When you don't want to build sophisticate UI interaction, but just want to show something by calling a single Scaloid method (e.g. `alert`, `toast`, and `spinnerDialog`), Scaloid handles `runOnUiThread` for you. Therefore, the code block shown above is reduced to:
+When you don't want to build sophisticate UI interaction, but just want to display something by calling a single Scaloid method (e.g. `alert`, `toast`, and `spinnerDialog`), Scaloid handles `runOnUiThread` for you. Therefore, the code block shown above is reduced to:
 
 ```scala
 spawn {
@@ -1031,6 +1031,9 @@ Check the [official Scaloid blog](http://blog.scaloid.org) for news and announce
 
 This software is licensed under the [Apache 2 license](http://www.apache.org/licenses/LICENSE-2.0.html).
 
+### List of projects using Scaloid
+
+<sub>**Share your experience of using Scaloid** by blogging about it and let me know the URL of the post and your Android application name via pocorall@gmail.com. Then I will add a link to your post here.</sub>
 
 ## Roadmap
 
