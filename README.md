@@ -242,7 +242,7 @@ There are more implicit conversions available. Check the source code as needed.
 Many methods in the Android API require an instance of a class `Context`. Providing this for every method call results in clumsy code. We employ an implicit parameter to eliminate this. Just declare an implicit value that represents current context:
 
 ```scala
-implicit val context = ...
+implicit val ctx = ...
 ```    
 
 or just extend trait `SContext`, which defines it for you. Then the code that required `Context` becomes much simpler, for example:
@@ -1009,7 +1009,7 @@ Android API has some protected interfaces which has static fields, and inherited
   * If your class inherits `Activity`, change it to `SActivity`
   * If your class (indirectly) inherits `Context`, add `trait SContext with LoggerTag`
   * Otherwise, setting an implicit value is required <br/>
-    `implicit val context: Context = ...`
+    `implicit val ctx: Context = ...`
 
 Then, you are ready to use Scaloid.
 
