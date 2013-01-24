@@ -761,11 +761,21 @@ find[Button](R.id.login)
 Although we provide this shorthand, Scaloid recommends [programmatically laying out UI, not with XML](#ui-layout-without-xml).
 
 ## Activity as an implicit parameter
-Similar to [Context-as-an-implicit-parameter](#context-as-an-implicit-parameter), `Activity` also provided as an implicit parameter for some methods. Here are an example of the implicits:
+Similar to [Context-as-an-implicit-parameter](#context-as-an-implicit-parameter), a value type of `Activity` is also required as an implicit parameter for some methods. When you extend `SActivity`, object `this` is assigned as the implicit activity by default. Here is an example of the implicits:
 
 #### Automatically allocate a unique `View` ID
 
-In some context, `View`s needed to have an ID value. Although Android API document exposes that the ID need not be unique, allocating unique ID is virtually mandatory. Scaloid provides a package scope function `getUniqueId`, which returns `Int` type ID that is not allocated by any existing `View` components for given implicit `Activity`. Using this, Scaloid also extended `View` class to add a method `uniqueId`, that assigns a new unique ID if it is not already allocated. 
+Often, `View`s are required to have an ID value. Although Android API document specifies that the ID need not be unique, allocating unique ID is virtually mandatory in practice. Scaloid provides a package scope function `getUniqueId`, which returns `Int` type ID that is not allocated by any existing `View` components for given implicit `Activity`. 
+
+```scala
+val newUniqueIdForCurrentActivity = getUniqueId
+```
+
+Using this, Scaloid also extended `View` class to add a method `uniqueId`, that assigns a new unique ID if it is not already allocated. 
+
+```scala
+val uniqueIdOfMyView = myView.uniqueId
+```
 
 One of the good use case of `uniqueId` is `SRelativeLayout`. This layout context have methods that takes another `View` object as an anchor, such as `below`, `above`, `leftOf` and `rightOf`:
 
