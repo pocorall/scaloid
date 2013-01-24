@@ -761,7 +761,14 @@ find[Button](R.id.login)
 Although we provide this shorthand, Scaloid recommends [programmatically laying out UI, not with XML](#ui-layout-without-xml).
 
 ## Activity as an implicit parameter
-Similar to [Context-as-an-implicit-parameter](#context-as-an-implicit-parameter), a value type of `Activity` is also required as an implicit parameter for some methods. When you extend `SActivity`, object `this` is assigned as the implicit activity by default. Here is an example of the implicits:
+Similar to [Context-as-an-implicit-parameter](#context-as-an-implicit-parameter), an `Activity` type implicit parameter is also required for some methods. Therefore, you have to define an activity as an implicit value:
+
+```scala
+implicit val ctx: Activity = ...
+```
+
+Because class `Activity` is a subclass of `Context` it can also be an implicit context.
+When you extend `SActivity`, object `this` is assigned as the implicit activity by default. Here is an example of the implicits:
 
 #### Automatically allocate a unique `View` ID
 
@@ -795,7 +802,7 @@ def below(anchor: View)(implicit activity: Activity) = {
 }
 ```
 
-A new unique ID is assigned to the `anchor` if it is not assigned already, and passes it to `addRule` function.
+A new unique ID is assigned to the `anchor` if it is not assigned already, and passes it to `addRule` function. 
 
 ## Logging
 
