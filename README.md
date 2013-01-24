@@ -777,7 +777,7 @@ Using this, Scaloid also extended `View` class to add a method `uniqueId`, that 
 val uniqueIdOfMyView = myView.uniqueId
 ```
 
-One of the good use case of `uniqueId` is `SRelativeLayout`. This layout context have methods that takes another `View` object as an anchor, such as `below`, `above`, `leftOf` and `rightOf`:
+One of the good use case of `uniqueId` is `SRelativeLayout`. Some of the methods in this layout context, such as `below`, `above`, `leftOf` and `rightOf`, takes another `View` object as an anchor:
 
 ```scala
 new SRelativeLayout {
@@ -786,7 +786,7 @@ new SRelativeLayout {
 }
 ```
 
-Here we show the inside of the `below` function:
+Here we show the implimentation of the `below` function:
 
 ```scala
 def below(anchor: View)(implicit activity: Activity) = {
