@@ -767,14 +767,14 @@ Similar to the [implict context](#context-as-an-implicit-parameter), an `Activit
 implicit val ctx: Activity = ...
 ```
 
-Because class `Activity` is a subclass of `Context` it can also be an implicit context.
+Because the class `Activity` is a subclass of `Context`, it can also be an implicit context.
 When you extend `SActivity`, object `this` is assigned as the implicit activity by default.
 
-Here we show some example cases of using implicit activity:
+Here we show some example cases of using the implicit activity:
 
 #### Automatically allocate a unique `View` ID
 
-Often, `View`s are required to have an ID value. Although Android API document specifies that the ID need not be unique, allocating unique ID is virtually mandatory in practice. Scaloid provides a package scope function `getUniqueId`, which returns `Int` type ID that is not allocated by any existing `View` components for given implicit `Activity`. 
+Often, `View`s are required to have an ID value. Although Android API document specifies that the ID need not be unique, allocating unique ID is virtually mandatory in practice. Scaloid provides a package scope function `getUniqueId`, which returns `Int` type ID that is not allocated by any existing `View` components for given implicit activity.
 
 ```scala
 val newUniqueIdForCurrentActivity = getUniqueId
