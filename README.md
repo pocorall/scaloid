@@ -1018,7 +1018,7 @@ When you call `show()` or `alert` from non-UI thread, you [don't have to mind ab
 
 ## Static fields on protected interfaces
 
-Android API has some protected interfaces which has static fields, and inherited it in public classes. For example `android.provider.ContactsContract.Contacts` inherits a protected interface `android.provider.ContactsContract.ContactsColumns`, which defines a static field `ContactsColumns.DISPLAY_NAME`. In Java code, you can access to it with `Contacts.DISPLAY_NAME`. However, Scala does not support accessing in this way (please refer [this](https://issues.scala-lang.org/browse/SI-1806) and [this](http://www.scala-lang.org/faq/4)). It is bad news for an Android-Scala programmer. So we provide a workaround implementation for this problem. Just copy-and-paste [Workarounds.java](https://github.com/pocorall/scaloid/blob/master/src/main/scala/org/scaloid/Workarounds.java) and declare `import org.scaloid.Workarounds._`. Then you can use the interfaces publicly which is originally defined as protected.
+Android API has some protected interfaces which has static fields, and inherited it in public classes. For example `android.provider.ContactsContract.Contacts` inherits a protected interface `android.provider.ContactsContract.ContactsColumns`, which defines a static field `ContactsColumns.DISPLAY_NAME`. In Java code, you can access to it with `Contacts.DISPLAY_NAME`. However, Scala does not support accessing in this way (please refer [this](https://issues.scala-lang.org/browse/SI-1806) and [this](http://www.scala-lang.org/faq/4)). It is bad news for an Android-Scala programmer. So we provide a workaround implementation for this problem. Declare `import org.scaloid.Workarounds._`. Then you can use the interfaces publicly which is originally defined as protected.
 
 ## Quick start
 
@@ -1036,7 +1036,6 @@ If you want to see how Scaloid can be used in action, check a [Scala port of api
 
 ## Import it to your project
 
-### As a maven artifact
 Scaloid is released to the central maven repository.
 
 For maven:
@@ -1045,26 +1044,28 @@ For maven:
 <dependency>
     <groupId>org.scaloid</groupId>
     <artifactId>scaloid</artifactId>
-    <version>0.7_8_2.9</version>
+    <version>0.7.1_8_2.10</version>
 </dependency>
 ```
 
 For sbt:
 
 ```scala
-libraryDependencies += "org.scaloid" % "scaloid" % "0.7_8_2.9"
+libraryDependencies += "org.scaloid" % "scaloid" % "0.7.1_8_2.10"
 ```
 
 ##### Version number
 Version number of Scaloid is consisted of three parts, separated by `_` characters. The first part is the version of Scaloid, the second is the level of Android API, and the last one is the version of Scala.
 
-Please note that Android API provides backward compatibility. Therefore you can use a Scaloid artifact targeted to API level 8 for the Android application using the level 8 or above. In other side, Scala does not provide binary compatibility. For now, the Scaloid artifact is compiled with Scala 2.9. If you use Scala 2.10 or higher, import the souce code as shown in the following subsection.
+Please note that Android API provides backward compatibility. Therefore you can use a Scaloid artifact targeted to API level 8 for the Android application using the level 8 or *above*. In other side, Scala does not provide binary compatibility. The Scaloid artifact uploaded to the central repo is compiled with Scala 2.10. If you use other Scala versions, build the artifact as shown in the following subsection.
 
 
-### As the source code
-Scaloid is a single-file project. Just copy [common.scala](https://github.com/pocorall/scaloid/blob/master/src/main/scala/org/scaloid/common.scala) and paste it to your project.
+### Build the source
 
- * Currently, Scaloid can be built with Android API level 8 or higher and Scala version 2.9.1 or higher.
+1. Clone the git repository
+2. Just issue `mvn package`
+
+ * Scaloid can be built with Android API level 8 or higher and Scala version 2.9.1 or higher.
 
 
 
