@@ -6,12 +6,10 @@
  *
  * Less painful Android development with Scala
  *
- *
- *
- *
- *
- * Scaloid version 0.8-SNAPSHOT
  * http://scaloid.org
+ *
+ *
+ *
  *
  *
  *
@@ -818,25 +816,29 @@ def defaultValue[U]: U = {
 
   object SEditText {
     def apply[LP <: ViewGroupLayoutParams[_, SEditText]]()(implicit context: Context, defaultLayoutParam: (SEditText) => LP): SEditText =  {
-    val view = (new SEditText)
-    view.<<.parent.+=(view)
-    view }
-    def apply[LP <: ViewGroupLayoutParams[_, SEditText]](txt: CharSequence)(implicit context: Context, defaultLayoutParam: (SEditText) => LP): SEditText =  {
-val view = new SEditText
-view text txt
-view.<<.parent.+=(view)
-view
+      val v = (new SEditText)
+      
+      v.<<.parent.+=(v)
+      v
     }
+
+    def apply[LP <: ViewGroupLayoutParams[_, SEditText]](txt: CharSequence)(implicit context: Context, defaultLayoutParam: (SEditText) => LP): SEditText =  {
+      val v = (new SEditText)
+      v text txt
+      v.<<.parent.+=(v)
+      v
+    }
+
   }
 
   val idSequence = new java.util.concurrent.atomic.AtomicInteger(0)
 
   def getUniqueId(implicit activity:Activity): Int = {
-     var candidate:Int = 0
-     do {
-       candidate = idSequence.incrementAndGet
-     } while(activity.findViewById(candidate) != null)
-     candidate
+    var candidate:Int = 0
+    do {
+      candidate = idSequence.incrementAndGet
+    } while(activity.findViewById(candidate) != null)
+    candidate
   }
 
   class RichActivity[V <: Activity](val base: V) extends TraitActivity[V]
@@ -1501,17 +1503,20 @@ view
 
   object STextView {
     def apply[LP <: ViewGroupLayoutParams[_, STextView]]()(implicit context: Context, defaultLayoutParam: (STextView) => LP): STextView =  {
-    val view = (new STextView)
-    view.<<.parent.+=(view)
-    view }
-    def apply[LP <: ViewGroupLayoutParams[_, STextView]](txt: CharSequence)(implicit context: Context, defaultLayoutParam: (STextView) => LP): STextView =  {
-val view = new STextView
-view text txt
-view.<<.parent.+=(view)
-view
+      val v = (new STextView)
+      
+      v.<<.parent.+=(v)
+      v
     }
-  }
 
+    def apply[LP <: ViewGroupLayoutParams[_, STextView]](txt: CharSequence)(implicit context: Context, defaultLayoutParam: (STextView) => LP): STextView =  {
+      val v = (new STextView)
+      v text txt
+      v.<<.parent.+=(v)
+      v
+    }
+
+  }
 
   class RichMenu(menu: Menu) {
     @inline def +=(txt: CharSequence) = menu.add(txt)
@@ -1770,9 +1775,12 @@ view
 
   object SListView {
     def apply[LP <: ViewGroupLayoutParams[_, SListView]]()(implicit context: Context, defaultLayoutParam: (SListView) => LP): SListView =  {
-    val view = (new SListView)
-    view.<<.parent.+=(view)
-    view }
+      val v = (new SListView)
+      
+      v.<<.parent.+=(v)
+      v
+    }
+
   }
 
   class RichViewGroup[V <: ViewGroup](val base: V) extends TraitViewGroup[V]
@@ -1919,21 +1927,21 @@ view
       base
     }
 
-def margin(size:Int) = {
-bottomMargin = size
-topMargin = size
-leftMargin = size
-rightMargin = size
-base
-}
+    def margin(size:Int) = {
+      bottomMargin = size
+      topMargin = size
+      leftMargin = size
+      rightMargin = size
+      base
+    }
 
-def margin(top:Int, right:Int, bottom:Int, left:Int) = {
-bottomMargin = bottom
-topMargin = top
-leftMargin = left
-rightMargin = right
-base
-}
+    def margin(top:Int, right:Int, bottom:Int, left:Int) = {
+      bottomMargin = bottom
+      topMargin = top
+      leftMargin = left
+      rightMargin = right
+      base
+    }
   }
 
   class RichFrameLayout[V <: FrameLayout](val base: V) extends TraitFrameLayout[V]
@@ -2057,106 +2065,107 @@ base
       this
     }
 
-def above(otherView: View)(implicit activity: Activity) = {
-  addRule(RelativeLayout.ABOVE, otherView.uniqueId)
-  this
-}
+    def above(otherView: View)(implicit activity: Activity) = {
+      addRule(RelativeLayout.ABOVE, otherView.uniqueId)
+      this
+    }
 
-def alignBaseline = {
-  addRule(RelativeLayout.ALIGN_BASELINE)
-  this
-}
+    def alignBaseline = {
+      addRule(RelativeLayout.ALIGN_BASELINE)
+      this
+    }
 
-def alignBottom = {
-  addRule(RelativeLayout.ALIGN_BOTTOM)
-  this
-}
+    def alignBottom = {
+      addRule(RelativeLayout.ALIGN_BOTTOM)
+      this
+    }
 
 //def alignEnd = {
 //  addRule(RelativeLayout.ALIGN_END)
 //  this
 //}
 
-def alignLeft = {
-  addRule(RelativeLayout.ALIGN_LEFT)
-  this
-}
+    def alignLeft = {
+      addRule(RelativeLayout.ALIGN_LEFT)
+      this
+    }
 
-def alignParentBottom = {
-  addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
-  this
-}
+    def alignParentBottom = {
+      addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+      this
+    }
 
-//def alignParentEnd = {
-//  addRule(RelativeLayout.ALIGN_PARENT_END)
-//  this
-//}
+    //def alignParentEnd = {
+    //  addRule(RelativeLayout.ALIGN_PARENT_END)
+    //  this
+    //}
 
-def alignParentLeft = {
-  addRule(RelativeLayout.ALIGN_PARENT_LEFT)
-  this
-}
+    def alignParentLeft = {
+      addRule(RelativeLayout.ALIGN_PARENT_LEFT)
+      this
+    }
 
-def alignParentRight = {
-  addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-  this
-}
+    def alignParentRight = {
+      addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+      this
+    }
 
 //def alignParentStart = {
 //  addRule(RelativeLayout.ALIGN_PARENT_START)
 //  this
 //}
 
-def alignParentTop = {
-  addRule(RelativeLayout.ALIGN_PARENT_TOP)
-  this
-}
+    def alignParentTop = {
+      addRule(RelativeLayout.ALIGN_PARENT_TOP)
+      this
+    }
 
-def alignRight = {
-  addRule(RelativeLayout.ALIGN_RIGHT)
-  this
-}
+    def alignRight = {
+      addRule(RelativeLayout.ALIGN_RIGHT)
+      this
+    }
 
 //def alignStart = {
 //  addRule(RelativeLayout.ALIGN_START)
 //  this
 //}
 
-def alignTop = {
-  addRule(RelativeLayout.ALIGN_TOP)
-  this
-}
+    def alignTop = {
+      addRule(RelativeLayout.ALIGN_TOP)
+      this
+    }
 
-def below(otherView: View)(implicit activity: Activity) = {
-  addRule(RelativeLayout.BELOW, otherView.uniqueId)
-  this
-}
+    def below(otherView: View)(implicit activity: Activity) = {
+      addRule(RelativeLayout.BELOW, otherView.uniqueId)
+      this
+    }
 
-def leftOf(otherView: View)(implicit activity: Activity) = {
-  addRule(RelativeLayout.LEFT_OF, otherView.uniqueId)
-  this
-}
+    def leftOf(otherView: View)(implicit activity: Activity) = {
+      addRule(RelativeLayout.LEFT_OF, otherView.uniqueId)
+      this
+    }
 
-def rightOf(otherView: View)(implicit activity: Activity) = {
-  addRule(RelativeLayout.RIGHT_OF, otherView.uniqueId)
-  this
-}
+    def rightOf(otherView: View)(implicit activity: Activity) = {
+      addRule(RelativeLayout.RIGHT_OF, otherView.uniqueId)
+      this
+    }
 
-def centerHorizontal = {
-  addRule(RelativeLayout.CENTER_HORIZONTAL)
-  this
-}
+    def centerHorizontal = {
+      addRule(RelativeLayout.CENTER_HORIZONTAL)
+      this
+    }
 
-def centerInParent = {
-  addRule(RelativeLayout.CENTER_IN_PARENT)
-  this
-}
+    def centerInParent = {
+      addRule(RelativeLayout.CENTER_IN_PARENT)
+      this
+    }
 
-def centerVertical = {
-  addRule(RelativeLayout.CENTER_VERTICAL)
-  this
-}
-def parent = SRelativeLayout.this
+    def centerVertical = {
+      addRule(RelativeLayout.CENTER_VERTICAL)
+      this
+    }
+
+    def parent = SRelativeLayout.this
 
     def >> : V = v
   }
@@ -2252,7 +2261,7 @@ def parent = SRelativeLayout.this
         weight = w
         this
       }
-def parent = SLinearLayout.this
+      def parent = SLinearLayout.this
 
       def >> : V = v
     }
@@ -2424,19 +2433,22 @@ def parent = SLinearLayout.this
 
   object SButton {
     def apply[LP <: ViewGroupLayoutParams[_, SButton]]()(implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton =  {
-    val view = (new SButton)
-    view.<<.parent.+=(view)
-    view }
+      val v = (new SButton)
+      
+      v.<<.parent.+=(v)
+      v
+    }
+
     def apply[LP <: ViewGroupLayoutParams[_, SButton]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton =  {
       apply(text, func2ViewOnClickListener(onClickListener))
     }
     def apply[LP <: ViewGroupLayoutParams[_, SButton]](text: CharSequence, onClickListener: OnClickListener = {})(implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton =  {
-      val button = new SButton()(context)
-      button.text = text
-      button.setOnClickListener(onClickListener)
-      button.<<.parent.+=(button)
-      button
+      val v = (new SButton)
+      v.text = text;      v.setOnClickListener(onClickListener)
+      v.<<.parent.+=(v)
+      v
     }
+
   }
 
   class RichKeyboardView[V <: KeyboardView](val base: V) extends TraitKeyboardView[V]
@@ -2706,9 +2718,12 @@ def parent = SLinearLayout.this
 
   object SProgressBar {
     def apply[LP <: ViewGroupLayoutParams[_, SProgressBar]]()(implicit context: Context, defaultLayoutParam: (SProgressBar) => LP): SProgressBar =  {
-    val view = (new SProgressBar)
-    view.<<.parent.+=(view)
-    view }
+      val v = (new SProgressBar)
+      
+      v.<<.parent.+=(v)
+      v
+    }
+
   }
 
   class RichAnalogClock[V <: AnalogClock](val base: V) extends TraitAnalogClock[V]
@@ -2726,9 +2741,12 @@ def parent = SLinearLayout.this
 
   object SAnalogClock {
     def apply[LP <: ViewGroupLayoutParams[_, SAnalogClock]]()(implicit context: Context, defaultLayoutParam: (SAnalogClock) => LP): SAnalogClock =  {
-    val view = (new SAnalogClock)
-    view.<<.parent.+=(view)
-    view }
+      val v = (new SAnalogClock)
+      
+      v.<<.parent.+=(v)
+      v
+    }
+
   }
 
   class RichSurfaceView[V <: SurfaceView](val base: V) extends TraitSurfaceView[V]
@@ -3086,9 +3104,12 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
 
   object SSpinner {
     def apply[LP <: ViewGroupLayoutParams[_, SSpinner]]()(implicit context: Context, defaultLayoutParam: (SSpinner) => LP): SSpinner =  {
-    val view = (new SSpinner)
-    view.<<.parent.+=(view)
-    view }
+      val v = (new SSpinner)
+      
+      v.<<.parent.+=(v)
+      v
+    }
+
   }
 
   class RichGallery[V <: Gallery](val base: V) extends TraitGallery[V]
@@ -3156,9 +3177,12 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
 
   object SGallery {
     def apply[LP <: ViewGroupLayoutParams[_, SGallery]]()(implicit context: Context, defaultLayoutParam: (SGallery) => LP): SGallery =  {
-    val view = (new SGallery)
-    view.<<.parent.+=(view)
-    view }
+      val v = (new SGallery)
+      
+      v.<<.parent.+=(v)
+      v
+    }
+
   }
 
   class RichAbsSeekBar[V <: AbsSeekBar](val base: V) extends TraitAbsSeekBar[V]
@@ -3299,10 +3323,13 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
 
   object SSeekBar {
     def apply[LP <: ViewGroupLayoutParams[_, SSeekBar]]()(implicit context: Context, defaultLayoutParam: (SSeekBar) => LP): SSeekBar =  {
-    val view = (new SSeekBar)
-    view.<<.parent.+=(view)
-    view }
-   }
+      val v = (new SSeekBar)
+      
+      v.<<.parent.+=(v)
+      v
+    }
+
+  }
 
   class RichRatingBar[V <: RatingBar](val base: V) extends TraitRatingBar[V]
 
@@ -3357,9 +3384,12 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
 
   object SRatingBar {
     def apply[LP <: ViewGroupLayoutParams[_, SRatingBar]]()(implicit context: Context, defaultLayoutParam: (SRatingBar) => LP): SRatingBar =  {
-    val view = (new SRatingBar)
-    view.<<.parent.+=(view)
-    view }
+      val v = (new SRatingBar)
+      
+      v.<<.parent.+=(v)
+      v
+    }
+
   }
 
   class RichAppWidgetHostView[V <: AppWidgetHostView](val base: V) extends TraitAppWidgetHostView[V]
@@ -3395,9 +3425,12 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
 
   object SDatePicker {
     def apply[LP <: ViewGroupLayoutParams[_, SDatePicker]]()(implicit context: Context, defaultLayoutParam: (SDatePicker) => LP): SDatePicker =  {
-    val view = (new SDatePicker)
-    view.<<.parent.+=(view)
-    view }
+      val v = (new SDatePicker)
+      
+      v.<<.parent.+=(v)
+      v
+    }
+
   }
 
   class RichGestureOverlayView[V <: GestureOverlayView](val base: V) extends TraitGestureOverlayView[V]
