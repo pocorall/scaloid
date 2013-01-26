@@ -30,7 +30,7 @@
 
 # Less painful Android development with Scala
 
-Scala is cool. [Writing Android applications with Scala](#faqs-about-scala-on-android) is also a cool idea. Because Android exposes Java APIs, we need some utility library to leverage full power of Scala. Scaloid is a library aimed to simplify your Android code.
+Scaloid is a library aimed to simplify your Android code. It makes your code easy to write and understand by [leveraging Scala language](#faqs-about-scala-on-android).
 
 For example, the code block shown below:
 
