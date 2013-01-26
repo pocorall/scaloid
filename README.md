@@ -681,7 +681,7 @@ spawn {
 }
 ```  
 
-When you don't want to build sophisticate UI interaction, but just want to display something by calling a single Scaloid method (e.g. `alert`, `toast`, and `spinnerDialog`), Scaloid handles `runOnUiThread` for you. Therefore, the code block shown above is reduced to:
+When you don't want to build sophisticate UI interactions, but just want to display something by calling a single Scaloid method (e.g. `alert`, `toast`, and `spinnerDialog`), Scaloid handles `runOnUiThread` for you. Therefore, the code block shown above is reduced to:
 
 ```scala
 spawn {
