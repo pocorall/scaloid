@@ -606,9 +606,15 @@ STextView("hello").<<.margin(10 sp)  // assigns the same value for all direction
 ```
 
 
-#### Tip: Styles for programmers
+## Styles for programmers
 
-Android SDK introduced [styles](http://developer.android.com/guide/topics/ui/themes.html) to reuse common properties on XML layout. Meanwhile, Scaloid layout is an ordinary Scala code. Therefore we can freely define some functions that works as styles. Suppose the following code that repeats some properties:
+Android SDK introduced [styles](http://developer.android.com/guide/topics/ui/themes.html) to reuse common properties on XML layout. We are repeatedly pointed out that XML is verbose.
+Meanwhile, Scaloid layout is an ordinary Scala code. 
+You do not need to learn any syntax or API library. Just write a code that work as styles.
+
+#### Basic: Assign it individually
+
+Suppose the following code that repeats some properties:
 
 ```scala
 SButton("first").textSize(20 dip).<<.margin(5 dip).>>
@@ -634,8 +640,34 @@ def myStyle = (_: SButton).textSize(20 dip).<<.margin(5 dip).>>
 List("first", "prev", "next", "last").foreach(title => myStyle(SButton(title)))
 ```
 
+#### Advanced: Just like CSS
 
+For every view component, companion object's `apply` methods(e.g. `SButton.apply`) calls its parent's `+=` method to register itself to the parent.
+Therefore, if we extend the `+=` method of the parent, we can apply the style in more generic way:
 
+```scala
+new SVerticalLayout {
+  override def +=(v: View) = {
+	v match {
+	  case b: SButton => b.textColor(Color.GREEN).onClick(toast("Bang!"))
+	  case t: STextView => t.textSize(17 dip)
+	  case _ => v.backgroundColor(Color.BLUE)
+	}
+	super.+=(v)
+  }
+  
+  STextView("I am 17 dip tall")
+  STextView("Me too")
+  STextView("Oh, I am taller than you").textSize(24 dip) // overriding
+  SEditText("Am I blue?")
+  SButton("I am a green monster!")
+}
+``` 
+  
+Similar to CSS, you can assign different styles for each classes using Scala pattern matching. 
+Unlike Android XML styles or even CSS, Scaloid can assign some actions to the component (see `onclick(toast(...))`), or can do anything that you imagine.
+Because `+=` is run inside the `SSomeView.apply` method, you can freely override the property individually, as shown in the example above.
+  
 ## Asynchronous task processing
 
 Android API provides `runOnUiThread()` only for class `Activity`. Scaloid provides a Scala version of `runOnUiThread()` for anywhere other than `Activity`.
