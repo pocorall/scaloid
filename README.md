@@ -608,9 +608,8 @@ STextView("hello").<<.margin(10 sp)  // assigns the same value for all direction
 
 ## Styles for programmers
 
-Android SDK introduced [styles](http://developer.android.com/guide/topics/ui/themes.html) to reuse common properties on XML layout. We are repeatedly pointed out that XML is verbose.
-Meanwhile, Scaloid layout is an ordinary Scala code. 
-You do not need to learn any syntax or API library. Just write a code that work as styles.
+Android SDK introduced [styles](http://developer.android.com/guide/topics/ui/themes.html) to reuse common properties on XML layout. We repeatedly pointed out that XML is verbose.
+To apply styles in Scaloid, you do not need to learn any syntax or API library, because Scaloid layout is an ordinary Scala code. Just write a code that work as styles.
 
 #### Basic: Assign it individually
 
@@ -665,8 +664,8 @@ new SVerticalLayout {
 ``` 
   
 Similar to CSS, you can assign different styles for each classes using Scala pattern matching. 
-Unlike Android XML styles or even CSS, Scaloid can assign some actions to the component (see `onclick(toast(...))`), or can do anything that you imagine.
-Because `+=` is run inside the `SSomeView.apply` method, you can freely override the property individually, as shown in the example above.
+Unlike Android XML styles or even CSS, Scaloid can assign some actions to the component (see `onclick(toast(...))`), or can do anything that you imagine. 
+Also, you can easily override the property individually, as shown in the example above.
   
 ## Asynchronous task processing
 
