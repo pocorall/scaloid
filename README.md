@@ -1135,8 +1135,6 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Write a complete API document**
 * **Write the Beginner's guide**
 * **Build an example of laying out multiple UI**
-* **Build an example of cascaded layout style** <br/>
-  Imagine a CSS for Android
 * **Write a converter that turns an XML layout into a Scaloid code** <br/>
   [A simple web application](http://layout.scaloid.org) is demonstrated. Providing this functionality as an Eclipse or Intellij plugin would also be great.
 * **WISIWIG layout builder**
