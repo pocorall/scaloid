@@ -666,6 +666,9 @@ new SVerticalLayout {
 Similar to CSS, you can assign different styles for each classes using Scala pattern matching. 
 Unlike Android XML styles or even CSS, Scaloid can assign some actions to the component (see `onclick(toast(...))`), or can do anything that you imagine. 
 Also, you can easily override the property individually, as shown in the example above.
+
+Last thing that you may missed: These are type-safe. If you made a mistake, compiler will check it for you.
+
   
 ## Asynchronous task processing
 
