@@ -646,13 +646,10 @@ Therefore, if we extend the `+=` method of the parent, we can apply the style in
 
 ```scala
 new SVerticalLayout {
-  override def +=(v: View) = {
-	v match {
-	  case b: SButton => b.textColor(Color.GREEN).onClick(toast("Bang!"))
-	  case t: STextView => t.textSize(17 dip)
-	  case _ => v.backgroundColor(Color.BLUE)
-	}
-	super.+=(v)
+  style(_ match {
+    case b: SButton => b.textColor(Color.GREEN).onClick(toast("Bang!"))
+    case t: STextView => t.textSize(17 dip)
+    case _ => v.backgroundColor(Color.BLUE)
   }
   
   STextView("I am 17 dip tall")

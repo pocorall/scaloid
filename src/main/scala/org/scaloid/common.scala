@@ -1234,8 +1234,17 @@ def defaultValue[U]: U = {
     @inline def persistentDrawingCache_=(p: Int) = { base.setPersistentDrawingCache(p); base }
     @inline def persistentDrawingCache(p: Int) = persistentDrawingCache_=(p)
 
-    @inline def +=(v: View) = {
-      base.addView(v)
+    def +=(v: View) = {
+      var viw = v
+      styles.foreach(st => viw = st(viw))
+      base.addView(viw)
+      base
+    }
+
+    val styles = new ArrayBuffer[View => View]
+
+    def style(stl: View => View) = {
+      styles += stl
       base
     }
   }
@@ -1325,6 +1334,7 @@ def defaultValue[U]: U = {
     def base = this
 
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+  <<
 
   class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
     def base = this
@@ -1372,6 +1382,7 @@ def defaultValue[U]: U = {
     def base = this
 
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+  <<
 
   class LayoutParams[V <: View](v: V) extends RelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
     def base = this
@@ -1534,6 +1545,7 @@ def defaultValue[U]: U = {
     val HORIZONTAL = LinearLayout.HORIZONTAL
 
     implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+    <<
 
     class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
       def base = this
@@ -2711,4 +2723,5 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
   }
 
 }
+
 
