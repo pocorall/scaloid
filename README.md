@@ -462,7 +462,8 @@ val layout = new SLinearLayout {
 }
 ```    
 
-In the anonymous constructor of 'SLinearLayout', Scaloid provides an implicit function called "layout context". This affects a return type of the method `<<` defined in the class `SButton`. If we use `SFrameLayout` as a layout context, the method `<<` returns `FrameLayout.LayoutParams`, so the code below results a ___syntax error___.
+In the anonymous constructor of 'SLinearLayout', Scaloid provides an implicit function called "layout context". This affects a return type of the method `<<` defined in the class `SButton`. 
+If we use `SFrameLayout` as a layout context, the method `<<` returns `FrameLayout.LayoutParams`, so the code below results a ___syntax error___.
 
 ```scala
 val layout = new SFrameLayout {
@@ -495,7 +496,8 @@ override def onCreate(savedInstanceState: Bundle) {
 // ... uses the button somewhere in other methods (e.g. changing text or adding listeners)
 ```  
 
-[Prefixed classes](#prefixed-classes) in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. These methods also append the component to the layout context that enclose the component. Therefore, the code block from the above example:
+[Prefixed classes](#prefixed-classes) in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. These methods also append the component to the layout context that enclose the component. 
+Therefore, the code block from the above example:
 
 ```scala
 button = new SButton() text "Click"
@@ -508,7 +510,8 @@ is equivalent to:
 button = SButton("Click")
 ```    
 
-Because the `apply` methods access to the layout context, it cannot be called outside of the layout context. In this case, use the `new` operator instead.
+Because the `apply` methods access to the layout context, it cannot be called outside of the layout context. 
+In this case, use the `new` operator instead.
 
 #### Method `>>`
 
@@ -573,7 +576,9 @@ SButton("Click").<<.wrap
 
 Scaloid follows the naming conventions of XML attributes in the Android API with some improvements.
 
-For XML attributes, layout related properties are prefixed with `layout_` and as you might have guessed, Scaloid does not need it. For boolean attributes, the default is `false`. However, Scaloid flags it as `true` when the attribute is declared explicitly without any parameter. For example:
+For XML attributes, layout related properties are prefixed with `layout_` and as you might have guessed, Scaloid does not need it. 
+For boolean attributes, the default is `false`. However, Scaloid flags it as `true` when the attribute is declared explicitly without any parameter. 
+For example:
 
 ```scala
 new SRelativeLayout {
@@ -608,7 +613,8 @@ STextView("hello").<<.margin(10 sp)  // assigns the same value for all direction
 
 ## Styles for programmers
 
-Android SDK introduced [styles](http://developer.android.com/guide/topics/ui/themes.html) to reuse common properties on XML layout. We repeatedly pointed out that XML is verbose.
+Android SDK introduced [styles](http://developer.android.com/guide/topics/ui/themes.html) to reuse common properties on XML layout. 
+We repeatedly pointed out that XML is verbose.
 To apply styles in Scaloid, you do not need to learn any syntax or API library, because Scaloid layout is an ordinary Scala code. Just write a code that work as styles.
 
 #### Basic: Assign it individually
@@ -641,8 +647,9 @@ List("first", "prev", "next", "last").foreach(title => myStyle(SButton(title)))
 
 #### Advanced: CSS-like stylesheet
 
-For every view component, companion object's `apply` methods(e.g. `SButton.apply`) calls its parent's `+=` method to register itself to the parent.
-Scaloid provides `style(View => View)` method to provide more generic component styling. The parameter is a function which receives a view requested for styleing, and returns a view which is finished applying the style. Then the example in the previous subsection becomes:
+Scaloid provides `SViewGroup.style(View => View)` method to provide more generic component styling. 
+The parameter is a function which receives a view requested for styleing, and returns a view which is finished applying the style. 
+Then the example in the previous subsection becomes:
 
 ```scala
 style(_ match {
