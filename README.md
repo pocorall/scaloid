@@ -1094,14 +1094,14 @@ For maven:
 <dependency>
     <groupId>org.scaloid</groupId>
     <artifactId>scaloid</artifactId>
-    <version>0.7.1_8_2.10</version>
+    <version>0.8_8_2.10</version>
 </dependency>
 ```
 
 For sbt:
 
 ```scala
-libraryDependencies += "org.scaloid" % "scaloid" % "0.7.1_8_2.10"
+libraryDependencies += "org.scaloid" % "scaloid" % "0.8_8_2.10"
 ```
 
 ##### Version number
