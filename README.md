@@ -75,6 +75,8 @@ There is an out-of-the-box solution. Just [fork this project](https://github.com
 ## Features
 
  * [UI Layout without XML](#ui-layout-without-xml)
+   * [Layout context](#layout-context)
+   * [Styles for programmers](#styles-for-programmers)
  * [Implicit conversions](#implicit-conversions)
  * [Shorter representation without context object](#context-as-an-implicit-parameter)
  * [Shorter listeners](#enriched-implicit-classes)
