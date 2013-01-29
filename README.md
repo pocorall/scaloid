@@ -639,25 +639,37 @@ def myStyle = (_: SButton).textSize(20 dip).<<.margin(5 dip).>>
 List("first", "prev", "next", "last").foreach(title => myStyle(SButton(title)))
 ```
 
-#### Advanced: Just like CSS
+#### Advanced: CSS-like stylesheet
 
 For every view component, companion object's `apply` methods(e.g. `SButton.apply`) calls its parent's `+=` method to register itself to the parent.
-Therefore, if we extend the `+=` method of the parent, we can apply the style in more generic way:
+Scaloid provides `style(View => View)` method to provide more generic component styling. The parameter is a function which receives a view requested for styleing, and returns a view which is finished applying the style. Then the example in the previous subsection becomes:
 
 ```scala
-new SVerticalLayout {
-  style(_ match {
-    case b: SButton => b.textColor(Color.GREEN).onClick(toast("Bang!"))
-    case t: STextView => t.textSize(17 dip)
-    case _ => v.backgroundColor(Color.BLUE)
-  }
-  
-  STextView("I am 17 dip tall")
-  STextView("Me too")
-  STextView("Oh, I am taller than you").textSize(24 dip) // overriding
-  SEditText("Am I blue?")
-  SButton("I am a green monster!")
-}
+style(_ match {
+  case b: SButton => b.textSize(20 dip).<<.margin(5 dip).>>
+  case v => v
+})
+
+SButton("first")
+SButton("prev")
+SButton("next")
+SButton("last")
+``` 
+
+Note that individually applying `myStyle` is reduced. Let us see another example:
+
+```scala
+style(_ match {
+  case b: SButton => b.textColor(Color.RED).onClick(toast("Bang!"))
+  case t: STextView => t.textSize(10 dip)
+  case v => v.backgroundColor(Color.YELLOW)
+})
+
+STextView("I am 10 dip tall")
+STextView("Me too")
+STextView("I am taller than you").textSize(15 dip) // overriding
+SEditText("Yellow input field")
+SButton("Red alert!")
 ``` 
   
 Similar to CSS, you can assign different styles for each classes using Scala pattern matching. 
