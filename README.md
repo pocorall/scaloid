@@ -1068,6 +1068,51 @@ new AlertDialog.Builder(context)
 
 When you call `show()` or `alert` from non-UI thread, you [don't have to mind about threading](#asynchronous-task-processing).
 
+### Class SArrayAdapter
+
+**Will be released in 0.9**
+
+Suppose you want to display some list as show below:
+
+```scala
+val values = Array("One", "Two", "Three")
+```
+
+Then you can write an `Adapter` as:
+
+```scala
+val adapter = new SArrayAdapter(values)
+```
+
+instead of:
+
+```scala
+val adapter = new ArrayAdapter[String](context, android.R.layout.simple_spinner_item, values)
+```
+
+If you want display the text larger when it is dropped down, you can write as:
+
+```scala
+adapter.dropDownView(new STextView().textSize(25 dip))
+```
+
+instead of a chunks of XML description and its wiring:
+```XML
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?android:attr/spinnerDropDownItemStyle"
+    android:id="@+id/spinner_textview"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+	android:textSize="25 dip" />
+```
+
+```scala
+adapter.setDropDownViewResource(R.layout.spinner_dropdown)
+```
+
+
+
 ## Static fields on protected interfaces
 
 Android API has some protected interfaces which has static fields, and inherited it in public classes. For example `android.provider.ContactsContract.Contacts` inherits a protected interface `android.provider.ContactsContract.ContactsColumns`, which defines a static field `ContactsColumns.DISPLAY_NAME`. In Java code, you can access to it with `Contacts.DISPLAY_NAME`. However, Scala does not support accessing in this way (please refer [this](https://issues.scala-lang.org/browse/SI-1806) and [this](http://www.scala-lang.org/faq/4)). It is bad news for an Android-Scala programmer. So we provide a workaround implementation for this problem. Declare `import org.scaloid.Workarounds._`. Then you can use the interfaces publicly which is originally defined as protected.

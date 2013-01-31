@@ -16,7 +16,7 @@
 		<scala.version>2.10.0</scala.version>
 		<android.version>2.2.1</android.version>
 	</properties>
-	<version>0.8_8_2.10-SNAPSHOT</version>
+	<version>0.9_8_2.10-SNAPSHOT</version>
 	<scm>
 		<url>git@github.com:pocorall/scaloid.git</url>
 		<connection>scm:git:git@github.com:pocorall/scaloid.git</connection>

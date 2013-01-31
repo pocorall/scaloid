@@ -79,8 +79,6 @@ package object common {
   @beanGetter
   class noEquivalentGetterExists extends annotation.StaticAnnotation
 
-  implicit def resourceIdToTextResource(id: Int)(implicit context: Context): CharSequence = context.getText(id)
-
   /**
    * Launches a new activity for a give uri. For example, opens a web browser for http protocols.
    */
@@ -1115,6 +1113,15 @@ def defaultValue[U]: U = {
 
   @inline implicit def Int2unitConversion(ext: Int)(implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
 
+
+  implicit def resourceIdToText(id: Int)(implicit context: Context): CharSequence = context.getText(id)
+
+  implicit def resourceIdToTextArray(id: Int)(implicit context: Context): Array[CharSequence] = context.getResources().getTextArray(id)
+
+  implicit def int2Drawable(resourceId: Int)(implicit context: Context): Drawable = {
+    context.getResources.getDrawable(resourceId)
+  }
+
   class RichListView[V <: ListView](val base: V) extends TraitListView[V]
 
   @inline implicit def listView2RichListView[V <: ListView](listView: V) = new RichListView[V](listView)
@@ -1629,9 +1636,6 @@ def defaultValue[U]: U = {
       }
     }
 
-  implicit def int2Drawable(resourceId: Int)(implicit context: Context): Drawable = {
-    context.getResources.getDrawable(resourceId)
-  }
 
   class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = null)(implicit context: Context) extends AlertDialog.Builder(context) {
     if (_title != null) setTitle(_title)
@@ -2696,6 +2700,44 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
       }
     }
 
+  class SArrayAdapter[T <: AnyRef](items: Array[T])(implicit context: Context) extends ArrayAdapter[T](context, android.R.layout.simple_spinner_item, items) {
+    def setItem(view: TextView, pos: Int): TextView = {
+      getItem(pos) match {
+        case i: CharSequence => view.setText(i)
+        case i => view.setText(i.toString)
+      }
+      view
+    }
+
+    override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
+      if (_view != null) {
+        return setItem(_view(), position)
+      }
+      super.getView(position, convertView, parent)
+    }
+
+    private var _view: () => TextView = null
+
+    def view(v: => TextView): SArrayAdapter[T] = {
+      _view = () => v
+      this
+    }
+
+    override def getDropDownView(position: Int, convertView: View, parent: ViewGroup): View = {
+      if (_dropDownView != null) {
+        return setItem(_dropDownView(), position)
+      }
+      super.getDropDownView(position, convertView, parent)
+    }
+
+    private var _dropDownView: () => TextView = null
+
+    def dropDownView(v: => TextView): SArrayAdapter[T] = {
+      _dropDownView = () => v
+      this
+    }
+  }
+  
   @inline private def loggingText(str: String, t: Throwable) = str + (if (t == null) "" else "\n" + Log.getStackTraceString(t))
 
   @inline def verbose(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
