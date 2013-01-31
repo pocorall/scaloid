@@ -1072,26 +1072,8 @@ When you call `show()` or `alert` from non-UI thread, you [don't have to mind ab
 
 **Will be released in 0.9**
 
-Suppose you want to display some list as shown below:
-
-```scala
-val values = Array("One", "Two", "Three")
-```
-
-Then, you normally use `ArrayAdapter` for `AdapterView`:
-
-```scala
-new ArrayAdapter(context, android.R.layout.simple_spinner_item, values)
-```
-
-In Scaloid, it is reduced to:
-
-```scala
-new SArrayAdapter(values)
-```
-
-
-If you want display the text larger when it is dropped down, a chunk of XML description and its wiring:
+Suppose you want to let the user selects a string from spinner, and larger font should be displayed in the dropdown list.
+Then the plain-old Android code is consisted with a chunk of XML and wiring code:
 
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
@@ -1102,21 +1084,16 @@ If you want display the text larger when it is dropped down, a chunk of XML desc
     android:layout_height="wrap_content"
 	android:textSize="25 dip" />
 ```
-
 ```scala
+val values = Array("One", "Two", "Three")
+val adapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, values)
 adapter.setDropDownViewResource(R.layout.spinner_dropdown)
 ```
 
-is reduced to:
+In Scaloid, directly equivalent code is:
 
 ```scala
-adapter.dropDownStyle(_.textSize(25 dip))
-```
-
-Or, if you want to apply a style on the default view:
-
-```scala
-adapter.style(_.textColor(Color.BLUE))
+new SArrayAdapter(Array("One", "Two", "Three")).dropDownStyle(_.textSize(25 dip))
 ```
 
 Can it be simpler?
