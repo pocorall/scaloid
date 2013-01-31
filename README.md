@@ -1072,22 +1072,22 @@ When you call `show()` or `alert` from non-UI thread, you [don't have to mind ab
 
 **Will be released in 0.9**
 
-Suppose you want to display some list as show below:
+Suppose you want to display some list as shown below:
 
 ```scala
 val values = Array("One", "Two", "Three")
 ```
 
-The use of `ArrayAdapter`:
+Then, you normally use `ArrayAdapter` for `AdapterView`:
 
 ```scala
-val adapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, values)
+new ArrayAdapter(context, android.R.layout.simple_spinner_item, values)
 ```
 
-is reduced to:
+In Scaloid, it is reduced to:
 
 ```scala
-val adapter = new SArrayAdapter(values)
+new SArrayAdapter(values)
 ```
 
 
