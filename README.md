@@ -1073,7 +1073,7 @@ When you call `show()` or `alert` from non-UI thread, you [don't have to mind ab
 **Will be released in 0.9**
 
 Suppose you want to let the user selects a string from spinner, and larger font should be displayed in the dropdown list.
-Then the plain-old Android code is consisted with a chunk of XML and wiring code:
+Then the plain-old Android code is consisted of a chunk of XML and its wiring:
 
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
