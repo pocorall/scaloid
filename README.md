@@ -1078,25 +1078,21 @@ Suppose you want to display some list as show below:
 val values = Array("One", "Two", "Three")
 ```
 
-Then you can write an `Adapter` as:
+The use of `ArrayAdapter`:
+
+```scala
+val adapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, values)
+```
+
+is reduced to:
 
 ```scala
 val adapter = new SArrayAdapter(values)
 ```
 
-instead of:
 
-```scala
-val adapter = new ArrayAdapter[String](context, android.R.layout.simple_spinner_item, values)
-```
+If you want display the text larger when it is dropped down, a chunk of XML description and its wiring:
 
-If you want display the text larger when it is dropped down, you can write as:
-
-```scala
-adapter.dropDownView(new STextView().textSize(25 dip))
-```
-
-instead of a chunks of XML description and its wiring:
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
 <CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -1111,6 +1107,19 @@ instead of a chunks of XML description and its wiring:
 adapter.setDropDownViewResource(R.layout.spinner_dropdown)
 ```
 
+is reduced to:
+
+```scala
+adapter.dropDownStyle(_.textSize(25 dip))
+```
+
+Or, if you want to apply style on default view:
+
+```scala
+adapter.style(_.textColor(Color.BLUE))
+```
+
+Can it be simpler?
 
 
 ## Static fields on protected interfaces

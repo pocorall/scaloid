@@ -2699,7 +2699,7 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
         f
       }
     }
-
+    
   class SArrayAdapter[T <: AnyRef](items: Array[T])(implicit context: Context) extends ArrayAdapter[T](context, android.R.layout.simple_spinner_item, items) {
     def setItem(view: TextView, pos: Int): TextView = {
       getItem(pos) match {
@@ -2710,30 +2710,26 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
     }
 
     override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
-      if (_view != null) {
-        return setItem(_view(), position)
-      }
-      super.getView(position, convertView, parent)
+      val v = super.getView(position, convertView, parent)
+      if (_style != null) _style(v.asInstanceOf[TextView]) else v
     }
 
-    private var _view: () => TextView = null
+    private var _style: TextView => TextView = null
 
-    def view(v: => TextView): SArrayAdapter[T] = {
-      _view = () => v
+    def style(v: TextView => TextView): SArrayAdapter[T] = {
+      _style = v
       this
     }
 
     override def getDropDownView(position: Int, convertView: View, parent: ViewGroup): View = {
-      if (_dropDownView != null) {
-        return setItem(_dropDownView(), position)
-      }
-      super.getDropDownView(position, convertView, parent)
+      val v = super.getDropDownView(position, convertView, parent)
+      if (_dropDownStyle != null) _dropDownStyle(v.asInstanceOf[TextView]) else v
     }
 
-    private var _dropDownView: () => TextView = null
+    private var _dropDownStyle: TextView => TextView = null
 
-    def dropDownView(v: => TextView): SArrayAdapter[T] = {
-      _dropDownView = () => v
+    def dropDownStyle(v: TextView => TextView): SArrayAdapter[T] = {
+      _dropDownStyle = v
       this
     }
   }
