@@ -1113,7 +1113,7 @@ is reduced to:
 adapter.dropDownStyle(_.textSize(25 dip))
 ```
 
-Or, if you want to apply style on the default view:
+Or, if you want to apply a style on the default view:
 
 ```scala
 adapter.style(_.textColor(Color.BLUE))
