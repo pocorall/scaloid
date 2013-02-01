@@ -1095,6 +1095,12 @@ In Scaloid, the directly equivalent code is:
 new SArrayAdapter(Array("One", "Two", "Three")).dropDownStyle(_.textSize(25 dip))
 ```
 
+If you want to let the text color in the spinner be blue, use the `style` method:
+
+```scala
+new SArrayAdapter(Array("Quick", "Brown", "Fox")).style(_.textColor(Color.BLUE))
+```
+
 Can it be simpler?
 
 
