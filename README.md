@@ -1077,7 +1077,7 @@ Then the plain-old Android code is consisted of a chunk of XML and its wiring:
 
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
-<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
     style="?android:attr/spinnerDropDownItemStyle"
     android:id="@+id/spinner_textview"
     android:layout_width="fill_parent"
