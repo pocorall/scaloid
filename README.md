@@ -1085,8 +1085,7 @@ Then the plain-old Android code is consisted of a chunk of XML and its wiring:
 	android:textSize="25 dip" />
 ```
 ```scala
-val values = Array("One", "Two", "Three")
-val adapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, values)
+val adapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, Array("One", "Two", "Three"))
 adapter.setDropDownViewResource(R.layout.spinner_dropdown)
 ```
 
