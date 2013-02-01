@@ -1090,7 +1090,7 @@ val adapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, va
 adapter.setDropDownViewResource(R.layout.spinner_dropdown)
 ```
 
-In Scaloid, directly equivalent code is:
+In Scaloid, the directly equivalent code is:
 
 ```scala
 new SArrayAdapter(Array("One", "Two", "Three")).dropDownStyle(_.textSize(25 dip))
