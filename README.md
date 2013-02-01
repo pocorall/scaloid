@@ -223,6 +223,13 @@ Then Scaloid implicit conversions will take care about these resource type conve
 **Changes in version 0.9**
 
 Scaloid provides several implicit conversions that convert from `Int` type resource ID to `CharSequence`, `Array[CharSequence]`, `Array[String]`, `Drawable` and `Movie`.
+For example:
+
+```scala
+def toast(msg:CharSequence) = ...
+
+toast(R.string.my_message) // implicit conversion works!
+```
 
 Although Scaloid provides these conversions implicitly, explicit conversion may be requred in some context. In this case, methods `r2...` are provided for the `Int` type:
 
