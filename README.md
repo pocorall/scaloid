@@ -227,7 +227,7 @@ Scaloid provides several implicit conversions that convert from `Int` type resou
 Although Scaloid provides these conversions implicitly, explicit conversion may be requred in some context. In this case, methods `r2...` are provided for the `Int` type:
 
 ```scala
-warn("Will display the content of the resource: " + R.string.my_string.r2String)
+warn("Will display the content of the resource: " + R.string.my_message.r2String)
 ```
 
 Currently, `r2Text`, `r2TextArray`, `r2String`, `r2StringArray`, `r2Drawable` and `r2Movie` is provided.
