@@ -260,6 +260,13 @@ val inPixel2:Int = (22 sp)
 
 There are more implicit conversions available. Check the source code as needed.
 
+##### IntentFilter
+**Will be available in version 0.9**
+
+```scala
+implicit string2IntentFilter(str: String) = new IntentFilter(str)
+```
+
 ## Context as an implicit parameter
 Many methods in the Android API require an instance of a class `Context`. Providing this for every method call results in clumsy code. We employ an implicit parameter to eliminate this. Just declare an implicit value that represents current context:
 
