@@ -234,26 +234,26 @@ def defaultValue[U]: U = {
 
     @inline def animation = base.getAnimation
     @inline def animation_=(p: android.view.animation.Animation) = { base.setAnimation(p); base }
-    @inline def animation(p: android.view.animation.Animation) = animation_=(p)
+    @inline def animation  (p: android.view.animation.Animation) = animation_=(p)
 
     @inline def applicationWindowToken = base.getApplicationWindowToken
 
     @inline def background = base.getBackground
 
     @noEquivalentGetterExists
-    @inline def backgroundColor: Int = defaultValue[Int]
+    @inline def backgroundColor    : Int  = defaultValue[Int]
     @inline def backgroundColor_=(p: Int) = { base.setBackgroundColor(p); base }
-    @inline def backgroundColor(p: Int) = backgroundColor_=(p)
+    @inline def backgroundColor  (p: Int) = backgroundColor_=(p)
 
     @noEquivalentGetterExists
-    @inline def backgroundDrawable: android.graphics.drawable.Drawable = defaultValue[android.graphics.drawable.Drawable]
+    @inline def backgroundDrawable    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
     @inline def backgroundDrawable_=(p: android.graphics.drawable.Drawable) = { base.setBackgroundDrawable(p); base }
-    @inline def backgroundDrawable(p: android.graphics.drawable.Drawable) = backgroundDrawable_=(p)
+    @inline def backgroundDrawable  (p: android.graphics.drawable.Drawable) = backgroundDrawable_=(p)
 
     @noEquivalentGetterExists
-    @inline def backgroundResource: Int = defaultValue[Int]
+    @inline def backgroundResource    : Int  = defaultValue[Int]
     @inline def backgroundResource_=(p: Int) = { base.setBackgroundResource(p); base }
-    @inline def backgroundResource(p: Int) = backgroundResource_=(p)
+    @inline def backgroundResource  (p: Int) = backgroundResource_=(p)
 
     @inline def baseline = base.getBaseline
 
@@ -261,11 +261,11 @@ def defaultValue[U]: U = {
 
     @inline def clickable = base.isClickable
     @inline def clickable_=(p: Boolean) = { base.setClickable(p); base }
-    @inline def clickable(p: Boolean) = clickable_=(p)
+    @inline def clickable  (p: Boolean) = clickable_=(p)
 
     @inline def contentDescription = base.getContentDescription
     @inline def contentDescription_=(p: java.lang.CharSequence) = { base.setContentDescription(p); base }
-    @inline def contentDescription(p: java.lang.CharSequence) = contentDescription_=(p)
+    @inline def contentDescription  (p: java.lang.CharSequence) = contentDescription_=(p)
 
     @inline def context = base.getContext
 
@@ -275,72 +275,72 @@ def defaultValue[U]: U = {
 
     @inline def drawingCacheBackgroundColor = base.getDrawingCacheBackgroundColor
     @inline def drawingCacheBackgroundColor_=(p: Int) = { base.setDrawingCacheBackgroundColor(p); base }
-    @inline def drawingCacheBackgroundColor(p: Int) = drawingCacheBackgroundColor_=(p)
+    @inline def drawingCacheBackgroundColor  (p: Int) = drawingCacheBackgroundColor_=(p)
 
     @inline def drawingCacheEnabled = base.isDrawingCacheEnabled
-    @inline def enableDrawingCache = {base.setDrawingCacheEnabled(true); base}
-    @inline def disableDrawingCache = {base.setDrawingCacheEnabled(false); base}
     @inline def drawingCacheEnabled_=(p: Boolean) = { base.setDrawingCacheEnabled(p); base }
-    @inline def drawingCacheEnabled(p: Boolean) = drawingCacheEnabled_=(p)
+    @inline def drawingCacheEnabled  (p: Boolean) = drawingCacheEnabled_=(p)
+    @inline def enableDrawingCache  = {base.setDrawingCacheEnabled(true ); base}
+    @inline def disableDrawingCache = {base.setDrawingCacheEnabled(false); base}
 
     @inline def drawingCacheQuality = base.getDrawingCacheQuality
     @inline def drawingCacheQuality_=(p: Int) = { base.setDrawingCacheQuality(p); base }
-    @inline def drawingCacheQuality(p: Int) = drawingCacheQuality_=(p)
+    @inline def drawingCacheQuality  (p: Int) = drawingCacheQuality_=(p)
 
     @inline def drawingTime = base.getDrawingTime
 
     @inline def duplicateParentStateEnabled = base.isDuplicateParentStateEnabled
-    @inline def enableDuplicateParentState = {base.setDuplicateParentStateEnabled(true); base}
-    @inline def disableDuplicateParentState = {base.setDuplicateParentStateEnabled(false); base}
     @inline def duplicateParentStateEnabled_=(p: Boolean) = { base.setDuplicateParentStateEnabled(p); base }
-    @inline def duplicateParentStateEnabled(p: Boolean) = duplicateParentStateEnabled_=(p)
+    @inline def duplicateParentStateEnabled  (p: Boolean) = duplicateParentStateEnabled_=(p)
+    @inline def enableDuplicateParentState  = {base.setDuplicateParentStateEnabled(true ); base}
+    @inline def disableDuplicateParentState = {base.setDuplicateParentStateEnabled(false); base}
 
     @inline def enabled = base.isEnabled
     @inline def enabled_=(p: Boolean) = { base.setEnabled(p); base }
-    @inline def enabled(p: Boolean) = enabled_=(p)
+    @inline def enabled  (p: Boolean) = enabled_=(p)
 
     @noEquivalentGetterExists
-    @inline def fadingEdgeLength: Int = defaultValue[Int]
+    @inline def fadingEdgeLength    : Int  = defaultValue[Int]
     @inline def fadingEdgeLength_=(p: Int) = { base.setFadingEdgeLength(p); base }
-    @inline def fadingEdgeLength(p: Int) = fadingEdgeLength_=(p)
+    @inline def fadingEdgeLength  (p: Int) = fadingEdgeLength_=(p)
 
     @inline def focusable = base.isFocusable
     @inline def focusable_=(p: Boolean) = { base.setFocusable(p); base }
-    @inline def focusable(p: Boolean) = focusable_=(p)
+    @inline def focusable  (p: Boolean) = focusable_=(p)
 
     @inline def focusableInTouchMode = base.isFocusableInTouchMode
     @inline def focusableInTouchMode_=(p: Boolean) = { base.setFocusableInTouchMode(p); base }
-    @inline def focusableInTouchMode(p: Boolean) = focusableInTouchMode_=(p)
+    @inline def focusableInTouchMode  (p: Boolean) = focusableInTouchMode_=(p)
 
     @inline def focused = base.isFocused
 
     @inline def handler = base.getHandler
 
     @inline def hapticFeedbackEnabled = base.isHapticFeedbackEnabled
-    @inline def enableHapticFeedback = {base.setHapticFeedbackEnabled(true); base}
-    @inline def disableHapticFeedback = {base.setHapticFeedbackEnabled(false); base}
     @inline def hapticFeedbackEnabled_=(p: Boolean) = { base.setHapticFeedbackEnabled(p); base }
-    @inline def hapticFeedbackEnabled(p: Boolean) = hapticFeedbackEnabled_=(p)
+    @inline def hapticFeedbackEnabled  (p: Boolean) = hapticFeedbackEnabled_=(p)
+    @inline def enableHapticFeedback  = {base.setHapticFeedbackEnabled(true ); base}
+    @inline def disableHapticFeedback = {base.setHapticFeedbackEnabled(false); base}
 
     @inline def height = base.getHeight
 
     @inline def horizontalFadingEdgeEnabled = base.isHorizontalFadingEdgeEnabled
-    @inline def enableHorizontalFadingEdge = {base.setHorizontalFadingEdgeEnabled(true); base}
-    @inline def disableHorizontalFadingEdge = {base.setHorizontalFadingEdgeEnabled(false); base}
     @inline def horizontalFadingEdgeEnabled_=(p: Boolean) = { base.setHorizontalFadingEdgeEnabled(p); base }
-    @inline def horizontalFadingEdgeEnabled(p: Boolean) = horizontalFadingEdgeEnabled_=(p)
+    @inline def horizontalFadingEdgeEnabled  (p: Boolean) = horizontalFadingEdgeEnabled_=(p)
+    @inline def enableHorizontalFadingEdge  = {base.setHorizontalFadingEdgeEnabled(true ); base}
+    @inline def disableHorizontalFadingEdge = {base.setHorizontalFadingEdgeEnabled(false); base}
 
     @inline def horizontalFadingEdgeLength = base.getHorizontalFadingEdgeLength
 
     @inline def horizontalScrollBarEnabled = base.isHorizontalScrollBarEnabled
-    @inline def enableHorizontalScrollBar = {base.setHorizontalScrollBarEnabled(true); base}
-    @inline def disableHorizontalScrollBar = {base.setHorizontalScrollBarEnabled(false); base}
     @inline def horizontalScrollBarEnabled_=(p: Boolean) = { base.setHorizontalScrollBarEnabled(p); base }
-    @inline def horizontalScrollBarEnabled(p: Boolean) = horizontalScrollBarEnabled_=(p)
+    @inline def horizontalScrollBarEnabled  (p: Boolean) = horizontalScrollBarEnabled_=(p)
+    @inline def enableHorizontalScrollBar  = {base.setHorizontalScrollBarEnabled(true ); base}
+    @inline def disableHorizontalScrollBar = {base.setHorizontalScrollBarEnabled(false); base}
 
     @inline def id = base.getId
     @inline def id_=(p: Int) = { base.setId(p); base }
-    @inline def id(p: Int) = id_=(p)
+    @inline def id  (p: Int) = id_=(p)
 
     @inline def inEditMode = base.isInEditMode
 
@@ -348,13 +348,13 @@ def defaultValue[U]: U = {
 
     @inline def keepScreenOn = base.getKeepScreenOn
     @inline def keepScreenOn_=(p: Boolean) = { base.setKeepScreenOn(p); base }
-    @inline def keepScreenOn(p: Boolean) = keepScreenOn_=(p)
+    @inline def keepScreenOn  (p: Boolean) = keepScreenOn_=(p)
 
     @inline def keyDispatcherState = base.getKeyDispatcherState
 
     @inline def layoutParams = base.getLayoutParams
     @inline def layoutParams_=(p: android.view.ViewGroup.LayoutParams) = { base.setLayoutParams(p); base }
-    @inline def layoutParams(p: android.view.ViewGroup.LayoutParams) = layoutParams_=(p)
+    @inline def layoutParams  (p: android.view.ViewGroup.LayoutParams) = layoutParams_=(p)
 
     @inline def layoutRequested = base.isLayoutRequested
 
@@ -362,66 +362,66 @@ def defaultValue[U]: U = {
 
     @inline def longClickable = base.isLongClickable
     @inline def longClickable_=(p: Boolean) = { base.setLongClickable(p); base }
-    @inline def longClickable(p: Boolean) = longClickable_=(p)
+    @inline def longClickable  (p: Boolean) = longClickable_=(p)
 
     @inline def measuredHeight = base.getMeasuredHeight
 
     @inline def measuredWidth = base.getMeasuredWidth
 
     @noEquivalentGetterExists
-    @inline def minimumHeight: Int = defaultValue[Int]
+    @inline def minimumHeight    : Int  = defaultValue[Int]
     @inline def minimumHeight_=(p: Int) = { base.setMinimumHeight(p); base }
-    @inline def minimumHeight(p: Int) = minimumHeight_=(p)
+    @inline def minimumHeight  (p: Int) = minimumHeight_=(p)
 
     @noEquivalentGetterExists
-    @inline def minimumWidth: Int = defaultValue[Int]
+    @inline def minimumWidth    : Int  = defaultValue[Int]
     @inline def minimumWidth_=(p: Int) = { base.setMinimumWidth(p); base }
-    @inline def minimumWidth(p: Int) = minimumWidth_=(p)
+    @inline def minimumWidth  (p: Int) = minimumWidth_=(p)
 
     @inline def nextFocusDownId = base.getNextFocusDownId
     @inline def nextFocusDownId_=(p: Int) = { base.setNextFocusDownId(p); base }
-    @inline def nextFocusDownId(p: Int) = nextFocusDownId_=(p)
+    @inline def nextFocusDownId  (p: Int) = nextFocusDownId_=(p)
 
     @inline def nextFocusLeftId = base.getNextFocusLeftId
     @inline def nextFocusLeftId_=(p: Int) = { base.setNextFocusLeftId(p); base }
-    @inline def nextFocusLeftId(p: Int) = nextFocusLeftId_=(p)
+    @inline def nextFocusLeftId  (p: Int) = nextFocusLeftId_=(p)
 
     @inline def nextFocusRightId = base.getNextFocusRightId
     @inline def nextFocusRightId_=(p: Int) = { base.setNextFocusRightId(p); base }
-    @inline def nextFocusRightId(p: Int) = nextFocusRightId_=(p)
+    @inline def nextFocusRightId  (p: Int) = nextFocusRightId_=(p)
 
     @inline def nextFocusUpId = base.getNextFocusUpId
     @inline def nextFocusUpId_=(p: Int) = { base.setNextFocusUpId(p); base }
-    @inline def nextFocusUpId(p: Int) = nextFocusUpId_=(p)
+    @inline def nextFocusUpId  (p: Int) = nextFocusUpId_=(p)
 
     @noEquivalentGetterExists
-    @inline def onClickListener: android.view.View.OnClickListener = defaultValue[android.view.View.OnClickListener]
+    @inline def onClickListener    : android.view.View.OnClickListener  = defaultValue[android.view.View.OnClickListener]
     @inline def onClickListener_=(p: android.view.View.OnClickListener) = { base.setOnClickListener(p); base }
-    @inline def onClickListener(p: android.view.View.OnClickListener) = onClickListener_=(p)
+    @inline def onClickListener  (p: android.view.View.OnClickListener) = onClickListener_=(p)
 
     @noEquivalentGetterExists
-    @inline def onCreateContextMenuListener: android.view.View.OnCreateContextMenuListener = defaultValue[android.view.View.OnCreateContextMenuListener]
+    @inline def onCreateContextMenuListener    : android.view.View.OnCreateContextMenuListener  = defaultValue[android.view.View.OnCreateContextMenuListener]
     @inline def onCreateContextMenuListener_=(p: android.view.View.OnCreateContextMenuListener) = { base.setOnCreateContextMenuListener(p); base }
-    @inline def onCreateContextMenuListener(p: android.view.View.OnCreateContextMenuListener) = onCreateContextMenuListener_=(p)
+    @inline def onCreateContextMenuListener  (p: android.view.View.OnCreateContextMenuListener) = onCreateContextMenuListener_=(p)
 
     @inline def onFocusChangeListener = base.getOnFocusChangeListener
     @inline def onFocusChangeListener_=(p: android.view.View.OnFocusChangeListener) = { base.setOnFocusChangeListener(p); base }
-    @inline def onFocusChangeListener(p: android.view.View.OnFocusChangeListener) = onFocusChangeListener_=(p)
+    @inline def onFocusChangeListener  (p: android.view.View.OnFocusChangeListener) = onFocusChangeListener_=(p)
 
     @noEquivalentGetterExists
-    @inline def onKeyListener: android.view.View.OnKeyListener = defaultValue[android.view.View.OnKeyListener]
+    @inline def onKeyListener    : android.view.View.OnKeyListener  = defaultValue[android.view.View.OnKeyListener]
     @inline def onKeyListener_=(p: android.view.View.OnKeyListener) = { base.setOnKeyListener(p); base }
-    @inline def onKeyListener(p: android.view.View.OnKeyListener) = onKeyListener_=(p)
+    @inline def onKeyListener  (p: android.view.View.OnKeyListener) = onKeyListener_=(p)
 
     @noEquivalentGetterExists
-    @inline def onLongClickListener: android.view.View.OnLongClickListener = defaultValue[android.view.View.OnLongClickListener]
+    @inline def onLongClickListener    : android.view.View.OnLongClickListener  = defaultValue[android.view.View.OnLongClickListener]
     @inline def onLongClickListener_=(p: android.view.View.OnLongClickListener) = { base.setOnLongClickListener(p); base }
-    @inline def onLongClickListener(p: android.view.View.OnLongClickListener) = onLongClickListener_=(p)
+    @inline def onLongClickListener  (p: android.view.View.OnLongClickListener) = onLongClickListener_=(p)
 
     @noEquivalentGetterExists
-    @inline def onTouchListener: android.view.View.OnTouchListener = defaultValue[android.view.View.OnTouchListener]
+    @inline def onTouchListener    : android.view.View.OnTouchListener  = defaultValue[android.view.View.OnTouchListener]
     @inline def onTouchListener_=(p: android.view.View.OnTouchListener) = { base.setOnTouchListener(p); base }
-    @inline def onTouchListener(p: android.view.View.OnTouchListener) = onTouchListener_=(p)
+    @inline def onTouchListener  (p: android.view.View.OnTouchListener) = onTouchListener_=(p)
 
     @inline def opaque = base.isOpaque
 
@@ -437,7 +437,7 @@ def defaultValue[U]: U = {
 
     @inline def pressed = base.isPressed
     @inline def pressed_=(p: Boolean) = { base.setPressed(p); base }
-    @inline def pressed(p: Boolean) = pressed_=(p)
+    @inline def pressed  (p: Boolean) = pressed_=(p)
 
     @inline def resources = base.getResources
 
@@ -446,65 +446,65 @@ def defaultValue[U]: U = {
     @inline def rootView = base.getRootView
 
     @inline def saveEnabled = base.isSaveEnabled
-    @inline def enableSave = {base.setSaveEnabled(true); base}
-    @inline def disableSave = {base.setSaveEnabled(false); base}
     @inline def saveEnabled_=(p: Boolean) = { base.setSaveEnabled(p); base }
-    @inline def saveEnabled(p: Boolean) = saveEnabled_=(p)
+    @inline def saveEnabled  (p: Boolean) = saveEnabled_=(p)
+    @inline def enableSave  = {base.setSaveEnabled(true ); base}
+    @inline def disableSave = {base.setSaveEnabled(false); base}
 
     @inline def scrollBarStyle = base.getScrollBarStyle
     @inline def scrollBarStyle_=(p: Int) = { base.setScrollBarStyle(p); base }
-    @inline def scrollBarStyle(p: Int) = scrollBarStyle_=(p)
+    @inline def scrollBarStyle  (p: Int) = scrollBarStyle_=(p)
 
     @noEquivalentGetterExists
-    @inline def scrollContainer: Boolean = defaultValue[Boolean]
+    @inline def scrollContainer    : Boolean  = defaultValue[Boolean]
     @inline def scrollContainer_=(p: Boolean) = { base.setScrollContainer(p); base }
-    @inline def scrollContainer(p: Boolean) = scrollContainer_=(p)
+    @inline def scrollContainer  (p: Boolean) = scrollContainer_=(p)
 
     @inline def scrollX = base.getScrollX
 
     @inline def scrollY = base.getScrollY
 
     @inline def scrollbarFadingEnabled = base.isScrollbarFadingEnabled
-    @inline def enableScrollbarFading = {base.setScrollbarFadingEnabled(true); base}
-    @inline def disableScrollbarFading = {base.setScrollbarFadingEnabled(false); base}
     @inline def scrollbarFadingEnabled_=(p: Boolean) = { base.setScrollbarFadingEnabled(p); base }
-    @inline def scrollbarFadingEnabled(p: Boolean) = scrollbarFadingEnabled_=(p)
+    @inline def scrollbarFadingEnabled  (p: Boolean) = scrollbarFadingEnabled_=(p)
+    @inline def enableScrollbarFading  = {base.setScrollbarFadingEnabled(true ); base}
+    @inline def disableScrollbarFading = {base.setScrollbarFadingEnabled(false); base}
 
     @inline def selected = base.isSelected
     @inline def selected_=(p: Boolean) = { base.setSelected(p); base }
-    @inline def selected(p: Boolean) = selected_=(p)
+    @inline def selected  (p: Boolean) = selected_=(p)
 
     @inline def shown = base.isShown
 
     @inline def solidColor = base.getSolidColor
 
     @inline def soundEffectsEnabled = base.isSoundEffectsEnabled
-    @inline def enableSoundEffects = {base.setSoundEffectsEnabled(true); base}
-    @inline def disableSoundEffects = {base.setSoundEffectsEnabled(false); base}
     @inline def soundEffectsEnabled_=(p: Boolean) = { base.setSoundEffectsEnabled(p); base }
-    @inline def soundEffectsEnabled(p: Boolean) = soundEffectsEnabled_=(p)
+    @inline def soundEffectsEnabled  (p: Boolean) = soundEffectsEnabled_=(p)
+    @inline def enableSoundEffects  = {base.setSoundEffectsEnabled(true ); base}
+    @inline def disableSoundEffects = {base.setSoundEffectsEnabled(false); base}
 
     @inline def top = base.getTop
 
     @inline def touchDelegate = base.getTouchDelegate
     @inline def touchDelegate_=(p: android.view.TouchDelegate) = { base.setTouchDelegate(p); base }
-    @inline def touchDelegate(p: android.view.TouchDelegate) = touchDelegate_=(p)
+    @inline def touchDelegate  (p: android.view.TouchDelegate) = touchDelegate_=(p)
 
     @inline def touchables = base.getTouchables
 
     @inline def verticalFadingEdgeEnabled = base.isVerticalFadingEdgeEnabled
-    @inline def enableVerticalFadingEdge = {base.setVerticalFadingEdgeEnabled(true); base}
-    @inline def disableVerticalFadingEdge = {base.setVerticalFadingEdgeEnabled(false); base}
     @inline def verticalFadingEdgeEnabled_=(p: Boolean) = { base.setVerticalFadingEdgeEnabled(p); base }
-    @inline def verticalFadingEdgeEnabled(p: Boolean) = verticalFadingEdgeEnabled_=(p)
+    @inline def verticalFadingEdgeEnabled  (p: Boolean) = verticalFadingEdgeEnabled_=(p)
+    @inline def enableVerticalFadingEdge  = {base.setVerticalFadingEdgeEnabled(true ); base}
+    @inline def disableVerticalFadingEdge = {base.setVerticalFadingEdgeEnabled(false); base}
 
     @inline def verticalFadingEdgeLength = base.getVerticalFadingEdgeLength
 
     @inline def verticalScrollBarEnabled = base.isVerticalScrollBarEnabled
-    @inline def enableVerticalScrollBar = {base.setVerticalScrollBarEnabled(true); base}
-    @inline def disableVerticalScrollBar = {base.setVerticalScrollBarEnabled(false); base}
     @inline def verticalScrollBarEnabled_=(p: Boolean) = { base.setVerticalScrollBarEnabled(p); base }
-    @inline def verticalScrollBarEnabled(p: Boolean) = verticalScrollBarEnabled_=(p)
+    @inline def verticalScrollBarEnabled  (p: Boolean) = verticalScrollBarEnabled_=(p)
+    @inline def enableVerticalScrollBar  = {base.setVerticalScrollBarEnabled(true ); base}
+    @inline def disableVerticalScrollBar = {base.setVerticalScrollBarEnabled(false); base}
 
     @inline def verticalScrollbarWidth = base.getVerticalScrollbarWidth
 
@@ -512,7 +512,7 @@ def defaultValue[U]: U = {
 
     @inline def visibility = base.getVisibility
     @inline def visibility_=(p: Int) = { base.setVisibility(p); base }
-    @inline def visibility(p: Int) = visibility_=(p)
+    @inline def visibility  (p: Int) = visibility_=(p)
 
     @inline def width = base.getWidth
 
@@ -710,11 +710,11 @@ def defaultValue[U]: U = {
 
     @inline def autoLinkMask = base.getAutoLinkMask
     @inline def autoLinkMask_=(p: Int) = { base.setAutoLinkMask(p); base }
-    @inline def autoLinkMask(p: Int) = autoLinkMask_=(p)
+    @inline def autoLinkMask  (p: Int) = autoLinkMask_=(p)
 
     @inline def compoundDrawablePadding = base.getCompoundDrawablePadding
     @inline def compoundDrawablePadding_=(p: Int) = { base.setCompoundDrawablePadding(p); base }
-    @inline def compoundDrawablePadding(p: Int) = compoundDrawablePadding_=(p)
+    @inline def compoundDrawablePadding  (p: Int) = compoundDrawablePadding_=(p)
 
     @inline def compoundDrawables = base.getCompoundDrawables
 
@@ -731,71 +731,71 @@ def defaultValue[U]: U = {
     @inline def currentTextColor = base.getCurrentTextColor
 
     @noEquivalentGetterExists
-    @inline def cursorVisible: Boolean = defaultValue[Boolean]
+    @inline def cursorVisible    : Boolean  = defaultValue[Boolean]
     @inline def cursorVisible_=(p: Boolean) = { base.setCursorVisible(p); base }
-    @inline def cursorVisible(p: Boolean) = cursorVisible_=(p)
+    @inline def cursorVisible  (p: Boolean) = cursorVisible_=(p)
 
     @noEquivalentGetterExists
-    @inline def editableFactory: android.text.Editable.Factory = defaultValue[android.text.Editable.Factory]
+    @inline def editableFactory    : android.text.Editable.Factory  = defaultValue[android.text.Editable.Factory]
     @inline def editableFactory_=(p: android.text.Editable.Factory) = { base.setEditableFactory(p); base }
-    @inline def editableFactory(p: android.text.Editable.Factory) = editableFactory_=(p)
+    @inline def editableFactory  (p: android.text.Editable.Factory) = editableFactory_=(p)
 
     @inline def editableText = base.getEditableText
 
     @inline def ellipsize = base.getEllipsize
     @inline def ellipsize_=(p: android.text.TextUtils.TruncateAt) = { base.setEllipsize(p); base }
-    @inline def ellipsize(p: android.text.TextUtils.TruncateAt) = ellipsize_=(p)
+    @inline def ellipsize  (p: android.text.TextUtils.TruncateAt) = ellipsize_=(p)
 
     @noEquivalentGetterExists
-    @inline def ems: Int = defaultValue[Int]
+    @inline def ems    : Int  = defaultValue[Int]
     @inline def ems_=(p: Int) = { base.setEms(p); base }
-    @inline def ems(p: Int) = ems_=(p)
+    @inline def ems  (p: Int) = ems_=(p)
 
     @inline def error = base.getError
     @inline def error_=(p: java.lang.CharSequence) = { base.setError(p); base }
-    @inline def error(p: java.lang.CharSequence) = error_=(p)
+    @inline def error  (p: java.lang.CharSequence) = error_=(p)
 
     @inline def extendedPaddingBottom = base.getExtendedPaddingBottom
 
     @inline def extendedPaddingTop = base.getExtendedPaddingTop
 
     @noEquivalentGetterExists
-    @inline def extractedText: android.view.inputmethod.ExtractedText = defaultValue[android.view.inputmethod.ExtractedText]
+    @inline def extractedText    : android.view.inputmethod.ExtractedText  = defaultValue[android.view.inputmethod.ExtractedText]
     @inline def extractedText_=(p: android.view.inputmethod.ExtractedText) = { base.setExtractedText(p); base }
-    @inline def extractedText(p: android.view.inputmethod.ExtractedText) = extractedText_=(p)
+    @inline def extractedText  (p: android.view.inputmethod.ExtractedText) = extractedText_=(p)
 
     @inline def filters = base.getFilters
     @inline def filters_=(p: Array[android.text.InputFilter]) = { base.setFilters(p); base }
-    @inline def filters(p: Array[android.text.InputFilter]) = filters_=(p)
+    @inline def filters  (p: Array[android.text.InputFilter]) = filters_=(p)
 
     @inline def freezesText = base.getFreezesText
     @inline def freezesText_=(p: Boolean) = { base.setFreezesText(p); base }
-    @inline def freezesText(p: Boolean) = freezesText_=(p)
+    @inline def freezesText  (p: Boolean) = freezesText_=(p)
 
     @inline def gravity = base.getGravity
     @inline def gravity_=(p: Int) = { base.setGravity(p); base }
-    @inline def gravity(p: Int) = gravity_=(p)
+    @inline def gravity  (p: Int) = gravity_=(p)
 
     @noEquivalentGetterExists
-    @inline def highlightColor: Int = defaultValue[Int]
+    @inline def highlightColor    : Int  = defaultValue[Int]
     @inline def highlightColor_=(p: Int) = { base.setHighlightColor(p); base }
-    @inline def highlightColor(p: Int) = highlightColor_=(p)
+    @inline def highlightColor  (p: Int) = highlightColor_=(p)
 
     @inline def hint = base.getHint
     @inline def hint_=(p: java.lang.CharSequence) = { base.setHint(p); base }
-    @inline def hint(p: java.lang.CharSequence) = hint_=(p)
+    @inline def hint  (p: java.lang.CharSequence) = hint_=(p)
 
     @noEquivalentGetterExists
-    @inline def hintTextColor: android.content.res.ColorStateList = defaultValue[android.content.res.ColorStateList]
+    @inline def hintTextColor    : android.content.res.ColorStateList  = defaultValue[android.content.res.ColorStateList]
     @inline def hintTextColor_=(p: android.content.res.ColorStateList) = { base.setHintTextColor(p); base }
-    @inline def hintTextColor(p: android.content.res.ColorStateList) = hintTextColor_=(p)
+    @inline def hintTextColor  (p: android.content.res.ColorStateList) = hintTextColor_=(p)
 
     @inline def hintTextColors = base.getHintTextColors
 
     @noEquivalentGetterExists
-    @inline def horizontallyScrolling: Boolean = defaultValue[Boolean]
+    @inline def horizontallyScrolling    : Boolean  = defaultValue[Boolean]
     @inline def horizontallyScrolling_=(p: Boolean) = { base.setHorizontallyScrolling(p); base }
-    @inline def horizontallyScrolling(p: Boolean) = horizontallyScrolling_=(p)
+    @inline def horizontallyScrolling  (p: Boolean) = horizontallyScrolling_=(p)
 
     @inline def imeActionId = base.getImeActionId
 
@@ -803,164 +803,164 @@ def defaultValue[U]: U = {
 
     @inline def imeOptions = base.getImeOptions
     @inline def imeOptions_=(p: Int) = { base.setImeOptions(p); base }
-    @inline def imeOptions(p: Int) = imeOptions_=(p)
+    @inline def imeOptions  (p: Int) = imeOptions_=(p)
 
     @noEquivalentGetterExists
-    @inline def includeFontPadding: Boolean = defaultValue[Boolean]
+    @inline def includeFontPadding    : Boolean  = defaultValue[Boolean]
     @inline def includeFontPadding_=(p: Boolean) = { base.setIncludeFontPadding(p); base }
-    @inline def includeFontPadding(p: Boolean) = includeFontPadding_=(p)
+    @inline def includeFontPadding  (p: Boolean) = includeFontPadding_=(p)
 
     @noEquivalentGetterExists
-    @inline def inputExtras: Int = defaultValue[Int]
+    @inline def inputExtras    : Int  = defaultValue[Int]
     @inline def inputExtras_=(p: Int) = { base.setInputExtras(p); base }
-    @inline def inputExtras(p: Int) = inputExtras_=(p)
+    @inline def inputExtras  (p: Int) = inputExtras_=(p)
 
     @inline def inputMethodTarget = base.isInputMethodTarget
 
     @inline def inputType = base.getInputType
     @inline def inputType_=(p: Int) = { base.setInputType(p); base }
-    @inline def inputType(p: Int) = inputType_=(p)
+    @inline def inputType  (p: Int) = inputType_=(p)
 
     @inline def keyListener = base.getKeyListener
     @inline def keyListener_=(p: android.text.method.KeyListener) = { base.setKeyListener(p); base }
-    @inline def keyListener(p: android.text.method.KeyListener) = keyListener_=(p)
+    @inline def keyListener  (p: android.text.method.KeyListener) = keyListener_=(p)
 
     @inline def lineCount = base.getLineCount
 
     @inline def lineHeight = base.getLineHeight
 
     @noEquivalentGetterExists
-    @inline def lines: Int = defaultValue[Int]
+    @inline def lines    : Int  = defaultValue[Int]
     @inline def lines_=(p: Int) = { base.setLines(p); base }
-    @inline def lines(p: Int) = lines_=(p)
+    @inline def lines  (p: Int) = lines_=(p)
 
     @noEquivalentGetterExists
-    @inline def linkTextColor: Int = defaultValue[Int]
+    @inline def linkTextColor    : Int  = defaultValue[Int]
     @inline def linkTextColor_=(p: Int) = { base.setLinkTextColor(p); base }
-    @inline def linkTextColor(p: Int) = linkTextColor_=(p)
+    @inline def linkTextColor  (p: Int) = linkTextColor_=(p)
 
     @inline def linkTextColors = base.getLinkTextColors
 
     @inline def linksClickable = base.getLinksClickable
     @inline def linksClickable_=(p: Boolean) = { base.setLinksClickable(p); base }
-    @inline def linksClickable(p: Boolean) = linksClickable_=(p)
+    @inline def linksClickable  (p: Boolean) = linksClickable_=(p)
 
     @noEquivalentGetterExists
-    @inline def marqueeRepeatLimit: Int = defaultValue[Int]
+    @inline def marqueeRepeatLimit    : Int  = defaultValue[Int]
     @inline def marqueeRepeatLimit_=(p: Int) = { base.setMarqueeRepeatLimit(p); base }
-    @inline def marqueeRepeatLimit(p: Int) = marqueeRepeatLimit_=(p)
+    @inline def marqueeRepeatLimit  (p: Int) = marqueeRepeatLimit_=(p)
 
     @noEquivalentGetterExists
-    @inline def maxEms: Int = defaultValue[Int]
+    @inline def maxEms    : Int  = defaultValue[Int]
     @inline def maxEms_=(p: Int) = { base.setMaxEms(p); base }
-    @inline def maxEms(p: Int) = maxEms_=(p)
+    @inline def maxEms  (p: Int) = maxEms_=(p)
 
     @noEquivalentGetterExists
-    @inline def maxHeight: Int = defaultValue[Int]
+    @inline def maxHeight    : Int  = defaultValue[Int]
     @inline def maxHeight_=(p: Int) = { base.setMaxHeight(p); base }
-    @inline def maxHeight(p: Int) = maxHeight_=(p)
+    @inline def maxHeight  (p: Int) = maxHeight_=(p)
 
     @noEquivalentGetterExists
-    @inline def maxLines: Int = defaultValue[Int]
+    @inline def maxLines    : Int  = defaultValue[Int]
     @inline def maxLines_=(p: Int) = { base.setMaxLines(p); base }
-    @inline def maxLines(p: Int) = maxLines_=(p)
+    @inline def maxLines  (p: Int) = maxLines_=(p)
 
     @noEquivalentGetterExists
-    @inline def maxWidth: Int = defaultValue[Int]
+    @inline def maxWidth    : Int  = defaultValue[Int]
     @inline def maxWidth_=(p: Int) = { base.setMaxWidth(p); base }
-    @inline def maxWidth(p: Int) = maxWidth_=(p)
+    @inline def maxWidth  (p: Int) = maxWidth_=(p)
 
     @noEquivalentGetterExists
-    @inline def minEms: Int = defaultValue[Int]
+    @inline def minEms    : Int  = defaultValue[Int]
     @inline def minEms_=(p: Int) = { base.setMinEms(p); base }
-    @inline def minEms(p: Int) = minEms_=(p)
+    @inline def minEms  (p: Int) = minEms_=(p)
 
     @noEquivalentGetterExists
-    @inline def minHeight: Int = defaultValue[Int]
+    @inline def minHeight    : Int  = defaultValue[Int]
     @inline def minHeight_=(p: Int) = { base.setMinHeight(p); base }
-    @inline def minHeight(p: Int) = minHeight_=(p)
+    @inline def minHeight  (p: Int) = minHeight_=(p)
 
     @noEquivalentGetterExists
-    @inline def minLines: Int = defaultValue[Int]
+    @inline def minLines    : Int  = defaultValue[Int]
     @inline def minLines_=(p: Int) = { base.setMinLines(p); base }
-    @inline def minLines(p: Int) = minLines_=(p)
+    @inline def minLines  (p: Int) = minLines_=(p)
 
     @noEquivalentGetterExists
-    @inline def minWidth: Int = defaultValue[Int]
+    @inline def minWidth    : Int  = defaultValue[Int]
     @inline def minWidth_=(p: Int) = { base.setMinWidth(p); base }
-    @inline def minWidth(p: Int) = minWidth_=(p)
+    @inline def minWidth  (p: Int) = minWidth_=(p)
 
     @inline def movementMethod = base.getMovementMethod
     @inline def movementMethod_=(p: android.text.method.MovementMethod) = { base.setMovementMethod(p); base }
-    @inline def movementMethod(p: android.text.method.MovementMethod) = movementMethod_=(p)
+    @inline def movementMethod  (p: android.text.method.MovementMethod) = movementMethod_=(p)
 
     @noEquivalentGetterExists
-    @inline def onEditorActionListener: android.widget.TextView.OnEditorActionListener = defaultValue[android.widget.TextView.OnEditorActionListener]
+    @inline def onEditorActionListener    : android.widget.TextView.OnEditorActionListener  = defaultValue[android.widget.TextView.OnEditorActionListener]
     @inline def onEditorActionListener_=(p: android.widget.TextView.OnEditorActionListener) = { base.setOnEditorActionListener(p); base }
-    @inline def onEditorActionListener(p: android.widget.TextView.OnEditorActionListener) = onEditorActionListener_=(p)
+    @inline def onEditorActionListener  (p: android.widget.TextView.OnEditorActionListener) = onEditorActionListener_=(p)
 
     @inline def paint = base.getPaint
 
     @inline def paintFlags = base.getPaintFlags
     @inline def paintFlags_=(p: Int) = { base.setPaintFlags(p); base }
-    @inline def paintFlags(p: Int) = paintFlags_=(p)
+    @inline def paintFlags  (p: Int) = paintFlags_=(p)
 
     @inline def privateImeOptions = base.getPrivateImeOptions
     @inline def privateImeOptions_=(p: java.lang.String) = { base.setPrivateImeOptions(p); base }
-    @inline def privateImeOptions(p: java.lang.String) = privateImeOptions_=(p)
+    @inline def privateImeOptions  (p: java.lang.String) = privateImeOptions_=(p)
 
     @noEquivalentGetterExists
-    @inline def rawInputType: Int = defaultValue[Int]
+    @inline def rawInputType    : Int  = defaultValue[Int]
     @inline def rawInputType_=(p: Int) = { base.setRawInputType(p); base }
-    @inline def rawInputType(p: Int) = rawInputType_=(p)
+    @inline def rawInputType  (p: Int) = rawInputType_=(p)
 
     @noEquivalentGetterExists
-    @inline def scroller: android.widget.Scroller = defaultValue[android.widget.Scroller]
+    @inline def scroller    : android.widget.Scroller  = defaultValue[android.widget.Scroller]
     @inline def scroller_=(p: android.widget.Scroller) = { base.setScroller(p); base }
-    @inline def scroller(p: android.widget.Scroller) = scroller_=(p)
+    @inline def scroller  (p: android.widget.Scroller) = scroller_=(p)
 
     @noEquivalentGetterExists
-    @inline def selectAllOnFocus: Boolean = defaultValue[Boolean]
+    @inline def selectAllOnFocus    : Boolean  = defaultValue[Boolean]
     @inline def selectAllOnFocus_=(p: Boolean) = { base.setSelectAllOnFocus(p); base }
-    @inline def selectAllOnFocus(p: Boolean) = selectAllOnFocus_=(p)
+    @inline def selectAllOnFocus  (p: Boolean) = selectAllOnFocus_=(p)
 
     @inline def selectionEnd = base.getSelectionEnd
 
     @inline def selectionStart = base.getSelectionStart
 
     @noEquivalentGetterExists
-    @inline def singleLine: Boolean = defaultValue[Boolean]
+    @inline def singleLine    : Boolean  = defaultValue[Boolean]
     @inline def singleLine_=(p: Boolean) = { base.setSingleLine(p); base }
-    @inline def singleLine(p: Boolean) = singleLine_=(p)
+    @inline def singleLine  (p: Boolean) = singleLine_=(p)
 
     @noEquivalentGetterExists
-    @inline def spannableFactory: android.text.Spannable.Factory = defaultValue[android.text.Spannable.Factory]
+    @inline def spannableFactory    : android.text.Spannable.Factory  = defaultValue[android.text.Spannable.Factory]
     @inline def spannableFactory_=(p: android.text.Spannable.Factory) = { base.setSpannableFactory(p); base }
-    @inline def spannableFactory(p: android.text.Spannable.Factory) = spannableFactory_=(p)
+    @inline def spannableFactory  (p: android.text.Spannable.Factory) = spannableFactory_=(p)
 
     @inline def text = base.getText
     @inline def text_=(p: java.lang.CharSequence) = { base.setText(p); base }
-    @inline def text(p: java.lang.CharSequence) = text_=(p)
+    @inline def text  (p: java.lang.CharSequence) = text_=(p)
 
     @noEquivalentGetterExists
-    @inline def textColor: Int = defaultValue[Int]
+    @inline def textColor    : Int  = defaultValue[Int]
     @inline def textColor_=(p: Int) = { base.setTextColor(p); base }
-    @inline def textColor(p: Int) = textColor_=(p)
+    @inline def textColor  (p: Int) = textColor_=(p)
 
     @inline def textColors = base.getTextColors
 
     @noEquivalentGetterExists
-    @inline def textKeepState: java.lang.CharSequence = defaultValue[java.lang.CharSequence]
+    @inline def textKeepState    : java.lang.CharSequence  = defaultValue[java.lang.CharSequence]
     @inline def textKeepState_=(p: java.lang.CharSequence) = { base.setTextKeepState(p); base }
-    @inline def textKeepState(p: java.lang.CharSequence) = textKeepState_=(p)
+    @inline def textKeepState  (p: java.lang.CharSequence) = textKeepState_=(p)
 
     @inline def textScaleX = base.getTextScaleX
     @inline def textScaleX_=(p: Float) = { base.setTextScaleX(p); base }
-    @inline def textScaleX(p: Float) = textScaleX_=(p)
+    @inline def textScaleX  (p: Float) = textScaleX_=(p)
 
     @inline def textSize = base.getTextSize
     @inline def textSize_=(p: Float) = { base.setTextSize(p); base }
-    @inline def textSize(p: Float) = textSize_=(p)
+    @inline def textSize  (p: Float) = textSize_=(p)
 
     @inline def totalPaddingBottom = base.getTotalPaddingBottom
 
@@ -972,11 +972,11 @@ def defaultValue[U]: U = {
 
     @inline def transformationMethod = base.getTransformationMethod
     @inline def transformationMethod_=(p: android.text.method.TransformationMethod) = { base.setTransformationMethod(p); base }
-    @inline def transformationMethod(p: android.text.method.TransformationMethod) = transformationMethod_=(p)
+    @inline def transformationMethod  (p: android.text.method.TransformationMethod) = transformationMethod_=(p)
 
     @inline def typeface = base.getTypeface
     @inline def typeface_=(p: android.graphics.Typeface) = { base.setTypeface(p); base }
-    @inline def typeface(p: android.graphics.Typeface) = typeface_=(p)
+    @inline def typeface  (p: android.graphics.Typeface) = typeface_=(p)
 
     @inline def urls = base.getUrls
 
@@ -1030,23 +1030,23 @@ def defaultValue[U]: U = {
   trait TraitAbsListView[V <: AbsListView] extends TraitView[V] {
     @inline def cacheColorHint = base.getCacheColorHint
     @inline def cacheColorHint_=(p: Int) = { base.setCacheColorHint(p); base }
-    @inline def cacheColorHint(p: Int) = cacheColorHint_=(p)
+    @inline def cacheColorHint  (p: Int) = cacheColorHint_=(p)
 
     @noEquivalentGetterExists
-    @inline def drawSelectorOnTop: Boolean = defaultValue[Boolean]
+    @inline def drawSelectorOnTop    : Boolean  = defaultValue[Boolean]
     @inline def drawSelectorOnTop_=(p: Boolean) = { base.setDrawSelectorOnTop(p); base }
-    @inline def drawSelectorOnTop(p: Boolean) = drawSelectorOnTop_=(p)
+    @inline def drawSelectorOnTop  (p: Boolean) = drawSelectorOnTop_=(p)
 
     @inline def fastScrollEnabled = base.isFastScrollEnabled
-    @inline def enableFastScroll = {base.setFastScrollEnabled(true); base}
-    @inline def disableFastScroll = {base.setFastScrollEnabled(false); base}
     @inline def fastScrollEnabled_=(p: Boolean) = { base.setFastScrollEnabled(p); base }
-    @inline def fastScrollEnabled(p: Boolean) = fastScrollEnabled_=(p)
+    @inline def fastScrollEnabled  (p: Boolean) = fastScrollEnabled_=(p)
+    @inline def enableFastScroll  = {base.setFastScrollEnabled(true ); base}
+    @inline def disableFastScroll = {base.setFastScrollEnabled(false); base}
 
     @noEquivalentGetterExists
-    @inline def filterText: java.lang.String = defaultValue[java.lang.String]
+    @inline def filterText    : java.lang.String  = defaultValue[java.lang.String]
     @inline def filterText_=(p: java.lang.String) = { base.setFilterText(p); base }
-    @inline def filterText(p: java.lang.String) = filterText_=(p)
+    @inline def filterText  (p: java.lang.String) = filterText_=(p)
 
     @inline def listPaddingBottom = base.getListPaddingBottom
 
@@ -1057,70 +1057,96 @@ def defaultValue[U]: U = {
     @inline def listPaddingTop = base.getListPaddingTop
 
     @noEquivalentGetterExists
-    @inline def onScrollListener: android.widget.AbsListView.OnScrollListener = defaultValue[android.widget.AbsListView.OnScrollListener]
+    @inline def onScrollListener    : android.widget.AbsListView.OnScrollListener  = defaultValue[android.widget.AbsListView.OnScrollListener]
     @inline def onScrollListener_=(p: android.widget.AbsListView.OnScrollListener) = { base.setOnScrollListener(p); base }
-    @inline def onScrollListener(p: android.widget.AbsListView.OnScrollListener) = onScrollListener_=(p)
+    @inline def onScrollListener  (p: android.widget.AbsListView.OnScrollListener) = onScrollListener_=(p)
 
     @noEquivalentGetterExists
-    @inline def recyclerListener: android.widget.AbsListView.RecyclerListener = defaultValue[android.widget.AbsListView.RecyclerListener]
+    @inline def recyclerListener    : android.widget.AbsListView.RecyclerListener  = defaultValue[android.widget.AbsListView.RecyclerListener]
     @inline def recyclerListener_=(p: android.widget.AbsListView.RecyclerListener) = { base.setRecyclerListener(p); base }
-    @inline def recyclerListener(p: android.widget.AbsListView.RecyclerListener) = recyclerListener_=(p)
+    @inline def recyclerListener  (p: android.widget.AbsListView.RecyclerListener) = recyclerListener_=(p)
 
     @inline def scrollingCacheEnabled = base.isScrollingCacheEnabled
-    @inline def enableScrollingCache = {base.setScrollingCacheEnabled(true); base}
-    @inline def disableScrollingCache = {base.setScrollingCacheEnabled(false); base}
     @inline def scrollingCacheEnabled_=(p: Boolean) = { base.setScrollingCacheEnabled(p); base }
-    @inline def scrollingCacheEnabled(p: Boolean) = scrollingCacheEnabled_=(p)
+    @inline def scrollingCacheEnabled  (p: Boolean) = scrollingCacheEnabled_=(p)
+    @inline def enableScrollingCache  = {base.setScrollingCacheEnabled(true ); base}
+    @inline def disableScrollingCache = {base.setScrollingCacheEnabled(false); base}
 
     @inline def selector = base.getSelector
     @inline def selector_=(p: android.graphics.drawable.Drawable) = { base.setSelector(p); base }
-    @inline def selector(p: android.graphics.drawable.Drawable) = selector_=(p)
+    @inline def selector  (p: android.graphics.drawable.Drawable) = selector_=(p)
 
     @inline def smoothScrollbarEnabled = base.isSmoothScrollbarEnabled
-    @inline def enableSmoothScrollbar = {base.setSmoothScrollbarEnabled(true); base}
-    @inline def disableSmoothScrollbar = {base.setSmoothScrollbarEnabled(false); base}
     @inline def smoothScrollbarEnabled_=(p: Boolean) = { base.setSmoothScrollbarEnabled(p); base }
-    @inline def smoothScrollbarEnabled(p: Boolean) = smoothScrollbarEnabled_=(p)
+    @inline def smoothScrollbarEnabled  (p: Boolean) = smoothScrollbarEnabled_=(p)
+    @inline def enableSmoothScrollbar  = {base.setSmoothScrollbarEnabled(true ); base}
+    @inline def disableSmoothScrollbar = {base.setSmoothScrollbarEnabled(false); base}
 
     @inline def stackFromBottom = base.isStackFromBottom
     @inline def stackFromBottom_=(p: Boolean) = { base.setStackFromBottom(p); base }
-    @inline def stackFromBottom(p: Boolean) = stackFromBottom_=(p)
+    @inline def stackFromBottom  (p: Boolean) = stackFromBottom_=(p)
 
     @inline def textFilter = base.getTextFilter
 
     @inline def textFilterEnabled = base.isTextFilterEnabled
-    @inline def enableTextFilter = {base.setTextFilterEnabled(true); base}
-    @inline def disableTextFilter = {base.setTextFilterEnabled(false); base}
     @inline def textFilterEnabled_=(p: Boolean) = { base.setTextFilterEnabled(p); base }
-    @inline def textFilterEnabled(p: Boolean) = textFilterEnabled_=(p)
+    @inline def textFilterEnabled  (p: Boolean) = textFilterEnabled_=(p)
+    @inline def enableTextFilter  = {base.setTextFilterEnabled(true ); base}
+    @inline def disableTextFilter = {base.setTextFilterEnabled(false); base}
 
     @inline def transcriptMode = base.getTranscriptMode
     @inline def transcriptMode_=(p: Int) = { base.setTranscriptMode(p); base }
-    @inline def transcriptMode(p: Int) = transcriptMode_=(p)
+    @inline def transcriptMode  (p: Int) = transcriptMode_=(p)
 
 
   }
 
   class UnitConversion(val ext: Double)(implicit context: Context) {
     def dip: Int = (ext * context.getResources().getDisplayMetrics().density).toInt
-
-    def sp: Int = (ext * context.getResources().getDisplayMetrics().scaledDensity).toInt
+    def sp : Int = (ext * context.getResources().getDisplayMetrics().scaledDensity).toInt
   }
 
   @inline implicit def Double2unitConversion(ext: Double)(implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
+  @inline implicit def Long2unitConversion  (ext: Long)  (implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
+  @inline implicit def Int2unitConversion   (ext: Int)   (implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
 
-  @inline implicit def Long2unitConversion(ext: Long)(implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
-
-  @inline implicit def Int2unitConversion(ext: Int)(implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
-
-
-  implicit def resourceIdToText(id: Int)(implicit context: Context): CharSequence = context.getText(id)
-
-  implicit def resourceIdToTextArray(id: Int)(implicit context: Context): Array[CharSequence] = context.getResources().getTextArray(id)
-
-  implicit def int2Drawable(resourceId: Int)(implicit context: Context): Drawable = {
-    context.getResources.getDrawable(resourceId)
+  class ResourceConversion(val id: Int)(implicit context: Context) {
+    def r2Text         : CharSequence        = context.getText(id)
+    def r2TextArray    : Array[CharSequence] = context.getResources.getTextArray(id)
+    def r2String       : String              = context.getResources.getString(id)
+    def r2StringArray  : Array[String]       = context.getResources.getStringArray(id)
+    def r2Drawable     : Drawable            = context.getResources.getDrawable(id)
+    def r2Movie        : Movie               = context.getResources.getMovie(id)
   }
+
+  @inline implicit def Int2resource(ext: Int)(implicit context: Context): ResourceConversion = new ResourceConversion(ext)(context)
+
+  // r2String is not provided because it is ambiguous with r2Text
+  @inline implicit def r2Text       (id: Int)(implicit context: Context): CharSequence        = context.getText(id)
+  @inline implicit def r2TextArray  (id: Int)(implicit context: Context): Array[CharSequence] = context.getResources.getTextArray(id)
+  @inline implicit def r2StringArray(id: Int)(implicit context: Context): Array[String]       = context.getResources.getStringArray(id)
+  @inline implicit def r2Drawable   (id: Int)(implicit context: Context): Drawable            = context.getResources.getDrawable(id)
+  @inline implicit def r2Movie      (id: Int)(implicit context: Context): Movie               = context.getResources.getMovie(id)
+
+  @inline implicit def string2Uri           (str: String): Uri            = Uri.parse(str)
+  @inline implicit def string2IntentFilter  (str: String): IntentFilter   = new IntentFilter(str)
+
+
+implicit def func2runnable[F](f: () => F): Runnable =
+  new Runnable() {
+    def run() {
+      f()
+    }
+  }
+
+implicit def lazy2runnable[F](f: => F): Runnable =
+  new Runnable() {
+    def run() {
+      f
+    }
+  }
+
+
 
   class RichListView[V <: ListView](val base: V) extends TraitListView[V]
 
@@ -1138,37 +1164,37 @@ def defaultValue[U]: U = {
 
     @inline def choiceMode = base.getChoiceMode
     @inline def choiceMode_=(p: Int) = { base.setChoiceMode(p); base }
-    @inline def choiceMode(p: Int) = choiceMode_=(p)
+    @inline def choiceMode  (p: Int) = choiceMode_=(p)
 
     @inline def divider = base.getDivider
     @inline def divider_=(p: android.graphics.drawable.Drawable) = { base.setDivider(p); base }
-    @inline def divider(p: android.graphics.drawable.Drawable) = divider_=(p)
+    @inline def divider  (p: android.graphics.drawable.Drawable) = divider_=(p)
 
     @inline def dividerHeight = base.getDividerHeight
     @inline def dividerHeight_=(p: Int) = { base.setDividerHeight(p); base }
-    @inline def dividerHeight(p: Int) = dividerHeight_=(p)
+    @inline def dividerHeight  (p: Int) = dividerHeight_=(p)
 
     @noEquivalentGetterExists
-    @inline def footerDividersEnabled: Boolean = defaultValue[Boolean]
-    @inline def enableFooterDividers = {base.setFooterDividersEnabled(true); base}
-    @inline def disableFooterDividers = {base.setFooterDividersEnabled(false); base}
+    @inline def footerDividersEnabled    : Boolean  = defaultValue[Boolean]
     @inline def footerDividersEnabled_=(p: Boolean) = { base.setFooterDividersEnabled(p); base }
-    @inline def footerDividersEnabled(p: Boolean) = footerDividersEnabled_=(p)
+    @inline def footerDividersEnabled  (p: Boolean) = footerDividersEnabled_=(p)
+    @inline def enableFooterDividers  = {base.setFooterDividersEnabled(true ); base}
+    @inline def disableFooterDividers = {base.setFooterDividersEnabled(false); base}
 
     @inline def footerViewsCount = base.getFooterViewsCount
 
     @noEquivalentGetterExists
-    @inline def headerDividersEnabled: Boolean = defaultValue[Boolean]
-    @inline def enableHeaderDividers = {base.setHeaderDividersEnabled(true); base}
-    @inline def disableHeaderDividers = {base.setHeaderDividersEnabled(false); base}
+    @inline def headerDividersEnabled    : Boolean  = defaultValue[Boolean]
     @inline def headerDividersEnabled_=(p: Boolean) = { base.setHeaderDividersEnabled(p); base }
-    @inline def headerDividersEnabled(p: Boolean) = headerDividersEnabled_=(p)
+    @inline def headerDividersEnabled  (p: Boolean) = headerDividersEnabled_=(p)
+    @inline def enableHeaderDividers  = {base.setHeaderDividersEnabled(true ); base}
+    @inline def disableHeaderDividers = {base.setHeaderDividersEnabled(false); base}
 
     @inline def headerViewsCount = base.getHeaderViewsCount
 
     @inline def itemsCanFocus = base.getItemsCanFocus
     @inline def itemsCanFocus_=(p: Boolean) = { base.setItemsCanFocus(p); base }
-    @inline def itemsCanFocus(p: Boolean) = itemsCanFocus_=(p)
+    @inline def itemsCanFocus  (p: Boolean) = itemsCanFocus_=(p)
 
     @inline def maxScrollAmount = base.getMaxScrollAmount
 
@@ -1195,51 +1221,51 @@ def defaultValue[U]: U = {
   trait TraitViewGroup[V <: ViewGroup] extends TraitView[V] {
 
     @inline def alwaysDrawnWithCacheEnabled = base.isAlwaysDrawnWithCacheEnabled
-    @inline def enableAlwaysDrawnWithCache = {base.setAlwaysDrawnWithCacheEnabled(true); base}
-    @inline def disableAlwaysDrawnWithCache = {base.setAlwaysDrawnWithCacheEnabled(false); base}
     @inline def alwaysDrawnWithCacheEnabled_=(p: Boolean) = { base.setAlwaysDrawnWithCacheEnabled(p); base }
-    @inline def alwaysDrawnWithCacheEnabled(p: Boolean) = alwaysDrawnWithCacheEnabled_=(p)
+    @inline def alwaysDrawnWithCacheEnabled  (p: Boolean) = alwaysDrawnWithCacheEnabled_=(p)
+    @inline def enableAlwaysDrawnWithCache  = {base.setAlwaysDrawnWithCacheEnabled(true ); base}
+    @inline def disableAlwaysDrawnWithCache = {base.setAlwaysDrawnWithCacheEnabled(false); base}
 
     @inline def animationCacheEnabled = base.isAnimationCacheEnabled
-    @inline def enableAnimationCache = {base.setAnimationCacheEnabled(true); base}
-    @inline def disableAnimationCache = {base.setAnimationCacheEnabled(false); base}
     @inline def animationCacheEnabled_=(p: Boolean) = { base.setAnimationCacheEnabled(p); base }
-    @inline def animationCacheEnabled(p: Boolean) = animationCacheEnabled_=(p)
+    @inline def animationCacheEnabled  (p: Boolean) = animationCacheEnabled_=(p)
+    @inline def enableAnimationCache  = {base.setAnimationCacheEnabled(true ); base}
+    @inline def disableAnimationCache = {base.setAnimationCacheEnabled(false); base}
 
     @inline def childCount = base.getChildCount
 
     @noEquivalentGetterExists
-    @inline def clipChildren: Boolean = defaultValue[Boolean]
+    @inline def clipChildren    : Boolean  = defaultValue[Boolean]
     @inline def clipChildren_=(p: Boolean) = { base.setClipChildren(p); base }
-    @inline def clipChildren(p: Boolean) = clipChildren_=(p)
+    @inline def clipChildren  (p: Boolean) = clipChildren_=(p)
 
     @noEquivalentGetterExists
-    @inline def clipToPadding: Boolean = defaultValue[Boolean]
+    @inline def clipToPadding    : Boolean  = defaultValue[Boolean]
     @inline def clipToPadding_=(p: Boolean) = { base.setClipToPadding(p); base }
-    @inline def clipToPadding(p: Boolean) = clipToPadding_=(p)
+    @inline def clipToPadding  (p: Boolean) = clipToPadding_=(p)
 
     @inline def descendantFocusability = base.getDescendantFocusability
     @inline def descendantFocusability_=(p: Int) = { base.setDescendantFocusability(p); base }
-    @inline def descendantFocusability(p: Int) = descendantFocusability_=(p)
+    @inline def descendantFocusability  (p: Int) = descendantFocusability_=(p)
 
     @inline def focusedChild = base.getFocusedChild
 
     @inline def layoutAnimation = base.getLayoutAnimation
     @inline def layoutAnimation_=(p: android.view.animation.LayoutAnimationController) = { base.setLayoutAnimation(p); base }
-    @inline def layoutAnimation(p: android.view.animation.LayoutAnimationController) = layoutAnimation_=(p)
+    @inline def layoutAnimation  (p: android.view.animation.LayoutAnimationController) = layoutAnimation_=(p)
 
     @inline def layoutAnimationListener = base.getLayoutAnimationListener
     @inline def layoutAnimationListener_=(p: android.view.animation.Animation.AnimationListener) = { base.setLayoutAnimationListener(p); base }
-    @inline def layoutAnimationListener(p: android.view.animation.Animation.AnimationListener) = layoutAnimationListener_=(p)
+    @inline def layoutAnimationListener  (p: android.view.animation.Animation.AnimationListener) = layoutAnimationListener_=(p)
 
     @noEquivalentGetterExists
-    @inline def onHierarchyChangeListener: android.view.ViewGroup.OnHierarchyChangeListener = defaultValue[android.view.ViewGroup.OnHierarchyChangeListener]
+    @inline def onHierarchyChangeListener    : android.view.ViewGroup.OnHierarchyChangeListener  = defaultValue[android.view.ViewGroup.OnHierarchyChangeListener]
     @inline def onHierarchyChangeListener_=(p: android.view.ViewGroup.OnHierarchyChangeListener) = { base.setOnHierarchyChangeListener(p); base }
-    @inline def onHierarchyChangeListener(p: android.view.ViewGroup.OnHierarchyChangeListener) = onHierarchyChangeListener_=(p)
+    @inline def onHierarchyChangeListener  (p: android.view.ViewGroup.OnHierarchyChangeListener) = onHierarchyChangeListener_=(p)
 
     @inline def persistentDrawingCache = base.getPersistentDrawingCache
     @inline def persistentDrawingCache_=(p: Int) = { base.setPersistentDrawingCache(p); base }
-    @inline def persistentDrawingCache(p: Int) = persistentDrawingCache_=(p)
+    @inline def persistentDrawingCache  (p: Int) = persistentDrawingCache_=(p)
 
     def +=(v: View) = {
       var viw = v
@@ -1323,17 +1349,17 @@ def defaultValue[U]: U = {
 
     @inline def foreground = base.getForeground
     @inline def foreground_=(p: android.graphics.drawable.Drawable) = { base.setForeground(p); base }
-    @inline def foreground(p: android.graphics.drawable.Drawable) = foreground_=(p)
+    @inline def foreground  (p: android.graphics.drawable.Drawable) = foreground_=(p)
 
     @noEquivalentGetterExists
-    @inline def foregroundGravity: Int = defaultValue[Int]
+    @inline def foregroundGravity    : Int  = defaultValue[Int]
     @inline def foregroundGravity_=(p: Int) = { base.setForegroundGravity(p); base }
-    @inline def foregroundGravity(p: Int) = foregroundGravity_=(p)
+    @inline def foregroundGravity  (p: Int) = foregroundGravity_=(p)
 
     @noEquivalentGetterExists
-    @inline def measureAllChildren: Boolean = defaultValue[Boolean]
+    @inline def measureAllChildren    : Boolean  = defaultValue[Boolean]
     @inline def measureAllChildren_=(p: Boolean) = { base.setMeasureAllChildren(p); base }
-    @inline def measureAllChildren(p: Boolean) = measureAllChildren_=(p)
+    @inline def measureAllChildren  (p: Boolean) = measureAllChildren_=(p)
 
   }
 
@@ -1365,24 +1391,24 @@ def defaultValue[U]: U = {
   trait TraitRelativeLayout[V <: RelativeLayout] extends TraitViewGroup[V] {
 
     @noEquivalentGetterExists
-    @inline def gravity: Int = defaultValue[Int]
+    @inline def gravity    : Int  = defaultValue[Int]
     @inline def gravity_=(p: Int) = { base.setGravity(p); base }
-    @inline def gravity(p: Int) = gravity_=(p)
+    @inline def gravity  (p: Int) = gravity_=(p)
 
     @noEquivalentGetterExists
-    @inline def horizontalGravity: Int = defaultValue[Int]
+    @inline def horizontalGravity    : Int  = defaultValue[Int]
     @inline def horizontalGravity_=(p: Int) = { base.setHorizontalGravity(p); base }
-    @inline def horizontalGravity(p: Int) = horizontalGravity_=(p)
+    @inline def horizontalGravity  (p: Int) = horizontalGravity_=(p)
 
     @noEquivalentGetterExists
-    @inline def ignoreGravity: Int = defaultValue[Int]
+    @inline def ignoreGravity    : Int  = defaultValue[Int]
     @inline def ignoreGravity_=(p: Int) = { base.setIgnoreGravity(p); base }
-    @inline def ignoreGravity(p: Int) = ignoreGravity_=(p)
+    @inline def ignoreGravity  (p: Int) = ignoreGravity_=(p)
 
     @noEquivalentGetterExists
-    @inline def verticalGravity: Int = defaultValue[Int]
+    @inline def verticalGravity    : Int  = defaultValue[Int]
     @inline def verticalGravity_=(p: Int) = { base.setVerticalGravity(p); base }
-    @inline def verticalGravity(p: Int) = verticalGravity_=(p)
+    @inline def verticalGravity  (p: Int) = verticalGravity_=(p)
 
   }
   class SRelativeLayout(implicit context: Context) extends RelativeLayout(context) with TraitRelativeLayout[SRelativeLayout] {
@@ -1514,34 +1540,34 @@ def defaultValue[U]: U = {
 
     @inline def baselineAligned = base.isBaselineAligned
     @inline def baselineAligned_=(p: Boolean) = { base.setBaselineAligned(p); base }
-    @inline def baselineAligned(p: Boolean) = baselineAligned_=(p)
+    @inline def baselineAligned  (p: Boolean) = baselineAligned_=(p)
 
     @inline def baselineAlignedChildIndex = base.getBaselineAlignedChildIndex
     @inline def baselineAlignedChildIndex_=(p: Int) = { base.setBaselineAlignedChildIndex(p); base }
-    @inline def baselineAlignedChildIndex(p: Int) = baselineAlignedChildIndex_=(p)
+    @inline def baselineAlignedChildIndex  (p: Int) = baselineAlignedChildIndex_=(p)
 
     @noEquivalentGetterExists
-    @inline def gravity: Int = defaultValue[Int]
+    @inline def gravity    : Int  = defaultValue[Int]
     @inline def gravity_=(p: Int) = { base.setGravity(p); base }
-    @inline def gravity(p: Int) = gravity_=(p)
+    @inline def gravity  (p: Int) = gravity_=(p)
 
     @noEquivalentGetterExists
-    @inline def horizontalGravity: Int = defaultValue[Int]
+    @inline def horizontalGravity    : Int  = defaultValue[Int]
     @inline def horizontalGravity_=(p: Int) = { base.setHorizontalGravity(p); base }
-    @inline def horizontalGravity(p: Int) = horizontalGravity_=(p)
+    @inline def horizontalGravity  (p: Int) = horizontalGravity_=(p)
 
     @inline def orientation = base.getOrientation
     @inline def orientation_=(p: Int) = { base.setOrientation(p); base }
-    @inline def orientation(p: Int) = orientation_=(p)
+    @inline def orientation  (p: Int) = orientation_=(p)
 
     @noEquivalentGetterExists
-    @inline def verticalGravity: Int = defaultValue[Int]
+    @inline def verticalGravity    : Int  = defaultValue[Int]
     @inline def verticalGravity_=(p: Int) = { base.setVerticalGravity(p); base }
-    @inline def verticalGravity(p: Int) = verticalGravity_=(p)
+    @inline def verticalGravity  (p: Int) = verticalGravity_=(p)
 
     @inline def weightSum = base.getWeightSum
     @inline def weightSum_=(p: Float) = { base.setWeightSum(p); base }
-    @inline def weightSum(p: Float) = weightSum_=(p)
+    @inline def weightSum  (p: Float) = weightSum_=(p)
 
   }
 
@@ -1622,21 +1648,6 @@ def defaultValue[U]: U = {
 
   }
 
-  implicit def func2runnable[F](f: () => F): Runnable =
-    new Runnable() {
-      def run() {
-        f()
-      }
-    }
-
-  implicit def lazy2runnable[F](f: => F): Runnable =
-    new Runnable() {
-      def run() {
-        f
-      }
-    }
-
-
   class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = null)(implicit context: Context) extends AlertDialog.Builder(context) {
     if (_title != null) setTitle(_title)
     if (_message != null) setMessage(_message)
@@ -1701,7 +1712,7 @@ def defaultValue[U]: U = {
     }.show()
   }
 
-  @inline implicit def stringToUri(str: String): Uri = Uri.parse(str)
+
 
   object SIntent {
     @inline def apply[T]()(implicit context: Context, mt: ClassManifest[T]) = new Intent(context, mt.erasure)
@@ -1750,36 +1761,36 @@ def defaultValue[U]: U = {
 
     @inline def keyboard = base.getKeyboard
     @inline def keyboard_=(p: android.inputmethodservice.Keyboard) = { base.setKeyboard(p); base }
-    @inline def keyboard(p: android.inputmethodservice.Keyboard) = keyboard_=(p)
+    @inline def keyboard  (p: android.inputmethodservice.Keyboard) = keyboard_=(p)
 
     @noEquivalentGetterExists
-    @inline def onKeyboardActionListener: android.inputmethodservice.KeyboardView.OnKeyboardActionListener = defaultValue[android.inputmethodservice.KeyboardView.OnKeyboardActionListener]
+    @inline def onKeyboardActionListener    : android.inputmethodservice.KeyboardView.OnKeyboardActionListener  = defaultValue[android.inputmethodservice.KeyboardView.OnKeyboardActionListener]
     @inline def onKeyboardActionListener_=(p: android.inputmethodservice.KeyboardView.OnKeyboardActionListener) = { base.setOnKeyboardActionListener(p); base }
-    @inline def onKeyboardActionListener(p: android.inputmethodservice.KeyboardView.OnKeyboardActionListener) = onKeyboardActionListener_=(p)
+    @inline def onKeyboardActionListener  (p: android.inputmethodservice.KeyboardView.OnKeyboardActionListener) = onKeyboardActionListener_=(p)
 
     @noEquivalentGetterExists
-    @inline def popupParent: android.view.View = defaultValue[android.view.View]
+    @inline def popupParent    : android.view.View  = defaultValue[android.view.View]
     @inline def popupParent_=(p: android.view.View) = { base.setPopupParent(p); base }
-    @inline def popupParent(p: android.view.View) = popupParent_=(p)
+    @inline def popupParent  (p: android.view.View) = popupParent_=(p)
 
     @inline def previewEnabled = base.isPreviewEnabled
-    @inline def enablePreview = {base.setPreviewEnabled(true); base}
-    @inline def disablePreview = {base.setPreviewEnabled(false); base}
     @inline def previewEnabled_=(p: Boolean) = { base.setPreviewEnabled(p); base }
-    @inline def previewEnabled(p: Boolean) = previewEnabled_=(p)
+    @inline def previewEnabled  (p: Boolean) = previewEnabled_=(p)
+    @inline def enablePreview  = {base.setPreviewEnabled(true ); base}
+    @inline def disablePreview = {base.setPreviewEnabled(false); base}
 
     @inline def proximityCorrectionEnabled = base.isProximityCorrectionEnabled
-    @inline def enableProximityCorrection = {base.setProximityCorrectionEnabled(true); base}
-    @inline def disableProximityCorrection = {base.setProximityCorrectionEnabled(false); base}
     @inline def proximityCorrectionEnabled_=(p: Boolean) = { base.setProximityCorrectionEnabled(p); base }
-    @inline def proximityCorrectionEnabled(p: Boolean) = proximityCorrectionEnabled_=(p)
+    @inline def proximityCorrectionEnabled  (p: Boolean) = proximityCorrectionEnabled_=(p)
+    @inline def enableProximityCorrection  = {base.setProximityCorrectionEnabled(true ); base}
+    @inline def disableProximityCorrection = {base.setProximityCorrectionEnabled(false); base}
 
     @inline def shifted = base.isShifted
 
     @noEquivalentGetterExists
-    @inline def verticalCorrection: Int = defaultValue[Int]
+    @inline def verticalCorrection    : Int  = defaultValue[Int]
     @inline def verticalCorrection_=(p: Int) = { base.setVerticalCorrection(p); base }
-    @inline def verticalCorrection(p: Int) = verticalCorrection_=(p)
+    @inline def verticalCorrection  (p: Int) = verticalCorrection_=(p)
 
    }
 
@@ -1790,59 +1801,59 @@ def defaultValue[U]: U = {
   trait TraitImageView[V <: ImageView] extends TraitView[V] {
 
     @noEquivalentGetterExists
-    @inline def adjustViewBounds: Boolean = defaultValue[Boolean]
+    @inline def adjustViewBounds    : Boolean  = defaultValue[Boolean]
     @inline def adjustViewBounds_=(p: Boolean) = { base.setAdjustViewBounds(p); base }
-    @inline def adjustViewBounds(p: Boolean) = adjustViewBounds_=(p)
+    @inline def adjustViewBounds  (p: Boolean) = adjustViewBounds_=(p)
 
     @noEquivalentGetterExists
-    @inline def alpha: Int = defaultValue[Int]
+    @inline def alpha    : Int  = defaultValue[Int]
     @inline def alpha_=(p: Int) = { base.setAlpha(p); base }
-    @inline def alpha(p: Int) = alpha_=(p)
+    @inline def alpha  (p: Int) = alpha_=(p)
 
     @inline def drawable = base.getDrawable
 
     @noEquivalentGetterExists
-    @inline def imageBitmap: android.graphics.Bitmap = defaultValue[android.graphics.Bitmap]
+    @inline def imageBitmap    : android.graphics.Bitmap  = defaultValue[android.graphics.Bitmap]
     @inline def imageBitmap_=(p: android.graphics.Bitmap) = { base.setImageBitmap(p); base }
-    @inline def imageBitmap(p: android.graphics.Bitmap) = imageBitmap_=(p)
+    @inline def imageBitmap  (p: android.graphics.Bitmap) = imageBitmap_=(p)
 
     @noEquivalentGetterExists
-    @inline def imageDrawable: android.graphics.drawable.Drawable = defaultValue[android.graphics.drawable.Drawable]
+    @inline def imageDrawable    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
     @inline def imageDrawable_=(p: android.graphics.drawable.Drawable) = { base.setImageDrawable(p); base }
-    @inline def imageDrawable(p: android.graphics.drawable.Drawable) = imageDrawable_=(p)
+    @inline def imageDrawable  (p: android.graphics.drawable.Drawable) = imageDrawable_=(p)
 
     @noEquivalentGetterExists
-    @inline def imageLevel: Int = defaultValue[Int]
+    @inline def imageLevel    : Int  = defaultValue[Int]
     @inline def imageLevel_=(p: Int) = { base.setImageLevel(p); base }
-    @inline def imageLevel(p: Int) = imageLevel_=(p)
+    @inline def imageLevel  (p: Int) = imageLevel_=(p)
 
     @inline def imageMatrix = base.getImageMatrix
     @inline def imageMatrix_=(p: android.graphics.Matrix) = { base.setImageMatrix(p); base }
-    @inline def imageMatrix(p: android.graphics.Matrix) = imageMatrix_=(p)
+    @inline def imageMatrix  (p: android.graphics.Matrix) = imageMatrix_=(p)
 
     @noEquivalentGetterExists
-    @inline def imageResource: Int = defaultValue[Int]
+    @inline def imageResource    : Int  = defaultValue[Int]
     @inline def imageResource_=(p: Int) = { base.setImageResource(p); base }
-    @inline def imageResource(p: Int) = imageResource_=(p)
+    @inline def imageResource  (p: Int) = imageResource_=(p)
 
     @noEquivalentGetterExists
-    @inline def imageURI: android.net.Uri = defaultValue[android.net.Uri]
+    @inline def imageURI    : android.net.Uri  = defaultValue[android.net.Uri]
     @inline def imageURI_=(p: android.net.Uri) = { base.setImageURI(p); base }
-    @inline def imageURI(p: android.net.Uri) = imageURI_=(p)
+    @inline def imageURI  (p: android.net.Uri) = imageURI_=(p)
 
     @noEquivalentGetterExists
-    @inline def maxHeight: Int = defaultValue[Int]
+    @inline def maxHeight    : Int  = defaultValue[Int]
     @inline def maxHeight_=(p: Int) = { base.setMaxHeight(p); base }
-    @inline def maxHeight(p: Int) = maxHeight_=(p)
+    @inline def maxHeight  (p: Int) = maxHeight_=(p)
 
     @noEquivalentGetterExists
-    @inline def maxWidth: Int = defaultValue[Int]
+    @inline def maxWidth    : Int  = defaultValue[Int]
     @inline def maxWidth_=(p: Int) = { base.setMaxWidth(p); base }
-    @inline def maxWidth(p: Int) = maxWidth_=(p)
+    @inline def maxWidth  (p: Int) = maxWidth_=(p)
 
     @inline def scaleType = base.getScaleType
     @inline def scaleType_=(p: android.widget.ImageView.ScaleType) = { base.setScaleType(p); base }
-    @inline def scaleType(p: android.widget.ImageView.ScaleType) = scaleType_=(p)
+    @inline def scaleType  (p: android.widget.ImageView.ScaleType) = scaleType_=(p)
 
    }
 
@@ -1854,31 +1865,31 @@ def defaultValue[U]: U = {
 
     @inline def indeterminate = base.isIndeterminate
     @inline def indeterminate_=(p: Boolean) = { base.setIndeterminate(p); base }
-    @inline def indeterminate(p: Boolean) = indeterminate_=(p)
+    @inline def indeterminate  (p: Boolean) = indeterminate_=(p)
 
     @inline def indeterminateDrawable = base.getIndeterminateDrawable
     @inline def indeterminateDrawable_=(p: android.graphics.drawable.Drawable) = { base.setIndeterminateDrawable(p); base }
-    @inline def indeterminateDrawable(p: android.graphics.drawable.Drawable) = indeterminateDrawable_=(p)
+    @inline def indeterminateDrawable  (p: android.graphics.drawable.Drawable) = indeterminateDrawable_=(p)
 
     @inline def interpolator = base.getInterpolator
     @inline def interpolator_=(p: android.view.animation.Interpolator) = { base.setInterpolator(p); base }
-    @inline def interpolator(p: android.view.animation.Interpolator) = interpolator_=(p)
+    @inline def interpolator  (p: android.view.animation.Interpolator) = interpolator_=(p)
 
     @inline def max = base.getMax
     @inline def max_=(p: Int) = { base.setMax(p); base }
-    @inline def max(p: Int) = max_=(p)
+    @inline def max  (p: Int) = max_=(p)
 
     @inline def progress = base.getProgress
     @inline def progress_=(p: Int) = { base.setProgress(p); base }
-    @inline def progress(p: Int) = progress_=(p)
+    @inline def progress  (p: Int) = progress_=(p)
 
     @inline def progressDrawable = base.getProgressDrawable
     @inline def progressDrawable_=(p: android.graphics.drawable.Drawable) = { base.setProgressDrawable(p); base }
-    @inline def progressDrawable(p: android.graphics.drawable.Drawable) = progressDrawable_=(p)
+    @inline def progressDrawable  (p: android.graphics.drawable.Drawable) = progressDrawable_=(p)
 
     @inline def secondaryProgress = base.getSecondaryProgress
     @inline def secondaryProgress_=(p: Int) = { base.setSecondaryProgress(p); base }
-    @inline def secondaryProgress(p: Int) = secondaryProgress_=(p)
+    @inline def secondaryProgress  (p: Int) = secondaryProgress_=(p)
 
    }
 
@@ -1927,14 +1938,14 @@ def defaultValue[U]: U = {
   trait TraitSurfaceView[V <: SurfaceView] extends TraitView[V] {
 
     @noEquivalentGetterExists
-    @inline def ZOrderMediaOverlay: Boolean = defaultValue[Boolean]
+    @inline def ZOrderMediaOverlay    : Boolean  = defaultValue[Boolean]
     @inline def ZOrderMediaOverlay_=(p: Boolean) = { base.setZOrderMediaOverlay(p); base }
-    @inline def ZOrderMediaOverlay(p: Boolean) = ZOrderMediaOverlay_=(p)
+    @inline def ZOrderMediaOverlay  (p: Boolean) = ZOrderMediaOverlay_=(p)
 
     @noEquivalentGetterExists
-    @inline def ZOrderOnTop: Boolean = defaultValue[Boolean]
+    @inline def ZOrderOnTop    : Boolean  = defaultValue[Boolean]
     @inline def ZOrderOnTop_=(p: Boolean) = { base.setZOrderOnTop(p); base }
-    @inline def ZOrderOnTop(p: Boolean) = ZOrderOnTop_=(p)
+    @inline def ZOrderOnTop  (p: Boolean) = ZOrderOnTop_=(p)
 
     @inline def holder = base.getHolder
 
@@ -1949,16 +1960,16 @@ def defaultValue[U]: U = {
 
     @inline def inflatedId = base.getInflatedId
     @inline def inflatedId_=(p: Int) = { base.setInflatedId(p); base }
-    @inline def inflatedId(p: Int) = inflatedId_=(p)
+    @inline def inflatedId  (p: Int) = inflatedId_=(p)
 
     @inline def layoutResource = base.getLayoutResource
     @inline def layoutResource_=(p: Int) = { base.setLayoutResource(p); base }
-    @inline def layoutResource(p: Int) = layoutResource_=(p)
+    @inline def layoutResource  (p: Int) = layoutResource_=(p)
 
     @noEquivalentGetterExists
-    @inline def onInflateListener: android.view.ViewStub.OnInflateListener = defaultValue[android.view.ViewStub.OnInflateListener]
+    @inline def onInflateListener    : android.view.ViewStub.OnInflateListener  = defaultValue[android.view.ViewStub.OnInflateListener]
     @inline def onInflateListener_=(p: android.view.ViewStub.OnInflateListener) = { base.setOnInflateListener(p); base }
-    @inline def onInflateListener(p: android.view.ViewStub.OnInflateListener) = onInflateListener_=(p)
+    @inline def onInflateListener  (p: android.view.ViewStub.OnInflateListener) = onInflateListener_=(p)
 
    }
 
@@ -1969,33 +1980,33 @@ def defaultValue[U]: U = {
   trait TraitGridView[V <: GridView] extends TraitAbsListView[V] {
 
     @noEquivalentGetterExists
-    @inline def columnWidth: Int = defaultValue[Int]
+    @inline def columnWidth    : Int  = defaultValue[Int]
     @inline def columnWidth_=(p: Int) = { base.setColumnWidth(p); base }
-    @inline def columnWidth(p: Int) = columnWidth_=(p)
+    @inline def columnWidth  (p: Int) = columnWidth_=(p)
 
     @noEquivalentGetterExists
-    @inline def gravity: Int = defaultValue[Int]
+    @inline def gravity    : Int  = defaultValue[Int]
     @inline def gravity_=(p: Int) = { base.setGravity(p); base }
-    @inline def gravity(p: Int) = gravity_=(p)
+    @inline def gravity  (p: Int) = gravity_=(p)
 
     @noEquivalentGetterExists
-    @inline def horizontalSpacing: Int = defaultValue[Int]
+    @inline def horizontalSpacing    : Int  = defaultValue[Int]
     @inline def horizontalSpacing_=(p: Int) = { base.setHorizontalSpacing(p); base }
-    @inline def horizontalSpacing(p: Int) = horizontalSpacing_=(p)
+    @inline def horizontalSpacing  (p: Int) = horizontalSpacing_=(p)
 
     @noEquivalentGetterExists
-    @inline def numColumns: Int = defaultValue[Int]
+    @inline def numColumns    : Int  = defaultValue[Int]
     @inline def numColumns_=(p: Int) = { base.setNumColumns(p); base }
-    @inline def numColumns(p: Int) = numColumns_=(p)
+    @inline def numColumns  (p: Int) = numColumns_=(p)
 
     @inline def stretchMode = base.getStretchMode
     @inline def stretchMode_=(p: Int) = { base.setStretchMode(p); base }
-    @inline def stretchMode(p: Int) = stretchMode_=(p)
+    @inline def stretchMode  (p: Int) = stretchMode_=(p)
 
     @noEquivalentGetterExists
-    @inline def verticalSpacing: Int = defaultValue[Int]
+    @inline def verticalSpacing    : Int  = defaultValue[Int]
     @inline def verticalSpacing_=(p: Int) = { base.setVerticalSpacing(p); base }
-    @inline def verticalSpacing(p: Int) = verticalSpacing_=(p)
+    @inline def verticalSpacing  (p: Int) = verticalSpacing_=(p)
 
    }
 
@@ -2006,46 +2017,46 @@ def defaultValue[U]: U = {
   trait TraitExpandableListView[V <: ExpandableListView] extends TraitListView[V] {
 
     @noEquivalentGetterExists
-    @inline def childDivider: android.graphics.drawable.Drawable = defaultValue[android.graphics.drawable.Drawable]
+    @inline def childDivider    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
     @inline def childDivider_=(p: android.graphics.drawable.Drawable) = { base.setChildDivider(p); base }
-    @inline def childDivider(p: android.graphics.drawable.Drawable) = childDivider_=(p)
+    @inline def childDivider  (p: android.graphics.drawable.Drawable) = childDivider_=(p)
 
     @noEquivalentGetterExists
-    @inline def childIndicator: android.graphics.drawable.Drawable = defaultValue[android.graphics.drawable.Drawable]
+    @inline def childIndicator    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
     @inline def childIndicator_=(p: android.graphics.drawable.Drawable) = { base.setChildIndicator(p); base }
-    @inline def childIndicator(p: android.graphics.drawable.Drawable) = childIndicator_=(p)
+    @inline def childIndicator  (p: android.graphics.drawable.Drawable) = childIndicator_=(p)
 
     @inline def expandableListAdapter = base.getExpandableListAdapter
 
     @noEquivalentGetterExists
-    @inline def groupIndicator: android.graphics.drawable.Drawable = defaultValue[android.graphics.drawable.Drawable]
+    @inline def groupIndicator    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
     @inline def groupIndicator_=(p: android.graphics.drawable.Drawable) = { base.setGroupIndicator(p); base }
-    @inline def groupIndicator(p: android.graphics.drawable.Drawable) = groupIndicator_=(p)
+    @inline def groupIndicator  (p: android.graphics.drawable.Drawable) = groupIndicator_=(p)
 
     @noEquivalentGetterExists
-    @inline def onChildClickListener: android.widget.ExpandableListView.OnChildClickListener = defaultValue[android.widget.ExpandableListView.OnChildClickListener]
+    @inline def onChildClickListener    : android.widget.ExpandableListView.OnChildClickListener  = defaultValue[android.widget.ExpandableListView.OnChildClickListener]
     @inline def onChildClickListener_=(p: android.widget.ExpandableListView.OnChildClickListener) = { base.setOnChildClickListener(p); base }
-    @inline def onChildClickListener(p: android.widget.ExpandableListView.OnChildClickListener) = onChildClickListener_=(p)
+    @inline def onChildClickListener  (p: android.widget.ExpandableListView.OnChildClickListener) = onChildClickListener_=(p)
 
     @noEquivalentGetterExists
-    @inline def onGroupClickListener: android.widget.ExpandableListView.OnGroupClickListener = defaultValue[android.widget.ExpandableListView.OnGroupClickListener]
+    @inline def onGroupClickListener    : android.widget.ExpandableListView.OnGroupClickListener  = defaultValue[android.widget.ExpandableListView.OnGroupClickListener]
     @inline def onGroupClickListener_=(p: android.widget.ExpandableListView.OnGroupClickListener) = { base.setOnGroupClickListener(p); base }
-    @inline def onGroupClickListener(p: android.widget.ExpandableListView.OnGroupClickListener) = onGroupClickListener_=(p)
+    @inline def onGroupClickListener  (p: android.widget.ExpandableListView.OnGroupClickListener) = onGroupClickListener_=(p)
 
     @noEquivalentGetterExists
-    @inline def onGroupCollapseListener: android.widget.ExpandableListView.OnGroupCollapseListener = defaultValue[android.widget.ExpandableListView.OnGroupCollapseListener]
+    @inline def onGroupCollapseListener    : android.widget.ExpandableListView.OnGroupCollapseListener  = defaultValue[android.widget.ExpandableListView.OnGroupCollapseListener]
     @inline def onGroupCollapseListener_=(p: android.widget.ExpandableListView.OnGroupCollapseListener) = { base.setOnGroupCollapseListener(p); base }
-    @inline def onGroupCollapseListener(p: android.widget.ExpandableListView.OnGroupCollapseListener) = onGroupCollapseListener_=(p)
+    @inline def onGroupCollapseListener  (p: android.widget.ExpandableListView.OnGroupCollapseListener) = onGroupCollapseListener_=(p)
 
     @noEquivalentGetterExists
-    @inline def onGroupExpandListener: android.widget.ExpandableListView.OnGroupExpandListener = defaultValue[android.widget.ExpandableListView.OnGroupExpandListener]
+    @inline def onGroupExpandListener    : android.widget.ExpandableListView.OnGroupExpandListener  = defaultValue[android.widget.ExpandableListView.OnGroupExpandListener]
     @inline def onGroupExpandListener_=(p: android.widget.ExpandableListView.OnGroupExpandListener) = { base.setOnGroupExpandListener(p); base }
-    @inline def onGroupExpandListener(p: android.widget.ExpandableListView.OnGroupExpandListener) = onGroupExpandListener_=(p)
+    @inline def onGroupExpandListener  (p: android.widget.ExpandableListView.OnGroupExpandListener) = onGroupExpandListener_=(p)
 
     @noEquivalentGetterExists
-    @inline def selectedGroup: Int = defaultValue[Int]
+    @inline def selectedGroup    : Int  = defaultValue[Int]
     @inline def selectedGroup_=(p: Int) = { base.setSelectedGroup(p); base }
-    @inline def selectedGroup(p: Int) = selectedGroup_=(p)
+    @inline def selectedGroup  (p: Int) = selectedGroup_=(p)
 
     @inline def selectedId = base.getSelectedId
 
@@ -2134,12 +2145,12 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
 
     @inline def prompt = base.getPrompt
     @inline def prompt_=(p: java.lang.CharSequence) = { base.setPrompt(p); base }
-    @inline def prompt(p: java.lang.CharSequence) = prompt_=(p)
+    @inline def prompt  (p: java.lang.CharSequence) = prompt_=(p)
 
     @noEquivalentGetterExists
-    @inline def promptId: Int = defaultValue[Int]
+    @inline def promptId    : Int  = defaultValue[Int]
     @inline def promptId_=(p: Int) = { base.setPromptId(p); base }
-    @inline def promptId(p: Int) = promptId_=(p)
+    @inline def promptId  (p: Int) = promptId_=(p)
 
    }
 
@@ -2165,29 +2176,29 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
   trait TraitGallery[V <: Gallery] extends TraitAbsSpinner[V] {
 
     @noEquivalentGetterExists
-    @inline def animationDuration: Int = defaultValue[Int]
+    @inline def animationDuration    : Int  = defaultValue[Int]
     @inline def animationDuration_=(p: Int) = { base.setAnimationDuration(p); base }
-    @inline def animationDuration(p: Int) = animationDuration_=(p)
+    @inline def animationDuration  (p: Int) = animationDuration_=(p)
 
     @noEquivalentGetterExists
-    @inline def callbackDuringFling: Boolean = defaultValue[Boolean]
+    @inline def callbackDuringFling    : Boolean  = defaultValue[Boolean]
     @inline def callbackDuringFling_=(p: Boolean) = { base.setCallbackDuringFling(p); base }
-    @inline def callbackDuringFling(p: Boolean) = callbackDuringFling_=(p)
+    @inline def callbackDuringFling  (p: Boolean) = callbackDuringFling_=(p)
 
     @noEquivalentGetterExists
-    @inline def gravity: Int = defaultValue[Int]
+    @inline def gravity    : Int  = defaultValue[Int]
     @inline def gravity_=(p: Int) = { base.setGravity(p); base }
-    @inline def gravity(p: Int) = gravity_=(p)
+    @inline def gravity  (p: Int) = gravity_=(p)
 
     @noEquivalentGetterExists
-    @inline def spacing: Int = defaultValue[Int]
+    @inline def spacing    : Int  = defaultValue[Int]
     @inline def spacing_=(p: Int) = { base.setSpacing(p); base }
-    @inline def spacing(p: Int) = spacing_=(p)
+    @inline def spacing  (p: Int) = spacing_=(p)
 
     @noEquivalentGetterExists
-    @inline def unselectedAlpha: Float = defaultValue[Float]
+    @inline def unselectedAlpha    : Float  = defaultValue[Float]
     @inline def unselectedAlpha_=(p: Float) = { base.setUnselectedAlpha(p); base }
-    @inline def unselectedAlpha(p: Float) = unselectedAlpha_=(p)
+    @inline def unselectedAlpha  (p: Float) = unselectedAlpha_=(p)
 
    }
 
@@ -2214,16 +2225,16 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
 
     @inline def keyProgressIncrement = base.getKeyProgressIncrement
     @inline def keyProgressIncrement_=(p: Int) = { base.setKeyProgressIncrement(p); base }
-    @inline def keyProgressIncrement(p: Int) = keyProgressIncrement_=(p)
+    @inline def keyProgressIncrement  (p: Int) = keyProgressIncrement_=(p)
 
     @noEquivalentGetterExists
-    @inline def thumb: android.graphics.drawable.Drawable = defaultValue[android.graphics.drawable.Drawable]
+    @inline def thumb    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
     @inline def thumb_=(p: android.graphics.drawable.Drawable) = { base.setThumb(p); base }
-    @inline def thumb(p: android.graphics.drawable.Drawable) = thumb_=(p)
+    @inline def thumb  (p: android.graphics.drawable.Drawable) = thumb_=(p)
 
     @inline def thumbOffset = base.getThumbOffset
     @inline def thumbOffset_=(p: Int) = { base.setThumbOffset(p); base }
-    @inline def thumbOffset(p: Int) = thumbOffset_=(p)
+    @inline def thumbOffset  (p: Int) = thumbOffset_=(p)
 
    }
 
@@ -2234,9 +2245,9 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
   trait TraitSeekBar[V <: SeekBar] extends TraitAbsSeekBar[V] {
 
     @noEquivalentGetterExists
-    @inline def onSeekBarChangeListener: android.widget.SeekBar.OnSeekBarChangeListener = defaultValue[android.widget.SeekBar.OnSeekBarChangeListener]
+    @inline def onSeekBarChangeListener    : android.widget.SeekBar.OnSeekBarChangeListener  = defaultValue[android.widget.SeekBar.OnSeekBarChangeListener]
     @inline def onSeekBarChangeListener_=(p: android.widget.SeekBar.OnSeekBarChangeListener) = { base.setOnSeekBarChangeListener(p); base }
-    @inline def onSeekBarChangeListener(p: android.widget.SeekBar.OnSeekBarChangeListener) = onSeekBarChangeListener_=(p)
+    @inline def onSeekBarChangeListener  (p: android.widget.SeekBar.OnSeekBarChangeListener) = onSeekBarChangeListener_=(p)
 
     @inline def onProgressChanged(f:  => Unit): V = {
       base.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener {
@@ -2318,19 +2329,19 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
 
     @inline def numStars = base.getNumStars
     @inline def numStars_=(p: Int) = { base.setNumStars(p); base }
-    @inline def numStars(p: Int) = numStars_=(p)
+    @inline def numStars  (p: Int) = numStars_=(p)
 
     @inline def onRatingBarChangeListener = base.getOnRatingBarChangeListener
     @inline def onRatingBarChangeListener_=(p: android.widget.RatingBar.OnRatingBarChangeListener) = { base.setOnRatingBarChangeListener(p); base }
-    @inline def onRatingBarChangeListener(p: android.widget.RatingBar.OnRatingBarChangeListener) = onRatingBarChangeListener_=(p)
+    @inline def onRatingBarChangeListener  (p: android.widget.RatingBar.OnRatingBarChangeListener) = onRatingBarChangeListener_=(p)
 
     @inline def rating = base.getRating
     @inline def rating_=(p: Float) = { base.setRating(p); base }
-    @inline def rating(p: Float) = rating_=(p)
+    @inline def rating  (p: Float) = rating_=(p)
 
     @inline def stepSize = base.getStepSize
     @inline def stepSize_=(p: Float) = { base.setStepSize(p); base }
-    @inline def stepSize(p: Float) = stepSize_=(p)
+    @inline def stepSize  (p: Float) = stepSize_=(p)
 
    }
 
@@ -2399,64 +2410,64 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
     @inline def currentStroke = base.getCurrentStroke
 
     @inline def eventsInterceptionEnabled = base.isEventsInterceptionEnabled
-    @inline def enableEventsInterception = {base.setEventsInterceptionEnabled(true); base}
-    @inline def disableEventsInterception = {base.setEventsInterceptionEnabled(false); base}
     @inline def eventsInterceptionEnabled_=(p: Boolean) = { base.setEventsInterceptionEnabled(p); base }
-    @inline def eventsInterceptionEnabled(p: Boolean) = eventsInterceptionEnabled_=(p)
+    @inline def eventsInterceptionEnabled  (p: Boolean) = eventsInterceptionEnabled_=(p)
+    @inline def enableEventsInterception  = {base.setEventsInterceptionEnabled(true ); base}
+    @inline def disableEventsInterception = {base.setEventsInterceptionEnabled(false); base}
 
     @inline def fadeEnabled = base.isFadeEnabled
-    @inline def enableFade = {base.setFadeEnabled(true); base}
-    @inline def disableFade = {base.setFadeEnabled(false); base}
     @inline def fadeEnabled_=(p: Boolean) = { base.setFadeEnabled(p); base }
-    @inline def fadeEnabled(p: Boolean) = fadeEnabled_=(p)
+    @inline def fadeEnabled  (p: Boolean) = fadeEnabled_=(p)
+    @inline def enableFade  = {base.setFadeEnabled(true ); base}
+    @inline def disableFade = {base.setFadeEnabled(false); base}
 
     @inline def fadeOffset = base.getFadeOffset
     @inline def fadeOffset_=(p: Long) = { base.setFadeOffset(p); base }
-    @inline def fadeOffset(p: Long) = fadeOffset_=(p)
+    @inline def fadeOffset  (p: Long) = fadeOffset_=(p)
 
     @inline def gesture = base.getGesture
     @inline def gesture_=(p: android.gesture.Gesture) = { base.setGesture(p); base }
-    @inline def gesture(p: android.gesture.Gesture) = gesture_=(p)
+    @inline def gesture  (p: android.gesture.Gesture) = gesture_=(p)
 
     @inline def gestureColor = base.getGestureColor
     @inline def gestureColor_=(p: Int) = { base.setGestureColor(p); base }
-    @inline def gestureColor(p: Int) = gestureColor_=(p)
+    @inline def gestureColor  (p: Int) = gestureColor_=(p)
 
     @inline def gesturePath = base.getGesturePath
 
     @inline def gestureStrokeAngleThreshold = base.getGestureStrokeAngleThreshold
     @inline def gestureStrokeAngleThreshold_=(p: Float) = { base.setGestureStrokeAngleThreshold(p); base }
-    @inline def gestureStrokeAngleThreshold(p: Float) = gestureStrokeAngleThreshold_=(p)
+    @inline def gestureStrokeAngleThreshold  (p: Float) = gestureStrokeAngleThreshold_=(p)
 
     @inline def gestureStrokeLengthThreshold = base.getGestureStrokeLengthThreshold
     @inline def gestureStrokeLengthThreshold_=(p: Float) = { base.setGestureStrokeLengthThreshold(p); base }
-    @inline def gestureStrokeLengthThreshold(p: Float) = gestureStrokeLengthThreshold_=(p)
+    @inline def gestureStrokeLengthThreshold  (p: Float) = gestureStrokeLengthThreshold_=(p)
 
     @inline def gestureStrokeSquarenessTreshold = base.getGestureStrokeSquarenessTreshold
     @inline def gestureStrokeSquarenessTreshold_=(p: Float) = { base.setGestureStrokeSquarenessTreshold(p); base }
-    @inline def gestureStrokeSquarenessTreshold(p: Float) = gestureStrokeSquarenessTreshold_=(p)
+    @inline def gestureStrokeSquarenessTreshold  (p: Float) = gestureStrokeSquarenessTreshold_=(p)
 
     @inline def gestureStrokeType = base.getGestureStrokeType
     @inline def gestureStrokeType_=(p: Int) = { base.setGestureStrokeType(p); base }
-    @inline def gestureStrokeType(p: Int) = gestureStrokeType_=(p)
+    @inline def gestureStrokeType  (p: Int) = gestureStrokeType_=(p)
 
     @inline def gestureStrokeWidth = base.getGestureStrokeWidth
     @inline def gestureStrokeWidth_=(p: Float) = { base.setGestureStrokeWidth(p); base }
-    @inline def gestureStrokeWidth(p: Float) = gestureStrokeWidth_=(p)
+    @inline def gestureStrokeWidth  (p: Float) = gestureStrokeWidth_=(p)
 
     @inline def gestureVisible = base.isGestureVisible
     @inline def gestureVisible_=(p: Boolean) = { base.setGestureVisible(p); base }
-    @inline def gestureVisible(p: Boolean) = gestureVisible_=(p)
+    @inline def gestureVisible  (p: Boolean) = gestureVisible_=(p)
 
     @inline def gesturing = base.isGesturing
 
     @inline def orientation = base.getOrientation
     @inline def orientation_=(p: Int) = { base.setOrientation(p); base }
-    @inline def orientation(p: Int) = orientation_=(p)
+    @inline def orientation  (p: Int) = orientation_=(p)
 
     @inline def uncertainGestureColor = base.getUncertainGestureColor
     @inline def uncertainGestureColor_=(p: Int) = { base.setUncertainGestureColor(p); base }
-    @inline def uncertainGestureColor(p: Int) = uncertainGestureColor_=(p)
+    @inline def uncertainGestureColor  (p: Int) = uncertainGestureColor_=(p)
 
     }
 
@@ -2519,65 +2530,23 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
 
   @inline implicit def richClipboardManager(cm: android.text.ClipboardManager): RichClipboardManager = new RichClipboardManager(cm)
 
-  @inline def connectivityManager(implicit context: Context): ConnectivityManager =
-    context.getSystemService(Context.CONNECTIVITY_SERVICE).asInstanceOf[ConnectivityManager]
-
-  @inline def devicePolicyManager(implicit context: Context): DevicePolicyManager =
-    context.getSystemService(Context.DEVICE_POLICY_SERVICE).asInstanceOf[DevicePolicyManager]
-
-
-  @inline def dropBoxManager(implicit context: Context): DropBoxManager =
-    context.getSystemService(Context.DROPBOX_SERVICE).asInstanceOf[DropBoxManager]
-
-
-  @inline def inputMethodManager(implicit context: Context): InputMethodManager =
-    context.getSystemService(Context.INPUT_METHOD_SERVICE).asInstanceOf[InputMethodManager]
-
-  @inline def keyguardManager(implicit context: Context): KeyguardManager =
-    context.getSystemService(Context.KEYGUARD_SERVICE).asInstanceOf[KeyguardManager]
-
-  @inline def layoutInflater(implicit context: Context): LayoutInflater =
-    context.getSystemService(Context.LAYOUT_INFLATER_SERVICE).asInstanceOf[LayoutInflater]
-
-  @inline def locationManager(implicit context: Context): LocationManager =
-    context.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
-
-
-
-  @inline def notificationManager(implicit context: Context): NotificationManager =
-    context.getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[NotificationManager]
-
-
-  @inline def powerManager(implicit context: Context): PowerManager =
-    context.getSystemService(Context.POWER_SERVICE).asInstanceOf[PowerManager]
-
-  @inline def searchManager(implicit context: Context): SearchManager =
-    context.getSystemService(Context.SEARCH_SERVICE).asInstanceOf[SearchManager]
-
-  @inline def sensorManager(implicit context: Context): SensorManager =
-    context.getSystemService(Context.SENSOR_SERVICE).asInstanceOf[SensorManager]
-
-
-  @inline def telephonyManager(implicit context: Context): TelephonyManager =
-    context.getSystemService(Context.TELEPHONY_SERVICE).asInstanceOf[TelephonyManager]
-
-
-  @inline def uiModeManager(implicit context: Context): UiModeManager =
-    context.getSystemService(Context.UI_MODE_SERVICE).asInstanceOf[UiModeManager]
-
-
-  @inline def vibrator(implicit context: Context): Vibrator =
-    context.getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
-
-  @inline def wallpaperManager(implicit context: Context): WallpaperManager =
-    context.getSystemService(Context.WALLPAPER_SERVICE).asInstanceOf[WallpaperManager]
-
-
-  @inline def wifiManager(implicit context: Context): WifiManager =
-    context.getSystemService(Context.WIFI_SERVICE).asInstanceOf[WifiManager]
-
-  @inline def windowManager(implicit context: Context): WindowManager =
-    context.getSystemService(Context.WINDOW_SERVICE).asInstanceOf[WindowManager]
+  @inline def connectivityManager   (implicit context: Context): ConnectivityManager    = context.getSystemService(Context.CONNECTIVITY_SERVICE   ).asInstanceOf[ConnectivityManager]
+  @inline def devicePolicyManager   (implicit context: Context): DevicePolicyManager    = context.getSystemService(Context.DEVICE_POLICY_SERVICE  ).asInstanceOf[DevicePolicyManager]
+  @inline def dropBoxManager        (implicit context: Context): DropBoxManager         = context.getSystemService(Context.DROPBOX_SERVICE        ).asInstanceOf[DropBoxManager]
+  @inline def inputMethodManager    (implicit context: Context): InputMethodManager     = context.getSystemService(Context.INPUT_METHOD_SERVICE   ).asInstanceOf[InputMethodManager]
+  @inline def keyguardManager       (implicit context: Context): KeyguardManager        = context.getSystemService(Context.KEYGUARD_SERVICE       ).asInstanceOf[KeyguardManager]
+  @inline def layoutInflater        (implicit context: Context): LayoutInflater         = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE).asInstanceOf[LayoutInflater]
+  @inline def locationManager       (implicit context: Context): LocationManager        = context.getSystemService(Context.LOCATION_SERVICE       ).asInstanceOf[LocationManager]
+  @inline def notificationManager   (implicit context: Context): NotificationManager    = context.getSystemService(Context.NOTIFICATION_SERVICE   ).asInstanceOf[NotificationManager]
+  @inline def powerManager          (implicit context: Context): PowerManager           = context.getSystemService(Context.POWER_SERVICE          ).asInstanceOf[PowerManager]
+  @inline def searchManager         (implicit context: Context): SearchManager          = context.getSystemService(Context.SEARCH_SERVICE         ).asInstanceOf[SearchManager]
+  @inline def sensorManager         (implicit context: Context): SensorManager          = context.getSystemService(Context.SENSOR_SERVICE         ).asInstanceOf[SensorManager]
+  @inline def telephonyManager      (implicit context: Context): TelephonyManager       = context.getSystemService(Context.TELEPHONY_SERVICE      ).asInstanceOf[TelephonyManager]
+  @inline def uiModeManager         (implicit context: Context): UiModeManager          = context.getSystemService(Context.UI_MODE_SERVICE        ).asInstanceOf[UiModeManager]
+  @inline def vibrator              (implicit context: Context): Vibrator               = context.getSystemService(Context.VIBRATOR_SERVICE       ).asInstanceOf[Vibrator]
+  @inline def wallpaperManager      (implicit context: Context): WallpaperManager       = context.getSystemService(Context.WALLPAPER_SERVICE      ).asInstanceOf[WallpaperManager]
+  @inline def wifiManager           (implicit context: Context): WifiManager            = context.getSystemService(Context.WIFI_SERVICE           ).asInstanceOf[WifiManager]
+  @inline def windowManager         (implicit context: Context): WindowManager          = context.getSystemService(Context.WINDOW_SERVICE         ).asInstanceOf[WindowManager]
 
   trait SContext extends Context with TagUtil {
     implicit val ctx = this
@@ -2736,29 +2705,12 @@ trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
   
   @inline private def loggingText(str: String, t: Throwable) = str + (if (t == null) "" else "\n" + Log.getStackTraceString(t))
 
-  @inline def verbose(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
-    if (Log.isLoggable(tag.tag, Log.VERBOSE)) Log.v(tag.tag, loggingText(str, t))
-  }
-
-  @inline def debug(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
-    if (Log.isLoggable(tag.tag, Log.DEBUG)) Log.d(tag.tag, loggingText(str, t))
-  }
-
-  @inline def info(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
-    if (Log.isLoggable(tag.tag, Log.INFO)) Log.i(tag.tag, loggingText(str, t))
-  }
-
-  @inline def warn(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
-    if (Log.isLoggable(tag.tag, Log.WARN)) Log.w(tag.tag, loggingText(str, t))
-  }
-
-  @inline def error(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
-    if (Log.isLoggable(tag.tag, Log.ERROR)) Log.e(tag.tag, loggingText(str, t))
-  }
-
-  @inline def wtf(str: => String, t: Throwable = null)(implicit tag: LoggerTag) {
-    if (Log.isLoggable(tag.tag, Log.ASSERT)) Log.wtf(tag.tag, loggingText(str, t))
-  }
+  @inline def verbose (str: => String, t: Throwable = null)(implicit tag: LoggerTag) { if (Log.isLoggable(tag.tag, Log.VERBOSE)) Log.v  (tag.tag, loggingText(str, t))}
+  @inline def debug   (str: => String, t: Throwable = null)(implicit tag: LoggerTag) { if (Log.isLoggable(tag.tag, Log.DEBUG  )) Log.d  (tag.tag, loggingText(str, t))}
+  @inline def info    (str: => String, t: Throwable = null)(implicit tag: LoggerTag) { if (Log.isLoggable(tag.tag, Log.INFO   )) Log.i  (tag.tag, loggingText(str, t))}
+  @inline def warn    (str: => String, t: Throwable = null)(implicit tag: LoggerTag) { if (Log.isLoggable(tag.tag, Log.WARN   )) Log.w  (tag.tag, loggingText(str, t))}
+  @inline def error   (str: => String, t: Throwable = null)(implicit tag: LoggerTag) { if (Log.isLoggable(tag.tag, Log.ERROR  )) Log.e  (tag.tag, loggingText(str, t))}
+  @inline def wtf     (str: => String, t: Throwable = null)(implicit tag: LoggerTag) { if (Log.isLoggable(tag.tag, Log.ASSERT )) Log.wtf(tag.tag, loggingText(str, t))}
 
 }
 
