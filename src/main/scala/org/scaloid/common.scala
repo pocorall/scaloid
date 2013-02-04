@@ -142,6 +142,40 @@ def defaultValue[U]: U = {
   }
 
 
+  class ObjectSView[O <: View with TraitView[O] : Manifest] {
+    def apply[LP <: ViewGroupLayoutParams[_, O]]()(implicit m: Manifest[O], context: Context, defaultLayoutParam: O => LP): O =  {
+      val v = m.erasure.getConstructor(classOf[Context]).newInstance(context).asInstanceOf[O]
+      v.<<.parent.+=(v)
+      v
+    }
+  }
+  
+  class ObjectSTextView[O <: TextView with TraitTextView[O] : Manifest] extends ObjectSView[O] {
+    def apply[LP <: ViewGroupLayoutParams[_, O]](txt: CharSequence)(implicit m: Manifest[O], context: Context, defaultLayoutParam: O => LP): O =  {
+      val v = m.erasure.getConstructor(classOf[Context]).newInstance(context).asInstanceOf[O]
+	  v text txt
+      v.<<.parent.+=(v)
+      v
+    }
+  }
+  
+  class ObjectSButton[O <: Button with TraitButton[O] : Manifest] extends ObjectSTextView[O] {
+    def apply[LP <: ViewGroupLayoutParams[_, O]](txt: CharSequence, onClickListener: (View) => Unit)(implicit m: Manifest[O], context: Context, defaultLayoutParam: O => LP): O =  {
+      val v = m.erasure.getConstructor(classOf[Context]).newInstance(context).asInstanceOf[O]
+	  v text txt
+      v.setOnClickListener(func2ViewOnClickListener(onClickListener))
+      v.<<.parent.+=(v)
+      v
+    }
+	
+	def apply[LP <: ViewGroupLayoutParams[_, O]](txt: CharSequence, onClickListener: OnClickListener = {})(implicit m: Manifest[O], context: Context, defaultLayoutParam: O => LP): O =  {
+      val v = m.erasure.getConstructor(classOf[Context]).newInstance(context).asInstanceOf[O]
+	  v text txt
+      v.setOnClickListener(onClickListener)
+      v.<<.parent.+=(v)
+      v
+    }
+  }
 
   class RichView[V <: View](val basis: V) extends TraitView[V]
   @inline implicit def view2RichView[V <: View](view: V) = new RichView[V](view)
@@ -602,7 +636,15 @@ def defaultValue[U]: U = {
       v
     }
 
+    def apply[LP <: ViewGroupLayoutParams[_, SExtractEditText]](txt: CharSequence)(implicit context: Context, defaultLayoutParam: (SExtractEditText) => LP): SExtractEditText =  {
+      val v = (new SExtractEditText)
+      v text txt
+      v.<<.parent.+=(v)
+      v
+    }
+
   }
+  
 
   class RichAutoCompleteTextView[V <: AutoCompleteTextView](val basis: V) extends TraitAutoCompleteTextView[V]
   @inline implicit def autoCompleteTextView2RichAutoCompleteTextView[V <: AutoCompleteTextView](autoCompleteTextView: V) = new RichAutoCompleteTextView[V](autoCompleteTextView)
@@ -688,7 +730,15 @@ def defaultValue[U]: U = {
       v
     }
 
+    def apply[LP <: ViewGroupLayoutParams[_, SAutoCompleteTextView]](txt: CharSequence)(implicit context: Context, defaultLayoutParam: (SAutoCompleteTextView) => LP): SAutoCompleteTextView =  {
+      val v = (new SAutoCompleteTextView)
+      v text txt
+      v.<<.parent.+=(v)
+      v
+    }
+
   }
+  
 
   class RichMultiAutoCompleteTextView[V <: MultiAutoCompleteTextView](val basis: V) extends TraitMultiAutoCompleteTextView[V]
   @inline implicit def multiAutoCompleteTextView2RichMultiAutoCompleteTextView[V <: MultiAutoCompleteTextView](multiAutoCompleteTextView: V) = new RichMultiAutoCompleteTextView[V](multiAutoCompleteTextView)
@@ -714,7 +764,15 @@ def defaultValue[U]: U = {
       v
     }
 
+    def apply[LP <: ViewGroupLayoutParams[_, SMultiAutoCompleteTextView]](txt: CharSequence)(implicit context: Context, defaultLayoutParam: (SMultiAutoCompleteTextView) => LP): SMultiAutoCompleteTextView =  {
+      val v = (new SMultiAutoCompleteTextView)
+      v text txt
+      v.<<.parent.+=(v)
+      v
+    }
+
   }
+  
 
   val idSequence = new java.util.concurrent.atomic.AtomicInteger(0)
 
@@ -1148,6 +1206,7 @@ def defaultValue[U]: U = {
     }
 
   }
+   
 
   class RichMenu(menu: Menu) {
     @inline def +=(txt: CharSequence) = menu.add(txt)
@@ -1357,6 +1416,7 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     }
 
   }
+  
 
   class RichViewGroup[V <: ViewGroup](val basis: V) extends TraitViewGroup[V]
   @inline implicit def viewGroup2RichViewGroup[V <: ViewGroup](viewGroup: V) = new RichViewGroup[V](viewGroup)
@@ -1868,7 +1928,6 @@ implicit def lazy2runnable[F](f: => F): Runnable =
 
   class SButton(implicit context: Context) extends Button(context) with TraitButton[SButton] {
     def basis = this
-
   }
 
   object SButton {
@@ -1878,6 +1937,14 @@ implicit def lazy2runnable[F](f: => F): Runnable =
       v.<<.parent.+=(v)
       v
     }
+
+    def apply[LP <: ViewGroupLayoutParams[_, SButton]](txt: CharSequence)(implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton =  {
+      val v = (new SButton)
+      v text txt
+      v.<<.parent.+=(v)
+      v
+    }
+
 
     def apply[LP <: ViewGroupLayoutParams[_, SButton]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton =  {
       apply(text, func2ViewOnClickListener(onClickListener))
@@ -1889,7 +1956,9 @@ implicit def lazy2runnable[F](f: => F): Runnable =
       v
     }
 
+
   }
+  
 
   class RichCompoundButton[V <: CompoundButton](val basis: V) extends TraitCompoundButton[V]
   @inline implicit def compoundButton2RichCompoundButton[V <: CompoundButton](compoundButton: V) = new RichCompoundButton[V](compoundButton)
@@ -1930,7 +1999,27 @@ implicit def lazy2runnable[F](f: => F): Runnable =
       v
     }
 
+    def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]](txt: CharSequence)(implicit context: Context, defaultLayoutParam: (SCheckBox) => LP): SCheckBox =  {
+      val v = (new SCheckBox)
+      v text txt
+      v.<<.parent.+=(v)
+      v
+    }
+
+
+    def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SCheckBox) => LP): SCheckBox =  {
+      apply(text, func2ViewOnClickListener(onClickListener))
+    }
+    def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]](text: CharSequence, onClickListener: OnClickListener = {})(implicit context: Context, defaultLayoutParam: (SCheckBox) => LP): SCheckBox =  {
+      val v = (new SCheckBox)
+      v.text = text;      v.setOnClickListener(onClickListener)
+      v.<<.parent.+=(v)
+      v
+    }
+
+
   }
+  
 
   class RichRadioButton[V <: RadioButton](val basis: V) extends TraitRadioButton[V]
   @inline implicit def radioButton2RichRadioButton[V <: RadioButton](radioButton: V) = new RichRadioButton[V](radioButton)
@@ -1951,7 +2040,27 @@ implicit def lazy2runnable[F](f: => F): Runnable =
       v
     }
 
+    def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]](txt: CharSequence)(implicit context: Context, defaultLayoutParam: (SRadioButton) => LP): SRadioButton =  {
+      val v = (new SRadioButton)
+      v text txt
+      v.<<.parent.+=(v)
+      v
+    }
+
+
+    def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SRadioButton) => LP): SRadioButton =  {
+      apply(text, func2ViewOnClickListener(onClickListener))
+    }
+    def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]](text: CharSequence, onClickListener: OnClickListener = {})(implicit context: Context, defaultLayoutParam: (SRadioButton) => LP): SRadioButton =  {
+      val v = (new SRadioButton)
+      v.text = text;      v.setOnClickListener(onClickListener)
+      v.<<.parent.+=(v)
+      v
+    }
+
+
   }
+  
 
   class RichToggleButton[V <: ToggleButton](val basis: V) extends TraitToggleButton[V]
   @inline implicit def toggleButton2RichToggleButton[V <: ToggleButton](toggleButton: V) = new RichToggleButton[V](toggleButton)
@@ -1980,7 +2089,27 @@ implicit def lazy2runnable[F](f: => F): Runnable =
       v
     }
 
+    def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]](txt: CharSequence)(implicit context: Context, defaultLayoutParam: (SToggleButton) => LP): SToggleButton =  {
+      val v = (new SToggleButton)
+      v text txt
+      v.<<.parent.+=(v)
+      v
+    }
+
+
+    def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SToggleButton) => LP): SToggleButton =  {
+      apply(text, func2ViewOnClickListener(onClickListener))
+    }
+    def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]](text: CharSequence, onClickListener: OnClickListener = {})(implicit context: Context, defaultLayoutParam: (SToggleButton) => LP): SToggleButton =  {
+      val v = (new SToggleButton)
+      v.text = text;      v.setOnClickListener(onClickListener)
+      v.<<.parent.+=(v)
+      v
+    }
+
+
   }
+  
 
   class RichCheckedTextView[V <: CheckedTextView](val basis: V) extends TraitCheckedTextView[V]
   @inline implicit def checkedTextView2RichCheckedTextView[V <: CheckedTextView](checkedTextView: V) = new RichCheckedTextView[V](checkedTextView)
@@ -2010,7 +2139,15 @@ implicit def lazy2runnable[F](f: => F): Runnable =
       v
     }
 
+    def apply[LP <: ViewGroupLayoutParams[_, SCheckedTextView]](txt: CharSequence)(implicit context: Context, defaultLayoutParam: (SCheckedTextView) => LP): SCheckedTextView =  {
+      val v = (new SCheckedTextView)
+      v text txt
+      v.<<.parent.+=(v)
+      v
+    }
+
   }
+  
 
   class RichChronometer[V <: Chronometer](val basis: V) extends TraitChronometer[V]
   @inline implicit def chronometer2RichChronometer[V <: Chronometer](chronometer: V) = new RichChronometer[V](chronometer)
@@ -2043,7 +2180,15 @@ implicit def lazy2runnable[F](f: => F): Runnable =
       v
     }
 
+    def apply[LP <: ViewGroupLayoutParams[_, SChronometer]](txt: CharSequence)(implicit context: Context, defaultLayoutParam: (SChronometer) => LP): SChronometer =  {
+      val v = (new SChronometer)
+      v text txt
+      v.<<.parent.+=(v)
+      v
+    }
+
   }
+  
 
   class RichDigitalClock[V <: DigitalClock](val basis: V) extends TraitDigitalClock[V]
   @inline implicit def digitalClock2RichDigitalClock[V <: DigitalClock](digitalClock: V) = new RichDigitalClock[V](digitalClock)
@@ -2064,7 +2209,15 @@ implicit def lazy2runnable[F](f: => F): Runnable =
       v
     }
 
+    def apply[LP <: ViewGroupLayoutParams[_, SDigitalClock]](txt: CharSequence)(implicit context: Context, defaultLayoutParam: (SDigitalClock) => LP): SDigitalClock =  {
+      val v = (new SDigitalClock)
+      v text txt
+      v.<<.parent.+=(v)
+      v
+    }
+
   }
+  
 
   class RichKeyboardView[V <: KeyboardView](val basis: V) extends TraitKeyboardView[V]
   @inline implicit def keyboardView2RichKeyboardView[V <: KeyboardView](keyboardView: V) = new RichKeyboardView[V](keyboardView)
@@ -2180,6 +2333,7 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     }
 
   }
+  
 
   class RichImageButton[V <: ImageButton](val basis: V) extends TraitImageButton[V]
   @inline implicit def imageButton2RichImageButton[V <: ImageButton](imageButton: V) = new RichImageButton[V](imageButton)
@@ -2201,6 +2355,7 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     }
 
   }
+  
 
   class RichQuickContactBadge[V <: QuickContactBadge](val basis: V) extends TraitQuickContactBadge[V]
   @inline implicit def quickContactBadge2RichQuickContactBadge[V <: QuickContactBadge](quickContactBadge: V) = new RichQuickContactBadge[V](quickContactBadge)
@@ -2232,6 +2387,7 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     }
 
   }
+  
 
   class RichZoomButton[V <: ZoomButton](val basis: V) extends TraitZoomButton[V]
   @inline implicit def zoomButton2RichZoomButton[V <: ZoomButton](zoomButton: V) = new RichZoomButton[V](zoomButton)
@@ -2258,6 +2414,7 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     }
 
   }
+  
 
   class RichProgressBar[V <: ProgressBar](val basis: V) extends TraitProgressBar[V]
   @inline implicit def progressBar2RichProgressBar[V <: ProgressBar](progressBar: V) = new RichProgressBar[V](progressBar)
@@ -2307,6 +2464,7 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     }
 
   }
+  
 
   class RichAnalogClock[V <: AnalogClock](val basis: V) extends TraitAnalogClock[V]
   @inline implicit def analogClock2RichAnalogClock[V <: AnalogClock](analogClock: V) = new RichAnalogClock[V](analogClock)
@@ -2328,6 +2486,7 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     }
 
   }
+  
 
   class RichSurfaceView[V <: SurfaceView](val basis: V) extends TraitSurfaceView[V]
   @inline implicit def surfaceView2RichSurfaceView[V <: SurfaceView](surfaceView: V) = new RichSurfaceView[V](surfaceView)
@@ -2361,6 +2520,7 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     }
 
   }
+  
 
   class RichGLSurfaceView[V <: GLSurfaceView](val basis: V) extends TraitGLSurfaceView[V]
   @inline implicit def gLSurfaceView2RichGLSurfaceView[V <: GLSurfaceView](gLSurfaceView: V) = new RichGLSurfaceView[V](gLSurfaceView)
@@ -2420,6 +2580,7 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     }
 
   }
+  
 
   class RichVideoView[V <: VideoView](val basis: V) extends TraitVideoView[V]
   @inline implicit def videoView2RichVideoView[V <: VideoView](videoView: V) = new RichVideoView[V](videoView)
@@ -2479,6 +2640,7 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     }
 
   }
+  
 
   class RichViewStub[V <: ViewStub](val basis: V) extends TraitViewStub[V]
   @inline implicit def viewStub2RichViewStub[V <: ViewStub](viewStub: V) = new RichViewStub[V](viewStub)
@@ -2548,6 +2710,7 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     }
 
   }
+  
 
   class RichExpandableListView[V <: ExpandableListView](val basis: V) extends TraitExpandableListView[V]
   @inline implicit def expandableListView2RichExpandableListView[V <: ExpandableListView](expandableListView: V) = new RichExpandableListView[V](expandableListView)
@@ -2615,6 +2778,7 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     }
 
   }
+  
 
 
 trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
@@ -2715,6 +2879,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
   class RichGallery[V <: Gallery](val basis: V) extends TraitGallery[V]
   @inline implicit def gallery2RichGallery[V <: Gallery](gallery: V) = new RichGallery[V](gallery)
@@ -2761,6 +2926,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
   class RichAbsSeekBar[V <: AbsSeekBar](val basis: V) extends TraitAbsSeekBar[V]
   @inline implicit def absSeekBar2RichAbsSeekBar[V <: AbsSeekBar](absSeekBar: V) = new RichAbsSeekBar[V](absSeekBar)
@@ -2861,6 +3027,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
   class RichRatingBar[V <: RatingBar](val basis: V) extends TraitRatingBar[V]
   @inline implicit def ratingBar2RichRatingBar[V <: RatingBar](ratingBar: V) = new RichRatingBar[V](ratingBar)
@@ -2900,6 +3067,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
   class RichAppWidgetHostView[V <: AppWidgetHostView](val basis: V) extends TraitAppWidgetHostView[V]
   @inline implicit def appWidgetHostView2RichAppWidgetHostView[V <: AppWidgetHostView](appWidgetHostView: V) = new RichAppWidgetHostView[V](appWidgetHostView)
@@ -2944,6 +3112,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
   class RichMediaController[V <: MediaController](val basis: V) extends TraitMediaController[V]
   @inline implicit def mediaController2RichMediaController[V <: MediaController](mediaController: V) = new RichMediaController[V](mediaController)
@@ -2977,6 +3146,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
   class RichScrollView[V <: ScrollView](val basis: V) extends TraitScrollView[V]
   @inline implicit def scrollView2RichScrollView[V <: ScrollView](scrollView: V) = new RichScrollView[V](scrollView)
@@ -3010,6 +3180,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
   class RichTabHost[V <: TabHost](val basis: V) extends TraitTabHost[V]
   @inline implicit def tabHost2RichTabHost[V <: TabHost](tabHost: V) = new RichTabHost[V](tabHost)
@@ -3060,6 +3231,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
   class RichTimePicker[V <: TimePicker](val basis: V) extends TraitTimePicker[V]
   @inline implicit def timePicker2RichTimePicker[V <: TimePicker](timePicker: V) = new RichTimePicker[V](timePicker)
@@ -3094,6 +3266,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
   class RichViewAnimator[V <: ViewAnimator](val basis: V) extends TraitViewAnimator[V]
   @inline implicit def viewAnimator2RichViewAnimator[V <: ViewAnimator](viewAnimator: V) = new RichViewAnimator[V](viewAnimator)
@@ -3134,6 +3307,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
   class RichViewFlipper[V <: ViewFlipper](val basis: V) extends TraitViewFlipper[V]
   @inline implicit def viewFlipper2RichViewFlipper[V <: ViewFlipper](viewFlipper: V) = new RichViewFlipper[V](viewFlipper)
@@ -3166,6 +3340,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
   class RichViewSwitcher[V <: ViewSwitcher](val basis: V) extends TraitViewSwitcher[V]
   @inline implicit def viewSwitcher2RichViewSwitcher[V <: ViewSwitcher](viewSwitcher: V) = new RichViewSwitcher[V](viewSwitcher)
@@ -3194,6 +3369,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
   class RichImageSwitcher[V <: ImageSwitcher](val basis: V) extends TraitImageSwitcher[V]
   @inline implicit def imageSwitcher2RichImageSwitcher[V <: ImageSwitcher](imageSwitcher: V) = new RichImageSwitcher[V](imageSwitcher)
@@ -3230,6 +3406,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
   class RichTextSwitcher[V <: TextSwitcher](val basis: V) extends TraitTextSwitcher[V]
   @inline implicit def textSwitcher2RichTextSwitcher[V <: TextSwitcher](textSwitcher: V) = new RichTextSwitcher[V](textSwitcher)
@@ -3261,6 +3438,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
   class RichDatePicker[V <: DatePicker](val basis: V) extends TraitDatePicker[V]
   @inline implicit def datePicker2RichDatePicker[V <: DatePicker](datePicker: V) = new RichDatePicker[V](datePicker)
@@ -3288,6 +3466,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
   class RichGestureOverlayView[V <: GestureOverlayView](val basis: V) extends TraitGestureOverlayView[V]
   @inline implicit def gestureOverlayView2RichGestureOverlayView[V <: GestureOverlayView](gestureOverlayView: V) = new RichGestureOverlayView[V](gestureOverlayView)
@@ -3371,6 +3550,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
+  
 
 
   @inline def toast(message: CharSequence)(implicit context: Context) {
