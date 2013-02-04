@@ -1119,13 +1119,13 @@ adapter.setDropDownViewResource(R.layout.spinner_dropdown)
 In Scaloid, the directly equivalent code is:
 
 ```scala
-new SArrayAdapter("One", "Two", "Three").dropDownStyle(_.textSize(25 dip))
+SArrayAdapter("One", "Two", "Three").dropDownStyle(_.textSize(25 dip))
 ```
 
 If you want to let the text color in the spinner be blue, use the `style` method:
 
 ```scala
-new SArrayAdapter("Quick", "Brown", "Fox").style(_.textColor(Color.BLUE))
+SArrayAdapter("Quick", "Brown", "Fox").style(_.textColor(Color.BLUE))
 ```
 
 Can it be simpler?

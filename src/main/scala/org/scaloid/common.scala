@@ -3750,6 +3750,12 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
       this
     }
   }
+  
+  object SArrayAdapter {
+    def apply[T <: AnyRef : Manifest](items:T*)(implicit context: Context) = new SArrayAdapter(items.toArray)
+	
+    def apply[T <: AnyRef](items:Array[T])(implicit context: Context) = new SArrayAdapter(items)	
+  }  
 
   @inline private def loggingText(str: String, t: Throwable) = str + (if (t == null) "" else "\n" + Log.getStackTraceString(t))
 
