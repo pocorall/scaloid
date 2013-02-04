@@ -492,7 +492,7 @@ val layout = new SLinearLayout {
 ```    
 
 In the anonymous constructor of 'SLinearLayout', Scaloid provides an implicit function called "layout context". This affects a return type of the method `<<` defined in the class `SButton`. 
-If we use `SFrameLayout` as a layout context, the method `<<` returns `FrameLayout.LayoutParams`, so the code below results a ___syntax error___.
+If we use `SFrameLayout` as a layout context, the method `<<` returns `FrameLayout.LayoutParams`, which does not have `Weight` method. Therefore, the code below results a ___syntax error___.
 
 ```scala
 val layout = new SFrameLayout {
