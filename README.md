@@ -774,12 +774,12 @@ Using `spawn` is just an example of asynchronous task processing in Scaloid. You
 
 ## Traits
 
-### Trait `UnregisterReceiverService`
+### Trait `UnregisterReceiver`
 
-When you registere `BroadcastReceiver` with `Context.registerReceiver()` you have to unregister it to prevent memory leak. Trait `UnregisterReceiverService` handles these chores for you. All you need to do is extend your Service.
+When you registere `BroadcastReceiver` with `Context.registerReceiver()` you have to unregister it to prevent memory leak. Trait `UnregisterReceiver` handles these chores for you. All you need to do is append the trait to your class.
 
 ```scala
-class MyService extends UnregisterReceiverService {
+class MyService extends SService with UnregisterReceiver {
   def func() {
     // ...
     registerReceiver(receiver, intentFilter)
@@ -1136,6 +1136,7 @@ Android API has some protected interfaces which has static fields, and inherited
  1. Declare `import org.scaloid.common._` in your code.
  1. Modify the signature of your classes
   * If your class inherits `Activity`, change it to `SActivity`
+  * If your class inherits `Service`, change it to `SService`
   * If your class (indirectly) inherits `Context`, add `trait SContext with LoggerTag`
   * Otherwise, setting an implicit value is required <br/>
     `implicit val ctx: Context = ...`
