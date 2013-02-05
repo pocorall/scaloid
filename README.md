@@ -714,6 +714,7 @@ Also, you can easily override the property individually, as shown in the example
 
 Last thing that you may missed: These are type-safe. If you made a mistake, compiler will check it for you.
 
+For more detailed description of styling, see a [Scaloid blog post](http://blog.scaloid.org/2013/01/a-css-like-styling-on-android.html).
   
 ## Asynchronous task processing
 
