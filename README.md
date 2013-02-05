@@ -189,10 +189,24 @@ openUri("http://google.com")
 
 ##### Resource IDs
 
+Scaloid provides several implicit conversions that convert from `Int` type resource ID to `CharSequence`, `Array[CharSequence]`, `Array[String]`, `Drawable` and `Movie`.
+For example:
+
 ```scala
-Int => CharSequence
-Int => Drawable
-```  
+def toast(msg:CharSequence) = ...
+
+toast(R.string.my_message) // implicit conversion works!
+```
+
+Although Scaloid provides these conversions implicitly, explicit conversion may be requred in some context. In this case, methods `r2...` are provided for the `Int` type:
+
+```scala
+warn("Will display the content of the resource: " + R.string.my_message.r2String)
+```
+
+Currently, `r2Text`, `r2TextArray`, `r2String`, `r2StringArray`, `r2Drawable` and `r2Movie` is provided.
+
+**Why implicit conversion of Resource ID is cool?**
 
 Android API provides two versions of methods for string resources; One for `CharSequence`, the other for `Int` as a resource ID. If you write a function that handles Android resource, you also have to expose methods for every combination of two versions of resources:
 
@@ -220,25 +234,6 @@ def alert(title:CharSequence, text:CharSequence) = ...
 
 Then Scaloid implicit conversions will take care about these resource type conversions.
 
-**Changes in version 0.9**
-
-Scaloid provides several implicit conversions that convert from `Int` type resource ID to `CharSequence`, `Array[CharSequence]`, `Array[String]`, `Drawable` and `Movie`.
-For example:
-
-```scala
-def toast(msg:CharSequence) = ...
-
-toast(R.string.my_message) // implicit conversion works!
-```
-
-Although Scaloid provides these conversions implicitly, explicit conversion may be requred in some context. In this case, methods `r2...` are provided for the `Int` type:
-
-```scala
-warn("Will display the content of the resource: " + R.string.my_message.r2String)
-```
-
-Currently, `r2Text`, `r2TextArray`, `r2String`, `r2StringArray`, `r2Drawable` and `r2Movie` is provided.
-
 
 ##### Unit conversion
 
@@ -261,7 +256,8 @@ val inPixel2:Int = (22 sp)
 There are more implicit conversions available. Check the source code as needed.
 
 ##### IntentFilter
-**Will be available in version 0.9**
+
+String can be converted into `IntentFilter`:
 
 ```scala
 implicit string2IntentFilter(str: String) = new IntentFilter(str)
@@ -1097,8 +1093,6 @@ When you call `show()` or `alert` from non-UI thread, you [don't have to mind ab
 
 ### Class SArrayAdapter
 
-**Will be released in 0.9**
-
 Suppose you want to let the user selects a string from spinner, and larger font should be displayed in the dropdown list.
 Then the plain-old Android code is consisted of a chunk of XML and its wiring:
 
@@ -1159,14 +1153,14 @@ For maven:
 <dependency>
     <groupId>org.scaloid</groupId>
     <artifactId>scaloid</artifactId>
-    <version>0.8_8_2.10</version>
+    <version>0.9_8_2.10</version>
 </dependency>
 ```
 
 For sbt:
 
 ```scala
-libraryDependencies += "org.scaloid" % "scaloid" % "0.8_8_2.10"
+libraryDependencies += "org.scaloid" % "scaloid" % "0.9_8_2.10"
 ```
 
 ##### Version number
