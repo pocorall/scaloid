@@ -1210,6 +1210,12 @@ def defaultValue[U]: U = {
 
   class RichMenu(menu: Menu) {
     @inline def +=(txt: CharSequence) = menu.add(txt)
+    
+    @inline def inflate(id: Int)(implicit activity: Activity) = {
+      val inflater = activity.getMenuInflater
+      inflater.inflate(id, menu)
+      true
+    }
   }
 
   @inline implicit def menu2RichMenu(menu: Menu) = new RichMenu(menu)
