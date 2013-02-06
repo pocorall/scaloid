@@ -316,6 +316,15 @@ spinnerDialog("Dialog", "working...")
 ```
 
 When you call `toast`, `longToast` or `spinnerDialog` from non-UI thread, you [don't have to mind about threading](#asynchronous-task-processing).
+The toast example shown above is equivalent to the following Java code: 
+
+```java
+activity.runOnUiThread(new Runnable() {
+    public void run() {
+        Toast.makeText(activity, "hi, there!", Toast.LENGTH_SHORT).show();
+    }
+});
+```
 
 ##### Pending intent
 
