@@ -182,7 +182,7 @@ play("content://media/internal/audio/media/50")
 , open a URI:
 
 ```scala
-openUri("http://google.com")
+openUri("http://scaloid.org")
 ```    
 
 , or wherever you want.
@@ -377,7 +377,7 @@ play(alarmSound)
 This opens a web browser (or another view assigned to the http protocol).
 
 ```scala
-openUri("http://google.com")
+openUri("http://scaloid.org")
 ```
 
 
@@ -417,7 +417,7 @@ Android API defines many listener interfaces for callback notifications. For exa
 ```scala
 find[Button](R.id.search).setOnClickListener(new View.OnClickListener {
   def onClick(v:View) {
-    openUri("http://google.com")
+    openUri("http://scaloid.org")
   }
 })
 ```  
@@ -425,7 +425,7 @@ find[Button](R.id.search).setOnClickListener(new View.OnClickListener {
 Scaloid provides a shortcut that dramatically reduces the length of the code:
 
 ```scala
-find[Button](R.id.search).onClick(openUri("http://google.com"))
+find[Button](R.id.search).onClick(openUri("http://scaloid.org"))
 ```    
 
 All other listener-appending methods such as `.onKey()`, `.onLongClick()`, and `.onTouch()` are defined.
