@@ -783,9 +783,22 @@ def defaultValue[U]: U = {
     } while(activity.findViewById(candidate) != null)
     candidate
   }
-
+  
+  
   trait Destroyable {
-    def beforeDestroy() {}
+    protected val onDestroyBodies = new ArrayBuffer[() => Unit]
+  	  
+    def onDestroy(body: => Unit) {
+      onDestroyBodies += (() => body)
+    }
+  }
+  
+  trait Creatable {
+    protected val onCreateBodies = new ArrayBuffer[() => Unit]
+  	  
+    def onCreate(body: => Unit) {
+      onCreateBodies += (() => body)
+    }
   }
 
   class RichActivity[V <: Activity](val basis: V) extends TraitActivity[V]
@@ -820,22 +833,76 @@ def defaultValue[U]: U = {
     }
   }
 
-  trait SActivity extends Activity with SContext with TraitActivity[SActivity] with Destroyable {
+  trait SActivity extends Activity with SContext with TraitActivity[SActivity] with Destroyable with Creatable {
     def basis = this
     override implicit val ctx = this
+     
+    protected override def onCreate(b: Bundle) {
+      super.onCreate(b)
+      onCreateBodies.foreach(_ ())
+    }
 
-    override def onDestroy() {
-      beforeDestroy()
+    override def onRestart {
+      super.onRestart()
+      onRestartBody()
+    }
+
+    var onRestartBody: () => Unit = () => {}
+
+    def onRestart(body: => Unit) {
+      onRestartBody = (() => body)
+    }
+
+    override def onResume {
+      super.onResume()
+      onResumeBody()
+    }
+
+    var onResumeBody: () => Unit = () => {}
+
+    def onResume(body: => Unit) {
+      onResumeBody = (() => body)
+    }
+
+    override def onPause {
+      super.onPause()
+      onPauseBody()
+    }
+
+    var onPauseBody: () => Unit = () => {}
+
+    def onPause(body: => Unit) {
+      onPauseBody = (() => body)
+    }
+
+    override def onStop {
+      super.onStop()
+      onStopBody()
+    }
+
+    var onStopBody: () => Unit = () => {}
+
+    def onStop(body: => Unit) {
+      onStopBody = (() => body)
+    }
+
+    override def onDestroy {
       super.onDestroy()
+      onDestroyBodies.foreach(_ ())
     }
   }
 
-  trait SService extends Service with SContext with Destroyable {
+  trait SService extends Service with SContext with Destroyable with Creatable {
     def basis = this
 
+    override def onCreate() {
+      super.onCreate()
+      onCreateBodies.foreach(_ ())
+    }
+    
     override def onDestroy() {
-      beforeDestroy()
       super.onDestroy()
+      onDestroyBodies.foreach(_ ())
     }
   }
 
@@ -3657,7 +3724,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   trait UnregisterReceiver extends ContextWrapper with Destroyable {
     val receiverList = new ArrayBuffer[BroadcastReceiver]()
 
-    protected def unregister() {
+    onDestroy {
       Log.i("ScalaUtils", "Unregister " + receiverList.size + " BroadcastReceivers.")
       for (receiver <- receiverList) try {
         unregisterReceiver(receiver)
@@ -3671,11 +3738,6 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     override def registerReceiver(receiver: BroadcastReceiver, filter: IntentFilter): android.content.Intent = {
       receiverList += receiver
       super.registerReceiver(receiver, filter)
-    }
-
-    override def beforeDestroy() {
-      unregister()
-      super.beforeDestroy()
     }
   }
 
