@@ -686,10 +686,9 @@ The parameter is a function which receives a view requested for styleing, and re
 Then the example in the previous subsection becomes:
 
 ```scala
-style(_ match {
+style {
   case b: SButton => b.textSize(20 dip).<<.margin(5 dip).>>
-  case v => v
-})
+}
 
 SButton("first")
 SButton("prev")
@@ -700,11 +699,11 @@ SButton("last")
 Note that individually applying `myStyle` is reduced. Let us see another example:
 
 ```scala
-style(_ match {
+style {
   case b: SButton => b.textColor(Color.RED).onClick(toast("Bang!"))
   case t: STextView => t.textSize(10 dip)
   case v => v.backgroundColor(Color.YELLOW)
-})
+}
 
 STextView("I am 10 dip tall")
 STextView("Me too")
