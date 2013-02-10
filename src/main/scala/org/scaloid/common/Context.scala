@@ -164,8 +164,8 @@ trait TraitActivity[V <: Activity] {
     }
 
     override def onPause {
-      super.onPause()
       onPauseBodies.foreach(_ ())
+      super.onPause()
     }
 
     protected val onPauseBodies = new ArrayBuffer[() => Any]
@@ -175,8 +175,8 @@ trait TraitActivity[V <: Activity] {
     }
 
     override def onStop {
-      super.onStop()
       onStopBodies.foreach(_ ())
+      super.onStop()
     }
 
     protected val onStopBodies = new ArrayBuffer[() => Any]
@@ -186,8 +186,8 @@ trait TraitActivity[V <: Activity] {
     }
 
     override def onDestroy {
-      super.onDestroy()
       onDestroyBodies.foreach(_ ())
+      super.onDestroy()
     }
   }
 
@@ -200,8 +200,8 @@ trait SService extends Service with SContext with Destroyable with Creatable {
   }
     
   override def onDestroy() {
-    super.onDestroy()
     onDestroyBodies.foreach(_ ())
+    super.onDestroy()
   }
 }
 
@@ -223,8 +223,7 @@ trait FollowParentBackButton extends SActivity {
  * This is useful when notifying some important information.
  */
 trait ScreenOnActivity extends SActivity {
-  override def onCreate(savedInstanceState: Bundle) {
-    super.onCreate(savedInstanceState)
+  onCreate {
     getWindow.addFlags(FLAG_DISMISS_KEYGUARD | FLAG_SHOW_WHEN_LOCKED | FLAG_TURN_SCREEN_ON)
   }
 }
