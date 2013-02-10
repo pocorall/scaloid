@@ -73,21 +73,20 @@ import android.opengl._
 class noEquivalentGetterExists extends annotation.StaticAnnotation
   
 trait Destroyable {
-  protected val onDestroyBodies = new ArrayBuffer[() => Unit]
+  protected val onDestroyBodies = new ArrayBuffer[() => Any]
   	  
-  def onDestroy(body: => Unit) {
+  def onDestroy(body: => Any) {
     onDestroyBodies += (() => body)
   }
 }
   
 trait Creatable {
-  protected val onCreateBodies = new ArrayBuffer[() => Unit]
+  protected val onCreateBodies = new ArrayBuffer[() => Any]
   	  
-  def onCreate(body: => Unit) {
+  def onCreate(body: => Any) {
     onCreateBodies += (() => body)
   }
 }
-
 
   trait SContext extends Context with TagUtil {
     implicit val ctx = this
@@ -144,46 +143,46 @@ trait TraitActivity[V <: Activity] {
 
     override def onRestart {
       super.onRestart()
-      onRestartBody()
+      onRestartBodies.foreach(_ ())
     }
 
-    var onRestartBody: () => Unit = () => {}
+    protected val onRestartBodies = new ArrayBuffer[() => Any]
 
-    def onRestart(body: => Unit) {
-      onRestartBody = (() => body)
+    def onRestart(body: => Any) {
+      onRestartBodies += (() => body)
     }
 
     override def onResume {
       super.onResume()
-      onResumeBody()
+      onResumeBodies.foreach(_ ())
     }
 
-    var onResumeBody: () => Unit = () => {}
+    protected val onResumeBodies = new ArrayBuffer[() => Any]
 
-    def onResume(body: => Unit) {
-      onResumeBody = (() => body)
+    def onResume(body: => Any) {
+      onResumeBodies += (() => body)
     }
 
     override def onPause {
       super.onPause()
-      onPauseBody()
+      onPauseBodies.foreach(_ ())
     }
 
-    var onPauseBody: () => Unit = () => {}
+    protected val onPauseBodies = new ArrayBuffer[() => Any]
 
-    def onPause(body: => Unit) {
-      onPauseBody = (() => body)
+    def onPause(body: => Any) {
+      onPauseBodies += (() => body)
     }
 
     override def onStop {
       super.onStop()
-      onStopBody()
+      onStopBodies.foreach(_ ())
     }
 
-    var onStopBody: () => Unit = () => {}
+    protected val onStopBodies = new ArrayBuffer[() => Any]
 
-    def onStop(body: => Unit) {
-      onStopBody = (() => body)
+    def onStop(body: => Any) {
+      onStopBodies += (() => body)
     }
 
     override def onDestroy {
@@ -231,21 +230,19 @@ trait ScreenOnActivity extends SActivity {
 }
 
 trait UnregisterReceiver extends ContextWrapper with Destroyable {
-  val receiverList = new ArrayBuffer[BroadcastReceiver]()
-
-  onDestroy {
-    Log.i("ScalaUtils", "Unregister " + receiverList.size + " BroadcastReceivers.")
-    for (receiver <- receiverList) try {
-      unregisterReceiver(receiver)
-    } catch {
-      // Suppress "Receiver not registered" exception
-      // Refer to http://stackoverflow.com/questions/2682043/how-to-check-if-receiver-is-registered-in-android
-      case e: IllegalArgumentException => e.printStackTrace()
-    }
-  }
-
   override def registerReceiver(receiver: BroadcastReceiver, filter: IntentFilter): android.content.Intent = {
-    receiverList += receiver
+    onDestroy {
+      Log.i("ScalaUtils", "Unregister BroadcastReceiver: "+receiver)
+      try {
+        unregisterReceiver(receiver)
+      } catch {
+        // Suppress "Receiver not registered" exception
+        // Refer to http://stackoverflow.com/questions/2682043/how-to-check-if-receiver-is-registered-in-android
+        case e: IllegalArgumentException => e.printStackTrace()
+      }
+    }
+   
     super.registerReceiver(receiver, filter)
   }
 }
+
