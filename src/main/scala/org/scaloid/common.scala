@@ -68,11 +68,7 @@ import android.graphics._
 import android.opengl._
 
 
-package object common extends Logger with SystemService with Widget {
-
-  @getter
-  @beanGetter
-  class noEquivalentGetterExists extends annotation.StaticAnnotation
+package object common extends Logger with SystemService with WidgetFamily {
 
   /**
    * Launches a new activity for a give uri. For example, opens a web browser for http protocols.
@@ -88,26 +84,26 @@ package object common extends Logger with SystemService with Widget {
     }
   }
 
-implicit def func2ViewOnClickListener[F](f: (View) => F): View.OnClickListener =
-  new View.OnClickListener() {
-    def onClick(view: View) {
-      f(view)
+  implicit def func2ViewOnClickListener[F](f: (View) => F): View.OnClickListener =
+    new View.OnClickListener() {
+      def onClick(view: View) {
+        f(view)
+      }
     }
-  }
 
-implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
-  new View.OnClickListener() {
-    def onClick(view: View) {
-      f
+  implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
+    new View.OnClickListener() {
+      def onClick(view: View) {
+        f
+      }
     }
-  }
 
-def defaultValue[U]: U = {
-  class Default[W] {
-    var default: W = _
+  def defaultValue[U]: U = {
+    class Default[W] {
+      var default: W = _
+    }
+    new Default[U].default
   }
-  new Default[U].default
-}
 
   trait ConstantsSupport {
     // android:inputType constants for TextView
@@ -146,137 +142,14 @@ def defaultValue[U]: U = {
     candidate
   }
   
-  
-  trait Destroyable {
-    protected val onDestroyBodies = new ArrayBuffer[() => Unit]
-  	  
-    def onDestroy(body: => Unit) {
-      onDestroyBodies += (() => body)
-    }
-  }
-  
-  trait Creatable {
-    protected val onCreateBodies = new ArrayBuffer[() => Unit]
-  	  
-    def onCreate(body: => Unit) {
-      onCreateBodies += (() => body)
-    }
-  }
-
-  class RichActivity[V <: Activity](val basis: V) extends TraitActivity[V]
-  implicit def activity2RichActivity[V <: Activity](activity: V) = new RichActivity[V](activity)
-
-  trait TraitActivity[V <: Activity] {
-
-    @inline def contentView_=(p: View) = {
-      basis.setContentView(p)
-      basis
-    }
-
-    @inline def contentView(p: View) = contentView_=(p)
-
-    @noEquivalentGetterExists
-    @inline def contentView: View = null
-
-    def basis: Activity
-
-    def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
-
-    def runOnUiThread (f: => Unit)  {
-      if(uiThread == Thread.currentThread) {
-        f
-      } else {
-        handler.post(new Runnable() {
-          def run() {
-            f
-          }
-        })
-      }
-    }
-  }
-
-  trait SActivity extends Activity with SContext with TraitActivity[SActivity] with Destroyable with Creatable {
-    def basis = this
-    override implicit val ctx = this
-     
-    protected override def onCreate(b: Bundle) {
-      super.onCreate(b)
-      onCreateBodies.foreach(_ ())
-    }
-
-    override def onRestart {
-      super.onRestart()
-      onRestartBody()
-    }
-
-    var onRestartBody: () => Unit = () => {}
-
-    def onRestart(body: => Unit) {
-      onRestartBody = (() => body)
-    }
-
-    override def onResume {
-      super.onResume()
-      onResumeBody()
-    }
-
-    var onResumeBody: () => Unit = () => {}
-
-    def onResume(body: => Unit) {
-      onResumeBody = (() => body)
-    }
-
-    override def onPause {
-      super.onPause()
-      onPauseBody()
-    }
-
-    var onPauseBody: () => Unit = () => {}
-
-    def onPause(body: => Unit) {
-      onPauseBody = (() => body)
-    }
-
-    override def onStop {
-      super.onStop()
-      onStopBody()
-    }
-
-    var onStopBody: () => Unit = () => {}
-
-    def onStop(body: => Unit) {
-      onStopBody = (() => body)
-    }
-
-    override def onDestroy {
-      super.onDestroy()
-      onDestroyBodies.foreach(_ ())
-    }
-  }
-
-  trait SService extends Service with SContext with Destroyable with Creatable {
-    def basis = this
-
-    override def onCreate() {
-      super.onCreate()
-      onCreateBodies.foreach(_ ())
-    }
-    
-    override def onDestroy() {
-      super.onDestroy()
-      onDestroyBodies.foreach(_ ())
-    }
-  }
-   
-
   class RichMenu(menu: Menu) {
     @inline def +=(txt: CharSequence) = menu.add(txt)
-	    
+    
     @inline def inflate(id: Int)(implicit activity: Activity) = {
       val inflater = activity.getMenuInflater
       inflater.inflate(id, menu)
       true
-    }
+    }    
   }
 
   @inline implicit def menu2RichMenu(menu: Menu) = new RichMenu(menu)
@@ -343,7 +216,7 @@ implicit def lazy2runnable[F](f: => F): Runnable =
   }
 
   class RichEditTextPreference[V <: EditTextPreference](val basis: V) extends TraitEditTextPreference[V]
-  implicit def editTextPreference2RichEditTextPreference[V <: EditTextPreference](editTextPreference: V) = new RichEditTextPreference[V](editTextPreference)
+  @inline implicit def editTextPreference2RichEditTextPreference[V <: EditTextPreference](editTextPreference: V) = new RichEditTextPreference[V](editTextPreference)
 
   trait TraitEditTextPreference[V <: EditTextPreference] {
 
@@ -450,8 +323,6 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     }.show()
   }
 
-
-
   object SIntent {
     @inline def apply[T]()(implicit context: Context, mt: ClassManifest[T]) = new Intent(context, mt.erasure)
 
@@ -488,84 +359,23 @@ implicit def lazy2runnable[F](f: => F): Runnable =
   @inline def defaultSharedPreferences(implicit context: Context): SharedPreferences =
     PreferenceManager.getDefaultSharedPreferences(context)
 
-
-  trait SContext extends Context with TagUtil {
-    implicit val ctx = this
-
-    def startActivity[T: ClassManifest] {
-      startActivity(SIntent[T])
-    }
-
-    def startService[T: ClassManifest] {
-      startService(SIntent[T])
-    }
-
-    def stopService[T: ClassManifest] {
-      stopService(SIntent[T])
-    }
-  }
-
   /**
    * Provides handler instance and runOnUiThread() utility method.
    */
-    lazy val handler = new Handler(Looper.getMainLooper)
+  lazy val handler = new Handler(Looper.getMainLooper)
 
-    lazy val uiThread = Looper.getMainLooper.getThread
+  lazy val uiThread = Looper.getMainLooper.getThread
 
-    def runOnUiThread[T >: Null](f: => T):T = {
-      if(uiThread == Thread.currentThread) {
-        return f
-      } else {
-        handler.post(new Runnable() {
-          def run() {
-            f
-          }
-        })
-        return null
-      }
-    }
-
-  trait UnregisterReceiver extends ContextWrapper with Destroyable {
-    val receiverList = new ArrayBuffer[BroadcastReceiver]()
-
-    onDestroy {
-      Log.i("ScalaUtils", "Unregister " + receiverList.size + " BroadcastReceivers.")
-      for (receiver <- receiverList) try {
-        unregisterReceiver(receiver)
-      } catch {
-        // Suppress "Receiver not registered" exception
-        // Refer to http://stackoverflow.com/questions/2682043/how-to-check-if-receiver-is-registered-in-android
-        case e: IllegalArgumentException => e.printStackTrace()
-      }
-    }
-
-    override def registerReceiver(receiver: BroadcastReceiver, filter: IntentFilter): android.content.Intent = {
-      receiverList += receiver
-      super.registerReceiver(receiver, filter)
-    }
-  }
-
-  /**
-   * Follows a parent's action of onBackPressed().
-   * When an activity is a tab that hosted by TabActivity, you may want a common back-button action for each tab.
-   *
-   * Please refer http://stackoverflow.com/questions/2796050/key-events-in-tabactivities
-   */
-  trait FollowParentBackButton extends SActivity {
-    override def onBackPressed() {
-      val p = getParent
-      if (p != null) p.onBackPressed()
-    }
-  }
-
-  /**
-   * Turn screen on and show the activity even if the screen is locked.
-   * This is useful when notifying some important information.
-   */
-  trait ScreenOnActivity extends SActivity {
-    override def onCreate(savedInstanceState: Bundle) {
-      super.onCreate(savedInstanceState)
-      getWindow.addFlags(FLAG_DISMISS_KEYGUARD | FLAG_SHOW_WHEN_LOCKED | FLAG_TURN_SCREEN_ON)
+  def runOnUiThread[T >: Null](f: => T):T = {
+    if(uiThread == Thread.currentThread) {
+      return f
+    } else {
+      handler.post(new Runnable() {
+        def run() {
+          f
+        }
+      })
+      return null
     }
   }
 
@@ -623,7 +433,5 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     def apply[T <: AnyRef](items:Array[T])(implicit context: Context) = new SArrayAdapter(items)	
   }  
 
-
 }
-
 

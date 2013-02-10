@@ -67,7 +67,7 @@ import android.widget.TextView.OnEditorActionListener
 import android.graphics._
 import android.opengl._
 
-trait Widget {
+trait WidgetFamily {
 
   class ObjectSView[O <: View with TraitView[O] : Manifest] {
     def apply[LP <: ViewGroupLayoutParams[_, O]]()(implicit m: Manifest[O], context: Context, defaultLayoutParam: O => LP): O =  {
@@ -105,7 +105,7 @@ trait Widget {
   }
 
   class RichView[V <: View](val basis: V) extends TraitView[V]
-  implicit def view2RichView[V <: View](view: V) = new RichView[V](view)
+  @inline implicit def view2RichView[V <: View](view: V) = new RichView[V](view)
 
   trait TraitView[V <: View] extends ConstantsSupport {
 
@@ -518,7 +518,7 @@ trait Widget {
   }
 
   class RichTextView[V <: TextView](val basis: V) extends TraitTextView[V]
-  implicit def textView2RichTextView[V <: TextView](textView: V) = new RichTextView[V](textView)
+  @inline implicit def textView2RichTextView[V <: TextView](textView: V) = new RichTextView[V](textView)
 
   trait TraitTextView[V <: TextView] extends TraitView[V] {
 
@@ -960,7 +960,7 @@ trait Widget {
   }
 
   class RichViewGroup[V <: ViewGroup](val basis: V) extends TraitViewGroup[V]
-  implicit def viewGroup2RichViewGroup[V <: ViewGroup](viewGroup: V) = new RichViewGroup[V](viewGroup)
+  @inline implicit def viewGroup2RichViewGroup[V <: ViewGroup](viewGroup: V) = new RichViewGroup[V](viewGroup)
 
   trait TraitViewGroup[V <: ViewGroup] extends TraitView[V] {
 
@@ -1013,7 +1013,10 @@ trait Widget {
 
     def +=(v: View) = {
       var viw = v
-      styles.foreach(st => viw = st(viw))
+      styles.foreach {
+        case st:PartialFunction[View, View] => if (st.isDefinedAt(viw)) viw = st(viw)
+        case st => viw = st(viw)
+      }
       basis.addView(viw)
       basis
     }
@@ -1084,7 +1087,7 @@ trait Widget {
   }
 
   class RichFrameLayout[V <: FrameLayout](val basis: V) extends TraitFrameLayout[V]
-  implicit def frameLayout2RichFrameLayout[V <: FrameLayout](frameLayout: V) = new RichFrameLayout[V](frameLayout)
+  @inline implicit def frameLayout2RichFrameLayout[V <: FrameLayout](frameLayout: V) = new RichFrameLayout[V](frameLayout)
 
   trait TraitFrameLayout[V <: FrameLayout] extends TraitViewGroup[V] {
 
@@ -1128,7 +1131,7 @@ trait Widget {
   }
 }
   class RichRelativeLayout[V <: RelativeLayout](val basis: V) extends TraitRelativeLayout[V]
-  implicit def relativeLayout2RichRelativeLayout[V <: RelativeLayout](relativeLayout: V) = new RichRelativeLayout[V](relativeLayout)
+  @inline implicit def relativeLayout2RichRelativeLayout[V <: RelativeLayout](relativeLayout: V) = new RichRelativeLayout[V](relativeLayout)
 
   trait TraitRelativeLayout[V <: RelativeLayout] extends TraitViewGroup[V] {
 
@@ -1275,7 +1278,7 @@ trait Widget {
   }
 }
   class RichLinearLayout[V <: LinearLayout](val basis: V) extends TraitLinearLayout[V]
-  implicit def linearLayout2RichLinearLayout[V <: LinearLayout](linearLayout: V) = new RichLinearLayout[V](linearLayout)
+  @inline implicit def linearLayout2RichLinearLayout[V <: LinearLayout](linearLayout: V) = new RichLinearLayout[V](linearLayout)
 
   trait TraitLinearLayout[V <: LinearLayout] extends TraitViewGroup[V] {
 
@@ -1342,7 +1345,7 @@ trait Widget {
   }
 
   class RichEditText[V <: EditText](val basis: V) extends TraitEditText[V]
-  implicit def editText2RichEditText[V <: EditText](editText: V) = new RichEditText[V](editText)
+  @inline implicit def editText2RichEditText[V <: EditText](editText: V) = new RichEditText[V](editText)
 
   trait TraitEditText[V <: EditText] extends TraitTextView[V] {
 
@@ -1369,7 +1372,7 @@ trait Widget {
 
   }
   class RichExtractEditText[V <: ExtractEditText](val basis: V) extends TraitExtractEditText[V]
-  implicit def extractEditText2RichExtractEditText[V <: ExtractEditText](extractEditText: V) = new RichExtractEditText[V](extractEditText)
+  @inline implicit def extractEditText2RichExtractEditText[V <: ExtractEditText](extractEditText: V) = new RichExtractEditText[V](extractEditText)
 
   trait TraitExtractEditText[V <: ExtractEditText] extends TraitEditText[V] {
 
@@ -1398,7 +1401,7 @@ trait Widget {
   
 
   class RichAutoCompleteTextView[V <: AutoCompleteTextView](val basis: V) extends TraitAutoCompleteTextView[V]
-  implicit def autoCompleteTextView2RichAutoCompleteTextView[V <: AutoCompleteTextView](autoCompleteTextView: V) = new RichAutoCompleteTextView[V](autoCompleteTextView)
+  @inline implicit def autoCompleteTextView2RichAutoCompleteTextView[V <: AutoCompleteTextView](autoCompleteTextView: V) = new RichAutoCompleteTextView[V](autoCompleteTextView)
 
   trait TraitAutoCompleteTextView[V <: AutoCompleteTextView] extends TraitEditText[V] {
 
@@ -1492,7 +1495,7 @@ trait Widget {
   
 
   class RichMultiAutoCompleteTextView[V <: MultiAutoCompleteTextView](val basis: V) extends TraitMultiAutoCompleteTextView[V]
-  implicit def multiAutoCompleteTextView2RichMultiAutoCompleteTextView[V <: MultiAutoCompleteTextView](multiAutoCompleteTextView: V) = new RichMultiAutoCompleteTextView[V](multiAutoCompleteTextView)
+  @inline implicit def multiAutoCompleteTextView2RichMultiAutoCompleteTextView[V <: MultiAutoCompleteTextView](multiAutoCompleteTextView: V) = new RichMultiAutoCompleteTextView[V](multiAutoCompleteTextView)
 
   trait TraitMultiAutoCompleteTextView[V <: MultiAutoCompleteTextView] extends TraitAutoCompleteTextView[V] {
 
@@ -1526,7 +1529,7 @@ trait Widget {
   
 
   class RichListView[V <: ListView](val basis: V) extends TraitListView[V]
-  implicit def listView2RichListView[V <: ListView](listView: V) = new RichListView[V](listView)
+  @inline implicit def listView2RichListView[V <: ListView](listView: V) = new RichListView[V](listView)
 
   trait TraitListView[V <: ListView] extends TraitAbsListView[V] {
 
@@ -1592,7 +1595,7 @@ trait Widget {
   
 
   class RichButton[V <: Button](val basis: V) extends TraitButton[V]
-  implicit def button2RichButton[V <: Button](button: V) = new RichButton[V](button)
+  @inline implicit def button2RichButton[V <: Button](button: V) = new RichButton[V](button)
 
   trait TraitButton[V <: Button] extends TraitTextView[V] {
 
@@ -1633,7 +1636,7 @@ trait Widget {
   
 
   class RichCompoundButton[V <: CompoundButton](val basis: V) extends TraitCompoundButton[V]
-  implicit def compoundButton2RichCompoundButton[V <: CompoundButton](compoundButton: V) = new RichCompoundButton[V](compoundButton)
+  @inline implicit def compoundButton2RichCompoundButton[V <: CompoundButton](compoundButton: V) = new RichCompoundButton[V](compoundButton)
 
   trait TraitCompoundButton[V <: CompoundButton] extends TraitButton[V] {
 
@@ -1653,7 +1656,7 @@ trait Widget {
 
     }
   class RichCheckBox[V <: CheckBox](val basis: V) extends TraitCheckBox[V]
-  implicit def checkBox2RichCheckBox[V <: CheckBox](checkBox: V) = new RichCheckBox[V](checkBox)
+  @inline implicit def checkBox2RichCheckBox[V <: CheckBox](checkBox: V) = new RichCheckBox[V](checkBox)
 
   trait TraitCheckBox[V <: CheckBox] extends TraitCompoundButton[V] {
 
@@ -1694,7 +1697,7 @@ trait Widget {
   
 
   class RichRadioButton[V <: RadioButton](val basis: V) extends TraitRadioButton[V]
-  implicit def radioButton2RichRadioButton[V <: RadioButton](radioButton: V) = new RichRadioButton[V](radioButton)
+  @inline implicit def radioButton2RichRadioButton[V <: RadioButton](radioButton: V) = new RichRadioButton[V](radioButton)
 
   trait TraitRadioButton[V <: RadioButton] extends TraitCompoundButton[V] {
 
@@ -1735,7 +1738,7 @@ trait Widget {
   
 
   class RichToggleButton[V <: ToggleButton](val basis: V) extends TraitToggleButton[V]
-  implicit def toggleButton2RichToggleButton[V <: ToggleButton](toggleButton: V) = new RichToggleButton[V](toggleButton)
+  @inline implicit def toggleButton2RichToggleButton[V <: ToggleButton](toggleButton: V) = new RichToggleButton[V](toggleButton)
 
   trait TraitToggleButton[V <: ToggleButton] extends TraitCompoundButton[V] {
 
@@ -1784,7 +1787,7 @@ trait Widget {
   
 
   class RichCheckedTextView[V <: CheckedTextView](val basis: V) extends TraitCheckedTextView[V]
-  implicit def checkedTextView2RichCheckedTextView[V <: CheckedTextView](checkedTextView: V) = new RichCheckedTextView[V](checkedTextView)
+  @inline implicit def checkedTextView2RichCheckedTextView[V <: CheckedTextView](checkedTextView: V) = new RichCheckedTextView[V](checkedTextView)
 
   trait TraitCheckedTextView[V <: CheckedTextView] extends TraitTextView[V] {
 
@@ -1822,7 +1825,7 @@ trait Widget {
   
 
   class RichChronometer[V <: Chronometer](val basis: V) extends TraitChronometer[V]
-  implicit def chronometer2RichChronometer[V <: Chronometer](chronometer: V) = new RichChronometer[V](chronometer)
+  @inline implicit def chronometer2RichChronometer[V <: Chronometer](chronometer: V) = new RichChronometer[V](chronometer)
 
   trait TraitChronometer[V <: Chronometer] extends TraitTextView[V] {
 
@@ -1863,7 +1866,7 @@ trait Widget {
   
 
   class RichDigitalClock[V <: DigitalClock](val basis: V) extends TraitDigitalClock[V]
-  implicit def digitalClock2RichDigitalClock[V <: DigitalClock](digitalClock: V) = new RichDigitalClock[V](digitalClock)
+  @inline implicit def digitalClock2RichDigitalClock[V <: DigitalClock](digitalClock: V) = new RichDigitalClock[V](digitalClock)
 
   trait TraitDigitalClock[V <: DigitalClock] extends TraitTextView[V] {
 
@@ -1892,7 +1895,7 @@ trait Widget {
   
 
   class RichKeyboardView[V <: KeyboardView](val basis: V) extends TraitKeyboardView[V]
-  implicit def keyboardView2RichKeyboardView[V <: KeyboardView](keyboardView: V) = new RichKeyboardView[V](keyboardView)
+  @inline implicit def keyboardView2RichKeyboardView[V <: KeyboardView](keyboardView: V) = new RichKeyboardView[V](keyboardView)
 
   trait TraitKeyboardView[V <: KeyboardView] extends TraitView[V] {
 
@@ -1931,7 +1934,7 @@ trait Widget {
 
     }
   class RichImageView[V <: ImageView](val basis: V) extends TraitImageView[V]
-  implicit def imageView2RichImageView[V <: ImageView](imageView: V) = new RichImageView[V](imageView)
+  @inline implicit def imageView2RichImageView[V <: ImageView](imageView: V) = new RichImageView[V](imageView)
 
   trait TraitImageView[V <: ImageView] extends TraitView[V] {
 
@@ -2008,7 +2011,7 @@ trait Widget {
   
 
   class RichImageButton[V <: ImageButton](val basis: V) extends TraitImageButton[V]
-  implicit def imageButton2RichImageButton[V <: ImageButton](imageButton: V) = new RichImageButton[V](imageButton)
+  @inline implicit def imageButton2RichImageButton[V <: ImageButton](imageButton: V) = new RichImageButton[V](imageButton)
 
   trait TraitImageButton[V <: ImageButton] extends TraitImageView[V] {
 
@@ -2030,7 +2033,7 @@ trait Widget {
   
 
   class RichQuickContactBadge[V <: QuickContactBadge](val basis: V) extends TraitQuickContactBadge[V]
-  implicit def quickContactBadge2RichQuickContactBadge[V <: QuickContactBadge](quickContactBadge: V) = new RichQuickContactBadge[V](quickContactBadge)
+  @inline implicit def quickContactBadge2RichQuickContactBadge[V <: QuickContactBadge](quickContactBadge: V) = new RichQuickContactBadge[V](quickContactBadge)
 
   trait TraitQuickContactBadge[V <: QuickContactBadge] extends TraitImageView[V] {
 
@@ -2062,7 +2065,7 @@ trait Widget {
   
 
   class RichZoomButton[V <: ZoomButton](val basis: V) extends TraitZoomButton[V]
-  implicit def zoomButton2RichZoomButton[V <: ZoomButton](zoomButton: V) = new RichZoomButton[V](zoomButton)
+  @inline implicit def zoomButton2RichZoomButton[V <: ZoomButton](zoomButton: V) = new RichZoomButton[V](zoomButton)
 
   trait TraitZoomButton[V <: ZoomButton] extends TraitImageButton[V] {
 
@@ -2089,7 +2092,7 @@ trait Widget {
   
 
   class RichProgressBar[V <: ProgressBar](val basis: V) extends TraitProgressBar[V]
-  implicit def progressBar2RichProgressBar[V <: ProgressBar](progressBar: V) = new RichProgressBar[V](progressBar)
+  @inline implicit def progressBar2RichProgressBar[V <: ProgressBar](progressBar: V) = new RichProgressBar[V](progressBar)
 
   trait TraitProgressBar[V <: ProgressBar] extends TraitView[V] {
 
@@ -2139,7 +2142,7 @@ trait Widget {
   
 
   class RichAnalogClock[V <: AnalogClock](val basis: V) extends TraitAnalogClock[V]
-  implicit def analogClock2RichAnalogClock[V <: AnalogClock](analogClock: V) = new RichAnalogClock[V](analogClock)
+  @inline implicit def analogClock2RichAnalogClock[V <: AnalogClock](analogClock: V) = new RichAnalogClock[V](analogClock)
 
   trait TraitAnalogClock[V <: AnalogClock] extends TraitView[V] {
 
@@ -2161,7 +2164,7 @@ trait Widget {
   
 
   class RichSurfaceView[V <: SurfaceView](val basis: V) extends TraitSurfaceView[V]
-  implicit def surfaceView2RichSurfaceView[V <: SurfaceView](surfaceView: V) = new RichSurfaceView[V](surfaceView)
+  @inline implicit def surfaceView2RichSurfaceView[V <: SurfaceView](surfaceView: V) = new RichSurfaceView[V](surfaceView)
 
   trait TraitSurfaceView[V <: SurfaceView] extends TraitView[V] {
 
@@ -2195,7 +2198,7 @@ trait Widget {
   
 
   class RichGLSurfaceView[V <: GLSurfaceView](val basis: V) extends TraitGLSurfaceView[V]
-  implicit def gLSurfaceView2RichGLSurfaceView[V <: GLSurfaceView](gLSurfaceView: V) = new RichGLSurfaceView[V](gLSurfaceView)
+  @inline implicit def gLSurfaceView2RichGLSurfaceView[V <: GLSurfaceView](gLSurfaceView: V) = new RichGLSurfaceView[V](gLSurfaceView)
 
   trait TraitGLSurfaceView[V <: GLSurfaceView] extends TraitSurfaceView[V] {
 
@@ -2255,7 +2258,7 @@ trait Widget {
   
 
   class RichVideoView[V <: VideoView](val basis: V) extends TraitVideoView[V]
-  implicit def videoView2RichVideoView[V <: VideoView](videoView: V) = new RichVideoView[V](videoView)
+  @inline implicit def videoView2RichVideoView[V <: VideoView](videoView: V) = new RichVideoView[V](videoView)
 
   trait TraitVideoView[V <: VideoView] extends TraitSurfaceView[V] {
 
@@ -2315,7 +2318,7 @@ trait Widget {
   
 
   class RichViewStub[V <: ViewStub](val basis: V) extends TraitViewStub[V]
-  implicit def viewStub2RichViewStub[V <: ViewStub](viewStub: V) = new RichViewStub[V](viewStub)
+  @inline implicit def viewStub2RichViewStub[V <: ViewStub](viewStub: V) = new RichViewStub[V](viewStub)
 
   trait TraitViewStub[V <: ViewStub] extends TraitView[V] {
 
@@ -2334,7 +2337,7 @@ trait Widget {
 
     }
   class RichGridView[V <: GridView](val basis: V) extends TraitGridView[V]
-  implicit def gridView2RichGridView[V <: GridView](gridView: V) = new RichGridView[V](gridView)
+  @inline implicit def gridView2RichGridView[V <: GridView](gridView: V) = new RichGridView[V](gridView)
 
   trait TraitGridView[V <: GridView] extends TraitAbsListView[V] {
 
@@ -2385,7 +2388,7 @@ trait Widget {
   
 
   class RichExpandableListView[V <: ExpandableListView](val basis: V) extends TraitExpandableListView[V]
-  implicit def expandableListView2RichExpandableListView[V <: ExpandableListView](expandableListView: V) = new RichExpandableListView[V](expandableListView)
+  @inline implicit def expandableListView2RichExpandableListView[V <: ExpandableListView](expandableListView: V) = new RichExpandableListView[V](expandableListView)
 
   trait TraitExpandableListView[V <: ExpandableListView] extends TraitListView[V] {
 
@@ -2523,7 +2526,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   }
 
   class RichSpinner[V <: Spinner](val basis: V) extends TraitSpinner[V]
-  implicit def spinner2RichSpinner[V <: Spinner](spinner: V) = new RichSpinner[V](spinner)
+  @inline implicit def spinner2RichSpinner[V <: Spinner](spinner: V) = new RichSpinner[V](spinner)
 
   trait TraitSpinner[V <: Spinner] extends TraitAbsSpinner[V] {
 
@@ -2554,7 +2557,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   
 
   class RichGallery[V <: Gallery](val basis: V) extends TraitGallery[V]
-  implicit def gallery2RichGallery[V <: Gallery](gallery: V) = new RichGallery[V](gallery)
+  @inline implicit def gallery2RichGallery[V <: Gallery](gallery: V) = new RichGallery[V](gallery)
 
   trait TraitGallery[V <: Gallery] extends TraitAbsSpinner[V] {
 
@@ -2601,7 +2604,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   
 
   class RichAbsSeekBar[V <: AbsSeekBar](val basis: V) extends TraitAbsSeekBar[V]
-  implicit def absSeekBar2RichAbsSeekBar[V <: AbsSeekBar](absSeekBar: V) = new RichAbsSeekBar[V](absSeekBar)
+  @inline implicit def absSeekBar2RichAbsSeekBar[V <: AbsSeekBar](absSeekBar: V) = new RichAbsSeekBar[V](absSeekBar)
 
   trait TraitAbsSeekBar[V <: AbsSeekBar] extends TraitProgressBar[V] {
 
@@ -2621,7 +2624,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
    }
 
   class RichSeekBar[V <: SeekBar](val basis: V) extends TraitSeekBar[V]
-  implicit def seekBar2RichSeekBar[V <: SeekBar](seekBar: V) = new RichSeekBar[V](seekBar)
+  @inline implicit def seekBar2RichSeekBar[V <: SeekBar](seekBar: V) = new RichSeekBar[V](seekBar)
 
   trait TraitSeekBar[V <: SeekBar] extends TraitAbsSeekBar[V] {
 
@@ -2702,7 +2705,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   
 
   class RichRatingBar[V <: RatingBar](val basis: V) extends TraitRatingBar[V]
-  implicit def ratingBar2RichRatingBar[V <: RatingBar](ratingBar: V) = new RichRatingBar[V](ratingBar)
+  @inline implicit def ratingBar2RichRatingBar[V <: RatingBar](ratingBar: V) = new RichRatingBar[V](ratingBar)
 
   trait TraitRatingBar[V <: RatingBar] extends TraitAbsSeekBar[V] {
 
@@ -2742,7 +2745,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   
 
   class RichAppWidgetHostView[V <: AppWidgetHostView](val basis: V) extends TraitAppWidgetHostView[V]
-  implicit def appWidgetHostView2RichAppWidgetHostView[V <: AppWidgetHostView](appWidgetHostView: V) = new RichAppWidgetHostView[V](appWidgetHostView)
+  @inline implicit def appWidgetHostView2RichAppWidgetHostView[V <: AppWidgetHostView](appWidgetHostView: V) = new RichAppWidgetHostView[V](appWidgetHostView)
 
   trait TraitAppWidgetHostView[V <: AppWidgetHostView] extends TraitFrameLayout[V] {
 
@@ -2753,7 +2756,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
    }
 	
   class RichHorizontalScrollView[V <: HorizontalScrollView](val basis: V) extends TraitHorizontalScrollView[V]
-  implicit def horizontalScrollView2RichHorizontalScrollView[V <: HorizontalScrollView](horizontalScrollView: V) = new RichHorizontalScrollView[V](horizontalScrollView)
+  @inline implicit def horizontalScrollView2RichHorizontalScrollView[V <: HorizontalScrollView](horizontalScrollView: V) = new RichHorizontalScrollView[V](horizontalScrollView)
 
   trait TraitHorizontalScrollView[V <: HorizontalScrollView] extends TraitFrameLayout[V] {
 
@@ -2787,7 +2790,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   
 
   class RichMediaController[V <: MediaController](val basis: V) extends TraitMediaController[V]
-  implicit def mediaController2RichMediaController[V <: MediaController](mediaController: V) = new RichMediaController[V](mediaController)
+  @inline implicit def mediaController2RichMediaController[V <: MediaController](mediaController: V) = new RichMediaController[V](mediaController)
 
   trait TraitMediaController[V <: MediaController] extends TraitFrameLayout[V] {
 
@@ -2821,7 +2824,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   
 
   class RichScrollView[V <: ScrollView](val basis: V) extends TraitScrollView[V]
-  implicit def scrollView2RichScrollView[V <: ScrollView](scrollView: V) = new RichScrollView[V](scrollView)
+  @inline implicit def scrollView2RichScrollView[V <: ScrollView](scrollView: V) = new RichScrollView[V](scrollView)
 
   trait TraitScrollView[V <: ScrollView] extends TraitFrameLayout[V] {
 
@@ -2855,7 +2858,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   
 
   class RichTabHost[V <: TabHost](val basis: V) extends TraitTabHost[V]
-  implicit def tabHost2RichTabHost[V <: TabHost](tabHost: V) = new RichTabHost[V](tabHost)
+  @inline implicit def tabHost2RichTabHost[V <: TabHost](tabHost: V) = new RichTabHost[V](tabHost)
 
   trait TraitTabHost[V <: TabHost] extends TraitFrameLayout[V] {
 
@@ -2906,7 +2909,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   
 
   class RichTimePicker[V <: TimePicker](val basis: V) extends TraitTimePicker[V]
-  implicit def timePicker2RichTimePicker[V <: TimePicker](timePicker: V) = new RichTimePicker[V](timePicker)
+  @inline implicit def timePicker2RichTimePicker[V <: TimePicker](timePicker: V) = new RichTimePicker[V](timePicker)
 
   trait TraitTimePicker[V <: TimePicker] extends TraitFrameLayout[V] {
 
@@ -2941,7 +2944,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   
 
   class RichViewAnimator[V <: ViewAnimator](val basis: V) extends TraitViewAnimator[V]
-  implicit def viewAnimator2RichViewAnimator[V <: ViewAnimator](viewAnimator: V) = new RichViewAnimator[V](viewAnimator)
+  @inline implicit def viewAnimator2RichViewAnimator[V <: ViewAnimator](viewAnimator: V) = new RichViewAnimator[V](viewAnimator)
 
   trait TraitViewAnimator[V <: ViewAnimator] extends TraitFrameLayout[V] {
 
@@ -2982,7 +2985,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   
 
   class RichViewFlipper[V <: ViewFlipper](val basis: V) extends TraitViewFlipper[V]
-  implicit def viewFlipper2RichViewFlipper[V <: ViewFlipper](viewFlipper: V) = new RichViewFlipper[V](viewFlipper)
+  @inline implicit def viewFlipper2RichViewFlipper[V <: ViewFlipper](viewFlipper: V) = new RichViewFlipper[V](viewFlipper)
 
   trait TraitViewFlipper[V <: ViewFlipper] extends TraitViewAnimator[V] {
 
@@ -3015,7 +3018,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   
 
   class RichViewSwitcher[V <: ViewSwitcher](val basis: V) extends TraitViewSwitcher[V]
-  implicit def viewSwitcher2RichViewSwitcher[V <: ViewSwitcher](viewSwitcher: V) = new RichViewSwitcher[V](viewSwitcher)
+  @inline implicit def viewSwitcher2RichViewSwitcher[V <: ViewSwitcher](viewSwitcher: V) = new RichViewSwitcher[V](viewSwitcher)
 
   trait TraitViewSwitcher[V <: ViewSwitcher] extends TraitViewAnimator[V] {
 
@@ -3044,7 +3047,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   
 
   class RichImageSwitcher[V <: ImageSwitcher](val basis: V) extends TraitImageSwitcher[V]
-  implicit def imageSwitcher2RichImageSwitcher[V <: ImageSwitcher](imageSwitcher: V) = new RichImageSwitcher[V](imageSwitcher)
+  @inline implicit def imageSwitcher2RichImageSwitcher[V <: ImageSwitcher](imageSwitcher: V) = new RichImageSwitcher[V](imageSwitcher)
 
   trait TraitImageSwitcher[V <: ImageSwitcher] extends TraitViewSwitcher[V] {
 
@@ -3081,7 +3084,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   
 
   class RichTextSwitcher[V <: TextSwitcher](val basis: V) extends TraitTextSwitcher[V]
-  implicit def textSwitcher2RichTextSwitcher[V <: TextSwitcher](textSwitcher: V) = new RichTextSwitcher[V](textSwitcher)
+  @inline implicit def textSwitcher2RichTextSwitcher[V <: TextSwitcher](textSwitcher: V) = new RichTextSwitcher[V](textSwitcher)
 
   trait TraitTextSwitcher[V <: TextSwitcher] extends TraitViewSwitcher[V] {
 
@@ -3113,7 +3116,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   
 
   class RichDatePicker[V <: DatePicker](val basis: V) extends TraitDatePicker[V]
-  implicit def datePicker2RichDatePicker[V <: DatePicker](datePicker: V) = new RichDatePicker[V](datePicker)
+  @inline implicit def datePicker2RichDatePicker[V <: DatePicker](datePicker: V) = new RichDatePicker[V](datePicker)
 
   trait TraitDatePicker[V <: DatePicker] extends TraitFrameLayout[V] {
 
@@ -3141,7 +3144,7 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
   
 
   class RichGestureOverlayView[V <: GestureOverlayView](val basis: V) extends TraitGestureOverlayView[V]
-  implicit def gestureOverlayView2RichGestureOverlayView[V <: GestureOverlayView](gestureOverlayView: V) = new RichGestureOverlayView[V](gestureOverlayView)
+  @inline implicit def gestureOverlayView2RichGestureOverlayView[V <: GestureOverlayView](gestureOverlayView: V) = new RichGestureOverlayView[V](gestureOverlayView)
 
   trait TraitGestureOverlayView[V <: GestureOverlayView] extends TraitFrameLayout[V] {
 
