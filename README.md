@@ -30,7 +30,7 @@
 
 # Less painful Android development with Scala
 
-Scaloid is a library aimed to simplify your Android code. It makes your code easy to write and understand by [leveraging Scala language](#faqs-about-scala-on-android).
+Scaloid is a library that simplifies your Android code. It makes your code easy to understand and maintain by [leveraging Scala language](#faqs-about-scala-on-android).
 
 For example, the code block shown below:
 
