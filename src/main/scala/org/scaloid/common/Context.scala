@@ -245,3 +245,35 @@ trait UnregisterReceiver extends ContextWrapper with Destroyable {
   }
 }
 
+class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUTO_CREATE)(implicit ctx: Context with Creatable with Destroyable, ev: Null <:< S, mf: ClassManifest[S]) extends ServiceConnection {
+  var service: S = null
+
+  def onServiceConnected(p1: ComponentName, binder: IBinder) {
+    service = (binder.asInstanceOf[LocalService#ScaloidServiceBinder]).service.asInstanceOf[S]
+  }
+
+  def onServiceDisconnected(p1: ComponentName) {
+    service = null
+  }
+
+  def connected: Boolean = service != null
+
+  ctx.onCreate {
+    ctx.bindService(SIntent[S], this, bindFlag)
+  }
+
+  ctx.onDestroy {
+    ctx.unbindService(this)
+  }
+}
+
+trait LocalService extends SService {
+  private val binder = new ScaloidServiceBinder
+
+  def onBind(intent: Intent): IBinder = binder
+
+  class ScaloidServiceBinder extends Binder {
+    def service: LocalService = LocalService.this
+  }
+
+}
