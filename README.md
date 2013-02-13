@@ -579,7 +579,7 @@ val layout = new SFrameLayout {
 }
 ```
 
-#### Methods `fill` and `warp`
+#### Methods `fill` and `wrap`
 
 When we get a `LayoutParams` from `<<`, the default values of `width` and `height` properties are `width = FILL_PARENT` and `height = WRAP_CONTENT`. You can override this when you need it:
 
