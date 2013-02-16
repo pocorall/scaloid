@@ -74,47 +74,48 @@ trait SystemService {
   @inline def sensorManager         (implicit context: Context): SensorManager          = context.getSystemService(Context.SENSOR_SERVICE         ).asInstanceOf[SensorManager]
   @inline def telephonyManager      (implicit context: Context): TelephonyManager       = context.getSystemService(Context.TELEPHONY_SERVICE      ).asInstanceOf[TelephonyManager]
 
-  implicit def telephonyManager2richTelephonyManager(tm: TelephonyManager): RichTelephonyManager = new RichTelephonyManager(tm)  
-
-class RichTelephonyManager(tm: TelephonyManager) {
-  def onCallForwardingIndicatorChanged(fun: Boolean => Any)(implicit ctx: Context with Destroyable) {
+  def onCallForwardingIndicatorChanged(fun: Boolean => Any)(implicit ctx: Context, reg: Registerable) {
     val callStateListener = new PhoneStateListener() {
       override def onCallForwardingIndicatorChanged(cfi: Boolean) {
         fun(cfi)
       }
     }
-    tm.listen(callStateListener, PhoneStateListener.LISTEN_CALL_FORWARDING_INDICATOR)
-    ctx.onDestroy(
-      tm.listen(callStateListener, PhoneStateListener.LISTEN_NONE)
-    )
+    reg.onRegister {
+      telephonyManager.listen(callStateListener, PhoneStateListener.LISTEN_CALL_FORWARDING_INDICATOR)
+    }
+    reg.onUnregister {
+      telephonyManager.listen(callStateListener, PhoneStateListener.LISTEN_NONE)
+    }
   }
 
-  def onCallStateChanged(fun: (Int, String) => Any)(implicit ctx: Context with Destroyable) {
+  def onCallStateChanged(fun: (Int, String) => Any)(implicit ctx: Context, reg: Registerable) {
     val callStateListener = new PhoneStateListener() {
       override def onCallStateChanged(state: Int, incomingNumber: String) {
         fun(state, incomingNumber)
       }
     }
-    tm.listen(callStateListener, PhoneStateListener.LISTEN_CALL_STATE)
-    ctx.onDestroy(
-      tm.listen(callStateListener, PhoneStateListener.LISTEN_NONE)
-    )
+    reg.onRegister {
+      telephonyManager.listen(callStateListener, PhoneStateListener.LISTEN_CALL_STATE)
+    }
+    reg.onUnregister {
+      telephonyManager.listen(callStateListener, PhoneStateListener.LISTEN_NONE)
+    }
   }
 
-  def onCellLocationChanged(fun: CellLocation => Any)(implicit ctx: Context with Destroyable) {
+  def onCellLocationChanged(fun: CellLocation => Any)(implicit ctx: Context, reg: Registerable) {
     val callStateListener = new PhoneStateListener() {
       override def onCellLocationChanged(cellLocation: CellLocation) {
         fun(cellLocation)
       }
     }
-    tm.listen(callStateListener, PhoneStateListener.LISTEN_CELL_LOCATION)
-    ctx.onDestroy(
-      tm.listen(callStateListener, PhoneStateListener.LISTEN_NONE)
-    )
+    reg.onRegister {
+      telephonyManager.listen(callStateListener, PhoneStateListener.LISTEN_CELL_LOCATION)
+    }
+    reg.onUnregister {
+      telephonyManager.listen(callStateListener, PhoneStateListener.LISTEN_NONE)
+    }
   }
-}  
-  
-  
+
   @inline def uiModeManager         (implicit context: Context): UiModeManager          = context.getSystemService(Context.UI_MODE_SERVICE        ).asInstanceOf[UiModeManager]
   @inline def vibrator              (implicit context: Context): Vibrator               = context.getSystemService(Context.VIBRATOR_SERVICE       ).asInstanceOf[Vibrator]
   @inline def wallpaperManager      (implicit context: Context): WallpaperManager       = context.getSystemService(Context.WALLPAPER_SERVICE      ).asInstanceOf[WallpaperManager]

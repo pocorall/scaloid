@@ -71,40 +71,65 @@ import android.opengl._
 @getter
 @beanGetter
 class noEquivalentGetterExists extends annotation.StaticAnnotation
-  
+
+class EventSource0[T] extends ArrayBuffer[() => T] {
+  def apply(e: => T) = append(() => e)
+
+  def run() {
+    foreach(_())
+  }
+}
+
+class EventSource1[T <: Function1[_, _]] extends ArrayBuffer[T] {
+  def apply(e: T) = append(e)
+}
+
+class EventSource2[T <: Function2[_, _, _]] extends ArrayBuffer[T] {
+  def apply(e: T) = append(e)
+}
+
 trait Destroyable {
   protected val onDestroyBodies = new ArrayBuffer[() => Any]
-  	  
-  def onDestroy(body: => Any) {
-    onDestroyBodies += (() => body)
+
+  def onDestroy(body: => Any) = {
+    val el = (() => body)
+    onDestroyBodies += el
+    el
   }
 }
-  
+
 trait Creatable {
   protected val onCreateBodies = new ArrayBuffer[() => Any]
-  	  
-  def onCreate(body: => Any) {
-    onCreateBodies += (() => body)
+
+  def onCreate(body: => Any) = {
+    val el = (() => body)
+    onCreateBodies += el
+    el
   }
 }
 
-  trait SContext extends Context with TagUtil {
-    implicit val ctx = this
+trait Registerable {
+  def onRegister(body: => Any): () => Any
+  def onUnregister(body: => Any): () => Any
+}
 
-    def startActivity[T: ClassManifest] {
-      startActivity(SIntent[T])
-    }
+trait SContext extends Context with TagUtil {
+  implicit val ctx = this
 
-    def startService[T: ClassManifest] {
-      startService(SIntent[T])
-    }
-
-    def stopService[T: ClassManifest] {
-      stopService(SIntent[T])
-    }
+  def startActivity[T: ClassManifest] {
+    startActivity(SIntent[T])
   }
 
-trait TraitActivity[V <: Activity] {  
+  def startService[T: ClassManifest] {
+    startService(SIntent[T])
+  }
+
+  def stopService[T: ClassManifest] {
+    stopService(SIntent[T])
+  }
+}
+
+trait TraitActivity[V <: Activity] {
     @inline def contentView_=(p: View) = {
       basis.setContentView(p)
       basis
@@ -132,73 +157,98 @@ trait TraitActivity[V <: Activity] {
     }
   }
 
-  trait SActivity extends Activity with SContext with TraitActivity[SActivity] with Destroyable with Creatable {
-    def basis = this
-    override implicit val ctx = this
-     
-    protected override def onCreate(b: Bundle) {
-      super.onCreate(b)
-      onCreateBodies.foreach(_ ())
-    }
+trait SActivity extends Activity with SContext with TraitActivity[SActivity] with Destroyable with Creatable with Registerable {
+  def basis = this
+  override implicit val ctx = this
 
-    override def onRestart {
-      super.onRestart()
-      onRestartBodies.foreach(_ ())
-    }
+  def onRegister(body: => Any) = onResume(body)
+  def onUnregister(body: => Any) = onPause(body)
 
-    protected val onRestartBodies = new ArrayBuffer[() => Any]
-
-    def onRestart(body: => Any) {
-      onRestartBodies += (() => body)
-    }
-
-    override def onResume {
-      super.onResume()
-      onResumeBodies.foreach(_ ())
-    }
-
-    protected val onResumeBodies = new ArrayBuffer[() => Any]
-
-    def onResume(body: => Any) {
-      onResumeBodies += (() => body)
-    }
-
-    override def onPause {
-      onPauseBodies.foreach(_ ())
-      super.onPause()
-    }
-
-    protected val onPauseBodies = new ArrayBuffer[() => Any]
-
-    def onPause(body: => Any) {
-      onPauseBodies += (() => body)
-    }
-
-    override def onStop {
-      onStopBodies.foreach(_ ())
-      super.onStop()
-    }
-
-    protected val onStopBodies = new ArrayBuffer[() => Any]
-
-    def onStop(body: => Any) {
-      onStopBodies += (() => body)
-    }
-
-    override def onDestroy {
-      onDestroyBodies.foreach(_ ())
-      super.onDestroy()
-    }
+  val onStartStop = new Registerable {
+    def onRegister(body: => Any) = onStart(body)
+    def onUnregister(body: => Any) = onStop(body)
   }
 
-trait SService extends Service with SContext with Destroyable with Creatable {
+  val onCreateDestroy = new Registerable {
+    def onRegister(body: => Any) = onCreate(body)
+    def onUnregister(body: => Any) = onDestroy(body)
+  }
+
+  protected override def onCreate(b: Bundle) {
+    super.onCreate(b)
+    onCreateBodies.foreach(_ ())
+  }
+
+  override def onStart {
+    super.onStart()
+    onStartBodies.foreach(_ ())
+  }
+
+  protected val onStartBodies = new ArrayBuffer[() => Any]
+
+  def onStart(body: => Any) = {
+    val el = (() => body)
+    onStartBodies += el
+    el
+  }
+
+  override def onResume {
+    super.onResume()
+    onResumeBodies.foreach(_ ())
+  }
+
+  protected val onResumeBodies = new ArrayBuffer[() => Any]
+
+  def onResume(body: => Any) = {
+    val el = (() => body)
+    onResumeBodies += el
+    el
+  }
+
+  override def onPause {
+    onPauseBodies.foreach(_ ())
+    super.onPause()
+  }
+
+  protected val onPauseBodies = new ArrayBuffer[() => Any]
+
+  def onPause(body: => Any) = {
+    val el = (() => body)
+    onPauseBodies += el
+    el
+  }
+
+  override def onStop {
+    onStopBodies.foreach(_ ())
+    super.onStop()
+  }
+
+  protected val onStopBodies = new ArrayBuffer[() => Any]
+
+  def onStop(body: => Any) = {
+    val el = (() => body)
+    onStopBodies += el
+    el
+  }
+
+  override def onDestroy {
+    onDestroyBodies.foreach(_ ())
+    super.onDestroy()
+  }
+}
+
+trait SService extends Service with SContext with Destroyable with Creatable with Registerable {
   def basis = this
+  override implicit val ctx = this
+
+  def onRegister(body: => Any) = onCreate(body)
+  def onUnregister(body: => Any) = onDestroy(body)
 
   override def onCreate() {
     super.onCreate()
     onCreateBodies.foreach(_ ())
   }
-    
+
   override def onDestroy() {
     onDestroyBodies.foreach(_ ())
     super.onDestroy()
@@ -240,39 +290,29 @@ trait UnregisterReceiver extends ContextWrapper with Destroyable {
         case e: IllegalArgumentException => e.printStackTrace()
       }
     }
-   
+
     super.registerReceiver(receiver, filter)
   }
 }
 
+
 class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUTO_CREATE)(implicit ctx: Context with Creatable with Destroyable, ev: Null <:< S, mf: ClassManifest[S]) extends ServiceConnection {
   var service: S = null
+  var componentName:ComponentName = _
+  var binder: IBinder = _
+  var onConnected = new EventSource0[Unit]
+  var onDisconnected = new EventSource0[Unit]
 
   def onServiceConnected(p1: ComponentName, b: IBinder) {
     service = (b.asInstanceOf[LocalService#ScaloidServiceBinder]).service.asInstanceOf[S]
     componentName = p1
     binder = b
-    _onConnected()
+    onConnected.run()
   }
 
   def onServiceDisconnected(p1: ComponentName) {
     service = null
-    _onDisconnected()
-  }
-  
-  var componentName:ComponentName = _
-  var binder: IBinder = _
-  
-  var _onConnected: () => Any = () => {}
-  
-  var _onDisconnected: () => Any = () => {}
-  
-  def onConnected(f: => Any) {
-    _onConnected = (() => f)
-  }
-  
-  def onDisconnected(f: => Any) {
-    _onDisconnected = (() => f)
+    onDisconnected.run()
   }
 
   def connected: Boolean = service != null
@@ -284,8 +324,6 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
   ctx.onDestroy {
     ctx.unbindService(this)
   }
-  
-
 }
 
 trait LocalService extends SService {
@@ -298,3 +336,4 @@ trait LocalService extends SService {
   }
 
 }
+
