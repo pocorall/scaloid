@@ -296,7 +296,7 @@ trait UnregisterReceiver extends ContextWrapper with Destroyable {
 }
 
 
-class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUTO_CREATE)(implicit ctx: Context with Creatable with Destroyable, ev: Null <:< S, mf: ClassManifest[S]) extends ServiceConnection {
+class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUTO_CREATE)(implicit ctx: Context, reg: Registerable, ev: Null <:< S, mf: ClassManifest[S]) extends ServiceConnection {
   var service: S = null
   var componentName:ComponentName = _
   var binder: IBinder = _
@@ -317,11 +317,11 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
 
   def connected: Boolean = service != null
 
-  ctx.onCreate {
+  reg.onRegister {
     ctx.bindService(SIntent[S], this, bindFlag)
   }
 
-  ctx.onDestroy {
+  reg.onUnregister {
     ctx.unbindService(this)
   }
 }
