@@ -433,5 +433,15 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     def apply[T <: AnyRef](items:Array[T])(implicit context: Context) = new SArrayAdapter(items)	
   }  
 
+  def registerBroadcastReceiver(filter: IntentFilter)(onReceiveBody: (Context, Intent) => Any)(implicit ctx: Context, reg: Registerable) {
+    val receiver = new BroadcastReceiver {
+      def onReceive(context: Context, intent: Intent) {
+        onReceiveBody(context, intent)
+      }
+    }
+    reg.onRegister(ctx.registerReceiver(receiver, filter))
+    reg.onUnregister(ctx.unregisterReceiver(receiver))
+  }
 }
+
 
