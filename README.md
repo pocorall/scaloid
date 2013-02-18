@@ -77,10 +77,11 @@ There is an out-of-the-box solution. Just [fork this project](https://github.com
  * [UI Layout without XML](#ui-layout-without-xml)
    * [Layout context](#layout-context)
    * [Styles for programmers](#styles-for-programmers)
+ * [Lifecycle management](#lifecycle-management)
+ * [Asynchronous task processing](#asynchronous-task-processing)
  * [Implicit conversions](#implicit-conversions)
  * [Shorter representation without context object](#context-as-an-implicit-parameter)
  * [Shorter listeners](#enriched-implicit-classes)
- * [Asynchronous processing](#asynchronous-task-processing)
  * [Smarter logging](#logging)
  * [Improved getters/setters](#scala-getters-and-setters)
  * [Concise dialog builder](#class-alertdialogbuilder)
@@ -163,6 +164,57 @@ This converter turns an Android XML layout into a Scaloid layout:
 
 http://layout.scaloid.org
 
+## Lifecycle management
+
+**Will be released in Scaloid version 1.1**
+
+With Android API, Registering and unregistering BroadcastReceiver can be done as:
+
+```scala
+class MyActivity extends SActivity {
+  var connectivityListener: BroadcastReceiver = null
+
+  def onResume() {
+    super.onResume()
+    // ...
+    connectivityListener = new BroadcastReceiver {
+      def onReceive(context: Context, intent: Intent) {
+	    doSomething()
+	  }
+    }
+    registerReceiver(connectivityListener)
+  }
+
+  def onPause() {
+    unregisterReceiver(connectivityListener)
+    // ...
+    super.onPause()
+  }
+}
+```
+
+In Scaloid, the directly equivalent code is:
+
+```scala
+class MyActivity extends SActivity {
+  def registerBroadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) {
+    doSomething()
+  }
+}
+```
+
+Scaloid has highly flexible resource register/unregister management architecture.
+If this code is written in services, registering and unregistering is done in onCreate and onDestroy respectively. 
+If it is in activities, registering and unregistering is done in onResume and onPause respectively.
+However, this is just a default behavior. Overriding it is also simple:
+
+```scala
+def registerBroadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) {
+  doSomething()
+}(this, onStartStop)
+```
+
+Then, the receiver registered onStart, and unregisterd onStop.
 
 ## Implicit conversions
 Scaloid employs several implicit conversions. Some of the available implicit conversions are shown below:
