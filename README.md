@@ -182,7 +182,7 @@ class MyActivity extends SActivity {
 	    doSomething()
 	  }
     }
-    registerReceiver(connectivityListener)
+    registerReceiver(connectivityListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
   }
 
   def onPause() {
