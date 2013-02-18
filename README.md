@@ -197,7 +197,7 @@ In Scaloid, the directly equivalent code is:
 
 ```scala
 class MyActivity extends SActivity {
-  def registerBroadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) {
+  registerBroadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) {
     doSomething()
   }
 }
@@ -206,15 +206,16 @@ class MyActivity extends SActivity {
 Scaloid has highly flexible resource register/unregister management architecture.
 If this code is written in services, registering and unregistering is done in onCreate and onDestroy respectively. 
 If it is in activities, registering and unregistering is done in onResume and onPause respectively.
-However, this is just a default behavior. Overriding it is also simple:
+However, this is just a default behavior. Overriding it is simple as well:
 
 ```scala
-def registerBroadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) {
+registerBroadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) {
   doSomething()
 }(this, onStartStop)
 ```
 
 Then, the receiver registered onStart, and unregisterd onStop.
+ 
 
 ## Implicit conversions
 Scaloid employs several implicit conversions. Some of the available implicit conversions are shown below:
