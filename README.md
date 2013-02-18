@@ -197,7 +197,7 @@ In Scaloid, the directly equivalent code is:
 
 ```scala
 class MyActivity extends SActivity {
-  registerBroadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =>
+  broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =>
     doSomething()
   }
 }
@@ -209,7 +209,7 @@ If it is in activities, registering and unregistering is done in onResume and on
 However, this is just a default behavior. Overriding it is simple as well:
 
 ```scala
-registerBroadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =>
+broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =>
   doSomething()
 }(this, onStartStop)
 ```
