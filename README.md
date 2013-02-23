@@ -205,7 +205,7 @@ class MyActivity extends SActivity {
 
 Scaloid has highly flexible resource register/unregister management architecture.
 If this code is written in services, registering and unregistering is done in onCreate and onDestroy respectively. 
-If it is in activities, registering and unregistering is done in onResume and onPause respectively.
+If the same code is in activities, registering and unregistering is done in onResume and onPause respectively.
 However, this is just a default behavior. Overriding it is simple as well:
 
 ```scala
@@ -214,7 +214,8 @@ broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =
 }(this, onStartStop)
 ```
 
-Then, the receiver registered onStart, and unregisterd onStop.
+Then, the receiver is registered onStart, and unregisterd onStop.
+Refer to [a blog post](#http://blog.scaloid.org/2013/02/better-resource-releasing-in-android.html) for more details.
  
 
 ## Implicit conversions
