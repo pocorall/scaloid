@@ -1021,9 +1021,9 @@ trait WidgetFamily {
       basis
     }
 
-    val styles = new ArrayBuffer[View => View]
+    val styles = new ArrayBuffer[View PartialFunction View]
 
-    def style(stl: View => View) = {
+    def style(stl: View PartialFunction View) = {
       styles += stl
       basis
     }
