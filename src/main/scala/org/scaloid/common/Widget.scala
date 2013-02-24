@@ -109,6 +109,8 @@ trait WidgetFamily {
 
   trait TraitView[V <: View] extends ConstantsSupport {
 
+    def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
+
     @inline def onClick(f:  => Unit): V = {
       basis.setOnClickListener(new OnClickListener {
         def onClick(p1: View): Unit = { f }
@@ -506,6 +508,11 @@ trait WidgetFamily {
       defaultLayoutParam(basis)
     }
 
+    protected def parentViewGroupIfExists[LP <: ViewGroupLayoutParams[_,_]]
+    (implicit defaultLayoutParam: (V) => LP = (v:V)=> null): TraitViewGroup[_] = {
+      val lp = defaultLayoutParam(basis)
+      if(lp==null) null else lp.parent
+    }
 
     def <<[LP <: ViewGroupLayoutParams[_,_]](width:Int, height:Int)(implicit defaultLayoutParam: (V) => LP): LP = {
       val lp = defaultLayoutParam(basis)
@@ -1011,12 +1018,18 @@ trait WidgetFamily {
     @inline def persistentDrawingCache  (p: Int) =            persistentDrawingCache_=  (p)
     @inline def persistentDrawingCache_=(p: Int) = { basis.setPersistentDrawingCache    (p); basis }
 
+    def applyStyle(v: View): View = {
+      var viw = v
+
+      styles.foreach {  st =>
+        if (st.isDefinedAt(viw)) viw = st(viw)
+      }
+      viw
+    }
+
     def +=(v: View) = {
       var viw = v
-      styles.foreach {
-        case st:PartialFunction[View, View] => if (st.isDefinedAt(viw)) viw = st(viw)
-        case st => viw = st(viw)
-      }
+      viw = applyStyle(viw)
       basis.addView(viw)
       basis
     }
