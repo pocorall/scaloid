@@ -1357,7 +1357,7 @@ trait WidgetFamily {
 
   }
 
-  class SVerticalLayout(implicit context: Context) extends SLinearLayout {
+  class SVerticalLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends SLinearLayout {
     orientation = VERTICAL
   }
 
