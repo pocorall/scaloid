@@ -522,6 +522,7 @@ trait WidgetFamily {
     }
 
     def basis: V
+    val parentViewGroup: TraitViewGroup[_] = null
   }
 
   class RichTextView[V <: TextView](val basis: V) extends TraitTextView[V]
@@ -871,9 +872,9 @@ trait WidgetFamily {
 
   }
 
-  class STextView(implicit context: Context) extends TextView(context) with TraitTextView[STextView] {
+  class STextView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends TextView(context) with TraitTextView[STextView] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object STextView {
     def apply[LP <: ViewGroupLayoutParams[_, STextView]]()(implicit context: Context, defaultLayoutParam: (STextView) => LP): STextView =  {
@@ -1018,8 +1019,11 @@ trait WidgetFamily {
     @inline def persistentDrawingCache  (p: Int) =            persistentDrawingCache_=  (p)
     @inline def persistentDrawingCache_=(p: Int) = { basis.setPersistentDrawingCache    (p); basis }
 
+    implicit val parentVG = this
+
     def applyStyle(v: View): View = {
       var viw = v
+      if(parentViewGroup!=null) viw = parentViewGroup.applyStyle(viw)
 
       styles.foreach {  st =>
         if (st.isDefinedAt(viw)) viw = st(viw)
@@ -1122,9 +1126,9 @@ trait WidgetFamily {
 
   }
 
-  class SFrameLayout(implicit context: Context) extends FrameLayout(context) with TraitFrameLayout[SFrameLayout] {
+  class SFrameLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends FrameLayout(context) with TraitFrameLayout[SFrameLayout] {
     def basis = this
-
+    override val parentViewGroup = parentVGroup
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
   <<
 
@@ -1169,9 +1173,9 @@ trait WidgetFamily {
     @inline def verticalGravity_=(p: Int) = { basis.setVerticalGravity    (p); basis }
 
   }
-  class SRelativeLayout(implicit context: Context) extends RelativeLayout(context) with TraitRelativeLayout[SRelativeLayout] {
+  class SRelativeLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends RelativeLayout(context) with TraitRelativeLayout[SRelativeLayout] {
     def basis = this
-
+    override val parentViewGroup = parentVGroup
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
   <<
 
@@ -1328,9 +1332,9 @@ trait WidgetFamily {
 
   }
 
-  class SLinearLayout(implicit context: Context) extends LinearLayout(context) with TraitLinearLayout[SLinearLayout] {
+  class SLinearLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends LinearLayout(context) with TraitLinearLayout[SLinearLayout] {
     def basis = this
-
+    override val parentViewGroup = parentVGroup
     val VERTICAL = LinearLayout.VERTICAL
     val HORIZONTAL = LinearLayout.HORIZONTAL
 
@@ -1364,9 +1368,9 @@ trait WidgetFamily {
 
   }
 
-  class SEditText(implicit context: Context) extends EditText(context) with TraitEditText[SEditText] {
+  class SEditText(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends EditText(context) with TraitEditText[SEditText] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SEditText {
     def apply[LP <: ViewGroupLayoutParams[_, SEditText]]()(implicit context: Context, defaultLayoutParam: (SEditText) => LP): SEditText =  {
@@ -1391,9 +1395,9 @@ trait WidgetFamily {
 
   }
 
-  class SExtractEditText(implicit context: Context) extends ExtractEditText(context) with TraitExtractEditText[SExtractEditText] {
+  class SExtractEditText(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends ExtractEditText(context) with TraitExtractEditText[SExtractEditText] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SExtractEditText {
     def apply[LP <: ViewGroupLayoutParams[_, SExtractEditText]]()(implicit context: Context, defaultLayoutParam: (SExtractEditText) => LP): SExtractEditText =  {
@@ -1485,9 +1489,9 @@ trait WidgetFamily {
 
   }
 
-  class SAutoCompleteTextView(implicit context: Context) extends AutoCompleteTextView(context) with TraitAutoCompleteTextView[SAutoCompleteTextView] {
+  class SAutoCompleteTextView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends AutoCompleteTextView(context) with TraitAutoCompleteTextView[SAutoCompleteTextView] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SAutoCompleteTextView {
     def apply[LP <: ViewGroupLayoutParams[_, SAutoCompleteTextView]]()(implicit context: Context, defaultLayoutParam: (SAutoCompleteTextView) => LP): SAutoCompleteTextView =  {
@@ -1519,9 +1523,9 @@ trait WidgetFamily {
 
   }
 
-  class SMultiAutoCompleteTextView(implicit context: Context) extends MultiAutoCompleteTextView(context) with TraitMultiAutoCompleteTextView[SMultiAutoCompleteTextView] {
+  class SMultiAutoCompleteTextView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends MultiAutoCompleteTextView(context) with TraitMultiAutoCompleteTextView[SMultiAutoCompleteTextView] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SMultiAutoCompleteTextView {
     def apply[LP <: ViewGroupLayoutParams[_, SMultiAutoCompleteTextView]]()(implicit context: Context, defaultLayoutParam: (SMultiAutoCompleteTextView) => LP): SMultiAutoCompleteTextView =  {
@@ -1592,9 +1596,9 @@ trait WidgetFamily {
 
   }
 
-  class SListView(implicit context: Context) extends ListView(context) with TraitListView[SListView] {
+  class SListView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends ListView(context) with TraitListView[SListView] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SListView {
     def apply[LP <: ViewGroupLayoutParams[_, SListView]]()(implicit context: Context, defaultLayoutParam: (SListView) => LP): SListView =  {
@@ -1614,9 +1618,9 @@ trait WidgetFamily {
 
   }
 
-  class SButton(implicit context: Context) extends Button(context) with TraitButton[SButton] {
+  class SButton(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends Button(context) with TraitButton[SButton] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SButton {
     def apply[LP <: ViewGroupLayoutParams[_, SButton]]()(implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton =  {
@@ -1675,9 +1679,9 @@ trait WidgetFamily {
 
   }
 
-  class SCheckBox(implicit context: Context) extends CheckBox(context) with TraitCheckBox[SCheckBox] {
+  class SCheckBox(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends CheckBox(context) with TraitCheckBox[SCheckBox] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SCheckBox {
     def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]]()(implicit context: Context, defaultLayoutParam: (SCheckBox) => LP): SCheckBox =  {
@@ -1716,9 +1720,9 @@ trait WidgetFamily {
 
   }
 
-  class SRadioButton(implicit context: Context) extends RadioButton(context) with TraitRadioButton[SRadioButton] {
+  class SRadioButton(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends RadioButton(context) with TraitRadioButton[SRadioButton] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SRadioButton {
     def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]]()(implicit context: Context, defaultLayoutParam: (SRadioButton) => LP): SRadioButton =  {
@@ -1765,9 +1769,9 @@ trait WidgetFamily {
 
   }
 
-  class SToggleButton(implicit context: Context) extends ToggleButton(context) with TraitToggleButton[SToggleButton] {
+  class SToggleButton(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends ToggleButton(context) with TraitToggleButton[SToggleButton] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SToggleButton {
     def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]]()(implicit context: Context, defaultLayoutParam: (SToggleButton) => LP): SToggleButton =  {
@@ -1815,9 +1819,9 @@ trait WidgetFamily {
 
   }
 
-  class SCheckedTextView(implicit context: Context) extends CheckedTextView(context) with TraitCheckedTextView[SCheckedTextView] {
+  class SCheckedTextView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends CheckedTextView(context) with TraitCheckedTextView[SCheckedTextView] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SCheckedTextView {
     def apply[LP <: ViewGroupLayoutParams[_, SCheckedTextView]]()(implicit context: Context, defaultLayoutParam: (SCheckedTextView) => LP): SCheckedTextView =  {
@@ -1856,9 +1860,9 @@ trait WidgetFamily {
 
   }
 
-  class SChronometer(implicit context: Context) extends Chronometer(context) with TraitChronometer[SChronometer] {
+  class SChronometer(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends Chronometer(context) with TraitChronometer[SChronometer] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SChronometer {
     def apply[LP <: ViewGroupLayoutParams[_, SChronometer]]()(implicit context: Context, defaultLayoutParam: (SChronometer) => LP): SChronometer =  {
@@ -1885,9 +1889,9 @@ trait WidgetFamily {
 
   }
 
-  class SDigitalClock(implicit context: Context) extends DigitalClock(context) with TraitDigitalClock[SDigitalClock] {
+  class SDigitalClock(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends DigitalClock(context) with TraitDigitalClock[SDigitalClock] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SDigitalClock {
     def apply[LP <: ViewGroupLayoutParams[_, SDigitalClock]]()(implicit context: Context, defaultLayoutParam: (SDigitalClock) => LP): SDigitalClock =  {
@@ -2008,9 +2012,9 @@ trait WidgetFamily {
 
   }
 
-  class SImageView(implicit context: Context) extends ImageView(context) with TraitImageView[SImageView] {
+  class SImageView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends ImageView(context) with TraitImageView[SImageView] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SImageView {
     def apply[LP <: ViewGroupLayoutParams[_, SImageView]]()(implicit context: Context, defaultLayoutParam: (SImageView) => LP): SImageView =  {
@@ -2030,9 +2034,9 @@ trait WidgetFamily {
 
   }
 
-  class SImageButton(implicit context: Context) extends ImageButton(context) with TraitImageButton[SImageButton] {
+  class SImageButton(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends ImageButton(context) with TraitImageButton[SImageButton] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SImageButton {
     def apply[LP <: ViewGroupLayoutParams[_, SImageButton]]()(implicit context: Context, defaultLayoutParam: (SImageButton) => LP): SImageButton =  {
@@ -2062,9 +2066,9 @@ trait WidgetFamily {
 
   }
 
-  class SQuickContactBadge(implicit context: Context) extends QuickContactBadge(context) with TraitQuickContactBadge[SQuickContactBadge] {
+  class SQuickContactBadge(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends QuickContactBadge(context) with TraitQuickContactBadge[SQuickContactBadge] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SQuickContactBadge {
     def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]]()(implicit context: Context, defaultLayoutParam: (SQuickContactBadge) => LP): SQuickContactBadge =  {
@@ -2089,9 +2093,9 @@ trait WidgetFamily {
 
   }
 
-  class SZoomButton(implicit context: Context) extends ZoomButton(context) with TraitZoomButton[SZoomButton] {
+  class SZoomButton(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends ZoomButton(context) with TraitZoomButton[SZoomButton] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SZoomButton {
     def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]]()(implicit context: Context, defaultLayoutParam: (SZoomButton) => LP): SZoomButton =  {
@@ -2139,9 +2143,9 @@ trait WidgetFamily {
 
   }
 
-  class SProgressBar(implicit context: Context) extends ProgressBar(context) with TraitProgressBar[SProgressBar] {
+  class SProgressBar(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends ProgressBar(context) with TraitProgressBar[SProgressBar] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SProgressBar {
     def apply[LP <: ViewGroupLayoutParams[_, SProgressBar]]()(implicit context: Context, defaultLayoutParam: (SProgressBar) => LP): SProgressBar =  {
@@ -2161,9 +2165,9 @@ trait WidgetFamily {
 
   }
 
-  class SAnalogClock(implicit context: Context) extends AnalogClock(context) with TraitAnalogClock[SAnalogClock] {
+  class SAnalogClock(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends AnalogClock(context) with TraitAnalogClock[SAnalogClock] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SAnalogClock {
     def apply[LP <: ViewGroupLayoutParams[_, SAnalogClock]]()(implicit context: Context, defaultLayoutParam: (SAnalogClock) => LP): SAnalogClock =  {
@@ -2195,9 +2199,9 @@ trait WidgetFamily {
 
   }
 
-  class SSurfaceView(implicit context: Context) extends SurfaceView(context) with TraitSurfaceView[SSurfaceView] {
+  class SSurfaceView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends SurfaceView(context) with TraitSurfaceView[SSurfaceView] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SSurfaceView {
     def apply[LP <: ViewGroupLayoutParams[_, SSurfaceView]]()(implicit context: Context, defaultLayoutParam: (SSurfaceView) => LP): SSurfaceView =  {
@@ -2255,9 +2259,9 @@ trait WidgetFamily {
 
   }
 
-  class SGLSurfaceView(implicit context: Context) extends GLSurfaceView(context) with TraitGLSurfaceView[SGLSurfaceView] {
+  class SGLSurfaceView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends GLSurfaceView(context) with TraitGLSurfaceView[SGLSurfaceView] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SGLSurfaceView {
     def apply[LP <: ViewGroupLayoutParams[_, SGLSurfaceView]]()(implicit context: Context, defaultLayoutParam: (SGLSurfaceView) => LP): SGLSurfaceView =  {
@@ -2315,9 +2319,9 @@ trait WidgetFamily {
 
   }
 
-  class SVideoView(implicit context: Context) extends VideoView(context) with TraitVideoView[SVideoView] {
+  class SVideoView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends VideoView(context) with TraitVideoView[SVideoView] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SVideoView {
     def apply[LP <: ViewGroupLayoutParams[_, SVideoView]]()(implicit context: Context, defaultLayoutParam: (SVideoView) => LP): SVideoView =  {
@@ -2385,9 +2389,9 @@ trait WidgetFamily {
 
   }
 
-  class SGridView(implicit context: Context) extends GridView(context) with TraitGridView[SGridView] {
+  class SGridView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends GridView(context) with TraitGridView[SGridView] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SGridView {
     def apply[LP <: ViewGroupLayoutParams[_, SGridView]]()(implicit context: Context, defaultLayoutParam: (SGridView) => LP): SGridView =  {
@@ -2453,9 +2457,9 @@ trait WidgetFamily {
 
   }
 
-  class SExpandableListView(implicit context: Context) extends ExpandableListView(context) with TraitExpandableListView[SExpandableListView] {
+  class SExpandableListView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends ExpandableListView(context) with TraitExpandableListView[SExpandableListView] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SExpandableListView {
     def apply[LP <: ViewGroupLayoutParams[_, SExpandableListView]]()(implicit context: Context, defaultLayoutParam: (SExpandableListView) => LP): SExpandableListView =  {
@@ -2554,9 +2558,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
 
   }
 
-  class SSpinner(implicit context: Context) extends Spinner(context) with TraitSpinner[SSpinner] {
+  class SSpinner(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends Spinner(context) with TraitSpinner[SSpinner] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SSpinner {
     def apply[LP <: ViewGroupLayoutParams[_, SSpinner]]()(implicit context: Context, defaultLayoutParam: (SSpinner) => LP): SSpinner =  {
@@ -2601,9 +2605,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
 
   }
 
-  class SGallery(implicit context: Context) extends Gallery(context) with TraitGallery[SGallery] {
+  class SGallery(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends Gallery(context) with TraitGallery[SGallery] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SGallery {
     def apply[LP <: ViewGroupLayoutParams[_, SGallery]]()(implicit context: Context, defaultLayoutParam: (SGallery) => LP): SGallery =  {
@@ -2701,9 +2705,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
-  class SSeekBar(implicit context: Context) extends SeekBar(context) with TraitSeekBar[SSeekBar] {
+  class SSeekBar(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends SeekBar(context) with TraitSeekBar[SSeekBar] {
     def basis = this
-
+    override val parentViewGroup = parentVGroup
   }
 
   object SSeekBar {
@@ -2742,9 +2746,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
 
   }
 
-  class SRatingBar(implicit context: Context) extends RatingBar(context) with TraitRatingBar[SRatingBar] {
+  class SRatingBar(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends RatingBar(context) with TraitRatingBar[SRatingBar] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SRatingBar {
     def apply[LP <: ViewGroupLayoutParams[_, SRatingBar]]()(implicit context: Context, defaultLayoutParam: (SRatingBar) => LP): SRatingBar =  {
@@ -2787,9 +2791,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
 
   }
 
-  class SHorizontalScrollView(implicit context: Context) extends HorizontalScrollView(context) with TraitHorizontalScrollView[SHorizontalScrollView] {
+  class SHorizontalScrollView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends HorizontalScrollView(context) with TraitHorizontalScrollView[SHorizontalScrollView] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SHorizontalScrollView {
     def apply[LP <: ViewGroupLayoutParams[_, SHorizontalScrollView]]()(implicit context: Context, defaultLayoutParam: (SHorizontalScrollView) => LP): SHorizontalScrollView =  {
@@ -2821,9 +2825,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
 
   }
 
-  class SMediaController(implicit context: Context) extends MediaController(context) with TraitMediaController[SMediaController] {
+  class SMediaController(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends MediaController(context) with TraitMediaController[SMediaController] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SMediaController {
     def apply[LP <: ViewGroupLayoutParams[_, SMediaController]]()(implicit context: Context, defaultLayoutParam: (SMediaController) => LP): SMediaController =  {
@@ -2855,9 +2859,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
 
   }
 
-  class SScrollView(implicit context: Context) extends ScrollView(context) with TraitScrollView[SScrollView] {
+  class SScrollView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends ScrollView(context) with TraitScrollView[SScrollView] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SScrollView {
     def apply[LP <: ViewGroupLayoutParams[_, SScrollView]]()(implicit context: Context, defaultLayoutParam: (SScrollView) => LP): SScrollView =  {
@@ -2906,9 +2910,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
 
   }
 
-  class STabHost(implicit context: Context) extends TabHost(context) with TraitTabHost[STabHost] {
+  class STabHost(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends TabHost(context) with TraitTabHost[STabHost] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object STabHost {
     def apply[LP <: ViewGroupLayoutParams[_, STabHost]]()(implicit context: Context, defaultLayoutParam: (STabHost) => LP): STabHost =  {
@@ -2941,9 +2945,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
 
   }
 
-  class STimePicker(implicit context: Context) extends TimePicker(context) with TraitTimePicker[STimePicker] {
+  class STimePicker(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends TimePicker(context) with TraitTimePicker[STimePicker] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object STimePicker {
     def apply[LP <: ViewGroupLayoutParams[_, STimePicker]]()(implicit context: Context, defaultLayoutParam: (STimePicker) => LP): STimePicker =  {
@@ -2982,9 +2986,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
 
   }
 
-  class SViewAnimator(implicit context: Context) extends ViewAnimator(context) with TraitViewAnimator[SViewAnimator] {
+  class SViewAnimator(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends ViewAnimator(context) with TraitViewAnimator[SViewAnimator] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SViewAnimator {
     def apply[LP <: ViewGroupLayoutParams[_, SViewAnimator]]()(implicit context: Context, defaultLayoutParam: (SViewAnimator) => LP): SViewAnimator =  {
@@ -3015,9 +3019,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
 
   }
 
-  class SViewFlipper(implicit context: Context) extends ViewFlipper(context) with TraitViewFlipper[SViewFlipper] {
+  class SViewFlipper(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends ViewFlipper(context) with TraitViewFlipper[SViewFlipper] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SViewFlipper {
     def apply[LP <: ViewGroupLayoutParams[_, SViewFlipper]]()(implicit context: Context, defaultLayoutParam: (SViewFlipper) => LP): SViewFlipper =  {
@@ -3044,9 +3048,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
 
   }
 
-  class SViewSwitcher(implicit context: Context) extends ViewSwitcher(context) with TraitViewSwitcher[SViewSwitcher] {
+  class SViewSwitcher(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends ViewSwitcher(context) with TraitViewSwitcher[SViewSwitcher] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SViewSwitcher {
     def apply[LP <: ViewGroupLayoutParams[_, SViewSwitcher]]()(implicit context: Context, defaultLayoutParam: (SViewSwitcher) => LP): SViewSwitcher =  {
@@ -3081,9 +3085,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
 
   }
 
-  class SImageSwitcher(implicit context: Context) extends ImageSwitcher(context) with TraitImageSwitcher[SImageSwitcher] {
+  class SImageSwitcher(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends ImageSwitcher(context) with TraitImageSwitcher[SImageSwitcher] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SImageSwitcher {
     def apply[LP <: ViewGroupLayoutParams[_, SImageSwitcher]]()(implicit context: Context, defaultLayoutParam: (SImageSwitcher) => LP): SImageSwitcher =  {
@@ -3113,9 +3117,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
 
   }
 
-  class STextSwitcher(implicit context: Context) extends TextSwitcher(context) with TraitTextSwitcher[STextSwitcher] {
+  class STextSwitcher(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends TextSwitcher(context) with TraitTextSwitcher[STextSwitcher] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object STextSwitcher {
     def apply[LP <: ViewGroupLayoutParams[_, STextSwitcher]]()(implicit context: Context, defaultLayoutParam: (STextSwitcher) => LP): STextSwitcher =  {
@@ -3141,9 +3145,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
 
   }
 
-  class SDatePicker(implicit context: Context) extends DatePicker(context) with TraitDatePicker[SDatePicker] {
+  class SDatePicker(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends DatePicker(context) with TraitDatePicker[SDatePicker] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SDatePicker {
     def apply[LP <: ViewGroupLayoutParams[_, SDatePicker]]()(implicit context: Context, defaultLayoutParam: (SDatePicker) => LP): SDatePicker =  {
@@ -3225,9 +3229,9 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
 
   }
 
-  class SGestureOverlayView(implicit context: Context) extends GestureOverlayView(context) with TraitGestureOverlayView[SGestureOverlayView] {
+  class SGestureOverlayView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends GestureOverlayView(context) with TraitGestureOverlayView[SGestureOverlayView] {
     def basis = this
-  }
+    override val parentViewGroup = parentVGroup  }
 
   object SGestureOverlayView {
     def apply[LP <: ViewGroupLayoutParams[_, SGestureOverlayView]]()(implicit context: Context, defaultLayoutParam: (SGestureOverlayView) => LP): SGestureOverlayView =  {
