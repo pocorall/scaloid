@@ -258,7 +258,7 @@ Although Scaloid provides these conversions implicitly, explicit conversion may 
 warn("Will display the content of the resource: " + R.string.my_message.r2String)
 ```
 
-Currently, `r2Text`, `r2TextArray`, `r2String`, `r2StringArray`, `r2Drawable` and `r2Movie` is provided.
+Currently, `r2Text`, `r2TextArray`, `r2String`, `r2StringArray`, `r2Drawable` and `r2Movie` are provided.
 
 **Why implicit conversion of Resource ID is cool?**
 
