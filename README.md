@@ -211,7 +211,7 @@ broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =
 ```
 
 Then, the receiver is registered onStart, and unregisterd onStop.
-Refer to [a blog post](#http://blog.scaloid.org/2013/02/better-resource-releasing-in-android.html) for more details.
+Refer to [a blog post](http://blog.scaloid.org/2013/02/better-resource-releasing-in-android.html) for more details.
  
 
 ## Implicit conversions
