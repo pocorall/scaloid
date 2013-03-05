@@ -1346,6 +1346,11 @@ trait WidgetFamily {
 
       v.setLayoutParams(this)
 
+      def Gravity(g: Int) = {
+        gravity = g
+        this
+      }
+
       def Weight(w: Float) = {
         weight = w
         this
