@@ -1186,7 +1186,7 @@ Can it be simpler?
 ## Extending View class
 Often we need to define a custom view widget for a specific requirement.
 To do this, we define a class that inherits `android.widget.View` class or its subclass (e.g. `TextView` and `Button`).
-To enable Scaloid extensions for the custom widget, you can define the class as follows:
+To enable Scaloid extensions for this custom widget, you can define a class as follows:
 
 ```scala
 class MyView(implicit ctx: Context) extends View(ctx) with TraitView[MyView] {
