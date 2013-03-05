@@ -1183,6 +1183,18 @@ SArrayAdapter("Quick", "Brown", "Fox").style(_.textColor(Color.BLUE))
 
 Can it be simpler?
 
+## Extending View class
+Often we need to define a custom view widget for a specific requirement.
+To do this, we define a class that inherits `android.widget.View` class or its subclass (e.g. `TextView` and `Button`).
+To enable Scaloid extensions for the custom widget, you can define the class as follows:
+
+```scala
+class MyView(implicit ctx: Context) extends View(ctx) with TraitView[MyView] {
+  def basis = this
+  
+  // custom code for MyView here
+}
+```
 
 ## Static fields on protected interfaces
 
