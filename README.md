@@ -171,35 +171,31 @@ http://layout.scaloid.org
 With Android API, Registering and unregistering BroadcastReceiver can be done as:
 
 ```scala
-class MyActivity extends SActivity {
-  var connectivityListener: BroadcastReceiver = null
+var connectivityListener: BroadcastReceiver = null
 
-  def onResume() {
-    super.onResume()
-    // ...
-    connectivityListener = new BroadcastReceiver {
-      def onReceive(context: Context, intent: Intent) {
-	    doSomething()
-	  }
+def onResume() {
+  super.onResume()
+  // ...
+  connectivityListener = new BroadcastReceiver {
+    def onReceive(context: Context, intent: Intent) {
+     doSomething()
     }
-    registerReceiver(connectivityListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
-  }
+  } 
+  registerReceiver(connectivityListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+}
 
-  def onPause() {
-    unregisterReceiver(connectivityListener)
-    // ...
-    super.onPause()
-  }
+def onPause() {
+  unregisterReceiver(connectivityListener)
+  // ...
+  super.onPause()
 }
 ```
 
 In Scaloid, the directly equivalent code is:
 
 ```scala
-class MyActivity extends SActivity {
-  broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =>
-    doSomething()
-  }
+broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =>
+  doSomething()
 }
 ```
 
