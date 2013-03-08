@@ -68,6 +68,13 @@ import android.graphics._
 import android.opengl._
 
 
+/**
+ * Common Scaloid Package
+ *
+ * @see [[org.scaloid.TermsAndConditions]]
+ *
+ * @author Sung-Ho Lee
+ */
 package object common extends Logger with SystemService with WidgetFamily {
 
   /**
@@ -125,7 +132,7 @@ package object common extends Logger with SystemService with WidgetFamily {
     val TEXT_EMAIL_SUBJECT = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_EMAIL_SUBJECT
     val TEXT_SHORT_MESSAGE = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_SHORT_MESSAGE
     val TEXT_LONG_MESSAGE = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_LONG_MESSAGE
-    val TEXT_PERSION_NAME = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PERSON_NAME
+    val TEXT_PERSON_NAME = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PERSON_NAME
     val TEXT_POSTAL_ADDRESS = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_POSTAL_ADDRESS
     val TEXT_PASSWORD = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PASSWORD
     // TODO: write more (http://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType)
@@ -428,7 +435,7 @@ implicit def lazy2runnable[F](f: => F): Runnable =
   }
   
   object SArrayAdapter {
-    def apply[T <: AnyRef : Manifest](items:T*)(implicit context: Context) = new SArrayAdapter(items.toArray)
+    def apply[T <: AnyRef](items:T*)(implicit context: Context) = new SArrayAdapter(items.toArray)
 	
     def apply[T <: AnyRef](items:Array[T])(implicit context: Context) = new SArrayAdapter(items)	
   }  
