@@ -16,11 +16,8 @@ package org
  *
  * class MainActivity extends SActivity {
  *
- *   override def onCreate( savedInstanceState:Bundle ) {
- *     super.onCreate(savedInstanceState)
- *
+ *   onCreate {
  *     contentView = new SVerticalLayout {
- *
  *       setTheme(android.R.style.Theme_Holo_NoActionBar)
  *
  *       style {
@@ -33,7 +30,6 @@ package org
  *       STextView("What is your name?").<<.marginBottom(22 dip).>>
  *
  *       SButton("GO").onClick(longToast(s"Hello, ${name.getText}"))
- *
  *     }.padding(20 dip)
  *   }
  * }
