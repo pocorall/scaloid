@@ -212,6 +212,67 @@ broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =
 Then, the receiver is registered onStart, and unregisterd onStop.
 Refer to [a blog post](http://blog.scaloid.org/2013/02/better-resource-releasing-in-android.html) for more details.
  
+ 
+## Asynchronous task processing
+
+Android API provides `runOnUiThread()` only for class `Activity`. Scaloid provides a Scala version of `runOnUiThread()` for anywhere other than `Activity`.
+
+Instead of:
+
+```scala
+activity.runOnUiThread {
+  new Runnable() {
+    def run() {
+      debug("Running only in Activity class")
+    }
+  }
+}
+```    
+
+In Scaloid, use it like this:
+
+```scala
+runOnUiThread(debug("Running in any context"))
+```
+
+Running a job asynchronously and notifying the UI thread is a very frequently used pattern. Although Android API provides a helper class `AsyncTask`, implementing such a simple idea is still painful, even when we use Scala:
+
+```scala
+new AsyncTask[String, Void, String] {
+  def doInBackground(params: Array[String]) = {
+    doAJobTakeSomeTime(params)
+  }
+
+  override def onPostExecute(result: String) {
+    alert("Done!", result)
+  }
+}.execute("param")
+```    
+
+Using `runOnUiThread` and importing `scala.concurrent.ops._`, the asynchronous job shown above can be rewritten like this:
+
+```scala
+spawn {
+  val result = doAJobTakeSomeTime(params)
+  runOnUiThread(alert("Done!", result))
+}
+```  
+
+When you don't want to build sophisticate UI interactions, but just want to display something by calling a single Scaloid method (e.g. `alert`, `toast`, and `spinnerDialog`), Scaloid handles `runOnUiThread` for you. Therefore, the code block shown above is reduced to:
+
+```scala
+spawn {
+  alert("Done!", doAJobTakeSomeTime(params))
+}
+```  
+
+It is a great win as it exposes your idea clearly.
+
+Just like we throw away `AsyncTask`, we can also elliminate all other Java helpers for asynchronous job, such as `AsyncQueryHandler` and `AsyncTaskLoader`. Compare with the [original Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList2.java?av=h)
+and a [Scala port](https://github.com/pocorall/scaloid-apidemos/blob/master/src/main/java/com/example/android/apis/view/ExpandableList2.scala) of ApiDemos example app.
+
+Using `spawn` is just an example of asynchronous task processing in Scaloid. You can freely use any modern task management utility such as [futures and promises](http://docs.scala-lang.org/sips/pending/futures-promises.html).
+
 
 ## Implicit conversions
 Scaloid employs several implicit conversions. Some of the available implicit conversions are shown below:
@@ -769,66 +830,6 @@ Last thing that you may missed: These are type-safe. If you made a mistake, comp
 
 For more detailed description of styling, see a [Scaloid blog post](http://blog.scaloid.org/2013/01/a-css-like-styling-on-android.html).
   
-## Asynchronous task processing
-
-Android API provides `runOnUiThread()` only for class `Activity`. Scaloid provides a Scala version of `runOnUiThread()` for anywhere other than `Activity`.
-
-Instead of:
-
-```scala
-activity.runOnUiThread {
-  new Runnable() {
-    def run() {
-      debug("Running only in Activity class")
-    }
-  }
-}
-```    
-
-In Scaloid, use it like this:
-
-```scala
-runOnUiThread(debug("Running in any context"))
-```
-
-Running a job asynchronously and notifying the UI thread is a very frequently used pattern. Although Android API provides a helper class `AsyncTask`, implementing such a simple idea is still painful, even when we use Scala:
-
-```scala
-new AsyncTask[String, Void, String] {
-  def doInBackground(params: Array[String]) = {
-    doAJobTakeSomeTime(params)
-  }
-
-  override def onPostExecute(result: String) {
-    alert("Done!", result)
-  }
-}.execute("param")
-```    
-
-Using `runOnUiThread` and importing `scala.concurrent.ops._`, the asynchronous job shown above can be rewritten like this:
-
-```scala
-spawn {
-  val result = doAJobTakeSomeTime(params)
-  runOnUiThread(alert("Done!", result))
-}
-```  
-
-When you don't want to build sophisticate UI interactions, but just want to display something by calling a single Scaloid method (e.g. `alert`, `toast`, and `spinnerDialog`), Scaloid handles `runOnUiThread` for you. Therefore, the code block shown above is reduced to:
-
-```scala
-spawn {
-  alert("Done!", doAJobTakeSomeTime(params))
-}
-```  
-
-It is a great win as it exposes your idea clearly.
-
-Just like we throw away `AsyncTask`, we can also elliminate all other Java helpers for asynchronous job, such as `AsyncQueryHandler` and `AsyncTaskLoader`. Compare with the [original Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList2.java?av=h)
-and a [Scala port](https://github.com/pocorall/scaloid-apidemos/blob/master/src/main/java/com/example/android/apis/view/ExpandableList2.scala) of ApiDemos example app.
-
-Using `spawn` is just an example of asynchronous task processing in Scaloid. You can freely use any modern task management utility such as [futures and promises](http://docs.scala-lang.org/sips/pending/futures-promises.html).
-
 ## Traits
 
 ### Trait `UnregisterReceiver`
