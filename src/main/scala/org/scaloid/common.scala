@@ -435,7 +435,7 @@ implicit def lazy2runnable[F](f: => F): Runnable =
   }
   
   object SArrayAdapter {
-    def apply[T <: AnyRef](items:T*)(implicit context: Context) = new SArrayAdapter(items.toArray)
+    def apply[T <: AnyRef : Manifest](items:T*)(implicit context: Context) = new SArrayAdapter(items.toArray)
 	
     def apply[T <: AnyRef](items:Array[T])(implicit context: Context) = new SArrayAdapter(items)	
   }  

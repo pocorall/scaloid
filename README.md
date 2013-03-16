@@ -85,6 +85,7 @@ There is an out-of-the-box solution. Just [fork this project](https://github.com
  * [Smarter logging](#logging)
  * [Improved getters/setters](#scala-getters-and-setters)
  * [Concise dialog builder](#class-alertdialogbuilder)
+ * [Binding services concisely](http://blog.scaloid.org/2013/03/introducing-localservice.html) 
 
 ...and many other things! Check the [official Scaloid blog](http://blog.scaloid.org) for news and announcements.
 
@@ -165,8 +166,6 @@ This converter turns an Android XML layout into a Scaloid layout:
 http://layout.scaloid.org
 
 ## Lifecycle management
-
-**Will be released in Scaloid version 1.1**
 
 With Android API, Registering and unregistering BroadcastReceiver can be done as:
 

@@ -13,7 +13,7 @@
 		<relativePath>org.sonatype.oss:oss-parent</relativePath>
 	</parent>
 	<properties>
-		<scala.version>2.10.1-RC2</scala.version>
+		<scala.version>2.10.1</scala.version>
 		<android.version>2.2.1</android.version>
 	</properties>
 	<version>1.1_8_2.10</version>
