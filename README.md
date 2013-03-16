@@ -201,7 +201,9 @@ broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =
 Scaloid has highly flexible resource register/unregister management architecture.
 If this code is written in services, registering and unregistering is done in onCreate and onDestroy respectively. 
 If the same code is in activities, registering and unregistering is done in onResume and onPause respectively.
-However, this is just a default behavior. Overriding it is simple as well:
+This is just a default behavior. 
+You can override a preference that determine when the register/unregister preforms. 
+Overriding it is simple as well:
 
 ```scala
 broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =>
