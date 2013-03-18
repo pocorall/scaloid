@@ -1249,7 +1249,7 @@ Please note that Android API provides backward compatibility. Therefore you can 
 1. If needed, change version of Android API or Scala in pom.xml
 1. Issue `mvn package`
 
- * Scaloid can be built with Android API level 8 or higher and Scala version 2.9.1 or higher.
+ * Scaloid can be built with Android API level 8 or higher and Scala version 2.10.0 or higher.
 
 
 
