@@ -57,6 +57,8 @@ import android.view.View._
 import android.graphics.drawable.Drawable
 import java.lang.CharSequence
 import scala.Int
+import scala.collection.mutable.HashMap
+import scala.collection.mutable.Map
 import android.view.ContextMenu.ContextMenuInfo
 import android.text.method._
 import android.gesture._
@@ -141,8 +143,12 @@ trait TraitActivity[V <: Activity] {
     @inline def contentView: View = null
 
     def basis: Activity
+    implicit val idMap: Map[String, Int]
 
     def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
+
+    def find[V <: View](id: String): V = find[V](idMap(id))
+
 
     def runOnUiThread (f: => Unit)  {
       if(uiThread == Thread.currentThread) {
@@ -157,9 +163,11 @@ trait TraitActivity[V <: Activity] {
     }
   }
 
+
 trait SActivity extends Activity with SContext with TraitActivity[SActivity] with Destroyable with Creatable with Registerable {
   def basis = this
   override implicit val ctx = this
+  implicit val idMap = new HashMap[String, Int] ()
 
   def onRegister(body: => Any) = onResume(body)
   def onUnregister(body: => Any) = onPause(body)
