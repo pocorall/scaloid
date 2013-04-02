@@ -57,6 +57,7 @@ import android.view.View._
 import android.graphics.drawable.Drawable
 import java.lang.CharSequence
 import scala.Int
+import scala.collection.mutable.Map
 import android.view.ContextMenu.ContextMenuInfo
 import android.text.method._
 import android.gesture._
@@ -110,6 +111,8 @@ trait WidgetFamily {
   trait TraitView[V <: View] extends ConstantsSupport {
 
     def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
+    
+    def find[V <: View](id: String)(implicit idMap: Map[String, Int]): V = find[V](idMap(id))
 
     @inline def onClick(f:  => Unit): V = {
       basis.setOnClickListener(new OnClickListener {
@@ -300,10 +303,23 @@ trait WidgetFamily {
     @inline def horizontalScrollBarEnabled_=(p: Boolean) = { basis.setHorizontalScrollBarEnabled    (p); basis }
     @inline def  enableHorizontalScrollBar               = { basis.setHorizontalScrollBarEnabled(true ); basis }
     @inline def disableHorizontalScrollBar               = { basis.setHorizontalScrollBarEnabled(false); basis }
-
+   
     @inline def id = basis.getId
     @inline def id  (p: Int) =            id_=  (p)
+    def id  (s: String) (implicit idMap: Map[String, Int], activity: Activity): V = {
+      if ( !idMap.contains(s)) 
+        idMap += s -> getUniqueId
+
+      id(idMap(s))
+    }
+
     @inline def id_=(p: Int) = { basis.setId    (p); basis }
+    def id_=(s: String) (implicit idMap: Map[String, Int], activity: Activity): V = {
+      if ( !idMap.contains(s)) 
+        idMap += s -> getUniqueId
+
+      id_=(idMap(s))
+    }
 
     @inline def inEditMode = basis.isInEditMode
 
