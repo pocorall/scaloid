@@ -59,15 +59,13 @@ class Preferences(val preferences: SharedPreferences) extends Dynamic {
     }
   }
 
-  def applyDynamic(name: String)(defaultVal: String): String = preferences.getString(name, defaultVal)
-
-  def applyDynamic(name: String)(defaultVal: Int): Int = preferences.getInt(name, defaultVal)
-
-  def applyDynamic(name: String)(defaultVal: Long): Long = preferences.getLong(name, defaultVal)
-
-  def applyDynamic(name: String)(defaultVal: Boolean): Boolean = preferences.getBoolean(name, defaultVal)
-
-  def applyDynamic(name: String)(defaultVal: Float): Float = preferences.getFloat(name, defaultVal)
+  def applyDynamic[T](name: String)(defaultVal: T): T = defaultVal match {
+    case v: String => preferences.getString(name, v).asInstanceOf[T]
+    case v: Int => preferences.getInt(name, v).asInstanceOf[T]
+    case v: Long => preferences.getLong(name, v).asInstanceOf[T]
+    case v: Boolean => preferences.getBoolean(name, v).asInstanceOf[T]
+    case v: Float => preferences.getFloat(name, v).asInstanceOf[T]
+  }
 
   val String = new StringPreferences(preferences)
   val Int = new IntPreferences(preferences)
