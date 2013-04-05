@@ -962,7 +962,7 @@ Other functions for every log level (`verbose()`, `debug()`, `info()`, `warn()`,
 info("hello " + world)
 ```
 
-A `String` parameter passed with `info()` is a lazy argument, so it is evaluated only if the logging is possible. Therefore the example shown above is equivalent to:
+A `String` parameter passed with `info()` is a by-name parameter, so it is evaluated only if the logging is possible. Therefore the example shown above is equivalent to:
 
 ```scala
 val tag = "MyAppTag"
