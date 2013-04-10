@@ -1204,6 +1204,8 @@ Android API has some protected interfaces which has static fields, and inherited
 
 ## Quick start
 
+Before start using Scaloid, **check your project is properly configured with Scala language**.
+
  1. [Import Scaloid to your project](#import-it-to-your-project)
  1. Declare `import org.scaloid.common._` in your code.
  1. Modify the signature of your classes
