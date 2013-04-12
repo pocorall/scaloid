@@ -1548,9 +1548,8 @@ trait WidgetFamily {
     }
 
   }
-  
 
-  class RichListView[V <: ListView](val basis: V) extends TraitListView[V]
+  class RichListView[V <: ListView](val basis: V) extends TraitListView[V] with TraitAdapterView[V]
   @inline implicit def listView2RichListView[V <: ListView](listView: V) = new RichListView[V](listView)
 
   trait TraitListView[V <: ListView] extends TraitAbsListView[V] {
@@ -3247,6 +3246,4 @@ trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
     }
 
   }
-  
-
 }
