@@ -64,7 +64,9 @@ SButton("Greet", toast("Hello!"))
 
 ### Demos
 
-If you want to see how Scaloid can be used in action, check a [Scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos).
+ - [Hello world Scaloid project for maven](https://github.com/pocorall/hello-scaloid-maven)
+ - [Scaloid port of apidemos app](https://github.com/pocorall/scaloid-apidemos)
+
 
 ##### Need help using Scala language on your Android project?
 
