@@ -1212,7 +1212,7 @@ Fork [Hello world Scaloid project](https://github.com/pocorall/hello-scaloid-mav
 
 #### Add Scaloid into your existing project
 
-Before start using Scaloid, **check your project is properly configured with Scala language**.
+Before start using Scaloid, *check your project is properly configured with Scala language*.
 
  1. [Import Scaloid to your project](#import-it-to-your-project)
  1. Declare `import org.scaloid.common._` in your code.
