@@ -85,6 +85,8 @@ SButton("Greet", toast("Hello!"))
  * [Smarter logging](#logging)
  * [Improved getters/setters](#scala-getters-and-setters)
  * [Concise dialog builder](#class-alertdialogbuilder)
+ * [Dynamically accessing SharedPreferences](http://blog.scaloid.org/2013/03/dynamicly-accessing-sharedpreferences.html)
+ * [LocalService](http://blog.scaloid.org/2013/03/introducing-localservice.html)
  * [Binding services concisely](http://blog.scaloid.org/2013/03/introducing-localservice.html) 
 
 ...and many other things! Check the [official Scaloid blog](http://blog.scaloid.org) for news and announcements.
