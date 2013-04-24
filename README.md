@@ -64,15 +64,13 @@ SButton("Greet", toast("Hello!"))
 
 ### Demos
 
- - [Hello world Scaloid project for maven](https://github.com/pocorall/hello-scaloid-maven)
+ - <b>[Hello world Scaloid project for maven](https://github.com/pocorall/hello-scaloid-maven)</b>
+   Fork this to start a new project.
  - [Scaloid port of apidemos app](https://github.com/pocorall/scaloid-apidemos)
+   Learn how Scaloid can be used in action.
 
 
-##### Need help using Scala language on your Android project?
-
-There is an out-of-the-box solution. Just [fork this project](https://github.com/rohansingh/android-scala-test) and start your Scala-Android app.
-
- * [FAQs about Scala on Android](#faqs-about-scala-on-android)
+### [FAQs about Scala on Android](#faqs-about-scala-on-android)
 
 ## Features
 
@@ -1206,11 +1204,11 @@ Android API has some protected interfaces which has static fields, and inherited
 
 ## Quick start
 
-#### Starting a new project
+### Starting a new project
 
 Fork [Hello world Scaloid project](https://github.com/pocorall/hello-scaloid-maven).
 
-#### Add Scaloid into your existing project
+### Add Scaloid into your existing project
 
 Before start using Scaloid, *check your project is properly configured with Scala language*.
 
