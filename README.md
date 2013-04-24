@@ -1206,6 +1206,12 @@ Android API has some protected interfaces which has static fields, and inherited
 
 ## Quick start
 
+#### Starting a new project
+
+Fork [Hello world Scaloid project](https://github.com/pocorall/hello-scaloid-maven).
+
+#### Add Scaloid into your existing project
+
 Before start using Scaloid, **check your project is properly configured with Scala language**.
 
  1. [Import Scaloid to your project](#import-it-to-your-project)
