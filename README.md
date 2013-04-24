@@ -64,13 +64,13 @@ SButton("Greet", toast("Hello!"))
 
 ### Demos
 
- - <b>[Hello world Scaloid project for maven](https://github.com/pocorall/hello-scaloid-maven)</b>
+ - <b>[Hello world Scaloid project for maven](https://github.com/pocorall/hello-scaloid-maven)</b><br/>
    Fork this to start a new project.
- - [Scaloid port of apidemos app](https://github.com/pocorall/scaloid-apidemos)
+ - <b>[Scaloid port of apidemos app](https://github.com/pocorall/scaloid-apidemos)</b><br/>
    Learn how Scaloid can be used in action.
 
 
-### [FAQs about Scala on Android](#faqs-about-scala-on-android)
+ - [FAQs about Scala on Android](#faqs-about-scala-on-android)
 
 ## Features
 
@@ -1346,6 +1346,6 @@ According to a [benchmark](http://shootout.alioth.debian.org/), runtime performa
 Compiling Scala source code and applying proguard takes some time. However, if you have a machine with a multi-core CPU and SSD, it would be a matter of few seconds.
 
 ##### Is it hard to setup a Scala + Android project?
-It's not hard. There is an [out-of-the-box maven project template](https://github.com/rohansingh/android-scala-test).
+It's not hard. There is an [out-of-the-box maven project template](https://github.com/pocorall/hello-scaloid-maven).
 
 (I did not try sbt on Android; Let me know if there are good sample projects on sbt.)
