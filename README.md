@@ -169,7 +169,7 @@ http://layout.scaloid.org
 
 ### Accessing widgets in view class
 
-[This blog post](http://blog.scaloid.org/2013/04/accessing-widgets-in-view-classes.html) describes best practices about how to access UI widgets in view classes.
+[This blog post](http://blog.scaloid.org/2013/04/accessing-widgets-in-view-classes.html) discusses best practices about how to access UI widgets in view classes.
 
 
 ## Lifecycle management
