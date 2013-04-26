@@ -91,6 +91,7 @@ SButton("Greet", toast("Hello!"))
 ...and many other things! Check the [official Scaloid blog](http://blog.scaloid.org) for news and announcements.
 
 ## UI Layout without XML
+<p align="center"><img src="http://o-n2.com/verboseSimple.png"></p>
 
 Android SDK leverages XML to build UI layouts. However, XML is considered still a bit verbose, and lacks programmability. Scaloid composes UI layout in Scala DSL style, therefore achieve both clarity and programmability. For example, suppose a legacy XML layout as shown below:
 
