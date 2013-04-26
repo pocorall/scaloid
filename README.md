@@ -86,7 +86,6 @@ SButton("Greet", toast("Hello!"))
  * [Improved getters/setters](#scala-getters-and-setters)
  * [Concise dialog builder](#class-alertdialogbuilder)
  * [Dynamically accessing SharedPreferences](http://blog.scaloid.org/2013/03/dynamicly-accessing-sharedpreferences.html)
- * [LocalService](http://blog.scaloid.org/2013/03/introducing-localservice.html)
  * [Binding services concisely](http://blog.scaloid.org/2013/03/introducing-localservice.html) 
 
 ...and many other things! Check the [official Scaloid blog](http://blog.scaloid.org) for news and announcements.
@@ -1193,6 +1192,30 @@ SArrayAdapter("Quick", "Brown", "Fox").style(_.textColor(Color.BLUE))
 
 Can it be simpler?
 
+### Class LocalService
+
+You can concisely define and access local service as shown below:
+
+```scala
+class MyService extends LocalService {
+    private val generator = new Random()
+ 
+    def getRandomNumber() = generator.nextInt(100)
+}
+
+class Activity extends SActivity {
+  val random = new LocalServiceConnection[MyService]
+ 
+  def onButtonClick(v:View) {
+    if(random.connected) {
+      toast("number: " + random.service.getRandomNumber())
+    }
+  }
+}
+```
+
+Further reading: Refer to [a blog post](http://blog.scaloid.org/2013/03/introducing-localservice.html) to see why this is awesome compared with the existing method.
+
 ## Extending View class
 Often we need to define a custom view widget for a specific requirement.
 To do this, we define a class that inherits `android.widget.View` class or its subclass (e.g. `TextView` and `Button`).
@@ -1214,7 +1237,7 @@ Android API has some protected interfaces which has static fields, and inherited
 
 ### Starting a new project
 
-Fork [Hello world Scaloid project](https://github.com/pocorall/hello-scaloid-maven).
+Fork [Hello world of Scaloid project](https://github.com/pocorall/hello-scaloid-maven).
 
 ### Add Scaloid into your existing project
 
@@ -1233,7 +1256,7 @@ Then, you are ready to use Scaloid.
 
 If you want to see how Scaloid can be used in action, check a [Scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos).
 
-## Import it to your project
+## Import Scaloid to your project
 
 Scaloid is released to the central maven repository.
 
