@@ -1214,7 +1214,7 @@ class Activity extends SActivity {
 }
 ```
 
-Further reading: Refer to [a blog post](http://blog.scaloid.org/2013/03/introducing-localservice.html) to see why this is awesome compared with the existing method.
+**Further reading:** Refer to [a blog post](http://blog.scaloid.org/2013/03/introducing-localservice.html) to see why this is awesome in compared with the existing method.
 
 ## Extending View class
 Often we need to define a custom view widget for a specific requirement.
