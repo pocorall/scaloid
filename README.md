@@ -64,7 +64,7 @@ SButton("Greet", toast("Hello!"))
 
 ### Demos
 
- - <b>[Hello world Scaloid project](https://github.com/pocorall/hello-scaloid-maven)</b><br/>
+ - <b>[Hello world of Scaloid](https://github.com/pocorall/hello-scaloid-maven)</b><br/>
    Fork this to start a new project.
  - <b>[Scaloid port of apidemos app](https://github.com/pocorall/scaloid-apidemos)</b><br/>
    Learn how Scaloid can be used in action.
@@ -219,7 +219,8 @@ broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =
 ```
 
 Then, the receiver is registered onStart, and unregisterd onStop.
-Refer to [a blog post](http://blog.scaloid.org/2013/02/better-resource-releasing-in-android.html) for more details.
+
+**Further reading:** Refer to [a blog post](http://blog.scaloid.org/2013/02/better-resource-releasing-in-android.html) for more details.
  
  
 ## Asynchronous task processing
@@ -837,7 +838,7 @@ Also, you can easily override the property individually, as shown in the example
 
 Last thing that you may missed: These are type-safe. If you made a mistake, compiler will check it for you.
 
-For more detailed description of styling, see a [Scaloid blog post](http://blog.scaloid.org/2013/01/a-css-like-styling-on-android.html).
+**Further reading:** For more detailed description of styling, see a [Scaloid blog post](http://blog.scaloid.org/2013/01/a-css-like-styling-on-android.html).
   
 ## Traits
 
