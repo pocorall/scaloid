@@ -1121,7 +1121,7 @@ new SLinearLayout().orientation(LinearLayout.VERTICAL)
 
 ## Classes
 
-### Class AlertDialogBuilder
+### Class `AlertDialogBuilder`
 
 A Scala-style builder for AlertDialog.
  
@@ -1166,7 +1166,7 @@ new AlertDialog.Builder(context)
 
 When you call `show()` or `alert` from non-UI thread, you [don't have to mind about threading](#asynchronous-task-processing).
 
-### Class SArrayAdapter
+### Class `SArrayAdapter`
 
 Suppose you want to let the user selects a string from spinner, and larger font should be displayed in the dropdown list.
 Then the plain-old Android code is consisted of a chunk of XML and its wiring:
@@ -1199,7 +1199,7 @@ SArrayAdapter("Quick", "Brown", "Fox").style(_.textColor(Color.BLUE))
 
 Can it be simpler?
 
-### Class LocalService
+### Class `LocalService`
 
 [Android Developer Guide on service binding](http://developer.android.com/guide/components/bound-services.html) says that we have to write more than 60 lines of code to define and bind an in-process service. 
 With Scaloid, you can concisely define and access local service as shown below:
@@ -1222,7 +1222,7 @@ class Activity extends SActivity {
 
 **Further reading:** Refer to [a blog post](http://blog.scaloid.org/2013/03/introducing-localservice.html) to see why this is awesome in compared with the existing method.
 
-### Class Preferences
+### Class `Preferences`
 
 Instead of accesing SharedPreference directly:
 
