@@ -1242,7 +1242,7 @@ pref.executionCount = ec + 1
 
 **Further reading:**
  - [In-depth look at Scaloid Preferences](http://blog.scaloid.org/2013/03/dynamicly-accessing-sharedpreferences.html)
- - [An application: Prompt user to rate your app](http://blog.scaloid.org/2013/03/prompt-user-to-rate-your-android-app.html)
+ - [A simple example: Prompt user to rate your app](http://blog.scaloid.org/2013/03/prompt-user-to-rate-your-android-app.html)
 
 ## Extending View class
 Often we need to define a custom view widget for a specific requirement.
