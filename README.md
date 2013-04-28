@@ -168,7 +168,7 @@ This converter turns an Android XML layout into a Scaloid layout:
 http://layout.scaloid.org
 
 
-### Further readings on Scaloid layout 
+### Further readings about Scaloid layout 
 
 *These are highly recommended articles!*
 
@@ -1201,27 +1201,48 @@ Can it be simpler?
 
 ### Class LocalService
 
-You can concisely define and access local service as shown below:
+[Android Developer Guide on service binding](http://developer.android.com/guide/components/bound-services.html) says that we have to write more than 60 lines of code to define and bind an in-process service. 
+With Scaloid, you can concisely define and access local service as shown below:
 
 ```scala
 class MyService extends LocalService {
-    private val generator = new Random()
- 
-    def getRandomNumber() = generator.nextInt(100)
+  private val generator = new Random()
+
+  def getRandomNumber() = generator.nextInt(100)
 }
 
 class Activity extends SActivity {
   val random = new LocalServiceConnection[MyService]
  
   def onButtonClick(v:View) {
-    if(random.connected) {
-      toast("number: " + random.service.getRandomNumber())
-    }
+    if(random.connected) toast("number: " + random.service.getRandomNumber())
   }
 }
 ```
 
 **Further reading:** Refer to [a blog post](http://blog.scaloid.org/2013/03/introducing-localservice.html) to see why this is awesome in compared with the existing method.
+
+### Class Preferences
+
+Instead of accesing SharedPreference directly:
+
+```scala
+val ec = pref.getInt("executionCount", 0)
+val editor = pref.edit()
+editor.putInt("executionCount", ec + 1)
+editor.commit()
+```
+
+You can rewrite it as shown below:
+
+```scala
+val ec = pref.executionCount(0)
+pref.executionCount = ec + 1
+```
+
+**Further reading:**
+ - [In-depth look at Scaloid Preferences](http://blog.scaloid.org/2013/03/dynamicly-accessing-sharedpreferences.html)
+ - [An application: Prompt user to rate your app](http://blog.scaloid.org/2013/03/prompt-user-to-rate-your-android-app.html)
 
 ## Extending View class
 Often we need to define a custom view widget for a specific requirement.
