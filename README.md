@@ -159,7 +159,7 @@ new SVerticalLayout {
 }.padding(20 dip)
 ```
 
-Because a Scaloid layout description is plain Scala code, it is type-safe. Please refer to [layout context](#layout-context) for more details.
+Because a Scaloid layout description is plain Scala code, it is type-safe.
 
 ### Automatic layout converter
 
@@ -167,9 +167,15 @@ This converter turns an Android XML layout into a Scaloid layout:
 
 http://layout.scaloid.org
 
-### Accessing widgets in view class
 
-[This blog post](http://blog.scaloid.org/2013/04/accessing-widgets-in-view-classes.html) discusses best practices about how to access UI widgets in view classes.
+### Further readings on Scaloid layout 
+
+*These are highly recommended articles!*
+
+ - [Accessing widgets in view class](http://blog.scaloid.org/2013/04/accessing-widgets-in-view-classes.html)
+ - [Layout context](#layout-context)
+ - [In-depth tutorial on styles](http://blog.scaloid.org/2013/01/a-css-like-styling-on-android.html)
+ - [Styles for programmers](#styles-for-programmers)
 
 
 ## Lifecycle management
