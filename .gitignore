@@ -2,6 +2,8 @@ target
 project/target
 project/project
 lib_managed
+.idea
+.idea_modules
 [#]*[#]
 *~
 .*.marks
