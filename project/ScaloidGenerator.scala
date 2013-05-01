@@ -2,9 +2,11 @@ import sbt._
 import Keys._
 
 object ScaloidGenerator {
+  import AndroidClassExtractor._
 
   val scaloidGeneratorSettings = Seq(
-    sourceGenerators in Compile <+= scaloidGenerate
+    sourceGenerators in Compile <+= scaloidGenerate,
+    extractKey := extract
   )
 
   def scaloidGenerate = (sourceDirectory in Compile, sourceManaged in Compile, streams) map { (srcDir, outDir, s) => 
