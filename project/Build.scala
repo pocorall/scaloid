@@ -38,6 +38,7 @@ object Dependencies {
 object ScaloidBuild extends Build {
   import BuildSettings._
   import Dependencies._
+  import ScaloidGenerator._
 
   // configure prompt to show current project
   override lazy val settings = super.settings :+ {
@@ -48,6 +49,7 @@ object ScaloidBuild extends Build {
   lazy val scaloid = Project("scaloid", file("."))
     .settings(name := "scaloid", exportJars := true)
     .settings(basicSettings: _*)
+    .settings(scaloidGeneratorSettings: _*)
     .settings(libraryDependencies ++= provided(android))
 
 }
