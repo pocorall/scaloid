@@ -2,18 +2,15 @@ import sbt._
 import Keys._
 
 import collection.immutable.HashSet
-import collection.mutable.ArrayBuffer
-import collection.mutable.StringBuilder
 import java.beans.{PropertyDescriptor, IndexedPropertyDescriptor, Introspector}
 import java.lang.reflect._
-import scala.Array
 
 
 case class AndroidProperty(
   tpe: String,
-  getter: Option[String] = None,
-  setter: Option[String] = None,
-  nameClashes: Boolean = false
+  getter: Option[String],
+  setter: Option[String],
+  nameClashes: Boolean
 )
 
 case class AndroidClass(
@@ -23,16 +20,15 @@ case class AndroidClass(
 )
 
 
-
 object AndroidClassExtractor {
 
-  val extractKey = TaskKey[String]("extract-android-classes")
+  val extractKey = TaskKey[List[AndroidClass]]("extract-android-classes")
 
-  def capitalize(s: String) = {
+  private def capitalize(s: String) = {
     s(0).toUpper + s.substring(1, s.length).toLowerCase
   }
 
-  def toScalaTypeName(tpe: Type): String = tpe match {
+  private def toScalaTypeName(tpe: Type): String = tpe match {
     case null => throw new Error("Property cannot be null")
     case t: GenericArrayType => 
       "Array[" + toScalaTypeName(t.getGenericComponentType) + "]"
@@ -52,10 +48,8 @@ object AndroidClassExtractor {
     case _ => 
       throw new Error("Cannot find type of " + tpe.getClass + " ::" + tpe.toString)
   }
-  
 
-
-  def toAndroidClass(cls: Class[_]) = {
+  private def toAndroidClass(cls: Class[_]) = {
     val superCls = cls.getSuperclass
     val superPropNames = 
       if (superCls == null)
@@ -64,37 +58,31 @@ object AndroidClassExtractor {
         Introspector.getBeanInfo(superCls).getPropertyDescriptors.toList.map(f => f.getName + f.getPropertyType).toSet
 
     def toAndroidProperty(pdesc: PropertyDescriptor): Option[(String, AndroidProperty)] = {
-      var r = AndroidProperty(tpe = "ERROR")
-
-      if (superPropNames(pdesc.getName + pdesc.getPropertyType))
-        return None
-      
-      if ("adapter" equals pdesc.getName)
+      if (superPropNames(pdesc.getName + pdesc.getPropertyType) || "adapter".equals(pdesc.getName))
         return None
       
       val displayName = pdesc.getDisplayName
+      var nameClashes = false
+
       try {
         cls.getMethod(displayName)
-        r = r.copy(nameClashes = true)
+        nameClashes = true
       } catch {
         case e: NoSuchMethodException => // does nothing
       }
 
-      val readMethod = pdesc.getReadMethod
-      if (readMethod != null)
-        if (!readMethod.getDeclaringClass.getName.equals(cls.getName))
-          return None
-        else 
-          r = r.copy(getter = Some(readMethod.getName), tpe = toScalaTypeName(readMethod.getGenericReturnType))
-      
-      val writeMethod = pdesc.getWriteMethod
-      if (writeMethod != null)
-        if (!writeMethod.getDeclaringClass.getName.equals(cls.getName))
-          return None
-        else
-          r = r.copy(setter = Some(writeMethod.getName), tpe = toScalaTypeName(writeMethod.getGenericParameterTypes()(0)))
-      
-      Some((displayName, r))
+      val readMethod = Option(pdesc.getReadMethod)
+      val writeMethod = Option(pdesc.getWriteMethod)
+
+      if (Seq(readMethod, writeMethod).flatten.exists( ! _.getDeclaringClass.getName.equals(cls.getName))) {
+        None
+      } else {
+        val getter = readMethod map (_.getName)
+        val setter = writeMethod map (_.getName)
+        val tpe = readMethod.map(_.getGenericReturnType).getOrElse(writeMethod.get.getGenericParameterTypes()(0))
+
+        Some((displayName, AndroidProperty(toScalaTypeName(tpe), getter, setter, nameClashes)))
+      }
     }
 
     val props = Introspector.getBeanInfo(cls).getPropertyDescriptors.toList
@@ -137,7 +125,6 @@ object AndroidClassExtractor {
 
     )
 
-    val res = clss.map(toAndroidClass)
-    res.toString
+    clss map toAndroidClass
   }
 }
