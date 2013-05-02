@@ -64,8 +64,10 @@ SButton("Greet", toast("Hello!"))
 
 ### Demos
 
- - <b>[Hello world of Scaloid](https://github.com/pocorall/hello-scaloid-maven)</b><br/>
+ - <b>[Hello world of Scaloid for maven](https://github.com/pocorall/hello-scaloid-maven)</b><br/>
    Fork this to start a new project.
+ - <b>[Examples for sbt](https://github.com/placrosse/scaloid-examples)</b><br/>
+   Fork this for sbt build.
  - <b>[Scaloid port of apidemos app](https://github.com/pocorall/scaloid-apidemos)</b><br/>
    Learn how Scaloid can be used in action.
 
@@ -1268,7 +1270,13 @@ Android API has some protected interfaces which has static fields, and inherited
 
 ### Starting a new project
 
+**For maven:**
+
 Fork [Hello world of Scaloid project](https://github.com/pocorall/hello-scaloid-maven).
+
+**For sbt:**
+
+Fork [Scaloid examples for sbt](https://github.com/placrosse/scaloid-examples)
 
 ### Add Scaloid into your existing project
 
