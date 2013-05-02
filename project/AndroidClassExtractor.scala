@@ -2,21 +2,40 @@ import sbt._
 import Keys._
 
 import collection.immutable.HashSet
-import java.beans.{PropertyDescriptor, IndexedPropertyDescriptor, Introspector}
+import java.beans._
 import java.lang.reflect._
 
 
 case class AndroidProperty(
+  name: String,
   tpe: String,
   getter: Option[String],
   setter: Option[String],
   nameClashes: Boolean
 )
 
+case class AndroidMethodParam(
+  name: String,
+  tpe: String
+)
+
+case class AndroidMethod(
+  name: String,
+  types: Seq[AndroidMethodParam],
+  retType: String = "Unit"
+)
+
+case class AndroidListener(
+  name: String,
+  setter: String,
+  methods: Seq[AndroidMethod]
+)
+
 case class AndroidClass(
   name: String,
   parent: Option[String],
-  properties: Map[String, AndroidProperty]
+  properties: Seq[AndroidProperty],
+  listeners: Seq[AndroidListener]
 )
 
 
@@ -46,14 +65,20 @@ object AndroidClassExtractor {
   }
 
   private def toAndroidClass(cls: Class[_]) = {
-    val superCls = cls.getSuperclass
+    val parent = cls.getSuperclass
     val superPropNames = 
-      if (superCls == null)
+      if (parent == null)
         new HashSet[String]
       else
-        Introspector.getBeanInfo(superCls).getPropertyDescriptors.toList.map(f => f.getName + f.getPropertyType).toSet
+        Introspector.getBeanInfo(parent).getPropertyDescriptors.toList.map(p => p.getName + p.getPropertyType).toSet
 
-    def toAndroidProperty(pdesc: PropertyDescriptor): Option[(String, AndroidProperty)] = {
+    val superMethodNames = 
+      if (parent == null)
+        new HashSet[String]
+      else
+        Introspector.getBeanInfo(parent).getMethodDescriptors.toList.map(m => m.getName + m.getMethod.getName).toSet
+
+    def toAndroidProperty(pdesc: PropertyDescriptor): Option[AndroidProperty] = {
       if (superPropNames(pdesc.getName + pdesc.getPropertyType) || "adapter".equals(pdesc.getName))
         return None
       
@@ -77,19 +102,38 @@ object AndroidClassExtractor {
         val setter = writeMethod map (_.getName)
         val tpe = readMethod.map(_.getGenericReturnType).getOrElse(writeMethod.get.getGenericParameterTypes()(0))
 
-        Some((displayName, AndroidProperty(toScalaTypeName(tpe), getter, setter, nameClashes)))
+        Some(AndroidProperty(displayName, toScalaTypeName(tpe), getter, setter, nameClashes))
       }
     }
 
-    val props = Introspector.getBeanInfo(cls).getPropertyDescriptors.toList
+    def toAndroidListener(mdesc: MethodDescriptor): Option[AndroidListener] = {
+      val method = mdesc.getMethod
+      val name = mdesc.getName
+      val paramsDescs: List[ParameterDescriptor] = Option(mdesc.getParameterDescriptors).toList.flatten
+
+      if (superMethodNames(mdesc.getName + method.getName))
+        return None
+
+      val handler = method.getParameterTypes.toList.headOption
+      val handlerName = handler.map(_.getName).getOrElse("None")
+
+      println(cls.getName + "::"+ name +" -> "+ handlerName)
+
+      Some(AndroidListener(name, "Type", Nil))
+    }
+
+    
+    val props = Introspector.getBeanInfo(cls).getPropertyDescriptors.toSeq
                   .filter(!_.isInstanceOf[IndexedPropertyDescriptor])
                   .map(toAndroidProperty)
+                  .flatten
 
-    AndroidClass(
-      name = cls.getName,
-      parent = Option(superCls) map (_.getName),
-      properties = props.flatten.toMap[String, AndroidProperty]
-    )
+    val listeners = Introspector.getBeanInfo(cls).getMethodDescriptors.toSeq
+                  .filter(_.getName.endsWith("Listener"))
+                  .map(toAndroidListener)
+                  .flatten
+
+    AndroidClass(cls.getName, Option(parent).map(_.getName), props, listeners)
 
   }
 
@@ -121,6 +165,6 @@ object AndroidClassExtractor {
 
     )
 
-    clss.map(toAndroidClass).map(c => c.name -> c).toMap
+    clss.view.map(toAndroidClass).map(c => c.name -> c).toMap
   }
 }
