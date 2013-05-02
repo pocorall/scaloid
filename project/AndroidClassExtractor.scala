@@ -22,11 +22,7 @@ case class AndroidClass(
 
 object AndroidClassExtractor {
 
-  val extractKey = TaskKey[List[AndroidClass]]("extract-android-classes")
-
-  private def capitalize(s: String) = {
-    s(0).toUpper + s.substring(1, s.length).toLowerCase
-  }
+  val extractKey = TaskKey[Map[String, AndroidClass]]("extract-android-classes")
 
   private def toScalaTypeName(tpe: Type): String = tpe match {
     case null => throw new Error("Property cannot be null")
@@ -40,7 +36,7 @@ object AndroidClassExtractor {
       if (t.isArray) {
         "Array[" + toScalaTypeName(t.getComponentType) + "]"
       } else if (t.isPrimitive) {
-        capitalize(t.getName)
+        t.getName.capitalize
       } else {
         t.getName.replace("$", ".")
       }
@@ -125,6 +121,6 @@ object AndroidClassExtractor {
 
     )
 
-    clss map toAndroidClass
+    clss.map(toAndroidClass).map(c => c.name -> c).toMap
   }
 }

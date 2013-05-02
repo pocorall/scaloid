@@ -1,0 +1,17 @@
+cap(str) ::= "$str; format=\"cap\"$"
+
+
+_openClassDef(name, capName, extendClause) ::= <<
+class Rich$capName$[V <: $capName$](val basis: V) extends Trait$capName$[V]
+@inline implicit def $name$2Rich$capName$[V <: $capName$]($name$: V) = new Rich$capName$[V]($name$)
+
+trait Trait$capName$[V <: $capName$]$if(extendClause)$ extends $extendClause$$endif$ {
+>>
+
+openClassDef(name, extendClause = "") ::= "$_openClassDef(name, cap(name), extendClause)$"
+
+closeClassDef() ::= "}"
+
+
+>>
+
