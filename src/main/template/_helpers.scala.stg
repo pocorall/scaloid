@@ -15,13 +15,15 @@ closeClassDef() ::= "}"
 
 paramTypes(types) ::= "($types; separator=\", \"$)"
 
-params(types) ::= "$types:{ t | p$i0$: $t$ }; separator=\", \"$"
+params(types) ::= "$types:{ t | p$i0$: $t$}; separator=\", \"$"
 
-callParams(types) ::= "$types:{ t | p$i0$ }; separator=\", \"$"
+callParams(types) ::= "$types:{ t | p$i0$}; separator=\", \"$"
 
-callbackBoby(method) ::= <%
+callbackBody(method) ::= <%
 $if(method.hasBody)$
-  f($callParams(method.types)$)
+  f($callParams(method.paramTypes)$)
+$else$
+  f()
 $endif$
 %>
 
@@ -48,8 +50,9 @@ _unitListener(l) ::= <<
 >>
 
 listener(l) ::= <<
-// listener: $l.name$
 $_fullListener(l)$
+
+$_unitListener(l)$
 >>
 
 listeners(cls) ::= "// listeners of $cls.name$ $cls.listeners:listener(); separator=\"\n\"$"

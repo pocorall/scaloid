@@ -207,7 +207,7 @@ object AndroidClassExtractor {
 
     )        
 
-    val res = clss.view.map(toAndroidClass).map(c => c.name.replace(".", "_") -> c).toMap
+    val res = clss.view.map(toAndroidClass).map(c => c.name -> c).toMap
 
     val values = res.values.toList
     s.log.info("Extracted from Android")
