@@ -13,5 +13,43 @@ openClassDef(name, extendClause = "") ::= "$_openClassDef(name, cap(name), exten
 closeClassDef() ::= "}"
 
 
+paramTypes(types) ::= "($types; separator=\", \"$)"
+
+params(types) ::= "$types:{ t | p$i0$: $t$ }; separator=\", \"$"
+
+callParams(types) ::= "$types:{ t | p$i0$ }; separator=\", \"$"
+
+callbackBoby(method) ::= <%
+$if(method.hasBody)$
+  f($callParams(method.types)$)
+$endif$
+%>
+
+callbackMethod(method) ::= <<
+  def $method.name$($params(method.paramTypes)$): $method.retType$ = { $callbackBody(method)$ }
 >>
 
+_fullListener(l) ::= <<
+@inline def $l.name$(f: $paramTypes(l.paramTypes)$ => $l.retType$): V {
+  basis.$l.setter$(new $l.callbackClassName$ {
+    $l.callbackMethods:callbackMethod(); separator="\n"$
+  })
+  basis
+}
+>>
+
+_unitListener(l) ::= <<
+@inline def $l.name$(f: => $l.retType$): V {
+  basis.$l.setter$(new $l.callbackClassName$ {
+    $l.callbackMethods:callbackMethod(); separator="\n"$
+  })
+  basis
+}
+>>
+
+listener(l) ::= <<
+// listener: $l.name$
+$_fullListener(l)$
+>>
+
+listeners(cls) ::= "// listeners of $cls.name$ $cls.listeners:listener(); separator=\"\n\"$"

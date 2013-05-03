@@ -4,12 +4,15 @@ import Keys._
 object ScaloidGenerator {
   import AndroidClassExtractor._
 
+  val scaloidGenerateKey = TaskKey[Seq[File]]("scaloid-generate")
+
   val scaloidGeneratorSettings = Seq(
-    sourceGenerators in Compile <+= scaloidGenerate,
-    extractKey := extract
+    scaloidGenerateKey in Compile <<= scaloidGenerateTask,
+    sourceGenerators in Compile <+= scaloidGenerateTask,
+    extractKey in Compile <<= extractTask
   )
 
-  def scaloidGenerate = (sourceDirectory in Compile, sourceManaged in Compile, extractKey, streams) map { (srcDir, outDir, androidClasses, s) => 
+  def scaloidGenerateTask = (sourceDirectory in Compile, sourceManaged in Compile, extractKey in Compile, streams) map { (srcDir, outDir, androidClasses, s) => 
     import NameFilter._
 
     val log = s.log
@@ -24,10 +27,7 @@ object ScaloidGenerator {
     scalaTemplates.map { (file: File) =>
       val outFile = outDir / "scala" / relativePath(file).get
       val source = IO.read(file)
-      val params = Map(
-        "version" -> ver,
-        "androidClass" -> androidClasses
-      )
+      val params = androidClasses
       IO.write(outFile, stg.render(source, params))
       log.info("Generating " + outFile)
       outFile

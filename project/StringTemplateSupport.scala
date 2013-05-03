@@ -8,7 +8,6 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
   val group = {
     val g = new STGroupFile(baseGroupFile.getAbsolutePath, '$', '$')
     g.registerRenderer(classOf[String], new StringRenderer())
-    g.registerModelAdaptor(classOf[Object], new ScalaObjectAdaptor())
     g.defineDictionary("ver", mapAsJavaMap(generateVersionRangeDictionary(version)))
     g.setListener(new STErrorListener(){
       import org.stringtemplate.v4.misc.STMessage
@@ -23,7 +22,8 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
   def render(template: String, parameters: Map[String, Any]) = {
     val st = new ST(group, template)
     parameters.foreach { case (k, v) =>
-      st.add(k, v)
+      val map = toJavaMap(v)
+      st.add(k, map)
     }
     st.render
   }
@@ -33,6 +33,27 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
       def kv(prod: Boolean, keys: String*) = keys.map(_+"_"+v -> prod.asInstanceOf[Object])
       (kv(ver == v, "eq", "gte", "lte") ++ kv(ver > v, "gt") ++ kv(ver < v, "lt"))
     }.toMap
+  
+
+  private def toJavaMap(cc: Any, level: Int = 0): java.util.Map[String, Any] = {
+    val map = (Map[String, Any]() /: cc.getClass.getDeclaredFields) {(a, f) =>
+      f.setAccessible(true)
+      val value = f.get(cc) match {
+        case s: java.lang.String => s
+        case o: Option[_] => o.getOrElse(null)
+        case xs: Seq[_] =>
+          if (f.getGenericType.toString.contains("java.lang.String")) // TODO compare parameterized types properly
+            xs.toArray[Any]
+          else
+            xs.map(toJavaMap(_, level + 1)).toArray
+        // this covers tuples as well as case classes, so there may be a more specific way
+        case caseClassInstance: Product => toJavaMap(caseClassInstance)
+        case x => x
+      }
+      a + (f.getName -> value)
+    }
+    mapAsJavaMap(map)
+  }
   
 
   private def decapitalize(s: String) = if (s.isEmpty) s else s(0).toLower + s.substring(1)
@@ -54,43 +75,6 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
       case "decap"    | "decapitalize" => decapitalize(value)
       case _                           => value
     }
-  }
-
-  private class ScalaObjectAdaptor extends ObjectModelAdaptor {
-    
-    @throws(classOf[STNoSuchPropertyException])
-    override def getProperty(interp: Interpreter, self: ST, o: Object, property: Object, propertyName: String): Object = {
-      var value: Object = null
-      var c = o.getClass
-      if (property == null)
-        return throwNoSuchProperty(c, propertyName, new Exception("property is null"))
-
-      var member = classAndPropertyToMemberCache.get(c, propertyName)
-      if (member == null)
-        member = Misc.getMethod(c, propertyName)
-      if (member == null)
-        return toJava(super.getProperty(interp, self, o, property, propertyName))
-
-      try {
-        member match {
-          case m: java.lang.reflect.Method => toJava(Misc.invokeMethod(m, o, value))
-          case f: java.lang.reflect.Field => toJava(f.get(o))
-        }
-      } catch {
-        case e => throwNoSuchProperty(c, propertyName, new Exception(e))
-      }
-    }
-
-    def toJava(o: Object): Object = o match {
-      case l: List[_] =>
-        l.asInstanceOf[List[Object]].map(toJava).toArray
-      case m: Map[_, _] =>
-        val om = m mapValues (v => toJava(v.asInstanceOf[Object]))
-        mapAsJavaMap(om)
-      case s: Set[_] => s.asInstanceOf[Set[Object]].map(toJava).toArray
-      case _ => o
-    }
-
   }
 
 }

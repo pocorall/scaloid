@@ -5,7 +5,6 @@ import collection.immutable.HashSet
 import java.beans._
 import java.lang.reflect._
 
-
 case class AndroidProperty(
   name: String,
   tpe: String,
@@ -14,21 +13,37 @@ case class AndroidProperty(
   nameClashes: Boolean
 )
 
-case class AndroidMethodParam(
-  name: String,
-  tpe: String
-)
-
 case class AndroidMethod(
   name: String,
-  types: Seq[AndroidMethodParam],
-  retType: String = "Unit"
+  paramTypes: Seq[String],
+  retType: String
+)
+
+object AndroidMethod {
+  def fromMethodDescriptor(mdesc: MethodDescriptor): AndroidMethod = {
+    val m = mdesc.getMethod
+    AndroidMethod(
+      m.getName,
+      Option(m.getParameterTypes).flatten.toSeq.map(AndroidClassExtractor.toScalaType),
+      AndroidClassExtractor.toScalaType(m.getReturnType)
+    )
+  }
+}
+
+case class AndroidCallbackMethod(
+  name: String,
+  retType: String,
+  paramTypes: Seq[String],
+  hasBody: Boolean = true
 )
 
 case class AndroidListener(
   name: String,
+  retType: String,
+  paramTypes: Seq[String],
   setter: String,
-  methods: Seq[AndroidMethod]
+  callbackClassName: String,
+  callbackMethods: Seq[AndroidCallbackMethod]
 )
 
 case class AndroidClass(
@@ -43,19 +58,22 @@ object AndroidClassExtractor {
 
   val extractKey = TaskKey[Map[String, AndroidClass]]("extract-android-classes")
 
-  private def toScalaTypeName(tpe: Type): String = tpe match {
+  def toScalaType(tpe: Type): String = tpe match {
     case null => throw new Error("Property cannot be null")
     case t: GenericArrayType => 
-      "Array[" + toScalaTypeName(t.getGenericComponentType) + "]"
-    case t: ParameterizedType => toScalaTypeName(t.getRawType) +
-      "[" + t.getActualTypeArguments.map(toScalaTypeName(_)).mkString + "]"
+      "Array[" + toScalaType(t.getGenericComponentType) + "]"
+    case t: ParameterizedType => toScalaType(t.getRawType) +
+      "[" + t.getActualTypeArguments.map(toScalaType(_)).mkString + "]"
     case t: TypeVariable[_] => t.getName
     case t: WildcardType => "_" //t.toString
     case t: Class[_] => {
       if (t.isArray) {
-        "Array[" + toScalaTypeName(t.getComponentType) + "]"
+        "Array[" + toScalaType(t.getComponentType) + "]"
       } else if (t.isPrimitive) {
-        t.getName.capitalize
+        t.getName match {
+          case "void" => "Unit"
+          case n => n.capitalize
+        }
       } else {
         t.getName.replace("$", ".")
       }
@@ -76,7 +94,7 @@ object AndroidClassExtractor {
       if (parent == null)
         new HashSet[String]
       else
-        Introspector.getBeanInfo(parent).getMethodDescriptors.toList.map(m => m.getName + m.getMethod.getName).toSet
+        Introspector.getBeanInfo(parent).getMethodDescriptors.toList.map(m => m.getName).toSet
 
     def toAndroidProperty(pdesc: PropertyDescriptor): Option[AndroidProperty] = {
       if (superPropNames(pdesc.getName + pdesc.getPropertyType) || "adapter".equals(pdesc.getName))
@@ -102,24 +120,47 @@ object AndroidClassExtractor {
         val setter = writeMethod map (_.getName)
         val tpe = readMethod.map(_.getGenericReturnType).getOrElse(writeMethod.get.getGenericParameterTypes()(0))
 
-        Some(AndroidProperty(displayName, toScalaTypeName(tpe), getter, setter, nameClashes))
+        Some(AndroidProperty(displayName, toScalaType(tpe), getter, setter, nameClashes))
       }
     }
 
-    def toAndroidListener(mdesc: MethodDescriptor): Option[AndroidListener] = {
+    def isListenerSetterOrAdder(mdesc: MethodDescriptor): Boolean =
+      mdesc.getName.matches("^(set|add).+Listener$")
+
+    def extractMethodsFromListener(callbackCls: Class[_]) =
+      Introspector
+        .getBeanInfo(callbackCls)
+        .getMethodDescriptors
+        .map(AndroidMethod.fromMethodDescriptor)
+        .toList
+    
+    def toAndroidListeners(mdesc: MethodDescriptor): Seq[AndroidListener] = {
       val method = mdesc.getMethod
-      val name = mdesc.getName
+      val setter = mdesc.getName
       val paramsDescs: List[ParameterDescriptor] = Option(mdesc.getParameterDescriptors).toList.flatten
 
-      if (superMethodNames(mdesc.getName + method.getName))
-        return None
+      if (superMethodNames(setter))
+        return Nil
 
-      val handler = method.getParameterTypes.toList.headOption
-      val handlerName = handler.map(_.getName).getOrElse("None")
-
-      println(cls.getName + "::"+ name +" -> "+ handlerName)
-
-      Some(AndroidListener(name, "Type", Nil))
+      val callbackCls = method.getParameterTypes()(0)
+      val callbackMethods = extractMethodsFromListener(callbackCls)
+      callbackMethods.map { cm =>
+        AndroidListener(
+          cm.name,
+          callbackMethods.find(_.name == cm.name).get.retType,
+          cm.paramTypes,
+          setter,
+          toScalaType(callbackCls),
+          callbackMethods.map { icm =>
+            AndroidCallbackMethod(
+              icm.name,
+              icm.retType,
+              icm.paramTypes,
+              icm.name == cm.name
+            )
+          }
+        )
+      }
     }
 
     
@@ -127,17 +168,18 @@ object AndroidClassExtractor {
                   .filter(!_.isInstanceOf[IndexedPropertyDescriptor])
                   .map(toAndroidProperty)
                   .flatten
+                  .sortBy(_.name)
 
     val listeners = Introspector.getBeanInfo(cls).getMethodDescriptors.toSeq
-                  .filter(_.getName.endsWith("Listener"))
-                  .map(toAndroidListener)
+                  .filter(isListenerSetterOrAdder)
+                  .map(toAndroidListeners)
                   .flatten
+                  .sortBy(_.name)
 
     AndroidClass(cls.getName, Option(parent).map(_.getName), props, listeners)
-
   }
 
-  def extract = {
+  def extractTask = (streams) map { s =>
     val clss = List(classOf[android.view.View], classOf[android.widget.TextView], classOf[android.widget.Button], classOf[android.widget.AbsListView]
       , classOf[android.widget.ListView], classOf[android.view.ViewGroup], classOf[android.widget.FrameLayout]
       , classOf[android.widget.LinearLayout], classOf[android.view.ContextMenu], classOf[android.widget.AdapterView[_]]
@@ -163,8 +205,16 @@ object AndroidClassExtractor {
       // API Level 14 or above
       //, classOf[android.widget.Space]
 
-    )
+    )        
 
-    clss.view.map(toAndroidClass).map(c => c.name -> c).toMap
+    val res = clss.view.map(toAndroidClass).map(c => c.name.replace(".", "_") -> c).toMap
+
+    val values = res.values.toList
+    s.log.info("Extracted from Android")
+    s.log.info("Classes: "+ values.length)
+    s.log.info("Properties: "+ values.map(_.properties).flatten.length)
+    s.log.info("Listeners: "+ values.map(_.listeners).flatten.length)
+    res
   }
 }
+
