@@ -19,19 +19,24 @@ params(types) ::= "$types:{ t | p$i0$: $t$}; separator=\", \"$"
 
 callParams(types) ::= "$types:{ t | p$i0$}; separator=\", \"$"
 
-callbackBody(method) ::= <%
+callbackBody(method, isUnit = false) ::= <%
 $if(method.hasBody)$
-  f($callParams(method.paramTypes)$)
-$else$
-  f()
+  $if(isUnit)$
+    f()
+  $else$
+    f($callParams(method.paramTypes)$)
+  $endif$
 $endif$
 %>
 
-callbackMethod(method) ::= <<
-  def $method.name$($params(method.paramTypes)$): $method.retType$ = { $callbackBody(method)$ }
+callbackMethod(method, isUnit = false) ::= <<
+  def $method.name$($params(method.paramTypes)$): $method.retType$ = { $callbackBody(method, isUnit)$ }
 >>
 
-_fullListener(l) ::= <<
+unitCallbackMethod(method) ::= "$callbackMethod(method, true)$"
+
+
+fullListener(l) ::= <<
 @inline def $l.name$(f: $paramTypes(l.paramTypes)$ => $l.retType$): V {
   basis.$l.setter$(new $l.callbackClassName$ {
     $l.callbackMethods:callbackMethod(); separator="\n"$
@@ -40,19 +45,19 @@ _fullListener(l) ::= <<
 }
 >>
 
-_unitListener(l) ::= <<
+unitListener(l) ::= <<
 @inline def $l.name$(f: => $l.retType$): V {
   basis.$l.setter$(new $l.callbackClassName$ {
-    $l.callbackMethods:callbackMethod(); separator="\n"$
+    $l.callbackMethods:unitCallbackMethod(); separator="\n"$
   })
   basis
 }
 >>
 
 listener(l) ::= <<
-$_fullListener(l)$
+$fullListener(l)$
 
-$_unitListener(l)$
+$unitListener(l)$
 >>
 
-listeners(cls) ::= "// listeners of $cls.name$ $cls.listeners:listener(); separator=\"\n\"$"
+listeners(cls) ::= "$cls.listeners:listener(); separator=\"\n\"$"
