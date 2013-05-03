@@ -71,7 +71,7 @@ SButton("Greet", toast("Hello!"))
  - <b>[Scaloid port of apidemos app](https://github.com/pocorall/scaloid-apidemos)</b><br/>
    Learn how Scaloid can be used in action.
 
-
+ - [List of projects using Scaloid](#list-of-projects-using-scaloid)
  - [FAQs about Scala on Android](#faqs-about-scala-on-android)
 
 ## Features
@@ -1337,12 +1337,17 @@ This project is in its early stages, and I will grow it constantly. If you have 
 
 Check the [official Scaloid blog](http://blog.scaloid.org) for news and announcements.
 
+### Sub projects of Scaloid
+
+ - [Scaloid common package](https://github.com/pocorall/scaloid) - This project
+ - [Support-v4 package](https://github.com/pocorall/scaloid-support-v4) - Scaloid port of support-v4 compatibility library
+ - [Scaloid-stamper](https://github.com/pocorall/scaloid-stamper) - A wrapper generator
+
 ### License
 
 This software is licensed under the [Apache 2 license](http://www.apache.org/licenses/LICENSE-2.0.html).
 
 ### List of projects using Scaloid
-
 
 * [Soundcorset metronome & tuner](http://blog.scaloid.org/2013/01/scaloid-powered-soundcorset-metronome.html)
 
