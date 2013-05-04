@@ -117,10 +117,10 @@ package object common extends Logger with SystemService with WidgetFamily {
     } while(activity.findViewById(candidate) != null)
     candidate
   }
-  
+
   class RichMenu(menu: Menu) {
     @inline def +=(txt: CharSequence) = menu.add(txt)
-    
+
     @inline def inflate(id: Int)(implicit activity: Activity) = {
       val inflater = activity.getMenuInflater
       inflater.inflate(id, menu)
@@ -192,7 +192,33 @@ package object common extends Logger with SystemService with WidgetFamily {
       }
     }
 
-  $wholeClassDef(android.preference.EditTextPreference)$
+  class RichEditTextPreference[V <: EditTextPreference](val basis: V) extends TraitEditTextPreference[V]
+  @inline implicit def editTextPreference2RichEditTextPreference[V <: EditTextPreference](editTextPreference: V) = new RichEditTextPreference[V](editTextPreference)
+
+  trait TraitEditTextPreference[V <: EditTextPreference] {
+
+    def basis: V
+    @inline def editText = basis.getEditText
+
+    @inline def text = basis.getText
+    @inline def text  (p: java.lang.String) =            text_=  (p)
+    @inline def text_=(p: java.lang.String) = { basis.setText    (p); basis }
+
+  }
+
+  class SEditTextPreference(implicit context: Context)
+      extends EditTextPreference(context) with TraitEditTextPreference[SEditTextPreference] {
+    def basis = this
+
+  }
+
+  object SEditTextPreference {
+
+    def apply()(implicit context: Context): SEditTextPreference = new SEditTextPreference
+
+
+
+  }
 
   class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = null)(implicit context: Context) extends AlertDialog.Builder(context) {
     if (_title != null) setTitle(_title)
@@ -361,10 +387,10 @@ package object common extends Logger with SystemService with WidgetFamily {
       this
     }
   }
-  
+
   object SArrayAdapter {
     def apply[T <: AnyRef : Manifest](items:T*)(implicit context: Context) = new SArrayAdapter(items.toArray)
-	
+
     def apply[T <: AnyRef](items:Array[T])(implicit context: Context) = new SArrayAdapter(items)	
   }  
 

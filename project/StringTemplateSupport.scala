@@ -85,7 +85,7 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
     }
 
     def decapitalize(s: String) = if (s.isEmpty) s else s(0).toLower + s.substring(1)
-    def toJavaConst(s: String) =  "[A-Z]".r.replaceAllIn("telephonyService", m => "_"+m.group(0)).toUpperCase
+    def toJavaConst(s: String) =  "[A-Z]".r.replaceAllIn(s, m => "_"+m.group(0)).toUpperCase
     def managerToService(s: String) = toJavaConst(s).split('_').init.mkString + "_SERVICE"
 
     def format(value: String, formatName: String): String = formatName match {
