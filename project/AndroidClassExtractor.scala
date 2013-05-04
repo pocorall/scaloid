@@ -44,10 +44,15 @@ case class AndroidListener(
   setter: String,
   callbackClassName: String,
   callbackMethods: Seq[AndroidCallbackMethod]
-)
+) {
+
+  def isSafe: Boolean = (!setter.startsWith("set")) || retType == "Unit" || callbackMethods.length == 1
+
+}
 
 case class AndroidClass(
-  name: String,
+  fullName: String,
+  simpleName: String,
   parent: Option[String],
   properties: Seq[AndroidProperty],
   listeners: Seq[AndroidListener]
@@ -124,8 +129,13 @@ object AndroidClassExtractor {
       }
     }
 
-    def isListenerSetterOrAdder(mdesc: MethodDescriptor): Boolean =
-      mdesc.getName.matches("^(set|add).+Listener$")
+    def isValidProperty(pdesc: PropertyDescriptor): Boolean =
+      (! pdesc.isInstanceOf[IndexedPropertyDescriptor]) && pdesc.getDisplayName.matches("^[a-zA-z].*")
+
+    def isListenerSetterOrAdder(mdesc: MethodDescriptor): Boolean = {
+      val name = mdesc.getName
+      name.matches("^(set|add).+Listener$") && (! superMethodNames(name))
+    }
 
     def extractMethodsFromListener(callbackCls: Class[_]) =
       Introspector
@@ -137,13 +147,11 @@ object AndroidClassExtractor {
     def toAndroidListeners(mdesc: MethodDescriptor): Seq[AndroidListener] = {
       val method = mdesc.getMethod
       val setter = mdesc.getName
+
       val paramsDescs: List[ParameterDescriptor] = Option(mdesc.getParameterDescriptors).toList.flatten
-
-      if (superMethodNames(setter))
-        return Nil
-
       val callbackCls = method.getParameterTypes()(0)
       val callbackMethods = extractMethodsFromListener(callbackCls)
+
       callbackMethods.map { cm =>
         AndroidListener(
           cm.name,
@@ -160,12 +168,12 @@ object AndroidClassExtractor {
             )
           }
         )
-      }
+      }.filter(_.isSafe)
     }
 
     
     val props = Introspector.getBeanInfo(cls).getPropertyDescriptors.toSeq
-                  .filter(!_.isInstanceOf[IndexedPropertyDescriptor])
+                  .filter(isValidProperty)
                   .map(toAndroidProperty)
                   .flatten
                   .sortBy(_.name)
@@ -176,7 +184,10 @@ object AndroidClassExtractor {
                   .flatten
                   .sortBy(_.name)
 
-    AndroidClass(cls.getName, Option(parent).map(_.getName), props, listeners)
+    val fullName = cls.getName
+    val simpleName = fullName.split('.').last
+
+    AndroidClass(fullName, simpleName, Option(parent).map(_.getName), props, listeners)
   }
 
   def extractTask = (streams) map { s =>
@@ -207,7 +218,7 @@ object AndroidClassExtractor {
 
     )        
 
-    val res = clss.view.map(toAndroidClass).map(c => c.name -> c).toMap
+    val res = clss.view.map(toAndroidClass).map(c => c.fullName -> c).toMap
 
     val values = res.values.toList
     s.log.info("Extracted from Android")
