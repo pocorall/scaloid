@@ -24,7 +24,7 @@ object AndroidMethod {
     val m = mdesc.getMethod
     AndroidMethod(
       m.getName,
-      Option(m.getParameterTypes).flatten.toSeq.map(AndroidClassExtractor.toScalaType),
+      Option(m.getGenericParameterTypes).flatten.toSeq.map(AndroidClassExtractor.toScalaType),
       AndroidClassExtractor.toScalaType(m.getReturnType)
     )
   }
@@ -147,10 +147,9 @@ object AndroidClassExtractor {
     def toAndroidListeners(mdesc: MethodDescriptor): Seq[AndroidListener] = {
       val method = mdesc.getMethod
       val setter = mdesc.getName
-
       val paramsDescs: List[ParameterDescriptor] = Option(mdesc.getParameterDescriptors).toList.flatten
-      val callbackCls = method.getParameterTypes()(0)
-      val callbackMethods = extractMethodsFromListener(callbackCls)
+      val callbackClassName = toScalaType(method.getGenericParameterTypes()(0))
+      val callbackMethods   = extractMethodsFromListener(method.getParameterTypes()(0))
 
       callbackMethods.map { cm =>
         AndroidListener(
@@ -158,7 +157,7 @@ object AndroidClassExtractor {
           callbackMethods.find(_.name == cm.name).get.retType,
           cm.paramTypes,
           setter,
-          toScalaType(callbackCls),
+          callbackClassName,
           callbackMethods.map { icm =>
             AndroidCallbackMethod(
               icm.name,
