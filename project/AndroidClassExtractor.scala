@@ -55,6 +55,7 @@ case class AndroidListener(
 case class AndroidClass(
   fullName: String,
   simpleName: String,
+  `package`: String,
   parent: Option[String],
   isA: Set[String],
   properties: Seq[AndroidProperty],
@@ -194,16 +195,19 @@ object AndroidClassExtractor {
 
     val fullName = cls.getName
     val simpleName = fullName.split('.').last
+    val pkg = fullName.split('.').init.mkString
 
     val parentName = Option(parent) map (_.getName)
 
     val isA = getHierarchy(cls).toSet
 
-    AndroidClass(fullName, simpleName, parentName, isA, props, listeners)
+    AndroidClass(fullName, simpleName, pkg, parentName, isA, props, listeners)
   }
 
   def extractTask = (streams) map { s =>
-    val clss = List(classOf[android.view.View], classOf[android.widget.TextView], classOf[android.widget.Button], classOf[android.widget.AbsListView]
+    val clss = List(
+      // Widget
+        classOf[android.view.View], classOf[android.widget.TextView], classOf[android.widget.Button], classOf[android.widget.AbsListView]
       , classOf[android.widget.ListView], classOf[android.view.ViewGroup], classOf[android.widget.FrameLayout]
       , classOf[android.widget.LinearLayout], classOf[android.view.ContextMenu], classOf[android.widget.AdapterView[_]]
       , classOf[android.inputmethodservice.KeyboardView], classOf[android.widget.ImageView], classOf[android.widget.ProgressBar]
@@ -225,9 +229,15 @@ object AndroidClassExtractor {
       , classOf[android.widget.AutoCompleteTextView], classOf[android.widget.ZoomButton], classOf[android.webkit.WebView]
       , classOf[android.widget.AbsoluteLayout], classOf[android.widget.ZoomControls], classOf[android.widget.ImageButton]
       , classOf[android.opengl.GLSurfaceView], classOf[android.opengl.GLSurfaceView], classOf[android.inputmethodservice.ExtractEditText]
+
       // API Level 14 or above
       //, classOf[android.widget.Space]
 
+      // Service
+      , classOf[android.telephony.TelephonyManager]
+
+      // Preference
+      , classOf[android.preference.EditTextPreference]
     )        
 
     val res = clss.view.map(toAndroidClass).map(c => c.fullName -> c).toMap

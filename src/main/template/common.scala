@@ -132,9 +132,17 @@ package object common extends Logger with SystemService with WidgetFamily {
 
 
   class RichContextMenu(basis: ContextMenu) {
-<?
-setter("headerTitle", "CharSequence", "\"\"");
-?>
+
+    @inline def headerTitle_=(p: CharSequence) = {
+      basis.setHeaderTitle(p)
+      basis
+    }
+
+    @inline def headerTitle(p: CharSequence) = headerTitle_=(p)
+
+    @noEquivalentGetterExists
+    @inline def headerTitle: CharSequence = ""
+
   }
 
   @inline implicit def contextMenu2RichContextMenu(menu: ContextMenu) = new RichContextMenu(menu)
@@ -170,21 +178,21 @@ setter("headerTitle", "CharSequence", "\"\"");
   @inline implicit def string2IntentFilter  (str: String): IntentFilter   = new IntentFilter(str)
 
 
-implicit def func2runnable[F](f: () => F): Runnable =
-  new Runnable() {
-    def run() {
-      f()
+  implicit def func2runnable[F](f: () => F): Runnable =
+    new Runnable() {
+      def run() {
+        f()
+      }
     }
-  }
 
-implicit def lazy2runnable[F](f: => F): Runnable =
-  new Runnable() {
-    def run() {
-      f
+  implicit def lazy2runnable[F](f: => F): Runnable =
+    new Runnable() {
+      def run() {
+        f
+      }
     }
-  }
 
-$wholeClassDef(android.preference.EditTextPreference)$
+  $wholeClassDef(android.preference.EditTextPreference)$
 
   class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = null)(implicit context: Context) extends AlertDialog.Builder(context) {
     if (_title != null) setTitle(_title)

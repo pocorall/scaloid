@@ -84,13 +84,17 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
       formats.foldLeft(value.toString)(format)
     }
 
-    private def decapitalize(s: String) = if (s.isEmpty) s else s(0).toLower + s.substring(1)
+    def decapitalize(s: String) = if (s.isEmpty) s else s(0).toLower + s.substring(1)
+    def toJavaConst(s: String) =  "[A-Z]".r.replaceAllIn("telephonyService", m => "_"+m.group(0)).toUpperCase
+    def managerToService(s: String) = toJavaConst(s).split('_').init.mkString + "_SERVICE"
 
     def format(value: String, formatName: String): String = formatName match {
       case "upper"    | "uppercase"    => value.toUpperCase
       case "lower"    | "lowercase"    => value.toLowerCase
       case "cap"      | "capitalize"   => value.capitalize
       case "decap"    | "decapitalize" => decapitalize(value)
+      case "javaconst"                 => toJavaConst(value)
+      case "manager-to-service"        => managerToService(value) // TODO make proper case class for manager instead of this trick
       case _                           => value
     }
   }
