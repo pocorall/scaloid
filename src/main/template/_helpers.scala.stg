@@ -2,31 +2,41 @@ delimiters "$", "$"
 
 decap(str) ::= <<$str; format="decap"$>>
 
-_openClassDef(name, parent) ::= <<
+
+// Class
+
+wholeClassDef(cls, parent, body) ::= <<
+$richClassDef(...)$
+
+$concreteClassDef(cls)$
+
+$companionObjectDef(...)$
+>>
+
+
+
+openRichClassDef(cls, parent, body) ::= <<$_openRichClassDef(cls.simpleName, parent, body)$>>
+_openRichClassDef(name, parent, body) ::= <<
 class Rich$name$[V <: $name$](val basis: V) extends Trait$name$[V]
 @inline implicit def $decap(name)$2Rich$name$[V <: $name$]($decap(name)$: V) = new Rich$name$[V]($decap(name)$)
 
 trait Trait$name$[V <: $name$]$if(parent)$ extends $parent$$endif$ {
 >>
 
-openClassDef(cls, parent) ::= <<$_openClassDef(cls.simpleName, parent)$>>
-
-closeClassDef(cls) ::= <<
+closeRichClassDef(cls) ::= <<
   $properties(cls)$
   $listeners(cls)$
 }
-
 >>
 
-wholeClassDef(cls, parent, body) ::= <<
-$openClassDef(cls, parent)$
-
-$closeClassDef(cls)$
+richClassDef(cls, parent) ::= <<
+$openRichClassDef(...)$
+$closeRichClassDef(...)$
 >>
-
 
 withPrefix(name) ::= "S$name$"
 
+openConcreteClassDef(cls) ::= <<$_openConcreteClassDef(cls.simpleName, withPrefix(cls.simpleName))$>>
 _openConcreteClassDef(name, prefixedName) ::= <<
 class $prefixedName$(implicit context: Context, parentVGroup: TraitViewGroup[_] = null)
     extends $name$(context) with Trait$name$[$prefixedName$] {
@@ -37,23 +47,69 @@ class $prefixedName$(implicit context: Context, parentVGroup: TraitViewGroup[_] 
 
 >>
 
-openConcreteClassDef(cls) ::= <<$_openConcreteClassDef(cls.simpleName, withPrefix(cls.simpleName))$>>
 
 closeConcreteClassDef() ::= "}"
 
-wholeConcreteClasDef(cls) ::= <<
+concreteClassDef(cls) ::= <<
 $openConcreteClassDef(cls)$
-
 $closeConcreteClassDef()$
 >>
+
+
+// Object
+
+companionObjectDef(cls) ::= <<$_companionObjectDef(cls, cls.simpleName, withPrefix(cls.simpleName))$>>
+_companionObjectDef(cls, name, prefixedName) ::= <<
+object $prefixedName$ {
+
+  def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]]()
+      (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ = {
+    val v = (new $prefixedName$)
+    v.<<.parent.+=(v)
+    v
+  }
+
+  $if(cls.isA.TextView)$$textViewConstructor(...)$$endif$
+
+  $if(cls.isA.Button)$$buttonConstructors(...)$$endif$
+
+}
+>>
+
+textViewConstructor(cls, name, prefixedName) ::= <<
+def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](txt: CharSequence)
+    (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ =  {
+  val v = (new $prefixedName$)
+  v text txt
+  v.<<.parent.+=(v)
+  v
+}  
+>>
+
+buttonConstructors(cls, name, prefixedName) ::= <<
+def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](text: CharSequence, onClickListener: OnClickListener = {})
+    (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ = {
+  apply(text, func2ViewOnClickListener(onClickListener))
+}
+
+def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](text: CharSequence, onClickListener: (View) => Unit)
+    (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ = {
+  val v = (new $prefixedName$)
+  v.text = text
+  v.setOnClickListener(onClickListener)
+  v.<<.parent.+=(v)
+  v
+}
+>>
+
 
 // Listener
 
 paramTypes(types) ::= "($types; separator=\", \"$)"
 
-params(types) ::= "$types:{ t | p$i0$: $t$}; separator=\", \"$"
+params(types) ::= "$types:{ t | p$i$: $t$}; separator=\", \"$"
 
-callParams(types) ::= "$types:{ t | p$i0$}; separator=\", \"$"
+callParams(types) ::= "$types:{ t | p$i$}; separator=\", \"$"
 
 callbackBody(method, isUnit = false) ::= <%
 $if(method.hasBody)$
@@ -66,7 +122,7 @@ $endif$
 %>
 
 callbackMethod(method, isUnit = false) ::= <<
-def $method.name$($params(method.paramTypes)$): $method.retType$ = { $callbackBody(method, isUnit)$ }
+def $method.name$($params(method.paramTypes)$): $method.retType$ = { $callbackBody(...)$ }
 >>
 
 unitCallbackMethod(method) ::= <<$callbackMethod(method, true)$>>

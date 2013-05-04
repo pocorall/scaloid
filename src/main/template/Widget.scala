@@ -75,7 +75,7 @@ trait WidgetFamily {
     }
   }
 
-  $openClassDef(android.view.View, "ConstantsSupport")$
+  $openRichClassDef(android.view.View, "ConstantsSupport")$
 
     def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
 
@@ -124,23 +124,16 @@ $endif$
     @noEquivalentGetterExists
     @inline def padding: Int = 0
 
-  $closeClassDef(android.view.View)$
+  $closeRichClassDef(android.view.View)$
 
   $wholeClassDef(android.widget.TextView, "TraitView[V]")$
 
-  $wholeConcreteClassDef(android.widget.TextView)$
-
-  $concreteObjectDef(android.widget.TextView, "textViewBody")$
-
-
   trait TraitAbsListView[V <: AbsListView] extends TraitView[V] {
-
     $properties(android.widget.AbsListView)$
-
   }
 
   
-  $openClassDef(android.view.ViewGroup, "TraitView[V]")$
+  $openRichClassDef(android.view.ViewGroup, "TraitView[V]")$
 
     implicit val pagentVG = this
 
@@ -167,7 +160,7 @@ $endif$
       basis
     }
   
-  $closeClassDef(android.view.ViewGroup)$
+  $closeRichClassDef(android.view.ViewGroup)$
 
 
 
@@ -230,7 +223,7 @@ $endif$
   }
 
 
-  $wholeClassDef(android.widget.FrameLayout, "TraitViewGroup[V]")$
+  $richClassDef(android.widget.FrameLayout, "TraitViewGroup[V]")$
 
   $openConcreteClassDef(android.widget.FrameLayout)$
 
@@ -257,7 +250,7 @@ $endif$
   $closeConcreteClassDef()$
 
 
-  $wholeClassDef(android.widget.RelativeLayout, "TraitViewGroup[V]")$
+  $richClassDef(android.widget.RelativeLayout, "TraitViewGroup[V]")$
 
   $openConcreteClassDef(android.widget.RelativeLayout)$
 
@@ -383,7 +376,7 @@ $endif$
   $closeConcreteClassDef()$
 
 
-  $wholeClassDef(android.widget.LinearLayout, "TraitViewGroup[V]")$
+  $richClassDef(android.widget.LinearLayout, "TraitViewGroup[V]")$
 
   $openConcreteClassDef(android.widget.LinearLayout)$
 
@@ -420,21 +413,18 @@ $endif$
     orientation = VERTICAL
   }
 
-  $wholeClassDef(android.widget.EditText, "TraitTextView[V]")$
-  $wholeConcreteClassDef(android.widget.EditText)$
-  $concreteObjectDef(android.widget.EditText)$
-
-  $wholeClassDef(android.inputmethodservice.ExtractEditText, "TraitEditText[V]", "textViewBody")$
-  $wholeClassDef(android.widget.AutoCompleteTextView, "TraitEditText[V]", "textViewBody")$
+  $wholeClassDef(android.widget.EditText, "TraitTextView[V]", textViewBody)$
+  $wholeClassDef(android.inputmethodservice.ExtractEditText, "TraitEditText[V]", textViewBody)$
+  $wholeClassDef(android.widget.AutoCompleteTextView, "TraitEditText[V]", textViewBody)$
   $wholeClassDef(android.widget.ListView, "TraitAbsListView[V]")$
-  $wholeClassDef(android.widget.Button, "TraitTextView[V]", "buttonObjectBody")$
+  $wholeClassDef(android.widget.Button, "TraitTextView[V]", buttonObjectBody)$
   $wholeClassDef(android.widget.CompoundButton, "TraitButton[V]")$
-  $wholeClassDef(android.widget.CheckBox, "TraitCompoundButton[V]", "buttonObjectBody")$
-  $wholeClassDef(android.widget.RadioButton, "TraitCompoundButton[V]", "buttonObjectBody")$
-  $wholeClassDef(android.widget.ToggleButton, "TraitCompoundButton[V]", "buttonObjectBody")$
-  $wholeClassDef(android.widget.CheckedTextView, "TraitTextView[V]", "textViewBody")$
-  $wholeClassDef(android.widget.Chronometer, "TraitTextView[V]", "textViewBody")$
-  $wholeClassDef(android.widget.DigitalClock, "TraitTextView[V]", "textViewBody")$
+  $wholeClassDef(android.widget.CheckBox, "TraitCompoundButton[V]", buttonObjectBody)$
+  $wholeClassDef(android.widget.RadioButton, "TraitCompoundButton[V]", buttonObjectBody)$
+  $wholeClassDef(android.widget.ToggleButton, "TraitCompoundButton[V]", buttonObjectBody)$
+  $wholeClassDef(android.widget.CheckedTextView, "TraitTextView[V]", textviewBody)$
+  $wholeClassDef(android.widget.Chronometer, "TraitTextView[V]", textviewBody)$
+  $wholeClassDef(android.widget.DigitalClock, "TraitTextView[V]", textviewBody)$
   $wholeClassDef(android.inputmethodservice.KeyboardView, "TraitView[V]")$
   $wholeClassDef(android.widget.ImageView, "TraitView[V]")$
   $wholeClassDef(android.widget.ImageButton, "TraitImageView[V]")$
@@ -463,11 +453,7 @@ $endif$
   $wholeClassDef(android.widget.Spinner, "TraitAbsSpinner[V]")$
   $wholeClassDef(android.widget.Gallery, "TraitAbsSpinner[V]")$
   $wholeClassDef(android.widget.AbsSeekBar, "TraitProgressBar[V]")$
-
   $wholeClassDef(android.widget.SeekBar, "TraitAbsSeekBar[V]")$
-  $wholeConcreteClassDef(android.widget.SeekBar)$
-  $concreteObjectDef(android.widget.SeekBar)$
-
   $wholeClassDef(android.widget.RatingBar, "TraitAbsSeekBar[V]")$
   $wholeClassDef(android.appwidget.AppWidgetHostView, "TraitFrameLayout[V]")$
   $wholeClassDef(android.widget.HorizontalScrollView, "TraitFrameLayout[V]")$

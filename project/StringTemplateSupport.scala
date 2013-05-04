@@ -51,13 +51,13 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
   }
 
   private def toJavaMap(cc: Any): java.util.Map[String, Any] = cc match {
-    case m: Map[String, _] =>
-      mapAsJavaMap(m.mapValues(toJavaMap))
+    case m: Map[String, _] => mapAsJavaMap(m.mapValues(toJavaMap))
     case t =>
       val map = (Map[String, Any]() /: t.getClass.getDeclaredFields) { (a, f) =>
         f.setAccessible(true)
         val value = f.get(cc) match {
           case s: java.lang.String => s
+          case s: Set[String] => mapAsJavaMap(s.zip(Stream.continually(true)).toMap)
           case o: Option[_] => o.getOrElse(null)
           case xs: Seq[_] =>
             if (f.getGenericType.toString.contains("java.lang.String")) // TODO compare parameterized types properly

@@ -55,6 +55,7 @@ case class AndroidClass(
   fullName: String,
   simpleName: String,
   parent: Option[String],
+  isA: Set[String],
   properties: Seq[AndroidProperty],
   listeners: Seq[AndroidListener]
 )
@@ -171,7 +172,10 @@ object AndroidClassExtractor {
       }.filter(_.isSafe)
     }
 
-    
+    def getHierarchy(c: Class[_], accu: List[String] = Nil): List[String] =
+      if (c == null) accu
+      else getHierarchy(c.getSuperclass, c.getName.split('.').last :: accu)
+
     val props = Introspector.getBeanInfo(cls).getPropertyDescriptors.toSeq
                   .filter(isValidProperty)
                   .map(toAndroidProperty)
@@ -187,7 +191,11 @@ object AndroidClassExtractor {
     val fullName = cls.getName
     val simpleName = fullName.split('.').last
 
-    AndroidClass(fullName, simpleName, Option(parent).map(_.getName), props, listeners)
+    val parentName = Option(parent) map (_.getName)
+
+    val isA = getHierarchy(cls).toSet
+
+    AndroidClass(fullName, simpleName, parentName, isA, props, listeners)
   }
 
   def extractTask = (streams) map { s =>
