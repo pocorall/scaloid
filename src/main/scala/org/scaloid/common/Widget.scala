@@ -717,10 +717,10 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def linkTextColor    : android.content.res.ColorStateList  = defaultValue[android.content.res.ColorStateList]
+    @inline def linkTextColor    : Int  = defaultValue[Int]
 
-    @inline def linkTextColor  (p: android.content.res.ColorStateList) =            linkTextColor_=  (p)
-    @inline def linkTextColor_=(p: android.content.res.ColorStateList) = { basis.setLinkTextColor    (p); basis }
+    @inline def linkTextColor  (p: Int) =            linkTextColor_=  (p)
+    @inline def linkTextColor_=(p: Int) = { basis.setLinkTextColor    (p); basis }
 
     @inline def linkTextColors = basis.getLinkTextColors
 
@@ -856,10 +856,10 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def textColor    : android.content.res.ColorStateList  = defaultValue[android.content.res.ColorStateList]
+    @inline def textColor    : Int  = defaultValue[Int]
 
-    @inline def textColor  (p: android.content.res.ColorStateList) =            textColor_=  (p)
-    @inline def textColor_=(p: android.content.res.ColorStateList) = { basis.setTextColor    (p); basis }
+    @inline def textColor  (p: Int) =            textColor_=  (p)
+    @inline def textColor_=(p: Int) = { basis.setTextColor    (p); basis }
 
     @inline def textColors = basis.getTextColors
 
@@ -1622,6 +1622,8 @@ trait WidgetFamily {
   trait TraitEditText[V <: EditText] extends TraitTextView[V] {
 
 
+    @inline def text = basis.getText
+
   }
 
   class SEditText(implicit context: Context, parentVGroup: TraitViewGroup[_] = null)
@@ -1965,10 +1967,10 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def buttonDrawable    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
+    @inline def buttonDrawable    : Int  = defaultValue[Int]
 
-    @inline def buttonDrawable  (p: android.graphics.drawable.Drawable) =            buttonDrawable_=  (p)
-    @inline def buttonDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setButtonDrawable    (p); basis }
+    @inline def buttonDrawable  (p: Int) =            buttonDrawable_=  (p)
+    @inline def buttonDrawable_=(p: Int) = { basis.setButtonDrawable    (p); basis }
 
     @inline def checked = basis.isChecked
     @inline def checked  (p: Boolean) =            checked_=  (p)
@@ -2195,10 +2197,10 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def checkMarkDrawable    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
+    @inline def checkMarkDrawable    : Int  = defaultValue[Int]
 
-    @inline def checkMarkDrawable  (p: android.graphics.drawable.Drawable) =            checkMarkDrawable_=  (p)
-    @inline def checkMarkDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setCheckMarkDrawable    (p); basis }
+    @inline def checkMarkDrawable  (p: Int) =            checkMarkDrawable_=  (p)
+    @inline def checkMarkDrawable_=(p: Int) = { basis.setCheckMarkDrawable    (p); basis }
 
     @inline def checked = basis.isChecked
     @inline def checked  (p: Boolean) =            checked_=  (p)
