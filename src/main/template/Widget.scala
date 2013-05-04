@@ -282,10 +282,10 @@ $endif$
         this
       }
 
-  //def alignEnd = {
-  //  addRule(RelativeLayout.ALIGN_END)
-  //  this
-  //}
+      //def alignEnd = {
+      //  addRule(RelativeLayout.ALIGN_END)
+      //  this
+      //}
 
       def alignLeft = {
         addRule(RelativeLayout.ALIGN_LEFT)
@@ -312,10 +312,10 @@ $endif$
         this
       }
 
-  //def alignParentStart = {
-  //  addRule(RelativeLayout.ALIGN_PARENT_START)
-  //  this
-  //}
+      //def alignParentStart = {
+      //  addRule(RelativeLayout.ALIGN_PARENT_START)
+      //  this
+      //}
 
       def alignParentTop = {
         addRule(RelativeLayout.ALIGN_PARENT_TOP)
@@ -327,10 +327,10 @@ $endif$
         this
       }
 
-  //def alignStart = {
-  //  addRule(RelativeLayout.ALIGN_START)
-  //  this
-  //}
+      //def alignStart = {
+      //  addRule(RelativeLayout.ALIGN_START)
+      //  this
+      //}
 
       def alignTop = {
         addRule(RelativeLayout.ALIGN_TOP)

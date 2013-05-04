@@ -1,5 +1,6 @@
 delimiters "$", "$"
 
+cap(str) ::= <<$str; format="cap"$>>
 decap(str) ::= <<$str; format="decap"$>>
 
 
@@ -62,17 +63,25 @@ companionObjectDef(cls) ::= <<$_companionObjectDef(cls, cls.simpleName, withPref
 _companionObjectDef(cls, name, prefixedName) ::= <<
 object $prefixedName$ {
 
-  def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]]()
-      (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ = {
-    val v = (new $prefixedName$)
-    v.<<.parent.+=(v)
-    v
-  }
+  $if(cls.isA.View)$$viewConstructor(...)$$else$$nonViewConstructor(...)$$endif$
 
   $if(cls.isA.TextView)$$textViewConstructor(...)$$endif$
 
   $if(cls.isA.Button)$$buttonConstructors(...)$$endif$
 
+}
+>>
+
+nonViewConstructor(cls, name, prefixedName) ::= <<
+def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]]()(implicit context: Context): $prefixedName$ = new $prefixedName$
+>>
+
+viewConstructor(cls, name, prefixedName) ::= <<
+def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]]()
+    (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ = {
+  val v = (new $prefixedName$)
+  v.<<.parent.+=(v)
+  v
 }
 >>
 
@@ -179,4 +188,3 @@ $endif$
 >>
 
 properties(cls) ::= <<$cls.properties:property(); separator="\n"$>>
-
