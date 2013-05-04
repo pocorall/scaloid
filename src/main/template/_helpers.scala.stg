@@ -87,12 +87,12 @@ def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](txt: CharSequence)
 >>
 
 buttonConstructors(cls, name, prefixedName) ::= <<
-def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](text: CharSequence, onClickListener: OnClickListener = {})
+def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](text: CharSequence, onClickListener: (View) => Unit)
     (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ = {
   apply(text, func2ViewOnClickListener(onClickListener))
 }
 
-def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](text: CharSequence, onClickListener: (View) => Unit)
+def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](text: CharSequence, onClickListener: OnClickListener = {})
     (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ = {
   val v = (new $prefixedName$)
   v.text = text
