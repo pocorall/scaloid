@@ -46,7 +46,8 @@ case class AndroidListener(
   callbackMethods: Seq[AndroidCallbackMethod]
 ) {
 
-  def isSafe: Boolean = (!setter.startsWith("set")) || retType == "Unit" || callbackMethods.length == 1
+  def isSafe: Boolean =
+    (! setter.startsWith("set")) || callbackMethods.length == 1 || callbackMethods.forall(_.retType == "Unit")
 
 }
 
