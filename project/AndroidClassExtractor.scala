@@ -46,6 +46,42 @@ object AndroidClassExtractor {
       else
         Introspector.getBeanInfo(parent).getMethodDescriptors.toList.map(m => m.getName).toSet
 
+    def isValidProperty(pdesc: PropertyDescriptor): Boolean =
+      (! pdesc.isInstanceOf[IndexedPropertyDescriptor]) && pdesc.getDisplayName.matches("^[a-zA-z].*") &&
+      (! superPropNames(pdesc.getName + pdesc.getPropertyType)) && ( ! "adapter".equals(pdesc.getName))
+
+    def isListenerSetterOrAdder(mdesc: MethodDescriptor): Boolean = {
+      val name = mdesc.getName
+      name.matches("^(set|add).+Listener$") && (! superMethodNames(name))
+    }
+
+    def isCallbackMethod(mdesc: MethodDescriptor): Boolean =
+      ! mdesc.getName.startsWith("get")
+
+    def extractMethodsFromListener(callbackCls: Class[_]): List[AndroidMethod] =
+      Introspector.getBeanInfo(callbackCls).getMethodDescriptors
+        .filter(isCallbackMethod)
+        .map(_.getMethod)
+        .map(toAndroidMethod)
+        .toList
+
+    def toAndroidMethod(m: Method): AndroidMethod =
+      AndroidMethod(
+        m.getName,
+        AndroidClassExtractor.toScalaType(m.getReturnType),
+        Option(m.getGenericParameterTypes).flatten.toSeq.map(AndroidClassExtractor.toScalaType)
+      )
+
+    def getPolymorphicSetters(method: Method): Seq[AndroidMethod] = {
+      val name = method.getName
+      Introspector.getBeanInfo(cls).getMethodDescriptors
+        .filter(s => s.getName == name && ! superMethodNames(s.getName))
+        .map(_.getMethod)
+        .map(toAndroidMethod)
+        .filter(_.paramTypes.length == 1)
+        .toSeq
+    }
+
     def toAndroidProperty(pdesc: PropertyDescriptor): Option[AndroidProperty] = {
       val name = pdesc.getDisplayName
       var nameClashes = false
@@ -60,46 +96,18 @@ object AndroidClassExtractor {
       val readMethod = Option(pdesc.getReadMethod)
       val writeMethod = Option(pdesc.getWriteMethod)
 
-      if (Seq(readMethod, writeMethod).flatten.exists( ! _.getDeclaringClass.getName.equals(cls.getName))) {
+      if (Seq(readMethod, writeMethod).flatten.exists(s => superMethodNames(s.getName))) {
         None
       } else {
-        val getter = readMethod map (_.getName)
-        val setter = writeMethod map (_.getName)
+        val getter = readMethod map toAndroidMethod
+        val setters = writeMethod.map(getPolymorphicSetters).toSeq.flatten
         val tpe = readMethod.map(_.getGenericReturnType).getOrElse(writeMethod.get.getGenericParameterTypes()(0))
         val switch = if (name.endsWith("Enabled")) Some(name.replace("Enabled", "").capitalize) else None
 
-        Some(AndroidProperty(name, toScalaType(tpe), getter, setter, switch, nameClashes))
+        Some(AndroidProperty(name, toScalaType(tpe), getter, setters, switch, nameClashes))
       }
     }
 
-    def isValidProperty(pdesc: PropertyDescriptor): Boolean =
-      (! pdesc.isInstanceOf[IndexedPropertyDescriptor]) && pdesc.getDisplayName.matches("^[a-zA-z].*") &&
-      (! superPropNames(pdesc.getName + pdesc.getPropertyType)) && ( ! "adapter".equals(pdesc.getName))
-
-    def isListenerSetterOrAdder(mdesc: MethodDescriptor): Boolean = {
-      val name = mdesc.getName
-      name.matches("^(set|add).+Listener$") && (! superMethodNames(name))
-    }
-
-    def isCallbackMethod(mdesc: MethodDescriptor): Boolean =
-      ! mdesc.getName.startsWith("get")
-
-    def extractMethodsFromListener(callbackCls: Class[_]) =
-      Introspector
-        .getBeanInfo(callbackCls)
-        .getMethodDescriptors
-        .filter(isCallbackMethod)
-        .map(toAndroidMethod)
-        .toList
-
-    def toAndroidMethod(mdesc: MethodDescriptor): AndroidMethod = {
-      val m = mdesc.getMethod
-      AndroidMethod(
-        m.getName,
-        Option(m.getGenericParameterTypes).flatten.toSeq.map(AndroidClassExtractor.toScalaType),
-        AndroidClassExtractor.toScalaType(m.getReturnType)
-      )
-    }
     
     def toAndroidListeners(mdesc: MethodDescriptor): Seq[AndroidListener] = {
       val method = mdesc.getMethod

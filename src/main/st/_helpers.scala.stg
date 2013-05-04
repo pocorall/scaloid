@@ -179,31 +179,34 @@ listeners(cls) ::= <<$cls.listeners:listener(); separator="\n\n"$>>
 // property
 
 getter(prop) ::= <<
-@inline def $prop.name$ = basis.$prop.getter$
->>
-
-defaultGetter(prop) ::= <<
-$if( ! prop.nameClashes)$
+$if(prop.getter)$
+@inline def $prop.name$ = basis.$prop.getter.name$
+$elseif( ! prop.nameClashes)$
 @noEquivalentGetterExists
 @inline def $prop.name$    : $prop.tpe$  = defaultValue[$prop.tpe$]
 $endif$
 >>
 
+setter(prop, method) ::= <<
+@inline def $prop.name$  (p: $method.paramTypes$) =            $prop.name$_=  (p)
+@inline def $prop.name$_=(p: $method.paramTypes$) = { basis.$method.name$    (p); basis }
+>>
+
+switch(name, setter) ::= <<
+@inline def  enable$name$               = { basis.$setter.name$(true ); basis }
+@inline def disable$name$               = { basis.$setter.name$(false); basis }
+>>
+
 setters(prop) ::= <<
-@inline def $prop.name$  (p: $prop.tpe$) =            $prop.name$_=  (p)
-@inline def $prop.name$_=(p: $prop.tpe$) = { basis.$prop.setter$    (p); basis }
+$prop.setters:{ s | $setter(prop, s)$ }; separator="\n"$
 $if(prop.switch)$
-@inline def  enable$prop.switch$               = { basis.$prop.setter$(true ); basis }
-@inline def disable$prop.switch$               = { basis.$prop.setter$(false); basis }
+$switch(prop.switch, first(prop.setters))$
 $endif$
 >>
 
-property(prop) ::= <<
-$if(prop.getter)$$getter(prop)$$else$$defaultGetter(prop)$$endif$
-$if(prop.setter)$$setters(prop)$$endif$
->>
+property(prop) ::= <<$getter(prop)$$setters(prop)$>>
 
-properties(cls) ::= <<$cls.properties:property(); separator="\n"$>>
+properties(cls) ::= <<$cls.properties:property()$>>
 
 
 // service
