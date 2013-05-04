@@ -1,16 +1,9 @@
 import sbt._
 import Keys._
 
-object ScaloidGenerator {
-  import AndroidClassExtractor._
 
-  val scaloidGenerateKey = TaskKey[Seq[File]]("scaloid-generate")
-
-  val scaloidGeneratorSettings = Seq(
-    scaloidGenerateKey in Compile <<= scaloidGenerateTask,
-    sourceGenerators in Compile <+= scaloidGenerateTask,
-    extractKey in Compile <<= extractTask
-  )
+object SourceGenerator {
+  import ScaloidSettings._
 
   def recursiveListFiles(dir: File, filter: FileFilter): Seq[File] = {
     def step(f: File, files: List[File] = Nil): List[File] =
@@ -21,7 +14,7 @@ object ScaloidGenerator {
     step(dir).toSeq
   }
 
-  def scaloidGenerateTask = (sourceDirectory in Compile, extractKey in Compile, streams) map { (srcDir, androidClasses, s) => 
+  def generateTask = (sourceDirectory in Compile, extract in Scaloid, streams) map { (srcDir, androidClasses, s) => 
     import NameFilter._
 
     val log = s.log

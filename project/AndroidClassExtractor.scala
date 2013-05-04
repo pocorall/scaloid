@@ -5,68 +5,8 @@ import collection.immutable.HashSet
 import java.beans._
 import java.lang.reflect._
 
-case class AndroidProperty(
-  name: String,
-  tpe: String,
-  getter: Option[String],
-  setter: Option[String],
-  switch: Option[String],
-  nameClashes: Boolean
-)
-
-case class AndroidMethod(
-  name: String,
-  paramTypes: Seq[String],
-  retType: String
-)
-
-object AndroidMethod {
-  def fromMethodDescriptor(mdesc: MethodDescriptor): AndroidMethod = {
-    val m = mdesc.getMethod
-    AndroidMethod(
-      m.getName,
-      Option(m.getGenericParameterTypes).flatten.toSeq.map(AndroidClassExtractor.toScalaType),
-      AndroidClassExtractor.toScalaType(m.getReturnType)
-    )
-  }
-}
-
-case class AndroidCallbackMethod(
-  name: String,
-  retType: String,
-  paramTypes: Seq[String],
-  hasBody: Boolean = true
-)
-
-case class AndroidListener(
-  name: String,
-  retType: String,
-  paramTypes: Seq[String],
-  hasParams: Boolean,
-  setter: String,
-  callbackClassName: String,
-  callbackMethods: Seq[AndroidCallbackMethod]
-) {
-
-  def isSafe: Boolean =
-    (! setter.startsWith("set")) || callbackMethods.length == 1 || callbackMethods.forall(_.retType == "Unit")
-
-}
-
-case class AndroidClass(
-  fullName: String,
-  simpleName: String,
-  `package`: String,
-  parent: Option[String],
-  isA: Set[String],
-  properties: Seq[AndroidProperty],
-  listeners: Seq[AndroidListener]
-)
-
 
 object AndroidClassExtractor {
-
-  val extractKey = TaskKey[Map[String, AndroidClass]]("extract-android-classes")
 
   def toScalaType(tpe: Type): String = tpe match {
     case null => throw new Error("Property cannot be null")
@@ -149,8 +89,17 @@ object AndroidClassExtractor {
         .getBeanInfo(callbackCls)
         .getMethodDescriptors
         .filter(isCallbackMethod)
-        .map(AndroidMethod.fromMethodDescriptor)
+        .map(toAndroidMethod)
         .toList
+
+    def toAndroidMethod(mdesc: MethodDescriptor): AndroidMethod = {
+      val m = mdesc.getMethod
+      AndroidMethod(
+        m.getName,
+        Option(m.getGenericParameterTypes).flatten.toSeq.map(AndroidClassExtractor.toScalaType),
+        AndroidClassExtractor.toScalaType(m.getReturnType)
+      )
+    }
     
     def toAndroidListeners(mdesc: MethodDescriptor): Seq[AndroidListener] = {
       val method = mdesc.getMethod

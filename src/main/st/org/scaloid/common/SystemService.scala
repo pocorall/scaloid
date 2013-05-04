@@ -19,6 +19,8 @@ import android.net.wifi._
 import android.content._
 import java.lang.CharSequence
 
+import language.implicitConversions
+
 trait SystemService {
   @inline def accessibilityManager  (implicit context: Context): AccessibilityManager    = context.getSystemService(Context.ACCESSIBILITY_SERVICE ).asInstanceOf[AccessibilityManager]
   @inline def accountManager        (implicit context: Context): AccountManager          = context.getSystemService(Context.ACCOUNT_SERVICE       ).asInstanceOf[AccountManager]

@@ -11,7 +11,7 @@ object BuildSettings {
     scalaVersion          := "2.10.1",
     resolvers             ++= Dependencies.resolutionRepos,
     scalacOptions         := Seq(
-      "-target:jvm-1.6"
+      "-target:jvm-1.6", "-deprecation", "-feature"
     ),
     javacOptions          ++= Seq(
       "-source", "1.6",
@@ -38,7 +38,7 @@ object Dependencies {
 object ScaloidBuild extends Build {
   import BuildSettings._
   import Dependencies._
-  import ScaloidGenerator._
+  import ScaloidSettings._
 
   // configure prompt to show current project
   override lazy val settings = super.settings :+ {
@@ -49,7 +49,7 @@ object ScaloidBuild extends Build {
   lazy val scaloid = Project("scaloid", file("."))
     .settings(name := "scaloid", exportJars := true)
     .settings(basicSettings: _*)
-    .settings(scaloidGeneratorSettings: _*)
+    .settings(scaloidSettings: _*)
     .settings(libraryDependencies ++= provided(android))
 
 }

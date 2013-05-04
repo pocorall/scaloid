@@ -37,6 +37,8 @@ import android.widget.TextView.OnEditorActionListener
 import android.graphics._
 import android.opengl._
 
+import language.implicitConversions
+
 /**
  * Common Scaloid Package
  *
