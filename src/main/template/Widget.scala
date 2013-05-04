@@ -425,7 +425,7 @@ $endif$
   $wholeClassDef(android.widget.CheckedTextView, "TraitTextView[V]", textviewBody)$
   $wholeClassDef(android.widget.Chronometer, "TraitTextView[V]", textviewBody)$
   $wholeClassDef(android.widget.DigitalClock, "TraitTextView[V]", textviewBody)$
-  $wholeClassDef(android.inputmethodservice.KeyboardView, "TraitView[V]")$
+  $richClassDef(android.inputmethodservice.KeyboardView, "TraitView[V]")$
   $wholeClassDef(android.widget.ImageView, "TraitView[V]")$
   $wholeClassDef(android.widget.ImageButton, "TraitImageView[V]")$
   $wholeClassDef(android.widget.QuickContactBadge, "TraitImageView[V]")$
