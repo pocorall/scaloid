@@ -171,21 +171,21 @@ trait WidgetFamily {
     @inline def background = basis.getBackground
 
     @noEquivalentGetterExists
-    @inline def backgroundColor   : Int  = defaultValue[Int]
+    @inline def backgroundColor    : Int  = defaultValue[Int]
 
     @inline def backgroundColor  (p: Int) =            backgroundColor_=  (p)
     @inline def backgroundColor_=(p: Int) = { basis.setBackgroundColor    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def backgroundDrawable   : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
+    @inline def backgroundDrawable    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
 
     @inline def backgroundDrawable  (p: android.graphics.drawable.Drawable) =            backgroundDrawable_=  (p)
     @inline def backgroundDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setBackgroundDrawable    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def backgroundResource   : Int  = defaultValue[Int]
+    @inline def backgroundResource    : Int  = defaultValue[Int]
 
     @inline def backgroundResource  (p: Int) =            backgroundResource_=  (p)
     @inline def backgroundResource_=(p: Int) = { basis.setBackgroundResource    (p); basis }
@@ -236,7 +236,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def fadingEdgeLength   : Int  = defaultValue[Int]
+    @inline def fadingEdgeLength    : Int  = defaultValue[Int]
 
     @inline def fadingEdgeLength  (p: Int) =            fadingEdgeLength_=  (p)
     @inline def fadingEdgeLength_=(p: Int) = { basis.setFadingEdgeLength    (p); basis }
@@ -306,14 +306,14 @@ trait WidgetFamily {
     @inline def measuredWidth = basis.getMeasuredWidth
 
     @noEquivalentGetterExists
-    @inline def minimumHeight   : Int  = defaultValue[Int]
+    @inline def minimumHeight    : Int  = defaultValue[Int]
 
     @inline def minimumHeight  (p: Int) =            minimumHeight_=  (p)
     @inline def minimumHeight_=(p: Int) = { basis.setMinimumHeight    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def minimumWidth   : Int  = defaultValue[Int]
+    @inline def minimumWidth    : Int  = defaultValue[Int]
 
     @inline def minimumWidth  (p: Int) =            minimumWidth_=  (p)
     @inline def minimumWidth_=(p: Int) = { basis.setMinimumWidth    (p); basis }
@@ -336,14 +336,14 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def onClickListener   : android.view.View.OnClickListener  = defaultValue[android.view.View.OnClickListener]
+    @inline def onClickListener    : android.view.View.OnClickListener  = defaultValue[android.view.View.OnClickListener]
 
     @inline def onClickListener  (p: android.view.View.OnClickListener) =            onClickListener_=  (p)
     @inline def onClickListener_=(p: android.view.View.OnClickListener) = { basis.setOnClickListener    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def onCreateContextMenuListener   : android.view.View.OnCreateContextMenuListener  = defaultValue[android.view.View.OnCreateContextMenuListener]
+    @inline def onCreateContextMenuListener    : android.view.View.OnCreateContextMenuListener  = defaultValue[android.view.View.OnCreateContextMenuListener]
 
     @inline def onCreateContextMenuListener  (p: android.view.View.OnCreateContextMenuListener) =            onCreateContextMenuListener_=  (p)
     @inline def onCreateContextMenuListener_=(p: android.view.View.OnCreateContextMenuListener) = { basis.setOnCreateContextMenuListener    (p); basis }
@@ -354,21 +354,21 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def onKeyListener   : android.view.View.OnKeyListener  = defaultValue[android.view.View.OnKeyListener]
+    @inline def onKeyListener    : android.view.View.OnKeyListener  = defaultValue[android.view.View.OnKeyListener]
 
     @inline def onKeyListener  (p: android.view.View.OnKeyListener) =            onKeyListener_=  (p)
     @inline def onKeyListener_=(p: android.view.View.OnKeyListener) = { basis.setOnKeyListener    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def onLongClickListener   : android.view.View.OnLongClickListener  = defaultValue[android.view.View.OnLongClickListener]
+    @inline def onLongClickListener    : android.view.View.OnLongClickListener  = defaultValue[android.view.View.OnLongClickListener]
 
     @inline def onLongClickListener  (p: android.view.View.OnLongClickListener) =            onLongClickListener_=  (p)
     @inline def onLongClickListener_=(p: android.view.View.OnLongClickListener) = { basis.setOnLongClickListener    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def onTouchListener   : android.view.View.OnTouchListener  = defaultValue[android.view.View.OnTouchListener]
+    @inline def onTouchListener    : android.view.View.OnTouchListener  = defaultValue[android.view.View.OnTouchListener]
 
     @inline def onTouchListener  (p: android.view.View.OnTouchListener) =            onTouchListener_=  (p)
     @inline def onTouchListener_=(p: android.view.View.OnTouchListener) = { basis.setOnTouchListener    (p); basis }
@@ -407,7 +407,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def scrollContainer   : Boolean  = defaultValue[Boolean]
+    @inline def scrollContainer    : Boolean  = defaultValue[Boolean]
 
     @inline def scrollContainer  (p: Boolean) =            scrollContainer_=  (p)
     @inline def scrollContainer_=(p: Boolean) = { basis.setScrollContainer    (p); basis }
@@ -594,14 +594,14 @@ trait WidgetFamily {
     @inline def currentTextColor = basis.getCurrentTextColor
 
     @noEquivalentGetterExists
-    @inline def cursorVisible   : Boolean  = defaultValue[Boolean]
+    @inline def cursorVisible    : Boolean  = defaultValue[Boolean]
 
     @inline def cursorVisible  (p: Boolean) =            cursorVisible_=  (p)
     @inline def cursorVisible_=(p: Boolean) = { basis.setCursorVisible    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def editableFactory   : android.text.Editable.Factory  = defaultValue[android.text.Editable.Factory]
+    @inline def editableFactory    : android.text.Editable.Factory  = defaultValue[android.text.Editable.Factory]
 
     @inline def editableFactory  (p: android.text.Editable.Factory) =            editableFactory_=  (p)
     @inline def editableFactory_=(p: android.text.Editable.Factory) = { basis.setEditableFactory    (p); basis }
@@ -614,7 +614,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def ems   : Int  = defaultValue[Int]
+    @inline def ems    : Int  = defaultValue[Int]
 
     @inline def ems  (p: Int) =            ems_=  (p)
     @inline def ems_=(p: Int) = { basis.setEms    (p); basis }
@@ -628,7 +628,7 @@ trait WidgetFamily {
     @inline def extendedPaddingTop = basis.getExtendedPaddingTop
 
     @noEquivalentGetterExists
-    @inline def extractedText   : android.view.inputmethod.ExtractedText  = defaultValue[android.view.inputmethod.ExtractedText]
+    @inline def extractedText    : android.view.inputmethod.ExtractedText  = defaultValue[android.view.inputmethod.ExtractedText]
 
     @inline def extractedText  (p: android.view.inputmethod.ExtractedText) =            extractedText_=  (p)
     @inline def extractedText_=(p: android.view.inputmethod.ExtractedText) = { basis.setExtractedText    (p); basis }
@@ -647,7 +647,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def highlightColor   : Int  = defaultValue[Int]
+    @inline def highlightColor    : Int  = defaultValue[Int]
 
     @inline def highlightColor  (p: Int) =            highlightColor_=  (p)
     @inline def highlightColor_=(p: Int) = { basis.setHighlightColor    (p); basis }
@@ -658,7 +658,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def hintTextColor   : android.content.res.ColorStateList  = defaultValue[android.content.res.ColorStateList]
+    @inline def hintTextColor    : android.content.res.ColorStateList  = defaultValue[android.content.res.ColorStateList]
 
     @inline def hintTextColor  (p: android.content.res.ColorStateList) =            hintTextColor_=  (p)
     @inline def hintTextColor_=(p: android.content.res.ColorStateList) = { basis.setHintTextColor    (p); basis }
@@ -666,7 +666,7 @@ trait WidgetFamily {
     @inline def hintTextColors = basis.getHintTextColors
 
     @noEquivalentGetterExists
-    @inline def horizontallyScrolling   : Boolean  = defaultValue[Boolean]
+    @inline def horizontallyScrolling    : Boolean  = defaultValue[Boolean]
 
     @inline def horizontallyScrolling  (p: Boolean) =            horizontallyScrolling_=  (p)
     @inline def horizontallyScrolling_=(p: Boolean) = { basis.setHorizontallyScrolling    (p); basis }
@@ -681,14 +681,14 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def includeFontPadding   : Boolean  = defaultValue[Boolean]
+    @inline def includeFontPadding    : Boolean  = defaultValue[Boolean]
 
     @inline def includeFontPadding  (p: Boolean) =            includeFontPadding_=  (p)
     @inline def includeFontPadding_=(p: Boolean) = { basis.setIncludeFontPadding    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def inputExtras   : Int  = defaultValue[Int]
+    @inline def inputExtras    : Int  = defaultValue[Int]
 
     @inline def inputExtras  (p: Int) =            inputExtras_=  (p)
     @inline def inputExtras_=(p: Int) = { basis.setInputExtras    (p); basis }
@@ -710,14 +710,14 @@ trait WidgetFamily {
     @inline def lineHeight = basis.getLineHeight
 
     @noEquivalentGetterExists
-    @inline def lines   : Int  = defaultValue[Int]
+    @inline def lines    : Int  = defaultValue[Int]
 
     @inline def lines  (p: Int) =            lines_=  (p)
     @inline def lines_=(p: Int) = { basis.setLines    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def linkTextColor   : android.content.res.ColorStateList  = defaultValue[android.content.res.ColorStateList]
+    @inline def linkTextColor    : android.content.res.ColorStateList  = defaultValue[android.content.res.ColorStateList]
 
     @inline def linkTextColor  (p: android.content.res.ColorStateList) =            linkTextColor_=  (p)
     @inline def linkTextColor_=(p: android.content.res.ColorStateList) = { basis.setLinkTextColor    (p); basis }
@@ -730,63 +730,63 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def marqueeRepeatLimit   : Int  = defaultValue[Int]
+    @inline def marqueeRepeatLimit    : Int  = defaultValue[Int]
 
     @inline def marqueeRepeatLimit  (p: Int) =            marqueeRepeatLimit_=  (p)
     @inline def marqueeRepeatLimit_=(p: Int) = { basis.setMarqueeRepeatLimit    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def maxEms   : Int  = defaultValue[Int]
+    @inline def maxEms    : Int  = defaultValue[Int]
 
     @inline def maxEms  (p: Int) =            maxEms_=  (p)
     @inline def maxEms_=(p: Int) = { basis.setMaxEms    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def maxHeight   : Int  = defaultValue[Int]
+    @inline def maxHeight    : Int  = defaultValue[Int]
 
     @inline def maxHeight  (p: Int) =            maxHeight_=  (p)
     @inline def maxHeight_=(p: Int) = { basis.setMaxHeight    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def maxLines   : Int  = defaultValue[Int]
+    @inline def maxLines    : Int  = defaultValue[Int]
 
     @inline def maxLines  (p: Int) =            maxLines_=  (p)
     @inline def maxLines_=(p: Int) = { basis.setMaxLines    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def maxWidth   : Int  = defaultValue[Int]
+    @inline def maxWidth    : Int  = defaultValue[Int]
 
     @inline def maxWidth  (p: Int) =            maxWidth_=  (p)
     @inline def maxWidth_=(p: Int) = { basis.setMaxWidth    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def minEms   : Int  = defaultValue[Int]
+    @inline def minEms    : Int  = defaultValue[Int]
 
     @inline def minEms  (p: Int) =            minEms_=  (p)
     @inline def minEms_=(p: Int) = { basis.setMinEms    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def minHeight   : Int  = defaultValue[Int]
+    @inline def minHeight    : Int  = defaultValue[Int]
 
     @inline def minHeight  (p: Int) =            minHeight_=  (p)
     @inline def minHeight_=(p: Int) = { basis.setMinHeight    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def minLines   : Int  = defaultValue[Int]
+    @inline def minLines    : Int  = defaultValue[Int]
 
     @inline def minLines  (p: Int) =            minLines_=  (p)
     @inline def minLines_=(p: Int) = { basis.setMinLines    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def minWidth   : Int  = defaultValue[Int]
+    @inline def minWidth    : Int  = defaultValue[Int]
 
     @inline def minWidth  (p: Int) =            minWidth_=  (p)
     @inline def minWidth_=(p: Int) = { basis.setMinWidth    (p); basis }
@@ -797,7 +797,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def onEditorActionListener   : android.widget.TextView.OnEditorActionListener  = defaultValue[android.widget.TextView.OnEditorActionListener]
+    @inline def onEditorActionListener    : android.widget.TextView.OnEditorActionListener  = defaultValue[android.widget.TextView.OnEditorActionListener]
 
     @inline def onEditorActionListener  (p: android.widget.TextView.OnEditorActionListener) =            onEditorActionListener_=  (p)
     @inline def onEditorActionListener_=(p: android.widget.TextView.OnEditorActionListener) = { basis.setOnEditorActionListener    (p); basis }
@@ -814,21 +814,21 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def rawInputType   : Int  = defaultValue[Int]
+    @inline def rawInputType    : Int  = defaultValue[Int]
 
     @inline def rawInputType  (p: Int) =            rawInputType_=  (p)
     @inline def rawInputType_=(p: Int) = { basis.setRawInputType    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def scroller   : android.widget.Scroller  = defaultValue[android.widget.Scroller]
+    @inline def scroller    : android.widget.Scroller  = defaultValue[android.widget.Scroller]
 
     @inline def scroller  (p: android.widget.Scroller) =            scroller_=  (p)
     @inline def scroller_=(p: android.widget.Scroller) = { basis.setScroller    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def selectAllOnFocus   : Boolean  = defaultValue[Boolean]
+    @inline def selectAllOnFocus    : Boolean  = defaultValue[Boolean]
 
     @inline def selectAllOnFocus  (p: Boolean) =            selectAllOnFocus_=  (p)
     @inline def selectAllOnFocus_=(p: Boolean) = { basis.setSelectAllOnFocus    (p); basis }
@@ -838,14 +838,14 @@ trait WidgetFamily {
     @inline def selectionStart = basis.getSelectionStart
 
     @noEquivalentGetterExists
-    @inline def singleLine   : Boolean  = defaultValue[Boolean]
+    @inline def singleLine    : Boolean  = defaultValue[Boolean]
 
     @inline def singleLine  (p: Boolean) =            singleLine_=  (p)
     @inline def singleLine_=(p: Boolean) = { basis.setSingleLine    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def spannableFactory   : android.text.Spannable.Factory  = defaultValue[android.text.Spannable.Factory]
+    @inline def spannableFactory    : android.text.Spannable.Factory  = defaultValue[android.text.Spannable.Factory]
 
     @inline def spannableFactory  (p: android.text.Spannable.Factory) =            spannableFactory_=  (p)
     @inline def spannableFactory_=(p: android.text.Spannable.Factory) = { basis.setSpannableFactory    (p); basis }
@@ -856,7 +856,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def textColor   : android.content.res.ColorStateList  = defaultValue[android.content.res.ColorStateList]
+    @inline def textColor    : android.content.res.ColorStateList  = defaultValue[android.content.res.ColorStateList]
 
     @inline def textColor  (p: android.content.res.ColorStateList) =            textColor_=  (p)
     @inline def textColor_=(p: android.content.res.ColorStateList) = { basis.setTextColor    (p); basis }
@@ -864,7 +864,7 @@ trait WidgetFamily {
     @inline def textColors = basis.getTextColors
 
     @noEquivalentGetterExists
-    @inline def textKeepState   : java.lang.CharSequence  = defaultValue[java.lang.CharSequence]
+    @inline def textKeepState    : java.lang.CharSequence  = defaultValue[java.lang.CharSequence]
 
     @inline def textKeepState  (p: java.lang.CharSequence) =            textKeepState_=  (p)
     @inline def textKeepState_=(p: java.lang.CharSequence) = { basis.setTextKeepState    (p); basis }
@@ -998,7 +998,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def drawSelectorOnTop   : Boolean  = defaultValue[Boolean]
+    @inline def drawSelectorOnTop    : Boolean  = defaultValue[Boolean]
 
     @inline def drawSelectorOnTop  (p: Boolean) =            drawSelectorOnTop_=  (p)
     @inline def drawSelectorOnTop_=(p: Boolean) = { basis.setDrawSelectorOnTop    (p); basis }
@@ -1011,7 +1011,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def filterText   : java.lang.String  = defaultValue[java.lang.String]
+    @inline def filterText    : java.lang.String  = defaultValue[java.lang.String]
 
     @inline def filterText  (p: java.lang.String) =            filterText_=  (p)
     @inline def filterText_=(p: java.lang.String) = { basis.setFilterText    (p); basis }
@@ -1025,14 +1025,14 @@ trait WidgetFamily {
     @inline def listPaddingTop = basis.getListPaddingTop
 
     @noEquivalentGetterExists
-    @inline def onScrollListener   : android.widget.AbsListView.OnScrollListener  = defaultValue[android.widget.AbsListView.OnScrollListener]
+    @inline def onScrollListener    : android.widget.AbsListView.OnScrollListener  = defaultValue[android.widget.AbsListView.OnScrollListener]
 
     @inline def onScrollListener  (p: android.widget.AbsListView.OnScrollListener) =            onScrollListener_=  (p)
     @inline def onScrollListener_=(p: android.widget.AbsListView.OnScrollListener) = { basis.setOnScrollListener    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def recyclerListener   : android.widget.AbsListView.RecyclerListener  = defaultValue[android.widget.AbsListView.RecyclerListener]
+    @inline def recyclerListener    : android.widget.AbsListView.RecyclerListener  = defaultValue[android.widget.AbsListView.RecyclerListener]
 
     @inline def recyclerListener  (p: android.widget.AbsListView.RecyclerListener) =            recyclerListener_=  (p)
     @inline def recyclerListener_=(p: android.widget.AbsListView.RecyclerListener) = { basis.setRecyclerListener    (p); basis }
@@ -1123,14 +1123,14 @@ trait WidgetFamily {
     @inline def childCount = basis.getChildCount
 
     @noEquivalentGetterExists
-    @inline def clipChildren   : Boolean  = defaultValue[Boolean]
+    @inline def clipChildren    : Boolean  = defaultValue[Boolean]
 
     @inline def clipChildren  (p: Boolean) =            clipChildren_=  (p)
     @inline def clipChildren_=(p: Boolean) = { basis.setClipChildren    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def clipToPadding   : Boolean  = defaultValue[Boolean]
+    @inline def clipToPadding    : Boolean  = defaultValue[Boolean]
 
     @inline def clipToPadding  (p: Boolean) =            clipToPadding_=  (p)
     @inline def clipToPadding_=(p: Boolean) = { basis.setClipToPadding    (p); basis }
@@ -1151,7 +1151,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def onHierarchyChangeListener   : android.view.ViewGroup.OnHierarchyChangeListener  = defaultValue[android.view.ViewGroup.OnHierarchyChangeListener]
+    @inline def onHierarchyChangeListener    : android.view.ViewGroup.OnHierarchyChangeListener  = defaultValue[android.view.ViewGroup.OnHierarchyChangeListener]
 
     @inline def onHierarchyChangeListener  (p: android.view.ViewGroup.OnHierarchyChangeListener) =            onHierarchyChangeListener_=  (p)
     @inline def onHierarchyChangeListener_=(p: android.view.ViewGroup.OnHierarchyChangeListener) = { basis.setOnHierarchyChangeListener    (p); basis }
@@ -1323,14 +1323,14 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def foregroundGravity   : Int  = defaultValue[Int]
+    @inline def foregroundGravity    : Int  = defaultValue[Int]
 
     @inline def foregroundGravity  (p: Int) =            foregroundGravity_=  (p)
     @inline def foregroundGravity_=(p: Int) = { basis.setForegroundGravity    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def measureAllChildren   : Boolean  = defaultValue[Boolean]
+    @inline def measureAllChildren    : Boolean  = defaultValue[Boolean]
 
     @inline def measureAllChildren  (p: Boolean) =            measureAllChildren_=  (p)
     @inline def measureAllChildren_=(p: Boolean) = { basis.setMeasureAllChildren    (p); basis }
@@ -1374,28 +1374,28 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def gravity   : Int  = defaultValue[Int]
+    @inline def gravity    : Int  = defaultValue[Int]
 
     @inline def gravity  (p: Int) =            gravity_=  (p)
     @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def horizontalGravity   : Int  = defaultValue[Int]
+    @inline def horizontalGravity    : Int  = defaultValue[Int]
 
     @inline def horizontalGravity  (p: Int) =            horizontalGravity_=  (p)
     @inline def horizontalGravity_=(p: Int) = { basis.setHorizontalGravity    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def ignoreGravity   : Int  = defaultValue[Int]
+    @inline def ignoreGravity    : Int  = defaultValue[Int]
 
     @inline def ignoreGravity  (p: Int) =            ignoreGravity_=  (p)
     @inline def ignoreGravity_=(p: Int) = { basis.setIgnoreGravity    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def verticalGravity   : Int  = defaultValue[Int]
+    @inline def verticalGravity    : Int  = defaultValue[Int]
 
     @inline def verticalGravity  (p: Int) =            verticalGravity_=  (p)
     @inline def verticalGravity_=(p: Int) = { basis.setVerticalGravity    (p); basis }
@@ -1547,14 +1547,14 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def gravity   : Int  = defaultValue[Int]
+    @inline def gravity    : Int  = defaultValue[Int]
 
     @inline def gravity  (p: Int) =            gravity_=  (p)
     @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def horizontalGravity   : Int  = defaultValue[Int]
+    @inline def horizontalGravity    : Int  = defaultValue[Int]
 
     @inline def horizontalGravity  (p: Int) =            horizontalGravity_=  (p)
     @inline def horizontalGravity_=(p: Int) = { basis.setHorizontalGravity    (p); basis }
@@ -1565,7 +1565,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def verticalGravity   : Int  = defaultValue[Int]
+    @inline def verticalGravity    : Int  = defaultValue[Int]
 
     @inline def verticalGravity  (p: Int) =            verticalGravity_=  (p)
     @inline def verticalGravity_=(p: Int) = { basis.setVerticalGravity    (p); basis }
@@ -1693,7 +1693,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def completionHint   : java.lang.CharSequence  = defaultValue[java.lang.CharSequence]
+    @inline def completionHint    : java.lang.CharSequence  = defaultValue[java.lang.CharSequence]
 
     @inline def completionHint  (p: java.lang.CharSequence) =            completionHint_=  (p)
     @inline def completionHint_=(p: java.lang.CharSequence) = { basis.setCompletionHint    (p); basis }
@@ -1705,14 +1705,14 @@ trait WidgetFamily {
     @inline def dropDownBackground = basis.getDropDownBackground
 
     @noEquivalentGetterExists
-    @inline def dropDownBackgroundDrawable   : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
+    @inline def dropDownBackgroundDrawable    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
 
     @inline def dropDownBackgroundDrawable  (p: android.graphics.drawable.Drawable) =            dropDownBackgroundDrawable_=  (p)
     @inline def dropDownBackgroundDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setDropDownBackgroundDrawable    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def dropDownBackgroundResource   : Int  = defaultValue[Int]
+    @inline def dropDownBackgroundResource    : Int  = defaultValue[Int]
 
     @inline def dropDownBackgroundResource  (p: Int) =            dropDownBackgroundResource_=  (p)
     @inline def dropDownBackgroundResource_=(p: Int) = { basis.setDropDownBackgroundResource    (p); basis }
@@ -1863,7 +1863,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def footerDividersEnabled   : Boolean  = defaultValue[Boolean]
+    @inline def footerDividersEnabled    : Boolean  = defaultValue[Boolean]
 
     @inline def footerDividersEnabled  (p: Boolean) =            footerDividersEnabled_=  (p)
     @inline def footerDividersEnabled_=(p: Boolean) = { basis.setFooterDividersEnabled    (p); basis }
@@ -1873,7 +1873,7 @@ trait WidgetFamily {
     @inline def footerViewsCount = basis.getFooterViewsCount
 
     @noEquivalentGetterExists
-    @inline def headerDividersEnabled   : Boolean  = defaultValue[Boolean]
+    @inline def headerDividersEnabled    : Boolean  = defaultValue[Boolean]
 
     @inline def headerDividersEnabled  (p: Boolean) =            headerDividersEnabled_=  (p)
     @inline def headerDividersEnabled_=(p: Boolean) = { basis.setHeaderDividersEnabled    (p); basis }
@@ -1965,7 +1965,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def buttonDrawable   : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
+    @inline def buttonDrawable    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
 
     @inline def buttonDrawable  (p: android.graphics.drawable.Drawable) =            buttonDrawable_=  (p)
     @inline def buttonDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setButtonDrawable    (p); basis }
@@ -1976,7 +1976,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def onCheckedChangeListener   : android.widget.CompoundButton.OnCheckedChangeListener  = defaultValue[android.widget.CompoundButton.OnCheckedChangeListener]
+    @inline def onCheckedChangeListener    : android.widget.CompoundButton.OnCheckedChangeListener  = defaultValue[android.widget.CompoundButton.OnCheckedChangeListener]
 
     @inline def onCheckedChangeListener  (p: android.widget.CompoundButton.OnCheckedChangeListener) =            onCheckedChangeListener_=  (p)
     @inline def onCheckedChangeListener_=(p: android.widget.CompoundButton.OnCheckedChangeListener) = { basis.setOnCheckedChangeListener    (p); basis }
@@ -2195,7 +2195,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def checkMarkDrawable   : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
+    @inline def checkMarkDrawable    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
 
     @inline def checkMarkDrawable  (p: android.graphics.drawable.Drawable) =            checkMarkDrawable_=  (p)
     @inline def checkMarkDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setCheckMarkDrawable    (p); basis }
@@ -2340,14 +2340,14 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def onKeyboardActionListener   : android.inputmethodservice.KeyboardView.OnKeyboardActionListener  = defaultValue[android.inputmethodservice.KeyboardView.OnKeyboardActionListener]
+    @inline def onKeyboardActionListener    : android.inputmethodservice.KeyboardView.OnKeyboardActionListener  = defaultValue[android.inputmethodservice.KeyboardView.OnKeyboardActionListener]
 
     @inline def onKeyboardActionListener  (p: android.inputmethodservice.KeyboardView.OnKeyboardActionListener) =            onKeyboardActionListener_=  (p)
     @inline def onKeyboardActionListener_=(p: android.inputmethodservice.KeyboardView.OnKeyboardActionListener) = { basis.setOnKeyboardActionListener    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def popupParent   : android.view.View  = defaultValue[android.view.View]
+    @inline def popupParent    : android.view.View  = defaultValue[android.view.View]
 
     @inline def popupParent  (p: android.view.View) =            popupParent_=  (p)
     @inline def popupParent_=(p: android.view.View) = { basis.setPopupParent    (p); basis }
@@ -2367,7 +2367,7 @@ trait WidgetFamily {
     @inline def shifted = basis.isShifted
 
     @noEquivalentGetterExists
-    @inline def verticalCorrection   : Int  = defaultValue[Int]
+    @inline def verticalCorrection    : Int  = defaultValue[Int]
 
     @inline def verticalCorrection  (p: Int) =            verticalCorrection_=  (p)
     @inline def verticalCorrection_=(p: Int) = { basis.setVerticalCorrection    (p); basis }
@@ -2556,14 +2556,14 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def adjustViewBounds   : Boolean  = defaultValue[Boolean]
+    @inline def adjustViewBounds    : Boolean  = defaultValue[Boolean]
 
     @inline def adjustViewBounds  (p: Boolean) =            adjustViewBounds_=  (p)
     @inline def adjustViewBounds_=(p: Boolean) = { basis.setAdjustViewBounds    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def alpha   : Int  = defaultValue[Int]
+    @inline def alpha    : Int  = defaultValue[Int]
 
     @inline def alpha  (p: Int) =            alpha_=  (p)
     @inline def alpha_=(p: Int) = { basis.setAlpha    (p); basis }
@@ -2571,21 +2571,21 @@ trait WidgetFamily {
     @inline def drawable = basis.getDrawable
 
     @noEquivalentGetterExists
-    @inline def imageBitmap   : android.graphics.Bitmap  = defaultValue[android.graphics.Bitmap]
+    @inline def imageBitmap    : android.graphics.Bitmap  = defaultValue[android.graphics.Bitmap]
 
     @inline def imageBitmap  (p: android.graphics.Bitmap) =            imageBitmap_=  (p)
     @inline def imageBitmap_=(p: android.graphics.Bitmap) = { basis.setImageBitmap    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def imageDrawable   : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
+    @inline def imageDrawable    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
 
     @inline def imageDrawable  (p: android.graphics.drawable.Drawable) =            imageDrawable_=  (p)
     @inline def imageDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setImageDrawable    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def imageLevel   : Int  = defaultValue[Int]
+    @inline def imageLevel    : Int  = defaultValue[Int]
 
     @inline def imageLevel  (p: Int) =            imageLevel_=  (p)
     @inline def imageLevel_=(p: Int) = { basis.setImageLevel    (p); basis }
@@ -2596,28 +2596,28 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def imageResource   : Int  = defaultValue[Int]
+    @inline def imageResource    : Int  = defaultValue[Int]
 
     @inline def imageResource  (p: Int) =            imageResource_=  (p)
     @inline def imageResource_=(p: Int) = { basis.setImageResource    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def imageURI   : android.net.Uri  = defaultValue[android.net.Uri]
+    @inline def imageURI    : android.net.Uri  = defaultValue[android.net.Uri]
 
     @inline def imageURI  (p: android.net.Uri) =            imageURI_=  (p)
     @inline def imageURI_=(p: android.net.Uri) = { basis.setImageURI    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def maxHeight   : Int  = defaultValue[Int]
+    @inline def maxHeight    : Int  = defaultValue[Int]
 
     @inline def maxHeight  (p: Int) =            maxHeight_=  (p)
     @inline def maxHeight_=(p: Int) = { basis.setMaxHeight    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def maxWidth   : Int  = defaultValue[Int]
+    @inline def maxWidth    : Int  = defaultValue[Int]
 
     @inline def maxWidth  (p: Int) =            maxWidth_=  (p)
     @inline def maxWidth_=(p: Int) = { basis.setMaxWidth    (p); basis }
@@ -2683,14 +2683,14 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def excludeMimes   : Array[java.lang.String]  = defaultValue[Array[java.lang.String]]
+    @inline def excludeMimes    : Array[java.lang.String]  = defaultValue[Array[java.lang.String]]
 
     @inline def excludeMimes  (p: Array[java.lang.String]) =            excludeMimes_=  (p)
     @inline def excludeMimes_=(p: Array[java.lang.String]) = { basis.setExcludeMimes    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def mode   : Int  = defaultValue[Int]
+    @inline def mode    : Int  = defaultValue[Int]
 
     @inline def mode  (p: Int) =            mode_=  (p)
     @inline def mode_=(p: Int) = { basis.setMode    (p); basis }
@@ -2724,7 +2724,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def zoomSpeed   : Long  = defaultValue[Long]
+    @inline def zoomSpeed    : Long  = defaultValue[Long]
 
     @inline def zoomSpeed  (p: Long) =            zoomSpeed_=  (p)
     @inline def zoomSpeed_=(p: Long) = { basis.setZoomSpeed    (p); basis }
@@ -2842,14 +2842,14 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def ZOrderMediaOverlay   : Boolean  = defaultValue[Boolean]
+    @inline def ZOrderMediaOverlay    : Boolean  = defaultValue[Boolean]
 
     @inline def ZOrderMediaOverlay  (p: Boolean) =            ZOrderMediaOverlay_=  (p)
     @inline def ZOrderMediaOverlay_=(p: Boolean) = { basis.setZOrderMediaOverlay    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def ZOrderOnTop   : Boolean  = defaultValue[Boolean]
+    @inline def ZOrderOnTop    : Boolean  = defaultValue[Boolean]
 
     @inline def ZOrderOnTop  (p: Boolean) =            ZOrderOnTop_=  (p)
     @inline def ZOrderOnTop_=(p: Boolean) = { basis.setZOrderOnTop    (p); basis }
@@ -2885,35 +2885,35 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def EGLConfigChooser   : Boolean  = defaultValue[Boolean]
+    @inline def EGLConfigChooser    : Boolean  = defaultValue[Boolean]
 
     @inline def EGLConfigChooser  (p: Boolean) =            EGLConfigChooser_=  (p)
     @inline def EGLConfigChooser_=(p: Boolean) = { basis.setEGLConfigChooser    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def EGLContextClientVersion   : Int  = defaultValue[Int]
+    @inline def EGLContextClientVersion    : Int  = defaultValue[Int]
 
     @inline def EGLContextClientVersion  (p: Int) =            EGLContextClientVersion_=  (p)
     @inline def EGLContextClientVersion_=(p: Int) = { basis.setEGLContextClientVersion    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def EGLContextFactory   : android.opengl.GLSurfaceView.EGLContextFactory  = defaultValue[android.opengl.GLSurfaceView.EGLContextFactory]
+    @inline def EGLContextFactory    : android.opengl.GLSurfaceView.EGLContextFactory  = defaultValue[android.opengl.GLSurfaceView.EGLContextFactory]
 
     @inline def EGLContextFactory  (p: android.opengl.GLSurfaceView.EGLContextFactory) =            EGLContextFactory_=  (p)
     @inline def EGLContextFactory_=(p: android.opengl.GLSurfaceView.EGLContextFactory) = { basis.setEGLContextFactory    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def EGLWindowSurfaceFactory   : android.opengl.GLSurfaceView.EGLWindowSurfaceFactory  = defaultValue[android.opengl.GLSurfaceView.EGLWindowSurfaceFactory]
+    @inline def EGLWindowSurfaceFactory    : android.opengl.GLSurfaceView.EGLWindowSurfaceFactory  = defaultValue[android.opengl.GLSurfaceView.EGLWindowSurfaceFactory]
 
     @inline def EGLWindowSurfaceFactory  (p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) =            EGLWindowSurfaceFactory_=  (p)
     @inline def EGLWindowSurfaceFactory_=(p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) = { basis.setEGLWindowSurfaceFactory    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def GLWrapper   : android.opengl.GLSurfaceView.GLWrapper  = defaultValue[android.opengl.GLSurfaceView.GLWrapper]
+    @inline def GLWrapper    : android.opengl.GLSurfaceView.GLWrapper  = defaultValue[android.opengl.GLSurfaceView.GLWrapper]
 
     @inline def GLWrapper  (p: android.opengl.GLSurfaceView.GLWrapper) =            GLWrapper_=  (p)
     @inline def GLWrapper_=(p: android.opengl.GLSurfaceView.GLWrapper) = { basis.setGLWrapper    (p); basis }
@@ -2928,7 +2928,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def renderer   : android.opengl.GLSurfaceView.Renderer  = defaultValue[android.opengl.GLSurfaceView.Renderer]
+    @inline def renderer    : android.opengl.GLSurfaceView.Renderer  = defaultValue[android.opengl.GLSurfaceView.Renderer]
 
     @inline def renderer  (p: android.opengl.GLSurfaceView.Renderer) =            renderer_=  (p)
     @inline def renderer_=(p: android.opengl.GLSurfaceView.Renderer) = { basis.setRenderer    (p); basis }
@@ -2968,28 +2968,28 @@ trait WidgetFamily {
     @inline def duration = basis.getDuration
 
     @noEquivalentGetterExists
-    @inline def mediaController   : android.widget.MediaController  = defaultValue[android.widget.MediaController]
+    @inline def mediaController    : android.widget.MediaController  = defaultValue[android.widget.MediaController]
 
     @inline def mediaController  (p: android.widget.MediaController) =            mediaController_=  (p)
     @inline def mediaController_=(p: android.widget.MediaController) = { basis.setMediaController    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def onCompletionListener   : android.media.MediaPlayer.OnCompletionListener  = defaultValue[android.media.MediaPlayer.OnCompletionListener]
+    @inline def onCompletionListener    : android.media.MediaPlayer.OnCompletionListener  = defaultValue[android.media.MediaPlayer.OnCompletionListener]
 
     @inline def onCompletionListener  (p: android.media.MediaPlayer.OnCompletionListener) =            onCompletionListener_=  (p)
     @inline def onCompletionListener_=(p: android.media.MediaPlayer.OnCompletionListener) = { basis.setOnCompletionListener    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def onErrorListener   : android.media.MediaPlayer.OnErrorListener  = defaultValue[android.media.MediaPlayer.OnErrorListener]
+    @inline def onErrorListener    : android.media.MediaPlayer.OnErrorListener  = defaultValue[android.media.MediaPlayer.OnErrorListener]
 
     @inline def onErrorListener  (p: android.media.MediaPlayer.OnErrorListener) =            onErrorListener_=  (p)
     @inline def onErrorListener_=(p: android.media.MediaPlayer.OnErrorListener) = { basis.setOnErrorListener    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def onPreparedListener   : android.media.MediaPlayer.OnPreparedListener  = defaultValue[android.media.MediaPlayer.OnPreparedListener]
+    @inline def onPreparedListener    : android.media.MediaPlayer.OnPreparedListener  = defaultValue[android.media.MediaPlayer.OnPreparedListener]
 
     @inline def onPreparedListener  (p: android.media.MediaPlayer.OnPreparedListener) =            onPreparedListener_=  (p)
     @inline def onPreparedListener_=(p: android.media.MediaPlayer.OnPreparedListener) = { basis.setOnPreparedListener    (p); basis }
@@ -2997,14 +2997,14 @@ trait WidgetFamily {
     @inline def playing = basis.isPlaying
 
     @noEquivalentGetterExists
-    @inline def videoPath   : java.lang.String  = defaultValue[java.lang.String]
+    @inline def videoPath    : java.lang.String  = defaultValue[java.lang.String]
 
     @inline def videoPath  (p: java.lang.String) =            videoPath_=  (p)
     @inline def videoPath_=(p: java.lang.String) = { basis.setVideoPath    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def videoURI   : android.net.Uri  = defaultValue[android.net.Uri]
+    @inline def videoURI    : android.net.Uri  = defaultValue[android.net.Uri]
 
     @inline def videoURI  (p: android.net.Uri) =            videoURI_=  (p)
     @inline def videoURI_=(p: android.net.Uri) = { basis.setVideoURI    (p); basis }
@@ -3088,7 +3088,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def onInflateListener   : android.view.ViewStub.OnInflateListener  = defaultValue[android.view.ViewStub.OnInflateListener]
+    @inline def onInflateListener    : android.view.ViewStub.OnInflateListener  = defaultValue[android.view.ViewStub.OnInflateListener]
 
     @inline def onInflateListener  (p: android.view.ViewStub.OnInflateListener) =            onInflateListener_=  (p)
     @inline def onInflateListener_=(p: android.view.ViewStub.OnInflateListener) = { basis.setOnInflateListener    (p); basis }
@@ -3115,28 +3115,28 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def columnWidth   : Int  = defaultValue[Int]
+    @inline def columnWidth    : Int  = defaultValue[Int]
 
     @inline def columnWidth  (p: Int) =            columnWidth_=  (p)
     @inline def columnWidth_=(p: Int) = { basis.setColumnWidth    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def gravity   : Int  = defaultValue[Int]
+    @inline def gravity    : Int  = defaultValue[Int]
 
     @inline def gravity  (p: Int) =            gravity_=  (p)
     @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def horizontalSpacing   : Int  = defaultValue[Int]
+    @inline def horizontalSpacing    : Int  = defaultValue[Int]
 
     @inline def horizontalSpacing  (p: Int) =            horizontalSpacing_=  (p)
     @inline def horizontalSpacing_=(p: Int) = { basis.setHorizontalSpacing    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def numColumns   : Int  = defaultValue[Int]
+    @inline def numColumns    : Int  = defaultValue[Int]
 
     @inline def numColumns  (p: Int) =            numColumns_=  (p)
     @inline def numColumns_=(p: Int) = { basis.setNumColumns    (p); basis }
@@ -3147,7 +3147,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def verticalSpacing   : Int  = defaultValue[Int]
+    @inline def verticalSpacing    : Int  = defaultValue[Int]
 
     @inline def verticalSpacing  (p: Int) =            verticalSpacing_=  (p)
     @inline def verticalSpacing_=(p: Int) = { basis.setVerticalSpacing    (p); basis }
@@ -3181,14 +3181,14 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def childDivider   : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
+    @inline def childDivider    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
 
     @inline def childDivider  (p: android.graphics.drawable.Drawable) =            childDivider_=  (p)
     @inline def childDivider_=(p: android.graphics.drawable.Drawable) = { basis.setChildDivider    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def childIndicator   : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
+    @inline def childIndicator    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
 
     @inline def childIndicator  (p: android.graphics.drawable.Drawable) =            childIndicator_=  (p)
     @inline def childIndicator_=(p: android.graphics.drawable.Drawable) = { basis.setChildIndicator    (p); basis }
@@ -3196,42 +3196,42 @@ trait WidgetFamily {
     @inline def expandableListAdapter = basis.getExpandableListAdapter
 
     @noEquivalentGetterExists
-    @inline def groupIndicator   : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
+    @inline def groupIndicator    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
 
     @inline def groupIndicator  (p: android.graphics.drawable.Drawable) =            groupIndicator_=  (p)
     @inline def groupIndicator_=(p: android.graphics.drawable.Drawable) = { basis.setGroupIndicator    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def onChildClickListener   : android.widget.ExpandableListView.OnChildClickListener  = defaultValue[android.widget.ExpandableListView.OnChildClickListener]
+    @inline def onChildClickListener    : android.widget.ExpandableListView.OnChildClickListener  = defaultValue[android.widget.ExpandableListView.OnChildClickListener]
 
     @inline def onChildClickListener  (p: android.widget.ExpandableListView.OnChildClickListener) =            onChildClickListener_=  (p)
     @inline def onChildClickListener_=(p: android.widget.ExpandableListView.OnChildClickListener) = { basis.setOnChildClickListener    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def onGroupClickListener   : android.widget.ExpandableListView.OnGroupClickListener  = defaultValue[android.widget.ExpandableListView.OnGroupClickListener]
+    @inline def onGroupClickListener    : android.widget.ExpandableListView.OnGroupClickListener  = defaultValue[android.widget.ExpandableListView.OnGroupClickListener]
 
     @inline def onGroupClickListener  (p: android.widget.ExpandableListView.OnGroupClickListener) =            onGroupClickListener_=  (p)
     @inline def onGroupClickListener_=(p: android.widget.ExpandableListView.OnGroupClickListener) = { basis.setOnGroupClickListener    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def onGroupCollapseListener   : android.widget.ExpandableListView.OnGroupCollapseListener  = defaultValue[android.widget.ExpandableListView.OnGroupCollapseListener]
+    @inline def onGroupCollapseListener    : android.widget.ExpandableListView.OnGroupCollapseListener  = defaultValue[android.widget.ExpandableListView.OnGroupCollapseListener]
 
     @inline def onGroupCollapseListener  (p: android.widget.ExpandableListView.OnGroupCollapseListener) =            onGroupCollapseListener_=  (p)
     @inline def onGroupCollapseListener_=(p: android.widget.ExpandableListView.OnGroupCollapseListener) = { basis.setOnGroupCollapseListener    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def onGroupExpandListener   : android.widget.ExpandableListView.OnGroupExpandListener  = defaultValue[android.widget.ExpandableListView.OnGroupExpandListener]
+    @inline def onGroupExpandListener    : android.widget.ExpandableListView.OnGroupExpandListener  = defaultValue[android.widget.ExpandableListView.OnGroupExpandListener]
 
     @inline def onGroupExpandListener  (p: android.widget.ExpandableListView.OnGroupExpandListener) =            onGroupExpandListener_=  (p)
     @inline def onGroupExpandListener_=(p: android.widget.ExpandableListView.OnGroupExpandListener) = { basis.setOnGroupExpandListener    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def selectedGroup   : Int  = defaultValue[Int]
+    @inline def selectedGroup    : Int  = defaultValue[Int]
 
     @inline def selectedGroup  (p: Int) =            selectedGroup_=  (p)
     @inline def selectedGroup_=(p: Int) = { basis.setSelectedGroup    (p); basis }
@@ -3398,7 +3398,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def promptId   : Int  = defaultValue[Int]
+    @inline def promptId    : Int  = defaultValue[Int]
 
     @inline def promptId  (p: Int) =            promptId_=  (p)
     @inline def promptId_=(p: Int) = { basis.setPromptId    (p); basis }
@@ -3432,35 +3432,35 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def animationDuration   : Int  = defaultValue[Int]
+    @inline def animationDuration    : Int  = defaultValue[Int]
 
     @inline def animationDuration  (p: Int) =            animationDuration_=  (p)
     @inline def animationDuration_=(p: Int) = { basis.setAnimationDuration    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def callbackDuringFling   : Boolean  = defaultValue[Boolean]
+    @inline def callbackDuringFling    : Boolean  = defaultValue[Boolean]
 
     @inline def callbackDuringFling  (p: Boolean) =            callbackDuringFling_=  (p)
     @inline def callbackDuringFling_=(p: Boolean) = { basis.setCallbackDuringFling    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def gravity   : Int  = defaultValue[Int]
+    @inline def gravity    : Int  = defaultValue[Int]
 
     @inline def gravity  (p: Int) =            gravity_=  (p)
     @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def spacing   : Int  = defaultValue[Int]
+    @inline def spacing    : Int  = defaultValue[Int]
 
     @inline def spacing  (p: Int) =            spacing_=  (p)
     @inline def spacing_=(p: Int) = { basis.setSpacing    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def unselectedAlpha   : Float  = defaultValue[Float]
+    @inline def unselectedAlpha    : Float  = defaultValue[Float]
 
     @inline def unselectedAlpha  (p: Float) =            unselectedAlpha_=  (p)
     @inline def unselectedAlpha_=(p: Float) = { basis.setUnselectedAlpha    (p); basis }
@@ -3499,7 +3499,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def thumb   : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
+    @inline def thumb    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
 
     @inline def thumb  (p: android.graphics.drawable.Drawable) =            thumb_=  (p)
     @inline def thumb_=(p: android.graphics.drawable.Drawable) = { basis.setThumb    (p); basis }
@@ -3517,7 +3517,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def onSeekBarChangeListener   : android.widget.SeekBar.OnSeekBarChangeListener  = defaultValue[android.widget.SeekBar.OnSeekBarChangeListener]
+    @inline def onSeekBarChangeListener    : android.widget.SeekBar.OnSeekBarChangeListener  = defaultValue[android.widget.SeekBar.OnSeekBarChangeListener]
 
     @inline def onSeekBarChangeListener  (p: android.widget.SeekBar.OnSeekBarChangeListener) =            onSeekBarChangeListener_=  (p)
     @inline def onSeekBarChangeListener_=(p: android.widget.SeekBar.OnSeekBarChangeListener) = { basis.setOnSeekBarChangeListener    (p); basis }
@@ -3718,14 +3718,14 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def anchorView   : android.view.View  = defaultValue[android.view.View]
+    @inline def anchorView    : android.view.View  = defaultValue[android.view.View]
 
     @inline def anchorView  (p: android.view.View) =            anchorView_=  (p)
     @inline def anchorView_=(p: android.view.View) = { basis.setAnchorView    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def mediaPlayer   : android.widget.MediaController.MediaPlayerControl  = defaultValue[android.widget.MediaController.MediaPlayerControl]
+    @inline def mediaPlayer    : android.widget.MediaController.MediaPlayerControl  = defaultValue[android.widget.MediaController.MediaPlayerControl]
 
     @inline def mediaPlayer  (p: android.widget.MediaController.MediaPlayerControl) =            mediaPlayer_=  (p)
     @inline def mediaPlayer_=(p: android.widget.MediaController.MediaPlayerControl) = { basis.setMediaPlayer    (p); basis }
@@ -3806,7 +3806,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def currentTabByTag   : java.lang.String  = defaultValue[java.lang.String]
+    @inline def currentTabByTag    : java.lang.String  = defaultValue[java.lang.String]
 
     @inline def currentTabByTag  (p: java.lang.String) =            currentTabByTag_=  (p)
     @inline def currentTabByTag_=(p: java.lang.String) = { basis.setCurrentTabByTag    (p); basis }
@@ -3818,7 +3818,7 @@ trait WidgetFamily {
     @inline def currentView = basis.getCurrentView
 
     @noEquivalentGetterExists
-    @inline def onTabChangedListener   : android.widget.TabHost.OnTabChangeListener  = defaultValue[android.widget.TabHost.OnTabChangeListener]
+    @inline def onTabChangedListener    : android.widget.TabHost.OnTabChangeListener  = defaultValue[android.widget.TabHost.OnTabChangeListener]
 
     @inline def onTabChangedListener  (p: android.widget.TabHost.OnTabChangeListener) =            onTabChangedListener_=  (p)
     @inline def onTabChangedListener_=(p: android.widget.TabHost.OnTabChangeListener) = { basis.setOnTabChangedListener    (p); basis }
@@ -3828,7 +3828,7 @@ trait WidgetFamily {
     @inline def tabWidget = basis.getTabWidget
 
     @noEquivalentGetterExists
-    @inline def up   : android.app.LocalActivityManager  = defaultValue[android.app.LocalActivityManager]
+    @inline def up    : android.app.LocalActivityManager  = defaultValue[android.app.LocalActivityManager]
 
     @inline def up  (p: android.app.LocalActivityManager) =            up_=  (p)
     @inline def up_=(p: android.app.LocalActivityManager) = { basis.setup    (p); basis }
@@ -3888,7 +3888,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def onTimeChangedListener   : android.widget.TimePicker.OnTimeChangedListener  = defaultValue[android.widget.TimePicker.OnTimeChangedListener]
+    @inline def onTimeChangedListener    : android.widget.TimePicker.OnTimeChangedListener  = defaultValue[android.widget.TimePicker.OnTimeChangedListener]
 
     @inline def onTimeChangedListener  (p: android.widget.TimePicker.OnTimeChangedListener) =            onTimeChangedListener_=  (p)
     @inline def onTimeChangedListener_=(p: android.widget.TimePicker.OnTimeChangedListener) = { basis.setOnTimeChangedListener    (p); basis }
@@ -3935,7 +3935,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def animateFirstView   : Boolean  = defaultValue[Boolean]
+    @inline def animateFirstView    : Boolean  = defaultValue[Boolean]
 
     @inline def animateFirstView  (p: Boolean) =            animateFirstView_=  (p)
     @inline def animateFirstView_=(p: Boolean) = { basis.setAnimateFirstView    (p); basis }
@@ -3988,7 +3988,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def flipInterval   : Int  = defaultValue[Int]
+    @inline def flipInterval    : Int  = defaultValue[Int]
 
     @inline def flipInterval  (p: Int) =            flipInterval_=  (p)
     @inline def flipInterval_=(p: Int) = { basis.setFlipInterval    (p); basis }
@@ -4024,7 +4024,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def factory   : android.widget.ViewSwitcher.ViewFactory  = defaultValue[android.widget.ViewSwitcher.ViewFactory]
+    @inline def factory    : android.widget.ViewSwitcher.ViewFactory  = defaultValue[android.widget.ViewSwitcher.ViewFactory]
 
     @inline def factory  (p: android.widget.ViewSwitcher.ViewFactory) =            factory_=  (p)
     @inline def factory_=(p: android.widget.ViewSwitcher.ViewFactory) = { basis.setFactory    (p); basis }
@@ -4060,21 +4060,21 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def imageDrawable   : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
+    @inline def imageDrawable    : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
 
     @inline def imageDrawable  (p: android.graphics.drawable.Drawable) =            imageDrawable_=  (p)
     @inline def imageDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setImageDrawable    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def imageResource   : Int  = defaultValue[Int]
+    @inline def imageResource    : Int  = defaultValue[Int]
 
     @inline def imageResource  (p: Int) =            imageResource_=  (p)
     @inline def imageResource_=(p: Int) = { basis.setImageResource    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def imageURI   : android.net.Uri  = defaultValue[android.net.Uri]
+    @inline def imageURI    : android.net.Uri  = defaultValue[android.net.Uri]
 
     @inline def imageURI  (p: android.net.Uri) =            imageURI_=  (p)
     @inline def imageURI_=(p: android.net.Uri) = { basis.setImageURI    (p); basis }
@@ -4108,14 +4108,14 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def currentText   : java.lang.CharSequence  = defaultValue[java.lang.CharSequence]
+    @inline def currentText    : java.lang.CharSequence  = defaultValue[java.lang.CharSequence]
 
     @inline def currentText  (p: java.lang.CharSequence) =            currentText_=  (p)
     @inline def currentText_=(p: java.lang.CharSequence) = { basis.setCurrentText    (p); basis }
 
 
     @noEquivalentGetterExists
-    @inline def text   : java.lang.CharSequence  = defaultValue[java.lang.CharSequence]
+    @inline def text    : java.lang.CharSequence  = defaultValue[java.lang.CharSequence]
 
     @inline def text  (p: java.lang.CharSequence) =            text_=  (p)
     @inline def text_=(p: java.lang.CharSequence) = { basis.setText    (p); basis }

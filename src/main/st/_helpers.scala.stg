@@ -185,7 +185,7 @@ getter(prop) ::= <<
 defaultGetter(prop) ::= <<
 $if( ! prop.nameClashes)$
 @noEquivalentGetterExists
-@inline def $prop.name$   : $prop.tpe$  = defaultValue[$prop.tpe$]
+@inline def $prop.name$    : $prop.tpe$  = defaultValue[$prop.tpe$]
 $endif$
 >>
 
