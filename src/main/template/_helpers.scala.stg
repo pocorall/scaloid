@@ -1,14 +1,13 @@
-cap(str) ::= "$str; format=\"cap\"$"
+delimiters "$", "$"
 
+decap(str) ::= "$str; format=\"decap\"$"
 
-_openClassDef(name, capName, extendClause) ::= <<
-class Rich$capName$[V <: $capName$](val basis: V) extends Trait$capName$[V]
-@inline implicit def $name$2Rich$capName$[V <: $capName$]($name$: V) = new Rich$capName$[V]($name$)
+openClassDef(name, extendClause) ::= <<
+class Rich$name$[V <: $name$](val basis: V) extends Trait$name$[V]
+@inline implicit def $decap(name)$2Rich$name$[V <: $name$]($decap(name)$: V) = new Rich$name$[V]($decap(name)$)
 
-trait Trait$capName$[V <: $capName$]$if(extendClause)$ extends $extendClause$$endif$ {
+trait Trait$name$[V <: $name$]$if(extendClause)$ extends $extendClause$$endif$ {
 >>
-
-openClassDef(name, extendClause = "") ::= "$_openClassDef(name, cap(name), extendClause)$"
 
 closeClassDef() ::= "}"
 
@@ -61,12 +60,14 @@ $fullListener(l)$
 $unitListener(l)$
 >>
 
-listeners(cls) ::= "$cls.listeners:listener(); separator=\"\n\"$"
+listeners(cls) ::= "$cls.listeners:listener(); separator=\"\n\n\"$"
 
 
 // property
 
-getter(prop) ::= "@inline def $prop.name$ = basis.$prop.getter$"
+getter(prop) ::= <<
+@inline def $prop.name$ = basis.$prop.getter$
+>>
 
 defaultGetter(prop) ::= <<
 @noEquivalentGetterExists

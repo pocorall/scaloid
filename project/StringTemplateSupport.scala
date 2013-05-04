@@ -30,13 +30,11 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
 
   private def generateVersionRangeDictionary(ver: Int): Map[String, Object] =
     (1 to 32).flatMap { v =>
-      def kv(prod: Boolean, keys: String*) = keys.map(_+"_"+v -> prod.asInstanceOf[Object])
+      def kv(prod: Boolean, keys: String*) = keys.map(k => (k +"_"+ v) -> prod.asInstanceOf[Object])
       (kv(ver == v, "eq", "gte", "lte") ++ kv(ver > v, "gt") ++ kv(ver < v, "lt"))
     }.toMap
 
   private def expandToPackageMap(pkg: Map[String, Any]): Map[String, Any] = {
-    val listKeyMap = pkg.map { case (k, v) => k.split('.').toList -> v }
-
     def expand(lmap: Map[List[String], Any], level: Int = 0): Map[String, Any] = {
       lmap
         .groupBy(_._1.head) 
@@ -47,6 +45,8 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
         }
         .map(identity)
     }
+
+    val listKeyMap = pkg.map { case (k, v) => k.split('.').toList -> v }
     expand(listKeyMap)
   }
 
@@ -73,7 +73,6 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
       mapAsJavaMap(map)
   }
 
-  private def decapitalize(s: String) = if (s.isEmpty) s else s(0).toLower + s.substring(1)
 
   private class StringRenderer extends AttributeRenderer {
     import java.util._
@@ -84,6 +83,8 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
       val formats = Option(formatName).getOrElse("").split(",").map(_.trim)
       formats.foldLeft(value.toString)(format)
     }
+
+    private def decapitalize(s: String) = if (s.isEmpty) s else s(0).toLower + s.substring(1)
 
     def format(value: String, formatName: String): String = formatName match {
       case "upper"    | "uppercase"    => value.toUpperCase
