@@ -37,6 +37,7 @@ import android.widget.TextView.OnEditorActionListener
 import android.graphics._
 import android.opengl._
 
+
 trait WidgetFamily {
 
   class ObjectSView[O <: View with TraitView[O] : Manifest] {
@@ -74,23 +75,9 @@ trait WidgetFamily {
     }
   }
 
-  $openClassDef("View", "ConstantsSupport")$
+  $openClassDef(android.view.View, "ConstantsSupport")$
 
     def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
-
-    $listeners(android.view.View)$
-
-    $properties(android.view.View)$
-
-    @inline def padding_=(p: Int) = {
-      basis.setPadding(p, p, p, p)
-      basis
-    }
-
-    @inline def padding(p: Int) = padding_=(p)
-
-    @noEquivalentGetterExists
-    @inline def padding: Int = 0
 
     def uniqueId(implicit activity: Activity): Int = {
       if(basis.getId < 0) {
@@ -127,6 +114,372 @@ $endif$
 
     val parentViewGroup: TraitViewGroup[_] = null
 
-  $closeClassDef()$
+    @inline def padding_=(p: Int) = {
+      basis.setPadding(p, p, p, p)
+      basis
+    }
 
+    @inline def padding(p: Int) = padding_=(p)
+
+    @noEquivalentGetterExists
+    @inline def padding: Int = 0
+
+  $closeClassDef(android.view.View)$
+
+  $wholeClassDef(android.widget.TextView, "TraitView[V]")$
+
+  $wholeConcreteClassDef(android.widget.TextView)$
+
+  $concreteObjectDef(android.widget.TextView, "textViewBody")$
+
+
+  trait TraitAbsListView[V <: AbsListView] extends TraitView[V] {
+
+    $properties(android.widget.AbsListView)$
+
+  }
+
+  
+  $openClassDef(android.view.ViewGroup, "TraitView[V]")$
+
+    implicit val pagentVG = this
+
+    def applyStyle(v: View): View = {
+      var viw = v
+      if (parentViewGroup != null) viw = parentViewGroup.applyStyle(viw)
+      styles.foreach { st =>
+        if (st.isDefinedAt(viw)) viw = st(viw)
+      }
+      viw
+    }
+
+    def +=(v: View) = {
+      var viw = v
+      viw = applyStyle(viw)
+      basis.addView(viw)
+      basis
+    }
+
+    val styles = new ArrayBuffer[View PartialFunction View]
+
+    def style(stl: View PartialFunction View) = {
+      styles += stl
+      basis
+    }
+  
+  $closeClassDef(android.view.ViewGroup)$
+
+
+
+  trait ViewGroupLayoutParams[LP <: ViewGroupLayoutParams[_,_], V <: View] extends ViewGroup.LayoutParams {
+    def basis: LP
+
+    def fill = {
+      width = ViewGroup.LayoutParams.MATCH_PARENT
+      height = ViewGroup.LayoutParams.MATCH_PARENT
+      basis
+    }
+    def wrap = {
+      width = ViewGroup.LayoutParams.WRAP_CONTENT
+      height = ViewGroup.LayoutParams.WRAP_CONTENT
+      basis
+    }
+
+    def parent : TraitViewGroup[_]
+
+    def >> : V
+  }
+
+  trait ViewGroupMarginLayoutParams[LP <: ViewGroupMarginLayoutParams[_,_], V <: View] extends ViewGroup.MarginLayoutParams with ViewGroupLayoutParams[LP, V] {
+
+    def marginBottom(size: Int) = {
+      bottomMargin = size
+      basis
+    }
+
+    def marginTop(size: Int) = {
+      topMargin = size
+      basis
+    }
+
+    def marginLeft(size: Int) = {
+      leftMargin = size
+      basis
+    }
+
+    def marginRight(size: Int) = {
+      rightMargin = size
+      basis
+    }
+
+    def margin(size:Int) = {
+      bottomMargin = size
+      topMargin = size
+      leftMargin = size
+      rightMargin = size
+      basis
+    }
+
+    def margin(top:Int, right:Int, bottom:Int, left:Int) = {
+      bottomMargin = bottom
+      topMargin = top
+      leftMargin = left
+      rightMargin = right
+      basis
+    }
+  }
+
+
+  $wholeClassDef(android.widget.FrameLayout, "TraitViewGroup[V]")$
+
+  $openConcreteClassDef(android.widget.FrameLayout)$
+
+    implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+    <<
+
+    class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
+
+      def basis = this
+
+      v.setLayoutParams(this)
+
+      def Gravity(g: Int) = {
+        gravity = g
+        this
+      }
+
+      def parent = SFrameLayout.this
+
+      def >> : V = v
+
+    }
+
+  $closeConcreteClassDef()$
+
+
+  $wholeClassDef(android.widget.RelativeLayout, "TraitViewGroup[V]")$
+
+  $openConcreteClassDef(android.widget.RelativeLayout)$
+
+    implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+    <<
+
+    class LayoutParams[V <: View](v: V) extends RelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
+      def basis = this
+
+      v.setLayoutParams(this)
+
+      def Gravity(g: Int) = {
+        gravity = g
+        this
+      }
+
+      def above(otherView: View)(implicit activity: Activity) = {
+        addRule(RelativeLayout.ABOVE, otherView.uniqueId)
+        this
+      }
+
+      def alignBaseline = {
+        addRule(RelativeLayout.ALIGN_BASELINE)
+        this
+      }
+
+      def alignBottom = {
+        addRule(RelativeLayout.ALIGN_BOTTOM)
+        this
+      }
+
+  //def alignEnd = {
+  //  addRule(RelativeLayout.ALIGN_END)
+  //  this
+  //}
+
+      def alignLeft = {
+        addRule(RelativeLayout.ALIGN_LEFT)
+        this
+      }
+
+      def alignParentBottom = {
+        addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+        this
+      }
+
+      //def alignParentEnd = {
+      //  addRule(RelativeLayout.ALIGN_PARENT_END)
+      //  this
+      //}
+
+      def alignParentLeft = {
+        addRule(RelativeLayout.ALIGN_PARENT_LEFT)
+        this
+      }
+
+      def alignParentRight = {
+        addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+        this
+      }
+
+  //def alignParentStart = {
+  //  addRule(RelativeLayout.ALIGN_PARENT_START)
+  //  this
+  //}
+
+      def alignParentTop = {
+        addRule(RelativeLayout.ALIGN_PARENT_TOP)
+        this
+      }
+
+      def alignRight = {
+        addRule(RelativeLayout.ALIGN_RIGHT)
+        this
+      }
+
+  //def alignStart = {
+  //  addRule(RelativeLayout.ALIGN_START)
+  //  this
+  //}
+
+      def alignTop = {
+        addRule(RelativeLayout.ALIGN_TOP)
+        this
+      }
+
+      def below(otherView: View)(implicit activity: Activity) = {
+        addRule(RelativeLayout.BELOW, otherView.uniqueId)
+        this
+      }
+
+      def leftOf(otherView: View)(implicit activity: Activity) = {
+        addRule(RelativeLayout.LEFT_OF, otherView.uniqueId)
+        this
+      }
+
+      def rightOf(otherView: View)(implicit activity: Activity) = {
+        addRule(RelativeLayout.RIGHT_OF, otherView.uniqueId)
+        this
+      }
+
+      def centerHorizontal = {
+        addRule(RelativeLayout.CENTER_HORIZONTAL)
+        this
+      }
+
+      def centerInParent = {
+        addRule(RelativeLayout.CENTER_IN_PARENT)
+        this
+      }
+
+      def centerVertical = {
+        addRule(RelativeLayout.CENTER_VERTICAL)
+        this
+      }
+
+      def parent = SRelativeLayout.this
+
+      def >> : V = v
+
+    }
+
+  $closeConcreteClassDef()$
+
+
+  $wholeClassDef(android.widget.LinearLayout, "TraitViewGroup[V]")$
+
+  $openConcreteClassDef(android.widget.LinearLayout)$
+
+    val VERTICAL = LinearLayout.VERTICAL
+    val HORIZONTAL = LinearLayout.HORIZONTAL
+
+    implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+    <<
+
+    class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
+
+      def basis = this
+
+      v.setLayoutParams(this)
+
+      def Gravity(g: Int) = {
+        gravity = g
+        this
+      }
+
+      def Weight(w: Float) = {
+        weight = w
+        this
+      }
+      def parent = SLinearLayout.this
+
+      def >> : V = v
+
+    }
+
+  $closeConcreteClassDef()$
+
+  class SVerticalLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends SLinearLayout {
+    orientation = VERTICAL
+  }
+
+  $wholeClassDef(android.widget.EditText, "TraitTextView[V]")$
+  $wholeConcreteClassDef(android.widget.EditText)$
+  $concreteObjectDef(android.widget.EditText)$
+
+  $wholeClassDef(android.inputmethodservice.ExtractEditText, "TraitEditText[V]", "textViewBody")$
+  $wholeClassDef(android.widget.AutoCompleteTextView, "TraitEditText[V]", "textViewBody")$
+  $wholeClassDef(android.widget.ListView, "TraitAbsListView[V]")$
+  $wholeClassDef(android.widget.Button, "TraitTextView[V]", "buttonObjectBody")$
+  $wholeClassDef(android.widget.CompoundButton, "TraitButton[V]")$
+  $wholeClassDef(android.widget.CheckBox, "TraitCompoundButton[V]", "buttonObjectBody")$
+  $wholeClassDef(android.widget.RadioButton, "TraitCompoundButton[V]", "buttonObjectBody")$
+  $wholeClassDef(android.widget.ToggleButton, "TraitCompoundButton[V]", "buttonObjectBody")$
+  $wholeClassDef(android.widget.CheckedTextView, "TraitTextView[V]", "textViewBody")$
+  $wholeClassDef(android.widget.Chronometer, "TraitTextView[V]", "textViewBody")$
+  $wholeClassDef(android.widget.DigitalClock, "TraitTextView[V]", "textViewBody")$
+  $wholeClassDef(android.inputmethodservice.KeyboardView, "TraitView[V]")$
+  $wholeClassDef(android.widget.ImageView, "TraitView[V]")$
+  $wholeClassDef(android.widget.ImageButton, "TraitImageView[V]")$
+  $wholeClassDef(android.widget.QuickContactBadge, "TraitImageView[V]")$
+  $wholeClassDef(android.widget.ZoomButton, "TraitImageButton[V]")$
+  $wholeClassDef(android.widget.ProgressBar, "TraitView[V]")$
+  $wholeClassDef(android.widget.AnalogClock, "TraitView[V]")$
+  $wholeClassDef(android.view.SurfaceView, "TraitView[V]")$
+  $wholeClassDef(android.opengl.GLSurfaceView, "TraitSurfaceView[V]")$
+  $wholeClassDef(android.widget.VideoView, "TraitSurfaceView[V]")$
+  $wholeClassDef(android.view.ViewStub, "TraitView[V]")$
+  $wholeClassDef(android.widget.GridView, "TraitAbsListView[V]")$
+  $wholeClassDef(android.widget.ExpandableListView, "TraitListView[V]")$
+
+  trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
+    import android.widget.AdapterView.OnItemClickListener
+    import android.widget.AdapterView.OnItemLongClickListener
+
+    $listeners(android.widget.AdapterView)$
+  }
+
+  trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
+    $properties(android.widget.AbsSpinner)$
+  }
+
+  $wholeClassDef(android.widget.Spinner, "TraitAbsSpinner[V]")$
+  $wholeClassDef(android.widget.Gallery, "TraitAbsSpinner[V]")$
+  $wholeClassDef(android.widget.AbsSeekBar, "TraitProgressBar[V]")$
+
+  $wholeClassDef(android.widget.SeekBar, "TraitAbsSeekBar[V]")$
+  $wholeConcreteClassDef(android.widget.SeekBar)$
+  $concreteObjectDef(android.widget.SeekBar)$
+
+  $wholeClassDef(android.widget.RatingBar, "TraitAbsSeekBar[V]")$
+  $wholeClassDef(android.appwidget.AppWidgetHostView, "TraitFrameLayout[V]")$
+  $wholeClassDef(android.widget.HorizontalScrollView, "TraitFrameLayout[V]")$
+  $wholeClassDef(android.widget.MediaController, "TraitFrameLayout[V]")$
+  $wholeClassDef(android.widget.ScrollView, "TraitFrameLayout[V]")$
+  $wholeClassDef(android.widget.TabHost, "TraitFrameLayout[V]")$
+  $wholeClassDef(android.widget.TimePicker, "TraitFrameLayout[V]")$
+  $wholeClassDef(android.widget.ViewAnimator, "TraitFrameLayout[V]")$
+  $wholeClassDef(android.widget.ViewFlipper, "TraitViewAnimator[V]")$
+  $wholeClassDef(android.widget.ViewSwitcher, "TraitViewAnimator[V]")$
+  $wholeClassDef(android.widget.ImageSwitcher, "TraitViewSwitcher[V]")$
+  $wholeClassDef(android.widget.TextSwitcher, "TraitViewSwitcher[V]")$
+  $wholeClassDef(android.widget.DatePicker, "TraitFrameLayout[V]")$
+  $wholeClassDef(android.gesture.GestureOverlayView, "TraitFrameLayout[V]")$
 }
