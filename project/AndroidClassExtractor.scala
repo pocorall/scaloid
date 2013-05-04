@@ -10,6 +10,7 @@ case class AndroidProperty(
   tpe: String,
   getter: Option[String],
   setter: Option[String],
+  switch: Option[String],
   nameClashes: Boolean
 )
 
@@ -106,11 +107,11 @@ object AndroidClassExtractor {
         Introspector.getBeanInfo(parent).getMethodDescriptors.toList.map(m => m.getName).toSet
 
     def toAndroidProperty(pdesc: PropertyDescriptor): Option[AndroidProperty] = {
-      val displayName = pdesc.getDisplayName
+      val name = pdesc.getDisplayName
       var nameClashes = false
 
       try {
-        cls.getMethod(displayName)
+        cls.getMethod(name)
         nameClashes = true
       } catch {
         case e: NoSuchMethodException => // does nothing
@@ -125,8 +126,9 @@ object AndroidClassExtractor {
         val getter = readMethod map (_.getName)
         val setter = writeMethod map (_.getName)
         val tpe = readMethod.map(_.getGenericReturnType).getOrElse(writeMethod.get.getGenericParameterTypes()(0))
+        val switch = if (name.endsWith("Enabled")) Some(name.replace("Enabled", "").capitalize) else None
 
-        Some(AndroidProperty(displayName, toScalaType(tpe), getter, setter, nameClashes))
+        Some(AndroidProperty(name, toScalaType(tpe), getter, setter, switch, nameClashes))
       }
     }
 

@@ -170,11 +170,13 @@ trait WidgetFamily {
     @inline def backgroundColor  (p: Int) =            backgroundColor_=  (p)
     @inline def backgroundColor_=(p: Int) = { basis.setBackgroundColor    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def backgroundDrawable   : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
 
     @inline def backgroundDrawable  (p: android.graphics.drawable.Drawable) =            backgroundDrawable_=  (p)
     @inline def backgroundDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setBackgroundDrawable    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def backgroundResource   : Int  = defaultValue[Int]
@@ -207,6 +209,8 @@ trait WidgetFamily {
     @inline def drawingCacheEnabled = basis.isDrawingCacheEnabled
     @inline def drawingCacheEnabled  (p: Boolean) =            drawingCacheEnabled_=  (p)
     @inline def drawingCacheEnabled_=(p: Boolean) = { basis.setDrawingCacheEnabled    (p); basis }
+    @inline def  enableDrawingCache               = { basis.setDrawingCacheEnabled(true ); basis }
+    @inline def disableDrawingCache               = { basis.setDrawingCacheEnabled(false); basis }
 
     @inline def drawingCacheQuality = basis.getDrawingCacheQuality
     @inline def drawingCacheQuality  (p: Int) =            drawingCacheQuality_=  (p)
@@ -217,10 +221,13 @@ trait WidgetFamily {
     @inline def duplicateParentStateEnabled = basis.isDuplicateParentStateEnabled
     @inline def duplicateParentStateEnabled  (p: Boolean) =            duplicateParentStateEnabled_=  (p)
     @inline def duplicateParentStateEnabled_=(p: Boolean) = { basis.setDuplicateParentStateEnabled    (p); basis }
+    @inline def  enableDuplicateParentState               = { basis.setDuplicateParentStateEnabled(true ); basis }
+    @inline def disableDuplicateParentState               = { basis.setDuplicateParentStateEnabled(false); basis }
 
     @inline def enabled = basis.isEnabled
     @inline def enabled  (p: Boolean) =            enabled_=  (p)
     @inline def enabled_=(p: Boolean) = { basis.setEnabled    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def fadingEdgeLength   : Int  = defaultValue[Int]
@@ -243,18 +250,24 @@ trait WidgetFamily {
     @inline def hapticFeedbackEnabled = basis.isHapticFeedbackEnabled
     @inline def hapticFeedbackEnabled  (p: Boolean) =            hapticFeedbackEnabled_=  (p)
     @inline def hapticFeedbackEnabled_=(p: Boolean) = { basis.setHapticFeedbackEnabled    (p); basis }
+    @inline def  enableHapticFeedback               = { basis.setHapticFeedbackEnabled(true ); basis }
+    @inline def disableHapticFeedback               = { basis.setHapticFeedbackEnabled(false); basis }
 
     @inline def height = basis.getHeight
 
     @inline def horizontalFadingEdgeEnabled = basis.isHorizontalFadingEdgeEnabled
     @inline def horizontalFadingEdgeEnabled  (p: Boolean) =            horizontalFadingEdgeEnabled_=  (p)
     @inline def horizontalFadingEdgeEnabled_=(p: Boolean) = { basis.setHorizontalFadingEdgeEnabled    (p); basis }
+    @inline def  enableHorizontalFadingEdge               = { basis.setHorizontalFadingEdgeEnabled(true ); basis }
+    @inline def disableHorizontalFadingEdge               = { basis.setHorizontalFadingEdgeEnabled(false); basis }
 
     @inline def horizontalFadingEdgeLength = basis.getHorizontalFadingEdgeLength
 
     @inline def horizontalScrollBarEnabled = basis.isHorizontalScrollBarEnabled
     @inline def horizontalScrollBarEnabled  (p: Boolean) =            horizontalScrollBarEnabled_=  (p)
     @inline def horizontalScrollBarEnabled_=(p: Boolean) = { basis.setHorizontalScrollBarEnabled    (p); basis }
+    @inline def  enableHorizontalScrollBar               = { basis.setHorizontalScrollBarEnabled(true ); basis }
+    @inline def disableHorizontalScrollBar               = { basis.setHorizontalScrollBarEnabled(false); basis }
 
     @inline def id = basis.getId
     @inline def id  (p: Int) =            id_=  (p)
@@ -292,6 +305,7 @@ trait WidgetFamily {
     @inline def minimumHeight  (p: Int) =            minimumHeight_=  (p)
     @inline def minimumHeight_=(p: Int) = { basis.setMinimumHeight    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def minimumWidth   : Int  = defaultValue[Int]
 
@@ -314,11 +328,13 @@ trait WidgetFamily {
     @inline def nextFocusUpId  (p: Int) =            nextFocusUpId_=  (p)
     @inline def nextFocusUpId_=(p: Int) = { basis.setNextFocusUpId    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def onClickListener   : android.view.View.OnClickListener  = defaultValue[android.view.View.OnClickListener]
 
     @inline def onClickListener  (p: android.view.View.OnClickListener) =            onClickListener_=  (p)
     @inline def onClickListener_=(p: android.view.View.OnClickListener) = { basis.setOnClickListener    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def onCreateContextMenuListener   : android.view.View.OnCreateContextMenuListener  = defaultValue[android.view.View.OnCreateContextMenuListener]
@@ -330,17 +346,20 @@ trait WidgetFamily {
     @inline def onFocusChangeListener  (p: android.view.View.OnFocusChangeListener) =            onFocusChangeListener_=  (p)
     @inline def onFocusChangeListener_=(p: android.view.View.OnFocusChangeListener) = { basis.setOnFocusChangeListener    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def onKeyListener   : android.view.View.OnKeyListener  = defaultValue[android.view.View.OnKeyListener]
 
     @inline def onKeyListener  (p: android.view.View.OnKeyListener) =            onKeyListener_=  (p)
     @inline def onKeyListener_=(p: android.view.View.OnKeyListener) = { basis.setOnKeyListener    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def onLongClickListener   : android.view.View.OnLongClickListener  = defaultValue[android.view.View.OnLongClickListener]
 
     @inline def onLongClickListener  (p: android.view.View.OnLongClickListener) =            onLongClickListener_=  (p)
     @inline def onLongClickListener_=(p: android.view.View.OnLongClickListener) = { basis.setOnLongClickListener    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def onTouchListener   : android.view.View.OnTouchListener  = defaultValue[android.view.View.OnTouchListener]
@@ -373,10 +392,13 @@ trait WidgetFamily {
     @inline def saveEnabled = basis.isSaveEnabled
     @inline def saveEnabled  (p: Boolean) =            saveEnabled_=  (p)
     @inline def saveEnabled_=(p: Boolean) = { basis.setSaveEnabled    (p); basis }
+    @inline def  enableSave               = { basis.setSaveEnabled(true ); basis }
+    @inline def disableSave               = { basis.setSaveEnabled(false); basis }
 
     @inline def scrollBarStyle = basis.getScrollBarStyle
     @inline def scrollBarStyle  (p: Int) =            scrollBarStyle_=  (p)
     @inline def scrollBarStyle_=(p: Int) = { basis.setScrollBarStyle    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def scrollContainer   : Boolean  = defaultValue[Boolean]
@@ -391,6 +413,8 @@ trait WidgetFamily {
     @inline def scrollbarFadingEnabled = basis.isScrollbarFadingEnabled
     @inline def scrollbarFadingEnabled  (p: Boolean) =            scrollbarFadingEnabled_=  (p)
     @inline def scrollbarFadingEnabled_=(p: Boolean) = { basis.setScrollbarFadingEnabled    (p); basis }
+    @inline def  enableScrollbarFading               = { basis.setScrollbarFadingEnabled(true ); basis }
+    @inline def disableScrollbarFading               = { basis.setScrollbarFadingEnabled(false); basis }
 
     @inline def selected = basis.isSelected
     @inline def selected  (p: Boolean) =            selected_=  (p)
@@ -403,6 +427,8 @@ trait WidgetFamily {
     @inline def soundEffectsEnabled = basis.isSoundEffectsEnabled
     @inline def soundEffectsEnabled  (p: Boolean) =            soundEffectsEnabled_=  (p)
     @inline def soundEffectsEnabled_=(p: Boolean) = { basis.setSoundEffectsEnabled    (p); basis }
+    @inline def  enableSoundEffects               = { basis.setSoundEffectsEnabled(true ); basis }
+    @inline def disableSoundEffects               = { basis.setSoundEffectsEnabled(false); basis }
 
     @inline def top = basis.getTop
 
@@ -415,12 +441,16 @@ trait WidgetFamily {
     @inline def verticalFadingEdgeEnabled = basis.isVerticalFadingEdgeEnabled
     @inline def verticalFadingEdgeEnabled  (p: Boolean) =            verticalFadingEdgeEnabled_=  (p)
     @inline def verticalFadingEdgeEnabled_=(p: Boolean) = { basis.setVerticalFadingEdgeEnabled    (p); basis }
+    @inline def  enableVerticalFadingEdge               = { basis.setVerticalFadingEdgeEnabled(true ); basis }
+    @inline def disableVerticalFadingEdge               = { basis.setVerticalFadingEdgeEnabled(false); basis }
 
     @inline def verticalFadingEdgeLength = basis.getVerticalFadingEdgeLength
 
     @inline def verticalScrollBarEnabled = basis.isVerticalScrollBarEnabled
     @inline def verticalScrollBarEnabled  (p: Boolean) =            verticalScrollBarEnabled_=  (p)
     @inline def verticalScrollBarEnabled_=(p: Boolean) = { basis.setVerticalScrollBarEnabled    (p); basis }
+    @inline def  enableVerticalScrollBar               = { basis.setVerticalScrollBarEnabled(true ); basis }
+    @inline def disableVerticalScrollBar               = { basis.setVerticalScrollBarEnabled(false); basis }
 
     @inline def verticalScrollbarWidth = basis.getVerticalScrollbarWidth
 
@@ -434,6 +464,7 @@ trait WidgetFamily {
 
     @inline def willNotCacheDrawing  (p: Boolean) =            willNotCacheDrawing_=  (p)
     @inline def willNotCacheDrawing_=(p: Boolean) = { basis.setWillNotCacheDrawing    (p); basis }
+
 
     @inline def willNotDraw  (p: Boolean) =            willNotDraw_=  (p)
     @inline def willNotDraw_=(p: Boolean) = { basis.setWillNotDraw    (p); basis }
@@ -561,6 +592,7 @@ trait WidgetFamily {
     @inline def cursorVisible  (p: Boolean) =            cursorVisible_=  (p)
     @inline def cursorVisible_=(p: Boolean) = { basis.setCursorVisible    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def editableFactory   : android.text.Editable.Factory  = defaultValue[android.text.Editable.Factory]
 
@@ -572,6 +604,7 @@ trait WidgetFamily {
     @inline def ellipsize = basis.getEllipsize
     @inline def ellipsize  (p: android.text.TextUtils.TruncateAt) =            ellipsize_=  (p)
     @inline def ellipsize_=(p: android.text.TextUtils.TruncateAt) = { basis.setEllipsize    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def ems   : Int  = defaultValue[Int]
@@ -605,6 +638,7 @@ trait WidgetFamily {
     @inline def gravity  (p: Int) =            gravity_=  (p)
     @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def highlightColor   : Int  = defaultValue[Int]
 
@@ -614,6 +648,7 @@ trait WidgetFamily {
     @inline def hint = basis.getHint
     @inline def hint  (p: java.lang.CharSequence) =            hint_=  (p)
     @inline def hint_=(p: java.lang.CharSequence) = { basis.setHint    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def hintTextColor   : android.content.res.ColorStateList  = defaultValue[android.content.res.ColorStateList]
@@ -637,11 +672,13 @@ trait WidgetFamily {
     @inline def imeOptions  (p: Int) =            imeOptions_=  (p)
     @inline def imeOptions_=(p: Int) = { basis.setImeOptions    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def includeFontPadding   : Boolean  = defaultValue[Boolean]
 
     @inline def includeFontPadding  (p: Boolean) =            includeFontPadding_=  (p)
     @inline def includeFontPadding_=(p: Boolean) = { basis.setIncludeFontPadding    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def inputExtras   : Int  = defaultValue[Int]
@@ -671,6 +708,7 @@ trait WidgetFamily {
     @inline def lines  (p: Int) =            lines_=  (p)
     @inline def lines_=(p: Int) = { basis.setLines    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def linkTextColor   : android.content.res.ColorStateList  = defaultValue[android.content.res.ColorStateList]
 
@@ -683,11 +721,13 @@ trait WidgetFamily {
     @inline def linksClickable  (p: Boolean) =            linksClickable_=  (p)
     @inline def linksClickable_=(p: Boolean) = { basis.setLinksClickable    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def marqueeRepeatLimit   : Int  = defaultValue[Int]
 
     @inline def marqueeRepeatLimit  (p: Int) =            marqueeRepeatLimit_=  (p)
     @inline def marqueeRepeatLimit_=(p: Int) = { basis.setMarqueeRepeatLimit    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def maxEms   : Int  = defaultValue[Int]
@@ -695,11 +735,13 @@ trait WidgetFamily {
     @inline def maxEms  (p: Int) =            maxEms_=  (p)
     @inline def maxEms_=(p: Int) = { basis.setMaxEms    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def maxHeight   : Int  = defaultValue[Int]
 
     @inline def maxHeight  (p: Int) =            maxHeight_=  (p)
     @inline def maxHeight_=(p: Int) = { basis.setMaxHeight    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def maxLines   : Int  = defaultValue[Int]
@@ -707,11 +749,13 @@ trait WidgetFamily {
     @inline def maxLines  (p: Int) =            maxLines_=  (p)
     @inline def maxLines_=(p: Int) = { basis.setMaxLines    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def maxWidth   : Int  = defaultValue[Int]
 
     @inline def maxWidth  (p: Int) =            maxWidth_=  (p)
     @inline def maxWidth_=(p: Int) = { basis.setMaxWidth    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def minEms   : Int  = defaultValue[Int]
@@ -719,17 +763,20 @@ trait WidgetFamily {
     @inline def minEms  (p: Int) =            minEms_=  (p)
     @inline def minEms_=(p: Int) = { basis.setMinEms    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def minHeight   : Int  = defaultValue[Int]
 
     @inline def minHeight  (p: Int) =            minHeight_=  (p)
     @inline def minHeight_=(p: Int) = { basis.setMinHeight    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def minLines   : Int  = defaultValue[Int]
 
     @inline def minLines  (p: Int) =            minLines_=  (p)
     @inline def minLines_=(p: Int) = { basis.setMinLines    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def minWidth   : Int  = defaultValue[Int]
@@ -740,6 +787,7 @@ trait WidgetFamily {
     @inline def movementMethod = basis.getMovementMethod
     @inline def movementMethod  (p: android.text.method.MovementMethod) =            movementMethod_=  (p)
     @inline def movementMethod_=(p: android.text.method.MovementMethod) = { basis.setMovementMethod    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def onEditorActionListener   : android.widget.TextView.OnEditorActionListener  = defaultValue[android.widget.TextView.OnEditorActionListener]
@@ -757,17 +805,20 @@ trait WidgetFamily {
     @inline def privateImeOptions  (p: java.lang.String) =            privateImeOptions_=  (p)
     @inline def privateImeOptions_=(p: java.lang.String) = { basis.setPrivateImeOptions    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def rawInputType   : Int  = defaultValue[Int]
 
     @inline def rawInputType  (p: Int) =            rawInputType_=  (p)
     @inline def rawInputType_=(p: Int) = { basis.setRawInputType    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def scroller   : android.widget.Scroller  = defaultValue[android.widget.Scroller]
 
     @inline def scroller  (p: android.widget.Scroller) =            scroller_=  (p)
     @inline def scroller_=(p: android.widget.Scroller) = { basis.setScroller    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def selectAllOnFocus   : Boolean  = defaultValue[Boolean]
@@ -785,6 +836,7 @@ trait WidgetFamily {
     @inline def singleLine  (p: Boolean) =            singleLine_=  (p)
     @inline def singleLine_=(p: Boolean) = { basis.setSingleLine    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def spannableFactory   : android.text.Spannable.Factory  = defaultValue[android.text.Spannable.Factory]
 
@@ -794,6 +846,7 @@ trait WidgetFamily {
     @inline def text = basis.getText
     @inline def text  (p: java.lang.CharSequence) =            text_=  (p)
     @inline def text_=(p: java.lang.CharSequence) = { basis.setText    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def textColor   : android.content.res.ColorStateList  = defaultValue[android.content.res.ColorStateList]
@@ -936,6 +989,7 @@ trait WidgetFamily {
     @inline def cacheColorHint  (p: Int) =            cacheColorHint_=  (p)
     @inline def cacheColorHint_=(p: Int) = { basis.setCacheColorHint    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def drawSelectorOnTop   : Boolean  = defaultValue[Boolean]
 
@@ -945,6 +999,9 @@ trait WidgetFamily {
     @inline def fastScrollEnabled = basis.isFastScrollEnabled
     @inline def fastScrollEnabled  (p: Boolean) =            fastScrollEnabled_=  (p)
     @inline def fastScrollEnabled_=(p: Boolean) = { basis.setFastScrollEnabled    (p); basis }
+    @inline def  enableFastScroll               = { basis.setFastScrollEnabled(true ); basis }
+    @inline def disableFastScroll               = { basis.setFastScrollEnabled(false); basis }
+
 
     @noEquivalentGetterExists
     @inline def filterText   : java.lang.String  = defaultValue[java.lang.String]
@@ -966,6 +1023,7 @@ trait WidgetFamily {
     @inline def onScrollListener  (p: android.widget.AbsListView.OnScrollListener) =            onScrollListener_=  (p)
     @inline def onScrollListener_=(p: android.widget.AbsListView.OnScrollListener) = { basis.setOnScrollListener    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def recyclerListener   : android.widget.AbsListView.RecyclerListener  = defaultValue[android.widget.AbsListView.RecyclerListener]
 
@@ -975,6 +1033,8 @@ trait WidgetFamily {
     @inline def scrollingCacheEnabled = basis.isScrollingCacheEnabled
     @inline def scrollingCacheEnabled  (p: Boolean) =            scrollingCacheEnabled_=  (p)
     @inline def scrollingCacheEnabled_=(p: Boolean) = { basis.setScrollingCacheEnabled    (p); basis }
+    @inline def  enableScrollingCache               = { basis.setScrollingCacheEnabled(true ); basis }
+    @inline def disableScrollingCache               = { basis.setScrollingCacheEnabled(false); basis }
 
     @inline def selector = basis.getSelector
     @inline def selector  (p: android.graphics.drawable.Drawable) =            selector_=  (p)
@@ -983,6 +1043,8 @@ trait WidgetFamily {
     @inline def smoothScrollbarEnabled = basis.isSmoothScrollbarEnabled
     @inline def smoothScrollbarEnabled  (p: Boolean) =            smoothScrollbarEnabled_=  (p)
     @inline def smoothScrollbarEnabled_=(p: Boolean) = { basis.setSmoothScrollbarEnabled    (p); basis }
+    @inline def  enableSmoothScrollbar               = { basis.setSmoothScrollbarEnabled(true ); basis }
+    @inline def disableSmoothScrollbar               = { basis.setSmoothScrollbarEnabled(false); basis }
 
     @inline def stackFromBottom = basis.isStackFromBottom
     @inline def stackFromBottom  (p: Boolean) =            stackFromBottom_=  (p)
@@ -993,6 +1055,8 @@ trait WidgetFamily {
     @inline def textFilterEnabled = basis.isTextFilterEnabled
     @inline def textFilterEnabled  (p: Boolean) =            textFilterEnabled_=  (p)
     @inline def textFilterEnabled_=(p: Boolean) = { basis.setTextFilterEnabled    (p); basis }
+    @inline def  enableTextFilter               = { basis.setTextFilterEnabled(true ); basis }
+    @inline def disableTextFilter               = { basis.setTextFilterEnabled(false); basis }
 
     @inline def transcriptMode = basis.getTranscriptMode
     @inline def transcriptMode  (p: Int) =            transcriptMode_=  (p)
@@ -1039,10 +1103,14 @@ trait WidgetFamily {
     @inline def alwaysDrawnWithCacheEnabled = basis.isAlwaysDrawnWithCacheEnabled
     @inline def alwaysDrawnWithCacheEnabled  (p: Boolean) =            alwaysDrawnWithCacheEnabled_=  (p)
     @inline def alwaysDrawnWithCacheEnabled_=(p: Boolean) = { basis.setAlwaysDrawnWithCacheEnabled    (p); basis }
+    @inline def  enableAlwaysDrawnWithCache               = { basis.setAlwaysDrawnWithCacheEnabled(true ); basis }
+    @inline def disableAlwaysDrawnWithCache               = { basis.setAlwaysDrawnWithCacheEnabled(false); basis }
 
     @inline def animationCacheEnabled = basis.isAnimationCacheEnabled
     @inline def animationCacheEnabled  (p: Boolean) =            animationCacheEnabled_=  (p)
     @inline def animationCacheEnabled_=(p: Boolean) = { basis.setAnimationCacheEnabled    (p); basis }
+    @inline def  enableAnimationCache               = { basis.setAnimationCacheEnabled(true ); basis }
+    @inline def disableAnimationCache               = { basis.setAnimationCacheEnabled(false); basis }
 
     @inline def childCount = basis.getChildCount
 
@@ -1051,6 +1119,7 @@ trait WidgetFamily {
 
     @inline def clipChildren  (p: Boolean) =            clipChildren_=  (p)
     @inline def clipChildren_=(p: Boolean) = { basis.setClipChildren    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def clipToPadding   : Boolean  = defaultValue[Boolean]
@@ -1071,6 +1140,7 @@ trait WidgetFamily {
     @inline def layoutAnimationListener = basis.getLayoutAnimationListener
     @inline def layoutAnimationListener  (p: android.view.animation.Animation.AnimationListener) =            layoutAnimationListener_=  (p)
     @inline def layoutAnimationListener_=(p: android.view.animation.Animation.AnimationListener) = { basis.setLayoutAnimationListener    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def onHierarchyChangeListener   : android.view.ViewGroup.OnHierarchyChangeListener  = defaultValue[android.view.ViewGroup.OnHierarchyChangeListener]
@@ -1242,11 +1312,13 @@ trait WidgetFamily {
     @inline def foreground  (p: android.graphics.drawable.Drawable) =            foreground_=  (p)
     @inline def foreground_=(p: android.graphics.drawable.Drawable) = { basis.setForeground    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def foregroundGravity   : Int  = defaultValue[Int]
 
     @inline def foregroundGravity  (p: Int) =            foregroundGravity_=  (p)
     @inline def foregroundGravity_=(p: Int) = { basis.setForegroundGravity    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def measureAllChildren   : Boolean  = defaultValue[Boolean]
@@ -1297,17 +1369,20 @@ trait WidgetFamily {
     @inline def gravity  (p: Int) =            gravity_=  (p)
     @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def horizontalGravity   : Int  = defaultValue[Int]
 
     @inline def horizontalGravity  (p: Int) =            horizontalGravity_=  (p)
     @inline def horizontalGravity_=(p: Int) = { basis.setHorizontalGravity    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def ignoreGravity   : Int  = defaultValue[Int]
 
     @inline def ignoreGravity  (p: Int) =            ignoreGravity_=  (p)
     @inline def ignoreGravity_=(p: Int) = { basis.setIgnoreGravity    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def verticalGravity   : Int  = defaultValue[Int]
@@ -1459,11 +1534,13 @@ trait WidgetFamily {
     @inline def baselineAlignedChildIndex  (p: Int) =            baselineAlignedChildIndex_=  (p)
     @inline def baselineAlignedChildIndex_=(p: Int) = { basis.setBaselineAlignedChildIndex    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def gravity   : Int  = defaultValue[Int]
 
     @inline def gravity  (p: Int) =            gravity_=  (p)
     @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def horizontalGravity   : Int  = defaultValue[Int]
@@ -1474,6 +1551,7 @@ trait WidgetFamily {
     @inline def orientation = basis.getOrientation
     @inline def orientation  (p: Int) =            orientation_=  (p)
     @inline def orientation_=(p: Int) = { basis.setOrientation    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def verticalGravity   : Int  = defaultValue[Int]
@@ -1617,6 +1695,7 @@ trait WidgetFamily {
 
     @inline def dropDownBackgroundDrawable  (p: android.graphics.drawable.Drawable) =            dropDownBackgroundDrawable_=  (p)
     @inline def dropDownBackgroundDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setDropDownBackgroundDrawable    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def dropDownBackgroundResource   : Int  = defaultValue[Int]
@@ -1767,11 +1846,14 @@ trait WidgetFamily {
     @inline def dividerHeight  (p: Int) =            dividerHeight_=  (p)
     @inline def dividerHeight_=(p: Int) = { basis.setDividerHeight    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def footerDividersEnabled   : Boolean  = defaultValue[Boolean]
 
     @inline def footerDividersEnabled  (p: Boolean) =            footerDividersEnabled_=  (p)
     @inline def footerDividersEnabled_=(p: Boolean) = { basis.setFooterDividersEnabled    (p); basis }
+    @inline def  enableFooterDividers               = { basis.setFooterDividersEnabled(true ); basis }
+    @inline def disableFooterDividers               = { basis.setFooterDividersEnabled(false); basis }
 
     @inline def footerViewsCount = basis.getFooterViewsCount
 
@@ -1780,6 +1862,8 @@ trait WidgetFamily {
 
     @inline def headerDividersEnabled  (p: Boolean) =            headerDividersEnabled_=  (p)
     @inline def headerDividersEnabled_=(p: Boolean) = { basis.setHeaderDividersEnabled    (p); basis }
+    @inline def  enableHeaderDividers               = { basis.setHeaderDividersEnabled(true ); basis }
+    @inline def disableHeaderDividers               = { basis.setHeaderDividersEnabled(false); basis }
 
     @inline def headerViewsCount = basis.getHeaderViewsCount
 
@@ -1872,6 +1956,7 @@ trait WidgetFamily {
     @inline def checked = basis.isChecked
     @inline def checked  (p: Boolean) =            checked_=  (p)
     @inline def checked_=(p: Boolean) = { basis.setChecked    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def onCheckedChangeListener   : android.widget.CompoundButton.OnCheckedChangeListener  = defaultValue[android.widget.CompoundButton.OnCheckedChangeListener]
@@ -2229,11 +2314,13 @@ trait WidgetFamily {
     @inline def keyboard  (p: android.inputmethodservice.Keyboard) =            keyboard_=  (p)
     @inline def keyboard_=(p: android.inputmethodservice.Keyboard) = { basis.setKeyboard    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def onKeyboardActionListener   : android.inputmethodservice.KeyboardView.OnKeyboardActionListener  = defaultValue[android.inputmethodservice.KeyboardView.OnKeyboardActionListener]
 
     @inline def onKeyboardActionListener  (p: android.inputmethodservice.KeyboardView.OnKeyboardActionListener) =            onKeyboardActionListener_=  (p)
     @inline def onKeyboardActionListener_=(p: android.inputmethodservice.KeyboardView.OnKeyboardActionListener) = { basis.setOnKeyboardActionListener    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def popupParent   : android.view.View  = defaultValue[android.view.View]
@@ -2244,10 +2331,14 @@ trait WidgetFamily {
     @inline def previewEnabled = basis.isPreviewEnabled
     @inline def previewEnabled  (p: Boolean) =            previewEnabled_=  (p)
     @inline def previewEnabled_=(p: Boolean) = { basis.setPreviewEnabled    (p); basis }
+    @inline def  enablePreview               = { basis.setPreviewEnabled(true ); basis }
+    @inline def disablePreview               = { basis.setPreviewEnabled(false); basis }
 
     @inline def proximityCorrectionEnabled = basis.isProximityCorrectionEnabled
     @inline def proximityCorrectionEnabled  (p: Boolean) =            proximityCorrectionEnabled_=  (p)
     @inline def proximityCorrectionEnabled_=(p: Boolean) = { basis.setProximityCorrectionEnabled    (p); basis }
+    @inline def  enableProximityCorrection               = { basis.setProximityCorrectionEnabled(true ); basis }
+    @inline def disableProximityCorrection               = { basis.setProximityCorrectionEnabled(false); basis }
 
     @inline def shifted = basis.isShifted
 
@@ -2445,6 +2536,7 @@ trait WidgetFamily {
     @inline def adjustViewBounds  (p: Boolean) =            adjustViewBounds_=  (p)
     @inline def adjustViewBounds_=(p: Boolean) = { basis.setAdjustViewBounds    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def alpha   : Int  = defaultValue[Int]
 
@@ -2459,11 +2551,13 @@ trait WidgetFamily {
     @inline def imageBitmap  (p: android.graphics.Bitmap) =            imageBitmap_=  (p)
     @inline def imageBitmap_=(p: android.graphics.Bitmap) = { basis.setImageBitmap    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def imageDrawable   : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
 
     @inline def imageDrawable  (p: android.graphics.drawable.Drawable) =            imageDrawable_=  (p)
     @inline def imageDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setImageDrawable    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def imageLevel   : Int  = defaultValue[Int]
@@ -2475,11 +2569,13 @@ trait WidgetFamily {
     @inline def imageMatrix  (p: android.graphics.Matrix) =            imageMatrix_=  (p)
     @inline def imageMatrix_=(p: android.graphics.Matrix) = { basis.setImageMatrix    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def imageResource   : Int  = defaultValue[Int]
 
     @inline def imageResource  (p: Int) =            imageResource_=  (p)
     @inline def imageResource_=(p: Int) = { basis.setImageResource    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def imageURI   : android.net.Uri  = defaultValue[android.net.Uri]
@@ -2487,11 +2583,13 @@ trait WidgetFamily {
     @inline def imageURI  (p: android.net.Uri) =            imageURI_=  (p)
     @inline def imageURI_=(p: android.net.Uri) = { basis.setImageURI    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def maxHeight   : Int  = defaultValue[Int]
 
     @inline def maxHeight  (p: Int) =            maxHeight_=  (p)
     @inline def maxHeight_=(p: Int) = { basis.setMaxHeight    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def maxWidth   : Int  = defaultValue[Int]
@@ -2562,6 +2660,7 @@ trait WidgetFamily {
 
     @inline def excludeMimes  (p: Array[java.lang.String]) =            excludeMimes_=  (p)
     @inline def excludeMimes_=(p: Array[java.lang.String]) = { basis.setExcludeMimes    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def mode   : Int  = defaultValue[Int]
@@ -2717,6 +2816,7 @@ trait WidgetFamily {
     @inline def ZOrderMediaOverlay  (p: Boolean) =            ZOrderMediaOverlay_=  (p)
     @inline def ZOrderMediaOverlay_=(p: Boolean) = { basis.setZOrderMediaOverlay    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def ZOrderOnTop   : Boolean  = defaultValue[Boolean]
 
@@ -2758,11 +2858,13 @@ trait WidgetFamily {
     @inline def EGLConfigChooser  (p: Boolean) =            EGLConfigChooser_=  (p)
     @inline def EGLConfigChooser_=(p: Boolean) = { basis.setEGLConfigChooser    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def EGLContextClientVersion   : Int  = defaultValue[Int]
 
     @inline def EGLContextClientVersion  (p: Int) =            EGLContextClientVersion_=  (p)
     @inline def EGLContextClientVersion_=(p: Int) = { basis.setEGLContextClientVersion    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def EGLContextFactory   : android.opengl.GLSurfaceView.EGLContextFactory  = defaultValue[android.opengl.GLSurfaceView.EGLContextFactory]
@@ -2770,11 +2872,13 @@ trait WidgetFamily {
     @inline def EGLContextFactory  (p: android.opengl.GLSurfaceView.EGLContextFactory) =            EGLContextFactory_=  (p)
     @inline def EGLContextFactory_=(p: android.opengl.GLSurfaceView.EGLContextFactory) = { basis.setEGLContextFactory    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def EGLWindowSurfaceFactory   : android.opengl.GLSurfaceView.EGLWindowSurfaceFactory  = defaultValue[android.opengl.GLSurfaceView.EGLWindowSurfaceFactory]
 
     @inline def EGLWindowSurfaceFactory  (p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) =            EGLWindowSurfaceFactory_=  (p)
     @inline def EGLWindowSurfaceFactory_=(p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) = { basis.setEGLWindowSurfaceFactory    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def GLWrapper   : android.opengl.GLSurfaceView.GLWrapper  = defaultValue[android.opengl.GLSurfaceView.GLWrapper]
@@ -2789,6 +2893,7 @@ trait WidgetFamily {
     @inline def renderMode = basis.getRenderMode
     @inline def renderMode  (p: Int) =            renderMode_=  (p)
     @inline def renderMode_=(p: Int) = { basis.setRenderMode    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def renderer   : android.opengl.GLSurfaceView.Renderer  = defaultValue[android.opengl.GLSurfaceView.Renderer]
@@ -2835,17 +2940,20 @@ trait WidgetFamily {
     @inline def mediaController  (p: android.widget.MediaController) =            mediaController_=  (p)
     @inline def mediaController_=(p: android.widget.MediaController) = { basis.setMediaController    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def onCompletionListener   : android.media.MediaPlayer.OnCompletionListener  = defaultValue[android.media.MediaPlayer.OnCompletionListener]
 
     @inline def onCompletionListener  (p: android.media.MediaPlayer.OnCompletionListener) =            onCompletionListener_=  (p)
     @inline def onCompletionListener_=(p: android.media.MediaPlayer.OnCompletionListener) = { basis.setOnCompletionListener    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def onErrorListener   : android.media.MediaPlayer.OnErrorListener  = defaultValue[android.media.MediaPlayer.OnErrorListener]
 
     @inline def onErrorListener  (p: android.media.MediaPlayer.OnErrorListener) =            onErrorListener_=  (p)
     @inline def onErrorListener_=(p: android.media.MediaPlayer.OnErrorListener) = { basis.setOnErrorListener    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def onPreparedListener   : android.media.MediaPlayer.OnPreparedListener  = defaultValue[android.media.MediaPlayer.OnPreparedListener]
@@ -2860,6 +2968,7 @@ trait WidgetFamily {
 
     @inline def videoPath  (p: java.lang.String) =            videoPath_=  (p)
     @inline def videoPath_=(p: java.lang.String) = { basis.setVideoPath    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def videoURI   : android.net.Uri  = defaultValue[android.net.Uri]
@@ -2943,6 +3052,7 @@ trait WidgetFamily {
     @inline def layoutResource  (p: Int) =            layoutResource_=  (p)
     @inline def layoutResource_=(p: Int) = { basis.setLayoutResource    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def onInflateListener   : android.view.ViewStub.OnInflateListener  = defaultValue[android.view.ViewStub.OnInflateListener]
 
@@ -2975,17 +3085,20 @@ trait WidgetFamily {
     @inline def columnWidth  (p: Int) =            columnWidth_=  (p)
     @inline def columnWidth_=(p: Int) = { basis.setColumnWidth    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def gravity   : Int  = defaultValue[Int]
 
     @inline def gravity  (p: Int) =            gravity_=  (p)
     @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def horizontalSpacing   : Int  = defaultValue[Int]
 
     @inline def horizontalSpacing  (p: Int) =            horizontalSpacing_=  (p)
     @inline def horizontalSpacing_=(p: Int) = { basis.setHorizontalSpacing    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def numColumns   : Int  = defaultValue[Int]
@@ -2996,6 +3109,7 @@ trait WidgetFamily {
     @inline def stretchMode = basis.getStretchMode
     @inline def stretchMode  (p: Int) =            stretchMode_=  (p)
     @inline def stretchMode_=(p: Int) = { basis.setStretchMode    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def verticalSpacing   : Int  = defaultValue[Int]
@@ -3036,6 +3150,7 @@ trait WidgetFamily {
     @inline def childDivider  (p: android.graphics.drawable.Drawable) =            childDivider_=  (p)
     @inline def childDivider_=(p: android.graphics.drawable.Drawable) = { basis.setChildDivider    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def childIndicator   : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
 
@@ -3050,11 +3165,13 @@ trait WidgetFamily {
     @inline def groupIndicator  (p: android.graphics.drawable.Drawable) =            groupIndicator_=  (p)
     @inline def groupIndicator_=(p: android.graphics.drawable.Drawable) = { basis.setGroupIndicator    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def onChildClickListener   : android.widget.ExpandableListView.OnChildClickListener  = defaultValue[android.widget.ExpandableListView.OnChildClickListener]
 
     @inline def onChildClickListener  (p: android.widget.ExpandableListView.OnChildClickListener) =            onChildClickListener_=  (p)
     @inline def onChildClickListener_=(p: android.widget.ExpandableListView.OnChildClickListener) = { basis.setOnChildClickListener    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def onGroupClickListener   : android.widget.ExpandableListView.OnGroupClickListener  = defaultValue[android.widget.ExpandableListView.OnGroupClickListener]
@@ -3062,17 +3179,20 @@ trait WidgetFamily {
     @inline def onGroupClickListener  (p: android.widget.ExpandableListView.OnGroupClickListener) =            onGroupClickListener_=  (p)
     @inline def onGroupClickListener_=(p: android.widget.ExpandableListView.OnGroupClickListener) = { basis.setOnGroupClickListener    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def onGroupCollapseListener   : android.widget.ExpandableListView.OnGroupCollapseListener  = defaultValue[android.widget.ExpandableListView.OnGroupCollapseListener]
 
     @inline def onGroupCollapseListener  (p: android.widget.ExpandableListView.OnGroupCollapseListener) =            onGroupCollapseListener_=  (p)
     @inline def onGroupCollapseListener_=(p: android.widget.ExpandableListView.OnGroupCollapseListener) = { basis.setOnGroupCollapseListener    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def onGroupExpandListener   : android.widget.ExpandableListView.OnGroupExpandListener  = defaultValue[android.widget.ExpandableListView.OnGroupExpandListener]
 
     @inline def onGroupExpandListener  (p: android.widget.ExpandableListView.OnGroupExpandListener) =            onGroupExpandListener_=  (p)
     @inline def onGroupExpandListener_=(p: android.widget.ExpandableListView.OnGroupExpandListener) = { basis.setOnGroupExpandListener    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def selectedGroup   : Int  = defaultValue[Int]
@@ -3239,6 +3359,7 @@ trait WidgetFamily {
     @inline def prompt  (p: java.lang.CharSequence) =            prompt_=  (p)
     @inline def prompt_=(p: java.lang.CharSequence) = { basis.setPrompt    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def promptId   : Int  = defaultValue[Int]
 
@@ -3278,11 +3399,13 @@ trait WidgetFamily {
     @inline def animationDuration  (p: Int) =            animationDuration_=  (p)
     @inline def animationDuration_=(p: Int) = { basis.setAnimationDuration    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def callbackDuringFling   : Boolean  = defaultValue[Boolean]
 
     @inline def callbackDuringFling  (p: Boolean) =            callbackDuringFling_=  (p)
     @inline def callbackDuringFling_=(p: Boolean) = { basis.setCallbackDuringFling    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def gravity   : Int  = defaultValue[Int]
@@ -3290,11 +3413,13 @@ trait WidgetFamily {
     @inline def gravity  (p: Int) =            gravity_=  (p)
     @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def spacing   : Int  = defaultValue[Int]
 
     @inline def spacing  (p: Int) =            spacing_=  (p)
     @inline def spacing_=(p: Int) = { basis.setSpacing    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def unselectedAlpha   : Float  = defaultValue[Float]
@@ -3332,6 +3457,7 @@ trait WidgetFamily {
     @inline def keyProgressIncrement = basis.getKeyProgressIncrement
     @inline def keyProgressIncrement  (p: Int) =            keyProgressIncrement_=  (p)
     @inline def keyProgressIncrement_=(p: Int) = { basis.setKeyProgressIncrement    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def thumb   : android.graphics.drawable.Drawable  = defaultValue[android.graphics.drawable.Drawable]
@@ -3517,6 +3643,8 @@ trait WidgetFamily {
     @inline def smoothScrollingEnabled = basis.isSmoothScrollingEnabled
     @inline def smoothScrollingEnabled  (p: Boolean) =            smoothScrollingEnabled_=  (p)
     @inline def smoothScrollingEnabled_=(p: Boolean) = { basis.setSmoothScrollingEnabled    (p); basis }
+    @inline def  enableSmoothScrolling               = { basis.setSmoothScrollingEnabled(true ); basis }
+    @inline def disableSmoothScrolling               = { basis.setSmoothScrollingEnabled(false); basis }
 
   }
 
@@ -3550,6 +3678,7 @@ trait WidgetFamily {
 
     @inline def anchorView  (p: android.view.View) =            anchorView_=  (p)
     @inline def anchorView_=(p: android.view.View) = { basis.setAnchorView    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def mediaPlayer   : android.widget.MediaController.MediaPlayerControl  = defaultValue[android.widget.MediaController.MediaPlayerControl]
@@ -3595,6 +3724,8 @@ trait WidgetFamily {
     @inline def smoothScrollingEnabled = basis.isSmoothScrollingEnabled
     @inline def smoothScrollingEnabled  (p: Boolean) =            smoothScrollingEnabled_=  (p)
     @inline def smoothScrollingEnabled_=(p: Boolean) = { basis.setSmoothScrollingEnabled    (p); basis }
+    @inline def  enableSmoothScrolling               = { basis.setSmoothScrollingEnabled(true ); basis }
+    @inline def disableSmoothScrolling               = { basis.setSmoothScrollingEnabled(false); basis }
 
   }
 
@@ -3626,6 +3757,7 @@ trait WidgetFamily {
     @inline def currentTab = basis.getCurrentTab
     @inline def currentTab  (p: Int) =            currentTab_=  (p)
     @inline def currentTab_=(p: Int) = { basis.setCurrentTab    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def currentTabByTag   : java.lang.String  = defaultValue[java.lang.String]
@@ -3703,8 +3835,10 @@ trait WidgetFamily {
     @inline def currentMinute  (p: java.lang.Integer) =            currentMinute_=  (p)
     @inline def currentMinute_=(p: java.lang.Integer) = { basis.setCurrentMinute    (p); basis }
 
+
     @inline def is24HourView  (p: java.lang.Boolean) =            is24HourView_=  (p)
     @inline def is24HourView_=(p: java.lang.Boolean) = { basis.setIs24HourView    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def onTimeChangedListener   : android.widget.TimePicker.OnTimeChangedListener  = defaultValue[android.widget.TimePicker.OnTimeChangedListener]
@@ -3803,6 +3937,7 @@ trait WidgetFamily {
     @inline def autoStart  (p: Boolean) =            autoStart_=  (p)
     @inline def autoStart_=(p: Boolean) = { basis.setAutoStart    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def flipInterval   : Int  = defaultValue[Int]
 
@@ -3879,11 +4014,13 @@ trait WidgetFamily {
     @inline def imageDrawable  (p: android.graphics.drawable.Drawable) =            imageDrawable_=  (p)
     @inline def imageDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setImageDrawable    (p); basis }
 
+
     @noEquivalentGetterExists
     @inline def imageResource   : Int  = defaultValue[Int]
 
     @inline def imageResource  (p: Int) =            imageResource_=  (p)
     @inline def imageResource_=(p: Int) = { basis.setImageResource    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def imageURI   : android.net.Uri  = defaultValue[android.net.Uri]
@@ -3923,6 +4060,7 @@ trait WidgetFamily {
 
     @inline def currentText  (p: java.lang.CharSequence) =            currentText_=  (p)
     @inline def currentText_=(p: java.lang.CharSequence) = { basis.setCurrentText    (p); basis }
+
 
     @noEquivalentGetterExists
     @inline def text   : java.lang.CharSequence  = defaultValue[java.lang.CharSequence]
@@ -3995,10 +4133,14 @@ trait WidgetFamily {
     @inline def eventsInterceptionEnabled = basis.isEventsInterceptionEnabled
     @inline def eventsInterceptionEnabled  (p: Boolean) =            eventsInterceptionEnabled_=  (p)
     @inline def eventsInterceptionEnabled_=(p: Boolean) = { basis.setEventsInterceptionEnabled    (p); basis }
+    @inline def  enableEventsInterception               = { basis.setEventsInterceptionEnabled(true ); basis }
+    @inline def disableEventsInterception               = { basis.setEventsInterceptionEnabled(false); basis }
 
     @inline def fadeEnabled = basis.isFadeEnabled
     @inline def fadeEnabled  (p: Boolean) =            fadeEnabled_=  (p)
     @inline def fadeEnabled_=(p: Boolean) = { basis.setFadeEnabled    (p); basis }
+    @inline def  enableFade               = { basis.setFadeEnabled(true ); basis }
+    @inline def disableFade               = { basis.setFadeEnabled(false); basis }
 
     @inline def fadeOffset = basis.getFadeOffset
     @inline def fadeOffset  (p: Long) =            fadeOffset_=  (p)

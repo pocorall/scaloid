@@ -190,12 +190,15 @@ $endif$
 setters(prop) ::= <<
 @inline def $prop.name$  (p: $prop.tpe$) =            $prop.name$_=  (p)
 @inline def $prop.name$_=(p: $prop.tpe$) = { basis.$prop.setter$    (p); basis }
+$if(prop.switch)$
+@inline def  enable$prop.switch$               = { basis.$prop.setter$(true ); basis }
+@inline def disable$prop.switch$               = { basis.$prop.setter$(false); basis }
+$endif$
 >>
 
 property(prop) ::= <<
 $if(prop.getter)$$getter(prop)$$else$$defaultGetter(prop)$$endif$
-$if(prop.setter)$$setters(prop)$
-$endif$
+$if(prop.setter)$$setters(prop)$$endif$
 >>
 
 properties(cls) ::= <<$cls.properties:property(); separator="\n"$>>
