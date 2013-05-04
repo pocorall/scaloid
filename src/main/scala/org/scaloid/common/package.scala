@@ -194,6 +194,7 @@ package object common extends Logger with SystemService with WidgetFamily {
       }
     }
 
+
   class RichEditTextPreference[V <: EditTextPreference](val basis: V) extends TraitEditTextPreference[V]
   @inline implicit def editTextPreference2RichEditTextPreference[V <: EditTextPreference](editTextPreference: V) = new RichEditTextPreference[V](editTextPreference)
 
