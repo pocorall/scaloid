@@ -41,6 +41,7 @@ case class AndroidListener(
   name: String,
   retType: String,
   paramTypes: Seq[String],
+  hasParams: Boolean,
   setter: String,
   callbackClassName: String,
   callbackMethods: Seq[AndroidCallbackMethod]
@@ -104,9 +105,6 @@ object AndroidClassExtractor {
         Introspector.getBeanInfo(parent).getMethodDescriptors.toList.map(m => m.getName).toSet
 
     def toAndroidProperty(pdesc: PropertyDescriptor): Option[AndroidProperty] = {
-      if (superPropNames(pdesc.getName + pdesc.getPropertyType) || "adapter".equals(pdesc.getName))
-        return None
-      
       val displayName = pdesc.getDisplayName
       var nameClashes = false
 
@@ -132,17 +130,22 @@ object AndroidClassExtractor {
     }
 
     def isValidProperty(pdesc: PropertyDescriptor): Boolean =
-      (! pdesc.isInstanceOf[IndexedPropertyDescriptor]) && pdesc.getDisplayName.matches("^[a-zA-z].*")
+      (! pdesc.isInstanceOf[IndexedPropertyDescriptor]) && pdesc.getDisplayName.matches("^[a-zA-z].*") &&
+      (! superPropNames(pdesc.getName + pdesc.getPropertyType)) && ( ! "adapter".equals(pdesc.getName))
 
     def isListenerSetterOrAdder(mdesc: MethodDescriptor): Boolean = {
       val name = mdesc.getName
       name.matches("^(set|add).+Listener$") && (! superMethodNames(name))
     }
 
+    def isCallbackMethod(mdesc: MethodDescriptor): Boolean =
+      ! mdesc.getName.startsWith("get")
+
     def extractMethodsFromListener(callbackCls: Class[_]) =
       Introspector
         .getBeanInfo(callbackCls)
         .getMethodDescriptors
+        .filter(isCallbackMethod)
         .map(AndroidMethod.fromMethodDescriptor)
         .toList
     
@@ -158,6 +161,7 @@ object AndroidClassExtractor {
           cm.name,
           callbackMethods.find(_.name == cm.name).get.retType,
           cm.paramTypes,
+          cm.paramTypes.nonEmpty,
           setter,
           callbackClassName,
           callbackMethods.map { icm =>

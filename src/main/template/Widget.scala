@@ -435,7 +435,7 @@ $endif$
   $wholeClassDef(android.view.SurfaceView, "TraitView[V]")$
   $wholeClassDef(android.opengl.GLSurfaceView, "TraitSurfaceView[V]")$
   $wholeClassDef(android.widget.VideoView, "TraitSurfaceView[V]")$
-  $wholeClassDef(android.view.ViewStub, "TraitView[V]")$
+  $richClassDef(android.view.ViewStub, "TraitView[V]")$
   $wholeClassDef(android.widget.GridView, "TraitAbsListView[V]")$
   $wholeClassDef(android.widget.ExpandableListView, "TraitListView[V]")$
 
@@ -452,10 +452,10 @@ $endif$
 
   $wholeClassDef(android.widget.Spinner, "TraitAbsSpinner[V]")$
   $wholeClassDef(android.widget.Gallery, "TraitAbsSpinner[V]")$
-  $wholeClassDef(android.widget.AbsSeekBar, "TraitProgressBar[V]")$
+  $richClassDef(android.widget.AbsSeekBar, "TraitProgressBar[V]")$
   $wholeClassDef(android.widget.SeekBar, "TraitAbsSeekBar[V]")$
   $wholeClassDef(android.widget.RatingBar, "TraitAbsSeekBar[V]")$
-  $wholeClassDef(android.appwidget.AppWidgetHostView, "TraitFrameLayout[V]")$
+  $richClassDef(android.appwidget.AppWidgetHostView, "TraitFrameLayout[V]")$
   $wholeClassDef(android.widget.HorizontalScrollView, "TraitFrameLayout[V]")$
   $wholeClassDef(android.widget.MediaController, "TraitFrameLayout[V]")$
   $wholeClassDef(android.widget.ScrollView, "TraitFrameLayout[V]")$
