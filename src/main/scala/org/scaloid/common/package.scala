@@ -1,33 +1,3 @@
-
-/*
- *
- *
- *
- *
- * Less painful Android development with Scala
- *
- * http://scaloid.org
- *
- *
- *
- *
- *
- *
- * Copyright 2013 Sung-Ho Lee
- *
- * Sung-Ho Lee licenses this file to you under the Apache License,
- * version 2.0 (the "License"); you may not use this file except in compliance
- * with the License. You may obtain a copy of the License at:
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations
- * under the License.
- */
-
 package org.scaloid
 
 import android.app._
@@ -67,6 +37,7 @@ import android.widget.TextView.OnEditorActionListener
 import android.graphics._
 import android.opengl._
 
+import language.implicitConversions
 
 /**
  * Common Scaloid Package
@@ -148,10 +119,10 @@ package object common extends Logger with SystemService with WidgetFamily {
     } while(activity.findViewById(candidate) != null)
     candidate
   }
-  
+
   class RichMenu(menu: Menu) {
     @inline def +=(txt: CharSequence) = menu.add(txt)
-    
+
     @inline def inflate(id: Int)(implicit activity: Activity) = {
       val inflater = activity.getMenuInflater
       inflater.inflate(id, menu)
@@ -163,6 +134,7 @@ package object common extends Logger with SystemService with WidgetFamily {
 
 
   class RichContextMenu(basis: ContextMenu) {
+
     @inline def headerTitle_=(p: CharSequence) = {
       basis.setHeaderTitle(p)
       basis
@@ -208,62 +180,47 @@ package object common extends Logger with SystemService with WidgetFamily {
   @inline implicit def string2IntentFilter  (str: String): IntentFilter   = new IntentFilter(str)
 
 
-implicit def func2runnable[F](f: () => F): Runnable =
-  new Runnable() {
-    def run() {
-      f()
+  implicit def func2runnable[F](f: () => F): Runnable =
+    new Runnable() {
+      def run() {
+        f()
+      }
     }
-  }
 
-implicit def lazy2runnable[F](f: => F): Runnable =
-  new Runnable() {
-    def run() {
-      f
+  implicit def lazy2runnable[F](f: => F): Runnable =
+    new Runnable() {
+      def run() {
+        f
+      }
     }
-  }
+
 
   class RichEditTextPreference[V <: EditTextPreference](val basis: V) extends TraitEditTextPreference[V]
   @inline implicit def editTextPreference2RichEditTextPreference[V <: EditTextPreference](editTextPreference: V) = new RichEditTextPreference[V](editTextPreference)
 
   trait TraitEditTextPreference[V <: EditTextPreference] {
 
-    @inline def onPreferenceChange(f:  => Boolean): V = {
-      basis.setOnPreferenceChangeListener(new OnPreferenceChangeListener {
-        def onPreferenceChange(p1: Preference, p2: Object): Boolean = { f }
-      })
-      basis
-    }
-
-    @inline def onPreferenceChange(f: (Preference, Object) => Boolean): V = {
-      basis.setOnPreferenceChangeListener(new OnPreferenceChangeListener {
-        def onPreferenceChange(p1: Preference, p2: Object): Boolean = { f(p1, p2) }
-      })
-      basis
-    }
-
-    @inline def onPreferenceClick(f:  => Boolean): V = {
-      basis.setOnPreferenceClickListener(new OnPreferenceClickListener {
-        def onPreferenceClick(p1: Preference): Boolean = { f }
-      })
-      basis
-    }
-
-    @inline def onPreferenceClick(f: (Preference) => Boolean): V = {
-      basis.setOnPreferenceClickListener(new OnPreferenceClickListener {
-        def onPreferenceClick(p1: Preference): Boolean = { f(p1) }
-      })
-      basis
-    }
-
     def basis: V
+    @inline def editText = basis.getEditText
+
+    @inline def text = basis.getText
+    @inline def text  (p: java.lang.String) =            text_=  (p)
+    @inline def text_=(p: java.lang.String) = { basis.setText    (p); basis }
+
   }
 
-  class SEditTextPreference(implicit context: Context) extends EditTextPreference(context) with TraitEditTextPreference[SEditTextPreference] {
+  class SEditTextPreference(implicit context: Context)
+      extends EditTextPreference(context) with TraitEditTextPreference[SEditTextPreference] {
     def basis = this
+
   }
 
   object SEditTextPreference {
+
     def apply()(implicit context: Context): SEditTextPreference = new SEditTextPreference
+
+
+
   }
 
   class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = null)(implicit context: Context) extends AlertDialog.Builder(context) {
@@ -433,10 +390,10 @@ implicit def lazy2runnable[F](f: => F): Runnable =
       this
     }
   }
-  
+
   object SArrayAdapter {
     def apply[T <: AnyRef : Manifest](items:T*)(implicit context: Context) = new SArrayAdapter(items.toArray)
-	
+
     def apply[T <: AnyRef](items:Array[T])(implicit context: Context) = new SArrayAdapter(items)	
   }  
 
@@ -450,5 +407,4 @@ implicit def lazy2runnable[F](f: => F): Runnable =
     reg.onUnregister(ctx.unregisterReceiver(receiver))
   }
 }
-
 
