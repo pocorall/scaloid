@@ -929,7 +929,7 @@ trait WidgetFamily {
 
   }
 
-  trait TraitAbsListView[V <: AbsListView] extends TraitView[V] {
+  trait TraitAbsListView[V <: AbsListView] extends TraitAdapterView[V] {
     @inline def cacheColorHint = basis.getCacheColorHint
     @inline def cacheColorHint  (p: Int) =            cacheColorHint_=  (p)
     @inline def cacheColorHint_=(p: Int) = { basis.setCacheColorHint    (p); basis }
