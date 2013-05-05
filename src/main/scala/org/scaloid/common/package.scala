@@ -205,7 +205,7 @@ package object common extends Logger with SystemService with WidgetFamily {
 
     @inline def text = basis.getText
     @inline def text  (p: java.lang.String) =            text_=  (p)
-    @inline def text_=(p: java.lang.String) = { basis.setText    (p); basis } 
+    @inline def text_=(p: java.lang.String) = { basis.setText    (p); basis }
 
   }
 

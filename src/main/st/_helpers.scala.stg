@@ -198,7 +198,7 @@ switch(name, setter) ::= <<
 >>
 
 setters(prop) ::= <<
-$prop.setters:{ s | $setter(prop, s)$ }; separator="\n"$
+$prop.setters:{ s | $setter(prop, s)$}; separator="\n"$
 $if(prop.switch)$
 $switch(prop.switch, first(prop.setters))$
 $endif$
