@@ -6,7 +6,7 @@ decap(str) ::= <<$str; format="decap"$>>
 
 // Class
 
-wholeClassDef(cls, parent, body) ::= <<
+wholeClassDef(cls, parents, body) ::= <<
 $richClassDef(...)$
 
 $concreteClassDef(cls)$
@@ -16,14 +16,14 @@ $companionObjectDef(...)$
 
 
 
-openRichClassDef(cls, parent, body) ::= <<$_openRichClassDef(cls.simpleName, parent, body)$>>
-_openRichClassDef(name, parent, body) ::= <<
+openRichClassDef(cls, parents, body) ::= <<$_openRichClassDef(cls.simpleName, parents, body)$>>
+_openRichClassDef(name, parents, body) ::= <<
 
 
 class Rich$name$[V <: $name$](val basis: V) extends Trait$name$[V]
 @inline implicit def $decap(name)$2Rich$name$[V <: $name$]($decap(name)$: V) = new Rich$name$[V]($decap(name)$)
 
-trait Trait$name$[V <: $name$]$if(parent)$ extends $parent$$endif$ {
+trait Trait$name$[V <: $name$]$if(parents)$ extends $parents; separator=" with "$$endif$ {
 
   $if( ! cls.isA.View)$def basis: V$endif$
 >>
@@ -34,7 +34,7 @@ closeRichClassDef(cls) ::= <<
 }
 >>
 
-richClassDef(cls, parent) ::= <<
+richClassDef(cls, parents) ::= <<
 $openRichClassDef(...)$
 $closeRichClassDef(...)$
 >>
