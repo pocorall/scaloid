@@ -1,7 +1,17 @@
+# SBT
 target
 project/target
 project/project
 lib_managed
+
+# IntelliJ IDEA
+.idea
+.idea_modules
+
+# VIM
+*.sw?
+
+# The others
 [#]*[#]
 *~
 .*.marks
