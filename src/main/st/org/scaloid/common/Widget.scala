@@ -417,18 +417,18 @@ $endif$
     orientation = VERTICAL
   }
 
-  $wholeClassDef(android.widget.EditText, "TraitTextView[V]", textViewBody)$
-  $wholeClassDef(android.inputmethodservice.ExtractEditText, "TraitEditText[V]", textViewBody)$
-  $wholeClassDef(android.widget.AutoCompleteTextView, "TraitEditText[V]", textViewBody)$
+  $wholeClassDef(android.widget.EditText, "TraitTextView[V]")$
+  $wholeClassDef(android.inputmethodservice.ExtractEditText, "TraitEditText[V]")$
+  $wholeClassDef(android.widget.AutoCompleteTextView, "TraitEditText[V]")$
   $wholeClassDef(android.widget.ListView, "TraitAbsListView[V]")$
-  $wholeClassDef(android.widget.Button, "TraitTextView[V]", buttonObjectBody)$
+  $wholeClassDef(android.widget.Button, "TraitTextView[V]")$
   $wholeClassDef(android.widget.CompoundButton, "TraitButton[V]")$
-  $wholeClassDef(android.widget.CheckBox, "TraitCompoundButton[V]", buttonObjectBody)$
-  $wholeClassDef(android.widget.RadioButton, "TraitCompoundButton[V]", buttonObjectBody)$
-  $wholeClassDef(android.widget.ToggleButton, "TraitCompoundButton[V]", buttonObjectBody)$
-  $wholeClassDef(android.widget.CheckedTextView, "TraitTextView[V]", textviewBody)$
-  $wholeClassDef(android.widget.Chronometer, "TraitTextView[V]", textviewBody)$
-  $wholeClassDef(android.widget.DigitalClock, "TraitTextView[V]", textviewBody)$
+  $wholeClassDef(android.widget.CheckBox, "TraitCompoundButton[V]")$
+  $wholeClassDef(android.widget.RadioButton, "TraitCompoundButton[V]")$
+  $wholeClassDef(android.widget.ToggleButton, "TraitCompoundButton[V]")$
+  $wholeClassDef(android.widget.CheckedTextView, "TraitTextView[V]")$
+  $wholeClassDef(android.widget.Chronometer, "TraitTextView[V]")$
+  $wholeClassDef(android.widget.DigitalClock, "TraitTextView[V]")$
   $richClassDef(android.inputmethodservice.KeyboardView, "TraitView[V]")$
   $wholeClassDef(android.widget.ImageView, "TraitView[V]")$
   $wholeClassDef(android.widget.ImageButton, "TraitImageView[V]")$
