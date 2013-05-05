@@ -622,10 +622,10 @@ trait WidgetFamily {
     @inline def highlightColor_=(p: Int) = { basis.setHighlightColor    (p); basis } 
 
     @inline def hint = basis.getHint
-    @inline def hint  (p: java.lang.CharSequence) =            hint_=  (p)
-    @inline def hint_=(p: java.lang.CharSequence) = { basis.setHint    (p); basis } 
     @inline def hint  (p: Int) =            hint_=  (p)
     @inline def hint_=(p: Int) = { basis.setHint    (p); basis } 
+    @inline def hint  (p: java.lang.CharSequence) =            hint_=  (p)
+    @inline def hint_=(p: java.lang.CharSequence) = { basis.setHint    (p); basis } 
 
     @noEquivalentGetterExists
     @inline def hintTextColor    : android.content.res.ColorStateList  = defaultValue[android.content.res.ColorStateList]
@@ -681,11 +681,11 @@ trait WidgetFamily {
     @inline def lines_=(p: Int) = { basis.setLines    (p); basis } 
 
     @noEquivalentGetterExists
-    @inline def linkTextColor    : Int  = defaultValue[Int]
-    @inline def linkTextColor  (p: android.content.res.ColorStateList) =            linkTextColor_=  (p)
-    @inline def linkTextColor_=(p: android.content.res.ColorStateList) = { basis.setLinkTextColor    (p); basis } 
+    @inline def linkTextColor    : android.content.res.ColorStateList  = defaultValue[android.content.res.ColorStateList]
     @inline def linkTextColor  (p: Int) =            linkTextColor_=  (p)
     @inline def linkTextColor_=(p: Int) = { basis.setLinkTextColor    (p); basis } 
+    @inline def linkTextColor  (p: android.content.res.ColorStateList) =            linkTextColor_=  (p)
+    @inline def linkTextColor_=(p: android.content.res.ColorStateList) = { basis.setLinkTextColor    (p); basis } 
 
     @inline def linkTextColors = basis.getLinkTextColors
 

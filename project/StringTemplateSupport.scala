@@ -51,27 +51,19 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
   }
 
   private def toJava(cc: Any): Any = cc match {
-    case m: Map[_, _] => mapAsJavaMap(m.mapValues(toJava))
     case s: java.lang.String => s
-    case t =>
-      val map = (Map[String, Any]() /: t.getClass.getDeclaredFields) { (a, f) =>
+    case xs: Seq[_] => xs.map(toJava).toArray
+    case o: Option[_] => o.map(toJava).getOrElse(null)
+    case m: Map[_, _] => mapAsJavaMap(m.mapValues(toJava))
+    case s: Set[_] => mapAsJavaMap(s.map(toJava).zip(Stream.continually(true)).toMap)
+    case p: Product =>
+      // this covers tuples as well as case classes, so there may be a more specific way
+      val map = p.getClass.getDeclaredFields.map { f =>
         f.setAccessible(true)
-        val value = f.get(cc) match {
-          case s: java.lang.String => s
-          case s: Set[_] => mapAsJavaMap(s.map(toJava).zip(Stream.continually(true)).toMap)
-          case o: Option[_] => o.map(toJava).getOrElse(null)
-          case xs: Seq[_] =>
-            if (f.getGenericType.toString.contains("java.lang.String")) // TODO compare parameterized types properly
-              xs.toArray[Any]
-            else
-              xs.map(toJava).toArray
-          // this covers tuples as well as case classes, so there may be a more specific way
-          case caseClassInstance: Product => toJava(caseClassInstance)
-          case x => x
-        }
-        a + (f.getName -> value)
-      }
+        f.getName -> toJava(f.get(cc))
+      }.toMap
       mapAsJavaMap(map)
+    case x => x
   }
 
   private class StringRenderer extends AttributeRenderer {
