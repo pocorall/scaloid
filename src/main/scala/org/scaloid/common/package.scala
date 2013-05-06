@@ -265,10 +265,10 @@ package object common extends Logger with SystemService with WidgetFamily {
     @inline def summary_=(p: java.lang.CharSequence) = { basis.setSummary    (p); basis }
 
     @inline def title = basis.getTitle
-    @inline def title  (p: java.lang.CharSequence) =            title_=  (p)
-    @inline def title_=(p: java.lang.CharSequence) = { basis.setTitle    (p); basis }
     @inline def title  (p: Int) =            title_=  (p)
     @inline def title_=(p: Int) = { basis.setTitle    (p); basis }
+    @inline def title  (p: java.lang.CharSequence) =            title_=  (p)
+    @inline def title_=(p: java.lang.CharSequence) = { basis.setTitle    (p); basis }
 
     @inline def widgetLayoutResource = basis.getWidgetLayoutResource
     @inline def widgetLayoutResource  (p: Int) =            widgetLayoutResource_=  (p)
@@ -288,16 +288,16 @@ package object common extends Logger with SystemService with WidgetFamily {
       basis
     }
 
-    @inline def onPreferenceClick(f: (android.preference.Preference) => Boolean): V = {
+    @inline def onPreferenceClick(f: android.preference.Preference => Boolean): V = {
       basis.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener {
-        def onPreferenceClick(p1: android.preference.Preference): Boolean = { f(p1) }
+        def onPreferenceClick(p: android.preference.Preference): Boolean = { f(p) }
       })
       basis
     }
 
     @inline def onPreferenceClick(f: => Boolean): V = {
       basis.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener {
-        def onPreferenceClick(p1: android.preference.Preference): Boolean = { f }
+        def onPreferenceClick(p: android.preference.Preference): Boolean = { f }
       })
       basis
     }
@@ -315,6 +315,7 @@ package object common extends Logger with SystemService with WidgetFamily {
 
   }
 
+
   class RichDialogPreference[V <: DialogPreference](val basis: V) extends TraitDialogPreference[V]
   @inline implicit def dialogPreference2RichDialogPreference[V <: DialogPreference](dialogPreference: V) = new RichDialogPreference[V](dialogPreference)
 
@@ -324,20 +325,20 @@ package object common extends Logger with SystemService with WidgetFamily {
     @inline def dialog = basis.getDialog
 
     @inline def dialogIcon = basis.getDialogIcon
-    @inline def dialogIcon  (p: android.graphics.drawable.Drawable) =            dialogIcon_=  (p)
-    @inline def dialogIcon_=(p: android.graphics.drawable.Drawable) = { basis.setDialogIcon    (p); basis }
     @inline def dialogIcon  (p: Int) =            dialogIcon_=  (p)
     @inline def dialogIcon_=(p: Int) = { basis.setDialogIcon    (p); basis }
+    @inline def dialogIcon  (p: android.graphics.drawable.Drawable) =            dialogIcon_=  (p)
+    @inline def dialogIcon_=(p: android.graphics.drawable.Drawable) = { basis.setDialogIcon    (p); basis }
 
     @inline def dialogLayoutResource = basis.getDialogLayoutResource
     @inline def dialogLayoutResource  (p: Int) =            dialogLayoutResource_=  (p)
     @inline def dialogLayoutResource_=(p: Int) = { basis.setDialogLayoutResource    (p); basis }
 
     @inline def dialogMessage = basis.getDialogMessage
-    @inline def dialogMessage  (p: java.lang.CharSequence) =            dialogMessage_=  (p)
-    @inline def dialogMessage_=(p: java.lang.CharSequence) = { basis.setDialogMessage    (p); basis }
     @inline def dialogMessage  (p: Int) =            dialogMessage_=  (p)
     @inline def dialogMessage_=(p: Int) = { basis.setDialogMessage    (p); basis }
+    @inline def dialogMessage  (p: java.lang.CharSequence) =            dialogMessage_=  (p)
+    @inline def dialogMessage_=(p: java.lang.CharSequence) = { basis.setDialogMessage    (p); basis }
 
     @inline def dialogTitle = basis.getDialogTitle
     @inline def dialogTitle  (p: Int) =            dialogTitle_=  (p)
@@ -352,10 +353,10 @@ package object common extends Logger with SystemService with WidgetFamily {
     @inline def negativeButtonText_=(p: java.lang.CharSequence) = { basis.setNegativeButtonText    (p); basis }
 
     @inline def positiveButtonText = basis.getPositiveButtonText
-    @inline def positiveButtonText  (p: java.lang.CharSequence) =            positiveButtonText_=  (p)
-    @inline def positiveButtonText_=(p: java.lang.CharSequence) = { basis.setPositiveButtonText    (p); basis }
     @inline def positiveButtonText  (p: Int) =            positiveButtonText_=  (p)
     @inline def positiveButtonText_=(p: Int) = { basis.setPositiveButtonText    (p); basis }
+    @inline def positiveButtonText  (p: java.lang.CharSequence) =            positiveButtonText_=  (p)
+    @inline def positiveButtonText_=(p: java.lang.CharSequence) = { basis.setPositiveButtonText    (p); basis }
 
   }
 
@@ -384,6 +385,7 @@ package object common extends Logger with SystemService with WidgetFamily {
     def apply()(implicit context: Context): SEditTextPreference = new SEditTextPreference
 
   }
+
 
   class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = null)(implicit context: Context) extends AlertDialog.Builder(context) {
     if (_title != null) setTitle(_title)

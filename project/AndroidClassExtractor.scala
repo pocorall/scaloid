@@ -8,29 +8,37 @@ import java.lang.reflect._
 
 object AndroidClassExtractor {
 
-  def toScalaType(tpe: Type): String = tpe match {
-    case null => throw new Error("Property cannot be null")
-    case t: GenericArrayType => 
-      "Array[" + toScalaType(t.getGenericComponentType) + "]"
-    case t: ParameterizedType => toScalaType(t.getRawType) +
-      "[" + t.getActualTypeArguments.map(toScalaType(_)).mkString + "]"
-    case t: TypeVariable[_] => t.getName
-    case t: WildcardType => "_" //t.toString
-    case t: Class[_] => {
-      if (t.isArray) {
-        "Array[" + toScalaType(t.getComponentType) + "]"
-      } else if (t.isPrimitive) {
-        t.getName match {
-          case "void" => "Unit"
-          case n => n.capitalize
+  def toScalaType(tpe: Type): ScalaType =
+    tpe match {
+      case null => throw new Error("Property cannot be null")
+      case t: GenericArrayType =>
+        ScalaType("Array", Seq(toScalaType(t.getGenericComponentType)))
+      case t: ParameterizedType =>
+        ScalaType(
+          toScalaType(t.getRawType).name,
+          t.getActualTypeArguments.map(toScalaType).toSeq
+        )
+      case t: TypeVariable[_] =>
+        ScalaType(t.getName, t.getBounds.map(toScalaType).toSeq, true)
+      case t: WildcardType => ScalaType("_")
+      case t: Class[_] => {
+        if (t.isArray) {
+          ScalaType("Array", Seq(toScalaType(t.getComponentType)))
+        } else if (t.isPrimitive) {
+          ScalaType(t.getName match {
+            case "void" => "Unit"
+            case n => n.capitalize
+          })
+        } else {
+          ScalaType(t.getName.replace("$", "."))
         }
-      } else {
-        t.getName.replace("$", ".")
       }
+      case _ =>
+        throw new Error("Cannot find type of " + tpe.getClass + " ::" + tpe.toString)
     }
-    case _ => 
-      throw new Error("Cannot find type of " + tpe.getClass + " ::" + tpe.toString)
-  }
+
+  private def isAbstract(m: Member): Boolean = Modifier.isAbstract(m.getModifiers)
+  private def isAbstract(c: Class[_]): Boolean = Modifier.isAbstract(c.getModifiers)
 
   private def toAndroidClass(cls: Class[_]) = {
     val parent = cls.getSuperclass
@@ -48,7 +56,7 @@ object AndroidClassExtractor {
 
     def isValidProperty(pdesc: PropertyDescriptor): Boolean =
       (! pdesc.isInstanceOf[IndexedPropertyDescriptor]) && pdesc.getDisplayName.matches("^[a-zA-z].*") &&
-      (! superPropNames(pdesc.getName + pdesc.getPropertyType)) && ( ! "adapter".equals(pdesc.getName))
+      (! superPropNames(pdesc.getName + pdesc.getPropertyType))
 
     def isListenerSetterOrAdder(mdesc: MethodDescriptor): Boolean = {
       val name = mdesc.getName
@@ -65,12 +73,16 @@ object AndroidClassExtractor {
         .map(toAndroidMethod)
         .toList
 
-    def toAndroidMethod(m: Method): AndroidMethod =
-      AndroidMethod(
-        m.getName,
-        AndroidClassExtractor.toScalaType(m.getReturnType),
-        Option(m.getGenericParameterTypes).flatten.toSeq.map(AndroidClassExtractor.toScalaType)
-      )
+    def toAndroidMethod(m: Method): AndroidMethod = {
+      val name = m.getName
+      val retType = AndroidClassExtractor.toScalaType(m.getGenericReturnType)
+      val argTypes = Option(m.getGenericParameterTypes)
+                      .flatten
+                      .toSeq
+                      .map(AndroidClassExtractor.toScalaType(_))
+      val paramedTypes = (retType +: argTypes).filter(_.isVar).distinct
+      AndroidMethod(name, retType, argTypes, paramedTypes, isAbstract(m))
+    }
 
     def getPolymorphicSetters(method: Method): Seq[AndroidMethod] = {
       val name = method.getName
@@ -78,7 +90,7 @@ object AndroidClassExtractor {
         .filter(s => s.getName == name && ! superMethodNames(s.getName))
         .map(_.getMethod)
         .map(toAndroidMethod)
-        .filter(_.paramTypes.length == 1)
+        .filter(_.argTypes.length == 1)
         .toSeq
     }
 
@@ -100,7 +112,7 @@ object AndroidClassExtractor {
         None
       } else {
         val getter = readMethod map toAndroidMethod
-        val setters = writeMethod.map(getPolymorphicSetters).toSeq.flatten
+        val setters = writeMethod.map(getPolymorphicSetters).toSeq.flatten.sortBy(_.argTypes(0).name)
         val tpe = readMethod.map(_.getGenericReturnType).getOrElse(writeMethod.get.getGenericParameterTypes()(0))
         val switch = if (name.endsWith("Enabled")) Some(name.replace("Enabled", "").capitalize) else None
 
@@ -113,22 +125,22 @@ object AndroidClassExtractor {
       val method = mdesc.getMethod
       val setter = mdesc.getName
       val paramsDescs: List[ParameterDescriptor] = Option(mdesc.getParameterDescriptors).toList.flatten
-      val callbackClassName = toScalaType(method.getGenericParameterTypes()(0))
+      val callbackClassName = toScalaType(method.getGenericParameterTypes()(0)).name
       val callbackMethods   = extractMethodsFromListener(method.getParameterTypes()(0))
 
       callbackMethods.map { cm =>
         AndroidListener(
           cm.name,
           callbackMethods.find(_.name == cm.name).get.retType,
-          cm.paramTypes,
-          cm.paramTypes.nonEmpty,
+          cm.argTypes,
+          cm.argTypes.nonEmpty,
           setter,
           callbackClassName,
           callbackMethods.map { icm =>
             AndroidCallbackMethod(
               icm.name,
               icm.retType,
-              icm.paramTypes,
+              icm.argTypes,
               icm.name == cm.name
             )
           }
@@ -160,7 +172,7 @@ object AndroidClassExtractor {
 
     val isA = getHierarchy(cls).toSet
 
-    AndroidClass(fullName, simpleName, pkg, parentName, isA, props, listeners)
+    AndroidClass(fullName, simpleName, pkg, parentName, props, listeners, isA, isAbstract(cls))
   }
 
   def extractTask = (streams) map { s =>

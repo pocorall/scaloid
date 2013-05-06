@@ -3,15 +3,19 @@ delimiters "$", "$"
 cap(str) ::= <<$str; format="cap"$>>
 decap(str) ::= <<$str; format="decap"$>>
 
+name(t) ::= <<$t.name$>>
+names(ts) ::= <<$ts:name(); separator=", "$>>
 
 // Class
 
 wholeClassDef(base, mixin, body) ::= <<
 $richClassDef(...)$
 
+$if(! base.isAbstract)$
 $concreteClassDef(base)$
 
 $companionObjectDef(...)$
+$endif$
 >>
 
 extendClause(parent, mixin) ::= <%
@@ -130,32 +134,70 @@ def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](text: CharSequence, on
 >>
 
 
-// Listener
+// method
 
-paramTypes(types) ::= <<($types; separator=", "$)>>
+genType(t) ::= <%
+$t.name$
+$if(first(t.params).name && ! t.isVar)$
+[$(names(t.params))$]
+$endif$
+%>
 
-params(types) ::= <<$types:{ t | p$i$: $t$}; separator=", "$>>
+argTypes(types) ::= <%
+$if(first(rest(types)))$
+($types:genType(); separator=", "$)
+$else$
+$genType(first(types))$
+$endif$
+%>
 
-callParams(types) ::= <<$types:{ t | p$i$}; separator=", "$>>
+namedArgs(types) ::= <%
+$if(first(rest(types)).name)$
+$types:{ t | p$i$: $genType(t)$}; separator=", "$
+$elseif(first(types).name)$
+p: $genType(first(types))$
+$endif$
+%>
+
+callArgs(types) ::= <%
+$if(first(rest(types)).name)$
+$types:{ t | p$i$}; separator=", "$
+$elseif(first(types).name)$
+p
+$endif$
+%>
+
+paramedType(t) ::= <%
+$t.name$ <: $t.params:genType(); separator=" with "$
+%>
+
+paramedTypes(pTypes) ::= <%
+$if(first(pTypes).name)$
+[$pTypes:paramedType(); separator=", "$]
+$endif$
+%>
+
+
+// listener
 
 callbackBody(method, isUnit = false) ::= <%
 $if(method.hasBody)$
   $if(isUnit)$
     f
   $else$
-    f($callParams(method.paramTypes)$)
+    f($callArgs(method.argTypes)$)
   $endif$
 $endif$
 %>
 
 callbackMethod(method, isUnit = false) ::= <<
-def $method.name$($params(method.paramTypes)$): $method.retType$ = { $callbackBody(...)$ }
+def $method.name$$paramedTypes(paramedTypes)$($namedArgs(method.argTypes)$): $genType(method.retType)$ = { $callbackBody(...)$ }
 >>
 
 unitCallbackMethod(method) ::= <<$callbackMethod(method, true)$>>
 
 fullListener(l) ::= <<
-@inline def $l.name$(f: $paramTypes(l.paramTypes)$ => $l.retType$): V = {
+@inline def $l.name$(f: $argTypes(l.argTypes)$ => $genType(l.retType)$): V = {
   basis.$l.setter$(new $l.callbackClassName$ {
     $l.callbackMethods:callbackMethod(); separator="\n"$
   })
@@ -164,7 +206,7 @@ fullListener(l) ::= <<
 >>
 
 unitListener(l) ::= <<
-@inline def $l.name$(f: => $l.retType$): V = {
+@inline def $l.name$(f: => $genType(l.retType)$): V = {
   basis.$l.setter$(new $l.callbackClassName$ {
     $l.callbackMethods:unitCallbackMethod(); separator="\n"$
   })
@@ -173,7 +215,7 @@ unitListener(l) ::= <<
 >>
 
 listener(l) ::= <<
-$if(l.hasParams)$$fullListener(l)$$endif$
+$if(first(l.argTypes).name)$$fullListener(l)$$endif$
 
 $unitListener(l)$
 >>
@@ -183,18 +225,19 @@ listeners(base) ::= <<$base.listeners:listener(); separator="\n\n"$>>
 
 // property
 
+
 getter(prop) ::= <<
 $if(prop.getter)$
 @inline def $prop.name$ = basis.$prop.getter.name$
 $elseif( ! prop.nameClashes)$
 @noEquivalentGetterExists
-@inline def $prop.name$    : $prop.tpe$  = _defaultValue[$prop.tpe$]
+@inline def $prop.name$    : $genType(prop.tpe)$  = _defaultValue[$genType(prop.tpe)$]
 $endif$
 >>
 
 setter(prop, method) ::= <<
-@inline def $prop.name$  (p: $method.paramTypes$) =            $prop.name$_=  (p)
-@inline def $prop.name$_=(p: $method.paramTypes$) = { basis.$method.name$    (p); basis }
+@inline def $prop.name$  $paramedTypes(method.paramedTypes)$($namedArgs(method.argTypes)$) =            $prop.name$_=  (p)
+@inline def $prop.name$_=$paramedTypes(method.paramedTypes)$($namedArgs(method.argTypes)$) = { basis.$method.name$    (p); basis }
 >>
 
 switch(name, setter) ::= <<
