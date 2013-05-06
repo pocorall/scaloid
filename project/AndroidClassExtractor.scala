@@ -160,8 +160,6 @@ object AndroidClassExtractor {
 
     val isA = getHierarchy(cls).toSet
 
-    println("%s extends %s".format(fullName, parentName))
-
     AndroidClass(fullName, simpleName, pkg, parentName, isA, props, listeners)
   }
 
