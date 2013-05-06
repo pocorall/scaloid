@@ -6,46 +6,51 @@ decap(str) ::= <<$str; format="decap"$>>
 
 // Class
 
-wholeClassDef(cls, parent, body) ::= <<
+wholeClassDef(base, mixin, body) ::= <<
 $richClassDef(...)$
 
-$concreteClassDef(cls)$
+$concreteClassDef(base)$
 
 $companionObjectDef(...)$
 >>
 
+extendClause(parent, mixin) ::= <%
+$if(parent || mixin)$ extends $endif$
+$if(parent)$Trait$parent; format="simple"$[V]$endif$
+$if(parent && mixin)$ with $endif$
+$mixin; separator=" with "$
+%>
 
-
-openRichClassDef(cls, parent, body) ::= <<$_openRichClassDef(cls.simpleName, parent, body)$>>
-_openRichClassDef(name, parent, body) ::= <<
+openRichClassDef(base, mixin, body) ::= <<$_openRichClassDef(base.simpleName, mixin, body)$>>
+_openRichClassDef(name, mixin, body) ::= <<
 
 
 class Rich$name$[V <: $name$](val basis: V) extends Trait$name$[V]
 @inline implicit def $decap(name)$2Rich$name$[V <: $name$]($decap(name)$: V) = new Rich$name$[V]($decap(name)$)
 
-trait Trait$name$[V <: $name$]$if(parent)$ extends $parent$$endif$ {
+trait Trait$name$[V <: $name$]$extendClause(base.parent, mixin)$ {
 
-  $if( ! cls.isA.View)$def basis: V$endif$
+  $if(! base.parent)$def basis: V$endif$
 >>
 
-closeRichClassDef(cls) ::= <<
-  $properties(cls)$
-  $listeners(cls)$
+closeRichClassDef(base) ::= <<
+  $properties(base)$
+  $listeners(base)$
 }
 >>
 
-richClassDef(cls, parent) ::= <<
+richClassDef(base, mixin, body) ::= <<
 $openRichClassDef(...)$
 $closeRichClassDef(...)$
 >>
 
 withPrefix(name) ::= "S$name$"
 
-openConcreteClassDef(cls) ::= <<
-$if(cls.isA.View)$
-$_openConcreteViewClassDef(cls.simpleName, withPrefix(cls.simpleName))$
+openConcreteClassDef(base) ::= <<
+$if(base.isA.View)$
+$_openConcreteViewClassDef(base.simpleName, withPrefix(base.simpleName))$
 $else$
-$_openConcreteNonViewClassDef(cls.simpleName, withPrefix(cls.simpleName))$
+$_openConcreteNonViewClassDef(base.simpleName, withPrefix(base.simpleName))$
 $endif$
 >>
 
@@ -64,32 +69,32 @@ class $prefixedName$(implicit context: Context)
 
 closeConcreteClassDef() ::= "}"
 
-concreteClassDef(cls) ::= <<
-$openConcreteClassDef(cls)$
+concreteClassDef(base) ::= <<
+$openConcreteClassDef(base)$
 $closeConcreteClassDef()$
 >>
 
 
 // companion object
 
-companionObjectDef(cls) ::= <<$_companionObjectDef(cls, cls.simpleName, withPrefix(cls.simpleName))$>>
-_companionObjectDef(cls, name, prefixedName) ::= <<
+companionObjectDef(base) ::= <<$_companionObjectDef(base, base.simpleName, withPrefix(base.simpleName))$>>
+_companionObjectDef(base, name, prefixedName) ::= <<
 object $prefixedName$ {
 
-  $if(cls.isA.View)$$viewConstructor(...)$$else$$nonViewConstructor(...)$$endif$
+  $if(base.isA.View)$$viewConstructor(...)$$else$$nonViewConstructor(...)$
+  $endif$
 
-  $if(cls.isA.TextView)$$textViewConstructor(...)$$endif$
+  $if(base.isA.TextView)$$textViewConstructor(...)$$endif$
 
-  $if(cls.isA.Button)$$buttonConstructors(...)$$endif$
-
+  $if(base.isA.Button)$$buttonConstructors(...)$$endif$
 }
 >>
 
-nonViewConstructor(cls, name, prefixedName) ::= <<
+nonViewConstructor(base, name, prefixedName) ::= <<
 def apply()(implicit context: Context): $prefixedName$ = new $prefixedName$
 >>
 
-viewConstructor(cls, name, prefixedName) ::= <<
+viewConstructor(base, name, prefixedName) ::= <<
 def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]]()
     (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ = {
   val v = (new $prefixedName$)
@@ -98,7 +103,7 @@ def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]]()
 }
 >>
 
-textViewConstructor(cls, name, prefixedName) ::= <<
+textViewConstructor(base, name, prefixedName) ::= <<
 def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](txt: CharSequence)
     (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ =  {
   val v = (new $prefixedName$)
@@ -108,7 +113,7 @@ def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](txt: CharSequence)
 }  
 >>
 
-buttonConstructors(cls, name, prefixedName) ::= <<
+buttonConstructors(base, name, prefixedName) ::= <<
 def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](text: CharSequence, onClickListener: (View) => Unit)
     (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ = {
   apply(text, func2ViewOnClickListener(onClickListener))
@@ -127,11 +132,11 @@ def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](text: CharSequence, on
 
 // Listener
 
-paramTypes(types) ::= "($types; separator=\", \"$)"
+paramTypes(types) ::= <<($types; separator=", "$)>>
 
-params(types) ::= "$types:{ t | p$i$: $t$}; separator=\", \"$"
+params(types) ::= <<$types:{ t | p$i$: $t$}; separator=", "$>>
 
-callParams(types) ::= "$types:{ t | p$i$}; separator=\", \"$"
+callParams(types) ::= <<$types:{ t | p$i$}; separator=", "$>>
 
 callbackBody(method, isUnit = false) ::= <%
 $if(method.hasBody)$
@@ -173,7 +178,7 @@ $if(l.hasParams)$$fullListener(l)$$endif$
 $unitListener(l)$
 >>
 
-listeners(cls) ::= <<$cls.listeners:listener(); separator="\n\n"$>>
+listeners(base) ::= <<$base.listeners:listener(); separator="\n\n"$>>
 
 
 // property
@@ -183,7 +188,7 @@ $if(prop.getter)$
 @inline def $prop.name$ = basis.$prop.getter.name$
 $elseif( ! prop.nameClashes)$
 @noEquivalentGetterExists
-@inline def $prop.name$    : $prop.tpe$  = defaultValue[$prop.tpe$]
+@inline def $prop.name$    : $prop.tpe$  = _defaultValue[$prop.tpe$]
 $endif$
 >>
 
@@ -206,14 +211,14 @@ $endif$
 
 property(prop) ::= <<$getter(prop)$$setters(prop)$>>
 
-properties(cls) ::= <<$cls.properties:property()$>>
+properties(base) ::= <<$base.properties:property()$>>
 
 
 // service
 
-systemServiceHead(cls) ::= <<
-@inline def $decap(cls.simpleName)$ (implicit context: Context): $cls.simpleName$ =
-  context.getSystemService(Context.$cls.simpleName; format="manager-to-service"$).asInstanceOf[$cls.simpleName$]
+systemServiceHead(base) ::= <<
+@inline def $decap(base.simpleName)$ (implicit context: Context): $base.simpleName$ =
+  context.getSystemService(Context.$base.simpleName; format="manager-to-service"$).asInstanceOf[$base.simpleName$]
 >>
 
 
