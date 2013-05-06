@@ -77,6 +77,7 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
     }
 
     def decapitalize(s: String) = if (s.isEmpty) s else s(0).toLower + s.substring(1)
+    def simpleName(s: String) = s.split('.').last
     def toJavaConst(s: String) =  "[A-Z]".r.replaceAllIn(s, m => "_"+m.group(0)).toUpperCase
     def managerToService(s: String) = toJavaConst(s).split('_').init.mkString + "_SERVICE"
 
@@ -85,6 +86,7 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
       case "lower"    | "lowercase"    => value.toLowerCase
       case "cap"      | "capitalize"   => value.capitalize
       case "decap"    | "decapitalize" => decapitalize(value)
+      case "simple"   | "simplename"   => simpleName(value)
       case "javaconst"                 => toJavaConst(value)
       case "manager-to-service"        => managerToService(value) // TODO make proper case class for manager instead of this trick
       case _                           => value

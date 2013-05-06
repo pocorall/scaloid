@@ -156,9 +156,11 @@ object AndroidClassExtractor {
     val simpleName = fullName.split('.').last
     val pkg = fullName.split('.').init.mkString
 
-    val parentName = Option(parent) map (_.getName)
+    val parentName = Option(parent) map (_.getName) filter (_.startsWith("android"))
 
     val isA = getHierarchy(cls).toSet
+
+    println("%s extends %s".format(fullName, parentName))
 
     AndroidClass(fullName, simpleName, pkg, parentName, isA, props, listeners)
   }
@@ -196,6 +198,8 @@ object AndroidClassExtractor {
       , classOf[android.telephony.TelephonyManager]
 
       // Preference
+      , classOf[android.preference.Preference]
+      , classOf[android.preference.DialogPreference]
       , classOf[android.preference.EditTextPreference]
     )        
 
