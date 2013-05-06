@@ -20,41 +20,43 @@ $endif$
 
 extendClause(parent, mixin) ::= <%
 $if(parent || mixin)$ extends $endif$
-$if(parent)$Trait$parent; format="simple"$[V]$endif$
+$if(parent)$Trait$parent.name; format="simple"$[V]$endif$
 $if(parent && mixin)$ with $endif$
 $mixin; separator=" with "$
 %>
-
-openRichClassDef(base, mixin, body) ::= <<$_openRichClassDef(base.simpleName, mixin, body)$>>
-_openRichClassDef(name, mixin, body) ::= <<
-
-
-class Rich$name$[V <: $name$](val basis: V) extends Trait$name$[V]
-@inline implicit def $decap(name)$2Rich$name$[V <: $name$]($decap(name)$: V) = new Rich$name$[V]($decap(name)$)
-
-trait Trait$name$[V <: $name$]$extendClause(base.parent, mixin)$ {
-
-  $if(! base.parent)$def basis: V$endif$
->>
-
-closeRichClassDef(base) ::= <<
-  $properties(base)$
-  $listeners(base)$
-}
->>
 
 richClassDef(base, mixin, body) ::= <<
 $openRichClassDef(...)$
 $closeRichClassDef(...)$
 >>
 
+openRichClassDef(base, mixin, body) ::= <<$_openRichClassDef(base.name)$>>
+_openRichClassDef(name) ::= <<
+
+$if( ! base.isAbstract)$
+class Rich$name$[V <: $name$](val basis: V) extends Trait$name$[V]
+@inline implicit def $decap(name)$2Rich$name$[V <: $name$]($decap(name)$: V) = new Rich$name$[V]($decap(name)$)
+$endif$
+
+trait Trait$name$[V <: $genType(base.tpe)$]$extendClause(base.parentType, mixin)$ {
+
+  $if(! base.parentType)$def basis: V$endif$
+>>
+
+closeRichClassDef(base) ::= <<
+
+  $properties(base)$
+  $listeners(base)$
+}
+>>
+
 withPrefix(name) ::= "S$name$"
 
 openConcreteClassDef(base) ::= <<
 $if(base.isA.View)$
-$_openConcreteViewClassDef(base.simpleName, withPrefix(base.simpleName))$
+$_openConcreteViewClassDef(base.name, withPrefix(base.name))$
 $else$
-$_openConcreteNonViewClassDef(base.simpleName, withPrefix(base.simpleName))$
+$_openConcreteNonViewClassDef(base.name, withPrefix(base.name))$
 $endif$
 >>
 
@@ -81,8 +83,8 @@ $closeConcreteClassDef()$
 
 // companion object
 
-companionObjectDef(base) ::= <<$_companionObjectDef(base, base.simpleName, withPrefix(base.simpleName))$>>
-_companionObjectDef(base, name, prefixedName) ::= <<
+companionObjectDef(base) ::= <<$_companionObjectDef(base.name, withPrefix(base.name))$>>
+_companionObjectDef(name, prefixedName) ::= <<
 object $prefixedName$ {
 
   $if(base.isA.View)$$viewConstructor(...)$$else$$nonViewConstructor(...)$
@@ -260,8 +262,8 @@ properties(base) ::= <<$base.properties:property()$>>
 // service
 
 systemServiceHead(base) ::= <<
-@inline def $decap(base.simpleName)$ (implicit context: Context): $base.simpleName$ =
-  context.getSystemService(Context.$base.simpleName; format="manager-to-service"$).asInstanceOf[$base.simpleName$]
+@inline def $decap(base.name)$ (implicit context: Context): $base.tpe.name$ =
+  context.getSystemService(Context.$base.name; format="manager-to-service"$).asInstanceOf[$base.name$]
 >>
 
 

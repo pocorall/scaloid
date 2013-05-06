@@ -79,7 +79,7 @@ trait SystemService {
   @inline def powerManager          (implicit context: Context): PowerManager           = context.getSystemService(Context.POWER_SERVICE          ).asInstanceOf[PowerManager]
   @inline def searchManager         (implicit context: Context): SearchManager          = context.getSystemService(Context.SEARCH_SERVICE         ).asInstanceOf[SearchManager]
   @inline def sensorManager         (implicit context: Context): SensorManager          = context.getSystemService(Context.SENSOR_SERVICE         ).asInstanceOf[SensorManager]
-  @inline def telephonyManager (implicit context: Context): TelephonyManager =
+  @inline def telephonyManager (implicit context: Context): android.telephony.TelephonyManager =
     context.getSystemService(Context.TELEPHONY_SERVICE).asInstanceOf[TelephonyManager]
 
   def onCallForwardingIndicatorChanged(fun: Boolean => Any)(implicit ctx: Context, reg: Registerable) {

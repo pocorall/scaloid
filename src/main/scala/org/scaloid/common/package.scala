@@ -194,11 +194,10 @@ package object common extends Logger with SystemService with WidgetFamily {
       }
     }
 
-
   class RichPreference[V <: Preference](val basis: V) extends TraitPreference[V]
   @inline implicit def preference2RichPreference[V <: Preference](preference: V) = new RichPreference[V](preference)
 
-  trait TraitPreference[V <: Preference] {
+  trait TraitPreference[V <: android.preference.Preference] {
 
     def basis: V
     @inline def context = basis.getContext
@@ -315,11 +314,7 @@ package object common extends Logger with SystemService with WidgetFamily {
 
   }
 
-
-  class RichDialogPreference[V <: DialogPreference](val basis: V) extends TraitDialogPreference[V]
-  @inline implicit def dialogPreference2RichDialogPreference[V <: DialogPreference](dialogPreference: V) = new RichDialogPreference[V](dialogPreference)
-
-  trait TraitDialogPreference[V <: DialogPreference] extends TraitPreference[V] {
+  trait TraitDialogPreference[V <: android.preference.DialogPreference] extends TraitPreference[V] {
 
 
     @inline def dialog = basis.getDialog
@@ -359,11 +354,10 @@ package object common extends Logger with SystemService with WidgetFamily {
     @inline def positiveButtonText_=(p: java.lang.CharSequence) = { basis.setPositiveButtonText    (p); basis }
 
   }
-
   class RichEditTextPreference[V <: EditTextPreference](val basis: V) extends TraitEditTextPreference[V]
   @inline implicit def editTextPreference2RichEditTextPreference[V <: EditTextPreference](editTextPreference: V) = new RichEditTextPreference[V](editTextPreference)
 
-  trait TraitEditTextPreference[V <: EditTextPreference] extends TraitDialogPreference[V] {
+  trait TraitEditTextPreference[V <: android.preference.EditTextPreference] extends TraitDialogPreference[V] {
 
 
     @inline def editText = basis.getEditText

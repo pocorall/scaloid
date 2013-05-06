@@ -130,10 +130,7 @@ $endif$
 
   $wholeClassDef(android.widget.TextView)$
 
-  trait TraitAbsListView[V <: AbsListView] extends TraitView[V] {
-    $properties(android.widget.AbsListView)$
-  }
-
+  $wholeClassDef(android.widget.AbsListView)$
   
   $openRichClassDef(android.view.ViewGroup)$
 

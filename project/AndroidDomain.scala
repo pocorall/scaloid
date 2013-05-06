@@ -43,10 +43,10 @@ case class AndroidListener(
 }
 
 case class AndroidClass(
-  fullName: String,
-  simpleName: String,
-  `package`: String,
-  parent: Option[String],
+  name: String,
+  pkg: String,
+  tpe: ScalaType,
+  parentType: Option[ScalaType],
   properties: Seq[AndroidProperty],
   listeners: Seq[AndroidListener],
   isA: Set[String],

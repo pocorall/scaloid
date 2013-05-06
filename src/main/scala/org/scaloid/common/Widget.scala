@@ -111,11 +111,10 @@ trait WidgetFamily {
     }
   }
 
-
   class RichView[V <: View](val basis: V) extends TraitView[V]
   @inline implicit def view2RichView[V <: View](view: V) = new RichView[V](view)
 
-  trait TraitView[V <: View] extends ConstantsSupport {
+  trait TraitView[V <: android.view.View] extends ConstantsSupport {
 
     def basis: V
 
@@ -539,11 +538,10 @@ trait WidgetFamily {
     }
   }
 
-
   class RichTextView[V <: TextView](val basis: V) extends TraitTextView[V]
   @inline implicit def textView2RichTextView[V <: TextView](textView: V) = new RichTextView[V](textView)
 
-  trait TraitTextView[V <: TextView] extends TraitView[V] {
+  trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
 
     @inline def autoLinkMask = basis.getAutoLinkMask
@@ -679,7 +677,7 @@ trait WidgetFamily {
     @inline def lines_=(p: Int) = { basis.setLines    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def linkTextColor    : Int  = _defaultValue[Int]
+    @inline def linkTextColor    : android.content.res.ColorStateList  = _defaultValue[android.content.res.ColorStateList]
     @inline def linkTextColor  (p: Int) =            linkTextColor_=  (p)
     @inline def linkTextColor_=(p: Int) = { basis.setLinkTextColor    (p); basis }
     @inline def linkTextColor  (p: android.content.res.ColorStateList) =            linkTextColor_=  (p)
@@ -791,7 +789,7 @@ trait WidgetFamily {
     @inline def text_=(p: java.lang.CharSequence) = { basis.setText    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def textColor    : android.content.res.ColorStateList  = _defaultValue[android.content.res.ColorStateList]
+    @inline def textColor    : Int  = _defaultValue[Int]
     @inline def textColor  (p: Int) =            textColor_=  (p)
     @inline def textColor_=(p: Int) = { basis.setTextColor    (p); basis }
     @inline def textColor  (p: android.content.res.ColorStateList) =            textColor_=  (p)
@@ -926,7 +924,9 @@ trait WidgetFamily {
   }
 
 
-  trait TraitAbsListView[V <: AbsListView] extends TraitView[V] {
+  trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView[V] {
+
+
     @inline def cacheColorHint = basis.getCacheColorHint
     @inline def cacheColorHint  (p: Int) =            cacheColorHint_=  (p)
     @inline def cacheColorHint_=(p: Int) = { basis.setCacheColorHint    (p); basis }
@@ -999,14 +999,56 @@ trait WidgetFamily {
     @inline def transcriptMode  (p: Int) =            transcriptMode_=  (p)
     @inline def transcriptMode_=(p: Int) = { basis.setTranscriptMode    (p); basis }
 
+    @inline def onMovedToScrapHeap(f: android.view.View => Unit): V = {
+      basis.setRecyclerListener(new android.widget.AbsListView.RecyclerListener {
+        def onMovedToScrapHeap(p: android.view.View): Unit = { f(p) }
+      })
+      basis
+    }
+
+    @inline def onMovedToScrapHeap(f: => Unit): V = {
+      basis.setRecyclerListener(new android.widget.AbsListView.RecyclerListener {
+        def onMovedToScrapHeap(p: android.view.View): Unit = { f }
+      })
+      basis
+    }
+
+    @inline def onScroll(f: (android.widget.AbsListView, Int, Int, Int) => Unit): V = {
+      basis.setOnScrollListener(new android.widget.AbsListView.OnScrollListener {
+        def onScroll(p1: android.widget.AbsListView, p2: Int, p3: Int, p4: Int): Unit = { f(p1, p2, p3, p4) }
+        def onScrollStateChanged(p1: android.widget.AbsListView, p2: Int): Unit = {  }
+      })
+      basis
+    }
+
+    @inline def onScroll(f: => Unit): V = {
+      basis.setOnScrollListener(new android.widget.AbsListView.OnScrollListener {
+        def onScroll(p1: android.widget.AbsListView, p2: Int, p3: Int, p4: Int): Unit = { f }
+        def onScrollStateChanged(p1: android.widget.AbsListView, p2: Int): Unit = {  }
+      })
+      basis
+    }
+
+    @inline def onScrollStateChanged(f: (android.widget.AbsListView, Int) => Unit): V = {
+      basis.setOnScrollListener(new android.widget.AbsListView.OnScrollListener {
+        def onScroll(p1: android.widget.AbsListView, p2: Int, p3: Int, p4: Int): Unit = {  }
+        def onScrollStateChanged(p1: android.widget.AbsListView, p2: Int): Unit = { f(p1, p2) }
+      })
+      basis
+    }
+
+    @inline def onScrollStateChanged(f: => Unit): V = {
+      basis.setOnScrollListener(new android.widget.AbsListView.OnScrollListener {
+        def onScroll(p1: android.widget.AbsListView, p2: Int, p3: Int, p4: Int): Unit = {  }
+        def onScrollStateChanged(p1: android.widget.AbsListView, p2: Int): Unit = { f }
+      })
+      basis
+    }
   }
 
 
 
-  class RichViewGroup[V <: ViewGroup](val basis: V) extends TraitViewGroup[V]
-  @inline implicit def viewGroup2RichViewGroup[V <: ViewGroup](viewGroup: V) = new RichViewGroup[V](viewGroup)
-
-  trait TraitViewGroup[V <: ViewGroup] extends TraitView[V] {
+  trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
 
 
 
@@ -1233,11 +1275,10 @@ trait WidgetFamily {
   }
 
 
-
   class RichFrameLayout[V <: FrameLayout](val basis: V) extends TraitFrameLayout[V]
   @inline implicit def frameLayout2RichFrameLayout[V <: FrameLayout](frameLayout: V) = new RichFrameLayout[V](frameLayout)
 
-  trait TraitFrameLayout[V <: FrameLayout] extends TraitViewGroup[V] {
+  trait TraitFrameLayout[V <: android.widget.FrameLayout] extends TraitViewGroup[V] {
 
 
     @inline def considerGoneChildrenWhenMeasuring = basis.getConsiderGoneChildrenWhenMeasuring
@@ -1287,11 +1328,10 @@ trait WidgetFamily {
   }
 
 
-
   class RichRelativeLayout[V <: RelativeLayout](val basis: V) extends TraitRelativeLayout[V]
   @inline implicit def relativeLayout2RichRelativeLayout[V <: RelativeLayout](relativeLayout: V) = new RichRelativeLayout[V](relativeLayout)
 
-  trait TraitRelativeLayout[V <: RelativeLayout] extends TraitViewGroup[V] {
+  trait TraitRelativeLayout[V <: android.widget.RelativeLayout] extends TraitViewGroup[V] {
 
 
     @noEquivalentGetterExists
@@ -1444,11 +1484,10 @@ trait WidgetFamily {
   }
 
 
-
   class RichLinearLayout[V <: LinearLayout](val basis: V) extends TraitLinearLayout[V]
   @inline implicit def linearLayout2RichLinearLayout[V <: LinearLayout](linearLayout: V) = new RichLinearLayout[V](linearLayout)
 
-  trait TraitLinearLayout[V <: LinearLayout] extends TraitViewGroup[V] {
+  trait TraitLinearLayout[V <: android.widget.LinearLayout] extends TraitViewGroup[V] {
 
 
     @inline def baselineAligned = basis.isBaselineAligned
@@ -1523,11 +1562,10 @@ trait WidgetFamily {
     orientation = VERTICAL
   }
 
-
   class RichEditText[V <: EditText](val basis: V) extends TraitEditText[V]
   @inline implicit def editText2RichEditText[V <: EditText](editText: V) = new RichEditText[V](editText)
 
-  trait TraitEditText[V <: EditText] extends TraitTextView[V] {
+  trait TraitEditText[V <: android.widget.EditText] extends TraitTextView[V] {
 
 
   }
@@ -1557,11 +1595,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichExtractEditText[V <: ExtractEditText](val basis: V) extends TraitExtractEditText[V]
   @inline implicit def extractEditText2RichExtractEditText[V <: ExtractEditText](extractEditText: V) = new RichExtractEditText[V](extractEditText)
 
-  trait TraitExtractEditText[V <: ExtractEditText] extends TraitEditText[V] {
+  trait TraitExtractEditText[V <: android.inputmethodservice.ExtractEditText] extends TraitEditText[V] {
 
 
   }
@@ -1591,11 +1628,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichAutoCompleteTextView[V <: AutoCompleteTextView](val basis: V) extends TraitAutoCompleteTextView[V]
   @inline implicit def autoCompleteTextView2RichAutoCompleteTextView[V <: AutoCompleteTextView](autoCompleteTextView: V) = new RichAutoCompleteTextView[V](autoCompleteTextView)
 
-  trait TraitAutoCompleteTextView[V <: AutoCompleteTextView] extends TraitEditText[V] {
+  trait TraitAutoCompleteTextView[V <: android.widget.AutoCompleteTextView] extends TraitEditText[V] {
 
 
     @inline def adapter = basis.getAdapter
@@ -1739,11 +1775,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichListView[V <: ListView](val basis: V) extends TraitListView[V]
   @inline implicit def listView2RichListView[V <: ListView](listView: V) = new RichListView[V](listView)
 
-  trait TraitListView[V <: ListView] extends TraitAbsListView[V] {
+  trait TraitListView[V <: android.widget.ListView] extends TraitAbsListView[V] {
 
 
     @inline def checkItemIds = basis.getCheckItemIds
@@ -1811,11 +1846,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichButton[V <: Button](val basis: V) extends TraitButton[V]
   @inline implicit def button2RichButton[V <: Button](button: V) = new RichButton[V](button)
 
-  trait TraitButton[V <: Button] extends TraitTextView[V] {
+  trait TraitButton[V <: android.widget.Button] extends TraitTextView[V] {
 
 
   }
@@ -1858,11 +1892,7 @@ trait WidgetFamily {
     }
   }
 
-
-  class RichCompoundButton[V <: CompoundButton](val basis: V) extends TraitCompoundButton[V]
-  @inline implicit def compoundButton2RichCompoundButton[V <: CompoundButton](compoundButton: V) = new RichCompoundButton[V](compoundButton)
-
-  trait TraitCompoundButton[V <: CompoundButton] extends TraitButton[V] {
+  trait TraitCompoundButton[V <: android.widget.CompoundButton] extends TraitButton[V] {
 
 
     @noEquivalentGetterExists
@@ -1897,11 +1927,10 @@ trait WidgetFamily {
   }
 
 
-
   class RichCheckBox[V <: CheckBox](val basis: V) extends TraitCheckBox[V]
   @inline implicit def checkBox2RichCheckBox[V <: CheckBox](checkBox: V) = new RichCheckBox[V](checkBox)
 
-  trait TraitCheckBox[V <: CheckBox] extends TraitCompoundButton[V] {
+  trait TraitCheckBox[V <: android.widget.CheckBox] extends TraitCompoundButton[V] {
 
 
   }
@@ -1944,11 +1973,10 @@ trait WidgetFamily {
     }
   }
 
-
   class RichRadioButton[V <: RadioButton](val basis: V) extends TraitRadioButton[V]
   @inline implicit def radioButton2RichRadioButton[V <: RadioButton](radioButton: V) = new RichRadioButton[V](radioButton)
 
-  trait TraitRadioButton[V <: RadioButton] extends TraitCompoundButton[V] {
+  trait TraitRadioButton[V <: android.widget.RadioButton] extends TraitCompoundButton[V] {
 
 
   }
@@ -1991,11 +2019,10 @@ trait WidgetFamily {
     }
   }
 
-
   class RichToggleButton[V <: ToggleButton](val basis: V) extends TraitToggleButton[V]
   @inline implicit def toggleButton2RichToggleButton[V <: ToggleButton](toggleButton: V) = new RichToggleButton[V](toggleButton)
 
-  trait TraitToggleButton[V <: ToggleButton] extends TraitCompoundButton[V] {
+  trait TraitToggleButton[V <: android.widget.ToggleButton] extends TraitCompoundButton[V] {
 
 
     @inline def textOff = basis.getTextOff
@@ -2046,11 +2073,10 @@ trait WidgetFamily {
     }
   }
 
-
   class RichCheckedTextView[V <: CheckedTextView](val basis: V) extends TraitCheckedTextView[V]
   @inline implicit def checkedTextView2RichCheckedTextView[V <: CheckedTextView](checkedTextView: V) = new RichCheckedTextView[V](checkedTextView)
 
-  trait TraitCheckedTextView[V <: CheckedTextView] extends TraitTextView[V] {
+  trait TraitCheckedTextView[V <: android.widget.CheckedTextView] extends TraitTextView[V] {
 
 
     @noEquivalentGetterExists
@@ -2091,11 +2117,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichChronometer[V <: Chronometer](val basis: V) extends TraitChronometer[V]
   @inline implicit def chronometer2RichChronometer[V <: Chronometer](chronometer: V) = new RichChronometer[V](chronometer)
 
-  trait TraitChronometer[V <: Chronometer] extends TraitTextView[V] {
+  trait TraitChronometer[V <: android.widget.Chronometer] extends TraitTextView[V] {
 
 
     @inline def base = basis.getBase
@@ -2150,11 +2175,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichDigitalClock[V <: DigitalClock](val basis: V) extends TraitDigitalClock[V]
   @inline implicit def digitalClock2RichDigitalClock[V <: DigitalClock](digitalClock: V) = new RichDigitalClock[V](digitalClock)
 
-  trait TraitDigitalClock[V <: DigitalClock] extends TraitTextView[V] {
+  trait TraitDigitalClock[V <: android.widget.DigitalClock] extends TraitTextView[V] {
 
 
   }
@@ -2184,11 +2208,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichKeyboardView[V <: KeyboardView](val basis: V) extends TraitKeyboardView[V]
   @inline implicit def keyboardView2RichKeyboardView[V <: KeyboardView](keyboardView: V) = new RichKeyboardView[V](keyboardView)
 
-  trait TraitKeyboardView[V <: KeyboardView] extends TraitView[V] {
+  trait TraitKeyboardView[V <: android.inputmethodservice.KeyboardView] extends TraitView[V] {
 
 
     @inline def keyboard = basis.getKeyboard
@@ -2400,11 +2423,10 @@ trait WidgetFamily {
       basis
     }
   }
-
   class RichImageView[V <: ImageView](val basis: V) extends TraitImageView[V]
   @inline implicit def imageView2RichImageView[V <: ImageView](imageView: V) = new RichImageView[V](imageView)
 
-  trait TraitImageView[V <: ImageView] extends TraitView[V] {
+  trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
 
 
     @noEquivalentGetterExists
@@ -2482,11 +2504,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichImageButton[V <: ImageButton](val basis: V) extends TraitImageButton[V]
   @inline implicit def imageButton2RichImageButton[V <: ImageButton](imageButton: V) = new RichImageButton[V](imageButton)
 
-  trait TraitImageButton[V <: ImageButton] extends TraitImageView[V] {
+  trait TraitImageButton[V <: android.widget.ImageButton] extends TraitImageView[V] {
 
 
   }
@@ -2509,11 +2530,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichQuickContactBadge[V <: QuickContactBadge](val basis: V) extends TraitQuickContactBadge[V]
   @inline implicit def quickContactBadge2RichQuickContactBadge[V <: QuickContactBadge](quickContactBadge: V) = new RichQuickContactBadge[V](quickContactBadge)
 
-  trait TraitQuickContactBadge[V <: QuickContactBadge] extends TraitImageView[V] {
+  trait TraitQuickContactBadge[V <: android.widget.QuickContactBadge] extends TraitImageView[V] {
 
 
     @noEquivalentGetterExists
@@ -2546,11 +2566,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichZoomButton[V <: ZoomButton](val basis: V) extends TraitZoomButton[V]
   @inline implicit def zoomButton2RichZoomButton[V <: ZoomButton](zoomButton: V) = new RichZoomButton[V](zoomButton)
 
-  trait TraitZoomButton[V <: ZoomButton] extends TraitImageButton[V] {
+  trait TraitZoomButton[V <: android.widget.ZoomButton] extends TraitImageButton[V] {
 
 
     @noEquivalentGetterExists
@@ -2578,11 +2597,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichProgressBar[V <: ProgressBar](val basis: V) extends TraitProgressBar[V]
   @inline implicit def progressBar2RichProgressBar[V <: ProgressBar](progressBar: V) = new RichProgressBar[V](progressBar)
 
-  trait TraitProgressBar[V <: ProgressBar] extends TraitView[V] {
+  trait TraitProgressBar[V <: android.widget.ProgressBar] extends TraitView[V] {
 
 
     @inline def indeterminate = basis.isIndeterminate
@@ -2633,11 +2651,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichAnalogClock[V <: AnalogClock](val basis: V) extends TraitAnalogClock[V]
   @inline implicit def analogClock2RichAnalogClock[V <: AnalogClock](analogClock: V) = new RichAnalogClock[V](analogClock)
 
-  trait TraitAnalogClock[V <: AnalogClock] extends TraitView[V] {
+  trait TraitAnalogClock[V <: android.widget.AnalogClock] extends TraitView[V] {
 
 
   }
@@ -2660,11 +2677,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichSurfaceView[V <: SurfaceView](val basis: V) extends TraitSurfaceView[V]
   @inline implicit def surfaceView2RichSurfaceView[V <: SurfaceView](surfaceView: V) = new RichSurfaceView[V](surfaceView)
 
-  trait TraitSurfaceView[V <: SurfaceView] extends TraitView[V] {
+  trait TraitSurfaceView[V <: android.view.SurfaceView] extends TraitView[V] {
 
 
     @noEquivalentGetterExists
@@ -2700,15 +2716,14 @@ trait WidgetFamily {
 
   }
 
-
   class RichGLSurfaceView[V <: GLSurfaceView](val basis: V) extends TraitGLSurfaceView[V]
   @inline implicit def gLSurfaceView2RichGLSurfaceView[V <: GLSurfaceView](gLSurfaceView: V) = new RichGLSurfaceView[V](gLSurfaceView)
 
-  trait TraitGLSurfaceView[V <: GLSurfaceView] extends TraitSurfaceView[V] {
+  trait TraitGLSurfaceView[V <: android.opengl.GLSurfaceView] extends TraitSurfaceView[V] {
 
 
     @noEquivalentGetterExists
-    @inline def EGLConfigChooser    : android.opengl.GLSurfaceView.EGLConfigChooser  = _defaultValue[android.opengl.GLSurfaceView.EGLConfigChooser]
+    @inline def EGLConfigChooser    : Boolean  = _defaultValue[Boolean]
     @inline def EGLConfigChooser  (p: Boolean) =            EGLConfigChooser_=  (p)
     @inline def EGLConfigChooser_=(p: Boolean) = { basis.setEGLConfigChooser    (p); basis }
     @inline def EGLConfigChooser  (p: android.opengl.GLSurfaceView.EGLConfigChooser) =            EGLConfigChooser_=  (p)
@@ -2767,11 +2782,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichVideoView[V <: VideoView](val basis: V) extends TraitVideoView[V]
   @inline implicit def videoView2RichVideoView[V <: VideoView](videoView: V) = new RichVideoView[V](videoView)
 
-  trait TraitVideoView[V <: VideoView] extends TraitSurfaceView[V] {
+  trait TraitVideoView[V <: android.widget.VideoView] extends TraitSurfaceView[V] {
 
 
     @inline def bufferPercentage = basis.getBufferPercentage
@@ -2873,11 +2887,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichViewStub[V <: ViewStub](val basis: V) extends TraitViewStub[V]
   @inline implicit def viewStub2RichViewStub[V <: ViewStub](viewStub: V) = new RichViewStub[V](viewStub)
 
-  trait TraitViewStub[V <: ViewStub] extends TraitView[V] {
+  trait TraitViewStub[V <: android.view.ViewStub] extends TraitView[V] {
 
 
     @inline def inflatedId = basis.getInflatedId
@@ -2907,11 +2920,10 @@ trait WidgetFamily {
       basis
     }
   }
-
   class RichGridView[V <: GridView](val basis: V) extends TraitGridView[V]
   @inline implicit def gridView2RichGridView[V <: GridView](gridView: V) = new RichGridView[V](gridView)
 
-  trait TraitGridView[V <: GridView] extends TraitAbsListView[V] {
+  trait TraitGridView[V <: android.widget.GridView] extends TraitAbsListView[V] {
 
 
     @noEquivalentGetterExists
@@ -2963,11 +2975,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichExpandableListView[V <: ExpandableListView](val basis: V) extends TraitExpandableListView[V]
   @inline implicit def expandableListView2RichExpandableListView[V <: ExpandableListView](expandableListView: V) = new RichExpandableListView[V](expandableListView)
 
-  trait TraitExpandableListView[V <: ExpandableListView] extends TraitListView[V] {
+  trait TraitExpandableListView[V <: android.widget.ExpandableListView] extends TraitListView[V] {
 
 
     @noEquivalentGetterExists
@@ -3161,11 +3172,10 @@ trait WidgetFamily {
   trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
   }
 
-
   class RichSpinner[V <: Spinner](val basis: V) extends TraitSpinner[V]
   @inline implicit def spinner2RichSpinner[V <: Spinner](spinner: V) = new RichSpinner[V](spinner)
 
-  trait TraitSpinner[V <: Spinner] extends TraitAbsSpinner[V] {
+  trait TraitSpinner[V <: android.widget.Spinner] extends TraitAbsSpinner[V] {
 
 
     @inline def prompt = basis.getPrompt
@@ -3197,11 +3207,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichGallery[V <: Gallery](val basis: V) extends TraitGallery[V]
   @inline implicit def gallery2RichGallery[V <: Gallery](gallery: V) = new RichGallery[V](gallery)
 
-  trait TraitGallery[V <: Gallery] extends TraitAbsSpinner[V] {
+  trait TraitGallery[V <: android.widget.Gallery] extends TraitAbsSpinner[V] {
 
 
     @noEquivalentGetterExists
@@ -3249,11 +3258,7 @@ trait WidgetFamily {
 
   }
 
-
-  class RichAbsSeekBar[V <: AbsSeekBar](val basis: V) extends TraitAbsSeekBar[V]
-  @inline implicit def absSeekBar2RichAbsSeekBar[V <: AbsSeekBar](absSeekBar: V) = new RichAbsSeekBar[V](absSeekBar)
-
-  trait TraitAbsSeekBar[V <: AbsSeekBar] extends TraitProgressBar[V] {
+  trait TraitAbsSeekBar[V <: android.widget.AbsSeekBar] extends TraitProgressBar[V] {
 
 
     @inline def keyProgressIncrement = basis.getKeyProgressIncrement
@@ -3270,11 +3275,10 @@ trait WidgetFamily {
     @inline def thumbOffset_=(p: Int) = { basis.setThumbOffset    (p); basis }
 
   }
-
   class RichSeekBar[V <: SeekBar](val basis: V) extends TraitSeekBar[V]
   @inline implicit def seekBar2RichSeekBar[V <: SeekBar](seekBar: V) = new RichSeekBar[V](seekBar)
 
-  trait TraitSeekBar[V <: SeekBar] extends TraitAbsSeekBar[V] {
+  trait TraitSeekBar[V <: android.widget.SeekBar] extends TraitAbsSeekBar[V] {
 
 
     @noEquivalentGetterExists
@@ -3355,11 +3359,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichRatingBar[V <: RatingBar](val basis: V) extends TraitRatingBar[V]
   @inline implicit def ratingBar2RichRatingBar[V <: RatingBar](ratingBar: V) = new RichRatingBar[V](ratingBar)
 
-  trait TraitRatingBar[V <: RatingBar] extends TraitAbsSeekBar[V] {
+  trait TraitRatingBar[V <: android.widget.RatingBar] extends TraitAbsSeekBar[V] {
 
 
     @inline def indicator = basis.isIndicator
@@ -3416,11 +3419,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichAppWidgetHostView[V <: AppWidgetHostView](val basis: V) extends TraitAppWidgetHostView[V]
   @inline implicit def appWidgetHostView2RichAppWidgetHostView[V <: AppWidgetHostView](appWidgetHostView: V) = new RichAppWidgetHostView[V](appWidgetHostView)
 
-  trait TraitAppWidgetHostView[V <: AppWidgetHostView] extends TraitFrameLayout[V] {
+  trait TraitAppWidgetHostView[V <: android.appwidget.AppWidgetHostView] extends TraitFrameLayout[V] {
 
 
     @inline def appWidgetId = basis.getAppWidgetId
@@ -3429,11 +3431,10 @@ trait WidgetFamily {
 
 
   }
-
   class RichHorizontalScrollView[V <: HorizontalScrollView](val basis: V) extends TraitHorizontalScrollView[V]
   @inline implicit def horizontalScrollView2RichHorizontalScrollView[V <: HorizontalScrollView](horizontalScrollView: V) = new RichHorizontalScrollView[V](horizontalScrollView)
 
-  trait TraitHorizontalScrollView[V <: HorizontalScrollView] extends TraitFrameLayout[V] {
+  trait TraitHorizontalScrollView[V <: android.widget.HorizontalScrollView] extends TraitFrameLayout[V] {
 
 
     @inline def fillViewport = basis.isFillViewport
@@ -3468,11 +3469,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichMediaController[V <: MediaController](val basis: V) extends TraitMediaController[V]
   @inline implicit def mediaController2RichMediaController[V <: MediaController](mediaController: V) = new RichMediaController[V](mediaController)
 
-  trait TraitMediaController[V <: MediaController] extends TraitFrameLayout[V] {
+  trait TraitMediaController[V <: android.widget.MediaController] extends TraitFrameLayout[V] {
 
 
     @noEquivalentGetterExists
@@ -3508,11 +3508,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichScrollView[V <: ScrollView](val basis: V) extends TraitScrollView[V]
   @inline implicit def scrollView2RichScrollView[V <: ScrollView](scrollView: V) = new RichScrollView[V](scrollView)
 
-  trait TraitScrollView[V <: ScrollView] extends TraitFrameLayout[V] {
+  trait TraitScrollView[V <: android.widget.ScrollView] extends TraitFrameLayout[V] {
 
 
     @inline def fillViewport = basis.isFillViewport
@@ -3547,11 +3546,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichTabHost[V <: TabHost](val basis: V) extends TraitTabHost[V]
   @inline implicit def tabHost2RichTabHost[V <: TabHost](tabHost: V) = new RichTabHost[V](tabHost)
 
-  trait TraitTabHost[V <: TabHost] extends TraitFrameLayout[V] {
+  trait TraitTabHost[V <: android.widget.TabHost] extends TraitFrameLayout[V] {
 
 
     @inline def currentTab = basis.getCurrentTab
@@ -3616,11 +3614,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichTimePicker[V <: TimePicker](val basis: V) extends TraitTimePicker[V]
   @inline implicit def timePicker2RichTimePicker[V <: TimePicker](timePicker: V) = new RichTimePicker[V](timePicker)
 
-  trait TraitTimePicker[V <: TimePicker] extends TraitFrameLayout[V] {
+  trait TraitTimePicker[V <: android.widget.TimePicker] extends TraitFrameLayout[V] {
 
 
     @inline def currentHour = basis.getCurrentHour
@@ -3671,11 +3668,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichViewAnimator[V <: ViewAnimator](val basis: V) extends TraitViewAnimator[V]
   @inline implicit def viewAnimator2RichViewAnimator[V <: ViewAnimator](viewAnimator: V) = new RichViewAnimator[V](viewAnimator)
 
-  trait TraitViewAnimator[V <: ViewAnimator] extends TraitFrameLayout[V] {
+  trait TraitViewAnimator[V <: android.widget.ViewAnimator] extends TraitFrameLayout[V] {
 
 
     @noEquivalentGetterExists
@@ -3717,11 +3713,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichViewFlipper[V <: ViewFlipper](val basis: V) extends TraitViewFlipper[V]
   @inline implicit def viewFlipper2RichViewFlipper[V <: ViewFlipper](viewFlipper: V) = new RichViewFlipper[V](viewFlipper)
 
-  trait TraitViewFlipper[V <: ViewFlipper] extends TraitViewAnimator[V] {
+  trait TraitViewFlipper[V <: android.widget.ViewFlipper] extends TraitViewAnimator[V] {
 
 
     @inline def autoStart = basis.isAutoStart
@@ -3756,11 +3751,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichViewSwitcher[V <: ViewSwitcher](val basis: V) extends TraitViewSwitcher[V]
   @inline implicit def viewSwitcher2RichViewSwitcher[V <: ViewSwitcher](viewSwitcher: V) = new RichViewSwitcher[V](viewSwitcher)
 
-  trait TraitViewSwitcher[V <: ViewSwitcher] extends TraitViewAnimator[V] {
+  trait TraitViewSwitcher[V <: android.widget.ViewSwitcher] extends TraitViewAnimator[V] {
 
 
     @noEquivalentGetterExists
@@ -3791,11 +3785,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichImageSwitcher[V <: ImageSwitcher](val basis: V) extends TraitImageSwitcher[V]
   @inline implicit def imageSwitcher2RichImageSwitcher[V <: ImageSwitcher](imageSwitcher: V) = new RichImageSwitcher[V](imageSwitcher)
 
-  trait TraitImageSwitcher[V <: ImageSwitcher] extends TraitViewSwitcher[V] {
+  trait TraitImageSwitcher[V <: android.widget.ImageSwitcher] extends TraitViewSwitcher[V] {
 
 
     @noEquivalentGetterExists
@@ -3833,11 +3826,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichTextSwitcher[V <: TextSwitcher](val basis: V) extends TraitTextSwitcher[V]
   @inline implicit def textSwitcher2RichTextSwitcher[V <: TextSwitcher](textSwitcher: V) = new RichTextSwitcher[V](textSwitcher)
 
-  trait TraitTextSwitcher[V <: TextSwitcher] extends TraitViewSwitcher[V] {
+  trait TraitTextSwitcher[V <: android.widget.TextSwitcher] extends TraitViewSwitcher[V] {
 
 
     @noEquivalentGetterExists
@@ -3870,11 +3862,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichDatePicker[V <: DatePicker](val basis: V) extends TraitDatePicker[V]
   @inline implicit def datePicker2RichDatePicker[V <: DatePicker](datePicker: V) = new RichDatePicker[V](datePicker)
 
-  trait TraitDatePicker[V <: DatePicker] extends TraitFrameLayout[V] {
+  trait TraitDatePicker[V <: android.widget.DatePicker] extends TraitFrameLayout[V] {
 
 
     @inline def dayOfMonth = basis.getDayOfMonth
@@ -3904,11 +3895,10 @@ trait WidgetFamily {
 
   }
 
-
   class RichGestureOverlayView[V <: GestureOverlayView](val basis: V) extends TraitGestureOverlayView[V]
   @inline implicit def gestureOverlayView2RichGestureOverlayView[V <: GestureOverlayView](gestureOverlayView: V) = new RichGestureOverlayView[V](gestureOverlayView)
 
-  trait TraitGestureOverlayView[V <: GestureOverlayView] extends TraitFrameLayout[V] {
+  trait TraitGestureOverlayView[V <: android.gesture.GestureOverlayView] extends TraitFrameLayout[V] {
 
 
     @inline def currentStroke = basis.getCurrentStroke

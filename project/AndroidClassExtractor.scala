@@ -165,14 +165,17 @@ object AndroidClassExtractor {
                   .sortBy(_.name)
 
     val fullName = cls.getName
-    val simpleName = fullName.split('.').last
-    val pkg = fullName.split('.').init.mkString
 
-    val parentName = Option(parent) map (_.getName) filter (_.startsWith("android"))
+    val name = fullName.split('.').last
+    val tpe = toScalaType(cls)
+    val pkg = fullName.split('.').init.mkString
+    val parentType = Option(cls.getGenericSuperclass)
+                        .map(toScalaType)
+                        .filter(_.name.startsWith("android"))
 
     val isA = getHierarchy(cls).toSet
 
-    AndroidClass(fullName, simpleName, pkg, parentName, props, listeners, isA, isAbstract(cls))
+    AndroidClass(name, pkg, tpe, parentType, props, listeners, isA, isAbstract(cls))
   }
 
   def extractTask = (streams) map { s =>
@@ -213,7 +216,10 @@ object AndroidClassExtractor {
       , classOf[android.preference.EditTextPreference]
     )        
 
-    val res = clss.view.map(toAndroidClass).map(c => c.fullName -> c).toMap
+    val res = clss.view
+                .map(toAndroidClass)
+                .map(c => c.tpe.name -> c)
+                .toMap
 
     val values = res.values.toList
     s.log.info("Extracted from Android")
