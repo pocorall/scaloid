@@ -313,8 +313,6 @@ package object common extends Logger with SystemService with WidgetFamily {
 
     def apply()(implicit context: Context): SPreference = new SPreference
 
-
-
   }
 
   class RichDialogPreference[V <: DialogPreference](val basis: V) extends TraitDialogPreference[V]
@@ -384,8 +382,6 @@ package object common extends Logger with SystemService with WidgetFamily {
   object SEditTextPreference {
 
     def apply()(implicit context: Context): SEditTextPreference = new SEditTextPreference
-
-
 
   }
 

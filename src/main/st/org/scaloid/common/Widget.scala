@@ -79,7 +79,7 @@ trait WidgetFamily {
     }
   }
 
-  $openRichClassDef(android.view.View, "ConstantsSupport")$
+  $openRichClassDef(base=android.view.View, mixin="ConstantsSupport")$
 
     def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
 

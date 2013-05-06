@@ -923,8 +923,6 @@ trait WidgetFamily {
       v
     }  
 
-
-
   }
 
   trait TraitAbsListView[V <: AbsListView] extends TraitView[V] {
@@ -1556,8 +1554,6 @@ trait WidgetFamily {
       v
     }  
 
-
-
   }
 
   class RichExtractEditText[V <: ExtractEditText](val basis: V) extends TraitExtractEditText[V]
@@ -1590,8 +1586,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }  
-
-
 
   }
 
@@ -1736,8 +1730,6 @@ trait WidgetFamily {
       v
     }  
 
-
-
   }
 
   class RichListView[V <: ListView](val basis: V) extends TraitListView[V]
@@ -1809,8 +1801,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichButton[V <: Button](val basis: V) extends TraitButton[V]
@@ -1857,8 +1847,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
   }
 
   class RichCompoundButton[V <: CompoundButton](val basis: V) extends TraitCompoundButton[V]
@@ -1934,8 +1922,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
   }
 
   class RichCheckBox[V <: CheckBox](val basis: V) extends TraitCheckBox[V]
@@ -1982,8 +1968,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
   }
 
   class RichRadioButton[V <: RadioButton](val basis: V) extends TraitRadioButton[V]
@@ -2030,8 +2014,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
   }
 
   class RichToggleButton[V <: ToggleButton](val basis: V) extends TraitToggleButton[V]
@@ -2086,8 +2068,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
   }
 
   class RichCheckedTextView[V <: CheckedTextView](val basis: V) extends TraitCheckedTextView[V]
@@ -2131,8 +2111,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }  
-
-
 
   }
 
@@ -2192,8 +2170,6 @@ trait WidgetFamily {
       v
     }  
 
-
-
   }
 
   class RichDigitalClock[V <: DigitalClock](val basis: V) extends TraitDigitalClock[V]
@@ -2226,8 +2202,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }  
-
-
 
   }
 
@@ -2526,8 +2500,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichImageButton[V <: ImageButton](val basis: V) extends TraitImageButton[V]
@@ -2553,8 +2525,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
 
   }
 
@@ -2592,8 +2562,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichZoomButton[V <: ZoomButton](val basis: V) extends TraitZoomButton[V]
@@ -2624,8 +2592,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
 
   }
 
@@ -2681,8 +2647,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichAnalogClock[V <: AnalogClock](val basis: V) extends TraitAnalogClock[V]
@@ -2708,8 +2672,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
 
   }
 
@@ -2749,8 +2711,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
 
   }
 
@@ -2817,8 +2777,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
 
   }
 
@@ -2925,8 +2883,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichViewStub[V <: ViewStub](val basis: V) extends TraitViewStub[V]
@@ -3015,8 +2971,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
 
   }
 
@@ -3146,8 +3100,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
@@ -3252,8 +3204,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichGallery[V <: Gallery](val basis: V) extends TraitGallery[V]
@@ -3304,8 +3254,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
 
   }
 
@@ -3412,8 +3360,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichRatingBar[V <: RatingBar](val basis: V) extends TraitRatingBar[V]
@@ -3474,8 +3420,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichAppWidgetHostView[V <: AppWidgetHostView](val basis: V) extends TraitAppWidgetHostView[V]
@@ -3527,8 +3471,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichMediaController[V <: MediaController](val basis: V) extends TraitMediaController[V]
@@ -3568,8 +3510,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichScrollView[V <: ScrollView](val basis: V) extends TraitScrollView[V]
@@ -3607,8 +3547,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
 
   }
 
@@ -3678,8 +3616,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichTimePicker[V <: TimePicker](val basis: V) extends TraitTimePicker[V]
@@ -3734,8 +3670,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichViewAnimator[V <: ViewAnimator](val basis: V) extends TraitViewAnimator[V]
@@ -3781,8 +3715,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichViewFlipper[V <: ViewFlipper](val basis: V) extends TraitViewFlipper[V]
@@ -3821,8 +3753,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichViewSwitcher[V <: ViewSwitcher](val basis: V) extends TraitViewSwitcher[V]
@@ -3856,8 +3786,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
 
   }
 
@@ -3900,8 +3828,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichTextSwitcher[V <: TextSwitcher](val basis: V) extends TraitTextSwitcher[V]
@@ -3938,8 +3864,6 @@ trait WidgetFamily {
       v
     }
 
-
-
   }
 
   class RichDatePicker[V <: DatePicker](val basis: V) extends TraitDatePicker[V]
@@ -3972,8 +3896,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
 
   }
 
@@ -4187,8 +4109,6 @@ trait WidgetFamily {
       v.<<.parent.+=(v)
       v
     }
-
-
 
   }
 }
