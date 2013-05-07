@@ -76,13 +76,6 @@ package object common extends Logger with SystemService with WidgetFamily {
       }
     }
 
-  private[scaloid] def _defaultValue[U]: U = {
-    class Default[W] {
-      var default: W = _
-    }
-    new Default[U].default
-  }
-
   trait ConstantsSupport {
     // android:inputType constants for TextView
 
