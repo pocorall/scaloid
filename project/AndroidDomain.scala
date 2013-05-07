@@ -1,19 +1,29 @@
+
+case class ScalaType(
+  name: String,
+  params: Seq[ScalaType] = Nil,
+  isVar: Boolean = false
+)
+
 case class AndroidMethod(
   name: String,
-  retType: String,
-  paramTypes: Seq[String]
+  retType: ScalaType,
+  argTypes: Seq[ScalaType],
+  paramedTypes: Seq[ScalaType],
+  isAbstract: Boolean = false,
+  isOverride: Boolean = false
 )
 
 case class AndroidCallbackMethod(
   name: String,
-  retType: String,
-  paramTypes: Seq[String],
+  retType: ScalaType,
+  argTypes: Seq[ScalaType],
   hasBody: Boolean = true
 )
 
 case class AndroidProperty(
   name: String,
-  tpe: String,
+  tpe: ScalaType,
   getter: Option[AndroidMethod],
   setters: Seq[AndroidMethod],
   switch: Option[String],
@@ -22,24 +32,25 @@ case class AndroidProperty(
 
 case class AndroidListener(
   name: String,
-  retType: String,
-  paramTypes: Seq[String],
+  retType: ScalaType,
+  argTypes: Seq[ScalaType],
   hasParams: Boolean,
   setter: String,
   callbackClassName: String,
   callbackMethods: Seq[AndroidCallbackMethod]
 ) {
   def isSafe: Boolean =
-    (! setter.startsWith("set")) || callbackMethods.length == 1 || callbackMethods.forall(_.retType == "Unit")
+    (! setter.startsWith("set")) || callbackMethods.length == 1 || callbackMethods.forall(_.retType.name == "Unit")
 }
 
 case class AndroidClass(
-  fullName: String,
-  simpleName: String,
-  `package`: String,
-  parent: Option[String],
-  isA: Set[String],
+  name: String,
+  pkg: String,
+  tpe: ScalaType,
+  parentType: Option[ScalaType],
   properties: Seq[AndroidProperty],
-  listeners: Seq[AndroidListener]
+  listeners: Seq[AndroidListener],
+  isA: Set[String],
+  isAbstract: Boolean
 )
 

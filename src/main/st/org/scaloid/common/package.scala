@@ -76,7 +76,7 @@ package object common extends Logger with SystemService with WidgetFamily {
       }
     }
 
-  def defaultValue[U]: U = {
+  private[scaloid] def _defaultValue[U]: U = {
     class Default[W] {
       var default: W = _
     }
@@ -194,6 +194,8 @@ package object common extends Logger with SystemService with WidgetFamily {
       }
     }
 
+  $wholeClassDef(android.preference.Preference)$
+  $richClassDef(android.preference.DialogPreference)$
   $wholeClassDef(android.preference.EditTextPreference)$
 
   class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = null)(implicit context: Context) extends AlertDialog.Builder(context) {

@@ -76,7 +76,7 @@ package object common extends Logger with SystemService with WidgetFamily {
       }
     }
 
-  def defaultValue[U]: U = {
+  private[scaloid] def _defaultValue[U]: U = {
     class Default[W] {
       var default: W = _
     }
@@ -194,13 +194,172 @@ package object common extends Logger with SystemService with WidgetFamily {
       }
     }
 
+  class RichPreference[V <: Preference](val basis: V) extends TraitPreference[V]
+  @inline implicit def preference2RichPreference[V <: Preference](preference: V) = new RichPreference[V](preference)
 
+  trait TraitPreference[V <: android.preference.Preference] {
+
+    def basis: V
+    @inline def context = basis.getContext
+
+    @noEquivalentGetterExists
+    @inline def defaultValue    : java.lang.Object  = _defaultValue[java.lang.Object]
+    @inline def defaultValue  (p: java.lang.Object) =            defaultValue_=  (p)
+    @inline def defaultValue_=(p: java.lang.Object) = { basis.setDefaultValue    (p); basis }
+
+    @inline def dependency = basis.getDependency
+    @inline def dependency  (p: java.lang.String) =            dependency_=  (p)
+    @inline def dependency_=(p: java.lang.String) = { basis.setDependency    (p); basis }
+
+    @inline def editor = basis.getEditor
+
+    @inline def enabled = basis.isEnabled
+    @inline def enabled  (p: Boolean) =            enabled_=  (p)
+    @inline def enabled_=(p: Boolean) = { basis.setEnabled    (p); basis }
+
+    @inline def intent = basis.getIntent
+    @inline def intent  (p: android.content.Intent) =            intent_=  (p)
+    @inline def intent_=(p: android.content.Intent) = { basis.setIntent    (p); basis }
+
+    @inline def key = basis.getKey
+    @inline def key  (p: java.lang.String) =            key_=  (p)
+    @inline def key_=(p: java.lang.String) = { basis.setKey    (p); basis }
+
+    @inline def layoutResource = basis.getLayoutResource
+    @inline def layoutResource  (p: Int) =            layoutResource_=  (p)
+    @inline def layoutResource_=(p: Int) = { basis.setLayoutResource    (p); basis }
+
+    @inline def onPreferenceChangeListener = basis.getOnPreferenceChangeListener
+    @inline def onPreferenceChangeListener  (p: android.preference.Preference.OnPreferenceChangeListener) =            onPreferenceChangeListener_=  (p)
+    @inline def onPreferenceChangeListener_=(p: android.preference.Preference.OnPreferenceChangeListener) = { basis.setOnPreferenceChangeListener    (p); basis }
+
+    @inline def onPreferenceClickListener = basis.getOnPreferenceClickListener
+    @inline def onPreferenceClickListener  (p: android.preference.Preference.OnPreferenceClickListener) =            onPreferenceClickListener_=  (p)
+    @inline def onPreferenceClickListener_=(p: android.preference.Preference.OnPreferenceClickListener) = { basis.setOnPreferenceClickListener    (p); basis }
+
+    @inline def order = basis.getOrder
+    @inline def order  (p: Int) =            order_=  (p)
+    @inline def order_=(p: Int) = { basis.setOrder    (p); basis }
+
+    @inline def persistent = basis.isPersistent
+    @inline def persistent  (p: Boolean) =            persistent_=  (p)
+    @inline def persistent_=(p: Boolean) = { basis.setPersistent    (p); basis }
+
+    @inline def preferenceManager = basis.getPreferenceManager
+
+    @inline def selectable = basis.isSelectable
+    @inline def selectable  (p: Boolean) =            selectable_=  (p)
+    @inline def selectable_=(p: Boolean) = { basis.setSelectable    (p); basis }
+
+    @inline def sharedPreferences = basis.getSharedPreferences
+
+    @inline def shouldDisableView = basis.getShouldDisableView
+    @inline def shouldDisableView  (p: Boolean) =            shouldDisableView_=  (p)
+    @inline def shouldDisableView_=(p: Boolean) = { basis.setShouldDisableView    (p); basis }
+
+    @inline def summary = basis.getSummary
+    @inline def summary  (p: Int) =            summary_=  (p)
+    @inline def summary_=(p: Int) = { basis.setSummary    (p); basis }
+    @inline def summary  (p: java.lang.CharSequence) =            summary_=  (p)
+    @inline def summary_=(p: java.lang.CharSequence) = { basis.setSummary    (p); basis }
+
+    @inline def title = basis.getTitle
+    @inline def title  (p: Int) =            title_=  (p)
+    @inline def title_=(p: Int) = { basis.setTitle    (p); basis }
+    @inline def title  (p: java.lang.CharSequence) =            title_=  (p)
+    @inline def title_=(p: java.lang.CharSequence) = { basis.setTitle    (p); basis }
+
+    @inline def widgetLayoutResource = basis.getWidgetLayoutResource
+    @inline def widgetLayoutResource  (p: Int) =            widgetLayoutResource_=  (p)
+    @inline def widgetLayoutResource_=(p: Int) = { basis.setWidgetLayoutResource    (p); basis }
+
+    @inline def onPreferenceChange(f: (android.preference.Preference, java.lang.Object) => Boolean): V = {
+      basis.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener {
+        def onPreferenceChange(p1: android.preference.Preference, p2: java.lang.Object): Boolean = { f(p1, p2) }
+      })
+      basis
+    }
+
+    @inline def onPreferenceChange(f: => Boolean): V = {
+      basis.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener {
+        def onPreferenceChange(p1: android.preference.Preference, p2: java.lang.Object): Boolean = { f }
+      })
+      basis
+    }
+
+    @inline def onPreferenceClick(f: android.preference.Preference => Boolean): V = {
+      basis.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener {
+        def onPreferenceClick(p: android.preference.Preference): Boolean = { f(p) }
+      })
+      basis
+    }
+
+    @inline def onPreferenceClick(f: => Boolean): V = {
+      basis.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener {
+        def onPreferenceClick(p: android.preference.Preference): Boolean = { f }
+      })
+      basis
+    }
+  }
+
+  class SPreference(implicit context: Context)
+      extends Preference(context) with TraitPreference[SPreference] {
+    def basis = this
+
+  }
+
+  object SPreference {
+
+    def apply()(implicit context: Context): SPreference = new SPreference
+
+  }
+
+  trait TraitDialogPreference[V <: android.preference.DialogPreference] extends TraitPreference[V] {
+
+
+    @inline def dialog = basis.getDialog
+
+    @inline def dialogIcon = basis.getDialogIcon
+    @inline def dialogIcon  (p: Int) =            dialogIcon_=  (p)
+    @inline def dialogIcon_=(p: Int) = { basis.setDialogIcon    (p); basis }
+    @inline def dialogIcon  (p: android.graphics.drawable.Drawable) =            dialogIcon_=  (p)
+    @inline def dialogIcon_=(p: android.graphics.drawable.Drawable) = { basis.setDialogIcon    (p); basis }
+
+    @inline def dialogLayoutResource = basis.getDialogLayoutResource
+    @inline def dialogLayoutResource  (p: Int) =            dialogLayoutResource_=  (p)
+    @inline def dialogLayoutResource_=(p: Int) = { basis.setDialogLayoutResource    (p); basis }
+
+    @inline def dialogMessage = basis.getDialogMessage
+    @inline def dialogMessage  (p: Int) =            dialogMessage_=  (p)
+    @inline def dialogMessage_=(p: Int) = { basis.setDialogMessage    (p); basis }
+    @inline def dialogMessage  (p: java.lang.CharSequence) =            dialogMessage_=  (p)
+    @inline def dialogMessage_=(p: java.lang.CharSequence) = { basis.setDialogMessage    (p); basis }
+
+    @inline def dialogTitle = basis.getDialogTitle
+    @inline def dialogTitle  (p: Int) =            dialogTitle_=  (p)
+    @inline def dialogTitle_=(p: Int) = { basis.setDialogTitle    (p); basis }
+    @inline def dialogTitle  (p: java.lang.CharSequence) =            dialogTitle_=  (p)
+    @inline def dialogTitle_=(p: java.lang.CharSequence) = { basis.setDialogTitle    (p); basis }
+
+    @inline def negativeButtonText = basis.getNegativeButtonText
+    @inline def negativeButtonText  (p: Int) =            negativeButtonText_=  (p)
+    @inline def negativeButtonText_=(p: Int) = { basis.setNegativeButtonText    (p); basis }
+    @inline def negativeButtonText  (p: java.lang.CharSequence) =            negativeButtonText_=  (p)
+    @inline def negativeButtonText_=(p: java.lang.CharSequence) = { basis.setNegativeButtonText    (p); basis }
+
+    @inline def positiveButtonText = basis.getPositiveButtonText
+    @inline def positiveButtonText  (p: Int) =            positiveButtonText_=  (p)
+    @inline def positiveButtonText_=(p: Int) = { basis.setPositiveButtonText    (p); basis }
+    @inline def positiveButtonText  (p: java.lang.CharSequence) =            positiveButtonText_=  (p)
+    @inline def positiveButtonText_=(p: java.lang.CharSequence) = { basis.setPositiveButtonText    (p); basis }
+
+  }
   class RichEditTextPreference[V <: EditTextPreference](val basis: V) extends TraitEditTextPreference[V]
   @inline implicit def editTextPreference2RichEditTextPreference[V <: EditTextPreference](editTextPreference: V) = new RichEditTextPreference[V](editTextPreference)
 
-  trait TraitEditTextPreference[V <: EditTextPreference] {
+  trait TraitEditTextPreference[V <: android.preference.EditTextPreference] extends TraitDialogPreference[V] {
 
-    def basis: V
+
     @inline def editText = basis.getEditText
 
     @inline def text = basis.getText
@@ -219,9 +378,8 @@ package object common extends Logger with SystemService with WidgetFamily {
 
     def apply()(implicit context: Context): SEditTextPreference = new SEditTextPreference
 
-
-
   }
+
 
   class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = null)(implicit context: Context) extends AlertDialog.Builder(context) {
     if (_title != null) setTitle(_title)
