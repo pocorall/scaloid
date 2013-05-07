@@ -30,7 +30,10 @@ object AndroidClassExtractor {
             case n => n.capitalize
           })
         } else {
-          ScalaType(t.getName.replace("$", "."))
+          ScalaType(
+            t.getName.replace("$", "."),
+            t.getTypeParameters.take(1).map(_ => ScalaType("_")).toSeq
+          )
         }
       }
       case _ =>
@@ -40,27 +43,64 @@ object AndroidClassExtractor {
   private def isAbstract(m: Member): Boolean = Modifier.isAbstract(m.getModifiers)
   private def isAbstract(c: Class[_]): Boolean = Modifier.isAbstract(c.getModifiers)
 
-  private def toAndroidClass(cls: Class[_]) = {
-    val parent = cls.getSuperclass
-    val superPropNames = 
-      if (parent == null)
-        new HashSet[String]
-      else
-        Introspector.getBeanInfo(parent).getPropertyDescriptors.toList.map(p => p.getName + p.getPropertyType).toSet
+  private def methodSignature(m: Method): String = List(
+    m.getName,
+    m.getReturnType.getName,
+    "["+m.getParameterTypes.map(_.getName).toList.mkString(",")+"]"
+  ).mkString(":")
 
-    val superMethodNames = 
-      if (parent == null)
-        new HashSet[String]
-      else
-        Introspector.getBeanInfo(parent).getMethodDescriptors.toList.map(m => m.getName).toSet
+  private def methodSignature(mdesc: MethodDescriptor): String =
+    methodSignature(mdesc.getMethod)
+
+  private def propSignature(pdesc: PropertyDescriptor): String = List(
+    pdesc.getName,
+    pdesc.getPropertyType
+  ).mkString(":")
+
+  private def toAndroidClass(cls: Class[_]) = {
+    implicit val _cls = cls
+
+    val parentBeanInfo = Option(cls.getSuperclass).map(Introspector.getBeanInfo)
+
+
+    val superProps: Set[String] = 
+      parentBeanInfo.map { 
+        _.getPropertyDescriptors.toList.map(propSignature).toSet
+      }.getOrElse(Set())
+
+    val superMethods: Set[String] = 
+      parentBeanInfo.map {
+        _.getMethodDescriptors.toList.map(methodSignature).toSet
+      }.getOrElse(Set())
+
+    val superGetters: Set[String] = 
+      parentBeanInfo.map {
+        _.getPropertyDescriptors.toList
+          .map(m => Option(m.getReadMethod))
+          .filter(_.nonEmpty)
+          .map(_.get.getName).toSet
+      }.getOrElse(Set())
+
+
+    def toAndroidMethod(m: Method): AndroidMethod = {
+      val name = m.getName
+      val retType = AndroidClassExtractor.toScalaType(m.getGenericReturnType)
+      val argTypes = Option(m.getGenericParameterTypes)
+                      .flatten
+                      .toSeq
+                      .map(AndroidClassExtractor.toScalaType(_))
+      val paramedTypes = (retType +: argTypes).filter(_.isVar).distinct
+
+      AndroidMethod(name, retType, argTypes, paramedTypes, isAbstract(m))
+    }
 
     def isValidProperty(pdesc: PropertyDescriptor): Boolean =
       (! pdesc.isInstanceOf[IndexedPropertyDescriptor]) && pdesc.getDisplayName.matches("^[a-zA-z].*") &&
-      (! superPropNames(pdesc.getName + pdesc.getPropertyType))
+      (! superProps(propSignature(pdesc)))
 
     def isListenerSetterOrAdder(mdesc: MethodDescriptor): Boolean = {
       val name = mdesc.getName
-      name.matches("^(set|add).+Listener$") && (! superMethodNames(name))
+      name.matches("^(set|add).+Listener$") && !superMethods(methodSignature(mdesc))
     }
 
     def isCallbackMethod(mdesc: MethodDescriptor): Boolean =
@@ -73,24 +113,16 @@ object AndroidClassExtractor {
         .map(toAndroidMethod)
         .toList
 
-    def toAndroidMethod(m: Method): AndroidMethod = {
-      val name = m.getName
-      val retType = AndroidClassExtractor.toScalaType(m.getGenericReturnType)
-      val argTypes = Option(m.getGenericParameterTypes)
-                      .flatten
-                      .toSeq
-                      .map(AndroidClassExtractor.toScalaType(_))
-      val paramedTypes = (retType +: argTypes).filter(_.isVar).distinct
-      AndroidMethod(name, retType, argTypes, paramedTypes, isAbstract(m))
-    }
-
     def getPolymorphicSetters(method: Method): Seq[AndroidMethod] = {
       val name = method.getName
-      Introspector.getBeanInfo(cls).getMethodDescriptors
-        .filter(s => s.getName == name && ! superMethodNames(s.getName))
+      Introspector.getBeanInfo(cls).getMethodDescriptors.view
         .map(_.getMethod)
+        .filter { m => 
+          !isAbstract(m) && m.getName == name && 
+            m.getParameterTypes.length == 1 && 
+            !superMethods(methodSignature(m)) 
+        }
         .map(toAndroidMethod)
-        .filter(_.argTypes.length == 1)
         .toSeq
     }
 
@@ -105,20 +137,34 @@ object AndroidClassExtractor {
         case e: NoSuchMethodException => // does nothing
       }
 
-      val readMethod = Option(pdesc.getReadMethod)
+      val readMethod = Option(pdesc.getReadMethod) 
       val writeMethod = Option(pdesc.getWriteMethod)
 
-      if (Seq(readMethod, writeMethod).flatten.exists(s => superMethodNames(s.getName))) {
-        None
-      } else {
-        val getter = readMethod map toAndroidMethod
-        val setters = writeMethod.map(getPolymorphicSetters).toSeq.flatten.sortBy(_.argTypes(0).name)
-        val tpe = readMethod.map(_.getGenericReturnType).getOrElse(writeMethod.get.getGenericParameterTypes()(0))
-        val switch = if (name.endsWith("Enabled")) Some(name.replace("Enabled", "").capitalize) else None
+      val getter = readMethod
+                      .filter(m => ! superMethods(methodSignature(m)))
+                      .map { m =>
+                        val am = toAndroidMethod(m)
+                        if (superGetters(am.name))
+                          am.copy(isOverride = true)
+                        else
+                          am
+                      }
 
-        Some(AndroidProperty(name, toScalaType(tpe), getter, setters, switch, nameClashes))
+      val setters = writeMethod
+                      .map(getPolymorphicSetters)
+                      .toSeq.flatten
+                      .sortBy(_.argTypes(0).name)
+
+      (getter, setters) match {
+        case (None, Nil) => None
+        case (g, ss) =>
+          val tpe = getter.map(_.retType).getOrElse(setters.first.argTypes.first)
+          val switch = if (name.endsWith("Enabled")) Some(name.replace("Enabled", "").capitalize) else None
+          Some(AndroidProperty(name, tpe, getter, setters, switch, nameClashes))
       }
     }
+
+
 
     
     def toAndroidListeners(mdesc: MethodDescriptor): Seq[AndroidListener] = {
@@ -218,6 +264,10 @@ object AndroidClassExtractor {
 
     val res = clss.view
                 .map(toAndroidClass)
+                .map{c =>
+                  //println(c.name, c.tpe.params)
+                  c
+                }
                 .map(c => c.tpe.name -> c)
                 .toMap
 

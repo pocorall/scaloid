@@ -223,7 +223,6 @@ $endif$
 
 
   $richClassDef(android.widget.FrameLayout)$
-
   $openConcreteClassDef(android.widget.FrameLayout)$
 
     implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
@@ -250,7 +249,6 @@ $endif$
 
 
   $richClassDef(android.widget.RelativeLayout)$
-
   $openConcreteClassDef(android.widget.RelativeLayout)$
 
     implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
@@ -437,24 +435,14 @@ $endif$
   $richClassDef(android.view.ViewStub)$
   $wholeClassDef(android.widget.GridView)$
   $wholeClassDef(android.widget.ExpandableListView)$
-
-  trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
-    import android.widget.AdapterView.OnItemClickListener
-    import android.widget.AdapterView.OnItemLongClickListener
-
-    $listeners(android.widget.AdapterView)$
-  }
-
-  trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
-    $properties(android.widget.AbsSpinner)$
-  }
-
+  $wholeClassDef(android.widget.AdapterView)$
+  $wholeClassDef(android.widget.AbsSpinner)$
   $wholeClassDef(android.widget.Spinner)$
   $wholeClassDef(android.widget.Gallery)$
-  $richClassDef(android.widget.AbsSeekBar)$
+  $wholeClassDef(android.widget.AbsSeekBar)$
   $wholeClassDef(android.widget.SeekBar)$
   $wholeClassDef(android.widget.RatingBar)$
-  $richClassDef(android.appwidget.AppWidgetHostView)$
+  $wholeClassDef(android.appwidget.AppWidgetHostView)$
   $wholeClassDef(android.widget.HorizontalScrollView)$
   $wholeClassDef(android.widget.MediaController)$
   $wholeClassDef(android.widget.ScrollView)$

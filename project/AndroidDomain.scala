@@ -10,7 +10,8 @@ case class AndroidMethod(
   retType: ScalaType,
   argTypes: Seq[ScalaType],
   paramedTypes: Seq[ScalaType],
-  isAbstract: Boolean = false
+  isAbstract: Boolean = false,
+  isOverride: Boolean = false
 )
 
 case class AndroidCallbackMethod(

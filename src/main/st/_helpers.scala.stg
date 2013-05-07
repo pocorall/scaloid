@@ -227,10 +227,11 @@ listeners(base) ::= <<$base.listeners:listener(); separator="\n\n"$>>
 
 // property
 
+override(m) ::= <<$if(m.isOverride)$ override$endif$>>
 
 getter(prop) ::= <<
 $if(prop.getter)$
-@inline def $prop.name$ = basis.$prop.getter.name$
+@inline$override(prop.getter)$ def $prop.name$ = basis.$prop.getter.name$
 $elseif( ! prop.nameClashes)$
 @noEquivalentGetterExists
 @inline def $prop.name$    : $genType(prop.tpe)$  = _defaultValue[$genType(prop.tpe)$]
@@ -238,9 +239,17 @@ $endif$
 >>
 
 setter(prop, method) ::= <<
-@inline def $prop.name$  $paramedTypes(method.paramedTypes)$($namedArgs(method.argTypes)$) =            $prop.name$_=  (p)
-@inline def $prop.name$_=$paramedTypes(method.paramedTypes)$($namedArgs(method.argTypes)$) = { basis.$method.name$    (p); basis }
+$_setter("  ", {           $prop.name$_=  (p)})$
+$_setter("_=", {{ basis.$method.name$    (p); basis \}})$
 >>
+
+_setter(postFix, body) ::= <%
+@inline def $prop.name$$postFix$
+$paramedTypes(method.paramedTypes)$
+($namedArgs(method.argTypes)$)
+$if( ! method.isAbstract)$ = $body$$endif$
+%>
+
 
 switch(name, setter) ::= <<
 @inline def  enable$name$               = { basis.$setter.name$(true ); basis }

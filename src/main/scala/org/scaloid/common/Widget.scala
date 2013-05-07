@@ -677,7 +677,7 @@ trait WidgetFamily {
     @inline def lines_=(p: Int) = { basis.setLines    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def linkTextColor    : android.content.res.ColorStateList  = _defaultValue[android.content.res.ColorStateList]
+    @inline def linkTextColor    : Int  = _defaultValue[Int]
     @inline def linkTextColor  (p: Int) =            linkTextColor_=  (p)
     @inline def linkTextColor_=(p: Int) = { basis.setLinkTextColor    (p); basis }
     @inline def linkTextColor  (p: android.content.res.ColorStateList) =            linkTextColor_=  (p)
@@ -1298,7 +1298,6 @@ trait WidgetFamily {
     @inline def measureAllChildren_=(p: Boolean) = { basis.setMeasureAllChildren    (p); basis }
 
   }
-
   class SFrameLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null)
       extends FrameLayout(context) with TraitFrameLayout[SFrameLayout] {
     def basis = this
@@ -1355,7 +1354,6 @@ trait WidgetFamily {
     @inline def verticalGravity_=(p: Int) = { basis.setVerticalGravity    (p); basis }
 
   }
-
   class SRelativeLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null)
       extends RelativeLayout(context) with TraitRelativeLayout[SRelativeLayout] {
     def basis = this
@@ -1566,6 +1564,9 @@ trait WidgetFamily {
   @inline implicit def editText2RichEditText[V <: EditText](editText: V) = new RichEditText[V](editText)
 
   trait TraitEditText[V <: android.widget.EditText] extends TraitTextView[V] {
+
+
+    @inline override def text = basis.getText
 
 
   }
@@ -3103,10 +3104,41 @@ trait WidgetFamily {
 
   }
 
+  trait TraitAdapterView[V <: android.widget.AdapterView[_]] extends TraitViewGroup[V] {
 
-  trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
-    import android.widget.AdapterView.OnItemClickListener
-    import android.widget.AdapterView.OnItemLongClickListener
+
+    @inline def adapter = basis.getAdapter
+
+    @inline def count = basis.getCount
+
+    @inline def emptyView = basis.getEmptyView
+    @inline def emptyView  (p: android.view.View) =            emptyView_=  (p)
+    @inline def emptyView_=(p: android.view.View) = { basis.setEmptyView    (p); basis }
+
+    @inline def firstVisiblePosition = basis.getFirstVisiblePosition
+
+    @inline def lastVisiblePosition = basis.getLastVisiblePosition
+
+    @inline def onItemClickListener = basis.getOnItemClickListener
+    @inline def onItemClickListener  (p: android.widget.AdapterView.OnItemClickListener) =            onItemClickListener_=  (p)
+    @inline def onItemClickListener_=(p: android.widget.AdapterView.OnItemClickListener) = { basis.setOnItemClickListener    (p); basis }
+
+    @inline def onItemLongClickListener = basis.getOnItemLongClickListener
+    @inline def onItemLongClickListener  (p: android.widget.AdapterView.OnItemLongClickListener) =            onItemLongClickListener_=  (p)
+    @inline def onItemLongClickListener_=(p: android.widget.AdapterView.OnItemLongClickListener) = { basis.setOnItemLongClickListener    (p); basis }
+
+    @inline def onItemSelectedListener = basis.getOnItemSelectedListener
+    @inline def onItemSelectedListener  (p: android.widget.AdapterView.OnItemSelectedListener) =            onItemSelectedListener_=  (p)
+    @inline def onItemSelectedListener_=(p: android.widget.AdapterView.OnItemSelectedListener) = { basis.setOnItemSelectedListener    (p); basis }
+
+    @inline def selectedItem = basis.getSelectedItem
+
+    @inline def selectedItemId = basis.getSelectedItemId
+
+    @inline def selectedItemPosition = basis.getSelectedItemPosition
+
+    @inline def selectedView = basis.getSelectedView
+
 
     @inline def onItemClick(f: (android.widget.AdapterView[_], android.view.View, Int, Long) => Unit): V = {
       basis.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener {
@@ -3169,8 +3201,16 @@ trait WidgetFamily {
     }
   }
 
-  trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
+
+  trait TraitAbsSpinner[V <: android.widget.AbsSpinner] extends TraitAdapterView[V] {
+
+
+    @inline override def adapter = basis.getAdapter
+    @inline def adapter  (p: android.widget.SpinnerAdapter) =            adapter_=  (p)
+    @inline def adapter_=(p: android.widget.SpinnerAdapter) = { basis.setAdapter    (p); basis }
+
   }
+
 
   class RichSpinner[V <: Spinner](val basis: V) extends TraitSpinner[V]
   @inline implicit def spinner2RichSpinner[V <: Spinner](spinner: V) = new RichSpinner[V](spinner)
@@ -3275,6 +3315,8 @@ trait WidgetFamily {
     @inline def thumbOffset_=(p: Int) = { basis.setThumbOffset    (p); basis }
 
   }
+
+
   class RichSeekBar[V <: SeekBar](val basis: V) extends TraitSeekBar[V]
   @inline implicit def seekBar2RichSeekBar[V <: SeekBar](seekBar: V) = new RichSeekBar[V](seekBar)
 
@@ -3431,6 +3473,25 @@ trait WidgetFamily {
 
 
   }
+
+  class SAppWidgetHostView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null)
+      extends AppWidgetHostView(context) with TraitAppWidgetHostView[SAppWidgetHostView] {
+    def basis = this
+    override val parentViewGroup = parentVGroup
+
+  }
+
+  object SAppWidgetHostView {
+
+    def apply[LP <: ViewGroupLayoutParams[_, SAppWidgetHostView]]()
+        (implicit context: Context, defaultLayoutParam: (SAppWidgetHostView) => LP): SAppWidgetHostView = {
+      val v = (new SAppWidgetHostView)
+      v.<<.parent.+=(v)
+      v
+    }
+
+  }
+
   class RichHorizontalScrollView[V <: HorizontalScrollView](val basis: V) extends TraitHorizontalScrollView[V]
   @inline implicit def horizontalScrollView2RichHorizontalScrollView[V <: HorizontalScrollView](horizontalScrollView: V) = new RichHorizontalScrollView[V](horizontalScrollView)
 
