@@ -280,8 +280,9 @@ object AndroidClassExtractor {
         , classOf[ConnectivityManager], classOf[DevicePolicyManager], classOf[DropBoxManager]
         , classOf[InputMethodManager], classOf[KeyguardManager], classOf[LayoutInflater]
         , classOf[LocationManager], classOf[NotificationManager], classOf[PowerManager]
-        , classOf[SearchManager], classOf[TelephonyManager], classOf[UiModeManager]
-        , classOf[Vibrator], classOf[WallpaperManager], classOf[WifiManager], classOf[WindowManager]
+        , classOf[SearchManager], classOf[SensorManager], classOf[TelephonyManager]
+        , classOf[UiModeManager], classOf[Vibrator], classOf[WallpaperManager]
+        , classOf[WifiManager], classOf[WindowManager]
 
         // API Level 9 or Above
         // , classOf[DownloadManager]
