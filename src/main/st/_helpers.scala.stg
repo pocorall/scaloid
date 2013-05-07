@@ -229,12 +229,16 @@ listeners(base) ::= <<$base.listeners:listener(); separator="\n\n"$>>
 
 override(m) ::= <<$if(m.isOverride)$ override$endif$>>
 
+noGetter(name) ::= <<
+@noEquivalentGetterExists
+@inline def $name$(implicit no: Nothing)  = throw new Error("Android does not support the getter for '$name$'")
+>>
+
 getter(prop) ::= <<
 $if(prop.getter)$
 @inline$override(prop.getter)$ def $prop.name$ = basis.$prop.getter.name$
 $elseif( ! prop.nameClashes)$
-@noEquivalentGetterExists
-@inline def $prop.name$    : $genType(prop.tpe)$  = _defaultValue[$genType(prop.tpe)$]
+$noGetter(prop.name)$
 $endif$
 >>
 

@@ -110,8 +110,7 @@ trait TraitActivity[V <: Activity] {
 
   @inline def contentView(p: View) = contentView_=(p)
 
-  @noEquivalentGetterExists
-  @inline def contentView: View = null
+  $noGetter("contentView")$
 
   def basis: Activity
 

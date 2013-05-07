@@ -142,8 +142,7 @@ package object common extends Logger with SystemService with WidgetFamily {
 
     @inline def headerTitle(p: CharSequence) = headerTitle_=(p)
 
-    @noEquivalentGetterExists
-    @inline def headerTitle: CharSequence = ""
+    $noGetter("headerTitle")$
 
   }
 
