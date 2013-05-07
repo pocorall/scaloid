@@ -44,6 +44,8 @@ import android.opengl._
 @beanGetter
 class noEquivalentGetterExists extends annotation.StaticAnnotation
 
+private[scaloid] trait NoGetterForThisProperty
+
 class EventSource0[T] extends ArrayBuffer[() => T] {
   def apply(e: => T) = append(() => e)
 
@@ -110,8 +112,7 @@ trait TraitActivity[V <: Activity] {
 
   @inline def contentView(p: View) = contentView_=(p)
 
-  @noEquivalentGetterExists
-  @inline def contentView: View = null
+  $noGetter("contentView")$
 
   def basis: Activity
 
