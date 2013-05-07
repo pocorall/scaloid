@@ -79,7 +79,7 @@ trait WidgetFamily {
     }
   }
 
-  $openRichClassDef(android.view.View, "ConstantsSupport")$
+  $openRichClassDef(base=android.view.View, mixin="ConstantsSupport")$
 
     def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
 
@@ -114,8 +114,6 @@ $endif$
       lp
     }
 
-    def basis: V
-
     val parentViewGroup: TraitViewGroup[_] = null
 
     @inline def padding_=(p: Int) = {
@@ -130,14 +128,11 @@ $endif$
 
   $closeRichClassDef(android.view.View)$
 
-  $wholeClassDef(android.widget.TextView, "TraitView[V]")$
+  $wholeClassDef(android.widget.TextView)$
 
-  trait TraitAbsListView[V <: AbsListView] extends TraitView[V] {
-    $properties(android.widget.AbsListView)$
-  }
-
+  $wholeClassDef(android.widget.AbsListView)$
   
-  $openRichClassDef(android.view.ViewGroup, "TraitView[V]")$
+  $openRichClassDef(android.view.ViewGroup)$
 
     implicit val pagentVG = this
 
@@ -227,8 +222,7 @@ $endif$
   }
 
 
-  $richClassDef(android.widget.FrameLayout, "TraitViewGroup[V]")$
-
+  $richClassDef(android.widget.FrameLayout)$
   $openConcreteClassDef(android.widget.FrameLayout)$
 
     implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
@@ -254,8 +248,7 @@ $endif$
   $closeConcreteClassDef()$
 
 
-  $richClassDef(android.widget.RelativeLayout, "TraitViewGroup[V]")$
-
+  $richClassDef(android.widget.RelativeLayout)$
   $openConcreteClassDef(android.widget.RelativeLayout)$
 
     implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
@@ -380,7 +373,7 @@ $endif$
   $closeConcreteClassDef()$
 
 
-  $richClassDef(android.widget.LinearLayout, "TraitViewGroup[V]")$
+  $richClassDef(android.widget.LinearLayout)$
 
   $openConcreteClassDef(android.widget.LinearLayout)$
 
@@ -417,59 +410,49 @@ $endif$
     orientation = VERTICAL
   }
 
-  $wholeClassDef(android.widget.EditText, "TraitTextView[V]", textViewBody)$
-  $wholeClassDef(android.inputmethodservice.ExtractEditText, "TraitEditText[V]", textViewBody)$
-  $wholeClassDef(android.widget.AutoCompleteTextView, "TraitEditText[V]", textViewBody)$
-  $wholeClassDef(android.widget.ListView, "TraitAbsListView[V]")$
-  $wholeClassDef(android.widget.Button, "TraitTextView[V]", buttonObjectBody)$
-  $wholeClassDef(android.widget.CompoundButton, "TraitButton[V]")$
-  $wholeClassDef(android.widget.CheckBox, "TraitCompoundButton[V]", buttonObjectBody)$
-  $wholeClassDef(android.widget.RadioButton, "TraitCompoundButton[V]", buttonObjectBody)$
-  $wholeClassDef(android.widget.ToggleButton, "TraitCompoundButton[V]", buttonObjectBody)$
-  $wholeClassDef(android.widget.CheckedTextView, "TraitTextView[V]", textviewBody)$
-  $wholeClassDef(android.widget.Chronometer, "TraitTextView[V]", textviewBody)$
-  $wholeClassDef(android.widget.DigitalClock, "TraitTextView[V]", textviewBody)$
-  $richClassDef(android.inputmethodservice.KeyboardView, "TraitView[V]")$
-  $wholeClassDef(android.widget.ImageView, "TraitView[V]")$
-  $wholeClassDef(android.widget.ImageButton, "TraitImageView[V]")$
-  $wholeClassDef(android.widget.QuickContactBadge, "TraitImageView[V]")$
-  $wholeClassDef(android.widget.ZoomButton, "TraitImageButton[V]")$
-  $wholeClassDef(android.widget.ProgressBar, "TraitView[V]")$
-  $wholeClassDef(android.widget.AnalogClock, "TraitView[V]")$
-  $wholeClassDef(android.view.SurfaceView, "TraitView[V]")$
-  $wholeClassDef(android.opengl.GLSurfaceView, "TraitSurfaceView[V]")$
-  $wholeClassDef(android.widget.VideoView, "TraitSurfaceView[V]")$
-  $richClassDef(android.view.ViewStub, "TraitView[V]")$
-  $wholeClassDef(android.widget.GridView, "TraitAbsListView[V]")$
-  $wholeClassDef(android.widget.ExpandableListView, "TraitListView[V]")$
-
-  trait TraitAdapterView[V <: AdapterView[_]] extends TraitView[V] {
-    import android.widget.AdapterView.OnItemClickListener
-    import android.widget.AdapterView.OnItemLongClickListener
-
-    $listeners(android.widget.AdapterView)$
-  }
-
-  trait TraitAbsSpinner[V <: AbsSpinner] extends TraitAdapterView[V] {
-    $properties(android.widget.AbsSpinner)$
-  }
-
-  $wholeClassDef(android.widget.Spinner, "TraitAbsSpinner[V]")$
-  $wholeClassDef(android.widget.Gallery, "TraitAbsSpinner[V]")$
-  $richClassDef(android.widget.AbsSeekBar, "TraitProgressBar[V]")$
-  $wholeClassDef(android.widget.SeekBar, "TraitAbsSeekBar[V]")$
-  $wholeClassDef(android.widget.RatingBar, "TraitAbsSeekBar[V]")$
-  $richClassDef(android.appwidget.AppWidgetHostView, "TraitFrameLayout[V]")$
-  $wholeClassDef(android.widget.HorizontalScrollView, "TraitFrameLayout[V]")$
-  $wholeClassDef(android.widget.MediaController, "TraitFrameLayout[V]")$
-  $wholeClassDef(android.widget.ScrollView, "TraitFrameLayout[V]")$
-  $wholeClassDef(android.widget.TabHost, "TraitFrameLayout[V]")$
-  $wholeClassDef(android.widget.TimePicker, "TraitFrameLayout[V]")$
-  $wholeClassDef(android.widget.ViewAnimator, "TraitFrameLayout[V]")$
-  $wholeClassDef(android.widget.ViewFlipper, "TraitViewAnimator[V]")$
-  $wholeClassDef(android.widget.ViewSwitcher, "TraitViewAnimator[V]")$
-  $wholeClassDef(android.widget.ImageSwitcher, "TraitViewSwitcher[V]")$
-  $wholeClassDef(android.widget.TextSwitcher, "TraitViewSwitcher[V]")$
-  $wholeClassDef(android.widget.DatePicker, "TraitFrameLayout[V]")$
-  $wholeClassDef(android.gesture.GestureOverlayView, "TraitFrameLayout[V]")$
+  $wholeClassDef(android.widget.EditText)$
+  $wholeClassDef(android.inputmethodservice.ExtractEditText)$
+  $wholeClassDef(android.widget.AutoCompleteTextView)$
+  $wholeClassDef(android.widget.ListView)$
+  $wholeClassDef(android.widget.Button)$
+  $wholeClassDef(android.widget.CompoundButton)$
+  $wholeClassDef(android.widget.CheckBox)$
+  $wholeClassDef(android.widget.RadioButton)$
+  $wholeClassDef(android.widget.ToggleButton)$
+  $wholeClassDef(android.widget.CheckedTextView)$
+  $wholeClassDef(android.widget.Chronometer)$
+  $wholeClassDef(android.widget.DigitalClock)$
+  $richClassDef(android.inputmethodservice.KeyboardView)$
+  $wholeClassDef(android.widget.ImageView)$
+  $wholeClassDef(android.widget.ImageButton)$
+  $wholeClassDef(android.widget.QuickContactBadge)$
+  $wholeClassDef(android.widget.ZoomButton)$
+  $wholeClassDef(android.widget.ProgressBar)$
+  $wholeClassDef(android.widget.AnalogClock)$
+  $wholeClassDef(android.view.SurfaceView)$
+  $wholeClassDef(android.opengl.GLSurfaceView)$
+  $wholeClassDef(android.widget.VideoView)$
+  $richClassDef(android.view.ViewStub)$
+  $wholeClassDef(android.widget.GridView)$
+  $wholeClassDef(android.widget.ExpandableListView)$
+  $wholeClassDef(android.widget.AdapterView)$
+  $wholeClassDef(android.widget.AbsSpinner)$
+  $wholeClassDef(android.widget.Spinner)$
+  $wholeClassDef(android.widget.Gallery)$
+  $wholeClassDef(android.widget.AbsSeekBar)$
+  $wholeClassDef(android.widget.SeekBar)$
+  $wholeClassDef(android.widget.RatingBar)$
+  $wholeClassDef(android.appwidget.AppWidgetHostView)$
+  $wholeClassDef(android.widget.HorizontalScrollView)$
+  $wholeClassDef(android.widget.MediaController)$
+  $wholeClassDef(android.widget.ScrollView)$
+  $wholeClassDef(android.widget.TabHost)$
+  $wholeClassDef(android.widget.TimePicker)$
+  $wholeClassDef(android.widget.ViewAnimator)$
+  $wholeClassDef(android.widget.ViewFlipper)$
+  $wholeClassDef(android.widget.ViewSwitcher)$
+  $wholeClassDef(android.widget.ImageSwitcher)$
+  $wholeClassDef(android.widget.TextSwitcher)$
+  $wholeClassDef(android.widget.DatePicker)$
+  $wholeClassDef(android.gesture.GestureOverlayView)$
 }
