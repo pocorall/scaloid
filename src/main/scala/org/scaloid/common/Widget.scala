@@ -2921,6 +2921,8 @@ trait WidgetFamily {
       basis
     }
   }
+
+
   class RichGridView[V <: GridView](val basis: V) extends TraitGridView[V]
   @inline implicit def gridView2RichGridView[V <: GridView](gridView: V) = new RichGridView[V](gridView)
 

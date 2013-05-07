@@ -11,7 +11,7 @@ names(ts) ::= <<$ts:name(); separator=", "$>>
 wholeClassDef(base, mixin, body) ::= <<
 $richClassDef(...)$
 
-$if(! base.isAbstract)$
+$if(! base.isAbstract && ! base.isFinal)$
 $concreteClassDef(base)$
 
 $companionObjectDef(...)$

@@ -432,7 +432,7 @@ $endif$
   $wholeClassDef(android.view.SurfaceView)$
   $wholeClassDef(android.opengl.GLSurfaceView)$
   $wholeClassDef(android.widget.VideoView)$
-  $richClassDef(android.view.ViewStub)$
+  $wholeClassDef(android.view.ViewStub)$
   $wholeClassDef(android.widget.GridView)$
   $wholeClassDef(android.widget.ExpandableListView)$
   $wholeClassDef(android.widget.AdapterView)$

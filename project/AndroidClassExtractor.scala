@@ -42,6 +42,8 @@ object AndroidClassExtractor {
 
   private def isAbstract(m: Member): Boolean = Modifier.isAbstract(m.getModifiers)
   private def isAbstract(c: Class[_]): Boolean = Modifier.isAbstract(c.getModifiers)
+  private def isFinal(m: Member): Boolean = Modifier.isFinal(m.getModifiers)
+  private def isFinal(c: Class[_]): Boolean = Modifier.isFinal(c.getModifiers)
 
   private def methodSignature(m: Method): String = List(
     m.getName,
@@ -221,7 +223,7 @@ object AndroidClassExtractor {
 
     val isA = getHierarchy(cls).toSet
 
-    AndroidClass(name, pkg, tpe, parentType, props, listeners, isA, isAbstract(cls))
+    AndroidClass(name, pkg, tpe, parentType, props, listeners, isA, isAbstract(cls), isFinal(cls))
   }
 
   def extractTask = (streams) map { s =>
