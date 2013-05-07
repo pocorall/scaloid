@@ -76,6 +76,13 @@ package object common extends Logger with SystemService with WidgetFamily {
       }
     }
 
+  private[scaloid] def _defaultValue[U]: U = {
+    class Default[W] {
+      var default: W = _
+    }
+    new Default[U].default
+  }
+
   trait ConstantsSupport {
     // android:inputType constants for TextView
 
@@ -136,7 +143,7 @@ package object common extends Logger with SystemService with WidgetFamily {
     @inline def headerTitle(p: CharSequence) = headerTitle_=(p)
 
     @noEquivalentGetterExists
-    @inline def headerTitle(implicit no: Nothing)  = throw new Error("Android does not support the getter for 'headerTitle'")
+    @inline def headerTitle(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'headerTitle'")
 
   }
 
@@ -196,7 +203,7 @@ package object common extends Logger with SystemService with WidgetFamily {
     @inline def context = basis.getContext
 
     @noEquivalentGetterExists
-    @inline def defaultValue(implicit no: Nothing)  = throw new Error("Android does not support the getter for 'defaultValue'")
+    @inline def defaultValue(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'defaultValue'")
     @inline def defaultValue  (p: java.lang.Object) =            defaultValue_=  (p)
     @inline def defaultValue_=(p: java.lang.Object) = { basis.setDefaultValue    (p); basis }
 
