@@ -259,9 +259,44 @@ object AndroidClassExtractor {
     }
 
     val systemService: List[Class[_]] = {
-      import android._
+      import android.accounts._
+      import android.app._
+      import android.app.admin._
+      import android.content._
+      import android.hardware._
+      import android.location._
+      import android.media._
+      import android.net._
+      import android.net.wifi._
+      import android.os._
+      import android.telephony._
+      import android.text._
+      import android.view._
+      import android.view.accessibility._
+      import android.view.inputmethod._
       List(
-        classOf[telephony.TelephonyManager]
+          classOf[AccessibilityManager], classOf[AccountManager], classOf[ActivityManager]
+        , classOf[AlarmManager], classOf[AudioManager], classOf[ClipboardManager]
+        , classOf[ConnectivityManager], classOf[DevicePolicyManager], classOf[DropBoxManager]
+        , classOf[InputMethodManager], classOf[KeyguardManager], classOf[LayoutInflater]
+        , classOf[LocationManager], classOf[NotificationManager], classOf[PowerManager]
+        , classOf[SearchManager], classOf[TelephonyManager], classOf[UiModeManager]
+        , classOf[Vibrator], classOf[WallpaperManager], classOf[WifiManager], classOf[WindowManager]
+
+        // API Level 9 or Above
+        // , classOf[DownloadManager]
+        
+        // API Level 10 or Above
+        // , classOf[NfcManager], classOf[StorageManager]
+
+        // API Level 12 or above
+        // , classOf[usb.UsbManager]
+
+        // API Level 14 or above
+        // , classOf[textservice.TextServicesManager], classOf[pop.WifiP2pManager]
+
+        // API Level 16 or above
+        // , classOf[input.InputManager], classOf[MediaRouter], classOf[NsdManager]
       )
     }
 
