@@ -168,17 +168,17 @@ trait WidgetFamily {
     @inline def background = basis.getBackground
 
     @noEquivalentGetterExists
-    @inline def backgroundColor(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'backgroundColor'")
+    @inline def backgroundColor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'backgroundColor'")
     @inline def backgroundColor  (p: Int) =            backgroundColor_=  (p)
     @inline def backgroundColor_=(p: Int) = { basis.setBackgroundColor    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def backgroundDrawable(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'backgroundDrawable'")
+    @inline def backgroundDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'backgroundDrawable'")
     @inline def backgroundDrawable  (p: android.graphics.drawable.Drawable) =            backgroundDrawable_=  (p)
     @inline def backgroundDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setBackgroundDrawable    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def backgroundResource(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'backgroundResource'")
+    @inline def backgroundResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'backgroundResource'")
     @inline def backgroundResource  (p: Int) =            backgroundResource_=  (p)
     @inline def backgroundResource_=(p: Int) = { basis.setBackgroundResource    (p); basis }
 
@@ -227,7 +227,7 @@ trait WidgetFamily {
     @inline def enabled_=(p: Boolean) = { basis.setEnabled    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def fadingEdgeLength(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'fadingEdgeLength'")
+    @inline def fadingEdgeLength(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'fadingEdgeLength'")
     @inline def fadingEdgeLength  (p: Int) =            fadingEdgeLength_=  (p)
     @inline def fadingEdgeLength_=(p: Int) = { basis.setFadingEdgeLength    (p); basis }
 
@@ -296,12 +296,12 @@ trait WidgetFamily {
     @inline def measuredWidth = basis.getMeasuredWidth
 
     @noEquivalentGetterExists
-    @inline def minimumHeight(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'minimumHeight'")
+    @inline def minimumHeight(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minimumHeight'")
     @inline def minimumHeight  (p: Int) =            minimumHeight_=  (p)
     @inline def minimumHeight_=(p: Int) = { basis.setMinimumHeight    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def minimumWidth(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'minimumWidth'")
+    @inline def minimumWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minimumWidth'")
     @inline def minimumWidth  (p: Int) =            minimumWidth_=  (p)
     @inline def minimumWidth_=(p: Int) = { basis.setMinimumWidth    (p); basis }
 
@@ -322,12 +322,12 @@ trait WidgetFamily {
     @inline def nextFocusUpId_=(p: Int) = { basis.setNextFocusUpId    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onClickListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onClickListener'")
+    @inline def onClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onClickListener'")
     @inline def onClickListener  (p: android.view.View.OnClickListener) =            onClickListener_=  (p)
     @inline def onClickListener_=(p: android.view.View.OnClickListener) = { basis.setOnClickListener    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onCreateContextMenuListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onCreateContextMenuListener'")
+    @inline def onCreateContextMenuListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onCreateContextMenuListener'")
     @inline def onCreateContextMenuListener  (p: android.view.View.OnCreateContextMenuListener) =            onCreateContextMenuListener_=  (p)
     @inline def onCreateContextMenuListener_=(p: android.view.View.OnCreateContextMenuListener) = { basis.setOnCreateContextMenuListener    (p); basis }
 
@@ -336,17 +336,17 @@ trait WidgetFamily {
     @inline def onFocusChangeListener_=(p: android.view.View.OnFocusChangeListener) = { basis.setOnFocusChangeListener    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onKeyListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onKeyListener'")
+    @inline def onKeyListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onKeyListener'")
     @inline def onKeyListener  (p: android.view.View.OnKeyListener) =            onKeyListener_=  (p)
     @inline def onKeyListener_=(p: android.view.View.OnKeyListener) = { basis.setOnKeyListener    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onLongClickListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onLongClickListener'")
+    @inline def onLongClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onLongClickListener'")
     @inline def onLongClickListener  (p: android.view.View.OnLongClickListener) =            onLongClickListener_=  (p)
     @inline def onLongClickListener_=(p: android.view.View.OnLongClickListener) = { basis.setOnLongClickListener    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onTouchListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onTouchListener'")
+    @inline def onTouchListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onTouchListener'")
     @inline def onTouchListener  (p: android.view.View.OnTouchListener) =            onTouchListener_=  (p)
     @inline def onTouchListener_=(p: android.view.View.OnTouchListener) = { basis.setOnTouchListener    (p); basis }
 
@@ -383,7 +383,7 @@ trait WidgetFamily {
     @inline def scrollBarStyle_=(p: Int) = { basis.setScrollBarStyle    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def scrollContainer(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'scrollContainer'")
+    @inline def scrollContainer(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'scrollContainer'")
     @inline def scrollContainer  (p: Boolean) =            scrollContainer_=  (p)
     @inline def scrollContainer_=(p: Boolean) = { basis.setScrollContainer    (p); basis }
 
@@ -567,12 +567,12 @@ trait WidgetFamily {
     @inline def currentTextColor = basis.getCurrentTextColor
 
     @noEquivalentGetterExists
-    @inline def cursorVisible(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'cursorVisible'")
+    @inline def cursorVisible(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'cursorVisible'")
     @inline def cursorVisible  (p: Boolean) =            cursorVisible_=  (p)
     @inline def cursorVisible_=(p: Boolean) = { basis.setCursorVisible    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def editableFactory(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'editableFactory'")
+    @inline def editableFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'editableFactory'")
     @inline def editableFactory  (p: android.text.Editable.Factory) =            editableFactory_=  (p)
     @inline def editableFactory_=(p: android.text.Editable.Factory) = { basis.setEditableFactory    (p); basis }
 
@@ -583,7 +583,7 @@ trait WidgetFamily {
     @inline def ellipsize_=(p: android.text.TextUtils.TruncateAt) = { basis.setEllipsize    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def ems(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'ems'")
+    @inline def ems(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'ems'")
     @inline def ems  (p: Int) =            ems_=  (p)
     @inline def ems_=(p: Int) = { basis.setEms    (p); basis }
 
@@ -596,7 +596,7 @@ trait WidgetFamily {
     @inline def extendedPaddingTop = basis.getExtendedPaddingTop
 
     @noEquivalentGetterExists
-    @inline def extractedText(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'extractedText'")
+    @inline def extractedText(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'extractedText'")
     @inline def extractedText  (p: android.view.inputmethod.ExtractedText) =            extractedText_=  (p)
     @inline def extractedText_=(p: android.view.inputmethod.ExtractedText) = { basis.setExtractedText    (p); basis }
 
@@ -613,7 +613,7 @@ trait WidgetFamily {
     @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def highlightColor(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'highlightColor'")
+    @inline def highlightColor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'highlightColor'")
     @inline def highlightColor  (p: Int) =            highlightColor_=  (p)
     @inline def highlightColor_=(p: Int) = { basis.setHighlightColor    (p); basis }
 
@@ -624,7 +624,7 @@ trait WidgetFamily {
     @inline def hint_=(p: java.lang.CharSequence) = { basis.setHint    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def hintTextColor(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'hintTextColor'")
+    @inline def hintTextColor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'hintTextColor'")
     @inline def hintTextColor  (p: Int) =            hintTextColor_=  (p)
     @inline def hintTextColor_=(p: Int) = { basis.setHintTextColor    (p); basis }
     @inline def hintTextColor  (p: android.content.res.ColorStateList) =            hintTextColor_=  (p)
@@ -633,7 +633,7 @@ trait WidgetFamily {
     @inline def hintTextColors = basis.getHintTextColors
 
     @noEquivalentGetterExists
-    @inline def horizontallyScrolling(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'horizontallyScrolling'")
+    @inline def horizontallyScrolling(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'horizontallyScrolling'")
     @inline def horizontallyScrolling  (p: Boolean) =            horizontallyScrolling_=  (p)
     @inline def horizontallyScrolling_=(p: Boolean) = { basis.setHorizontallyScrolling    (p); basis }
 
@@ -646,12 +646,12 @@ trait WidgetFamily {
     @inline def imeOptions_=(p: Int) = { basis.setImeOptions    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def includeFontPadding(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'includeFontPadding'")
+    @inline def includeFontPadding(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'includeFontPadding'")
     @inline def includeFontPadding  (p: Boolean) =            includeFontPadding_=  (p)
     @inline def includeFontPadding_=(p: Boolean) = { basis.setIncludeFontPadding    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def inputExtras(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'inputExtras'")
+    @inline def inputExtras(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'inputExtras'")
     @inline def inputExtras  (p: Int) =            inputExtras_=  (p)
     @inline def inputExtras_=(p: Int) = { basis.setInputExtras    (p); basis }
 
@@ -672,12 +672,12 @@ trait WidgetFamily {
     @inline def lineHeight = basis.getLineHeight
 
     @noEquivalentGetterExists
-    @inline def lines(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'lines'")
+    @inline def lines(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'lines'")
     @inline def lines  (p: Int) =            lines_=  (p)
     @inline def lines_=(p: Int) = { basis.setLines    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def linkTextColor(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'linkTextColor'")
+    @inline def linkTextColor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'linkTextColor'")
     @inline def linkTextColor  (p: Int) =            linkTextColor_=  (p)
     @inline def linkTextColor_=(p: Int) = { basis.setLinkTextColor    (p); basis }
     @inline def linkTextColor  (p: android.content.res.ColorStateList) =            linkTextColor_=  (p)
@@ -690,47 +690,47 @@ trait WidgetFamily {
     @inline def linksClickable_=(p: Boolean) = { basis.setLinksClickable    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def marqueeRepeatLimit(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'marqueeRepeatLimit'")
+    @inline def marqueeRepeatLimit(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'marqueeRepeatLimit'")
     @inline def marqueeRepeatLimit  (p: Int) =            marqueeRepeatLimit_=  (p)
     @inline def marqueeRepeatLimit_=(p: Int) = { basis.setMarqueeRepeatLimit    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def maxEms(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'maxEms'")
+    @inline def maxEms(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxEms'")
     @inline def maxEms  (p: Int) =            maxEms_=  (p)
     @inline def maxEms_=(p: Int) = { basis.setMaxEms    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def maxHeight(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'maxHeight'")
+    @inline def maxHeight(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxHeight'")
     @inline def maxHeight  (p: Int) =            maxHeight_=  (p)
     @inline def maxHeight_=(p: Int) = { basis.setMaxHeight    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def maxLines(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'maxLines'")
+    @inline def maxLines(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxLines'")
     @inline def maxLines  (p: Int) =            maxLines_=  (p)
     @inline def maxLines_=(p: Int) = { basis.setMaxLines    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def maxWidth(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'maxWidth'")
+    @inline def maxWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxWidth'")
     @inline def maxWidth  (p: Int) =            maxWidth_=  (p)
     @inline def maxWidth_=(p: Int) = { basis.setMaxWidth    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def minEms(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'minEms'")
+    @inline def minEms(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minEms'")
     @inline def minEms  (p: Int) =            minEms_=  (p)
     @inline def minEms_=(p: Int) = { basis.setMinEms    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def minHeight(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'minHeight'")
+    @inline def minHeight(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minHeight'")
     @inline def minHeight  (p: Int) =            minHeight_=  (p)
     @inline def minHeight_=(p: Int) = { basis.setMinHeight    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def minLines(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'minLines'")
+    @inline def minLines(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minLines'")
     @inline def minLines  (p: Int) =            minLines_=  (p)
     @inline def minLines_=(p: Int) = { basis.setMinLines    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def minWidth(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'minWidth'")
+    @inline def minWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minWidth'")
     @inline def minWidth  (p: Int) =            minWidth_=  (p)
     @inline def minWidth_=(p: Int) = { basis.setMinWidth    (p); basis }
 
@@ -739,7 +739,7 @@ trait WidgetFamily {
     @inline def movementMethod_=(p: android.text.method.MovementMethod) = { basis.setMovementMethod    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onEditorActionListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onEditorActionListener'")
+    @inline def onEditorActionListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onEditorActionListener'")
     @inline def onEditorActionListener  (p: android.widget.TextView.OnEditorActionListener) =            onEditorActionListener_=  (p)
     @inline def onEditorActionListener_=(p: android.widget.TextView.OnEditorActionListener) = { basis.setOnEditorActionListener    (p); basis }
 
@@ -754,17 +754,17 @@ trait WidgetFamily {
     @inline def privateImeOptions_=(p: java.lang.String) = { basis.setPrivateImeOptions    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def rawInputType(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'rawInputType'")
+    @inline def rawInputType(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'rawInputType'")
     @inline def rawInputType  (p: Int) =            rawInputType_=  (p)
     @inline def rawInputType_=(p: Int) = { basis.setRawInputType    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def scroller(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'scroller'")
+    @inline def scroller(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'scroller'")
     @inline def scroller  (p: android.widget.Scroller) =            scroller_=  (p)
     @inline def scroller_=(p: android.widget.Scroller) = { basis.setScroller    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def selectAllOnFocus(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'selectAllOnFocus'")
+    @inline def selectAllOnFocus(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'selectAllOnFocus'")
     @inline def selectAllOnFocus  (p: Boolean) =            selectAllOnFocus_=  (p)
     @inline def selectAllOnFocus_=(p: Boolean) = { basis.setSelectAllOnFocus    (p); basis }
 
@@ -773,12 +773,12 @@ trait WidgetFamily {
     @inline def selectionStart = basis.getSelectionStart
 
     @noEquivalentGetterExists
-    @inline def singleLine(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'singleLine'")
+    @inline def singleLine(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'singleLine'")
     @inline def singleLine  (p: Boolean) =            singleLine_=  (p)
     @inline def singleLine_=(p: Boolean) = { basis.setSingleLine    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def spannableFactory(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'spannableFactory'")
+    @inline def spannableFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'spannableFactory'")
     @inline def spannableFactory  (p: android.text.Spannable.Factory) =            spannableFactory_=  (p)
     @inline def spannableFactory_=(p: android.text.Spannable.Factory) = { basis.setSpannableFactory    (p); basis }
 
@@ -789,7 +789,7 @@ trait WidgetFamily {
     @inline def text_=(p: java.lang.CharSequence) = { basis.setText    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def textColor(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'textColor'")
+    @inline def textColor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'textColor'")
     @inline def textColor  (p: Int) =            textColor_=  (p)
     @inline def textColor_=(p: Int) = { basis.setTextColor    (p); basis }
     @inline def textColor  (p: android.content.res.ColorStateList) =            textColor_=  (p)
@@ -798,7 +798,7 @@ trait WidgetFamily {
     @inline def textColors = basis.getTextColors
 
     @noEquivalentGetterExists
-    @inline def textKeepState(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'textKeepState'")
+    @inline def textKeepState(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'textKeepState'")
     @inline def textKeepState  (p: java.lang.CharSequence) =            textKeepState_=  (p)
     @inline def textKeepState_=(p: java.lang.CharSequence) = { basis.setTextKeepState    (p); basis }
 
@@ -932,7 +932,7 @@ trait WidgetFamily {
     @inline def cacheColorHint_=(p: Int) = { basis.setCacheColorHint    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def drawSelectorOnTop(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'drawSelectorOnTop'")
+    @inline def drawSelectorOnTop(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'drawSelectorOnTop'")
     @inline def drawSelectorOnTop  (p: Boolean) =            drawSelectorOnTop_=  (p)
     @inline def drawSelectorOnTop_=(p: Boolean) = { basis.setDrawSelectorOnTop    (p); basis }
 
@@ -943,7 +943,7 @@ trait WidgetFamily {
     @inline def disableFastScroll               = { basis.setFastScrollEnabled(false); basis }
 
     @noEquivalentGetterExists
-    @inline def filterText(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'filterText'")
+    @inline def filterText(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'filterText'")
     @inline def filterText  (p: java.lang.String) =            filterText_=  (p)
     @inline def filterText_=(p: java.lang.String) = { basis.setFilterText    (p); basis }
 
@@ -956,12 +956,12 @@ trait WidgetFamily {
     @inline def listPaddingTop = basis.getListPaddingTop
 
     @noEquivalentGetterExists
-    @inline def onScrollListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onScrollListener'")
+    @inline def onScrollListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onScrollListener'")
     @inline def onScrollListener  (p: android.widget.AbsListView.OnScrollListener) =            onScrollListener_=  (p)
     @inline def onScrollListener_=(p: android.widget.AbsListView.OnScrollListener) = { basis.setOnScrollListener    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def recyclerListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'recyclerListener'")
+    @inline def recyclerListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'recyclerListener'")
     @inline def recyclerListener  (p: android.widget.AbsListView.RecyclerListener) =            recyclerListener_=  (p)
     @inline def recyclerListener_=(p: android.widget.AbsListView.RecyclerListener) = { basis.setRecyclerListener    (p); basis }
 
@@ -1095,12 +1095,12 @@ trait WidgetFamily {
     @inline def childCount = basis.getChildCount
 
     @noEquivalentGetterExists
-    @inline def clipChildren(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'clipChildren'")
+    @inline def clipChildren(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'clipChildren'")
     @inline def clipChildren  (p: Boolean) =            clipChildren_=  (p)
     @inline def clipChildren_=(p: Boolean) = { basis.setClipChildren    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def clipToPadding(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'clipToPadding'")
+    @inline def clipToPadding(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'clipToPadding'")
     @inline def clipToPadding  (p: Boolean) =            clipToPadding_=  (p)
     @inline def clipToPadding_=(p: Boolean) = { basis.setClipToPadding    (p); basis }
 
@@ -1119,7 +1119,7 @@ trait WidgetFamily {
     @inline def layoutAnimationListener_=(p: android.view.animation.Animation.AnimationListener) = { basis.setLayoutAnimationListener    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onHierarchyChangeListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onHierarchyChangeListener'")
+    @inline def onHierarchyChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onHierarchyChangeListener'")
     @inline def onHierarchyChangeListener  (p: android.view.ViewGroup.OnHierarchyChangeListener) =            onHierarchyChangeListener_=  (p)
     @inline def onHierarchyChangeListener_=(p: android.view.ViewGroup.OnHierarchyChangeListener) = { basis.setOnHierarchyChangeListener    (p); basis }
 
@@ -1288,12 +1288,12 @@ trait WidgetFamily {
     @inline def foreground_=(p: android.graphics.drawable.Drawable) = { basis.setForeground    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def foregroundGravity(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'foregroundGravity'")
+    @inline def foregroundGravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'foregroundGravity'")
     @inline def foregroundGravity  (p: Int) =            foregroundGravity_=  (p)
     @inline def foregroundGravity_=(p: Int) = { basis.setForegroundGravity    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def measureAllChildren(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'measureAllChildren'")
+    @inline def measureAllChildren(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'measureAllChildren'")
     @inline def measureAllChildren  (p: Boolean) =            measureAllChildren_=  (p)
     @inline def measureAllChildren_=(p: Boolean) = { basis.setMeasureAllChildren    (p); basis }
 
@@ -1334,22 +1334,22 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def gravity(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'gravity'")
+    @inline def gravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'gravity'")
     @inline def gravity  (p: Int) =            gravity_=  (p)
     @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def horizontalGravity(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'horizontalGravity'")
+    @inline def horizontalGravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'horizontalGravity'")
     @inline def horizontalGravity  (p: Int) =            horizontalGravity_=  (p)
     @inline def horizontalGravity_=(p: Int) = { basis.setHorizontalGravity    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def ignoreGravity(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'ignoreGravity'")
+    @inline def ignoreGravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'ignoreGravity'")
     @inline def ignoreGravity  (p: Int) =            ignoreGravity_=  (p)
     @inline def ignoreGravity_=(p: Int) = { basis.setIgnoreGravity    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def verticalGravity(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'verticalGravity'")
+    @inline def verticalGravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'verticalGravity'")
     @inline def verticalGravity  (p: Int) =            verticalGravity_=  (p)
     @inline def verticalGravity_=(p: Int) = { basis.setVerticalGravity    (p); basis }
 
@@ -1497,12 +1497,12 @@ trait WidgetFamily {
     @inline def baselineAlignedChildIndex_=(p: Int) = { basis.setBaselineAlignedChildIndex    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def gravity(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'gravity'")
+    @inline def gravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'gravity'")
     @inline def gravity  (p: Int) =            gravity_=  (p)
     @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def horizontalGravity(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'horizontalGravity'")
+    @inline def horizontalGravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'horizontalGravity'")
     @inline def horizontalGravity  (p: Int) =            horizontalGravity_=  (p)
     @inline def horizontalGravity_=(p: Int) = { basis.setHorizontalGravity    (p); basis }
 
@@ -1511,7 +1511,7 @@ trait WidgetFamily {
     @inline def orientation_=(p: Int) = { basis.setOrientation    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def verticalGravity(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'verticalGravity'")
+    @inline def verticalGravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'verticalGravity'")
     @inline def verticalGravity  (p: Int) =            verticalGravity_=  (p)
     @inline def verticalGravity_=(p: Int) = { basis.setVerticalGravity    (p); basis }
 
@@ -1640,7 +1640,7 @@ trait WidgetFamily {
     @inline def adapter_=[T <: android.widget.ListAdapter with android.widget.Filterable](p: T) = { basis.setAdapter    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def completionHint(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'completionHint'")
+    @inline def completionHint(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'completionHint'")
     @inline def completionHint  (p: java.lang.CharSequence) =            completionHint_=  (p)
     @inline def completionHint_=(p: java.lang.CharSequence) = { basis.setCompletionHint    (p); basis }
 
@@ -1651,12 +1651,12 @@ trait WidgetFamily {
     @inline def dropDownBackground = basis.getDropDownBackground
 
     @noEquivalentGetterExists
-    @inline def dropDownBackgroundDrawable(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'dropDownBackgroundDrawable'")
+    @inline def dropDownBackgroundDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'dropDownBackgroundDrawable'")
     @inline def dropDownBackgroundDrawable  (p: android.graphics.drawable.Drawable) =            dropDownBackgroundDrawable_=  (p)
     @inline def dropDownBackgroundDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setDropDownBackgroundDrawable    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def dropDownBackgroundResource(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'dropDownBackgroundResource'")
+    @inline def dropDownBackgroundResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'dropDownBackgroundResource'")
     @inline def dropDownBackgroundResource  (p: Int) =            dropDownBackgroundResource_=  (p)
     @inline def dropDownBackgroundResource_=(p: Int) = { basis.setDropDownBackgroundResource    (p); basis }
 
@@ -1803,7 +1803,7 @@ trait WidgetFamily {
     @inline def dividerHeight_=(p: Int) = { basis.setDividerHeight    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def footerDividersEnabled(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'footerDividersEnabled'")
+    @inline def footerDividersEnabled(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'footerDividersEnabled'")
     @inline def footerDividersEnabled  (p: Boolean) =            footerDividersEnabled_=  (p)
     @inline def footerDividersEnabled_=(p: Boolean) = { basis.setFooterDividersEnabled    (p); basis }
     @inline def  enableFooterDividers               = { basis.setFooterDividersEnabled(true ); basis }
@@ -1812,7 +1812,7 @@ trait WidgetFamily {
     @inline def footerViewsCount = basis.getFooterViewsCount
 
     @noEquivalentGetterExists
-    @inline def headerDividersEnabled(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'headerDividersEnabled'")
+    @inline def headerDividersEnabled(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'headerDividersEnabled'")
     @inline def headerDividersEnabled  (p: Boolean) =            headerDividersEnabled_=  (p)
     @inline def headerDividersEnabled_=(p: Boolean) = { basis.setHeaderDividersEnabled    (p); basis }
     @inline def  enableHeaderDividers               = { basis.setHeaderDividersEnabled(true ); basis }
@@ -1897,7 +1897,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def buttonDrawable(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'buttonDrawable'")
+    @inline def buttonDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'buttonDrawable'")
     @inline def buttonDrawable  (p: Int) =            buttonDrawable_=  (p)
     @inline def buttonDrawable_=(p: Int) = { basis.setButtonDrawable    (p); basis }
     @inline def buttonDrawable  (p: android.graphics.drawable.Drawable) =            buttonDrawable_=  (p)
@@ -1908,7 +1908,7 @@ trait WidgetFamily {
     @inline def checked_=(p: Boolean) = { basis.setChecked    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onCheckedChangeListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onCheckedChangeListener'")
+    @inline def onCheckedChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onCheckedChangeListener'")
     @inline def onCheckedChangeListener  (p: android.widget.CompoundButton.OnCheckedChangeListener) =            onCheckedChangeListener_=  (p)
     @inline def onCheckedChangeListener_=(p: android.widget.CompoundButton.OnCheckedChangeListener) = { basis.setOnCheckedChangeListener    (p); basis }
 
@@ -2081,7 +2081,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def checkMarkDrawable(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'checkMarkDrawable'")
+    @inline def checkMarkDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'checkMarkDrawable'")
     @inline def checkMarkDrawable  (p: Int) =            checkMarkDrawable_=  (p)
     @inline def checkMarkDrawable_=(p: Int) = { basis.setCheckMarkDrawable    (p); basis }
     @inline def checkMarkDrawable  (p: android.graphics.drawable.Drawable) =            checkMarkDrawable_=  (p)
@@ -2220,12 +2220,12 @@ trait WidgetFamily {
     @inline def keyboard_=(p: android.inputmethodservice.Keyboard) = { basis.setKeyboard    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onKeyboardActionListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onKeyboardActionListener'")
+    @inline def onKeyboardActionListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onKeyboardActionListener'")
     @inline def onKeyboardActionListener  (p: android.inputmethodservice.KeyboardView.OnKeyboardActionListener) =            onKeyboardActionListener_=  (p)
     @inline def onKeyboardActionListener_=(p: android.inputmethodservice.KeyboardView.OnKeyboardActionListener) = { basis.setOnKeyboardActionListener    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def popupParent(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'popupParent'")
+    @inline def popupParent(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'popupParent'")
     @inline def popupParent  (p: android.view.View) =            popupParent_=  (p)
     @inline def popupParent_=(p: android.view.View) = { basis.setPopupParent    (p); basis }
 
@@ -2244,7 +2244,7 @@ trait WidgetFamily {
     @inline def shifted = basis.isShifted
 
     @noEquivalentGetterExists
-    @inline def verticalCorrection(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'verticalCorrection'")
+    @inline def verticalCorrection(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'verticalCorrection'")
     @inline def verticalCorrection  (p: Int) =            verticalCorrection_=  (p)
     @inline def verticalCorrection_=(p: Int) = { basis.setVerticalCorrection    (p); basis }
 
@@ -2431,29 +2431,29 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def adjustViewBounds(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'adjustViewBounds'")
+    @inline def adjustViewBounds(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'adjustViewBounds'")
     @inline def adjustViewBounds  (p: Boolean) =            adjustViewBounds_=  (p)
     @inline def adjustViewBounds_=(p: Boolean) = { basis.setAdjustViewBounds    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def alpha(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'alpha'")
+    @inline def alpha(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'alpha'")
     @inline def alpha  (p: Int) =            alpha_=  (p)
     @inline def alpha_=(p: Int) = { basis.setAlpha    (p); basis }
 
     @inline def drawable = basis.getDrawable
 
     @noEquivalentGetterExists
-    @inline def imageBitmap(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'imageBitmap'")
+    @inline def imageBitmap(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'imageBitmap'")
     @inline def imageBitmap  (p: android.graphics.Bitmap) =            imageBitmap_=  (p)
     @inline def imageBitmap_=(p: android.graphics.Bitmap) = { basis.setImageBitmap    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def imageDrawable(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'imageDrawable'")
+    @inline def imageDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'imageDrawable'")
     @inline def imageDrawable  (p: android.graphics.drawable.Drawable) =            imageDrawable_=  (p)
     @inline def imageDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setImageDrawable    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def imageLevel(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'imageLevel'")
+    @inline def imageLevel(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'imageLevel'")
     @inline def imageLevel  (p: Int) =            imageLevel_=  (p)
     @inline def imageLevel_=(p: Int) = { basis.setImageLevel    (p); basis }
 
@@ -2462,22 +2462,22 @@ trait WidgetFamily {
     @inline def imageMatrix_=(p: android.graphics.Matrix) = { basis.setImageMatrix    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def imageResource(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'imageResource'")
+    @inline def imageResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'imageResource'")
     @inline def imageResource  (p: Int) =            imageResource_=  (p)
     @inline def imageResource_=(p: Int) = { basis.setImageResource    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def imageURI(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'imageURI'")
+    @inline def imageURI(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'imageURI'")
     @inline def imageURI  (p: android.net.Uri) =            imageURI_=  (p)
     @inline def imageURI_=(p: android.net.Uri) = { basis.setImageURI    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def maxHeight(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'maxHeight'")
+    @inline def maxHeight(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxHeight'")
     @inline def maxHeight  (p: Int) =            maxHeight_=  (p)
     @inline def maxHeight_=(p: Int) = { basis.setMaxHeight    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def maxWidth(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'maxWidth'")
+    @inline def maxWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxWidth'")
     @inline def maxWidth  (p: Int) =            maxWidth_=  (p)
     @inline def maxWidth_=(p: Int) = { basis.setMaxWidth    (p); basis }
 
@@ -2538,12 +2538,12 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def excludeMimes(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'excludeMimes'")
+    @inline def excludeMimes(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'excludeMimes'")
     @inline def excludeMimes  (p: Array[java.lang.String]) =            excludeMimes_=  (p)
     @inline def excludeMimes_=(p: Array[java.lang.String]) = { basis.setExcludeMimes    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def mode(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'mode'")
+    @inline def mode(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'mode'")
     @inline def mode  (p: Int) =            mode_=  (p)
     @inline def mode_=(p: Int) = { basis.setMode    (p); basis }
 
@@ -2574,7 +2574,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def zoomSpeed(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'zoomSpeed'")
+    @inline def zoomSpeed(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'zoomSpeed'")
     @inline def zoomSpeed  (p: Long) =            zoomSpeed_=  (p)
     @inline def zoomSpeed_=(p: Long) = { basis.setZoomSpeed    (p); basis }
 
@@ -2685,12 +2685,12 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def ZOrderMediaOverlay(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'ZOrderMediaOverlay'")
+    @inline def ZOrderMediaOverlay(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'ZOrderMediaOverlay'")
     @inline def ZOrderMediaOverlay  (p: Boolean) =            ZOrderMediaOverlay_=  (p)
     @inline def ZOrderMediaOverlay_=(p: Boolean) = { basis.setZOrderMediaOverlay    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def ZOrderOnTop(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'ZOrderOnTop'")
+    @inline def ZOrderOnTop(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'ZOrderOnTop'")
     @inline def ZOrderOnTop  (p: Boolean) =            ZOrderOnTop_=  (p)
     @inline def ZOrderOnTop_=(p: Boolean) = { basis.setZOrderOnTop    (p); basis }
 
@@ -2724,29 +2724,29 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def EGLConfigChooser(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'EGLConfigChooser'")
+    @inline def EGLConfigChooser(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'EGLConfigChooser'")
     @inline def EGLConfigChooser  (p: Boolean) =            EGLConfigChooser_=  (p)
     @inline def EGLConfigChooser_=(p: Boolean) = { basis.setEGLConfigChooser    (p); basis }
     @inline def EGLConfigChooser  (p: android.opengl.GLSurfaceView.EGLConfigChooser) =            EGLConfigChooser_=  (p)
     @inline def EGLConfigChooser_=(p: android.opengl.GLSurfaceView.EGLConfigChooser) = { basis.setEGLConfigChooser    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def EGLContextClientVersion(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'EGLContextClientVersion'")
+    @inline def EGLContextClientVersion(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'EGLContextClientVersion'")
     @inline def EGLContextClientVersion  (p: Int) =            EGLContextClientVersion_=  (p)
     @inline def EGLContextClientVersion_=(p: Int) = { basis.setEGLContextClientVersion    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def EGLContextFactory(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'EGLContextFactory'")
+    @inline def EGLContextFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'EGLContextFactory'")
     @inline def EGLContextFactory  (p: android.opengl.GLSurfaceView.EGLContextFactory) =            EGLContextFactory_=  (p)
     @inline def EGLContextFactory_=(p: android.opengl.GLSurfaceView.EGLContextFactory) = { basis.setEGLContextFactory    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def EGLWindowSurfaceFactory(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'EGLWindowSurfaceFactory'")
+    @inline def EGLWindowSurfaceFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'EGLWindowSurfaceFactory'")
     @inline def EGLWindowSurfaceFactory  (p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) =            EGLWindowSurfaceFactory_=  (p)
     @inline def EGLWindowSurfaceFactory_=(p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) = { basis.setEGLWindowSurfaceFactory    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def GLWrapper(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'GLWrapper'")
+    @inline def GLWrapper(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'GLWrapper'")
     @inline def GLWrapper  (p: android.opengl.GLSurfaceView.GLWrapper) =            GLWrapper_=  (p)
     @inline def GLWrapper_=(p: android.opengl.GLSurfaceView.GLWrapper) = { basis.setGLWrapper    (p); basis }
 
@@ -2759,7 +2759,7 @@ trait WidgetFamily {
     @inline def renderMode_=(p: Int) = { basis.setRenderMode    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def renderer(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'renderer'")
+    @inline def renderer(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'renderer'")
     @inline def renderer  (p: android.opengl.GLSurfaceView.Renderer) =            renderer_=  (p)
     @inline def renderer_=(p: android.opengl.GLSurfaceView.Renderer) = { basis.setRenderer    (p); basis }
 
@@ -2796,34 +2796,34 @@ trait WidgetFamily {
     @inline def duration = basis.getDuration
 
     @noEquivalentGetterExists
-    @inline def mediaController(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'mediaController'")
+    @inline def mediaController(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'mediaController'")
     @inline def mediaController  (p: android.widget.MediaController) =            mediaController_=  (p)
     @inline def mediaController_=(p: android.widget.MediaController) = { basis.setMediaController    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onCompletionListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onCompletionListener'")
+    @inline def onCompletionListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onCompletionListener'")
     @inline def onCompletionListener  (p: android.media.MediaPlayer.OnCompletionListener) =            onCompletionListener_=  (p)
     @inline def onCompletionListener_=(p: android.media.MediaPlayer.OnCompletionListener) = { basis.setOnCompletionListener    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onErrorListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onErrorListener'")
+    @inline def onErrorListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onErrorListener'")
     @inline def onErrorListener  (p: android.media.MediaPlayer.OnErrorListener) =            onErrorListener_=  (p)
     @inline def onErrorListener_=(p: android.media.MediaPlayer.OnErrorListener) = { basis.setOnErrorListener    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onPreparedListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onPreparedListener'")
+    @inline def onPreparedListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onPreparedListener'")
     @inline def onPreparedListener  (p: android.media.MediaPlayer.OnPreparedListener) =            onPreparedListener_=  (p)
     @inline def onPreparedListener_=(p: android.media.MediaPlayer.OnPreparedListener) = { basis.setOnPreparedListener    (p); basis }
 
     @inline def playing = basis.isPlaying
 
     @noEquivalentGetterExists
-    @inline def videoPath(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'videoPath'")
+    @inline def videoPath(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'videoPath'")
     @inline def videoPath  (p: java.lang.String) =            videoPath_=  (p)
     @inline def videoPath_=(p: java.lang.String) = { basis.setVideoPath    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def videoURI(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'videoURI'")
+    @inline def videoURI(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'videoURI'")
     @inline def videoURI  (p: android.net.Uri) =            videoURI_=  (p)
     @inline def videoURI_=(p: android.net.Uri) = { basis.setVideoURI    (p); basis }
 
@@ -2903,7 +2903,7 @@ trait WidgetFamily {
     @inline def layoutResource_=(p: Int) = { basis.setLayoutResource    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onInflateListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onInflateListener'")
+    @inline def onInflateListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onInflateListener'")
     @inline def onInflateListener  (p: android.view.ViewStub.OnInflateListener) =            onInflateListener_=  (p)
     @inline def onInflateListener_=(p: android.view.ViewStub.OnInflateListener) = { basis.setOnInflateListener    (p); basis }
 
@@ -2928,22 +2928,22 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def columnWidth(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'columnWidth'")
+    @inline def columnWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'columnWidth'")
     @inline def columnWidth  (p: Int) =            columnWidth_=  (p)
     @inline def columnWidth_=(p: Int) = { basis.setColumnWidth    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def gravity(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'gravity'")
+    @inline def gravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'gravity'")
     @inline def gravity  (p: Int) =            gravity_=  (p)
     @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def horizontalSpacing(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'horizontalSpacing'")
+    @inline def horizontalSpacing(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'horizontalSpacing'")
     @inline def horizontalSpacing  (p: Int) =            horizontalSpacing_=  (p)
     @inline def horizontalSpacing_=(p: Int) = { basis.setHorizontalSpacing    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def numColumns(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'numColumns'")
+    @inline def numColumns(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'numColumns'")
     @inline def numColumns  (p: Int) =            numColumns_=  (p)
     @inline def numColumns_=(p: Int) = { basis.setNumColumns    (p); basis }
 
@@ -2952,7 +2952,7 @@ trait WidgetFamily {
     @inline def stretchMode_=(p: Int) = { basis.setStretchMode    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def verticalSpacing(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'verticalSpacing'")
+    @inline def verticalSpacing(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'verticalSpacing'")
     @inline def verticalSpacing  (p: Int) =            verticalSpacing_=  (p)
     @inline def verticalSpacing_=(p: Int) = { basis.setVerticalSpacing    (p); basis }
 
@@ -2983,44 +2983,44 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def childDivider(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'childDivider'")
+    @inline def childDivider(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'childDivider'")
     @inline def childDivider  (p: android.graphics.drawable.Drawable) =            childDivider_=  (p)
     @inline def childDivider_=(p: android.graphics.drawable.Drawable) = { basis.setChildDivider    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def childIndicator(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'childIndicator'")
+    @inline def childIndicator(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'childIndicator'")
     @inline def childIndicator  (p: android.graphics.drawable.Drawable) =            childIndicator_=  (p)
     @inline def childIndicator_=(p: android.graphics.drawable.Drawable) = { basis.setChildIndicator    (p); basis }
 
     @inline def expandableListAdapter = basis.getExpandableListAdapter
 
     @noEquivalentGetterExists
-    @inline def groupIndicator(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'groupIndicator'")
+    @inline def groupIndicator(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'groupIndicator'")
     @inline def groupIndicator  (p: android.graphics.drawable.Drawable) =            groupIndicator_=  (p)
     @inline def groupIndicator_=(p: android.graphics.drawable.Drawable) = { basis.setGroupIndicator    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onChildClickListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onChildClickListener'")
+    @inline def onChildClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onChildClickListener'")
     @inline def onChildClickListener  (p: android.widget.ExpandableListView.OnChildClickListener) =            onChildClickListener_=  (p)
     @inline def onChildClickListener_=(p: android.widget.ExpandableListView.OnChildClickListener) = { basis.setOnChildClickListener    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onGroupClickListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onGroupClickListener'")
+    @inline def onGroupClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onGroupClickListener'")
     @inline def onGroupClickListener  (p: android.widget.ExpandableListView.OnGroupClickListener) =            onGroupClickListener_=  (p)
     @inline def onGroupClickListener_=(p: android.widget.ExpandableListView.OnGroupClickListener) = { basis.setOnGroupClickListener    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onGroupCollapseListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onGroupCollapseListener'")
+    @inline def onGroupCollapseListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onGroupCollapseListener'")
     @inline def onGroupCollapseListener  (p: android.widget.ExpandableListView.OnGroupCollapseListener) =            onGroupCollapseListener_=  (p)
     @inline def onGroupCollapseListener_=(p: android.widget.ExpandableListView.OnGroupCollapseListener) = { basis.setOnGroupCollapseListener    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onGroupExpandListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onGroupExpandListener'")
+    @inline def onGroupExpandListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onGroupExpandListener'")
     @inline def onGroupExpandListener  (p: android.widget.ExpandableListView.OnGroupExpandListener) =            onGroupExpandListener_=  (p)
     @inline def onGroupExpandListener_=(p: android.widget.ExpandableListView.OnGroupExpandListener) = { basis.setOnGroupExpandListener    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def selectedGroup(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'selectedGroup'")
+    @inline def selectedGroup(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'selectedGroup'")
     @inline def selectedGroup  (p: Int) =            selectedGroup_=  (p)
     @inline def selectedGroup_=(p: Int) = { basis.setSelectedGroup    (p); basis }
 
@@ -3223,7 +3223,7 @@ trait WidgetFamily {
     @inline def prompt_=(p: java.lang.CharSequence) = { basis.setPrompt    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def promptId(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'promptId'")
+    @inline def promptId(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'promptId'")
     @inline def promptId  (p: Int) =            promptId_=  (p)
     @inline def promptId_=(p: Int) = { basis.setPromptId    (p); basis }
 
@@ -3254,27 +3254,27 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def animationDuration(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'animationDuration'")
+    @inline def animationDuration(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'animationDuration'")
     @inline def animationDuration  (p: Int) =            animationDuration_=  (p)
     @inline def animationDuration_=(p: Int) = { basis.setAnimationDuration    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def callbackDuringFling(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'callbackDuringFling'")
+    @inline def callbackDuringFling(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'callbackDuringFling'")
     @inline def callbackDuringFling  (p: Boolean) =            callbackDuringFling_=  (p)
     @inline def callbackDuringFling_=(p: Boolean) = { basis.setCallbackDuringFling    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def gravity(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'gravity'")
+    @inline def gravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'gravity'")
     @inline def gravity  (p: Int) =            gravity_=  (p)
     @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def spacing(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'spacing'")
+    @inline def spacing(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'spacing'")
     @inline def spacing  (p: Int) =            spacing_=  (p)
     @inline def spacing_=(p: Int) = { basis.setSpacing    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def unselectedAlpha(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'unselectedAlpha'")
+    @inline def unselectedAlpha(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'unselectedAlpha'")
     @inline def unselectedAlpha  (p: Float) =            unselectedAlpha_=  (p)
     @inline def unselectedAlpha_=(p: Float) = { basis.setUnselectedAlpha    (p); basis }
 
@@ -3306,7 +3306,7 @@ trait WidgetFamily {
     @inline def keyProgressIncrement_=(p: Int) = { basis.setKeyProgressIncrement    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def thumb(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'thumb'")
+    @inline def thumb(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'thumb'")
     @inline def thumb  (p: android.graphics.drawable.Drawable) =            thumb_=  (p)
     @inline def thumb_=(p: android.graphics.drawable.Drawable) = { basis.setThumb    (p); basis }
 
@@ -3324,7 +3324,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def onSeekBarChangeListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onSeekBarChangeListener'")
+    @inline def onSeekBarChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onSeekBarChangeListener'")
     @inline def onSeekBarChangeListener  (p: android.widget.SeekBar.OnSeekBarChangeListener) =            onSeekBarChangeListener_=  (p)
     @inline def onSeekBarChangeListener_=(p: android.widget.SeekBar.OnSeekBarChangeListener) = { basis.setOnSeekBarChangeListener    (p); basis }
 
@@ -3537,12 +3537,12 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def anchorView(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'anchorView'")
+    @inline def anchorView(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'anchorView'")
     @inline def anchorView  (p: android.view.View) =            anchorView_=  (p)
     @inline def anchorView_=(p: android.view.View) = { basis.setAnchorView    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def mediaPlayer(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'mediaPlayer'")
+    @inline def mediaPlayer(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'mediaPlayer'")
     @inline def mediaPlayer  (p: android.widget.MediaController.MediaPlayerControl) =            mediaPlayer_=  (p)
     @inline def mediaPlayer_=(p: android.widget.MediaController.MediaPlayerControl) = { basis.setMediaPlayer    (p); basis }
 
@@ -3618,7 +3618,7 @@ trait WidgetFamily {
     @inline def currentTab_=(p: Int) = { basis.setCurrentTab    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def currentTabByTag(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'currentTabByTag'")
+    @inline def currentTabByTag(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'currentTabByTag'")
     @inline def currentTabByTag  (p: java.lang.String) =            currentTabByTag_=  (p)
     @inline def currentTabByTag_=(p: java.lang.String) = { basis.setCurrentTabByTag    (p); basis }
 
@@ -3629,7 +3629,7 @@ trait WidgetFamily {
     @inline def currentView = basis.getCurrentView
 
     @noEquivalentGetterExists
-    @inline def onTabChangedListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onTabChangedListener'")
+    @inline def onTabChangedListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onTabChangedListener'")
     @inline def onTabChangedListener  (p: android.widget.TabHost.OnTabChangeListener) =            onTabChangedListener_=  (p)
     @inline def onTabChangedListener_=(p: android.widget.TabHost.OnTabChangeListener) = { basis.setOnTabChangedListener    (p); basis }
 
@@ -3638,7 +3638,7 @@ trait WidgetFamily {
     @inline def tabWidget = basis.getTabWidget
 
     @noEquivalentGetterExists
-    @inline def up(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'up'")
+    @inline def up(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'up'")
     @inline def up  (p: android.app.LocalActivityManager) =            up_=  (p)
     @inline def up_=(p: android.app.LocalActivityManager) = { basis.setup    (p); basis }
 
@@ -3692,7 +3692,7 @@ trait WidgetFamily {
     @inline def is24HourView_=(p: java.lang.Boolean) = { basis.setIs24HourView    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def onTimeChangedListener(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'onTimeChangedListener'")
+    @inline def onTimeChangedListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onTimeChangedListener'")
     @inline def onTimeChangedListener  (p: android.widget.TimePicker.OnTimeChangedListener) =            onTimeChangedListener_=  (p)
     @inline def onTimeChangedListener_=(p: android.widget.TimePicker.OnTimeChangedListener) = { basis.setOnTimeChangedListener    (p); basis }
 
@@ -3736,7 +3736,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def animateFirstView(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'animateFirstView'")
+    @inline def animateFirstView(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'animateFirstView'")
     @inline def animateFirstView  (p: Boolean) =            animateFirstView_=  (p)
     @inline def animateFirstView_=(p: Boolean) = { basis.setAnimateFirstView    (p); basis }
 
@@ -3785,7 +3785,7 @@ trait WidgetFamily {
     @inline def autoStart_=(p: Boolean) = { basis.setAutoStart    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def flipInterval(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'flipInterval'")
+    @inline def flipInterval(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'flipInterval'")
     @inline def flipInterval  (p: Int) =            flipInterval_=  (p)
     @inline def flipInterval_=(p: Int) = { basis.setFlipInterval    (p); basis }
 
@@ -3819,7 +3819,7 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def factory(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'factory'")
+    @inline def factory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'factory'")
     @inline def factory  (p: android.widget.ViewSwitcher.ViewFactory) =            factory_=  (p)
     @inline def factory_=(p: android.widget.ViewSwitcher.ViewFactory) = { basis.setFactory    (p); basis }
 
@@ -3853,17 +3853,17 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def imageDrawable(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'imageDrawable'")
+    @inline def imageDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'imageDrawable'")
     @inline def imageDrawable  (p: android.graphics.drawable.Drawable) =            imageDrawable_=  (p)
     @inline def imageDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setImageDrawable    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def imageResource(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'imageResource'")
+    @inline def imageResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'imageResource'")
     @inline def imageResource  (p: Int) =            imageResource_=  (p)
     @inline def imageResource_=(p: Int) = { basis.setImageResource    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def imageURI(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'imageURI'")
+    @inline def imageURI(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'imageURI'")
     @inline def imageURI  (p: android.net.Uri) =            imageURI_=  (p)
     @inline def imageURI_=(p: android.net.Uri) = { basis.setImageURI    (p); basis }
 
@@ -3894,12 +3894,12 @@ trait WidgetFamily {
 
 
     @noEquivalentGetterExists
-    @inline def currentText(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'currentText'")
+    @inline def currentText(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'currentText'")
     @inline def currentText  (p: java.lang.CharSequence) =            currentText_=  (p)
     @inline def currentText_=(p: java.lang.CharSequence) = { basis.setCurrentText    (p); basis }
 
     @noEquivalentGetterExists
-    @inline def text(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for 'text'")
+    @inline def text(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'text'")
     @inline def text  (p: java.lang.CharSequence) =            text_=  (p)
     @inline def text_=(p: java.lang.CharSequence) = { basis.setText    (p); basis }
 

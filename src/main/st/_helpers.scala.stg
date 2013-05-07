@@ -231,7 +231,7 @@ override(m) ::= <<$if(m.isOverride)$ override$endif$>>
 
 noGetter(name) ::= <<
 @noEquivalentGetterExists
-@inline def $name$(implicit no: Nothing): Nothing = throw new Error("Android does not support the getter for '$name$'")
+@inline def $name$(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for '$name$'")
 >>
 
 getter(prop) ::= <<

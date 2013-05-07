@@ -44,6 +44,8 @@ import android.opengl._
 @beanGetter
 class noEquivalentGetterExists extends annotation.StaticAnnotation
 
+private[scaloid] trait NoGetterForThisProperty
+
 class EventSource0[T] extends ArrayBuffer[() => T] {
   def apply(e: => T) = append(() => e)
 
