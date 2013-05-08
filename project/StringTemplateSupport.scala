@@ -78,8 +78,14 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
 
     def decapitalize(s: String) = if (s.isEmpty) s else s(0).toLower + s.substring(1)
     def simpleName(s: String) = s.split('.').last
-    def toJavaConst(s: String) =  "[A-Z]".r.replaceAllIn(s, m => "_"+m.group(0)).toUpperCase
-    def managerToService(s: String) = toJavaConst(s).split('_').init.mkString + "_SERVICE"
+    def toJavaConst(s: String) = (s.head +: "[A-Z]".r.replaceAllIn(s.tail, m => "_"+m.group(0))).toUpperCase
+    def managerToService(s: String) = {
+      val jc = toJavaConst(s.replace("DropBox", "Dropbox"))
+      (if (jc.endsWith("MANAGER")) jc.split('_').init.mkString("_")
+       else jc) + "_SERVICE"
+    }
+    def span(s: String, i: Int) = s.padTo(i, " ").mkString
+    val Span = """span(\d+)""".r
 
     def format(value: String, formatName: String): String = formatName match {
       case "upper"    | "uppercase"    => value.toUpperCase
@@ -89,6 +95,7 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
       case "simple"   | "simplename"   => simpleName(value)
       case "javaconst"                 => toJavaConst(value)
       case "manager-to-service"        => managerToService(value) // TODO make proper case class for manager instead of this trick
+      case Span(i)                     => span(value, i.toInt)
       case _                           => value
     }
   }

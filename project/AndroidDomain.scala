@@ -51,6 +51,7 @@ case class AndroidClass(
   properties: Seq[AndroidProperty],
   listeners: Seq[AndroidListener],
   isA: Set[String],
-  isAbstract: Boolean
+  isAbstract: Boolean,
+  isFinal: Boolean
 )
 
