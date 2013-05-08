@@ -76,6 +76,8 @@ import android.opengl._
 @beanGetter
 class noEquivalentGetterExists extends annotation.StaticAnnotation
 
+private[scaloid] trait NoGetterForThisProperty
+
 class EventSource0[T] extends ArrayBuffer[() => T] {
   def apply(e: => T) = append(() => e)
 
@@ -143,7 +145,7 @@ trait TraitActivity[V <: Activity] {
   @inline def contentView(p: View) = contentView_=(p)
 
   @noEquivalentGetterExists
-  @inline def contentView: View = null
+  @inline def contentView(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'contentView'")
 
   def basis: Activity
 
