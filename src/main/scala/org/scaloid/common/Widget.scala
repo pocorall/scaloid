@@ -2251,13 +2251,13 @@ trait WidgetFamily {
     @inline def onKey(f: (Int, Array[Int]) => Unit): V = {
       basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
         def onPress(p: Int): Unit = {  }
-        def onRelease(p: Int): Unit = {  }
         def onKey(p1: Int, p2: Array[Int]): Unit = { f(p1, p2) }
+        def onRelease(p: Int): Unit = {  }
         def swipeUp(): Unit = {  }
         def swipeRight(): Unit = {  }
         def swipeDown(): Unit = {  }
-        def onText(p: java.lang.CharSequence): Unit = {  }
         def swipeLeft(): Unit = {  }
+        def onText(p: java.lang.CharSequence): Unit = {  }
       })
       basis
     }
@@ -2265,13 +2265,13 @@ trait WidgetFamily {
     @inline def onKey(f: => Unit): V = {
       basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
         def onPress(p: Int): Unit = {  }
-        def onRelease(p: Int): Unit = {  }
         def onKey(p1: Int, p2: Array[Int]): Unit = { f }
+        def onRelease(p: Int): Unit = {  }
         def swipeUp(): Unit = {  }
         def swipeRight(): Unit = {  }
         def swipeDown(): Unit = {  }
-        def onText(p: java.lang.CharSequence): Unit = {  }
         def swipeLeft(): Unit = {  }
+        def onText(p: java.lang.CharSequence): Unit = {  }
       })
       basis
     }
@@ -2279,13 +2279,13 @@ trait WidgetFamily {
     @inline def onPress(f: Int => Unit): V = {
       basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
         def onPress(p: Int): Unit = { f(p) }
-        def onRelease(p: Int): Unit = {  }
         def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+        def onRelease(p: Int): Unit = {  }
         def swipeUp(): Unit = {  }
         def swipeRight(): Unit = {  }
         def swipeDown(): Unit = {  }
-        def onText(p: java.lang.CharSequence): Unit = {  }
         def swipeLeft(): Unit = {  }
+        def onText(p: java.lang.CharSequence): Unit = {  }
       })
       basis
     }
@@ -2293,13 +2293,13 @@ trait WidgetFamily {
     @inline def onPress(f: => Unit): V = {
       basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
         def onPress(p: Int): Unit = { f }
-        def onRelease(p: Int): Unit = {  }
         def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+        def onRelease(p: Int): Unit = {  }
         def swipeUp(): Unit = {  }
         def swipeRight(): Unit = {  }
         def swipeDown(): Unit = {  }
-        def onText(p: java.lang.CharSequence): Unit = {  }
         def swipeLeft(): Unit = {  }
+        def onText(p: java.lang.CharSequence): Unit = {  }
       })
       basis
     }
@@ -2307,13 +2307,13 @@ trait WidgetFamily {
     @inline def onRelease(f: Int => Unit): V = {
       basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
         def onPress(p: Int): Unit = {  }
-        def onRelease(p: Int): Unit = { f(p) }
         def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+        def onRelease(p: Int): Unit = { f(p) }
         def swipeUp(): Unit = {  }
         def swipeRight(): Unit = {  }
         def swipeDown(): Unit = {  }
-        def onText(p: java.lang.CharSequence): Unit = {  }
         def swipeLeft(): Unit = {  }
+        def onText(p: java.lang.CharSequence): Unit = {  }
       })
       basis
     }
@@ -2321,13 +2321,13 @@ trait WidgetFamily {
     @inline def onRelease(f: => Unit): V = {
       basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
         def onPress(p: Int): Unit = {  }
-        def onRelease(p: Int): Unit = { f }
         def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+        def onRelease(p: Int): Unit = { f }
         def swipeUp(): Unit = {  }
         def swipeRight(): Unit = {  }
         def swipeDown(): Unit = {  }
-        def onText(p: java.lang.CharSequence): Unit = {  }
         def swipeLeft(): Unit = {  }
+        def onText(p: java.lang.CharSequence): Unit = {  }
       })
       basis
     }
@@ -2335,13 +2335,13 @@ trait WidgetFamily {
     @inline def onText(f: java.lang.CharSequence => Unit): V = {
       basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
         def onPress(p: Int): Unit = {  }
-        def onRelease(p: Int): Unit = {  }
         def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+        def onRelease(p: Int): Unit = {  }
         def swipeUp(): Unit = {  }
         def swipeRight(): Unit = {  }
         def swipeDown(): Unit = {  }
-        def onText(p: java.lang.CharSequence): Unit = { f(p) }
         def swipeLeft(): Unit = {  }
+        def onText(p: java.lang.CharSequence): Unit = { f(p) }
       })
       basis
     }
@@ -2349,13 +2349,13 @@ trait WidgetFamily {
     @inline def onText(f: => Unit): V = {
       basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
         def onPress(p: Int): Unit = {  }
-        def onRelease(p: Int): Unit = {  }
         def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+        def onRelease(p: Int): Unit = {  }
         def swipeUp(): Unit = {  }
         def swipeRight(): Unit = {  }
         def swipeDown(): Unit = {  }
-        def onText(p: java.lang.CharSequence): Unit = { f }
         def swipeLeft(): Unit = {  }
+        def onText(p: java.lang.CharSequence): Unit = { f }
       })
       basis
     }
@@ -2365,13 +2365,13 @@ trait WidgetFamily {
     @inline def swipeDown(f: => Unit): V = {
       basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
         def onPress(p: Int): Unit = {  }
-        def onRelease(p: Int): Unit = {  }
         def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+        def onRelease(p: Int): Unit = {  }
         def swipeUp(): Unit = {  }
         def swipeRight(): Unit = {  }
         def swipeDown(): Unit = { f }
-        def onText(p: java.lang.CharSequence): Unit = {  }
         def swipeLeft(): Unit = {  }
+        def onText(p: java.lang.CharSequence): Unit = {  }
       })
       basis
     }
@@ -2381,13 +2381,13 @@ trait WidgetFamily {
     @inline def swipeLeft(f: => Unit): V = {
       basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
         def onPress(p: Int): Unit = {  }
-        def onRelease(p: Int): Unit = {  }
         def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+        def onRelease(p: Int): Unit = {  }
         def swipeUp(): Unit = {  }
         def swipeRight(): Unit = {  }
         def swipeDown(): Unit = {  }
-        def onText(p: java.lang.CharSequence): Unit = {  }
         def swipeLeft(): Unit = { f }
+        def onText(p: java.lang.CharSequence): Unit = {  }
       })
       basis
     }
@@ -2397,13 +2397,13 @@ trait WidgetFamily {
     @inline def swipeRight(f: => Unit): V = {
       basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
         def onPress(p: Int): Unit = {  }
-        def onRelease(p: Int): Unit = {  }
         def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+        def onRelease(p: Int): Unit = {  }
         def swipeUp(): Unit = {  }
         def swipeRight(): Unit = { f }
         def swipeDown(): Unit = {  }
-        def onText(p: java.lang.CharSequence): Unit = {  }
         def swipeLeft(): Unit = {  }
+        def onText(p: java.lang.CharSequence): Unit = {  }
       })
       basis
     }
@@ -2413,13 +2413,13 @@ trait WidgetFamily {
     @inline def swipeUp(f: => Unit): V = {
       basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
         def onPress(p: Int): Unit = {  }
-        def onRelease(p: Int): Unit = {  }
         def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+        def onRelease(p: Int): Unit = {  }
         def swipeUp(): Unit = { f }
         def swipeRight(): Unit = {  }
         def swipeDown(): Unit = {  }
-        def onText(p: java.lang.CharSequence): Unit = {  }
         def swipeLeft(): Unit = {  }
+        def onText(p: java.lang.CharSequence): Unit = {  }
       })
       basis
     }

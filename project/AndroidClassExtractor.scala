@@ -1,9 +1,11 @@
 import sbt._
 import Keys._
 
-import collection.immutable.HashSet
 import java.beans._
 import java.lang.reflect._
+import org.reflections._
+import org.reflections.scanners._
+import scala.collection.JavaConversions._
 
 
 object AndroidClassExtractor {
@@ -228,104 +230,21 @@ object AndroidClassExtractor {
 
   def extractTask = (streams) map { s =>
 
-    val view: List[Class[_]] = {
-      import android.view._
-      List(
-          classOf[View], classOf[ViewGroup], classOf[ContextMenu], classOf[SurfaceView], classOf[ViewStub]
-      )
-    }
+    s.log.info("Extracting class info from Android...")
 
-    val widget: List[Class[_]] = {
-      import android.widget._
-      List(
-          classOf[TextView], classOf[Button], classOf[AbsListView], classOf[ListView]
-        , classOf[FrameLayout], classOf[LinearLayout], classOf[AdapterView[_]], classOf[ImageView]
-        , classOf[ProgressBar], classOf[AnalogClock], classOf[GridView], classOf[ExpandableListView]
-        , classOf[AbsSpinner], classOf[Spinner], classOf[Gallery], classOf[AbsSeekBar], classOf[SeekBar]
-        , classOf[RatingBar], classOf[DatePicker], classOf[HorizontalScrollView], classOf[MediaController]
-        , classOf[ScrollView], classOf[TabHost], classOf[TimePicker], classOf[ViewAnimator]
-        , classOf[ViewFlipper], classOf[ViewSwitcher], classOf[ImageSwitcher], classOf[TextSwitcher]
-        , classOf[EditText], classOf[TableRow], classOf[CompoundButton], classOf[CheckBox]
-        , classOf[RadioButton], classOf[RadioGroup], classOf[TabWidget], classOf[TableLayout]
-        , classOf[Chronometer], classOf[ToggleButton], classOf[CheckedTextView], classOf[DigitalClock]
-        , classOf[QuickContactBadge], classOf[RatingBar], classOf[RelativeLayout], classOf[TwoLineListItem]
-        , classOf[DialerFilter], classOf[VideoView], classOf[MultiAutoCompleteTextView]
-        , classOf[AutoCompleteTextView], classOf[ZoomButton], classOf[AbsoluteLayout]
-        , classOf[ZoomControls], classOf[ImageButton]
-
-        // API Level 14 or above
-        //, classOf[android.widget.Space]
-      )
-    }
-
-    val systemService: List[Class[_]] = {
-      import android.accounts._
-      import android.app._
-      import android.app.admin._
-      import android.content._
-      import android.hardware._
-      import android.location._
-      import android.media._
-      import android.net._
-      import android.net.wifi._
-      import android.os._
-      import android.telephony._
-      import android.text._
-      import android.view._
-      import android.view.accessibility._
-      import android.view.inputmethod._
-      List(
-          classOf[AccessibilityManager], classOf[AccountManager], classOf[ActivityManager]
-        , classOf[AlarmManager], classOf[AudioManager], classOf[ClipboardManager]
-        , classOf[ConnectivityManager], classOf[DevicePolicyManager], classOf[DropBoxManager]
-        , classOf[InputMethodManager], classOf[KeyguardManager], classOf[LayoutInflater]
-        , classOf[LocationManager], classOf[NotificationManager], classOf[PowerManager]
-        , classOf[SearchManager], classOf[SensorManager], classOf[TelephonyManager]
-        , classOf[UiModeManager], classOf[Vibrator], classOf[WallpaperManager]
-        , classOf[WifiManager], classOf[WindowManager]
-
-        // API Level 9 or Above
-        // , classOf[DownloadManager]
-        
-        // API Level 10 or Above
-        // , classOf[NfcManager], classOf[StorageManager]
-
-        // API Level 12 or above
-        // , classOf[usb.UsbManager]
-
-        // API Level 14 or above
-        // , classOf[textservice.TextServicesManager], classOf[pop.WifiP2pManager]
-
-        // API Level 16 or above
-        // , classOf[input.InputManager], classOf[MediaRouter], classOf[NsdManager]
-      )
-    }
-
-    val preference: List[Class[_]] = {
-      import android.preference._
-      List(
-        classOf[Preference], classOf[DialogPreference], classOf[EditTextPreference]
-      )
-    }
-
-    val etc: List[Class[_]] = {
-      import android._
-      List(
-          classOf[webkit.WebView], classOf[gesture.GestureOverlayView]
-        , classOf[opengl.GLSurfaceView], classOf[opengl.GLSurfaceView]
-        , classOf[inputmethodservice.ExtractEditText], classOf[inputmethodservice.KeyboardView]
-        , classOf[appwidget.AppWidgetHostView]
-      )
-    }
-
-    val clss = view ++ widget ++ systemService ++ preference ++ etc
-    val res = clss.view
+    val r = new Reflections("android", new SubTypesScanner(false), new TypeElementsScanner(), new TypeAnnotationsScanner())
+    val clss = asScalaSet(r.getSubTypesOf(classOf[java.lang.Object]))
+    val res = clss.toList
                 .map(toAndroidClass)
+                .filter {
+                  s.log.info("Excluding inner classes for now - let's deal with it later")
+                  ! _.name.contains("$")
+                }
                 .map(c => c.tpe.name -> c)
                 .toMap
 
     val values = res.values.toList
-    s.log.info("Extracted from Android")
+    s.log.info("Done.")
     s.log.info("Classes: "+ values.length)
     s.log.info("Properties: "+ values.map(_.properties).flatten.length)
     s.log.info("Listeners: "+ values.map(_.listeners).flatten.length)
