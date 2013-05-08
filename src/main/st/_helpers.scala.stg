@@ -11,7 +11,7 @@ names(ts) ::= <<$ts:name(); separator=", "$>>
 wholeClassDef(base, mixin, body) ::= <<
 $richClassDef(...)$
 
-$if(! base.isAbstract)$
+$if(! base.isAbstract && ! base.isFinal)$
 $concreteClassDef(base)$
 
 $companionObjectDef(...)$
@@ -275,10 +275,10 @@ properties(base) ::= <<$base.properties:property()$>>
 // service
 
 systemServiceHead(base) ::= <<
-@inline def $decap(base.name)$ (implicit context: Context): $base.tpe.name$ =
-  context.getSystemService(Context.$base.name; format="manager-to-service"$).asInstanceOf[$base.name$]
->>
+@inline def $decap(base.name)$(implicit context: Context) =
+  context.getSystemService(Context.$base.name; format="manager-to-service"$).asInstanceOf[$base.tpe.name$]
 
+>>
 
 // etc
 

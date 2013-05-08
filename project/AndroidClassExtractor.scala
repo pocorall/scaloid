@@ -42,6 +42,8 @@ object AndroidClassExtractor {
 
   private def isAbstract(m: Member): Boolean = Modifier.isAbstract(m.getModifiers)
   private def isAbstract(c: Class[_]): Boolean = Modifier.isAbstract(c.getModifiers)
+  private def isFinal(m: Member): Boolean = Modifier.isFinal(m.getModifiers)
+  private def isFinal(c: Class[_]): Boolean = Modifier.isFinal(c.getModifiers)
 
   private def methodSignature(m: Method): String = List(
     m.getName,
@@ -221,53 +223,104 @@ object AndroidClassExtractor {
 
     val isA = getHierarchy(cls).toSet
 
-    AndroidClass(name, pkg, tpe, parentType, props, listeners, isA, isAbstract(cls))
+    AndroidClass(name, pkg, tpe, parentType, props, listeners, isA, isAbstract(cls), isFinal(cls))
   }
 
   def extractTask = (streams) map { s =>
-    val clss = List(
-      // Widget
-        classOf[android.view.View], classOf[android.widget.TextView], classOf[android.widget.Button], classOf[android.widget.AbsListView]
-      , classOf[android.widget.ListView], classOf[android.view.ViewGroup], classOf[android.widget.FrameLayout]
-      , classOf[android.widget.LinearLayout], classOf[android.view.ContextMenu], classOf[android.widget.AdapterView[_]]
-      , classOf[android.inputmethodservice.KeyboardView], classOf[android.widget.ImageView], classOf[android.widget.ProgressBar]
-      , classOf[android.widget.AnalogClock], classOf[android.view.SurfaceView], classOf[android.view.ViewStub]
-      , classOf[android.widget.GridView], classOf[android.widget.ExpandableListView], classOf[android.widget.AbsSpinner]
-      , classOf[android.widget.Spinner], classOf[android.widget.Gallery], classOf[android.widget.AbsSeekBar]
-      , classOf[android.widget.SeekBar], classOf[android.widget.RatingBar], classOf[android.appwidget.AppWidgetHostView]
-      , classOf[android.widget.DatePicker], classOf[android.gesture.GestureOverlayView], classOf[android.widget.HorizontalScrollView]
-      , classOf[android.widget.MediaController], classOf[android.widget.ScrollView], classOf[android.widget.TabHost]
-      , classOf[android.widget.TimePicker], classOf[android.widget.ViewAnimator], classOf[android.widget.ViewFlipper]
-      , classOf[android.widget.ViewSwitcher], classOf[android.widget.ImageSwitcher], classOf[android.widget.TextSwitcher]
-      , classOf[android.widget.EditText], classOf[android.widget.TableRow]
-      , classOf[android.widget.CompoundButton], classOf[android.widget.CheckBox], classOf[android.widget.RadioButton]
-      , classOf[android.widget.RadioGroup], classOf[android.widget.TabWidget], classOf[android.widget.TableLayout]
-      , classOf[android.widget.Chronometer], classOf[android.widget.ToggleButton], classOf[android.widget.CheckedTextView]
-      , classOf[android.widget.DigitalClock], classOf[android.widget.QuickContactBadge], classOf[android.widget.RatingBar]
-      , classOf[android.widget.RelativeLayout], classOf[android.widget.TwoLineListItem], classOf[android.widget.DialerFilter]
-      , classOf[android.widget.VideoView], classOf[android.widget.MultiAutoCompleteTextView]
-      , classOf[android.widget.AutoCompleteTextView], classOf[android.widget.ZoomButton], classOf[android.webkit.WebView]
-      , classOf[android.widget.AbsoluteLayout], classOf[android.widget.ZoomControls], classOf[android.widget.ImageButton]
-      , classOf[android.opengl.GLSurfaceView], classOf[android.opengl.GLSurfaceView], classOf[android.inputmethodservice.ExtractEditText]
 
-      // API Level 14 or above
-      //, classOf[android.widget.Space]
+    val view: List[Class[_]] = {
+      import android.view._
+      List(
+          classOf[View], classOf[ViewGroup], classOf[ContextMenu], classOf[SurfaceView], classOf[ViewStub]
+      )
+    }
 
-      // Service
-      , classOf[android.telephony.TelephonyManager]
+    val widget: List[Class[_]] = {
+      import android.widget._
+      List(
+          classOf[TextView], classOf[Button], classOf[AbsListView], classOf[ListView]
+        , classOf[FrameLayout], classOf[LinearLayout], classOf[AdapterView[_]], classOf[ImageView]
+        , classOf[ProgressBar], classOf[AnalogClock], classOf[GridView], classOf[ExpandableListView]
+        , classOf[AbsSpinner], classOf[Spinner], classOf[Gallery], classOf[AbsSeekBar], classOf[SeekBar]
+        , classOf[RatingBar], classOf[DatePicker], classOf[HorizontalScrollView], classOf[MediaController]
+        , classOf[ScrollView], classOf[TabHost], classOf[TimePicker], classOf[ViewAnimator]
+        , classOf[ViewFlipper], classOf[ViewSwitcher], classOf[ImageSwitcher], classOf[TextSwitcher]
+        , classOf[EditText], classOf[TableRow], classOf[CompoundButton], classOf[CheckBox]
+        , classOf[RadioButton], classOf[RadioGroup], classOf[TabWidget], classOf[TableLayout]
+        , classOf[Chronometer], classOf[ToggleButton], classOf[CheckedTextView], classOf[DigitalClock]
+        , classOf[QuickContactBadge], classOf[RatingBar], classOf[RelativeLayout], classOf[TwoLineListItem]
+        , classOf[DialerFilter], classOf[VideoView], classOf[MultiAutoCompleteTextView]
+        , classOf[AutoCompleteTextView], classOf[ZoomButton], classOf[AbsoluteLayout]
+        , classOf[ZoomControls], classOf[ImageButton]
 
-      // Preference
-      , classOf[android.preference.Preference]
-      , classOf[android.preference.DialogPreference]
-      , classOf[android.preference.EditTextPreference]
-    )        
+        // API Level 14 or above
+        //, classOf[android.widget.Space]
+      )
+    }
 
+    val systemService: List[Class[_]] = {
+      import android.accounts._
+      import android.app._
+      import android.app.admin._
+      import android.content._
+      import android.hardware._
+      import android.location._
+      import android.media._
+      import android.net._
+      import android.net.wifi._
+      import android.os._
+      import android.telephony._
+      import android.text._
+      import android.view._
+      import android.view.accessibility._
+      import android.view.inputmethod._
+      List(
+          classOf[AccessibilityManager], classOf[AccountManager], classOf[ActivityManager]
+        , classOf[AlarmManager], classOf[AudioManager], classOf[ClipboardManager]
+        , classOf[ConnectivityManager], classOf[DevicePolicyManager], classOf[DropBoxManager]
+        , classOf[InputMethodManager], classOf[KeyguardManager], classOf[LayoutInflater]
+        , classOf[LocationManager], classOf[NotificationManager], classOf[PowerManager]
+        , classOf[SearchManager], classOf[SensorManager], classOf[TelephonyManager]
+        , classOf[UiModeManager], classOf[Vibrator], classOf[WallpaperManager]
+        , classOf[WifiManager], classOf[WindowManager]
+
+        // API Level 9 or Above
+        // , classOf[DownloadManager]
+        
+        // API Level 10 or Above
+        // , classOf[NfcManager], classOf[StorageManager]
+
+        // API Level 12 or above
+        // , classOf[usb.UsbManager]
+
+        // API Level 14 or above
+        // , classOf[textservice.TextServicesManager], classOf[pop.WifiP2pManager]
+
+        // API Level 16 or above
+        // , classOf[input.InputManager], classOf[MediaRouter], classOf[NsdManager]
+      )
+    }
+
+    val preference: List[Class[_]] = {
+      import android.preference._
+      List(
+        classOf[Preference], classOf[DialogPreference], classOf[EditTextPreference]
+      )
+    }
+
+    val etc: List[Class[_]] = {
+      import android._
+      List(
+          classOf[webkit.WebView], classOf[gesture.GestureOverlayView]
+        , classOf[opengl.GLSurfaceView], classOf[opengl.GLSurfaceView]
+        , classOf[inputmethodservice.ExtractEditText], classOf[inputmethodservice.KeyboardView]
+        , classOf[appwidget.AppWidgetHostView]
+      )
+    }
+
+    val clss = view ++ widget ++ systemService ++ preference ++ etc
     val res = clss.view
                 .map(toAndroidClass)
-                .map{c =>
-                  //println(c.name, c.tpe.params)
-                  c
-                }
                 .map(c => c.tpe.name -> c)
                 .toMap
 
