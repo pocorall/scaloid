@@ -1,7 +1,7 @@
 import sbt._
 import Keys._
 
-import java.beans.{Introspector, MethodDescriptor, PropertyDescriptor, ParameterDescriptor, IndexedPropertyDescriptor}
+import java.beans.{Introspector, PropertyDescriptor, ParameterDescriptor, IndexedPropertyDescriptor}
 import java.lang.reflect._
 import org.reflections._
 import org.reflections.ReflectionUtils._
@@ -54,28 +54,24 @@ object AndroidClassExtractor {
     "["+m.getParameterTypes.map(_.getName).toList.mkString(",")+"]"
   ).mkString(":")
 
-  private def methodSignature(mdesc: MethodDescriptor): String =
-    methodSignature(mdesc.getMethod)
-
   private def propSignature(pdesc: PropertyDescriptor): String = List(
     pdesc.getName,
     pdesc.getPropertyType
   ).mkString(":")
 
   private def toAndroidClass(cls: Class[_]) = {
-    implicit val _cls = cls
 
+    val superClass = Option(cls.getSuperclass)
     val parentBeanInfo = Option(cls.getSuperclass).map(Introspector.getBeanInfo)
 
-
     val superProps: Set[String] = 
-      parentBeanInfo.map { 
-        _.getPropertyDescriptors.toList.map(propSignature).toSet
+      superClass.map {  c =>
+        Introspector.getBeanInfo(c).getPropertyDescriptors.toList.map(propSignature).toSet
       }.getOrElse(Set())
 
     val superMethods: Set[String] = 
-      parentBeanInfo.map {
-        _.getMethodDescriptors.toList.map(methodSignature).toSet
+      superClass.map {
+        _.getMethods.map(methodSignature).toSet
       }.getOrElse(Set())
 
     val superGetters: Set[String] = 
@@ -85,7 +81,6 @@ object AndroidClassExtractor {
           .filter(_.nonEmpty)
           .map(_.get.getName).toSet
       }.getOrElse(Set())
-
 
     def toAndroidMethod(m: Method): AndroidMethod = {
       val name = m.getName
@@ -103,25 +98,23 @@ object AndroidClassExtractor {
       (! pdesc.isInstanceOf[IndexedPropertyDescriptor]) && pdesc.getDisplayName.matches("^[a-zA-z].*") &&
       (! superProps(propSignature(pdesc)))
 
-    def isListenerSetterOrAdder(mdesc: MethodDescriptor): Boolean = {
-      val name = mdesc.getName
-      name.matches("^(set|add).+Listener$") && !superMethods(methodSignature(mdesc))
+    def isListenerSetterOrAdder(m: Method): Boolean = {
+      val name = m.getName
+      name.matches("^(set|add).+Listener$") && !superMethods(methodSignature(m))
     }
 
-    def isCallbackMethod(mdesc: MethodDescriptor): Boolean =
-      ! mdesc.getName.startsWith("get")
+    def isCallbackMethod(m: Method): Boolean =
+      ! m.getName.startsWith("get")
 
     def extractMethodsFromListener(callbackCls: Class[_]): List[AndroidMethod] =
-      Introspector.getBeanInfo(callbackCls).getMethodDescriptors
+      callbackCls.getMethods.view
         .filter(isCallbackMethod)
-        .map(_.getMethod)
         .map(toAndroidMethod)
         .toList
 
     def getPolymorphicSetters(method: Method): Seq[AndroidMethod] = {
       val name = method.getName
-      Introspector.getBeanInfo(cls).getMethodDescriptors.view
-        .map(_.getMethod)
+      cls.getMethods.view
         .filter { m => 
           !isAbstract(m) && m.getName == name && 
             m.getParameterTypes.length == 1 && 
@@ -169,13 +162,8 @@ object AndroidClassExtractor {
       }
     }
 
-
-
-    
-    def toAndroidListeners(mdesc: MethodDescriptor): Seq[AndroidListener] = {
-      val method = mdesc.getMethod
-      val setter = mdesc.getName
-      val paramsDescs: List[ParameterDescriptor] = Option(mdesc.getParameterDescriptors).toList.flatten
+    def toAndroidListeners(method: Method): Seq[AndroidListener] = {
+      val setter = method.getName
       val callbackClassName = toScalaType(method.getGenericParameterTypes()(0)).name
       val callbackMethods   = extractMethodsFromListener(method.getParameterTypes()(0))
 
@@ -209,11 +197,12 @@ object AndroidClassExtractor {
                   .flatten
                   .sortBy(_.name)
 
-    val listeners = Introspector.getBeanInfo(cls).getMethodDescriptors.toSeq
+    val listeners = cls.getMethods.view
                   .filter(isListenerSetterOrAdder)
                   .map(toAndroidListeners)
                   .flatten
                   .sortBy(_.name)
+                  .toSeq
 
     val fullName = cls.getName
 
