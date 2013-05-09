@@ -65,7 +65,7 @@ object AndroidClassExtractor {
     "["+m.getParameterTypes.map(_.getName).toList.mkString(",")+"]"
   ).mkString(":")
 
-  private def propSignature(pdesc: PropertyDescriptor): String = List(
+  private def propDescSignature(pdesc: PropertyDescriptor): String = List(
     pdesc.getName,
     pdesc.getPropertyType
   ).mkString(":")
@@ -73,11 +73,13 @@ object AndroidClassExtractor {
   private def toAndroidClass(cls: Class[_]) = {
 
     val superClass = Option(cls.getSuperclass)
-    val superPropertyDescs =
-      superClass.map(Introspector.getBeanInfo(_).getPropertyDescriptors.toSeq).flatten
 
     val superProps: Set[String] =
-      superPropertyDescs.map(propSignature).toSet[String]
+      superClass.map {
+        Introspector.getBeanInfo(_)
+          .getPropertyDescriptors
+          .map(propDescSignature).toSet[String]
+      }.getOrElse(Set())
 
     val superMethods: Set[String] = 
       superClass.map {
@@ -98,7 +100,7 @@ object AndroidClassExtractor {
 
     def isValidProperty(pdesc: PropertyDescriptor): Boolean =
       (! pdesc.isInstanceOf[IndexedPropertyDescriptor]) && pdesc.getDisplayName.matches("^[a-zA-z].*") &&
-      (! superProps(propSignature(pdesc)))
+      (! superProps(propDescSignature(pdesc)))
 
     def isListenerSetterOrAdder(m: Method): Boolean = {
       val name = m.getName
