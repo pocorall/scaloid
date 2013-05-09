@@ -6,6 +6,7 @@ import java.lang.reflect._
 import org.reflections._
 import org.reflections.ReflectionUtils._
 import org.reflections.scanners._
+import com.google.common.base.Predicates
 import scala.collection.JavaConversions._
 
 
@@ -48,6 +49,16 @@ object AndroidClassExtractor {
   private def isFinal(m: Member): Boolean = Modifier.isFinal(m.getModifiers)
   private def isFinal(c: Class[_]): Boolean = Modifier.isFinal(c.getModifiers)
 
+  private def isOverride(m: Method): Boolean =
+    m.getDeclaringClass.getSuperclass match {
+      case null => false
+      case c =>
+        getAllMethods(c,
+          withName(m.getName),
+          withParameters(m.getParameterTypes: _*)
+        ).nonEmpty
+    }
+
   private def methodSignature(m: Method): String = List(
     m.getName,
     m.getReturnType.getName,
@@ -62,24 +73,15 @@ object AndroidClassExtractor {
   private def toAndroidClass(cls: Class[_]) = {
 
     val superClass = Option(cls.getSuperclass)
-    val parentBeanInfo = Option(cls.getSuperclass).map(Introspector.getBeanInfo)
+    val superPropertyDescs =
+      superClass.map(Introspector.getBeanInfo(_).getPropertyDescriptors.toSeq).flatten
 
-    val superProps: Set[String] = 
-      superClass.map {  c =>
-        Introspector.getBeanInfo(c).getPropertyDescriptors.toList.map(propSignature).toSet
-      }.getOrElse(Set())
+    val superProps: Set[String] =
+      superPropertyDescs.map(propSignature).toSet[String]
 
     val superMethods: Set[String] = 
       superClass.map {
         _.getMethods.map(methodSignature).toSet
-      }.getOrElse(Set())
-
-    val superGetters: Set[String] = 
-      parentBeanInfo.map {
-        _.getPropertyDescriptors.toList
-          .map(m => Option(m.getReadMethod))
-          .filter(_.nonEmpty)
-          .map(_.get.getName).toSet
       }.getOrElse(Set())
 
     def toAndroidMethod(m: Method): AndroidMethod = {
@@ -91,7 +93,7 @@ object AndroidClassExtractor {
                       .map(AndroidClassExtractor.toScalaType(_))
       val paramedTypes = (retType +: argTypes).filter(_.isVar).distinct
 
-      AndroidMethod(name, retType, argTypes, paramedTypes, isAbstract(m))
+      AndroidMethod(name, retType, argTypes, paramedTypes, isAbstract(m), isOverride(m))
     }
 
     def isValidProperty(pdesc: PropertyDescriptor): Boolean =
@@ -140,13 +142,7 @@ object AndroidClassExtractor {
 
       val getter = readMethod
                       .filter(m => ! superMethods(methodSignature(m)))
-                      .map { m =>
-                        val am = toAndroidMethod(m)
-                        if (superGetters(am.name))
-                          am.copy(isOverride = true)
-                        else
-                          am
-                      }
+                      .map(toAndroidMethod)
 
       val setters = writeMethod
                       .map(getPolymorphicSetters)
