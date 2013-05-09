@@ -48,6 +48,7 @@ case class AndroidClass(
   pkg: String,
   tpe: ScalaType,
   parentType: Option[ScalaType],
+  constructors: Seq[Seq[ScalaType]],
   properties: Seq[AndroidProperty],
   listeners: Seq[AndroidListener],
   isA: Set[String],
