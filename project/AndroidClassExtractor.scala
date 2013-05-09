@@ -1,9 +1,10 @@
 import sbt._
 import Keys._
 
-import java.beans._
+import java.beans.{Introspector, MethodDescriptor, PropertyDescriptor, ParameterDescriptor, IndexedPropertyDescriptor}
 import java.lang.reflect._
 import org.reflections._
+import org.reflections.ReflectionUtils._
 import org.reflections.scanners._
 import scala.collection.JavaConversions._
 
@@ -223,9 +224,11 @@ object AndroidClassExtractor {
                         .map(toScalaType)
                         .filter(_.name.startsWith("android"))
 
+    val constructors: Seq[Seq[ScalaType]] = getConstructors(cls).map(_.getGenericParameterTypes.map(toScalaType).toSeq).toSeq
+
     val isA = getHierarchy(cls).toSet
 
-    AndroidClass(name, pkg, tpe, parentType, props, listeners, isA, isAbstract(cls), isFinal(cls))
+    AndroidClass(name, pkg, tpe, parentType, constructors, props, listeners, isA, isAbstract(cls), isFinal(cls))
   }
 
   def extractTask = (streams) map { s =>
@@ -233,7 +236,7 @@ object AndroidClassExtractor {
     s.log.info("Extracting class info from Android...")
 
     val r = new Reflections("android", new SubTypesScanner(false), new TypeElementsScanner(), new TypeAnnotationsScanner())
-    val clss = asScalaSet(r.getSubTypesOf(classOf[java.lang.Object]))
+    val clss: Set[Class[_]] = asScalaSet(r.getSubTypesOf(classOf[java.lang.Object])).toList.toSet
     val res = clss.toList
                 .map(toAndroidClass)
                 .filter {
