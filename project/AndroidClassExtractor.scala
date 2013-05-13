@@ -1,9 +1,13 @@
 import sbt._
 import Keys._
 
-import collection.immutable.HashSet
-import java.beans._
+import java.beans.{Introspector, PropertyDescriptor, ParameterDescriptor, IndexedPropertyDescriptor}
 import java.lang.reflect._
+import org.reflections._
+import org.reflections.ReflectionUtils._
+import org.reflections.scanners._
+import com.google.common.base.Predicates
+import scala.collection.JavaConversions._
 
 
 object AndroidClassExtractor {
@@ -45,44 +49,42 @@ object AndroidClassExtractor {
   private def isFinal(m: Member): Boolean = Modifier.isFinal(m.getModifiers)
   private def isFinal(c: Class[_]): Boolean = Modifier.isFinal(c.getModifiers)
 
+  private def isOverride(m: Method): Boolean =
+    m.getDeclaringClass.getSuperclass match {
+      case null => false
+      case c =>
+        getAllMethods(c,
+          withName(m.getName),
+          withParameters(m.getParameterTypes: _*)
+        ).nonEmpty
+    }
+
   private def methodSignature(m: Method): String = List(
     m.getName,
     m.getReturnType.getName,
     "["+m.getParameterTypes.map(_.getName).toList.mkString(",")+"]"
   ).mkString(":")
 
-  private def methodSignature(mdesc: MethodDescriptor): String =
-    methodSignature(mdesc.getMethod)
-
-  private def propSignature(pdesc: PropertyDescriptor): String = List(
+  private def propDescSignature(pdesc: PropertyDescriptor): String = List(
     pdesc.getName,
     pdesc.getPropertyType
   ).mkString(":")
 
   private def toAndroidClass(cls: Class[_]) = {
-    implicit val _cls = cls
 
-    val parentBeanInfo = Option(cls.getSuperclass).map(Introspector.getBeanInfo)
+    val superClass = Option(cls.getSuperclass)
 
-
-    val superProps: Set[String] = 
-      parentBeanInfo.map { 
-        _.getPropertyDescriptors.toList.map(propSignature).toSet
+    val superProps: Set[String] =
+      superClass.map {
+        Introspector.getBeanInfo(_)
+          .getPropertyDescriptors
+          .map(propDescSignature).toSet[String]
       }.getOrElse(Set())
 
     val superMethods: Set[String] = 
-      parentBeanInfo.map {
-        _.getMethodDescriptors.toList.map(methodSignature).toSet
+      superClass.map {
+        _.getMethods.map(methodSignature).toSet
       }.getOrElse(Set())
-
-    val superGetters: Set[String] = 
-      parentBeanInfo.map {
-        _.getPropertyDescriptors.toList
-          .map(m => Option(m.getReadMethod))
-          .filter(_.nonEmpty)
-          .map(_.get.getName).toSet
-      }.getOrElse(Set())
-
 
     def toAndroidMethod(m: Method): AndroidMethod = {
       val name = m.getName
@@ -93,32 +95,30 @@ object AndroidClassExtractor {
                       .map(AndroidClassExtractor.toScalaType(_))
       val paramedTypes = (retType +: argTypes).filter(_.isVar).distinct
 
-      AndroidMethod(name, retType, argTypes, paramedTypes, isAbstract(m))
+      AndroidMethod(name, retType, argTypes, paramedTypes, isAbstract(m), isOverride(m))
     }
 
     def isValidProperty(pdesc: PropertyDescriptor): Boolean =
       (! pdesc.isInstanceOf[IndexedPropertyDescriptor]) && pdesc.getDisplayName.matches("^[a-zA-z].*") &&
-      (! superProps(propSignature(pdesc)))
+      (! superProps(propDescSignature(pdesc)))
 
-    def isListenerSetterOrAdder(mdesc: MethodDescriptor): Boolean = {
-      val name = mdesc.getName
-      name.matches("^(set|add).+Listener$") && !superMethods(methodSignature(mdesc))
+    def isListenerSetterOrAdder(m: Method): Boolean = {
+      val name = m.getName
+      name.matches("^(set|add).+Listener$") && !superMethods(methodSignature(m))
     }
 
-    def isCallbackMethod(mdesc: MethodDescriptor): Boolean =
-      ! mdesc.getName.startsWith("get")
+    def isCallbackMethod(m: Method): Boolean =
+      ! m.getName.startsWith("get")
 
     def extractMethodsFromListener(callbackCls: Class[_]): List[AndroidMethod] =
-      Introspector.getBeanInfo(callbackCls).getMethodDescriptors
+      callbackCls.getMethods.view
         .filter(isCallbackMethod)
-        .map(_.getMethod)
         .map(toAndroidMethod)
         .toList
 
     def getPolymorphicSetters(method: Method): Seq[AndroidMethod] = {
       val name = method.getName
-      Introspector.getBeanInfo(cls).getMethodDescriptors.view
-        .map(_.getMethod)
+      cls.getMethods.view
         .filter { m => 
           !isAbstract(m) && m.getName == name && 
             m.getParameterTypes.length == 1 && 
@@ -144,13 +144,7 @@ object AndroidClassExtractor {
 
       val getter = readMethod
                       .filter(m => ! superMethods(methodSignature(m)))
-                      .map { m =>
-                        val am = toAndroidMethod(m)
-                        if (superGetters(am.name))
-                          am.copy(isOverride = true)
-                        else
-                          am
-                      }
+                      .map(toAndroidMethod)
 
       val setters = writeMethod
                       .map(getPolymorphicSetters)
@@ -166,13 +160,8 @@ object AndroidClassExtractor {
       }
     }
 
-
-
-    
-    def toAndroidListeners(mdesc: MethodDescriptor): Seq[AndroidListener] = {
-      val method = mdesc.getMethod
-      val setter = mdesc.getName
-      val paramsDescs: List[ParameterDescriptor] = Option(mdesc.getParameterDescriptors).toList.flatten
+    def toAndroidListeners(method: Method): Seq[AndroidListener] = {
+      val setter = method.getName
       val callbackClassName = toScalaType(method.getGenericParameterTypes()(0)).name
       val callbackMethods   = extractMethodsFromListener(method.getParameterTypes()(0))
 
@@ -206,11 +195,12 @@ object AndroidClassExtractor {
                   .flatten
                   .sortBy(_.name)
 
-    val listeners = Introspector.getBeanInfo(cls).getMethodDescriptors.toSeq
+    val listeners = cls.getMethods.view
                   .filter(isListenerSetterOrAdder)
                   .map(toAndroidListeners)
                   .flatten
                   .sortBy(_.name)
+                  .toSeq
 
     val fullName = cls.getName
 
@@ -221,111 +211,30 @@ object AndroidClassExtractor {
                         .map(toScalaType)
                         .filter(_.name.startsWith("android"))
 
+    val constructors: Seq[Seq[ScalaType]] = getConstructors(cls).map(_.getGenericParameterTypes.map(toScalaType).toSeq).toSeq
+
     val isA = getHierarchy(cls).toSet
 
-    AndroidClass(name, pkg, tpe, parentType, props, listeners, isA, isAbstract(cls), isFinal(cls))
+    AndroidClass(name, pkg, tpe, parentType, constructors, props, listeners, isA, isAbstract(cls), isFinal(cls))
   }
 
   def extractTask = (streams) map { s =>
 
-    val view: List[Class[_]] = {
-      import android.view._
-      List(
-          classOf[View], classOf[ViewGroup], classOf[ContextMenu], classOf[SurfaceView], classOf[ViewStub]
-      )
-    }
+    s.log.info("Extracting class info from Android...")
 
-    val widget: List[Class[_]] = {
-      import android.widget._
-      List(
-          classOf[TextView], classOf[Button], classOf[AbsListView], classOf[ListView]
-        , classOf[FrameLayout], classOf[LinearLayout], classOf[AdapterView[_]], classOf[ImageView]
-        , classOf[ProgressBar], classOf[AnalogClock], classOf[GridView], classOf[ExpandableListView]
-        , classOf[AbsSpinner], classOf[Spinner], classOf[Gallery], classOf[AbsSeekBar], classOf[SeekBar]
-        , classOf[RatingBar], classOf[DatePicker], classOf[HorizontalScrollView], classOf[MediaController]
-        , classOf[ScrollView], classOf[TabHost], classOf[TimePicker], classOf[ViewAnimator]
-        , classOf[ViewFlipper], classOf[ViewSwitcher], classOf[ImageSwitcher], classOf[TextSwitcher]
-        , classOf[EditText], classOf[TableRow], classOf[CompoundButton], classOf[CheckBox]
-        , classOf[RadioButton], classOf[RadioGroup], classOf[TabWidget], classOf[TableLayout]
-        , classOf[Chronometer], classOf[ToggleButton], classOf[CheckedTextView], classOf[DigitalClock]
-        , classOf[QuickContactBadge], classOf[RatingBar], classOf[RelativeLayout], classOf[TwoLineListItem]
-        , classOf[DialerFilter], classOf[VideoView], classOf[MultiAutoCompleteTextView]
-        , classOf[AutoCompleteTextView], classOf[ZoomButton], classOf[AbsoluteLayout]
-        , classOf[ZoomControls], classOf[ImageButton]
-
-        // API Level 14 or above
-        //, classOf[android.widget.Space]
-      )
-    }
-
-    val systemService: List[Class[_]] = {
-      import android.accounts._
-      import android.app._
-      import android.app.admin._
-      import android.content._
-      import android.hardware._
-      import android.location._
-      import android.media._
-      import android.net._
-      import android.net.wifi._
-      import android.os._
-      import android.telephony._
-      import android.text._
-      import android.view._
-      import android.view.accessibility._
-      import android.view.inputmethod._
-      List(
-          classOf[AccessibilityManager], classOf[AccountManager], classOf[ActivityManager]
-        , classOf[AlarmManager], classOf[AudioManager], classOf[ClipboardManager]
-        , classOf[ConnectivityManager], classOf[DevicePolicyManager], classOf[DropBoxManager]
-        , classOf[InputMethodManager], classOf[KeyguardManager], classOf[LayoutInflater]
-        , classOf[LocationManager], classOf[NotificationManager], classOf[PowerManager]
-        , classOf[SearchManager], classOf[SensorManager], classOf[TelephonyManager]
-        , classOf[UiModeManager], classOf[Vibrator], classOf[WallpaperManager]
-        , classOf[WifiManager], classOf[WindowManager]
-
-        // API Level 9 or Above
-        // , classOf[DownloadManager]
-        
-        // API Level 10 or Above
-        // , classOf[NfcManager], classOf[StorageManager]
-
-        // API Level 12 or above
-        // , classOf[usb.UsbManager]
-
-        // API Level 14 or above
-        // , classOf[textservice.TextServicesManager], classOf[pop.WifiP2pManager]
-
-        // API Level 16 or above
-        // , classOf[input.InputManager], classOf[MediaRouter], classOf[NsdManager]
-      )
-    }
-
-    val preference: List[Class[_]] = {
-      import android.preference._
-      List(
-        classOf[Preference], classOf[DialogPreference], classOf[EditTextPreference]
-      )
-    }
-
-    val etc: List[Class[_]] = {
-      import android._
-      List(
-          classOf[webkit.WebView], classOf[gesture.GestureOverlayView]
-        , classOf[opengl.GLSurfaceView], classOf[opengl.GLSurfaceView]
-        , classOf[inputmethodservice.ExtractEditText], classOf[inputmethodservice.KeyboardView]
-        , classOf[appwidget.AppWidgetHostView]
-      )
-    }
-
-    val clss = view ++ widget ++ systemService ++ preference ++ etc
-    val res = clss.view
+    val r = new Reflections("android", new SubTypesScanner(false), new TypeElementsScanner(), new TypeAnnotationsScanner())
+    val clss: Set[Class[_]] = asScalaSet(r.getSubTypesOf(classOf[java.lang.Object])).toList.toSet
+    val res = clss.toList
                 .map(toAndroidClass)
+                .filter {
+                  s.log.info("Excluding inner classes for now - let's deal with it later")
+                  ! _.name.contains("$")
+                }
                 .map(c => c.tpe.name -> c)
                 .toMap
 
     val values = res.values.toList
-    s.log.info("Extracted from Android")
+    s.log.info("Done.")
     s.log.info("Classes: "+ values.length)
     s.log.info("Properties: "+ values.map(_.properties).flatten.length)
     s.log.info("Listeners: "+ values.map(_.listeners).flatten.length)
