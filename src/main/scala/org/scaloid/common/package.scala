@@ -46,7 +46,7 @@ import language.implicitConversions
  *
  * @author Sung-Ho Lee
  */
-package object common extends Logger with SystemService with WidgetFamily {
+package object common extends Logger with SystemService with WidgetImplicits {
 
   /**
    * Launches a new activity for a give uri. For example, opens a web browser for http protocols.
@@ -195,7 +195,6 @@ package object common extends Logger with SystemService with WidgetFamily {
     }
 
   class RichPreference[V <: Preference](val basis: V) extends TraitPreference[V]
-  @inline implicit def preference2RichPreference[V <: Preference](preference: V) = new RichPreference[V](preference)
 
   trait TraitPreference[V <: android.preference.Preference] {
 
@@ -355,7 +354,6 @@ package object common extends Logger with SystemService with WidgetFamily {
 
   }
   class RichEditTextPreference[V <: EditTextPreference](val basis: V) extends TraitEditTextPreference[V]
-  @inline implicit def editTextPreference2RichEditTextPreference[V <: EditTextPreference](editTextPreference: V) = new RichEditTextPreference[V](editTextPreference)
 
   trait TraitEditTextPreference[V <: android.preference.EditTextPreference] extends TraitDialogPreference[V] {
 

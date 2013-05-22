@@ -46,7 +46,7 @@ import language.implicitConversions
  *
  * @author Sung-Ho Lee
  */
-package object common extends Logger with SystemService with WidgetFamily {
+package object common extends Logger with SystemService with WidgetImplicits {
 
   /**
    * Launches a new activity for a give uri. For example, opens a web browser for http protocols.
