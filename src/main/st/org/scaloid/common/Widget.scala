@@ -44,41 +44,6 @@ import language.implicitConversions
 
 trait WidgetFamily {
 
-  class ObjectSView[O <: View with TraitView[O] : Manifest] {
-    def apply[LP <: ViewGroupLayoutParams[_, O]]()(implicit m: Manifest[O], context: Context, defaultLayoutParam: O => LP): O =  {
-      val v = m.erasure.getConstructor(classOf[Context]).newInstance(context).asInstanceOf[O]
-      v.<<.parent.+=(v)
-      v
-    }
-  }
-  
-  class ObjectSTextView[O <: TextView with TraitTextView[O] : Manifest] extends ObjectSView[O] {
-    def apply[LP <: ViewGroupLayoutParams[_, O]](txt: CharSequence)(implicit m: Manifest[O], context: Context, defaultLayoutParam: O => LP): O =  {
-      val v = m.erasure.getConstructor(classOf[Context]).newInstance(context).asInstanceOf[O]
-      v text txt
-      v.<<.parent.+=(v)
-      v
-    }
-  }
-  
-  class ObjectSButton[O <: Button with TraitButton[O] : Manifest] extends ObjectSTextView[O] {
-    def apply[LP <: ViewGroupLayoutParams[_, O]](txt: CharSequence, onClickListener: (View) => Unit)(implicit m: Manifest[O], context: Context, defaultLayoutParam: O => LP): O =  {
-      val v = m.erasure.getConstructor(classOf[Context]).newInstance(context).asInstanceOf[O]
-      v text txt
-      v.setOnClickListener(func2ViewOnClickListener(onClickListener))
-      v.<<.parent.+=(v)
-      v
-    }
-	
-	def apply[LP <: ViewGroupLayoutParams[_, O]](txt: CharSequence, onClickListener: OnClickListener = {})(implicit m: Manifest[O], context: Context, defaultLayoutParam: O => LP): O =  {
-      val v = m.erasure.getConstructor(classOf[Context]).newInstance(context).asInstanceOf[O]
-      v text txt
-      v.setOnClickListener(onClickListener)
-      v.<<.parent.+=(v)
-      v
-    }
-  }
-
   $openRichClassDef(base=android.view.View, mixin="ConstantsSupport")$
 
     def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
@@ -131,7 +96,7 @@ $endif$
   $wholeClassDef(android.widget.TextView)$
 
   $wholeClassDef(android.widget.AbsListView)$
-  
+
   $openRichClassDef(android.view.ViewGroup)$
 
     implicit val pagentVG = this
@@ -158,7 +123,7 @@ $endif$
       styles += stl
       basis
     }
-  
+
   $closeRichClassDef(android.view.ViewGroup)$
 
 
