@@ -178,6 +178,18 @@ This converter turns an Android XML layout into a Scaloid layout:
 
 http://layout.scaloid.org
 
+### Migration tip 
+
+Scaloid is fully compatible with legacy xml layout files. 
+You can access a widget described in xml layout as:
+
+```scala
+onCreate {
+  setContentView(R.layout.main)
+  val name = find[EditText](R.id.name)
+  // do something with `name`
+}
+```
 
 ### Further readings about Scaloid layout 
 
