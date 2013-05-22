@@ -85,8 +85,10 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
        else jc) + "_SERVICE"
     }
 
-    private val reservedKeywords = Seq("package", "type")
-    def safeIdentifier(s: String) = if (s.matches("^[0-9].*") || reservedKeywords.contains(s)) "`"+s+"`" else s
+    private val reservedKeywordsNotInJava = 
+      Seq("def", "extends", "implicit", "import", "match", "lazy", "object", "package", 
+        "requires", "sealed", "trait", "type", "val", "var", "with", "yield")
+    def safeIdentifier(s: String) = if (s.matches("^[0-9].*") || reservedKeywordsNotInJava.contains(s)) "`"+s+"`" else s
 
     def span(s: String, i: Int) = s.padTo(i, " ").mkString
     val Span = """span(\d+)""".r
