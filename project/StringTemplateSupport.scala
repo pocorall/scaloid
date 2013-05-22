@@ -84,6 +84,10 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
       (if (jc.endsWith("MANAGER")) jc.split('_').init.mkString("_")
        else jc) + "_SERVICE"
     }
+
+    private val reservedKeywords = Seq("package", "type")
+    def safeIdentifier(s: String) = if (s.matches("^[0-9].*") || reservedKeywords.contains(s)) "`"+s+"`" else s
+
     def span(s: String, i: Int) = s.padTo(i, " ").mkString
     val Span = """span(\d+)""".r
 
@@ -95,6 +99,7 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
       case "simple"   | "simplename"   => simpleName(value)
       case "javaconst"                 => toJavaConst(value)
       case "manager-to-service"        => managerToService(value) // TODO make proper case class for manager instead of this trick
+      case "safe-ident"                => safeIdentifier(value)
       case Span(i)                     => span(value, i.toInt)
       case _                           => value
     }

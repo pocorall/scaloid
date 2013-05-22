@@ -240,12 +240,12 @@ override(m) ::= <<$if(m.isOverride)$ override$endif$>>
 
 noGetter(name) ::= <<
 @noEquivalentGetterExists
-@inline def $name$(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for '$name$'")
+@inline def $name; format="safe-ident"$(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for '$name$'")
 >>
 
 getter(prop) ::= <<
 $if(prop.getter)$
-@inline$override(prop.getter)$ def $prop.name$ = basis.$prop.getter.name$
+@inline$override(prop.getter)$ def $prop.name; format="safe-ident"$ = basis.$prop.getter.name$
 $elseif( ! prop.nameClashes)$
 $noGetter(prop.name)$
 $endif$
@@ -257,7 +257,7 @@ $_setter("_=", {{ basis.$method.name$    (p); basis \}})$
 >>
 
 _setter(postFix, body) ::= <%
-@inline def $prop.name$$postFix$
+@inline def ${$prop.name$$postFix$}; format="safe-ident"$
 $paramedTypes(method.paramedTypes)$
 ($namedArgs(method.argTypes)$)
 $if( ! method.isAbstract)$ = $body$$endif$

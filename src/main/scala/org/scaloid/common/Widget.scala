@@ -147,7 +147,6 @@ object WidgetImplicits extends WidgetImplicits
 
 import WidgetImplicits._
 
-
 class RichView[V <: View](val basis: V) extends TraitView[V]
 
 trait TraitView[V <: android.view.View] extends ConstantsSupport {
@@ -3674,6 +3673,8 @@ class RichTimePicker[V <: TimePicker](val basis: V) extends TraitTimePicker[V]
 trait TraitTimePicker[V <: android.widget.TimePicker] extends TraitFrameLayout[V] {
 
 
+  @inline def `24HourView` = basis.is24HourView
+
   @inline def currentHour = basis.getCurrentHour
   @inline def currentHour  (p: java.lang.Integer) =            currentHour_=  (p)
   @inline def currentHour_=(p: java.lang.Integer) = { basis.setCurrentHour    (p); basis }
@@ -5077,7 +5078,7 @@ trait TraitRemoteViews[V <: android.widget.RemoteViews] {
   def basis: V
   @inline def layoutId = basis.getLayoutId
 
-  @inline def package = basis.getPackage
+  @inline def `package` = basis.getPackage
 
 
 }

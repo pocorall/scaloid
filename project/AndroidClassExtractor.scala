@@ -99,8 +99,7 @@ object AndroidClassExtractor {
     }
 
     def isValidProperty(pdesc: PropertyDescriptor): Boolean =
-      (! pdesc.isInstanceOf[IndexedPropertyDescriptor]) && pdesc.getDisplayName.matches("^[a-zA-z].*") &&
-      (! superProps(propDescSignature(pdesc)))
+      ! (pdesc.isInstanceOf[IndexedPropertyDescriptor] || superProps(propDescSignature(pdesc)))
 
     def isListenerSetterOrAdder(m: Method): Boolean = {
       val name = m.getName
