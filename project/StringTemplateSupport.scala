@@ -5,7 +5,7 @@ import scala.collection.JavaConversions._
 
 class StringTemplateSupport(version: Int, baseGroupFile: File) {
 
-  val group = {
+  private def baseGroup = {
     val g = new STGroupFile(baseGroupFile.getAbsolutePath, '$', '$')
     g.registerRenderer(classOf[String], new StringRenderer())
     g.defineDictionary("ver", mapAsJavaMap(generateVersionRangeDictionary(version)))
@@ -19,8 +19,16 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
     g
   }
 
-  def render(template: String, parameters: Map[String, Any]) = {
-    val st = new ST(group, template)
+  private def withCompanionGroup(file: File)(f: STGroup => String) = {
+    val g = baseGroup
+    Option(new File(file.absolutePath + ".stg")) filter (_.exists) foreach { cf =>
+      g.importTemplates(new STGroupFile(cf.absolutePath, '$', '$'))
+    }
+    f(g)
+  }
+
+  def render(file: File, parameters: Map[String, Any]) = withCompanionGroup(file) { g: STGroup =>
+    val st = new ST(g, IO.read(file))
     val p = toJava(expandToPackageMap(parameters)).asInstanceOf[java.util.Map[String, Any]]
     p.foreach { case (k, v) =>
       st.add(k, v)

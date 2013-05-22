@@ -30,9 +30,8 @@ object SourceGenerator {
 
       scalaTemplates.map { (file: File) =>
         val outFile = srcDir / "scala" / relativePath(file).get
-        val source = IO.read(file)
         val params = androidClasses
-        IO.write(outFile, stg.render(source, params))
+        IO.write(outFile, stg.render(file, params))
         log.info("Generating " + outFile)
         outFile
       }
