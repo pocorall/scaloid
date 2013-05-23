@@ -194,6 +194,20 @@ object AndroidClassExtractor {
         } else l
       }
 
+    def toScalaConstructor(constructor: Constructor[_]) = {
+      def isImplicit(t: ScalaType) = {
+        t.simpleName == "Context"
+      }
+
+      val args = constructor.getGenericParameterTypes.map(toScalaType).toSeq
+      val (implicits, explicits) = args.partition(isImplicit)
+      ScalaConstructor(
+        args,
+        implicits,
+        explicits
+      )
+    }
+
     def getHierarchy(c: Class[_], accu: List[String] = Nil): List[String] =
       if (c == null) accu
       else getHierarchy(c.getSuperclass, c.getName.split('.').last :: accu)
@@ -221,7 +235,11 @@ object AndroidClassExtractor {
                         .map(toScalaType)
                         .filter(_.name.startsWith("android"))
 
-    val constructors: Seq[Seq[ScalaType]] = getConstructors(cls).map(_.getGenericParameterTypes.map(toScalaType).toSeq).toSeq
+    val constructors =
+      getConstructors(cls)
+        .map(toScalaConstructor)
+        .toSeq
+        .sortBy(_.argTypes.length)
 
     val isA = getHierarchy(cls).toSet
 

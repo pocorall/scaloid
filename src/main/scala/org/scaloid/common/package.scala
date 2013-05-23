@@ -268,16 +268,31 @@ package object common extends Logger with SystemService with WidgetImplicits {
     }
   }
 
-  class SPreference(implicit context: Context)
-      extends Preference(context) with TraitPreference[SPreference] {
-    def basis = this
+  trait SPreference extends Preference with TraitPreference[SPreference] { self =>
+    def basis = self
+
 
 
   }
 
   object SPreference {
 
-    def apply()(implicit context: Context): SPreference = new SPreference
+    def apply()(implicit context: android.content.Context): SPreference = {
+      val v = new Preference(context) with SPreference
+      v
+    }
+
+    def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SPreference = {
+      val v = new Preference(context, attributeSet) with SPreference
+      v
+    }
+
+    def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SPreference = {
+      val v = new Preference(context, attributeSet, int) with SPreference
+      v
+    }
+
+
 
   }
 
@@ -336,16 +351,31 @@ package object common extends Logger with SystemService with WidgetImplicits {
 
   }
 
-  class SEditTextPreference(implicit context: Context)
-      extends EditTextPreference(context) with TraitEditTextPreference[SEditTextPreference] {
-    def basis = this
+  trait SEditTextPreference extends EditTextPreference with TraitEditTextPreference[SEditTextPreference] { self =>
+    def basis = self
+
 
 
   }
 
   object SEditTextPreference {
 
-    def apply()(implicit context: Context): SEditTextPreference = new SEditTextPreference
+    def apply()(implicit context: android.content.Context): SEditTextPreference = {
+      val v = new EditTextPreference(context) with SEditTextPreference
+      v
+    }
+
+    def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SEditTextPreference = {
+      val v = new EditTextPreference(context, attributeSet) with SEditTextPreference
+      v
+    }
+
+    def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SEditTextPreference = {
+      val v = new EditTextPreference(context, attributeSet, int) with SEditTextPreference
+      v
+    }
+
+
 
   }
 

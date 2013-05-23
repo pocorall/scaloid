@@ -1,9 +1,15 @@
 
 case class ScalaType(
   name: String,
-  params: Seq[ScalaType] = Nil,
-  isVar: Boolean = false
+  simpleName: String,
+  params: Seq[ScalaType],
+  isVar: Boolean
 )
+
+object ScalaType {
+  def apply(name: String, params: Seq[ScalaType] = Nil, isVar: Boolean = false): ScalaType =
+    ScalaType(name, name.split('.').last, params, isVar)
+}
 
 case class AndroidMethod(
   name: String,
@@ -44,12 +50,18 @@ case class AndroidListener(
     (! setter.startsWith("set")) || callbackMethods.length == 1 || callbackMethods.forall(_.retType.name == "Unit")
 }
 
+case class ScalaConstructor(
+  argTypes: Seq[ScalaType],
+  implicitArgTypes: Seq[ScalaType],
+  explicitArgTypes: Seq[ScalaType]
+)
+
 case class AndroidClass(
   name: String,
   pkg: String,
   tpe: ScalaType,
   parentType: Option[ScalaType],
-  constructors: Seq[Seq[ScalaType]],
+  constructors: Seq[ScalaConstructor],
   properties: Seq[AndroidProperty],
   listeners: Seq[AndroidListener],
   isA: Set[String],
