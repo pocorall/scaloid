@@ -3,13 +3,19 @@ case class ScalaType(
   name: String,
   simpleName: String,
   params: Seq[ScalaType],
+  bounds: Seq[ScalaType],
   isVar: Boolean
 )
 
 object ScalaType {
-  def apply(name: String, params: Seq[ScalaType] = Nil, isVar: Boolean = false): ScalaType =
-    ScalaType(name, name.split('.').last, params, isVar)
+  def apply(name: String, params: Seq[ScalaType] = Nil, bounds: Seq[ScalaType] = Nil, isVar: Boolean = false): ScalaType =
+    ScalaType(name, name.split('.').last, params, bounds, isVar)
 }
+
+case class Argument(
+  name: String,
+  tpe: ScalaType
+)
 
 case class AndroidMethod(
   name: String,
@@ -51,9 +57,11 @@ case class AndroidListener(
 }
 
 case class ScalaConstructor(
-  argTypes: Seq[ScalaType],
-  implicitArgTypes: Seq[ScalaType],
-  explicitArgTypes: Seq[ScalaType]
+  args: Seq[Argument],
+  implicitArgs: Seq[Argument],
+  explicitArgs: Seq[Argument],
+  paramedTypes: Seq[ScalaType],
+  isVarArgs: Boolean
 )
 
 case class AndroidClass(

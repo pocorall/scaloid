@@ -170,8 +170,8 @@ package object common extends Logger with SystemService with WidgetImplicits {
 
     @noEquivalentGetterExists
     @inline def defaultValue(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'defaultValue'")
-    @inline def defaultValue  (p: AnyRef) =            defaultValue_=  (p)
-    @inline def defaultValue_=(p: AnyRef) = { basis.setDefaultValue    (p); basis }
+    @inline def defaultValue  (p: Any) =            defaultValue_=  (p)
+    @inline def defaultValue_=(p: Any) = { basis.setDefaultValue    (p); basis }
 
     @inline def dependency = basis.getDependency
     @inline def dependency  (p: java.lang.String) =            dependency_=  (p)
@@ -239,16 +239,16 @@ package object common extends Logger with SystemService with WidgetImplicits {
     @inline def widgetLayoutResource  (p: Int) =            widgetLayoutResource_=  (p)
     @inline def widgetLayoutResource_=(p: Int) = { basis.setWidgetLayoutResource    (p); basis }
 
-    @inline def onPreferenceChange(f: (android.preference.Preference, AnyRef) => Boolean): V = {
+    @inline def onPreferenceChange(f: (android.preference.Preference, Any) => Boolean): V = {
       basis.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener {
-        def onPreferenceChange(p1: android.preference.Preference, p2: AnyRef): Boolean = { f(p1, p2) }
+        def onPreferenceChange(p1: android.preference.Preference, p2: Any): Boolean = { f(p1, p2) }
       })
       basis
     }
 
     @inline def onPreferenceChange(f: => Boolean): V = {
       basis.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener {
-        def onPreferenceChange(p1: android.preference.Preference, p2: AnyRef): Boolean = { f }
+        def onPreferenceChange(p1: android.preference.Preference, p2: Any): Boolean = { f }
       })
       basis
     }
@@ -277,6 +277,20 @@ package object common extends Logger with SystemService with WidgetImplicits {
 
   object SPreference {
 
+    def apply(attrs: android.util.AttributeSet, defStyle: Int)(implicit context: android.content.Context): SPreference = {
+      val v = new Preference(context, attrs, defStyle) with SPreference
+      v
+    }
+
+    def apply(attrs: android.util.AttributeSet)(implicit context: android.content.Context): SPreference = {
+      val v = new Preference(context, attrs) with SPreference
+      v
+    }
+
+    def apply()(implicit context: android.content.Context): SPreference = {
+      val v = new Preference(context) with SPreference
+      v
+    }
 
 
 
@@ -346,6 +360,20 @@ package object common extends Logger with SystemService with WidgetImplicits {
 
   object SEditTextPreference {
 
+    def apply(attrs: android.util.AttributeSet, defStyle: Int)(implicit context: android.content.Context): SEditTextPreference = {
+      val v = new EditTextPreference(context, attrs, defStyle) with SEditTextPreference
+      v
+    }
+
+    def apply(attrs: android.util.AttributeSet)(implicit context: android.content.Context): SEditTextPreference = {
+      val v = new EditTextPreference(context, attrs) with SEditTextPreference
+      v
+    }
+
+    def apply()(implicit context: android.content.Context): SEditTextPreference = {
+      val v = new EditTextPreference(context) with SEditTextPreference
+      v
+    }
 
 
 

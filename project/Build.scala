@@ -32,7 +32,9 @@ object Dependencies {
   def runtime   (deps: ModuleID*): Seq[ModuleID] = deps map (_ % "runtime")
   def container (deps: ModuleID*): Seq[ModuleID] = deps map (_ % "container")
 
-  val android = "com.google.android" % "android" % "2.2.1"
+  val android = "com.google.android" % "android" % "2.2.1" withSources() withJavadoc()
+  val reflections = "org.reflections" % "reflections" % "0.9.9-RC1"
+  val slf4 = "org.slf4j" % "slf4j-nop" % "1.7.5" // for reflections
 }
 
 object ScaloidBuild extends Build {
@@ -50,7 +52,7 @@ object ScaloidBuild extends Build {
     .settings(name := "scaloid", exportJars := true)
     .settings(basicSettings: _*)
     .settings(scaloidSettings: _*)
-    .settings(libraryDependencies ++= provided(android))
+    .settings(libraryDependencies ++= Seq(reflections, slf4) ++ provided(android))
 
 }
 

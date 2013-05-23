@@ -82,6 +82,7 @@ companionObjectDef(base) ::= <<$_companionObjectDef(base.name, withPrefix(base.n
 _companionObjectDef(name, prefixedName) ::= <<
 object $prefixedName$ {
 
+  $constructors()$
 
   $if(base.isA.TextView)$$textViewConstructor(...)$$endif$
 
@@ -129,21 +130,21 @@ ConstBodies ::= [
 ]
 
 
-constArgs(types) ::= <%
-$types:{ t | $decap(t.simpleName)$: $genType(t)$}; separator=", "$
+constArgs(args) ::= <%
+$args:{ a | $a.name$: $genType(a.tpe)$}; separator=", "$
 %>
 
-constImplicitArgs() ::= <<$_constImplicitArgs(con.implicitArgTypes, ConstImplicitArgs.(name) )$>>
+constImplicitArgs() ::= <<$_constImplicitArgs(con.implicitArgs, ConstImplicitArgs.(name) )$>>
 _constImplicitArgs(args, customArg) ::= <%
 $if (first(args).name || customArg)$
 (implicit $strip([constArgs(args), customArg]); separator=", "$)
 $endif$
 %>
 
-constTypeParams() ::= <<$_constTypeParams(ConstTypeParams.(name))$>>
-_constTypeParams(types) ::= <%
-$if(types)$
-[$types; separator=", "$]
+constTypeParams() ::= <<$_constTypeParams(con.paramedTypes, ConstTypeParams.(name))$>>
+_constTypeParams(pTypes, customType) ::= <%
+$if (first(pTypes).name || customType)$
+[$strip([pTypes:{t | $paramedType(t, true)$}, customType]); separator=", "$]
 $endif$
 %>
 
@@ -152,8 +153,8 @@ $ConstBodies.(name)$
 >>
 
 constructor(con) ::= <<
-def apply$constTypeParams()$($constArgs(con.explicitArgTypes)$)$constImplicitArgs()$: $prefixedName$ = {
-  val v = new $name$($con.argTypes:{t | $decap(t.simpleName)$}; separator=", "$) with $prefixedName$
+def apply$constTypeParams()$($constArgs(con.explicitArgs)$)$constImplicitArgs()$: $prefixedName$$typeVar(base.tpe)$ = {
+  val v = new $name$$typeVar(base.tpe)$($con.args:{a | $a.name$}; separator=", "$) with $prefixedName$$typeVar(base.tpe)$
   $constBodies()$
   v
 }
@@ -167,19 +168,21 @@ $base.constructors:constructor(); separator="\n\n"$
 // method
 
 typeVar(t, erased = false) ::= <%
-$if(first(t.params).name && ! t.isVar)$
+$if(first(t.bounds).name)$
+  $paramedType(t)$
+$elseif(first(t.params).name)$
 [
   $if(erased)$
     _
   $else$
-    $(names(t.params))$
+    $t.params:genType(); separator=", "$
   $endif$
 ]
 $endif$
 %>
 
 genType(t, erased = false) ::= <%
-$t.name$
+$if( ! first(t.bounds).name)$$t.name$$endif$
 $typeVar(t, erased)$
 %>
 
@@ -207,13 +210,14 @@ p
 $endif$
 %>
 
-paramedType(t) ::= <%
-$t.name$ <: $t.params:genType(); separator=" with "$
+paramedType(t, define = false) ::= <%
+$t.name$
+$if(define || ! t.isVar)$ <: $t.bounds:genType(); separator=" with "$$endif$
 %>
 
 paramedTypes(pTypes) ::= <%
 $if(first(pTypes).name)$
-[$pTypes:paramedType(); separator=", "$]
+[$pTypes:{ t | $paramedType(t, true)$}; separator=", "$]
 $endif$
 %>
 
@@ -231,7 +235,7 @@ $endif$
 %>
 
 callbackMethod(method, isUnit = false) ::= <<
-def $method.name$$paramedTypes(paramedTypes)$($namedArgs(method.argTypes)$): $genType(method.retType)$ = { $callbackBody(...)$ }
+def $method.name$$paramedTypes(paramedTypes, true)$($namedArgs(method.argTypes)$): $genType(method.retType)$ = { $callbackBody(...)$ }
 >>
 
 unitCallbackMethod(method) ::= <<$callbackMethod(method, true)$>>
@@ -291,7 +295,6 @@ $paramedTypes(method.paramedTypes)$
 ($namedArgs(method.argTypes)$)
 $if( ! method.isAbstract)$ = $body$$endif$
 %>
-
 
 switch(name, setter) ::= <<
 @inline def  enable$name$               = { basis.$setter.name$(true ); basis }

@@ -3,6 +3,8 @@ import Keys._
 
 import java.beans.{Introspector, PropertyDescriptor, ParameterDescriptor, IndexedPropertyDescriptor}
 import java.lang.reflect._
+import java.util.jar.JarFile
+import java.net.URI
 import org.reflections._
 import org.reflections.ReflectionUtils._
 import org.reflections.scanners._
@@ -16,7 +18,7 @@ object AndroidClassExtractor {
     def step(tpe: Type, level: Int): ScalaType = {
       val nextLevel = level + 1
 
-      if (level > 2)
+      if (level > 5)
         ScalaType("_")
       else
         tpe match {
@@ -29,8 +31,10 @@ object AndroidClassExtractor {
               t.getActualTypeArguments.map(step(_, nextLevel)).toSeq
             )
           case t: TypeVariable[_] =>
-            ScalaType(t.getName, t.getBounds.map(step(_, nextLevel)).toSeq, true)
-          case t: WildcardType => ScalaType("_")
+            ScalaType(t.getName, Nil, bounds = t.getBounds.map(step(_, nextLevel)).toSeq, isVar = true)
+          case t: WildcardType =>
+            val bs = t.getUpperBounds.map(step(_, nextLevel)).toSeq.filter(_.name != "Any")
+            ScalaType("_", Nil, bounds = bs)
           case t: Class[_] => {
             if (t.isArray) {
               ScalaType("Array", Seq(step(t.getComponentType, nextLevel)))
@@ -39,8 +43,8 @@ object AndroidClassExtractor {
                 case "void" => "Unit"
                 case n => n.capitalize
               })
-            } else if (t.getName == "java.lang.Object") {
-              ScalaType("AnyRef")
+            } else if (t == classOf[java.lang.Object]) {
+              ScalaType("Any")
             } else {
               ScalaType(
                 t.getName.replace("$", "."),
@@ -81,9 +85,44 @@ object AndroidClassExtractor {
     pdesc.getPropertyType
   ).mkString(":")
 
+  val sourceJar = {
+    val binUrl = getClass.getClassLoader.getResources("android").toList.head.toString
+    val binFile = new File(binUrl.split("/|!").tail.dropRight(2).mkString("/", "/", ""))
+    val basePath = binFile.getParentFile.getParentFile
+    val srcJar = new JarFile(basePath / "srcs" / (binFile.base +"-sources.jar"))
+    val docJar = new JarFile(basePath / "docs" / (binFile.base +"-javadoc.jar"))
+
+    srcJar
+  }
+
+  def extractSource(cls: Class[_]) = {
+    val fileName = cls.getName.split('$').head.replace(".", "/") + ".java"
+    val is = sourceJar.getInputStream(sourceJar.getJarEntry(fileName))
+    val bytes = Stream.continually(is.read).takeWhile(_ != -1).map(_.toByte).toArray
+    new String(bytes)
+  }
+
+  def fixClassParamedType(tpe: ScalaType) =
+    tpe.copy(params = tpe.params.map { t =>
+      if (t.isVar && t.bounds.head.name == "Any") {
+        t.copy(bounds = Seq(ScalaType("AnyRef")))
+      } else t
+    })
+
   private def toAndroidClass(cls: Class[_]) = {
 
+    val source = extractSource(cls)
+
     val superClass = Option(cls.getSuperclass)
+
+    val fullName = cls.getName
+
+    val name = fullName.split('.').last
+    val tpe = fixClassParamedType(toScalaType(cls))
+    val pkg = fullName.split('.').init.mkString
+    val parentType = Option(cls.getGenericSuperclass)
+                        .map(toScalaType)
+                        .filter(_.name.startsWith("android"))
 
     val superProps: Set[String] =
       superClass.map {
@@ -205,18 +244,61 @@ object AndroidClassExtractor {
         } else l
       }
 
-    def toScalaConstructor(constructor: Constructor[_]) = {
-      def isImplicit(t: ScalaType) = {
-        t.simpleName == "Context"
+    val constructorNames: Map[List[String], List[String]] = {
+      val constRegex = ("public +"+ name +"""(?:\<[\w\<\>\[\]]+)? *\(([^)]*)\) *(?:\{?|[^;])""").r
+      val argRegex = """(.+?) +([a-z][^\[,. ]*)(?:,|$)""".r
+
+      constRegex.findAllIn(source).matchData.map(_.group(1)).filter(_.nonEmpty).map { cGroup =>
+        argRegex.findAllIn(cGroup).matchData.map { pMatch =>
+          val List(tpe, name) = List(1, 2).map(pMatch.group(_).trim)
+          (tpe, name)
+        }.toList.unzip
+      }.toMap
+    }
+
+    def toScalaConstructor(cons: Constructor[_]): ScalaConstructor = {
+
+      def isImplicit(a: Argument) = {
+        a.tpe.simpleName == "Context"
       }
 
-      val args = constructor.getGenericParameterTypes.map(toScalaType).toSeq
+      def arrayNotation(implicit isLast: Boolean) = if (isLast && cons.isVarArgs) "..." else "[]"
+
+      def toTypeStr(t: Type)(implicit isLast: Boolean = false): String = t match {
+        case t: GenericArrayType =>
+          toTypeStr(t.getGenericComponentType) + arrayNotation
+        case t: ParameterizedType =>
+          t.toString.replace("$", ".")
+        case t: WildcardType => "?"
+        case t: Class[_] =>
+          if (t.isArray) {
+            toTypeStr(t.getComponentType) + arrayNotation
+          } else {
+            t.getName.replace("$", ".")
+          }
+        case _ =>
+          t.toString
+      }
+
+      val javaTypes = cons.getGenericParameterTypes.toList
+      val typeStrs = javaTypes.reverse match {
+        case Nil => Nil
+        case last :: init => (toTypeStr(last)(true) :: init.map(toTypeStr)).reverse
+      }
+
+      val args = typeStrs match {
+        case Nil => Nil
+        case _ =>
+          val paramNames = constructorNames(typeStrs)
+          val types = javaTypes.map(toScalaType)
+
+          paramNames.zip(types).map { case (n, t) => Argument(n, t) }
+      }
+
       val (implicits, explicits) = args.partition(isImplicit)
-      ScalaConstructor(
-        args,
-        implicits,
-        explicits
-      )
+      val paramedTypes = (tpe.params ++ args.map(_.tpe)).filter(_.isVar).distinct
+
+      ScalaConstructor(args, implicits, explicits, paramedTypes, cons.isVarArgs)
     }
 
     def getHierarchy(c: Class[_], accu: List[String] = Nil): List[String] =
@@ -237,20 +319,10 @@ object AndroidClassExtractor {
                         .sortBy(_.name)
                         .toSeq)
 
-    val fullName = cls.getName
-
-    val name = fullName.split('.').last
-    val tpe = toScalaType(cls)
-    val pkg = fullName.split('.').init.mkString
-    val parentType = Option(cls.getGenericSuperclass)
-                        .map(toScalaType)
-                        .filter(_.name.startsWith("android"))
-
-    val constructors =
-      getConstructors(cls)
-        .map(toScalaConstructor)
-        .toSeq
-        .sortBy(_.argTypes.length)
+    val constructors = cls.getConstructors
+                        .map(toScalaConstructor)
+                        .filter(c => name != "HeaderViewListAdapter")
+                        .toSeq
 
     val isA = getHierarchy(cls).toSet
 
@@ -264,11 +336,11 @@ object AndroidClassExtractor {
     val r = new Reflections("android", new SubTypesScanner(false), new TypeElementsScanner(), new TypeAnnotationsScanner())
     val clss: Set[Class[_]] = asScalaSet(r.getSubTypesOf(classOf[java.lang.Object])).toList.toSet
     val res = clss.toList
-                .map(toAndroidClass)
                 .filter {
                   s.log.info("Excluding inner classes for now - let's deal with it later")
-                  ! _.name.contains("$")
+                  ! _.getName.contains("$")
                 }
+                .map(toAndroidClass)
                 .map(c => c.tpe.name -> c)
                 .toMap
 
@@ -277,6 +349,7 @@ object AndroidClassExtractor {
     s.log.info("Classes: "+ values.length)
     s.log.info("Properties: "+ values.map(_.properties).flatten.length)
     s.log.info("Listeners: "+ values.map(_.listeners).flatten.length)
+    s.log.info("Constructors: "+ values.map(_.constructors).flatten.length)
     res
   }
 }
