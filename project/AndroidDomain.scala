@@ -36,6 +36,7 @@ case class AndroidListener(
   argTypes: Seq[ScalaType],
   hasParams: Boolean,
   setter: String,
+  setterArgTypes: Seq[ScalaType],
   callbackClassName: String,
   callbackMethods: Seq[AndroidCallbackMethod]
 ) {

@@ -161,7 +161,8 @@ object AndroidClassExtractor {
 
     def toAndroidListeners(method: Method): Seq[AndroidListener] = {
       val setter = method.getName
-      val callbackClassName = toScalaType(method.getGenericParameterTypes()(0)).name
+      val setterArgTypes = method.getGenericParameterTypes().toSeq.map(toScalaType)
+      val callbackClassName = setterArgTypes(0).name
       val callbackMethods   = extractMethodsFromListener(method.getParameterTypes()(0))
 
       callbackMethods.map { cm =>
@@ -171,6 +172,7 @@ object AndroidClassExtractor {
           cm.argTypes,
           cm.argTypes.nonEmpty,
           setter,
+          setterArgTypes,
           callbackClassName,
           callbackMethods.map { icm =>
             AndroidCallbackMethod(
@@ -184,6 +186,14 @@ object AndroidClassExtractor {
       }.filter(_.isSafe)
     }
 
+    def resolveListenerDuplication(listeners: Seq[AndroidListener]) =
+      listeners map { l =>
+        if (listeners.filter(l2 => l.name == l2.name && l.setterArgTypes == l2.setterArgTypes).length > 1) {
+          val t = "(^set|^add|Listener$)".r.replaceAllIn(l.setter, "")
+          l.copy(name = t.head.toLowerCase + t.tail)
+        } else l
+      }
+
     def getHierarchy(c: Class[_], accu: List[String] = Nil): List[String] =
       if (c == null) accu
       else getHierarchy(c.getSuperclass, c.getName.split('.').last :: accu)
@@ -194,12 +204,13 @@ object AndroidClassExtractor {
                   .flatten
                   .sortBy(_.name)
 
-    val listeners = cls.getMethods.view
-                  .filter(isListenerSetterOrAdder)
-                  .map(toAndroidListeners)
-                  .flatten
-                  .sortBy(_.name)
-                  .toSeq
+    val listeners = resolveListenerDuplication(
+                      cls.getMethods.view
+                        .filter(isListenerSetterOrAdder)
+                        .map(toAndroidListeners)
+                        .flatten
+                        .sortBy(_.name)
+                        .toSeq)
 
     val fullName = cls.getName
 
