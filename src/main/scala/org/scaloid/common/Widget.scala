@@ -597,7 +597,7 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   }
 }
 
-trait SView extends View with TraitView[SView] { self =>
+trait SView extends android.view.View with TraitView[SView] { self =>
   def basis = self
 
 
@@ -606,23 +606,6 @@ trait SView extends View with TraitView[SView] { self =>
 
 object SView {
 
-  def apply[LP <: ViewGroupLayoutParams[_, SView]]()(implicit context: android.content.Context, defaultLayoutParam: SView => LP): SView = {
-    val v = new View(context) with SView
-    v.<<.parent.+=(v)
-    v
-  }
-
-  def apply[LP <: ViewGroupLayoutParams[_, SView]](attributeSet: android.util.AttributeSet)(implicit context: android.content.Context, defaultLayoutParam: SView => LP): SView = {
-    val v = new View(context, attributeSet) with SView
-    v.<<.parent.+=(v)
-    v
-  }
-
-  def apply[LP <: ViewGroupLayoutParams[_, SView]](attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context, defaultLayoutParam: SView => LP): SView = {
-    val v = new View(context, attributeSet, int) with SView
-    v.<<.parent.+=(v)
-    v
-  }
 
 
 
@@ -1213,7 +1196,7 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   }
 }
 
-trait STextView extends TextView with TraitTextView[STextView] { self =>
+trait STextView extends android.widget.TextView with TraitTextView[STextView] { self =>
   def basis = self
 
 
@@ -1222,20 +1205,6 @@ trait STextView extends TextView with TraitTextView[STextView] { self =>
 
 object STextView {
 
-  def apply()(implicit context: android.content.Context): STextView = {
-    val v = new TextView(context) with STextView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): STextView = {
-    val v = new TextView(context, attributeSet) with STextView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): STextView = {
-    val v = new TextView(context, attributeSet, int) with STextView
-    v
-  }
 
   def apply[LP <: ViewGroupLayoutParams[_, STextView]](txt: CharSequence)
       (implicit context: Context, defaultLayoutParam: (STextView) => LP): STextView =  {
@@ -1398,7 +1367,7 @@ trait TraitFrameLayout[V <: android.widget.FrameLayout] extends TraitViewGroup[V
 
 }
 
-trait SFrameLayout extends FrameLayout with TraitFrameLayout[SFrameLayout] { self =>
+trait SFrameLayout extends android.widget.FrameLayout with TraitFrameLayout[SFrameLayout] { self =>
   def basis = self
 
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
@@ -1425,20 +1394,6 @@ trait SFrameLayout extends FrameLayout with TraitFrameLayout[SFrameLayout] { sel
 
 object SFrameLayout {
 
-  def apply()(implicit context: android.content.Context): SFrameLayout = {
-    val v = new FrameLayout(context) with SFrameLayout
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SFrameLayout = {
-    val v = new FrameLayout(context, attributeSet) with SFrameLayout
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SFrameLayout = {
-    val v = new FrameLayout(context, attributeSet, int) with SFrameLayout
-    v
-  }
 
 
 
@@ -1473,7 +1428,7 @@ trait TraitRelativeLayout[V <: android.widget.RelativeLayout] extends TraitViewG
 
 }
 
-trait SRelativeLayout extends RelativeLayout with TraitRelativeLayout[SRelativeLayout] { self =>
+trait SRelativeLayout extends android.widget.RelativeLayout with TraitRelativeLayout[SRelativeLayout] { self =>
   def basis = self
 
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
@@ -1599,20 +1554,6 @@ trait SRelativeLayout extends RelativeLayout with TraitRelativeLayout[SRelativeL
 
 object SRelativeLayout {
 
-  def apply()(implicit context: android.content.Context): SRelativeLayout = {
-    val v = new RelativeLayout(context) with SRelativeLayout
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SRelativeLayout = {
-    val v = new RelativeLayout(context, attributeSet) with SRelativeLayout
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SRelativeLayout = {
-    val v = new RelativeLayout(context, attributeSet, int) with SRelativeLayout
-    v
-  }
 
 
 
@@ -1658,7 +1599,7 @@ trait TraitLinearLayout[V <: android.widget.LinearLayout] extends TraitViewGroup
 
 }
 
-trait SLinearLayout extends LinearLayout with TraitLinearLayout[SLinearLayout] { self =>
+trait SLinearLayout extends android.widget.LinearLayout with TraitLinearLayout[SLinearLayout] { self =>
   def basis = self
 
   val VERTICAL = LinearLayout.VERTICAL
@@ -1692,24 +1633,15 @@ trait SLinearLayout extends LinearLayout with TraitLinearLayout[SLinearLayout] {
 
 object SLinearLayout {
 
-  def apply()(implicit context: android.content.Context): SLinearLayout = {
-    val v = new LinearLayout(context) with SLinearLayout
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SLinearLayout = {
-    val v = new LinearLayout(context, attributeSet) with SLinearLayout
-    v
-  }
 
 
 
 }
 
 
-class SVerticalLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends SLinearLayout {
-  orientation = VERTICAL
-}
+//class SVerticalLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends SLinearLayout {
+//  orientation = VERTICAL
+//}
 
 class RichEditText[V <: android.widget.EditText](val basis: V) extends TraitEditText[V]
 
@@ -1719,7 +1651,7 @@ trait TraitEditText[V <: android.widget.EditText] extends TraitTextView[V] {
 
 }
 
-trait SEditText extends EditText with TraitEditText[SEditText] { self =>
+trait SEditText extends android.widget.EditText with TraitEditText[SEditText] { self =>
   def basis = self
 
 
@@ -1728,20 +1660,6 @@ trait SEditText extends EditText with TraitEditText[SEditText] { self =>
 
 object SEditText {
 
-  def apply()(implicit context: android.content.Context): SEditText = {
-    val v = new EditText(context) with SEditText
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SEditText = {
-    val v = new EditText(context, attributeSet) with SEditText
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SEditText = {
-    val v = new EditText(context, attributeSet, int) with SEditText
-    v
-  }
 
   def apply[LP <: ViewGroupLayoutParams[_, SEditText]](txt: CharSequence)
       (implicit context: Context, defaultLayoutParam: (SEditText) => LP): SEditText =  {
@@ -1762,7 +1680,7 @@ trait TraitExtractEditText[V <: android.inputmethodservice.ExtractEditText] exte
 
 }
 
-trait SExtractEditText extends ExtractEditText with TraitExtractEditText[SExtractEditText] { self =>
+trait SExtractEditText extends android.inputmethodservice.ExtractEditText with TraitExtractEditText[SExtractEditText] { self =>
   def basis = self
 
 
@@ -1771,20 +1689,6 @@ trait SExtractEditText extends ExtractEditText with TraitExtractEditText[SExtrac
 
 object SExtractEditText {
 
-  def apply()(implicit context: android.content.Context): SExtractEditText = {
-    val v = new ExtractEditText(context) with SExtractEditText
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SExtractEditText = {
-    val v = new ExtractEditText(context, attributeSet) with SExtractEditText
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SExtractEditText = {
-    val v = new ExtractEditText(context, attributeSet, int) with SExtractEditText
-    v
-  }
 
   def apply[LP <: ViewGroupLayoutParams[_, SExtractEditText]](txt: CharSequence)
       (implicit context: Context, defaultLayoutParam: (SExtractEditText) => LP): SExtractEditText =  {
@@ -1919,7 +1823,7 @@ trait TraitAutoCompleteTextView[V <: android.widget.AutoCompleteTextView] extend
   }
 }
 
-trait SAutoCompleteTextView extends AutoCompleteTextView with TraitAutoCompleteTextView[SAutoCompleteTextView] { self =>
+trait SAutoCompleteTextView extends android.widget.AutoCompleteTextView with TraitAutoCompleteTextView[SAutoCompleteTextView] { self =>
   def basis = self
 
 
@@ -1928,20 +1832,6 @@ trait SAutoCompleteTextView extends AutoCompleteTextView with TraitAutoCompleteT
 
 object SAutoCompleteTextView {
 
-  def apply()(implicit context: android.content.Context): SAutoCompleteTextView = {
-    val v = new AutoCompleteTextView(context) with SAutoCompleteTextView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SAutoCompleteTextView = {
-    val v = new AutoCompleteTextView(context, attributeSet) with SAutoCompleteTextView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SAutoCompleteTextView = {
-    val v = new AutoCompleteTextView(context, attributeSet, int) with SAutoCompleteTextView
-    v
-  }
 
   def apply[LP <: ViewGroupLayoutParams[_, SAutoCompleteTextView]](txt: CharSequence)
       (implicit context: Context, defaultLayoutParam: (SAutoCompleteTextView) => LP): SAutoCompleteTextView =  {
@@ -2007,7 +1897,7 @@ trait TraitListView[V <: android.widget.ListView] extends TraitAbsListView[V] {
 
 }
 
-trait SListView extends ListView with TraitListView[SListView] { self =>
+trait SListView extends android.widget.ListView with TraitListView[SListView] { self =>
   def basis = self
 
 
@@ -2016,20 +1906,6 @@ trait SListView extends ListView with TraitListView[SListView] { self =>
 
 object SListView {
 
-  def apply()(implicit context: android.content.Context): SListView = {
-    val v = new ListView(context) with SListView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SListView = {
-    val v = new ListView(context, attributeSet) with SListView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SListView = {
-    val v = new ListView(context, attributeSet, int) with SListView
-    v
-  }
 
 
 
@@ -2043,7 +1919,7 @@ trait TraitButton[V <: android.widget.Button] extends TraitTextView[V] {
 
 }
 
-trait SButton extends Button with TraitButton[SButton] { self =>
+trait SButton extends android.widget.Button with TraitButton[SButton] { self =>
   def basis = self
 
 
@@ -2052,20 +1928,6 @@ trait SButton extends Button with TraitButton[SButton] { self =>
 
 object SButton {
 
-  def apply()(implicit context: android.content.Context): SButton = {
-    val v = new Button(context) with SButton
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SButton = {
-    val v = new Button(context, attributeSet) with SButton
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SButton = {
-    val v = new Button(context, attributeSet, int) with SButton
-    v
-  }
 
   def apply[LP <: ViewGroupLayoutParams[_, SButton]](txt: CharSequence)
       (implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton =  {
@@ -2135,7 +1997,7 @@ trait TraitCheckBox[V <: android.widget.CheckBox] extends TraitCompoundButton[V]
 
 }
 
-trait SCheckBox extends CheckBox with TraitCheckBox[SCheckBox] { self =>
+trait SCheckBox extends android.widget.CheckBox with TraitCheckBox[SCheckBox] { self =>
   def basis = self
 
 
@@ -2144,20 +2006,6 @@ trait SCheckBox extends CheckBox with TraitCheckBox[SCheckBox] { self =>
 
 object SCheckBox {
 
-  def apply()(implicit context: android.content.Context): SCheckBox = {
-    val v = new CheckBox(context) with SCheckBox
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SCheckBox = {
-    val v = new CheckBox(context, attributeSet) with SCheckBox
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SCheckBox = {
-    val v = new CheckBox(context, attributeSet, int) with SCheckBox
-    v
-  }
 
   def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]](txt: CharSequence)
       (implicit context: Context, defaultLayoutParam: (SCheckBox) => LP): SCheckBox =  {
@@ -2191,7 +2039,7 @@ trait TraitRadioButton[V <: android.widget.RadioButton] extends TraitCompoundBut
 
 }
 
-trait SRadioButton extends RadioButton with TraitRadioButton[SRadioButton] { self =>
+trait SRadioButton extends android.widget.RadioButton with TraitRadioButton[SRadioButton] { self =>
   def basis = self
 
 
@@ -2200,20 +2048,6 @@ trait SRadioButton extends RadioButton with TraitRadioButton[SRadioButton] { sel
 
 object SRadioButton {
 
-  def apply()(implicit context: android.content.Context): SRadioButton = {
-    val v = new RadioButton(context) with SRadioButton
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SRadioButton = {
-    val v = new RadioButton(context, attributeSet) with SRadioButton
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SRadioButton = {
-    val v = new RadioButton(context, attributeSet, int) with SRadioButton
-    v
-  }
 
   def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]](txt: CharSequence)
       (implicit context: Context, defaultLayoutParam: (SRadioButton) => LP): SRadioButton =  {
@@ -2255,7 +2089,7 @@ trait TraitToggleButton[V <: android.widget.ToggleButton] extends TraitCompoundB
 
 }
 
-trait SToggleButton extends ToggleButton with TraitToggleButton[SToggleButton] { self =>
+trait SToggleButton extends android.widget.ToggleButton with TraitToggleButton[SToggleButton] { self =>
   def basis = self
 
 
@@ -2264,20 +2098,6 @@ trait SToggleButton extends ToggleButton with TraitToggleButton[SToggleButton] {
 
 object SToggleButton {
 
-  def apply()(implicit context: android.content.Context): SToggleButton = {
-    val v = new ToggleButton(context) with SToggleButton
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SToggleButton = {
-    val v = new ToggleButton(context, attributeSet) with SToggleButton
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SToggleButton = {
-    val v = new ToggleButton(context, attributeSet, int) with SToggleButton
-    v
-  }
 
   def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]](txt: CharSequence)
       (implicit context: Context, defaultLayoutParam: (SToggleButton) => LP): SToggleButton =  {
@@ -2322,7 +2142,7 @@ trait TraitCheckedTextView[V <: android.widget.CheckedTextView] extends TraitTex
 
 }
 
-trait SCheckedTextView extends CheckedTextView with TraitCheckedTextView[SCheckedTextView] { self =>
+trait SCheckedTextView extends android.widget.CheckedTextView with TraitCheckedTextView[SCheckedTextView] { self =>
   def basis = self
 
 
@@ -2331,20 +2151,6 @@ trait SCheckedTextView extends CheckedTextView with TraitCheckedTextView[SChecke
 
 object SCheckedTextView {
 
-  def apply()(implicit context: android.content.Context): SCheckedTextView = {
-    val v = new CheckedTextView(context) with SCheckedTextView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SCheckedTextView = {
-    val v = new CheckedTextView(context, attributeSet) with SCheckedTextView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SCheckedTextView = {
-    val v = new CheckedTextView(context, attributeSet, int) with SCheckedTextView
-    v
-  }
 
   def apply[LP <: ViewGroupLayoutParams[_, SCheckedTextView]](txt: CharSequence)
       (implicit context: Context, defaultLayoutParam: (SCheckedTextView) => LP): SCheckedTextView =  {
@@ -2390,7 +2196,7 @@ trait TraitChronometer[V <: android.widget.Chronometer] extends TraitTextView[V]
   }
 }
 
-trait SChronometer extends Chronometer with TraitChronometer[SChronometer] { self =>
+trait SChronometer extends android.widget.Chronometer with TraitChronometer[SChronometer] { self =>
   def basis = self
 
 
@@ -2399,20 +2205,6 @@ trait SChronometer extends Chronometer with TraitChronometer[SChronometer] { sel
 
 object SChronometer {
 
-  def apply()(implicit context: android.content.Context): SChronometer = {
-    val v = new Chronometer(context) with SChronometer
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SChronometer = {
-    val v = new Chronometer(context, attributeSet) with SChronometer
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SChronometer = {
-    val v = new Chronometer(context, attributeSet, int) with SChronometer
-    v
-  }
 
   def apply[LP <: ViewGroupLayoutParams[_, SChronometer]](txt: CharSequence)
       (implicit context: Context, defaultLayoutParam: (SChronometer) => LP): SChronometer =  {
@@ -2433,7 +2225,7 @@ trait TraitDigitalClock[V <: android.widget.DigitalClock] extends TraitTextView[
 
 }
 
-trait SDigitalClock extends DigitalClock with TraitDigitalClock[SDigitalClock] { self =>
+trait SDigitalClock extends android.widget.DigitalClock with TraitDigitalClock[SDigitalClock] { self =>
   def basis = self
 
 
@@ -2442,15 +2234,6 @@ trait SDigitalClock extends DigitalClock with TraitDigitalClock[SDigitalClock] {
 
 object SDigitalClock {
 
-  def apply()(implicit context: android.content.Context): SDigitalClock = {
-    val v = new DigitalClock(context) with SDigitalClock
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SDigitalClock = {
-    val v = new DigitalClock(context, attributeSet) with SDigitalClock
-    v
-  }
 
   def apply[LP <: ViewGroupLayoutParams[_, SDigitalClock]](txt: CharSequence)
       (implicit context: Context, defaultLayoutParam: (SDigitalClock) => LP): SDigitalClock =  {
@@ -2741,7 +2524,7 @@ trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
 
 }
 
-trait SImageView extends ImageView with TraitImageView[SImageView] { self =>
+trait SImageView extends android.widget.ImageView with TraitImageView[SImageView] { self =>
   def basis = self
 
 
@@ -2750,20 +2533,6 @@ trait SImageView extends ImageView with TraitImageView[SImageView] { self =>
 
 object SImageView {
 
-  def apply()(implicit context: android.content.Context): SImageView = {
-    val v = new ImageView(context) with SImageView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SImageView = {
-    val v = new ImageView(context, attributeSet) with SImageView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SImageView = {
-    val v = new ImageView(context, attributeSet, int) with SImageView
-    v
-  }
 
 
 
@@ -2777,7 +2546,7 @@ trait TraitImageButton[V <: android.widget.ImageButton] extends TraitImageView[V
 
 }
 
-trait SImageButton extends ImageButton with TraitImageButton[SImageButton] { self =>
+trait SImageButton extends android.widget.ImageButton with TraitImageButton[SImageButton] { self =>
   def basis = self
 
 
@@ -2786,20 +2555,6 @@ trait SImageButton extends ImageButton with TraitImageButton[SImageButton] { sel
 
 object SImageButton {
 
-  def apply()(implicit context: android.content.Context): SImageButton = {
-    val v = new ImageButton(context) with SImageButton
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SImageButton = {
-    val v = new ImageButton(context, attributeSet) with SImageButton
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SImageButton = {
-    val v = new ImageButton(context, attributeSet, int) with SImageButton
-    v
-  }
 
 
 
@@ -2823,7 +2578,7 @@ trait TraitQuickContactBadge[V <: android.widget.QuickContactBadge] extends Trai
 
 }
 
-trait SQuickContactBadge extends QuickContactBadge with TraitQuickContactBadge[SQuickContactBadge] { self =>
+trait SQuickContactBadge extends android.widget.QuickContactBadge with TraitQuickContactBadge[SQuickContactBadge] { self =>
   def basis = self
 
 
@@ -2832,20 +2587,6 @@ trait SQuickContactBadge extends QuickContactBadge with TraitQuickContactBadge[S
 
 object SQuickContactBadge {
 
-  def apply()(implicit context: android.content.Context): SQuickContactBadge = {
-    val v = new QuickContactBadge(context) with SQuickContactBadge
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SQuickContactBadge = {
-    val v = new QuickContactBadge(context, attributeSet) with SQuickContactBadge
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SQuickContactBadge = {
-    val v = new QuickContactBadge(context, attributeSet, int) with SQuickContactBadge
-    v
-  }
 
 
 
@@ -2864,7 +2605,7 @@ trait TraitZoomButton[V <: android.widget.ZoomButton] extends TraitImageButton[V
 
 }
 
-trait SZoomButton extends ZoomButton with TraitZoomButton[SZoomButton] { self =>
+trait SZoomButton extends android.widget.ZoomButton with TraitZoomButton[SZoomButton] { self =>
   def basis = self
 
 
@@ -2873,20 +2614,6 @@ trait SZoomButton extends ZoomButton with TraitZoomButton[SZoomButton] { self =>
 
 object SZoomButton {
 
-  def apply()(implicit context: android.content.Context): SZoomButton = {
-    val v = new ZoomButton(context) with SZoomButton
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SZoomButton = {
-    val v = new ZoomButton(context, attributeSet) with SZoomButton
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SZoomButton = {
-    val v = new ZoomButton(context, attributeSet, int) with SZoomButton
-    v
-  }
 
 
 
@@ -2928,7 +2655,7 @@ trait TraitProgressBar[V <: android.widget.ProgressBar] extends TraitView[V] {
 
 }
 
-trait SProgressBar extends ProgressBar with TraitProgressBar[SProgressBar] { self =>
+trait SProgressBar extends android.widget.ProgressBar with TraitProgressBar[SProgressBar] { self =>
   def basis = self
 
 
@@ -2937,20 +2664,6 @@ trait SProgressBar extends ProgressBar with TraitProgressBar[SProgressBar] { sel
 
 object SProgressBar {
 
-  def apply()(implicit context: android.content.Context): SProgressBar = {
-    val v = new ProgressBar(context) with SProgressBar
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SProgressBar = {
-    val v = new ProgressBar(context, attributeSet) with SProgressBar
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SProgressBar = {
-    val v = new ProgressBar(context, attributeSet, int) with SProgressBar
-    v
-  }
 
 
 
@@ -2964,7 +2677,7 @@ trait TraitAnalogClock[V <: android.widget.AnalogClock] extends TraitView[V] {
 
 }
 
-trait SAnalogClock extends AnalogClock with TraitAnalogClock[SAnalogClock] { self =>
+trait SAnalogClock extends android.widget.AnalogClock with TraitAnalogClock[SAnalogClock] { self =>
   def basis = self
 
 
@@ -2973,20 +2686,6 @@ trait SAnalogClock extends AnalogClock with TraitAnalogClock[SAnalogClock] { sel
 
 object SAnalogClock {
 
-  def apply()(implicit context: android.content.Context): SAnalogClock = {
-    val v = new AnalogClock(context) with SAnalogClock
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SAnalogClock = {
-    val v = new AnalogClock(context, attributeSet) with SAnalogClock
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SAnalogClock = {
-    val v = new AnalogClock(context, attributeSet, int) with SAnalogClock
-    v
-  }
 
 
 
@@ -3013,7 +2712,7 @@ trait TraitSurfaceView[V <: android.view.SurfaceView] extends TraitView[V] {
 
 }
 
-trait SSurfaceView extends SurfaceView with TraitSurfaceView[SSurfaceView] { self =>
+trait SSurfaceView extends android.view.SurfaceView with TraitSurfaceView[SSurfaceView] { self =>
   def basis = self
 
 
@@ -3022,20 +2721,6 @@ trait SSurfaceView extends SurfaceView with TraitSurfaceView[SSurfaceView] { sel
 
 object SSurfaceView {
 
-  def apply()(implicit context: android.content.Context): SSurfaceView = {
-    val v = new SurfaceView(context) with SSurfaceView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SSurfaceView = {
-    val v = new SurfaceView(context, attributeSet) with SSurfaceView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SSurfaceView = {
-    val v = new SurfaceView(context, attributeSet, int) with SSurfaceView
-    v
-  }
 
 
 
@@ -3089,7 +2774,7 @@ trait TraitGLSurfaceView[V <: android.opengl.GLSurfaceView] extends TraitSurface
 
 }
 
-trait SGLSurfaceView extends GLSurfaceView with TraitGLSurfaceView[SGLSurfaceView] { self =>
+trait SGLSurfaceView extends android.opengl.GLSurfaceView with TraitGLSurfaceView[SGLSurfaceView] { self =>
   def basis = self
 
 
@@ -3098,15 +2783,6 @@ trait SGLSurfaceView extends GLSurfaceView with TraitGLSurfaceView[SGLSurfaceVie
 
 object SGLSurfaceView {
 
-  def apply()(implicit context: android.content.Context): SGLSurfaceView = {
-    val v = new GLSurfaceView(context) with SGLSurfaceView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SGLSurfaceView = {
-    val v = new GLSurfaceView(context, attributeSet) with SGLSurfaceView
-    v
-  }
 
 
 
@@ -3199,7 +2875,7 @@ trait TraitVideoView[V <: android.widget.VideoView] extends TraitSurfaceView[V] 
   }
 }
 
-trait SVideoView extends VideoView with TraitVideoView[SVideoView] { self =>
+trait SVideoView extends android.widget.VideoView with TraitVideoView[SVideoView] { self =>
   def basis = self
 
 
@@ -3208,20 +2884,6 @@ trait SVideoView extends VideoView with TraitVideoView[SVideoView] { self =>
 
 object SVideoView {
 
-  def apply()(implicit context: android.content.Context): SVideoView = {
-    val v = new VideoView(context) with SVideoView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SVideoView = {
-    val v = new VideoView(context, attributeSet) with SVideoView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SVideoView = {
-    val v = new VideoView(context, attributeSet, int) with SVideoView
-    v
-  }
 
 
 
@@ -3299,7 +2961,7 @@ trait TraitGridView[V <: android.widget.GridView] extends TraitAbsListView[V] {
 
 }
 
-trait SGridView extends GridView with TraitGridView[SGridView] { self =>
+trait SGridView extends android.widget.GridView with TraitGridView[SGridView] { self =>
   def basis = self
 
 
@@ -3308,20 +2970,6 @@ trait SGridView extends GridView with TraitGridView[SGridView] { self =>
 
 object SGridView {
 
-  def apply()(implicit context: android.content.Context): SGridView = {
-    val v = new GridView(context) with SGridView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SGridView = {
-    val v = new GridView(context, attributeSet) with SGridView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SGridView = {
-    val v = new GridView(context, attributeSet, int) with SGridView
-    v
-  }
 
 
 
@@ -3437,7 +3085,7 @@ trait TraitExpandableListView[V <: android.widget.ExpandableListView] extends Tr
   }
 }
 
-trait SExpandableListView extends ExpandableListView with TraitExpandableListView[SExpandableListView] { self =>
+trait SExpandableListView extends android.widget.ExpandableListView with TraitExpandableListView[SExpandableListView] { self =>
   def basis = self
 
 
@@ -3446,20 +3094,6 @@ trait SExpandableListView extends ExpandableListView with TraitExpandableListVie
 
 object SExpandableListView {
 
-  def apply()(implicit context: android.content.Context): SExpandableListView = {
-    val v = new ExpandableListView(context) with SExpandableListView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SExpandableListView = {
-    val v = new ExpandableListView(context, attributeSet) with SExpandableListView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SExpandableListView = {
-    val v = new ExpandableListView(context, attributeSet, int) with SExpandableListView
-    v
-  }
 
 
 
@@ -3614,7 +3248,7 @@ trait TraitSpinner[V <: android.widget.Spinner] extends TraitAbsSpinner[V] {
 
 }
 
-trait SSpinner extends Spinner with TraitSpinner[SSpinner] { self =>
+trait SSpinner extends android.widget.Spinner with TraitSpinner[SSpinner] { self =>
   def basis = self
 
 
@@ -3623,20 +3257,6 @@ trait SSpinner extends Spinner with TraitSpinner[SSpinner] { self =>
 
 object SSpinner {
 
-  def apply()(implicit context: android.content.Context): SSpinner = {
-    val v = new Spinner(context) with SSpinner
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SSpinner = {
-    val v = new Spinner(context, attributeSet) with SSpinner
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SSpinner = {
-    val v = new Spinner(context, attributeSet, int) with SSpinner
-    v
-  }
 
 
 
@@ -3675,7 +3295,7 @@ trait TraitGallery[V <: android.widget.Gallery] extends TraitAbsSpinner[V] {
 
 }
 
-trait SGallery extends Gallery with TraitGallery[SGallery] { self =>
+trait SGallery extends android.widget.Gallery with TraitGallery[SGallery] { self =>
   def basis = self
 
 
@@ -3684,20 +3304,6 @@ trait SGallery extends Gallery with TraitGallery[SGallery] { self =>
 
 object SGallery {
 
-  def apply()(implicit context: android.content.Context): SGallery = {
-    val v = new Gallery(context) with SGallery
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SGallery = {
-    val v = new Gallery(context, attributeSet) with SGallery
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SGallery = {
-    val v = new Gallery(context, attributeSet, int) with SGallery
-    v
-  }
 
 
 
@@ -3789,7 +3395,7 @@ trait TraitSeekBar[V <: android.widget.SeekBar] extends TraitAbsSeekBar[V] {
   }
 }
 
-trait SSeekBar extends SeekBar with TraitSeekBar[SSeekBar] { self =>
+trait SSeekBar extends android.widget.SeekBar with TraitSeekBar[SSeekBar] { self =>
   def basis = self
 
 
@@ -3798,20 +3404,6 @@ trait SSeekBar extends SeekBar with TraitSeekBar[SSeekBar] { self =>
 
 object SSeekBar {
 
-  def apply()(implicit context: android.content.Context): SSeekBar = {
-    val v = new SeekBar(context) with SSeekBar
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SSeekBar = {
-    val v = new SeekBar(context, attributeSet) with SSeekBar
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SSeekBar = {
-    val v = new SeekBar(context, attributeSet, int) with SSeekBar
-    v
-  }
 
 
 
@@ -3859,7 +3451,7 @@ trait TraitRatingBar[V <: android.widget.RatingBar] extends TraitAbsSeekBar[V] {
   }
 }
 
-trait SRatingBar extends RatingBar with TraitRatingBar[SRatingBar] { self =>
+trait SRatingBar extends android.widget.RatingBar with TraitRatingBar[SRatingBar] { self =>
   def basis = self
 
 
@@ -3868,20 +3460,6 @@ trait SRatingBar extends RatingBar with TraitRatingBar[SRatingBar] { self =>
 
 object SRatingBar {
 
-  def apply()(implicit context: android.content.Context): SRatingBar = {
-    val v = new RatingBar(context) with SRatingBar
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SRatingBar = {
-    val v = new RatingBar(context, attributeSet) with SRatingBar
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SRatingBar = {
-    val v = new RatingBar(context, attributeSet, int) with SRatingBar
-    v
-  }
 
 
 
@@ -3900,7 +3478,7 @@ trait TraitAppWidgetHostView[V <: android.appwidget.AppWidgetHostView] extends T
 
 }
 
-trait SAppWidgetHostView extends AppWidgetHostView with TraitAppWidgetHostView[SAppWidgetHostView] { self =>
+trait SAppWidgetHostView extends android.appwidget.AppWidgetHostView with TraitAppWidgetHostView[SAppWidgetHostView] { self =>
   def basis = self
 
 
@@ -3909,15 +3487,6 @@ trait SAppWidgetHostView extends AppWidgetHostView with TraitAppWidgetHostView[S
 
 object SAppWidgetHostView {
 
-  def apply()(implicit context: android.content.Context): SAppWidgetHostView = {
-    val v = new AppWidgetHostView(context) with SAppWidgetHostView
-    v
-  }
-
-  def apply(int: Int, int: Int)(implicit context: android.content.Context): SAppWidgetHostView = {
-    val v = new AppWidgetHostView(context, int, int) with SAppWidgetHostView
-    v
-  }
 
 
 
@@ -3943,7 +3512,7 @@ trait TraitHorizontalScrollView[V <: android.widget.HorizontalScrollView] extend
 
 }
 
-trait SHorizontalScrollView extends HorizontalScrollView with TraitHorizontalScrollView[SHorizontalScrollView] { self =>
+trait SHorizontalScrollView extends android.widget.HorizontalScrollView with TraitHorizontalScrollView[SHorizontalScrollView] { self =>
   def basis = self
 
 
@@ -3952,20 +3521,6 @@ trait SHorizontalScrollView extends HorizontalScrollView with TraitHorizontalScr
 
 object SHorizontalScrollView {
 
-  def apply()(implicit context: android.content.Context): SHorizontalScrollView = {
-    val v = new HorizontalScrollView(context) with SHorizontalScrollView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SHorizontalScrollView = {
-    val v = new HorizontalScrollView(context, attributeSet) with SHorizontalScrollView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SHorizontalScrollView = {
-    val v = new HorizontalScrollView(context, attributeSet, int) with SHorizontalScrollView
-    v
-  }
 
 
 
@@ -3992,7 +3547,7 @@ trait TraitMediaController[V <: android.widget.MediaController] extends TraitFra
 
 }
 
-trait SMediaController extends MediaController with TraitMediaController[SMediaController] { self =>
+trait SMediaController extends android.widget.MediaController with TraitMediaController[SMediaController] { self =>
   def basis = self
 
 
@@ -4001,20 +3556,6 @@ trait SMediaController extends MediaController with TraitMediaController[SMediaC
 
 object SMediaController {
 
-  def apply()(implicit context: android.content.Context): SMediaController = {
-    val v = new MediaController(context) with SMediaController
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SMediaController = {
-    val v = new MediaController(context, attributeSet) with SMediaController
-    v
-  }
-
-  def apply(boolean: Boolean)(implicit context: android.content.Context): SMediaController = {
-    val v = new MediaController(context, boolean) with SMediaController
-    v
-  }
 
 
 
@@ -4040,7 +3581,7 @@ trait TraitScrollView[V <: android.widget.ScrollView] extends TraitFrameLayout[V
 
 }
 
-trait SScrollView extends ScrollView with TraitScrollView[SScrollView] { self =>
+trait SScrollView extends android.widget.ScrollView with TraitScrollView[SScrollView] { self =>
   def basis = self
 
 
@@ -4049,20 +3590,6 @@ trait SScrollView extends ScrollView with TraitScrollView[SScrollView] { self =>
 
 object SScrollView {
 
-  def apply()(implicit context: android.content.Context): SScrollView = {
-    val v = new ScrollView(context) with SScrollView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SScrollView = {
-    val v = new ScrollView(context, attributeSet) with SScrollView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SScrollView = {
-    val v = new ScrollView(context, attributeSet, int) with SScrollView
-    v
-  }
 
 
 
@@ -4118,7 +3645,7 @@ trait TraitTabHost[V <: android.widget.TabHost] extends TraitFrameLayout[V] {
   }
 }
 
-trait STabHost extends TabHost with TraitTabHost[STabHost] { self =>
+trait STabHost extends android.widget.TabHost with TraitTabHost[STabHost] { self =>
   def basis = self
 
 
@@ -4127,15 +3654,6 @@ trait STabHost extends TabHost with TraitTabHost[STabHost] { self =>
 
 object STabHost {
 
-  def apply()(implicit context: android.content.Context): STabHost = {
-    val v = new TabHost(context) with STabHost
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): STabHost = {
-    val v = new TabHost(context, attributeSet) with STabHost
-    v
-  }
 
 
 
@@ -4179,7 +3697,7 @@ trait TraitTimePicker[V <: android.widget.TimePicker] extends TraitFrameLayout[V
   }
 }
 
-trait STimePicker extends TimePicker with TraitTimePicker[STimePicker] { self =>
+trait STimePicker extends android.widget.TimePicker with TraitTimePicker[STimePicker] { self =>
   def basis = self
 
 
@@ -4188,20 +3706,6 @@ trait STimePicker extends TimePicker with TraitTimePicker[STimePicker] { self =>
 
 object STimePicker {
 
-  def apply()(implicit context: android.content.Context): STimePicker = {
-    val v = new TimePicker(context) with STimePicker
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): STimePicker = {
-    val v = new TimePicker(context, attributeSet) with STimePicker
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): STimePicker = {
-    val v = new TimePicker(context, attributeSet, int) with STimePicker
-    v
-  }
 
 
 
@@ -4234,7 +3738,7 @@ trait TraitViewAnimator[V <: android.widget.ViewAnimator] extends TraitFrameLayo
 
 }
 
-trait SViewAnimator extends ViewAnimator with TraitViewAnimator[SViewAnimator] { self =>
+trait SViewAnimator extends android.widget.ViewAnimator with TraitViewAnimator[SViewAnimator] { self =>
   def basis = self
 
 
@@ -4243,15 +3747,6 @@ trait SViewAnimator extends ViewAnimator with TraitViewAnimator[SViewAnimator] {
 
 object SViewAnimator {
 
-  def apply()(implicit context: android.content.Context): SViewAnimator = {
-    val v = new ViewAnimator(context) with SViewAnimator
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SViewAnimator = {
-    val v = new ViewAnimator(context, attributeSet) with SViewAnimator
-    v
-  }
 
 
 
@@ -4277,7 +3772,7 @@ trait TraitViewFlipper[V <: android.widget.ViewFlipper] extends TraitViewAnimato
 
 }
 
-trait SViewFlipper extends ViewFlipper with TraitViewFlipper[SViewFlipper] { self =>
+trait SViewFlipper extends android.widget.ViewFlipper with TraitViewFlipper[SViewFlipper] { self =>
   def basis = self
 
 
@@ -4286,15 +3781,6 @@ trait SViewFlipper extends ViewFlipper with TraitViewFlipper[SViewFlipper] { sel
 
 object SViewFlipper {
 
-  def apply()(implicit context: android.content.Context): SViewFlipper = {
-    val v = new ViewFlipper(context) with SViewFlipper
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SViewFlipper = {
-    val v = new ViewFlipper(context, attributeSet) with SViewFlipper
-    v
-  }
 
 
 
@@ -4316,7 +3802,7 @@ trait TraitViewSwitcher[V <: android.widget.ViewSwitcher] extends TraitViewAnima
 
 }
 
-trait SViewSwitcher extends ViewSwitcher with TraitViewSwitcher[SViewSwitcher] { self =>
+trait SViewSwitcher extends android.widget.ViewSwitcher with TraitViewSwitcher[SViewSwitcher] { self =>
   def basis = self
 
 
@@ -4325,15 +3811,6 @@ trait SViewSwitcher extends ViewSwitcher with TraitViewSwitcher[SViewSwitcher] {
 
 object SViewSwitcher {
 
-  def apply()(implicit context: android.content.Context): SViewSwitcher = {
-    val v = new ViewSwitcher(context) with SViewSwitcher
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SViewSwitcher = {
-    val v = new ViewSwitcher(context, attributeSet) with SViewSwitcher
-    v
-  }
 
 
 
@@ -4362,7 +3839,7 @@ trait TraitImageSwitcher[V <: android.widget.ImageSwitcher] extends TraitViewSwi
 
 }
 
-trait SImageSwitcher extends ImageSwitcher with TraitImageSwitcher[SImageSwitcher] { self =>
+trait SImageSwitcher extends android.widget.ImageSwitcher with TraitImageSwitcher[SImageSwitcher] { self =>
   def basis = self
 
 
@@ -4371,15 +3848,6 @@ trait SImageSwitcher extends ImageSwitcher with TraitImageSwitcher[SImageSwitche
 
 object SImageSwitcher {
 
-  def apply()(implicit context: android.content.Context): SImageSwitcher = {
-    val v = new ImageSwitcher(context) with SImageSwitcher
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SImageSwitcher = {
-    val v = new ImageSwitcher(context, attributeSet) with SImageSwitcher
-    v
-  }
 
 
 
@@ -4403,7 +3871,7 @@ trait TraitTextSwitcher[V <: android.widget.TextSwitcher] extends TraitViewSwitc
 
 }
 
-trait STextSwitcher extends TextSwitcher with TraitTextSwitcher[STextSwitcher] { self =>
+trait STextSwitcher extends android.widget.TextSwitcher with TraitTextSwitcher[STextSwitcher] { self =>
   def basis = self
 
 
@@ -4412,15 +3880,6 @@ trait STextSwitcher extends TextSwitcher with TraitTextSwitcher[STextSwitcher] {
 
 object STextSwitcher {
 
-  def apply()(implicit context: android.content.Context): STextSwitcher = {
-    val v = new TextSwitcher(context) with STextSwitcher
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): STextSwitcher = {
-    val v = new TextSwitcher(context, attributeSet) with STextSwitcher
-    v
-  }
 
 
 
@@ -4441,7 +3900,7 @@ trait TraitDatePicker[V <: android.widget.DatePicker] extends TraitFrameLayout[V
 
 }
 
-trait SDatePicker extends DatePicker with TraitDatePicker[SDatePicker] { self =>
+trait SDatePicker extends android.widget.DatePicker with TraitDatePicker[SDatePicker] { self =>
   def basis = self
 
 
@@ -4450,20 +3909,6 @@ trait SDatePicker extends DatePicker with TraitDatePicker[SDatePicker] { self =>
 
 object SDatePicker {
 
-  def apply()(implicit context: android.content.Context): SDatePicker = {
-    val v = new DatePicker(context) with SDatePicker
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SDatePicker = {
-    val v = new DatePicker(context, attributeSet) with SDatePicker
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SDatePicker = {
-    val v = new DatePicker(context, attributeSet, int) with SDatePicker
-    v
-  }
 
 
 
@@ -4664,7 +4109,7 @@ trait TraitGestureOverlayView[V <: android.gesture.GestureOverlayView] extends T
   }
 }
 
-trait SGestureOverlayView extends GestureOverlayView with TraitGestureOverlayView[SGestureOverlayView] { self =>
+trait SGestureOverlayView extends android.gesture.GestureOverlayView with TraitGestureOverlayView[SGestureOverlayView] { self =>
   def basis = self
 
 
@@ -4673,20 +4118,6 @@ trait SGestureOverlayView extends GestureOverlayView with TraitGestureOverlayVie
 
 object SGestureOverlayView {
 
-  def apply()(implicit context: android.content.Context): SGestureOverlayView = {
-    val v = new GestureOverlayView(context) with SGestureOverlayView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SGestureOverlayView = {
-    val v = new GestureOverlayView(context, attributeSet) with SGestureOverlayView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SGestureOverlayView = {
-    val v = new GestureOverlayView(context, attributeSet, int) with SGestureOverlayView
-    v
-  }
 
 
 
@@ -4770,7 +4201,7 @@ trait TraitPopupWindow[V <: android.widget.PopupWindow] {
   }
 }
 
-trait SPopupWindow extends PopupWindow with TraitPopupWindow[SPopupWindow] { self =>
+trait SPopupWindow extends android.widget.PopupWindow with TraitPopupWindow[SPopupWindow] { self =>
   def basis = self
 
 
@@ -4779,45 +4210,6 @@ trait SPopupWindow extends PopupWindow with TraitPopupWindow[SPopupWindow] { sel
 
 object SPopupWindow {
 
-  def apply(): SPopupWindow = {
-    val v = new PopupWindow() with SPopupWindow
-    v
-  }
-
-  def apply(view: android.view.View): SPopupWindow = {
-    val v = new PopupWindow(view) with SPopupWindow
-    v
-  }
-
-  def apply()(implicit context: android.content.Context): SPopupWindow = {
-    val v = new PopupWindow(context) with SPopupWindow
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SPopupWindow = {
-    val v = new PopupWindow(context, attributeSet) with SPopupWindow
-    v
-  }
-
-  def apply(int: Int, int: Int): SPopupWindow = {
-    val v = new PopupWindow(int, int) with SPopupWindow
-    v
-  }
-
-  def apply(view: android.view.View, int: Int, int: Int): SPopupWindow = {
-    val v = new PopupWindow(view, int, int) with SPopupWindow
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SPopupWindow = {
-    val v = new PopupWindow(context, attributeSet, int) with SPopupWindow
-    v
-  }
-
-  def apply(view: android.view.View, int: Int, int: Int, boolean: Boolean): SPopupWindow = {
-    val v = new PopupWindow(view, int, int, boolean) with SPopupWindow
-    v
-  }
 
 
 
@@ -4845,7 +4237,7 @@ trait TraitArrayAdapter[V <: android.widget.ArrayAdapter[_]] extends TraitBaseAd
 
 }
 
-trait SArrayAdapter extends ArrayAdapter with TraitArrayAdapter[SArrayAdapter] { self =>
+trait SArrayAdapter[T <: AnyRef] extends android.widget.ArrayAdapter[T] with TraitArrayAdapter[SArrayAdapter[T]] { self =>
   def basis = self
 
 
@@ -4854,35 +4246,6 @@ trait SArrayAdapter extends ArrayAdapter with TraitArrayAdapter[SArrayAdapter] {
 
 object SArrayAdapter {
 
-  def apply(int: Int)(implicit context: android.content.Context): SArrayAdapter = {
-    val v = new ArrayAdapter(context, int) with SArrayAdapter
-    v
-  }
-
-  def apply(int: Int, int: Int)(implicit context: android.content.Context): SArrayAdapter = {
-    val v = new ArrayAdapter(context, int, int) with SArrayAdapter
-    v
-  }
-
-  def apply(int: Int, list: java.util.List[T])(implicit context: android.content.Context): SArrayAdapter = {
-    val v = new ArrayAdapter(context, int, list) with SArrayAdapter
-    v
-  }
-
-  def apply(int: Int, array: Array[T])(implicit context: android.content.Context): SArrayAdapter = {
-    val v = new ArrayAdapter(context, int, array) with SArrayAdapter
-    v
-  }
-
-  def apply(int: Int, int: Int, list: java.util.List[T])(implicit context: android.content.Context): SArrayAdapter = {
-    val v = new ArrayAdapter(context, int, int, list) with SArrayAdapter
-    v
-  }
-
-  def apply(int: Int, int: Int, array: Array[T])(implicit context: android.content.Context): SArrayAdapter = {
-    val v = new ArrayAdapter(context, int, int, array) with SArrayAdapter
-    v
-  }
 
 
 
@@ -4896,7 +4259,7 @@ trait TraitAbsoluteLayout[V <: android.widget.AbsoluteLayout] extends TraitViewG
 
 }
 
-trait SAbsoluteLayout extends AbsoluteLayout with TraitAbsoluteLayout[SAbsoluteLayout] { self =>
+trait SAbsoluteLayout extends android.widget.AbsoluteLayout with TraitAbsoluteLayout[SAbsoluteLayout] { self =>
   def basis = self
 
 
@@ -4905,20 +4268,6 @@ trait SAbsoluteLayout extends AbsoluteLayout with TraitAbsoluteLayout[SAbsoluteL
 
 object SAbsoluteLayout {
 
-  def apply()(implicit context: android.content.Context): SAbsoluteLayout = {
-    val v = new AbsoluteLayout(context) with SAbsoluteLayout
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SAbsoluteLayout = {
-    val v = new AbsoluteLayout(context, attributeSet) with SAbsoluteLayout
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SAbsoluteLayout = {
-    val v = new AbsoluteLayout(context, attributeSet, int) with SAbsoluteLayout
-    v
-  }
 
 
 
@@ -4937,7 +4286,7 @@ trait TraitMultiAutoCompleteTextView[V <: android.widget.MultiAutoCompleteTextVi
 
 }
 
-trait SMultiAutoCompleteTextView extends MultiAutoCompleteTextView with TraitMultiAutoCompleteTextView[SMultiAutoCompleteTextView] { self =>
+trait SMultiAutoCompleteTextView extends android.widget.MultiAutoCompleteTextView with TraitMultiAutoCompleteTextView[SMultiAutoCompleteTextView] { self =>
   def basis = self
 
 
@@ -4946,20 +4295,6 @@ trait SMultiAutoCompleteTextView extends MultiAutoCompleteTextView with TraitMul
 
 object SMultiAutoCompleteTextView {
 
-  def apply()(implicit context: android.content.Context): SMultiAutoCompleteTextView = {
-    val v = new MultiAutoCompleteTextView(context) with SMultiAutoCompleteTextView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SMultiAutoCompleteTextView = {
-    val v = new MultiAutoCompleteTextView(context, attributeSet) with SMultiAutoCompleteTextView
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SMultiAutoCompleteTextView = {
-    val v = new MultiAutoCompleteTextView(context, attributeSet, int) with SMultiAutoCompleteTextView
-    v
-  }
 
   def apply[LP <: ViewGroupLayoutParams[_, SMultiAutoCompleteTextView]](txt: CharSequence)
       (implicit context: Context, defaultLayoutParam: (SMultiAutoCompleteTextView) => LP): SMultiAutoCompleteTextView =  {
@@ -4988,7 +4323,7 @@ trait TraitTableLayout[V <: android.widget.TableLayout] extends TraitLinearLayou
 
 }
 
-trait STableLayout extends TableLayout with TraitTableLayout[STableLayout] { self =>
+trait STableLayout extends android.widget.TableLayout with TraitTableLayout[STableLayout] { self =>
   def basis = self
 
 
@@ -4997,15 +4332,6 @@ trait STableLayout extends TableLayout with TraitTableLayout[STableLayout] { sel
 
 object STableLayout {
 
-  def apply()(implicit context: android.content.Context): STableLayout = {
-    val v = new TableLayout(context) with STableLayout
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): STableLayout = {
-    val v = new TableLayout(context, attributeSet) with STableLayout
-    v
-  }
 
 
 
@@ -5039,7 +4365,7 @@ trait TraitRadioGroup[V <: android.widget.RadioGroup] extends TraitLinearLayout[
   }
 }
 
-trait SRadioGroup extends RadioGroup with TraitRadioGroup[SRadioGroup] { self =>
+trait SRadioGroup extends android.widget.RadioGroup with TraitRadioGroup[SRadioGroup] { self =>
   def basis = self
 
 
@@ -5048,15 +4374,6 @@ trait SRadioGroup extends RadioGroup with TraitRadioGroup[SRadioGroup] { self =>
 
 object SRadioGroup {
 
-  def apply()(implicit context: android.content.Context): SRadioGroup = {
-    val v = new RadioGroup(context) with SRadioGroup
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SRadioGroup = {
-    val v = new RadioGroup(context, attributeSet) with SRadioGroup
-    v
-  }
 
 
 
@@ -5070,7 +4387,7 @@ trait TraitSimpleExpandableListAdapter[V <: android.widget.SimpleExpandableListA
 
 }
 
-trait SSimpleExpandableListAdapter extends SimpleExpandableListAdapter with TraitSimpleExpandableListAdapter[SSimpleExpandableListAdapter] { self =>
+trait SSimpleExpandableListAdapter extends android.widget.SimpleExpandableListAdapter with TraitSimpleExpandableListAdapter[SSimpleExpandableListAdapter] { self =>
   def basis = self
 
 
@@ -5079,20 +4396,6 @@ trait SSimpleExpandableListAdapter extends SimpleExpandableListAdapter with Trai
 
 object SSimpleExpandableListAdapter {
 
-  def apply(list: java.util.List[_], int: Int, array: Array[java.lang.String], array: Array[Int], list: java.util.List[_], int: Int, array: Array[java.lang.String], array: Array[Int])(implicit context: android.content.Context): SSimpleExpandableListAdapter = {
-    val v = new SimpleExpandableListAdapter(context, list, int, array, array, list, int, array, array) with SSimpleExpandableListAdapter
-    v
-  }
-
-  def apply(list: java.util.List[_], int: Int, int: Int, array: Array[java.lang.String], array: Array[Int], list: java.util.List[_], int: Int, array: Array[java.lang.String], array: Array[Int])(implicit context: android.content.Context): SSimpleExpandableListAdapter = {
-    val v = new SimpleExpandableListAdapter(context, list, int, int, array, array, list, int, array, array) with SSimpleExpandableListAdapter
-    v
-  }
-
-  def apply(list: java.util.List[_], int: Int, int: Int, array: Array[java.lang.String], array: Array[Int], list: java.util.List[_], int: Int, int: Int, array: Array[java.lang.String], array: Array[Int])(implicit context: android.content.Context): SSimpleExpandableListAdapter = {
-    val v = new SimpleExpandableListAdapter(context, list, int, int, array, array, list, int, int, array, array) with SSimpleExpandableListAdapter
-    v
-  }
 
 
 
@@ -5114,7 +4417,7 @@ trait TraitAlphabetIndexer[V <: android.widget.AlphabetIndexer] extends TraitDat
 
 }
 
-trait SAlphabetIndexer extends AlphabetIndexer with TraitAlphabetIndexer[SAlphabetIndexer] { self =>
+trait SAlphabetIndexer extends android.widget.AlphabetIndexer with TraitAlphabetIndexer[SAlphabetIndexer] { self =>
   def basis = self
 
 
@@ -5123,10 +4426,6 @@ trait SAlphabetIndexer extends AlphabetIndexer with TraitAlphabetIndexer[SAlphab
 
 object SAlphabetIndexer {
 
-  def apply(cursor: android.database.Cursor, int: Int, charSequence: java.lang.CharSequence): SAlphabetIndexer = {
-    val v = new AlphabetIndexer(cursor, int, charSequence) with SAlphabetIndexer
-    v
-  }
 
 
 
@@ -5145,7 +4444,7 @@ trait TraitTwoLineListItem[V <: android.widget.TwoLineListItem] extends TraitRel
 
 }
 
-trait STwoLineListItem extends TwoLineListItem with TraitTwoLineListItem[STwoLineListItem] { self =>
+trait STwoLineListItem extends android.widget.TwoLineListItem with TraitTwoLineListItem[STwoLineListItem] { self =>
   def basis = self
 
 
@@ -5154,20 +4453,6 @@ trait STwoLineListItem extends TwoLineListItem with TraitTwoLineListItem[STwoLin
 
 object STwoLineListItem {
 
-  def apply()(implicit context: android.content.Context): STwoLineListItem = {
-    val v = new TwoLineListItem(context) with STwoLineListItem
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): STwoLineListItem = {
-    val v = new TwoLineListItem(context, attributeSet) with STwoLineListItem
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): STwoLineListItem = {
-    val v = new TwoLineListItem(context, attributeSet, int) with STwoLineListItem
-    v
-  }
 
 
 
@@ -5196,7 +4481,7 @@ trait TraitHeaderViewListAdapter[V <: android.widget.HeaderViewListAdapter] {
 
 }
 
-trait SHeaderViewListAdapter extends HeaderViewListAdapter with TraitHeaderViewListAdapter[SHeaderViewListAdapter] { self =>
+trait SHeaderViewListAdapter extends android.widget.HeaderViewListAdapter with TraitHeaderViewListAdapter[SHeaderViewListAdapter] { self =>
   def basis = self
 
 
@@ -5205,10 +4490,6 @@ trait SHeaderViewListAdapter extends HeaderViewListAdapter with TraitHeaderViewL
 
 object SHeaderViewListAdapter {
 
-  def apply(arrayList: java.util.ArrayList[android.widget.ListView.FixedViewInfo], arrayList: java.util.ArrayList[android.widget.ListView.FixedViewInfo], listAdapter: android.widget.ListAdapter): SHeaderViewListAdapter = {
-    val v = new HeaderViewListAdapter(arrayList, arrayList, listAdapter) with SHeaderViewListAdapter
-    v
-  }
 
 
 
@@ -5247,7 +4528,7 @@ trait TraitToast[V <: android.widget.Toast] {
 
 }
 
-trait SToast extends Toast with TraitToast[SToast] { self =>
+trait SToast extends android.widget.Toast with TraitToast[SToast] { self =>
   def basis = self
 
 
@@ -5256,10 +4537,6 @@ trait SToast extends Toast with TraitToast[SToast] { self =>
 
 object SToast {
 
-  def apply()(implicit context: android.content.Context): SToast = {
-    val v = new Toast(context) with SToast
-    v
-  }
 
 
 
@@ -5345,7 +4622,7 @@ trait TraitZoomButtonsController[V <: android.widget.ZoomButtonsController] {
   }
 }
 
-trait SZoomButtonsController extends ZoomButtonsController with TraitZoomButtonsController[SZoomButtonsController] { self =>
+trait SZoomButtonsController extends android.widget.ZoomButtonsController with TraitZoomButtonsController[SZoomButtonsController] { self =>
   def basis = self
 
 
@@ -5354,10 +4631,6 @@ trait SZoomButtonsController extends ZoomButtonsController with TraitZoomButtons
 
 object SZoomButtonsController {
 
-  def apply(view: android.view.View): SZoomButtonsController = {
-    val v = new ZoomButtonsController(view) with SZoomButtonsController
-    v
-  }
 
 
 
@@ -5431,7 +4704,7 @@ trait TraitSlidingDrawer[V <: android.widget.SlidingDrawer] extends TraitViewGro
   }
 }
 
-trait SSlidingDrawer extends SlidingDrawer with TraitSlidingDrawer[SSlidingDrawer] { self =>
+trait SSlidingDrawer extends android.widget.SlidingDrawer with TraitSlidingDrawer[SSlidingDrawer] { self =>
   def basis = self
 
 
@@ -5440,15 +4713,6 @@ trait SSlidingDrawer extends SlidingDrawer with TraitSlidingDrawer[SSlidingDrawe
 
 object SSlidingDrawer {
 
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SSlidingDrawer = {
-    val v = new SlidingDrawer(context, attributeSet) with SSlidingDrawer
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SSlidingDrawer = {
-    val v = new SlidingDrawer(context, attributeSet, int) with SSlidingDrawer
-    v
-  }
 
 
 
@@ -5518,7 +4782,7 @@ trait TraitZoomControls[V <: android.widget.ZoomControls] extends TraitLinearLay
   }
 }
 
-trait SZoomControls extends ZoomControls with TraitZoomControls[SZoomControls] { self =>
+trait SZoomControls extends android.widget.ZoomControls with TraitZoomControls[SZoomControls] { self =>
   def basis = self
 
 
@@ -5527,15 +4791,6 @@ trait SZoomControls extends ZoomControls with TraitZoomControls[SZoomControls] {
 
 object SZoomControls {
 
-  def apply()(implicit context: android.content.Context): SZoomControls = {
-    val v = new ZoomControls(context) with SZoomControls
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SZoomControls = {
-    val v = new ZoomControls(context, attributeSet) with SZoomControls
-    v
-  }
 
 
 
@@ -5577,7 +4832,7 @@ trait TraitDialerFilter[V <: android.widget.DialerFilter] extends TraitRelativeL
 
 }
 
-trait SDialerFilter extends DialerFilter with TraitDialerFilter[SDialerFilter] { self =>
+trait SDialerFilter extends android.widget.DialerFilter with TraitDialerFilter[SDialerFilter] { self =>
   def basis = self
 
 
@@ -5586,15 +4841,6 @@ trait SDialerFilter extends DialerFilter with TraitDialerFilter[SDialerFilter] {
 
 object SDialerFilter {
 
-  def apply()(implicit context: android.content.Context): SDialerFilter = {
-    val v = new DialerFilter(context) with SDialerFilter
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SDialerFilter = {
-    val v = new DialerFilter(context, attributeSet) with SDialerFilter
-    v
-  }
 
 
 
@@ -5618,7 +4864,7 @@ trait TraitTableRow[V <: android.widget.TableRow] extends TraitLinearLayout[V] {
 
 }
 
-trait STableRow extends TableRow with TraitTableRow[STableRow] { self =>
+trait STableRow extends android.widget.TableRow with TraitTableRow[STableRow] { self =>
   def basis = self
 
 
@@ -5627,15 +4873,6 @@ trait STableRow extends TableRow with TraitTableRow[STableRow] { self =>
 
 object STableRow {
 
-  def apply()(implicit context: android.content.Context): STableRow = {
-    val v = new TableRow(context) with STableRow
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): STableRow = {
-    val v = new TableRow(context, attributeSet) with STableRow
-    v
-  }
 
 
 
@@ -5684,7 +4921,7 @@ trait TraitTabWidget[V <: android.widget.TabWidget] extends TraitLinearLayout[V]
 
 }
 
-trait STabWidget extends TabWidget with TraitTabWidget[STabWidget] { self =>
+trait STabWidget extends android.widget.TabWidget with TraitTabWidget[STabWidget] { self =>
   def basis = self
 
 
@@ -5693,20 +4930,6 @@ trait STabWidget extends TabWidget with TraitTabWidget[STabWidget] { self =>
 
 object STabWidget {
 
-  def apply()(implicit context: android.content.Context): STabWidget = {
-    val v = new TabWidget(context) with STabWidget
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): STabWidget = {
-    val v = new TabWidget(context, attributeSet) with STabWidget
-    v
-  }
-
-  def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): STabWidget = {
-    val v = new TabWidget(context, attributeSet, int) with STabWidget
-    v
-  }
 
 
 
@@ -5764,7 +4987,7 @@ trait TraitSimpleCursorAdapter[V <: android.widget.SimpleCursorAdapter] extends 
 
 }
 
-trait SSimpleCursorAdapter extends SimpleCursorAdapter with TraitSimpleCursorAdapter[SSimpleCursorAdapter] { self =>
+trait SSimpleCursorAdapter extends android.widget.SimpleCursorAdapter with TraitSimpleCursorAdapter[SSimpleCursorAdapter] { self =>
   def basis = self
 
 
@@ -5773,10 +4996,6 @@ trait SSimpleCursorAdapter extends SimpleCursorAdapter with TraitSimpleCursorAda
 
 object SSimpleCursorAdapter {
 
-  def apply(int: Int, cursor: android.database.Cursor, array: Array[java.lang.String], array: Array[Int])(implicit context: android.content.Context): SSimpleCursorAdapter = {
-    val v = new SimpleCursorAdapter(context, int, cursor, array, array) with SSimpleCursorAdapter
-    v
-  }
 
 
 
@@ -5811,7 +5030,7 @@ trait TraitScroller[V <: android.widget.Scroller] {
 
 }
 
-trait SScroller extends Scroller with TraitScroller[SScroller] { self =>
+trait SScroller extends android.widget.Scroller with TraitScroller[SScroller] { self =>
   def basis = self
 
 
@@ -5820,15 +5039,6 @@ trait SScroller extends Scroller with TraitScroller[SScroller] { self =>
 
 object SScroller {
 
-  def apply()(implicit context: android.content.Context): SScroller = {
-    val v = new Scroller(context) with SScroller
-    v
-  }
-
-  def apply(interpolator: android.view.animation.Interpolator)(implicit context: android.content.Context): SScroller = {
-    val v = new Scroller(context, interpolator) with SScroller
-    v
-  }
 
 
 
@@ -5853,7 +5063,7 @@ trait TraitSimpleAdapter[V <: android.widget.SimpleAdapter] extends TraitBaseAda
 
 }
 
-trait SSimpleAdapter extends SimpleAdapter with TraitSimpleAdapter[SSimpleAdapter] { self =>
+trait SSimpleAdapter extends android.widget.SimpleAdapter with TraitSimpleAdapter[SSimpleAdapter] { self =>
   def basis = self
 
 
@@ -5862,10 +5072,6 @@ trait SSimpleAdapter extends SimpleAdapter with TraitSimpleAdapter[SSimpleAdapte
 
 object SSimpleAdapter {
 
-  def apply(list: java.util.List[_], int: Int, array: Array[java.lang.String], array: Array[Int])(implicit context: android.content.Context): SSimpleAdapter = {
-    val v = new SimpleAdapter(context, list, int, array, array) with SSimpleAdapter
-    v
-  }
 
 
 
@@ -5884,7 +5090,7 @@ trait TraitRemoteViews[V <: android.widget.RemoteViews] {
 
 }
 
-trait SRemoteViews extends RemoteViews with TraitRemoteViews[SRemoteViews] { self =>
+trait SRemoteViews extends android.widget.RemoteViews with TraitRemoteViews[SRemoteViews] { self =>
   def basis = self
 
 
@@ -5893,15 +5099,6 @@ trait SRemoteViews extends RemoteViews with TraitRemoteViews[SRemoteViews] { sel
 
 object SRemoteViews {
 
-  def apply(parcel: android.os.Parcel): SRemoteViews = {
-    val v = new RemoteViews(parcel) with SRemoteViews
-    v
-  }
-
-  def apply(string: java.lang.String, int: Int): SRemoteViews = {
-    val v = new RemoteViews(string, int) with SRemoteViews
-    v
-  }
 
 
 

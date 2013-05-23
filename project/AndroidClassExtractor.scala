@@ -12,37 +12,48 @@ import scala.collection.JavaConversions._
 
 object AndroidClassExtractor {
 
-  def toScalaType(tpe: Type): ScalaType =
-    tpe match {
-      case null => throw new Error("Property cannot be null")
-      case t: GenericArrayType =>
-        ScalaType("Array", Seq(toScalaType(t.getGenericComponentType)))
-      case t: ParameterizedType =>
-        ScalaType(
-          toScalaType(t.getRawType).name,
-          t.getActualTypeArguments.map(toScalaType).toSeq
-        )
-      case t: TypeVariable[_] =>
-        ScalaType(t.getName, t.getBounds.map(toScalaType).toSeq, true)
-      case t: WildcardType => ScalaType("_")
-      case t: Class[_] => {
-        if (t.isArray) {
-          ScalaType("Array", Seq(toScalaType(t.getComponentType)))
-        } else if (t.isPrimitive) {
-          ScalaType(t.getName match {
-            case "void" => "Unit"
-            case n => n.capitalize
-          })
-        } else {
-          ScalaType(
-            t.getName.replace("$", "."),
-            t.getTypeParameters.take(1).map(_ => ScalaType("_")).toSeq
-          )
+  def toScalaType(_tpe: Type): ScalaType = {
+    def step(tpe: Type, level: Int): ScalaType = {
+      val nextLevel = level + 1
+
+      if (level > 2)
+        ScalaType("_")
+      else
+        tpe match {
+          case null => throw new Error("Property cannot be null")
+          case t: GenericArrayType =>
+            ScalaType("Array", Seq(step(t.getGenericComponentType, nextLevel)))
+          case t: ParameterizedType =>
+            ScalaType(
+              step(t.getRawType, nextLevel).name,
+              t.getActualTypeArguments.map(step(_, nextLevel)).toSeq
+            )
+          case t: TypeVariable[_] =>
+            ScalaType(t.getName, t.getBounds.map(step(_, nextLevel)).toSeq, true)
+          case t: WildcardType => ScalaType("_")
+          case t: Class[_] => {
+            if (t.isArray) {
+              ScalaType("Array", Seq(step(t.getComponentType, nextLevel)))
+            } else if (t.isPrimitive) {
+              ScalaType(t.getName match {
+                case "void" => "Unit"
+                case n => n.capitalize
+              })
+            } else if (t.getName == "java.lang.Object") {
+              ScalaType("AnyRef")
+            } else {
+              ScalaType(
+                t.getName.replace("$", "."),
+                t.getTypeParameters.map(step(_, nextLevel)).toSeq
+              )
+            }
+          }
+          case _ =>
+            throw new Error("Cannot find type of " + tpe.getClass + " ::" + tpe.toString)
         }
-      }
-      case _ =>
-        throw new Error("Cannot find type of " + tpe.getClass + " ::" + tpe.toString)
     }
+    step(_tpe, 0)
+  }
 
   private def isAbstract(m: Member): Boolean = Modifier.isAbstract(m.getModifiers)
   private def isAbstract(c: Class[_]): Boolean = Modifier.isAbstract(c.getModifiers)

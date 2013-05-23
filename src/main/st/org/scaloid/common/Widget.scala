@@ -152,9 +152,9 @@ $wholeClassDef(android.widget.RelativeLayout)$
 
 $wholeClassDef(android.widget.LinearLayout)$
 
-class SVerticalLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends SLinearLayout {
-  orientation = VERTICAL
-}
+//class SVerticalLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends SLinearLayout {
+//  orientation = VERTICAL
+//}
 
 $wholeClassDef(android.widget.EditText)$
 $wholeClassDef(android.inputmethodservice.ExtractEditText)$

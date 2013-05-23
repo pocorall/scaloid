@@ -170,8 +170,8 @@ package object common extends Logger with SystemService with WidgetImplicits {
 
     @noEquivalentGetterExists
     @inline def defaultValue(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'defaultValue'")
-    @inline def defaultValue  (p: java.lang.Object) =            defaultValue_=  (p)
-    @inline def defaultValue_=(p: java.lang.Object) = { basis.setDefaultValue    (p); basis }
+    @inline def defaultValue  (p: AnyRef) =            defaultValue_=  (p)
+    @inline def defaultValue_=(p: AnyRef) = { basis.setDefaultValue    (p); basis }
 
     @inline def dependency = basis.getDependency
     @inline def dependency  (p: java.lang.String) =            dependency_=  (p)
@@ -239,16 +239,16 @@ package object common extends Logger with SystemService with WidgetImplicits {
     @inline def widgetLayoutResource  (p: Int) =            widgetLayoutResource_=  (p)
     @inline def widgetLayoutResource_=(p: Int) = { basis.setWidgetLayoutResource    (p); basis }
 
-    @inline def onPreferenceChange(f: (android.preference.Preference, java.lang.Object) => Boolean): V = {
+    @inline def onPreferenceChange(f: (android.preference.Preference, AnyRef) => Boolean): V = {
       basis.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener {
-        def onPreferenceChange(p1: android.preference.Preference, p2: java.lang.Object): Boolean = { f(p1, p2) }
+        def onPreferenceChange(p1: android.preference.Preference, p2: AnyRef): Boolean = { f(p1, p2) }
       })
       basis
     }
 
     @inline def onPreferenceChange(f: => Boolean): V = {
       basis.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener {
-        def onPreferenceChange(p1: android.preference.Preference, p2: java.lang.Object): Boolean = { f }
+        def onPreferenceChange(p1: android.preference.Preference, p2: AnyRef): Boolean = { f }
       })
       basis
     }
@@ -268,7 +268,7 @@ package object common extends Logger with SystemService with WidgetImplicits {
     }
   }
 
-  trait SPreference extends Preference with TraitPreference[SPreference] { self =>
+  trait SPreference extends android.preference.Preference with TraitPreference[SPreference] { self =>
     def basis = self
 
 
@@ -277,20 +277,6 @@ package object common extends Logger with SystemService with WidgetImplicits {
 
   object SPreference {
 
-    def apply()(implicit context: android.content.Context): SPreference = {
-      val v = new Preference(context) with SPreference
-      v
-    }
-
-    def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SPreference = {
-      val v = new Preference(context, attributeSet) with SPreference
-      v
-    }
-
-    def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SPreference = {
-      val v = new Preference(context, attributeSet, int) with SPreference
-      v
-    }
 
 
 
@@ -351,7 +337,7 @@ package object common extends Logger with SystemService with WidgetImplicits {
 
   }
 
-  trait SEditTextPreference extends EditTextPreference with TraitEditTextPreference[SEditTextPreference] { self =>
+  trait SEditTextPreference extends android.preference.EditTextPreference with TraitEditTextPreference[SEditTextPreference] { self =>
     def basis = self
 
 
@@ -360,20 +346,6 @@ package object common extends Logger with SystemService with WidgetImplicits {
 
   object SEditTextPreference {
 
-    def apply()(implicit context: android.content.Context): SEditTextPreference = {
-      val v = new EditTextPreference(context) with SEditTextPreference
-      v
-    }
-
-    def apply(attributeSet: android.util.AttributeSet)(implicit context: android.content.Context): SEditTextPreference = {
-      val v = new EditTextPreference(context, attributeSet) with SEditTextPreference
-      v
-    }
-
-    def apply(attributeSet: android.util.AttributeSet, int: Int)(implicit context: android.content.Context): SEditTextPreference = {
-      val v = new EditTextPreference(context, attributeSet, int) with SEditTextPreference
-      v
-    }
 
 
 

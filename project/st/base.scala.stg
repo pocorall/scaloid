@@ -15,7 +15,7 @@ $pkg:{ c | $implicitConversion(pkg.(c))$}$
 
 implicitConversion(base) ::= <<$_implicitConversion(base.name)$>>
 _implicitConversion(name) ::= <<
-$if( base.constructors && ! base.isAbstract)$@inline implicit def $decap(name)$2Rich$name$[V <: $genType(base.tpe)$]($decap(name)$: V) = new Rich$name$[V]($decap(name)$)
+$if( base.constructors && ! base.isAbstract)$@inline implicit def $decap(name)$2Rich$name$[V <: $genType(base.tpe, true)$]($decap(name)$: V) = new Rich$name$[V]($decap(name)$)
 $endif$
 >>
 
@@ -49,10 +49,10 @@ openRichClassDef(base, mixin, body) ::= <<$_openRichClassDef(base.name)$>>
 _openRichClassDef(name) ::= <<
 
 $if( ! base.isAbstract)$
-class Rich$name$[V <: $genType(base.tpe)$](val basis: V) extends Trait$name$[V]
+class Rich$name$[V <: $genType(base.tpe, true)$](val basis: V) extends Trait$name$[V]
 $endif$
 
-trait Trait$name$[V <: $genType(base.tpe)$]$extendClause(base.parentType, mixin)$ {
+trait Trait$name$[V <: $genType(base.tpe, true)$]$extendClause(base.parentType, mixin)$ {
 
   $if(! base.parentType)$def basis: V$endif$
 >>
@@ -68,7 +68,7 @@ withPrefix(name) ::= "S$name$"
 concreteClassDef(base) ::= <<$_concreteClassDef(base.name, withPrefix(base.name))$>>
 
 _concreteClassDef(name, prefixedName) ::= <<
-trait $prefixedName$ extends $name$ with Trait$name$[$prefixedName$] { self =>
+trait $prefixedName$$paramedTypes(base.tpe.params)$ extends $genType(base.tpe)$ with Trait$name$[$prefixedName$$typeVar(base.tpe)$] { self =>
   def basis = self
 
 $({$base.name$_concreteBody})()$
@@ -82,7 +82,6 @@ companionObjectDef(base) ::= <<$_companionObjectDef(base.name, withPrefix(base.n
 _companionObjectDef(name, prefixedName) ::= <<
 object $prefixedName$ {
 
-  $constructors()$
 
   $if(base.isA.TextView)$$textViewConstructor(...)$$endif$
 
@@ -167,11 +166,21 @@ $base.constructors:constructor(); separator="\n\n"$
 
 // method
 
-genType(t) ::= <%
-$t.name$
+typeVar(t, erased = false) ::= <%
 $if(first(t.params).name && ! t.isVar)$
-[$(names(t.params))$]
+[
+  $if(erased)$
+    _
+  $else$
+    $(names(t.params))$
+  $endif$
+]
 $endif$
+%>
+
+genType(t, erased = false) ::= <%
+$t.name$
+$typeVar(t, erased)$
 %>
 
 argTypes(types) ::= <%
