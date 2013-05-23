@@ -321,7 +321,7 @@ object AndroidClassExtractor {
 
     val constructors = cls.getConstructors
                         .map(toScalaConstructor)
-                        .filter(c => name != "HeaderViewListAdapter")
+                        .filter(c => name != "HeaderViewListAdapter") /* TODO Access android.widget.ListView.FixedViewInfo */
                         .toSeq
 
     val isA = getHierarchy(cls).toSet
