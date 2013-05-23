@@ -74,72 +74,98 @@ import android.opengl._
 import language.implicitConversions
 
 
+private[scaloid] trait ConstantsSupport {
+  // android:inputType constants for TextView
+
+  import android.text.InputType._
+
+  val NONE = 0
+  val TEXT = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_NORMAL
+  val TEXT_CAP_CHARACTERS = TYPE_TEXT_FLAG_CAP_CHARACTERS
+  val TEXT_CAP_WORDS = TYPE_TEXT_FLAG_CAP_WORDS
+  val TEXT_CAP_SENTENCES = TYPE_TEXT_FLAG_CAP_SENTENCES
+  val TEXT_AUTO_CORRECT = TYPE_TEXT_FLAG_AUTO_CORRECT
+  val TEXT_AUTO_COMPLETE = TYPE_TEXT_FLAG_AUTO_COMPLETE
+  val TEXT_MULTI_LINE = TYPE_TEXT_FLAG_MULTI_LINE
+  val TEXT_IME_MULTI_LINE = TYPE_TEXT_FLAG_IME_MULTI_LINE
+  val TEXT_NO_SUGGESTIONS = TYPE_TEXT_FLAG_NO_SUGGESTIONS
+  val TEXT_URI = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_URI
+  val TEXT_EMAIL_ADDRESS = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+  val TEXT_EMAIL_SUBJECT = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_EMAIL_SUBJECT
+  val TEXT_SHORT_MESSAGE = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_SHORT_MESSAGE
+  val TEXT_LONG_MESSAGE = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_LONG_MESSAGE
+  val TEXT_PERSON_NAME = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PERSON_NAME
+  val TEXT_POSTAL_ADDRESS = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_POSTAL_ADDRESS
+  val TEXT_PASSWORD = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PASSWORD
+  // TODO: write more (http://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType)
+}
+
 trait WidgetImplicits {
-  @inline implicit def view2RichView[V <: View](view: V) = new RichView[V](view)
+  @inline implicit def view2RichView[V <: android.view.View](view: V) = new RichView[V](view)
 
-  @inline implicit def surfaceView2RichSurfaceView[V <: SurfaceView](surfaceView: V) = new RichSurfaceView[V](surfaceView)
+  @inline implicit def surfaceView2RichSurfaceView[V <: android.view.SurfaceView](surfaceView: V) = new RichSurfaceView[V](surfaceView)
 
-  @inline implicit def viewStub2RichViewStub[V <: ViewStub](viewStub: V) = new RichViewStub[V](viewStub)
+  @inline implicit def viewStub2RichViewStub[V <: android.view.ViewStub](viewStub: V) = new RichViewStub[V](viewStub)
 
-  @inline implicit def popupWindow2RichPopupWindow[V <: PopupWindow](popupWindow: V) = new RichPopupWindow[V](popupWindow)
-  @inline implicit def arrayAdapter2RichArrayAdapter[V <: ArrayAdapter](arrayAdapter: V) = new RichArrayAdapter[V](arrayAdapter)
-  @inline implicit def absoluteLayout2RichAbsoluteLayout[V <: AbsoluteLayout](absoluteLayout: V) = new RichAbsoluteLayout[V](absoluteLayout)
-  @inline implicit def imageButton2RichImageButton[V <: ImageButton](imageButton: V) = new RichImageButton[V](imageButton)
-  @inline implicit def listView2RichListView[V <: ListView](listView: V) = new RichListView[V](listView)
-  @inline implicit def editText2RichEditText[V <: EditText](editText: V) = new RichEditText[V](editText)
-  @inline implicit def imageView2RichImageView[V <: ImageView](imageView: V) = new RichImageView[V](imageView)
-  @inline implicit def analogClock2RichAnalogClock[V <: AnalogClock](analogClock: V) = new RichAnalogClock[V](analogClock)
-  @inline implicit def multiAutoCompleteTextView2RichMultiAutoCompleteTextView[V <: MultiAutoCompleteTextView](multiAutoCompleteTextView: V) = new RichMultiAutoCompleteTextView[V](multiAutoCompleteTextView)
-  @inline implicit def datePicker2RichDatePicker[V <: DatePicker](datePicker: V) = new RichDatePicker[V](datePicker)
-  @inline implicit def tableLayout2RichTableLayout[V <: TableLayout](tableLayout: V) = new RichTableLayout[V](tableLayout)
-  @inline implicit def tabHost2RichTabHost[V <: TabHost](tabHost: V) = new RichTabHost[V](tabHost)
-  @inline implicit def radioGroup2RichRadioGroup[V <: RadioGroup](radioGroup: V) = new RichRadioGroup[V](radioGroup)
-  @inline implicit def ratingBar2RichRatingBar[V <: RatingBar](ratingBar: V) = new RichRatingBar[V](ratingBar)
-  @inline implicit def simpleExpandableListAdapter2RichSimpleExpandableListAdapter[V <: SimpleExpandableListAdapter](simpleExpandableListAdapter: V) = new RichSimpleExpandableListAdapter[V](simpleExpandableListAdapter)
-  @inline implicit def spinner2RichSpinner[V <: Spinner](spinner: V) = new RichSpinner[V](spinner)
-  @inline implicit def alphabetIndexer2RichAlphabetIndexer[V <: AlphabetIndexer](alphabetIndexer: V) = new RichAlphabetIndexer[V](alphabetIndexer)
-  @inline implicit def gridView2RichGridView[V <: GridView](gridView: V) = new RichGridView[V](gridView)
-  @inline implicit def relativeLayout2RichRelativeLayout[V <: RelativeLayout](relativeLayout: V) = new RichRelativeLayout[V](relativeLayout)
-  @inline implicit def chronometer2RichChronometer[V <: Chronometer](chronometer: V) = new RichChronometer[V](chronometer)
-  @inline implicit def checkedTextView2RichCheckedTextView[V <: CheckedTextView](checkedTextView: V) = new RichCheckedTextView[V](checkedTextView)
-  @inline implicit def twoLineListItem2RichTwoLineListItem[V <: TwoLineListItem](twoLineListItem: V) = new RichTwoLineListItem[V](twoLineListItem)
-  @inline implicit def headerViewListAdapter2RichHeaderViewListAdapter[V <: HeaderViewListAdapter](headerViewListAdapter: V) = new RichHeaderViewListAdapter[V](headerViewListAdapter)
-  @inline implicit def imageSwitcher2RichImageSwitcher[V <: ImageSwitcher](imageSwitcher: V) = new RichImageSwitcher[V](imageSwitcher)
-  @inline implicit def timePicker2RichTimePicker[V <: TimePicker](timePicker: V) = new RichTimePicker[V](timePicker)
-  @inline implicit def expandableListView2RichExpandableListView[V <: ExpandableListView](expandableListView: V) = new RichExpandableListView[V](expandableListView)
-  @inline implicit def seekBar2RichSeekBar[V <: SeekBar](seekBar: V) = new RichSeekBar[V](seekBar)
-  @inline implicit def toast2RichToast[V <: Toast](toast: V) = new RichToast[V](toast)
-  @inline implicit def zoomButtonsController2RichZoomButtonsController[V <: ZoomButtonsController](zoomButtonsController: V) = new RichZoomButtonsController[V](zoomButtonsController)
-  @inline implicit def viewAnimator2RichViewAnimator[V <: ViewAnimator](viewAnimator: V) = new RichViewAnimator[V](viewAnimator)
-  @inline implicit def slidingDrawer2RichSlidingDrawer[V <: SlidingDrawer](slidingDrawer: V) = new RichSlidingDrawer[V](slidingDrawer)
-  @inline implicit def textSwitcher2RichTextSwitcher[V <: TextSwitcher](textSwitcher: V) = new RichTextSwitcher[V](textSwitcher)
-  @inline implicit def linearLayout2RichLinearLayout[V <: LinearLayout](linearLayout: V) = new RichLinearLayout[V](linearLayout)
-  @inline implicit def zoomControls2RichZoomControls[V <: ZoomControls](zoomControls: V) = new RichZoomControls[V](zoomControls)
-  @inline implicit def dialerFilter2RichDialerFilter[V <: DialerFilter](dialerFilter: V) = new RichDialerFilter[V](dialerFilter)
-  @inline implicit def radioButton2RichRadioButton[V <: RadioButton](radioButton: V) = new RichRadioButton[V](radioButton)
-  @inline implicit def quickContactBadge2RichQuickContactBadge[V <: QuickContactBadge](quickContactBadge: V) = new RichQuickContactBadge[V](quickContactBadge)
-  @inline implicit def digitalClock2RichDigitalClock[V <: DigitalClock](digitalClock: V) = new RichDigitalClock[V](digitalClock)
-  @inline implicit def toggleButton2RichToggleButton[V <: ToggleButton](toggleButton: V) = new RichToggleButton[V](toggleButton)
-  @inline implicit def button2RichButton[V <: Button](button: V) = new RichButton[V](button)
-  @inline implicit def checkBox2RichCheckBox[V <: CheckBox](checkBox: V) = new RichCheckBox[V](checkBox)
-  @inline implicit def mediaController2RichMediaController[V <: MediaController](mediaController: V) = new RichMediaController[V](mediaController)
-  @inline implicit def tableRow2RichTableRow[V <: TableRow](tableRow: V) = new RichTableRow[V](tableRow)
-  @inline implicit def tabWidget2RichTabWidget[V <: TabWidget](tabWidget: V) = new RichTabWidget[V](tabWidget)
-  @inline implicit def videoView2RichVideoView[V <: VideoView](videoView: V) = new RichVideoView[V](videoView)
-  @inline implicit def horizontalScrollView2RichHorizontalScrollView[V <: HorizontalScrollView](horizontalScrollView: V) = new RichHorizontalScrollView[V](horizontalScrollView)
-  @inline implicit def progressBar2RichProgressBar[V <: ProgressBar](progressBar: V) = new RichProgressBar[V](progressBar)
-  @inline implicit def scrollView2RichScrollView[V <: ScrollView](scrollView: V) = new RichScrollView[V](scrollView)
-  @inline implicit def simpleCursorAdapter2RichSimpleCursorAdapter[V <: SimpleCursorAdapter](simpleCursorAdapter: V) = new RichSimpleCursorAdapter[V](simpleCursorAdapter)
-  @inline implicit def viewSwitcher2RichViewSwitcher[V <: ViewSwitcher](viewSwitcher: V) = new RichViewSwitcher[V](viewSwitcher)
-  @inline implicit def zoomButton2RichZoomButton[V <: ZoomButton](zoomButton: V) = new RichZoomButton[V](zoomButton)
-  @inline implicit def gallery2RichGallery[V <: Gallery](gallery: V) = new RichGallery[V](gallery)
-  @inline implicit def frameLayout2RichFrameLayout[V <: FrameLayout](frameLayout: V) = new RichFrameLayout[V](frameLayout)
-  @inline implicit def textView2RichTextView[V <: TextView](textView: V) = new RichTextView[V](textView)
-  @inline implicit def viewFlipper2RichViewFlipper[V <: ViewFlipper](viewFlipper: V) = new RichViewFlipper[V](viewFlipper)
-  @inline implicit def scroller2RichScroller[V <: Scroller](scroller: V) = new RichScroller[V](scroller)
-  @inline implicit def simpleAdapter2RichSimpleAdapter[V <: SimpleAdapter](simpleAdapter: V) = new RichSimpleAdapter[V](simpleAdapter)
-  @inline implicit def autoCompleteTextView2RichAutoCompleteTextView[V <: AutoCompleteTextView](autoCompleteTextView: V) = new RichAutoCompleteTextView[V](autoCompleteTextView)
-  @inline implicit def remoteViews2RichRemoteViews[V <: RemoteViews](remoteViews: V) = new RichRemoteViews[V](remoteViews)
+  @inline implicit def popupWindow2RichPopupWindow[V <: android.widget.PopupWindow](popupWindow: V) = new RichPopupWindow[V](popupWindow)
+  @inline implicit def arrayAdapter2RichArrayAdapter[V <: android.widget.ArrayAdapter[_]](arrayAdapter: V) = new RichArrayAdapter[V](arrayAdapter)
+  @inline implicit def absoluteLayout2RichAbsoluteLayout[V <: android.widget.AbsoluteLayout](absoluteLayout: V) = new RichAbsoluteLayout[V](absoluteLayout)
+  @inline implicit def imageButton2RichImageButton[V <: android.widget.ImageButton](imageButton: V) = new RichImageButton[V](imageButton)
+  @inline implicit def listView2RichListView[V <: android.widget.ListView](listView: V) = new RichListView[V](listView)
+  @inline implicit def editText2RichEditText[V <: android.widget.EditText](editText: V) = new RichEditText[V](editText)
+  @inline implicit def imageView2RichImageView[V <: android.widget.ImageView](imageView: V) = new RichImageView[V](imageView)
+  @inline implicit def analogClock2RichAnalogClock[V <: android.widget.AnalogClock](analogClock: V) = new RichAnalogClock[V](analogClock)
+  @inline implicit def multiAutoCompleteTextView2RichMultiAutoCompleteTextView[V <: android.widget.MultiAutoCompleteTextView](multiAutoCompleteTextView: V) = new RichMultiAutoCompleteTextView[V](multiAutoCompleteTextView)
+  @inline implicit def datePicker2RichDatePicker[V <: android.widget.DatePicker](datePicker: V) = new RichDatePicker[V](datePicker)
+  @inline implicit def tableLayout2RichTableLayout[V <: android.widget.TableLayout](tableLayout: V) = new RichTableLayout[V](tableLayout)
+  @inline implicit def tabHost2RichTabHost[V <: android.widget.TabHost](tabHost: V) = new RichTabHost[V](tabHost)
+  @inline implicit def radioGroup2RichRadioGroup[V <: android.widget.RadioGroup](radioGroup: V) = new RichRadioGroup[V](radioGroup)
+  @inline implicit def ratingBar2RichRatingBar[V <: android.widget.RatingBar](ratingBar: V) = new RichRatingBar[V](ratingBar)
+  @inline implicit def simpleExpandableListAdapter2RichSimpleExpandableListAdapter[V <: android.widget.SimpleExpandableListAdapter](simpleExpandableListAdapter: V) = new RichSimpleExpandableListAdapter[V](simpleExpandableListAdapter)
+  @inline implicit def spinner2RichSpinner[V <: android.widget.Spinner](spinner: V) = new RichSpinner[V](spinner)
+  @inline implicit def alphabetIndexer2RichAlphabetIndexer[V <: android.widget.AlphabetIndexer](alphabetIndexer: V) = new RichAlphabetIndexer[V](alphabetIndexer)
+  @inline implicit def gridView2RichGridView[V <: android.widget.GridView](gridView: V) = new RichGridView[V](gridView)
+  @inline implicit def relativeLayout2RichRelativeLayout[V <: android.widget.RelativeLayout](relativeLayout: V) = new RichRelativeLayout[V](relativeLayout)
+  @inline implicit def chronometer2RichChronometer[V <: android.widget.Chronometer](chronometer: V) = new RichChronometer[V](chronometer)
+  @inline implicit def checkedTextView2RichCheckedTextView[V <: android.widget.CheckedTextView](checkedTextView: V) = new RichCheckedTextView[V](checkedTextView)
+  @inline implicit def twoLineListItem2RichTwoLineListItem[V <: android.widget.TwoLineListItem](twoLineListItem: V) = new RichTwoLineListItem[V](twoLineListItem)
+  @inline implicit def headerViewListAdapter2RichHeaderViewListAdapter[V <: android.widget.HeaderViewListAdapter](headerViewListAdapter: V) = new RichHeaderViewListAdapter[V](headerViewListAdapter)
+  @inline implicit def imageSwitcher2RichImageSwitcher[V <: android.widget.ImageSwitcher](imageSwitcher: V) = new RichImageSwitcher[V](imageSwitcher)
+  @inline implicit def timePicker2RichTimePicker[V <: android.widget.TimePicker](timePicker: V) = new RichTimePicker[V](timePicker)
+  @inline implicit def expandableListView2RichExpandableListView[V <: android.widget.ExpandableListView](expandableListView: V) = new RichExpandableListView[V](expandableListView)
+  @inline implicit def seekBar2RichSeekBar[V <: android.widget.SeekBar](seekBar: V) = new RichSeekBar[V](seekBar)
+  @inline implicit def toast2RichToast[V <: android.widget.Toast](toast: V) = new RichToast[V](toast)
+  @inline implicit def zoomButtonsController2RichZoomButtonsController[V <: android.widget.ZoomButtonsController](zoomButtonsController: V) = new RichZoomButtonsController[V](zoomButtonsController)
+  @inline implicit def viewAnimator2RichViewAnimator[V <: android.widget.ViewAnimator](viewAnimator: V) = new RichViewAnimator[V](viewAnimator)
+  @inline implicit def slidingDrawer2RichSlidingDrawer[V <: android.widget.SlidingDrawer](slidingDrawer: V) = new RichSlidingDrawer[V](slidingDrawer)
+  @inline implicit def textSwitcher2RichTextSwitcher[V <: android.widget.TextSwitcher](textSwitcher: V) = new RichTextSwitcher[V](textSwitcher)
+  @inline implicit def linearLayout2RichLinearLayout[V <: android.widget.LinearLayout](linearLayout: V) = new RichLinearLayout[V](linearLayout)
+  @inline implicit def zoomControls2RichZoomControls[V <: android.widget.ZoomControls](zoomControls: V) = new RichZoomControls[V](zoomControls)
+  @inline implicit def dialerFilter2RichDialerFilter[V <: android.widget.DialerFilter](dialerFilter: V) = new RichDialerFilter[V](dialerFilter)
+  @inline implicit def radioButton2RichRadioButton[V <: android.widget.RadioButton](radioButton: V) = new RichRadioButton[V](radioButton)
+  @inline implicit def quickContactBadge2RichQuickContactBadge[V <: android.widget.QuickContactBadge](quickContactBadge: V) = new RichQuickContactBadge[V](quickContactBadge)
+  @inline implicit def digitalClock2RichDigitalClock[V <: android.widget.DigitalClock](digitalClock: V) = new RichDigitalClock[V](digitalClock)
+  @inline implicit def toggleButton2RichToggleButton[V <: android.widget.ToggleButton](toggleButton: V) = new RichToggleButton[V](toggleButton)
+  @inline implicit def button2RichButton[V <: android.widget.Button](button: V) = new RichButton[V](button)
+  @inline implicit def checkBox2RichCheckBox[V <: android.widget.CheckBox](checkBox: V) = new RichCheckBox[V](checkBox)
+  @inline implicit def mediaController2RichMediaController[V <: android.widget.MediaController](mediaController: V) = new RichMediaController[V](mediaController)
+  @inline implicit def tableRow2RichTableRow[V <: android.widget.TableRow](tableRow: V) = new RichTableRow[V](tableRow)
+  @inline implicit def tabWidget2RichTabWidget[V <: android.widget.TabWidget](tabWidget: V) = new RichTabWidget[V](tabWidget)
+  @inline implicit def videoView2RichVideoView[V <: android.widget.VideoView](videoView: V) = new RichVideoView[V](videoView)
+  @inline implicit def horizontalScrollView2RichHorizontalScrollView[V <: android.widget.HorizontalScrollView](horizontalScrollView: V) = new RichHorizontalScrollView[V](horizontalScrollView)
+  @inline implicit def progressBar2RichProgressBar[V <: android.widget.ProgressBar](progressBar: V) = new RichProgressBar[V](progressBar)
+  @inline implicit def scrollView2RichScrollView[V <: android.widget.ScrollView](scrollView: V) = new RichScrollView[V](scrollView)
+  @inline implicit def simpleCursorAdapter2RichSimpleCursorAdapter[V <: android.widget.SimpleCursorAdapter](simpleCursorAdapter: V) = new RichSimpleCursorAdapter[V](simpleCursorAdapter)
+  @inline implicit def viewSwitcher2RichViewSwitcher[V <: android.widget.ViewSwitcher](viewSwitcher: V) = new RichViewSwitcher[V](viewSwitcher)
+  @inline implicit def zoomButton2RichZoomButton[V <: android.widget.ZoomButton](zoomButton: V) = new RichZoomButton[V](zoomButton)
+  @inline implicit def gallery2RichGallery[V <: android.widget.Gallery](gallery: V) = new RichGallery[V](gallery)
+  @inline implicit def frameLayout2RichFrameLayout[V <: android.widget.FrameLayout](frameLayout: V) = new RichFrameLayout[V](frameLayout)
+  @inline implicit def textView2RichTextView[V <: android.widget.TextView](textView: V) = new RichTextView[V](textView)
+  @inline implicit def viewFlipper2RichViewFlipper[V <: android.widget.ViewFlipper](viewFlipper: V) = new RichViewFlipper[V](viewFlipper)
+  @inline implicit def scroller2RichScroller[V <: android.widget.Scroller](scroller: V) = new RichScroller[V](scroller)
+  @inline implicit def simpleAdapter2RichSimpleAdapter[V <: android.widget.SimpleAdapter](simpleAdapter: V) = new RichSimpleAdapter[V](simpleAdapter)
+  @inline implicit def autoCompleteTextView2RichAutoCompleteTextView[V <: android.widget.AutoCompleteTextView](autoCompleteTextView: V) = new RichAutoCompleteTextView[V](autoCompleteTextView)
+  @inline implicit def remoteViews2RichRemoteViews[V <: android.widget.RemoteViews](remoteViews: V) = new RichRemoteViews[V](remoteViews)
 
 }
 
@@ -147,12 +173,11 @@ object WidgetImplicits extends WidgetImplicits
 
 import WidgetImplicits._
 
-class RichView[V <: View](val basis: V) extends TraitView[V]
+class RichView[V <: android.view.View](val basis: V) extends TraitView[V]
 
 trait TraitView[V <: android.view.View] extends ConstantsSupport {
 
   def basis: V
-
   def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
 
   def uniqueId(implicit activity: Activity): Int = {
@@ -193,7 +218,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
 
   @noEquivalentGetterExists
   @inline def padding: Int = 0
-
   @inline def animation = basis.getAnimation
   @inline def animation  (p: android.view.animation.Animation) =            animation_=  (p)
   @inline def animation_=(p: android.view.animation.Animation) = { basis.setAnimation    (p); basis }
@@ -573,9 +597,254 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   }
 }
 
-class RichTextView[V <: TextView](val basis: V) extends TraitTextView[V]
+class SView(implicit context: Context, parentVGroup: TraitViewGroup[_] = null)
+    extends View(context) with TraitView[SView] {
+  def basis = this
+  override val parentViewGroup = parentVGroup
+
+
+}
+
+object SView {
+
+  def apply[LP <: ViewGroupLayoutParams[_, SView]]()
+      (implicit context: Context, defaultLayoutParam: (SView) => LP): SView = {
+    val v = (new SView)
+    v.<<.parent.+=(v)
+    v
+  }
+
+}
+
+
+trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
+
+
+  implicit val pagentVG = this
+
+  def applyStyle(v: View): View = {
+    var viw = v
+    if (parentViewGroup != null) viw = parentViewGroup.applyStyle(viw)
+    styles.foreach { st =>
+      if (st.isDefinedAt(viw)) viw = st(viw)
+    }
+    viw
+  }
+
+  def +=(v: View) = {
+    var viw = v
+    viw = applyStyle(viw)
+    basis.addView(viw)
+    basis
+  }
+
+  val styles = new ArrayBuffer[View PartialFunction View]
+
+  def style(stl: View PartialFunction View) = {
+    styles += stl
+    basis
+  }
+  @inline def addStatesFromChildren  (p: Boolean) =            addStatesFromChildren_=  (p)
+  @inline def addStatesFromChildren_=(p: Boolean) = { basis.setAddStatesFromChildren    (p); basis }
+
+  @inline def alwaysDrawnWithCacheEnabled = basis.isAlwaysDrawnWithCacheEnabled
+  @inline def alwaysDrawnWithCacheEnabled  (p: Boolean) =            alwaysDrawnWithCacheEnabled_=  (p)
+  @inline def alwaysDrawnWithCacheEnabled_=(p: Boolean) = { basis.setAlwaysDrawnWithCacheEnabled    (p); basis }
+  @inline def  enableAlwaysDrawnWithCache               = { basis.setAlwaysDrawnWithCacheEnabled(true ); basis }
+  @inline def disableAlwaysDrawnWithCache               = { basis.setAlwaysDrawnWithCacheEnabled(false); basis }
+
+  @inline def animationCacheEnabled = basis.isAnimationCacheEnabled
+  @inline def animationCacheEnabled  (p: Boolean) =            animationCacheEnabled_=  (p)
+  @inline def animationCacheEnabled_=(p: Boolean) = { basis.setAnimationCacheEnabled    (p); basis }
+  @inline def  enableAnimationCache               = { basis.setAnimationCacheEnabled(true ); basis }
+  @inline def disableAnimationCache               = { basis.setAnimationCacheEnabled(false); basis }
+
+  @inline def childCount = basis.getChildCount
+
+  @noEquivalentGetterExists
+  @inline def clipChildren(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'clipChildren'")
+  @inline def clipChildren  (p: Boolean) =            clipChildren_=  (p)
+  @inline def clipChildren_=(p: Boolean) = { basis.setClipChildren    (p); basis }
+
+  @noEquivalentGetterExists
+  @inline def clipToPadding(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'clipToPadding'")
+  @inline def clipToPadding  (p: Boolean) =            clipToPadding_=  (p)
+  @inline def clipToPadding_=(p: Boolean) = { basis.setClipToPadding    (p); basis }
+
+  @inline def descendantFocusability = basis.getDescendantFocusability
+  @inline def descendantFocusability  (p: Int) =            descendantFocusability_=  (p)
+  @inline def descendantFocusability_=(p: Int) = { basis.setDescendantFocusability    (p); basis }
+
+  @inline def focusedChild = basis.getFocusedChild
+
+  @inline def layoutAnimation = basis.getLayoutAnimation
+  @inline def layoutAnimation  (p: android.view.animation.LayoutAnimationController) =            layoutAnimation_=  (p)
+  @inline def layoutAnimation_=(p: android.view.animation.LayoutAnimationController) = { basis.setLayoutAnimation    (p); basis }
+
+  @inline def layoutAnimationListener = basis.getLayoutAnimationListener
+  @inline def layoutAnimationListener  (p: android.view.animation.Animation.AnimationListener) =            layoutAnimationListener_=  (p)
+  @inline def layoutAnimationListener_=(p: android.view.animation.Animation.AnimationListener) = { basis.setLayoutAnimationListener    (p); basis }
+
+  @noEquivalentGetterExists
+  @inline def onHierarchyChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onHierarchyChangeListener'")
+  @inline def onHierarchyChangeListener  (p: android.view.ViewGroup.OnHierarchyChangeListener) =            onHierarchyChangeListener_=  (p)
+  @inline def onHierarchyChangeListener_=(p: android.view.ViewGroup.OnHierarchyChangeListener) = { basis.setOnHierarchyChangeListener    (p); basis }
+
+  @inline def persistentDrawingCache = basis.getPersistentDrawingCache
+  @inline def persistentDrawingCache  (p: Int) =            persistentDrawingCache_=  (p)
+  @inline def persistentDrawingCache_=(p: Int) = { basis.setPersistentDrawingCache    (p); basis }
+
+  @inline def onAnimationEnd(f: android.view.animation.Animation => Unit): V = {
+    basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
+      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
+      def onAnimationEnd(p: android.view.animation.Animation): Unit = { f(p) }
+      def onAnimationRepeat(p: android.view.animation.Animation): Unit = {  }
+    })
+    basis
+  }
+
+  @inline def onAnimationEnd(f: => Unit): V = {
+    basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
+      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
+      def onAnimationEnd(p: android.view.animation.Animation): Unit = { f }
+      def onAnimationRepeat(p: android.view.animation.Animation): Unit = {  }
+    })
+    basis
+  }
+
+  @inline def onAnimationRepeat(f: android.view.animation.Animation => Unit): V = {
+    basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
+      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
+      def onAnimationEnd(p: android.view.animation.Animation): Unit = {  }
+      def onAnimationRepeat(p: android.view.animation.Animation): Unit = { f(p) }
+    })
+    basis
+  }
+
+  @inline def onAnimationRepeat(f: => Unit): V = {
+    basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
+      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
+      def onAnimationEnd(p: android.view.animation.Animation): Unit = {  }
+      def onAnimationRepeat(p: android.view.animation.Animation): Unit = { f }
+    })
+    basis
+  }
+
+  @inline def onAnimationStart(f: android.view.animation.Animation => Unit): V = {
+    basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
+      def onAnimationStart(p: android.view.animation.Animation): Unit = { f(p) }
+      def onAnimationEnd(p: android.view.animation.Animation): Unit = {  }
+      def onAnimationRepeat(p: android.view.animation.Animation): Unit = {  }
+    })
+    basis
+  }
+
+  @inline def onAnimationStart(f: => Unit): V = {
+    basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
+      def onAnimationStart(p: android.view.animation.Animation): Unit = { f }
+      def onAnimationEnd(p: android.view.animation.Animation): Unit = {  }
+      def onAnimationRepeat(p: android.view.animation.Animation): Unit = {  }
+    })
+    basis
+  }
+
+  @inline def onChildViewAdded(f: (android.view.View, android.view.View) => Unit): V = {
+    basis.setOnHierarchyChangeListener(new android.view.ViewGroup.OnHierarchyChangeListener {
+      def onChildViewAdded(p1: android.view.View, p2: android.view.View): Unit = { f(p1, p2) }
+      def onChildViewRemoved(p1: android.view.View, p2: android.view.View): Unit = {  }
+    })
+    basis
+  }
+
+  @inline def onChildViewAdded(f: => Unit): V = {
+    basis.setOnHierarchyChangeListener(new android.view.ViewGroup.OnHierarchyChangeListener {
+      def onChildViewAdded(p1: android.view.View, p2: android.view.View): Unit = { f }
+      def onChildViewRemoved(p1: android.view.View, p2: android.view.View): Unit = {  }
+    })
+    basis
+  }
+
+  @inline def onChildViewRemoved(f: (android.view.View, android.view.View) => Unit): V = {
+    basis.setOnHierarchyChangeListener(new android.view.ViewGroup.OnHierarchyChangeListener {
+      def onChildViewAdded(p1: android.view.View, p2: android.view.View): Unit = {  }
+      def onChildViewRemoved(p1: android.view.View, p2: android.view.View): Unit = { f(p1, p2) }
+    })
+    basis
+  }
+
+  @inline def onChildViewRemoved(f: => Unit): V = {
+    basis.setOnHierarchyChangeListener(new android.view.ViewGroup.OnHierarchyChangeListener {
+      def onChildViewAdded(p1: android.view.View, p2: android.view.View): Unit = {  }
+      def onChildViewRemoved(p1: android.view.View, p2: android.view.View): Unit = { f }
+    })
+    basis
+  }
+}
+
+
+
+trait ViewGroupLayoutParams[LP <: ViewGroupLayoutParams[_,_], V <: View] extends ViewGroup.LayoutParams {
+  def basis: LP
+
+  def fill = {
+    width = ViewGroup.LayoutParams.MATCH_PARENT
+    height = ViewGroup.LayoutParams.MATCH_PARENT
+    basis
+  }
+  def wrap = {
+    width = ViewGroup.LayoutParams.WRAP_CONTENT
+    height = ViewGroup.LayoutParams.WRAP_CONTENT
+    basis
+  }
+
+  def parent : TraitViewGroup[_]
+
+  def >> : V
+}
+
+trait ViewGroupMarginLayoutParams[LP <: ViewGroupMarginLayoutParams[_,_], V <: View] extends ViewGroup.MarginLayoutParams with ViewGroupLayoutParams[LP, V] {
+
+  def marginBottom(size: Int) = {
+    bottomMargin = size
+    basis
+  }
+
+  def marginTop(size: Int) = {
+    topMargin = size
+    basis
+  }
+
+  def marginLeft(size: Int) = {
+    leftMargin = size
+    basis
+  }
+
+  def marginRight(size: Int) = {
+    rightMargin = size
+    basis
+  }
+
+  def margin(size:Int) = {
+    bottomMargin = size
+    topMargin = size
+    leftMargin = size
+    rightMargin = size
+    basis
+  }
+
+  def margin(top:Int, right:Int, bottom:Int, left:Int) = {
+    bottomMargin = bottom
+    topMargin = top
+    leftMargin = left
+    rightMargin = right
+    basis
+  }
+}
+
+class RichTextView[V <: android.widget.TextView](val basis: V) extends TraitTextView[V]
 
 trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
+
 
 
   @inline def autoLinkMask = basis.getAutoLinkMask
@@ -937,6 +1206,7 @@ class STextView(implicit context: Context, parentVGroup: TraitViewGroup[_] = nul
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object STextView {
@@ -959,6 +1229,7 @@ object STextView {
 
 
 trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView[V] {
+
 
 
   @inline def cacheColorHint = basis.getCacheColorHint
@@ -1082,236 +1353,10 @@ trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView
 
 
 
-trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
-
-
-
-  implicit val pagentVG = this
-
-  def applyStyle(v: View): View = {
-    var viw = v
-    if (parentViewGroup != null) viw = parentViewGroup.applyStyle(viw)
-    styles.foreach { st =>
-      if (st.isDefinedAt(viw)) viw = st(viw)
-    }
-    viw
-  }
-
-  def +=(v: View) = {
-    var viw = v
-    viw = applyStyle(viw)
-    basis.addView(viw)
-    basis
-  }
-
-  val styles = new ArrayBuffer[View PartialFunction View]
-
-  def style(stl: View PartialFunction View) = {
-    styles += stl
-    basis
-  }
-
-  @inline def addStatesFromChildren  (p: Boolean) =            addStatesFromChildren_=  (p)
-  @inline def addStatesFromChildren_=(p: Boolean) = { basis.setAddStatesFromChildren    (p); basis }
-
-  @inline def alwaysDrawnWithCacheEnabled = basis.isAlwaysDrawnWithCacheEnabled
-  @inline def alwaysDrawnWithCacheEnabled  (p: Boolean) =            alwaysDrawnWithCacheEnabled_=  (p)
-  @inline def alwaysDrawnWithCacheEnabled_=(p: Boolean) = { basis.setAlwaysDrawnWithCacheEnabled    (p); basis }
-  @inline def  enableAlwaysDrawnWithCache               = { basis.setAlwaysDrawnWithCacheEnabled(true ); basis }
-  @inline def disableAlwaysDrawnWithCache               = { basis.setAlwaysDrawnWithCacheEnabled(false); basis }
-
-  @inline def animationCacheEnabled = basis.isAnimationCacheEnabled
-  @inline def animationCacheEnabled  (p: Boolean) =            animationCacheEnabled_=  (p)
-  @inline def animationCacheEnabled_=(p: Boolean) = { basis.setAnimationCacheEnabled    (p); basis }
-  @inline def  enableAnimationCache               = { basis.setAnimationCacheEnabled(true ); basis }
-  @inline def disableAnimationCache               = { basis.setAnimationCacheEnabled(false); basis }
-
-  @inline def childCount = basis.getChildCount
-
-  @noEquivalentGetterExists
-  @inline def clipChildren(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'clipChildren'")
-  @inline def clipChildren  (p: Boolean) =            clipChildren_=  (p)
-  @inline def clipChildren_=(p: Boolean) = { basis.setClipChildren    (p); basis }
-
-  @noEquivalentGetterExists
-  @inline def clipToPadding(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'clipToPadding'")
-  @inline def clipToPadding  (p: Boolean) =            clipToPadding_=  (p)
-  @inline def clipToPadding_=(p: Boolean) = { basis.setClipToPadding    (p); basis }
-
-  @inline def descendantFocusability = basis.getDescendantFocusability
-  @inline def descendantFocusability  (p: Int) =            descendantFocusability_=  (p)
-  @inline def descendantFocusability_=(p: Int) = { basis.setDescendantFocusability    (p); basis }
-
-  @inline def focusedChild = basis.getFocusedChild
-
-  @inline def layoutAnimation = basis.getLayoutAnimation
-  @inline def layoutAnimation  (p: android.view.animation.LayoutAnimationController) =            layoutAnimation_=  (p)
-  @inline def layoutAnimation_=(p: android.view.animation.LayoutAnimationController) = { basis.setLayoutAnimation    (p); basis }
-
-  @inline def layoutAnimationListener = basis.getLayoutAnimationListener
-  @inline def layoutAnimationListener  (p: android.view.animation.Animation.AnimationListener) =            layoutAnimationListener_=  (p)
-  @inline def layoutAnimationListener_=(p: android.view.animation.Animation.AnimationListener) = { basis.setLayoutAnimationListener    (p); basis }
-
-  @noEquivalentGetterExists
-  @inline def onHierarchyChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onHierarchyChangeListener'")
-  @inline def onHierarchyChangeListener  (p: android.view.ViewGroup.OnHierarchyChangeListener) =            onHierarchyChangeListener_=  (p)
-  @inline def onHierarchyChangeListener_=(p: android.view.ViewGroup.OnHierarchyChangeListener) = { basis.setOnHierarchyChangeListener    (p); basis }
-
-  @inline def persistentDrawingCache = basis.getPersistentDrawingCache
-  @inline def persistentDrawingCache  (p: Int) =            persistentDrawingCache_=  (p)
-  @inline def persistentDrawingCache_=(p: Int) = { basis.setPersistentDrawingCache    (p); basis }
-
-  @inline def onAnimationEnd(f: android.view.animation.Animation => Unit): V = {
-    basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
-      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
-      def onAnimationEnd(p: android.view.animation.Animation): Unit = { f(p) }
-      def onAnimationRepeat(p: android.view.animation.Animation): Unit = {  }
-    })
-    basis
-  }
-
-  @inline def onAnimationEnd(f: => Unit): V = {
-    basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
-      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
-      def onAnimationEnd(p: android.view.animation.Animation): Unit = { f }
-      def onAnimationRepeat(p: android.view.animation.Animation): Unit = {  }
-    })
-    basis
-  }
-
-  @inline def onAnimationRepeat(f: android.view.animation.Animation => Unit): V = {
-    basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
-      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
-      def onAnimationEnd(p: android.view.animation.Animation): Unit = {  }
-      def onAnimationRepeat(p: android.view.animation.Animation): Unit = { f(p) }
-    })
-    basis
-  }
-
-  @inline def onAnimationRepeat(f: => Unit): V = {
-    basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
-      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
-      def onAnimationEnd(p: android.view.animation.Animation): Unit = {  }
-      def onAnimationRepeat(p: android.view.animation.Animation): Unit = { f }
-    })
-    basis
-  }
-
-  @inline def onAnimationStart(f: android.view.animation.Animation => Unit): V = {
-    basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
-      def onAnimationStart(p: android.view.animation.Animation): Unit = { f(p) }
-      def onAnimationEnd(p: android.view.animation.Animation): Unit = {  }
-      def onAnimationRepeat(p: android.view.animation.Animation): Unit = {  }
-    })
-    basis
-  }
-
-  @inline def onAnimationStart(f: => Unit): V = {
-    basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
-      def onAnimationStart(p: android.view.animation.Animation): Unit = { f }
-      def onAnimationEnd(p: android.view.animation.Animation): Unit = {  }
-      def onAnimationRepeat(p: android.view.animation.Animation): Unit = {  }
-    })
-    basis
-  }
-
-  @inline def onChildViewAdded(f: (android.view.View, android.view.View) => Unit): V = {
-    basis.setOnHierarchyChangeListener(new android.view.ViewGroup.OnHierarchyChangeListener {
-      def onChildViewAdded(p1: android.view.View, p2: android.view.View): Unit = { f(p1, p2) }
-      def onChildViewRemoved(p1: android.view.View, p2: android.view.View): Unit = {  }
-    })
-    basis
-  }
-
-  @inline def onChildViewAdded(f: => Unit): V = {
-    basis.setOnHierarchyChangeListener(new android.view.ViewGroup.OnHierarchyChangeListener {
-      def onChildViewAdded(p1: android.view.View, p2: android.view.View): Unit = { f }
-      def onChildViewRemoved(p1: android.view.View, p2: android.view.View): Unit = {  }
-    })
-    basis
-  }
-
-  @inline def onChildViewRemoved(f: (android.view.View, android.view.View) => Unit): V = {
-    basis.setOnHierarchyChangeListener(new android.view.ViewGroup.OnHierarchyChangeListener {
-      def onChildViewAdded(p1: android.view.View, p2: android.view.View): Unit = {  }
-      def onChildViewRemoved(p1: android.view.View, p2: android.view.View): Unit = { f(p1, p2) }
-    })
-    basis
-  }
-
-  @inline def onChildViewRemoved(f: => Unit): V = {
-    basis.setOnHierarchyChangeListener(new android.view.ViewGroup.OnHierarchyChangeListener {
-      def onChildViewAdded(p1: android.view.View, p2: android.view.View): Unit = {  }
-      def onChildViewRemoved(p1: android.view.View, p2: android.view.View): Unit = { f }
-    })
-    basis
-  }
-}
-
-
-
-trait ViewGroupLayoutParams[LP <: ViewGroupLayoutParams[_,_], V <: View] extends ViewGroup.LayoutParams {
-  def basis: LP
-
-  def fill = {
-    width = ViewGroup.LayoutParams.MATCH_PARENT
-    height = ViewGroup.LayoutParams.MATCH_PARENT
-    basis
-  }
-  def wrap = {
-    width = ViewGroup.LayoutParams.WRAP_CONTENT
-    height = ViewGroup.LayoutParams.WRAP_CONTENT
-    basis
-  }
-
-  def parent : TraitViewGroup[_]
-
-  def >> : V
-}
-
-trait ViewGroupMarginLayoutParams[LP <: ViewGroupMarginLayoutParams[_,_], V <: View] extends ViewGroup.MarginLayoutParams with ViewGroupLayoutParams[LP, V] {
-
-  def marginBottom(size: Int) = {
-    bottomMargin = size
-    basis
-  }
-
-  def marginTop(size: Int) = {
-    topMargin = size
-    basis
-  }
-
-  def marginLeft(size: Int) = {
-    leftMargin = size
-    basis
-  }
-
-  def marginRight(size: Int) = {
-    rightMargin = size
-    basis
-  }
-
-  def margin(size:Int) = {
-    bottomMargin = size
-    topMargin = size
-    leftMargin = size
-    rightMargin = size
-    basis
-  }
-
-  def margin(top:Int, right:Int, bottom:Int, left:Int) = {
-    bottomMargin = bottom
-    topMargin = top
-    leftMargin = left
-    rightMargin = right
-    basis
-  }
-}
-
-
-class RichFrameLayout[V <: FrameLayout](val basis: V) extends TraitFrameLayout[V]
+class RichFrameLayout[V <: android.widget.FrameLayout](val basis: V) extends TraitFrameLayout[V]
 
 trait TraitFrameLayout[V <: android.widget.FrameLayout] extends TraitViewGroup[V] {
+
 
 
   @inline def considerGoneChildrenWhenMeasuring = basis.getConsiderGoneChildrenWhenMeasuring
@@ -1331,11 +1376,11 @@ trait TraitFrameLayout[V <: android.widget.FrameLayout] extends TraitViewGroup[V
   @inline def measureAllChildren_=(p: Boolean) = { basis.setMeasureAllChildren    (p); basis }
 
 }
+
 class SFrameLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null)
     extends FrameLayout(context) with TraitFrameLayout[SFrameLayout] {
   def basis = this
   override val parentViewGroup = parentVGroup
-
 
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
   <<
@@ -1356,13 +1401,24 @@ class SFrameLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = 
     def >> : V = v
 
   }
+}
+
+object SFrameLayout {
+
+  def apply[LP <: ViewGroupLayoutParams[_, SFrameLayout]]()
+      (implicit context: Context, defaultLayoutParam: (SFrameLayout) => LP): SFrameLayout = {
+    val v = (new SFrameLayout)
+    v.<<.parent.+=(v)
+    v
+  }
 
 }
 
 
-class RichRelativeLayout[V <: RelativeLayout](val basis: V) extends TraitRelativeLayout[V]
+class RichRelativeLayout[V <: android.widget.RelativeLayout](val basis: V) extends TraitRelativeLayout[V]
 
 trait TraitRelativeLayout[V <: android.widget.RelativeLayout] extends TraitViewGroup[V] {
+
 
 
   @noEquivalentGetterExists
@@ -1386,11 +1442,11 @@ trait TraitRelativeLayout[V <: android.widget.RelativeLayout] extends TraitViewG
   @inline def verticalGravity_=(p: Int) = { basis.setVerticalGravity    (p); basis }
 
 }
+
 class SRelativeLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null)
     extends RelativeLayout(context) with TraitRelativeLayout[SRelativeLayout] {
   def basis = this
   override val parentViewGroup = parentVGroup
-
 
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
   <<
@@ -1510,13 +1566,24 @@ class SRelativeLayout(implicit context: Context, parentVGroup: TraitViewGroup[_]
     def >> : V = v
 
   }
+}
+
+object SRelativeLayout {
+
+  def apply[LP <: ViewGroupLayoutParams[_, SRelativeLayout]]()
+      (implicit context: Context, defaultLayoutParam: (SRelativeLayout) => LP): SRelativeLayout = {
+    val v = (new SRelativeLayout)
+    v.<<.parent.+=(v)
+    v
+  }
 
 }
 
 
-class RichLinearLayout[V <: LinearLayout](val basis: V) extends TraitLinearLayout[V]
+class RichLinearLayout[V <: android.widget.LinearLayout](val basis: V) extends TraitLinearLayout[V]
 
 trait TraitLinearLayout[V <: android.widget.LinearLayout] extends TraitViewGroup[V] {
+
 
 
   @inline def baselineAligned = basis.isBaselineAligned
@@ -1557,7 +1624,6 @@ class SLinearLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] =
   def basis = this
   override val parentViewGroup = parentVGroup
 
-
   val VERTICAL = LinearLayout.VERTICAL
   val HORIZONTAL = LinearLayout.HORIZONTAL
 
@@ -1584,16 +1650,28 @@ class SLinearLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] =
     def >> : V = v
 
   }
+}
+
+object SLinearLayout {
+
+  def apply[LP <: ViewGroupLayoutParams[_, SLinearLayout]]()
+      (implicit context: Context, defaultLayoutParam: (SLinearLayout) => LP): SLinearLayout = {
+    val v = (new SLinearLayout)
+    v.<<.parent.+=(v)
+    v
+  }
 
 }
+
 
 class SVerticalLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends SLinearLayout {
   orientation = VERTICAL
 }
 
-class RichEditText[V <: EditText](val basis: V) extends TraitEditText[V]
+class RichEditText[V <: android.widget.EditText](val basis: V) extends TraitEditText[V]
 
 trait TraitEditText[V <: android.widget.EditText] extends TraitTextView[V] {
+
 
 
 }
@@ -1602,6 +1680,7 @@ class SEditText(implicit context: Context, parentVGroup: TraitViewGroup[_] = nul
     extends EditText(context) with TraitEditText[SEditText] {
   def basis = this
   override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -1623,9 +1702,10 @@ object SEditText {
 
 }
 
-class RichExtractEditText[V <: ExtractEditText](val basis: V) extends TraitExtractEditText[V]
+class RichExtractEditText[V <: android.inputmethodservice.ExtractEditText](val basis: V) extends TraitExtractEditText[V]
 
 trait TraitExtractEditText[V <: android.inputmethodservice.ExtractEditText] extends TraitEditText[V] {
+
 
 
 }
@@ -1634,6 +1714,7 @@ class SExtractEditText(implicit context: Context, parentVGroup: TraitViewGroup[_
     extends ExtractEditText(context) with TraitExtractEditText[SExtractEditText] {
   def basis = this
   override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -1655,9 +1736,10 @@ object SExtractEditText {
 
 }
 
-class RichAutoCompleteTextView[V <: AutoCompleteTextView](val basis: V) extends TraitAutoCompleteTextView[V]
+class RichAutoCompleteTextView[V <: android.widget.AutoCompleteTextView](val basis: V) extends TraitAutoCompleteTextView[V]
 
 trait TraitAutoCompleteTextView[V <: android.widget.AutoCompleteTextView] extends TraitEditText[V] {
+
 
 
   @inline def adapter = basis.getAdapter
@@ -1781,6 +1863,7 @@ class SAutoCompleteTextView(implicit context: Context, parentVGroup: TraitViewGr
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SAutoCompleteTextView {
@@ -1801,9 +1884,10 @@ object SAutoCompleteTextView {
 
 }
 
-class RichListView[V <: ListView](val basis: V) extends TraitListView[V]
+class RichListView[V <: android.widget.ListView](val basis: V) extends TraitListView[V]
 
 trait TraitListView[V <: android.widget.ListView] extends TraitAbsListView[V] {
+
 
 
   @inline def checkItemIds = basis.getCheckItemIds
@@ -1858,6 +1942,7 @@ class SListView(implicit context: Context, parentVGroup: TraitViewGroup[_] = nul
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SListView {
@@ -1871,9 +1956,10 @@ object SListView {
 
 }
 
-class RichButton[V <: Button](val basis: V) extends TraitButton[V]
+class RichButton[V <: android.widget.Button](val basis: V) extends TraitButton[V]
 
 trait TraitButton[V <: android.widget.Button] extends TraitTextView[V] {
+
 
 
 }
@@ -1882,6 +1968,7 @@ class SButton(implicit context: Context, parentVGroup: TraitViewGroup[_] = null)
     extends Button(context) with TraitButton[SButton] {
   def basis = this
   override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -1919,6 +2006,7 @@ object SButton {
 trait TraitCompoundButton[V <: android.widget.CompoundButton] extends TraitButton[V] {
 
 
+
   @noEquivalentGetterExists
   @inline def buttonDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'buttonDrawable'")
   @inline def buttonDrawable  (p: Int) =            buttonDrawable_=  (p)
@@ -1951,9 +2039,10 @@ trait TraitCompoundButton[V <: android.widget.CompoundButton] extends TraitButto
 }
 
 
-class RichCheckBox[V <: CheckBox](val basis: V) extends TraitCheckBox[V]
+class RichCheckBox[V <: android.widget.CheckBox](val basis: V) extends TraitCheckBox[V]
 
 trait TraitCheckBox[V <: android.widget.CheckBox] extends TraitCompoundButton[V] {
+
 
 
 }
@@ -1962,6 +2051,7 @@ class SCheckBox(implicit context: Context, parentVGroup: TraitViewGroup[_] = nul
     extends CheckBox(context) with TraitCheckBox[SCheckBox] {
   def basis = this
   override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -1996,9 +2086,10 @@ object SCheckBox {
   }
 }
 
-class RichRadioButton[V <: RadioButton](val basis: V) extends TraitRadioButton[V]
+class RichRadioButton[V <: android.widget.RadioButton](val basis: V) extends TraitRadioButton[V]
 
 trait TraitRadioButton[V <: android.widget.RadioButton] extends TraitCompoundButton[V] {
+
 
 
 }
@@ -2007,6 +2098,7 @@ class SRadioButton(implicit context: Context, parentVGroup: TraitViewGroup[_] = 
     extends RadioButton(context) with TraitRadioButton[SRadioButton] {
   def basis = this
   override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -2041,9 +2133,10 @@ object SRadioButton {
   }
 }
 
-class RichToggleButton[V <: ToggleButton](val basis: V) extends TraitToggleButton[V]
+class RichToggleButton[V <: android.widget.ToggleButton](val basis: V) extends TraitToggleButton[V]
 
 trait TraitToggleButton[V <: android.widget.ToggleButton] extends TraitCompoundButton[V] {
+
 
 
   @inline def textOff = basis.getTextOff
@@ -2060,6 +2153,7 @@ class SToggleButton(implicit context: Context, parentVGroup: TraitViewGroup[_] =
     extends ToggleButton(context) with TraitToggleButton[SToggleButton] {
   def basis = this
   override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -2094,9 +2188,10 @@ object SToggleButton {
   }
 }
 
-class RichCheckedTextView[V <: CheckedTextView](val basis: V) extends TraitCheckedTextView[V]
+class RichCheckedTextView[V <: android.widget.CheckedTextView](val basis: V) extends TraitCheckedTextView[V]
 
 trait TraitCheckedTextView[V <: android.widget.CheckedTextView] extends TraitTextView[V] {
+
 
 
   @noEquivalentGetterExists
@@ -2116,6 +2211,7 @@ class SCheckedTextView(implicit context: Context, parentVGroup: TraitViewGroup[_
     extends CheckedTextView(context) with TraitCheckedTextView[SCheckedTextView] {
   def basis = this
   override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -2137,9 +2233,10 @@ object SCheckedTextView {
 
 }
 
-class RichChronometer[V <: Chronometer](val basis: V) extends TraitChronometer[V]
+class RichChronometer[V <: android.widget.Chronometer](val basis: V) extends TraitChronometer[V]
 
 trait TraitChronometer[V <: android.widget.Chronometer] extends TraitTextView[V] {
+
 
 
   @inline def base = basis.getBase
@@ -2174,6 +2271,7 @@ class SChronometer(implicit context: Context, parentVGroup: TraitViewGroup[_] = 
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SChronometer {
@@ -2194,9 +2292,10 @@ object SChronometer {
 
 }
 
-class RichDigitalClock[V <: DigitalClock](val basis: V) extends TraitDigitalClock[V]
+class RichDigitalClock[V <: android.widget.DigitalClock](val basis: V) extends TraitDigitalClock[V]
 
 trait TraitDigitalClock[V <: android.widget.DigitalClock] extends TraitTextView[V] {
+
 
 
 }
@@ -2205,6 +2304,7 @@ class SDigitalClock(implicit context: Context, parentVGroup: TraitViewGroup[_] =
     extends DigitalClock(context) with TraitDigitalClock[SDigitalClock] {
   def basis = this
   override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -2226,9 +2326,10 @@ object SDigitalClock {
 
 }
 
-class RichKeyboardView[V <: KeyboardView](val basis: V) extends TraitKeyboardView[V]
+class RichKeyboardView[V <: android.inputmethodservice.KeyboardView](val basis: V) extends TraitKeyboardView[V]
 
 trait TraitKeyboardView[V <: android.inputmethodservice.KeyboardView] extends TraitView[V] {
+
 
 
   @inline def keyboard = basis.getKeyboard
@@ -2440,9 +2541,10 @@ trait TraitKeyboardView[V <: android.inputmethodservice.KeyboardView] extends Tr
     basis
   }
 }
-class RichImageView[V <: ImageView](val basis: V) extends TraitImageView[V]
+class RichImageView[V <: android.widget.ImageView](val basis: V) extends TraitImageView[V]
 
 trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
+
 
 
   @noEquivalentGetterExists
@@ -2507,6 +2609,7 @@ class SImageView(implicit context: Context, parentVGroup: TraitViewGroup[_] = nu
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SImageView {
@@ -2520,9 +2623,10 @@ object SImageView {
 
 }
 
-class RichImageButton[V <: ImageButton](val basis: V) extends TraitImageButton[V]
+class RichImageButton[V <: android.widget.ImageButton](val basis: V) extends TraitImageButton[V]
 
 trait TraitImageButton[V <: android.widget.ImageButton] extends TraitImageView[V] {
+
 
 
 }
@@ -2531,6 +2635,7 @@ class SImageButton(implicit context: Context, parentVGroup: TraitViewGroup[_] = 
     extends ImageButton(context) with TraitImageButton[SImageButton] {
   def basis = this
   override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -2545,9 +2650,10 @@ object SImageButton {
 
 }
 
-class RichQuickContactBadge[V <: QuickContactBadge](val basis: V) extends TraitQuickContactBadge[V]
+class RichQuickContactBadge[V <: android.widget.QuickContactBadge](val basis: V) extends TraitQuickContactBadge[V]
 
 trait TraitQuickContactBadge[V <: android.widget.QuickContactBadge] extends TraitImageView[V] {
+
 
 
   @noEquivalentGetterExists
@@ -2567,6 +2673,7 @@ class SQuickContactBadge(implicit context: Context, parentVGroup: TraitViewGroup
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SQuickContactBadge {
@@ -2580,9 +2687,10 @@ object SQuickContactBadge {
 
 }
 
-class RichZoomButton[V <: ZoomButton](val basis: V) extends TraitZoomButton[V]
+class RichZoomButton[V <: android.widget.ZoomButton](val basis: V) extends TraitZoomButton[V]
 
 trait TraitZoomButton[V <: android.widget.ZoomButton] extends TraitImageButton[V] {
+
 
 
   @noEquivalentGetterExists
@@ -2597,6 +2705,7 @@ class SZoomButton(implicit context: Context, parentVGroup: TraitViewGroup[_] = n
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SZoomButton {
@@ -2610,9 +2719,10 @@ object SZoomButton {
 
 }
 
-class RichProgressBar[V <: ProgressBar](val basis: V) extends TraitProgressBar[V]
+class RichProgressBar[V <: android.widget.ProgressBar](val basis: V) extends TraitProgressBar[V]
 
 trait TraitProgressBar[V <: android.widget.ProgressBar] extends TraitView[V] {
+
 
 
   @inline def indeterminate = basis.isIndeterminate
@@ -2650,6 +2760,7 @@ class SProgressBar(implicit context: Context, parentVGroup: TraitViewGroup[_] = 
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SProgressBar {
@@ -2663,9 +2774,10 @@ object SProgressBar {
 
 }
 
-class RichAnalogClock[V <: AnalogClock](val basis: V) extends TraitAnalogClock[V]
+class RichAnalogClock[V <: android.widget.AnalogClock](val basis: V) extends TraitAnalogClock[V]
 
 trait TraitAnalogClock[V <: android.widget.AnalogClock] extends TraitView[V] {
+
 
 
 }
@@ -2674,6 +2786,7 @@ class SAnalogClock(implicit context: Context, parentVGroup: TraitViewGroup[_] = 
     extends AnalogClock(context) with TraitAnalogClock[SAnalogClock] {
   def basis = this
   override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -2688,9 +2801,10 @@ object SAnalogClock {
 
 }
 
-class RichSurfaceView[V <: SurfaceView](val basis: V) extends TraitSurfaceView[V]
+class RichSurfaceView[V <: android.view.SurfaceView](val basis: V) extends TraitSurfaceView[V]
 
 trait TraitSurfaceView[V <: android.view.SurfaceView] extends TraitView[V] {
+
 
 
   @noEquivalentGetterExists
@@ -2713,6 +2827,7 @@ class SSurfaceView(implicit context: Context, parentVGroup: TraitViewGroup[_] = 
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SSurfaceView {
@@ -2726,9 +2841,10 @@ object SSurfaceView {
 
 }
 
-class RichGLSurfaceView[V <: GLSurfaceView](val basis: V) extends TraitGLSurfaceView[V]
+class RichGLSurfaceView[V <: android.opengl.GLSurfaceView](val basis: V) extends TraitGLSurfaceView[V]
 
 trait TraitGLSurfaceView[V <: android.opengl.GLSurfaceView] extends TraitSurfaceView[V] {
+
 
 
   @noEquivalentGetterExists
@@ -2778,6 +2894,7 @@ class SGLSurfaceView(implicit context: Context, parentVGroup: TraitViewGroup[_] 
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SGLSurfaceView {
@@ -2791,9 +2908,10 @@ object SGLSurfaceView {
 
 }
 
-class RichVideoView[V <: VideoView](val basis: V) extends TraitVideoView[V]
+class RichVideoView[V <: android.widget.VideoView](val basis: V) extends TraitVideoView[V]
 
 trait TraitVideoView[V <: android.widget.VideoView] extends TraitSurfaceView[V] {
+
 
 
   @inline def bufferPercentage = basis.getBufferPercentage
@@ -2882,6 +3000,7 @@ class SVideoView(implicit context: Context, parentVGroup: TraitViewGroup[_] = nu
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SVideoView {
@@ -2895,9 +3014,10 @@ object SVideoView {
 
 }
 
-class RichViewStub[V <: ViewStub](val basis: V) extends TraitViewStub[V]
+class RichViewStub[V <: android.view.ViewStub](val basis: V) extends TraitViewStub[V]
 
 trait TraitViewStub[V <: android.view.ViewStub] extends TraitView[V] {
+
 
 
   @inline def inflatedId = basis.getInflatedId
@@ -2929,9 +3049,10 @@ trait TraitViewStub[V <: android.view.ViewStub] extends TraitView[V] {
 }
 
 
-class RichGridView[V <: GridView](val basis: V) extends TraitGridView[V]
+class RichGridView[V <: android.widget.GridView](val basis: V) extends TraitGridView[V]
 
 trait TraitGridView[V <: android.widget.GridView] extends TraitAbsListView[V] {
+
 
 
   @noEquivalentGetterExists
@@ -2970,6 +3091,7 @@ class SGridView(implicit context: Context, parentVGroup: TraitViewGroup[_] = nul
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SGridView {
@@ -2983,9 +3105,10 @@ object SGridView {
 
 }
 
-class RichExpandableListView[V <: ExpandableListView](val basis: V) extends TraitExpandableListView[V]
+class RichExpandableListView[V <: android.widget.ExpandableListView](val basis: V) extends TraitExpandableListView[V]
 
 trait TraitExpandableListView[V <: android.widget.ExpandableListView] extends TraitListView[V] {
+
 
 
   @noEquivalentGetterExists
@@ -3097,6 +3220,7 @@ class SExpandableListView(implicit context: Context, parentVGroup: TraitViewGrou
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SExpandableListView {
@@ -3110,7 +3234,34 @@ object SExpandableListView {
 
 }
 
+trait TraitBaseAdapter[V <: android.widget.BaseAdapter] {
+
+  def basis: V
+
+  @inline def empty = basis.isEmpty
+
+  @inline def viewTypeCount = basis.getViewTypeCount
+
+
+}
+
+
+trait TraitBaseExpandableListAdapter[V <: android.widget.BaseExpandableListAdapter] {
+
+  def basis: V
+
+  @inline def childTypeCount = basis.getChildTypeCount
+
+  @inline def empty = basis.isEmpty
+
+  @inline def groupTypeCount = basis.getGroupTypeCount
+
+
+}
+
+
 trait TraitAdapterView[V <: android.widget.AdapterView[_]] extends TraitViewGroup[V] {
+
 
 
   @inline def adapter = basis.getAdapter
@@ -3211,12 +3362,14 @@ trait TraitAdapterView[V <: android.widget.AdapterView[_]] extends TraitViewGrou
 trait TraitAbsSpinner[V <: android.widget.AbsSpinner] extends TraitAdapterView[V] {
 
 
+
 }
 
 
-class RichSpinner[V <: Spinner](val basis: V) extends TraitSpinner[V]
+class RichSpinner[V <: android.widget.Spinner](val basis: V) extends TraitSpinner[V]
 
 trait TraitSpinner[V <: android.widget.Spinner] extends TraitAbsSpinner[V] {
+
 
 
   @inline def prompt = basis.getPrompt
@@ -3235,6 +3388,7 @@ class SSpinner(implicit context: Context, parentVGroup: TraitViewGroup[_] = null
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SSpinner {
@@ -3248,9 +3402,10 @@ object SSpinner {
 
 }
 
-class RichGallery[V <: Gallery](val basis: V) extends TraitGallery[V]
+class RichGallery[V <: android.widget.Gallery](val basis: V) extends TraitGallery[V]
 
 trait TraitGallery[V <: android.widget.Gallery] extends TraitAbsSpinner[V] {
+
 
 
   @noEquivalentGetterExists
@@ -3285,6 +3440,7 @@ class SGallery(implicit context: Context, parentVGroup: TraitViewGroup[_] = null
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SGallery {
@@ -3299,6 +3455,7 @@ object SGallery {
 }
 
 trait TraitAbsSeekBar[V <: android.widget.AbsSeekBar] extends TraitProgressBar[V] {
+
 
 
   @inline def keyProgressIncrement = basis.getKeyProgressIncrement
@@ -3317,9 +3474,10 @@ trait TraitAbsSeekBar[V <: android.widget.AbsSeekBar] extends TraitProgressBar[V
 }
 
 
-class RichSeekBar[V <: SeekBar](val basis: V) extends TraitSeekBar[V]
+class RichSeekBar[V <: android.widget.SeekBar](val basis: V) extends TraitSeekBar[V]
 
 trait TraitSeekBar[V <: android.widget.SeekBar] extends TraitAbsSeekBar[V] {
+
 
 
   @noEquivalentGetterExists
@@ -3387,6 +3545,7 @@ class SSeekBar(implicit context: Context, parentVGroup: TraitViewGroup[_] = null
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SSeekBar {
@@ -3400,9 +3559,10 @@ object SSeekBar {
 
 }
 
-class RichRatingBar[V <: RatingBar](val basis: V) extends TraitRatingBar[V]
+class RichRatingBar[V <: android.widget.RatingBar](val basis: V) extends TraitRatingBar[V]
 
 trait TraitRatingBar[V <: android.widget.RatingBar] extends TraitAbsSeekBar[V] {
+
 
 
   @inline def indicator = basis.isIndicator
@@ -3446,6 +3606,7 @@ class SRatingBar(implicit context: Context, parentVGroup: TraitViewGroup[_] = nu
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SRatingBar {
@@ -3459,9 +3620,10 @@ object SRatingBar {
 
 }
 
-class RichAppWidgetHostView[V <: AppWidgetHostView](val basis: V) extends TraitAppWidgetHostView[V]
+class RichAppWidgetHostView[V <: android.appwidget.AppWidgetHostView](val basis: V) extends TraitAppWidgetHostView[V]
 
 trait TraitAppWidgetHostView[V <: android.appwidget.AppWidgetHostView] extends TraitFrameLayout[V] {
+
 
 
   @inline def appWidgetId = basis.getAppWidgetId
@@ -3476,6 +3638,7 @@ class SAppWidgetHostView(implicit context: Context, parentVGroup: TraitViewGroup
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SAppWidgetHostView {
@@ -3489,9 +3652,10 @@ object SAppWidgetHostView {
 
 }
 
-class RichHorizontalScrollView[V <: HorizontalScrollView](val basis: V) extends TraitHorizontalScrollView[V]
+class RichHorizontalScrollView[V <: android.widget.HorizontalScrollView](val basis: V) extends TraitHorizontalScrollView[V]
 
 trait TraitHorizontalScrollView[V <: android.widget.HorizontalScrollView] extends TraitFrameLayout[V] {
+
 
 
   @inline def fillViewport = basis.isFillViewport
@@ -3513,6 +3677,7 @@ class SHorizontalScrollView(implicit context: Context, parentVGroup: TraitViewGr
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SHorizontalScrollView {
@@ -3526,9 +3691,10 @@ object SHorizontalScrollView {
 
 }
 
-class RichMediaController[V <: MediaController](val basis: V) extends TraitMediaController[V]
+class RichMediaController[V <: android.widget.MediaController](val basis: V) extends TraitMediaController[V]
 
 trait TraitMediaController[V <: android.widget.MediaController] extends TraitFrameLayout[V] {
+
 
 
   @noEquivalentGetterExists
@@ -3551,6 +3717,7 @@ class SMediaController(implicit context: Context, parentVGroup: TraitViewGroup[_
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SMediaController {
@@ -3564,9 +3731,10 @@ object SMediaController {
 
 }
 
-class RichScrollView[V <: ScrollView](val basis: V) extends TraitScrollView[V]
+class RichScrollView[V <: android.widget.ScrollView](val basis: V) extends TraitScrollView[V]
 
 trait TraitScrollView[V <: android.widget.ScrollView] extends TraitFrameLayout[V] {
+
 
 
   @inline def fillViewport = basis.isFillViewport
@@ -3588,6 +3756,7 @@ class SScrollView(implicit context: Context, parentVGroup: TraitViewGroup[_] = n
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SScrollView {
@@ -3601,9 +3770,10 @@ object SScrollView {
 
 }
 
-class RichTabHost[V <: TabHost](val basis: V) extends TraitTabHost[V]
+class RichTabHost[V <: android.widget.TabHost](val basis: V) extends TraitTabHost[V]
 
 trait TraitTabHost[V <: android.widget.TabHost] extends TraitFrameLayout[V] {
+
 
 
   @inline def currentTab = basis.getCurrentTab
@@ -3655,6 +3825,7 @@ class STabHost(implicit context: Context, parentVGroup: TraitViewGroup[_] = null
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object STabHost {
@@ -3668,9 +3839,10 @@ object STabHost {
 
 }
 
-class RichTimePicker[V <: TimePicker](val basis: V) extends TraitTimePicker[V]
+class RichTimePicker[V <: android.widget.TimePicker](val basis: V) extends TraitTimePicker[V]
 
 trait TraitTimePicker[V <: android.widget.TimePicker] extends TraitFrameLayout[V] {
+
 
 
   @inline def `24HourView` = basis.is24HourView
@@ -3710,6 +3882,7 @@ class STimePicker(implicit context: Context, parentVGroup: TraitViewGroup[_] = n
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object STimePicker {
@@ -3723,9 +3896,10 @@ object STimePicker {
 
 }
 
-class RichViewAnimator[V <: ViewAnimator](val basis: V) extends TraitViewAnimator[V]
+class RichViewAnimator[V <: android.widget.ViewAnimator](val basis: V) extends TraitViewAnimator[V]
 
 trait TraitViewAnimator[V <: android.widget.ViewAnimator] extends TraitFrameLayout[V] {
+
 
 
   @noEquivalentGetterExists
@@ -3754,6 +3928,7 @@ class SViewAnimator(implicit context: Context, parentVGroup: TraitViewGroup[_] =
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SViewAnimator {
@@ -3767,9 +3942,10 @@ object SViewAnimator {
 
 }
 
-class RichViewFlipper[V <: ViewFlipper](val basis: V) extends TraitViewFlipper[V]
+class RichViewFlipper[V <: android.widget.ViewFlipper](val basis: V) extends TraitViewFlipper[V]
 
 trait TraitViewFlipper[V <: android.widget.ViewFlipper] extends TraitViewAnimator[V] {
+
 
 
   @inline def autoStart = basis.isAutoStart
@@ -3791,6 +3967,7 @@ class SViewFlipper(implicit context: Context, parentVGroup: TraitViewGroup[_] = 
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SViewFlipper {
@@ -3804,9 +3981,10 @@ object SViewFlipper {
 
 }
 
-class RichViewSwitcher[V <: ViewSwitcher](val basis: V) extends TraitViewSwitcher[V]
+class RichViewSwitcher[V <: android.widget.ViewSwitcher](val basis: V) extends TraitViewSwitcher[V]
 
 trait TraitViewSwitcher[V <: android.widget.ViewSwitcher] extends TraitViewAnimator[V] {
+
 
 
   @noEquivalentGetterExists
@@ -3824,6 +4002,7 @@ class SViewSwitcher(implicit context: Context, parentVGroup: TraitViewGroup[_] =
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SViewSwitcher {
@@ -3837,9 +4016,10 @@ object SViewSwitcher {
 
 }
 
-class RichImageSwitcher[V <: ImageSwitcher](val basis: V) extends TraitImageSwitcher[V]
+class RichImageSwitcher[V <: android.widget.ImageSwitcher](val basis: V) extends TraitImageSwitcher[V]
 
 trait TraitImageSwitcher[V <: android.widget.ImageSwitcher] extends TraitViewSwitcher[V] {
+
 
 
   @noEquivalentGetterExists
@@ -3864,6 +4044,7 @@ class SImageSwitcher(implicit context: Context, parentVGroup: TraitViewGroup[_] 
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SImageSwitcher {
@@ -3877,9 +4058,10 @@ object SImageSwitcher {
 
 }
 
-class RichTextSwitcher[V <: TextSwitcher](val basis: V) extends TraitTextSwitcher[V]
+class RichTextSwitcher[V <: android.widget.TextSwitcher](val basis: V) extends TraitTextSwitcher[V]
 
 trait TraitTextSwitcher[V <: android.widget.TextSwitcher] extends TraitViewSwitcher[V] {
+
 
 
   @noEquivalentGetterExists
@@ -3899,6 +4081,7 @@ class STextSwitcher(implicit context: Context, parentVGroup: TraitViewGroup[_] =
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object STextSwitcher {
@@ -3912,9 +4095,10 @@ object STextSwitcher {
 
 }
 
-class RichDatePicker[V <: DatePicker](val basis: V) extends TraitDatePicker[V]
+class RichDatePicker[V <: android.widget.DatePicker](val basis: V) extends TraitDatePicker[V]
 
 trait TraitDatePicker[V <: android.widget.DatePicker] extends TraitFrameLayout[V] {
+
 
 
   @inline def dayOfMonth = basis.getDayOfMonth
@@ -3931,6 +4115,7 @@ class SDatePicker(implicit context: Context, parentVGroup: TraitViewGroup[_] = n
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SDatePicker {
@@ -3944,9 +4129,10 @@ object SDatePicker {
 
 }
 
-class RichGestureOverlayView[V <: GestureOverlayView](val basis: V) extends TraitGestureOverlayView[V]
+class RichGestureOverlayView[V <: android.gesture.GestureOverlayView](val basis: V) extends TraitGestureOverlayView[V]
 
 trait TraitGestureOverlayView[V <: android.gesture.GestureOverlayView] extends TraitFrameLayout[V] {
+
 
 
   @inline def currentStroke = basis.getCurrentStroke
@@ -4143,6 +4329,7 @@ class SGestureOverlayView(implicit context: Context, parentVGroup: TraitViewGrou
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SGestureOverlayView {
@@ -4156,11 +4343,12 @@ object SGestureOverlayView {
 
 }
 
-class RichPopupWindow[V <: PopupWindow](val basis: V) extends TraitPopupWindow[V]
+class RichPopupWindow[V <: android.widget.PopupWindow](val basis: V) extends TraitPopupWindow[V]
 
 trait TraitPopupWindow[V <: android.widget.PopupWindow] {
 
   def basis: V
+
   @inline def aboveAnchor = basis.isAboveAnchor
 
   @inline def animationStyle = basis.getAnimationStyle
@@ -4237,6 +4425,7 @@ class SPopupWindow(implicit context: Context)
     extends PopupWindow(context) with TraitPopupWindow[SPopupWindow] {
   def basis = this
 
+
 }
 
 object SPopupWindow {
@@ -4245,9 +4434,10 @@ object SPopupWindow {
 
 }
 
-class RichArrayAdapter[V <: ArrayAdapter](val basis: V) extends TraitArrayAdapter[V]
+class RichArrayAdapter[V <: android.widget.ArrayAdapter[_]](val basis: V) extends TraitArrayAdapter[V]
 
 trait TraitArrayAdapter[V <: android.widget.ArrayAdapter[_]] extends TraitBaseAdapter[V] {
+
 
 
   @inline def context = basis.getContext
@@ -4270,6 +4460,7 @@ class SArrayAdapter(implicit context: Context)
     extends ArrayAdapter(context) with TraitArrayAdapter[SArrayAdapter] {
   def basis = this
 
+
 }
 
 object SArrayAdapter {
@@ -4278,9 +4469,10 @@ object SArrayAdapter {
 
 }
 
-class RichAbsoluteLayout[V <: AbsoluteLayout](val basis: V) extends TraitAbsoluteLayout[V]
+class RichAbsoluteLayout[V <: android.widget.AbsoluteLayout](val basis: V) extends TraitAbsoluteLayout[V]
 
 trait TraitAbsoluteLayout[V <: android.widget.AbsoluteLayout] extends TraitViewGroup[V] {
+
 
 
 }
@@ -4289,6 +4481,7 @@ class SAbsoluteLayout(implicit context: Context, parentVGroup: TraitViewGroup[_]
     extends AbsoluteLayout(context) with TraitAbsoluteLayout[SAbsoluteLayout] {
   def basis = this
   override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -4303,9 +4496,10 @@ object SAbsoluteLayout {
 
 }
 
-class RichMultiAutoCompleteTextView[V <: MultiAutoCompleteTextView](val basis: V) extends TraitMultiAutoCompleteTextView[V]
+class RichMultiAutoCompleteTextView[V <: android.widget.MultiAutoCompleteTextView](val basis: V) extends TraitMultiAutoCompleteTextView[V]
 
 trait TraitMultiAutoCompleteTextView[V <: android.widget.MultiAutoCompleteTextView] extends TraitAutoCompleteTextView[V] {
+
 
 
   @noEquivalentGetterExists
@@ -4319,6 +4513,7 @@ class SMultiAutoCompleteTextView(implicit context: Context, parentVGroup: TraitV
     extends MultiAutoCompleteTextView(context) with TraitMultiAutoCompleteTextView[SMultiAutoCompleteTextView] {
   def basis = this
   override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -4340,9 +4535,10 @@ object SMultiAutoCompleteTextView {
 
 }
 
-class RichTableLayout[V <: TableLayout](val basis: V) extends TraitTableLayout[V]
+class RichTableLayout[V <: android.widget.TableLayout](val basis: V) extends TraitTableLayout[V]
 
 trait TraitTableLayout[V <: android.widget.TableLayout] extends TraitLinearLayout[V] {
+
 
 
   @inline def shrinkAllColumns = basis.isShrinkAllColumns
@@ -4360,6 +4556,7 @@ class STableLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = 
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object STableLayout {
@@ -4373,9 +4570,10 @@ object STableLayout {
 
 }
 
-class RichRadioGroup[V <: RadioGroup](val basis: V) extends TraitRadioGroup[V]
+class RichRadioGroup[V <: android.widget.RadioGroup](val basis: V) extends TraitRadioGroup[V]
 
 trait TraitRadioGroup[V <: android.widget.RadioGroup] extends TraitLinearLayout[V] {
+
 
 
   @inline def checkedRadioButtonId = basis.getCheckedRadioButtonId
@@ -4405,6 +4603,7 @@ class SRadioGroup(implicit context: Context, parentVGroup: TraitViewGroup[_] = n
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SRadioGroup {
@@ -4418,9 +4617,10 @@ object SRadioGroup {
 
 }
 
-class RichSimpleExpandableListAdapter[V <: SimpleExpandableListAdapter](val basis: V) extends TraitSimpleExpandableListAdapter[V]
+class RichSimpleExpandableListAdapter[V <: android.widget.SimpleExpandableListAdapter](val basis: V) extends TraitSimpleExpandableListAdapter[V]
 
 trait TraitSimpleExpandableListAdapter[V <: android.widget.SimpleExpandableListAdapter] extends TraitBaseExpandableListAdapter[V] {
+
 
 
 }
@@ -4428,6 +4628,7 @@ trait TraitSimpleExpandableListAdapter[V <: android.widget.SimpleExpandableListA
 class SSimpleExpandableListAdapter(implicit context: Context)
     extends SimpleExpandableListAdapter(context) with TraitSimpleExpandableListAdapter[SSimpleExpandableListAdapter] {
   def basis = this
+
 
 }
 
@@ -4437,9 +4638,10 @@ object SSimpleExpandableListAdapter {
 
 }
 
-class RichAlphabetIndexer[V <: AlphabetIndexer](val basis: V) extends TraitAlphabetIndexer[V]
+class RichAlphabetIndexer[V <: android.widget.AlphabetIndexer](val basis: V) extends TraitAlphabetIndexer[V]
 
 trait TraitAlphabetIndexer[V <: android.widget.AlphabetIndexer] extends TraitDataSetObserver[V] {
+
 
 
   @noEquivalentGetterExists
@@ -4456,6 +4658,7 @@ class SAlphabetIndexer(implicit context: Context)
     extends AlphabetIndexer(context) with TraitAlphabetIndexer[SAlphabetIndexer] {
   def basis = this
 
+
 }
 
 object SAlphabetIndexer {
@@ -4464,9 +4667,10 @@ object SAlphabetIndexer {
 
 }
 
-class RichTwoLineListItem[V <: TwoLineListItem](val basis: V) extends TraitTwoLineListItem[V]
+class RichTwoLineListItem[V <: android.widget.TwoLineListItem](val basis: V) extends TraitTwoLineListItem[V]
 
 trait TraitTwoLineListItem[V <: android.widget.TwoLineListItem] extends TraitRelativeLayout[V] {
+
 
 
   @inline def text1 = basis.getText1
@@ -4481,6 +4685,7 @@ class STwoLineListItem(implicit context: Context, parentVGroup: TraitViewGroup[_
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object STwoLineListItem {
@@ -4494,11 +4699,12 @@ object STwoLineListItem {
 
 }
 
-class RichHeaderViewListAdapter[V <: HeaderViewListAdapter](val basis: V) extends TraitHeaderViewListAdapter[V]
+class RichHeaderViewListAdapter[V <: android.widget.HeaderViewListAdapter](val basis: V) extends TraitHeaderViewListAdapter[V]
 
 trait TraitHeaderViewListAdapter[V <: android.widget.HeaderViewListAdapter] {
 
   def basis: V
+
   @inline def count = basis.getCount
 
   @inline def empty = basis.isEmpty
@@ -4520,6 +4726,7 @@ class SHeaderViewListAdapter(implicit context: Context)
     extends HeaderViewListAdapter(context) with TraitHeaderViewListAdapter[SHeaderViewListAdapter] {
   def basis = this
 
+
 }
 
 object SHeaderViewListAdapter {
@@ -4528,11 +4735,12 @@ object SHeaderViewListAdapter {
 
 }
 
-class RichToast[V <: Toast](val basis: V) extends TraitToast[V]
+class RichToast[V <: android.widget.Toast](val basis: V) extends TraitToast[V]
 
 trait TraitToast[V <: android.widget.Toast] {
 
   def basis: V
+
   @inline def XOffset = basis.getXOffset
 
   @inline def YOffset = basis.getYOffset
@@ -4564,6 +4772,7 @@ class SToast(implicit context: Context)
     extends Toast(context) with TraitToast[SToast] {
   def basis = this
 
+
 }
 
 object SToast {
@@ -4572,11 +4781,12 @@ object SToast {
 
 }
 
-class RichZoomButtonsController[V <: ZoomButtonsController](val basis: V) extends TraitZoomButtonsController[V]
+class RichZoomButtonsController[V <: android.widget.ZoomButtonsController](val basis: V) extends TraitZoomButtonsController[V]
 
 trait TraitZoomButtonsController[V <: android.widget.ZoomButtonsController] {
 
   def basis: V
+
   @inline def autoDismissed = basis.isAutoDismissed
   @inline def autoDismissed  (p: Boolean) =            autoDismissed_=  (p)
   @inline def autoDismissed_=(p: Boolean) = { basis.setAutoDismissed    (p); basis }
@@ -4655,6 +4865,7 @@ class SZoomButtonsController(implicit context: Context)
     extends ZoomButtonsController(context) with TraitZoomButtonsController[SZoomButtonsController] {
   def basis = this
 
+
 }
 
 object SZoomButtonsController {
@@ -4663,9 +4874,10 @@ object SZoomButtonsController {
 
 }
 
-class RichSlidingDrawer[V <: SlidingDrawer](val basis: V) extends TraitSlidingDrawer[V]
+class RichSlidingDrawer[V <: android.widget.SlidingDrawer](val basis: V) extends TraitSlidingDrawer[V]
 
 trait TraitSlidingDrawer[V <: android.widget.SlidingDrawer] extends TraitViewGroup[V] {
+
 
 
   @inline def content = basis.getContent
@@ -4735,6 +4947,7 @@ class SSlidingDrawer(implicit context: Context, parentVGroup: TraitViewGroup[_] 
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SSlidingDrawer {
@@ -4748,9 +4961,10 @@ object SSlidingDrawer {
 
 }
 
-class RichZoomControls[V <: ZoomControls](val basis: V) extends TraitZoomControls[V]
+class RichZoomControls[V <: android.widget.ZoomControls](val basis: V) extends TraitZoomControls[V]
 
 trait TraitZoomControls[V <: android.widget.ZoomControls] extends TraitLinearLayout[V] {
+
 
 
   @noEquivalentGetterExists
@@ -4782,28 +4996,28 @@ trait TraitZoomControls[V <: android.widget.ZoomControls] extends TraitLinearLay
   @inline def zoomSpeed  (p: Long) =            zoomSpeed_=  (p)
   @inline def zoomSpeed_=(p: Long) = { basis.setZoomSpeed    (p); basis }
 
-  @inline def onClick(f: android.view.View => Unit): V = {
+  @inline def onZoomInClick(f: android.view.View => Unit): V = {
     basis.setOnZoomInClickListener(new android.view.View.OnClickListener {
       def onClick(p: android.view.View): Unit = { f(p) }
     })
     basis
   }
 
-  @inline def onClick(f: => Unit): V = {
+  @inline def onZoomInClick(f: => Unit): V = {
     basis.setOnZoomInClickListener(new android.view.View.OnClickListener {
       def onClick(p: android.view.View): Unit = { f }
     })
     basis
   }
 
-  @inline def onClick(f: android.view.View => Unit): V = {
+  @inline def onZoomOutClick(f: android.view.View => Unit): V = {
     basis.setOnZoomOutClickListener(new android.view.View.OnClickListener {
       def onClick(p: android.view.View): Unit = { f(p) }
     })
     basis
   }
 
-  @inline def onClick(f: => Unit): V = {
+  @inline def onZoomOutClick(f: => Unit): V = {
     basis.setOnZoomOutClickListener(new android.view.View.OnClickListener {
       def onClick(p: android.view.View): Unit = { f }
     })
@@ -4815,6 +5029,7 @@ class SZoomControls(implicit context: Context, parentVGroup: TraitViewGroup[_] =
     extends ZoomControls(context) with TraitZoomControls[SZoomControls] {
   def basis = this
   override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -4829,9 +5044,10 @@ object SZoomControls {
 
 }
 
-class RichDialerFilter[V <: DialerFilter](val basis: V) extends TraitDialerFilter[V]
+class RichDialerFilter[V <: android.widget.DialerFilter](val basis: V) extends TraitDialerFilter[V]
 
 trait TraitDialerFilter[V <: android.widget.DialerFilter] extends TraitRelativeLayout[V] {
+
 
 
   @inline def digits = basis.getDigits
@@ -4869,6 +5085,7 @@ class SDialerFilter(implicit context: Context, parentVGroup: TraitViewGroup[_] =
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object SDialerFilter {
@@ -4882,9 +5099,17 @@ object SDialerFilter {
 
 }
 
-class RichTableRow[V <: TableRow](val basis: V) extends TraitTableRow[V]
+trait TraitDataSetObserver[V <: android.database.DataSetObserver] {
+
+  def basis: V
+
+}
+
+
+class RichTableRow[V <: android.widget.TableRow](val basis: V) extends TraitTableRow[V]
 
 trait TraitTableRow[V <: android.widget.TableRow] extends TraitLinearLayout[V] {
+
 
 
   @inline def virtualChildCount = basis.getVirtualChildCount
@@ -4896,6 +5121,7 @@ class STableRow(implicit context: Context, parentVGroup: TraitViewGroup[_] = nul
     extends TableRow(context) with TraitTableRow[STableRow] {
   def basis = this
   override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -4910,9 +5136,10 @@ object STableRow {
 
 }
 
-class RichTabWidget[V <: TabWidget](val basis: V) extends TraitTabWidget[V]
+class RichTabWidget[V <: android.widget.TabWidget](val basis: V) extends TraitTabWidget[V]
 
 trait TraitTabWidget[V <: android.widget.TabWidget] extends TraitLinearLayout[V] {
+
 
 
   @noEquivalentGetterExists
@@ -4957,6 +5184,7 @@ class STabWidget(implicit context: Context, parentVGroup: TraitViewGroup[_] = nu
   def basis = this
   override val parentViewGroup = parentVGroup
 
+
 }
 
 object STabWidget {
@@ -4970,9 +5198,42 @@ object STabWidget {
 
 }
 
-class RichSimpleCursorAdapter[V <: SimpleCursorAdapter](val basis: V) extends TraitSimpleCursorAdapter[V]
+trait TraitCursorAdapter[V <: android.widget.CursorAdapter] extends TraitBaseAdapter[V] {
+
+
+
+  @inline def cursor = basis.getCursor
+
+  @inline def filter = basis.getFilter
+
+  @inline def filterQueryProvider = basis.getFilterQueryProvider
+  @inline def filterQueryProvider  (p: android.widget.FilterQueryProvider) =            filterQueryProvider_=  (p)
+  @inline def filterQueryProvider_=(p: android.widget.FilterQueryProvider) = { basis.setFilterQueryProvider    (p); basis }
+
+}
+
+
+trait TraitResourceCursorAdapter[V <: android.widget.ResourceCursorAdapter] extends TraitCursorAdapter[V] {
+
+
+
+  @noEquivalentGetterExists
+  @inline def dropDownViewResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'dropDownViewResource'")
+  @inline def dropDownViewResource  (p: Int) =            dropDownViewResource_=  (p)
+  @inline def dropDownViewResource_=(p: Int) = { basis.setDropDownViewResource    (p); basis }
+
+  @noEquivalentGetterExists
+  @inline def viewResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'viewResource'")
+  @inline def viewResource  (p: Int) =            viewResource_=  (p)
+  @inline def viewResource_=(p: Int) = { basis.setViewResource    (p); basis }
+
+}
+
+
+class RichSimpleCursorAdapter[V <: android.widget.SimpleCursorAdapter](val basis: V) extends TraitSimpleCursorAdapter[V]
 
 trait TraitSimpleCursorAdapter[V <: android.widget.SimpleCursorAdapter] extends TraitResourceCursorAdapter[V] {
+
 
 
   @inline def cursorToStringConverter = basis.getCursorToStringConverter
@@ -4993,6 +5254,7 @@ class SSimpleCursorAdapter(implicit context: Context)
     extends SimpleCursorAdapter(context) with TraitSimpleCursorAdapter[SSimpleCursorAdapter] {
   def basis = this
 
+
 }
 
 object SSimpleCursorAdapter {
@@ -5001,11 +5263,12 @@ object SSimpleCursorAdapter {
 
 }
 
-class RichScroller[V <: Scroller](val basis: V) extends TraitScroller[V]
+class RichScroller[V <: android.widget.Scroller](val basis: V) extends TraitScroller[V]
 
 trait TraitScroller[V <: android.widget.Scroller] {
 
   def basis: V
+
   @inline def currX = basis.getCurrX
 
   @inline def currY = basis.getCurrY
@@ -5033,6 +5296,7 @@ class SScroller(implicit context: Context)
     extends Scroller(context) with TraitScroller[SScroller] {
   def basis = this
 
+
 }
 
 object SScroller {
@@ -5041,9 +5305,10 @@ object SScroller {
 
 }
 
-class RichSimpleAdapter[V <: SimpleAdapter](val basis: V) extends TraitSimpleAdapter[V]
+class RichSimpleAdapter[V <: android.widget.SimpleAdapter](val basis: V) extends TraitSimpleAdapter[V]
 
 trait TraitSimpleAdapter[V <: android.widget.SimpleAdapter] extends TraitBaseAdapter[V] {
+
 
 
   @noEquivalentGetterExists
@@ -5063,6 +5328,7 @@ class SSimpleAdapter(implicit context: Context)
     extends SimpleAdapter(context) with TraitSimpleAdapter[SSimpleAdapter] {
   def basis = this
 
+
 }
 
 object SSimpleAdapter {
@@ -5071,11 +5337,12 @@ object SSimpleAdapter {
 
 }
 
-class RichRemoteViews[V <: RemoteViews](val basis: V) extends TraitRemoteViews[V]
+class RichRemoteViews[V <: android.widget.RemoteViews](val basis: V) extends TraitRemoteViews[V]
 
 trait TraitRemoteViews[V <: android.widget.RemoteViews] {
 
   def basis: V
+
   @inline def layoutId = basis.getLayoutId
 
   @inline def `package` = basis.getPackage
@@ -5086,6 +5353,7 @@ trait TraitRemoteViews[V <: android.widget.RemoteViews] {
 class SRemoteViews(implicit context: Context)
     extends RemoteViews(context) with TraitRemoteViews[SRemoteViews] {
   def basis = this
+
 
 }
 

@@ -5,24 +5,30 @@ import scala.collection.JavaConversions._
 
 class StringTemplateSupport(version: Int, baseGroupFile: File) {
 
-  private def baseGroup = {
-    val g = new STGroupFile(baseGroupFile.getAbsolutePath, '$', '$')
+  private val verDic = mapAsJavaMap(generateVersionRangeDictionary(version))
+
+  private val errorListener = new STErrorListener(){
+    import org.stringtemplate.v4.misc.STMessage
+    override def compileTimeError(msg: STMessage) = msg.cause
+    override def runTimeError(msg: STMessage) = msg.cause
+    override def IOError(msg: STMessage) = msg.cause
+    override def internalError(msg: STMessage) = msg.cause
+  }
+
+  private def initGroup(g: STGroup) = {
     g.registerRenderer(classOf[String], new StringRenderer())
-    g.defineDictionary("ver", mapAsJavaMap(generateVersionRangeDictionary(version)))
-    g.setListener(new STErrorListener(){
-      import org.stringtemplate.v4.misc.STMessage
-      override def compileTimeError(msg: STMessage) = msg.cause
-      override def runTimeError(msg: STMessage) = msg.cause
-      override def IOError(msg: STMessage) = msg.cause
-      override def internalError(msg: STMessage) = msg.cause
-    })
+    g.defineDictionary("ver", verDic)
+    g.setListener(errorListener)
     g
   }
+
+  private def baseGroup = initGroup(new STGroupFile(baseGroupFile.getAbsolutePath, '$', '$'))
 
   private def withCompanionGroup(file: File)(f: STGroup => String) = {
     val g = baseGroup
     Option(new File(file.absolutePath + ".stg")) filter (_.exists) foreach { cf =>
-      g.importTemplates(new STGroupFile(cf.absolutePath, '$', '$'))
+      val cg = initGroup(new STGroupFile(cf.absolutePath, '$', '$'))
+      g.importTemplates(cg)
     }
     f(g)
   }

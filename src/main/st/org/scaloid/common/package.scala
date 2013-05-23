@@ -76,33 +76,6 @@ package object common extends Logger with SystemService with WidgetImplicits {
       }
     }
 
-  trait ConstantsSupport {
-    // android:inputType constants for TextView
-
-    import android.text.InputType._
-
-    val NONE = 0
-    val TEXT = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_NORMAL
-    val TEXT_CAP_CHARACTERS = TYPE_TEXT_FLAG_CAP_CHARACTERS
-    val TEXT_CAP_WORDS = TYPE_TEXT_FLAG_CAP_WORDS
-    val TEXT_CAP_SENTENCES = TYPE_TEXT_FLAG_CAP_SENTENCES
-    val TEXT_AUTO_CORRECT = TYPE_TEXT_FLAG_AUTO_CORRECT
-    val TEXT_AUTO_COMPLETE = TYPE_TEXT_FLAG_AUTO_COMPLETE
-    val TEXT_MULTI_LINE = TYPE_TEXT_FLAG_MULTI_LINE
-    val TEXT_IME_MULTI_LINE = TYPE_TEXT_FLAG_IME_MULTI_LINE
-    val TEXT_NO_SUGGESTIONS = TYPE_TEXT_FLAG_NO_SUGGESTIONS
-    val TEXT_URI = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_URI
-    val TEXT_EMAIL_ADDRESS = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-    val TEXT_EMAIL_SUBJECT = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_EMAIL_SUBJECT
-    val TEXT_SHORT_MESSAGE = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_SHORT_MESSAGE
-    val TEXT_LONG_MESSAGE = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_LONG_MESSAGE
-    val TEXT_PERSON_NAME = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PERSON_NAME
-    val TEXT_POSTAL_ADDRESS = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_POSTAL_ADDRESS
-    val TEXT_PASSWORD = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PASSWORD
-    // TODO: write more (http://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType)
-  }
-
-
   val idSequence = new java.util.concurrent.atomic.AtomicInteger(0)
 
   def getUniqueId(implicit activity:Activity): Int = {
@@ -324,6 +297,7 @@ package object common extends Logger with SystemService with WidgetImplicits {
       }
     }
 
+  /*
   class SArrayAdapter[T <: AnyRef](items: Array[T])(implicit context: Context) extends ArrayAdapter[T](context, android.R.layout.simple_spinner_item, items) {
     def setItem(view: TextView, pos: Int): TextView = {
       getItem(pos) match {
@@ -363,6 +337,7 @@ package object common extends Logger with SystemService with WidgetImplicits {
 	
     def apply[T <: AnyRef](items:Array[T])(implicit context: Context) = new SArrayAdapter(items)	
   }  
+  */
 
   def broadcastReceiver(filter: IntentFilter)(onReceiveBody: (Context, Intent) => Any)(implicit ctx: Context, reg: Registerable) {
     val receiver = new BroadcastReceiver {

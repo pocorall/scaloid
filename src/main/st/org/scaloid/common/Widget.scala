@@ -42,6 +42,32 @@ import android.opengl._
 import language.implicitConversions
 
 
+private[scaloid] trait ConstantsSupport {
+  // android:inputType constants for TextView
+
+  import android.text.InputType._
+
+  val NONE = 0
+  val TEXT = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_NORMAL
+  val TEXT_CAP_CHARACTERS = TYPE_TEXT_FLAG_CAP_CHARACTERS
+  val TEXT_CAP_WORDS = TYPE_TEXT_FLAG_CAP_WORDS
+  val TEXT_CAP_SENTENCES = TYPE_TEXT_FLAG_CAP_SENTENCES
+  val TEXT_AUTO_CORRECT = TYPE_TEXT_FLAG_AUTO_CORRECT
+  val TEXT_AUTO_COMPLETE = TYPE_TEXT_FLAG_AUTO_COMPLETE
+  val TEXT_MULTI_LINE = TYPE_TEXT_FLAG_MULTI_LINE
+  val TEXT_IME_MULTI_LINE = TYPE_TEXT_FLAG_IME_MULTI_LINE
+  val TEXT_NO_SUGGESTIONS = TYPE_TEXT_FLAG_NO_SUGGESTIONS
+  val TEXT_URI = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_URI
+  val TEXT_EMAIL_ADDRESS = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+  val TEXT_EMAIL_SUBJECT = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_EMAIL_SUBJECT
+  val TEXT_SHORT_MESSAGE = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_SHORT_MESSAGE
+  val TEXT_LONG_MESSAGE = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_LONG_MESSAGE
+  val TEXT_PERSON_NAME = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PERSON_NAME
+  val TEXT_POSTAL_ADDRESS = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_POSTAL_ADDRESS
+  val TEXT_PASSWORD = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PASSWORD
+  // TODO: write more (http://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType)
+}
+
 trait WidgetImplicits {
   $implicitConversion(android.view.View)$
   $implicitConversion(android.view.ViewGroup)$
@@ -54,89 +80,9 @@ object WidgetImplicits extends WidgetImplicits
 
 import WidgetImplicits._
 
-$openRichClassDef(base=android.view.View, mixin="ConstantsSupport")$
+$wholeClassDef(base=android.view.View, mixin="ConstantsSupport")$
 
-  def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
-
-  def uniqueId(implicit activity: Activity): Int = {
-    if(basis.getId < 0) {
-      basis.setId(getUniqueId)
-    }
-    basis.getId
-  }
-
-  val FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT
-$if(ver.gte_8)$
-  val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
-$else$
-  val MATCH_PARENT = ViewGroup.LayoutParams.FILL_PARENT
-$endif$
-  val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
-
-  def <<[LP <: ViewGroupLayoutParams[_,_]](implicit defaultLayoutParam: (V) => LP): LP =
-    defaultLayoutParam(basis)
-
-  protected def parentViewGroupIfExists[LP <: ViewGroupLayoutParams[_,_]]
-      (implicit defaultLayoutParam: (V) => LP = (v:V)=> null): TraitViewGroup[_] = {
-    val lp = defaultLayoutParam(basis)
-    if(lp==null) null else lp.parent
-  }
-
-  def <<[LP <: ViewGroupLayoutParams[_,_]](width:Int, height:Int)(implicit defaultLayoutParam: (V) => LP): LP = {
-    val lp = defaultLayoutParam(basis)
-    lp.height = height
-    lp.width = width
-    lp
-  }
-
-  val parentViewGroup: TraitViewGroup[_] = null
-
-  @inline def padding_=(p: Int) = {
-    basis.setPadding(p, p, p, p)
-    basis
-  }
-
-  @inline def padding(p: Int) = padding_=(p)
-
-  @noEquivalentGetterExists
-  @inline def padding: Int = 0
-
-$closeRichClassDef(android.view.View)$
-
-$wholeClassDef(android.widget.TextView)$
-
-$wholeClassDef(android.widget.AbsListView)$
-
-$openRichClassDef(android.view.ViewGroup)$
-
-  implicit val pagentVG = this
-
-  def applyStyle(v: View): View = {
-    var viw = v
-    if (parentViewGroup != null) viw = parentViewGroup.applyStyle(viw)
-    styles.foreach { st =>
-      if (st.isDefinedAt(viw)) viw = st(viw)
-    }
-    viw
-  }
-
-  def +=(v: View) = {
-    var viw = v
-    viw = applyStyle(viw)
-    basis.addView(viw)
-    basis
-  }
-
-  val styles = new ArrayBuffer[View PartialFunction View]
-
-  def style(stl: View PartialFunction View) = {
-    styles += stl
-    basis
-  }
-
-$closeRichClassDef(android.view.ViewGroup)$
-
-
+$wholeClassDef(android.view.ViewGroup)$
 
 trait ViewGroupLayoutParams[LP <: ViewGroupLayoutParams[_,_], V <: View] extends ViewGroup.LayoutParams {
   def basis: LP
@@ -196,190 +142,15 @@ trait ViewGroupMarginLayoutParams[LP <: ViewGroupMarginLayoutParams[_,_], V <: V
   }
 }
 
+$wholeClassDef(android.widget.TextView)$
 
-$richClassDef(android.widget.FrameLayout)$
-$openConcreteClassDef(android.widget.FrameLayout)$
+$wholeClassDef(android.widget.AbsListView)$
 
-  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
-  <<
+$wholeClassDef(android.widget.FrameLayout)$
 
-  class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
+$wholeClassDef(android.widget.RelativeLayout)$
 
-    def basis = this
-
-    v.setLayoutParams(this)
-
-    def Gravity(g: Int) = {
-      gravity = g
-      this
-    }
-
-    def parent = SFrameLayout.this
-
-    def >> : V = v
-
-  }
-
-$closeConcreteClassDef()$
-
-
-$richClassDef(android.widget.RelativeLayout)$
-$openConcreteClassDef(android.widget.RelativeLayout)$
-
-  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
-  <<
-
-  class LayoutParams[V <: View](v: V) extends RelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
-    def basis = this
-
-    v.setLayoutParams(this)
-
-    def Gravity(g: Int) = {
-      gravity = g
-      this
-    }
-
-    def above(otherView: View)(implicit activity: Activity) = {
-      addRule(RelativeLayout.ABOVE, otherView.uniqueId)
-      this
-    }
-
-    def alignBaseline = {
-      addRule(RelativeLayout.ALIGN_BASELINE)
-      this
-    }
-
-    def alignBottom = {
-      addRule(RelativeLayout.ALIGN_BOTTOM)
-      this
-    }
-
-    //def alignEnd = {
-    //  addRule(RelativeLayout.ALIGN_END)
-    //  this
-    //}
-
-    def alignLeft = {
-      addRule(RelativeLayout.ALIGN_LEFT)
-      this
-    }
-
-    def alignParentBottom = {
-      addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
-      this
-    }
-
-    //def alignParentEnd = {
-    //  addRule(RelativeLayout.ALIGN_PARENT_END)
-    //  this
-    //}
-
-    def alignParentLeft = {
-      addRule(RelativeLayout.ALIGN_PARENT_LEFT)
-      this
-    }
-
-    def alignParentRight = {
-      addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-      this
-    }
-
-    //def alignParentStart = {
-    //  addRule(RelativeLayout.ALIGN_PARENT_START)
-    //  this
-    //}
-
-    def alignParentTop = {
-      addRule(RelativeLayout.ALIGN_PARENT_TOP)
-      this
-    }
-
-    def alignRight = {
-      addRule(RelativeLayout.ALIGN_RIGHT)
-      this
-    }
-
-    //def alignStart = {
-    //  addRule(RelativeLayout.ALIGN_START)
-    //  this
-    //}
-
-    def alignTop = {
-      addRule(RelativeLayout.ALIGN_TOP)
-      this
-    }
-
-    def below(otherView: View)(implicit activity: Activity) = {
-      addRule(RelativeLayout.BELOW, otherView.uniqueId)
-      this
-    }
-
-    def leftOf(otherView: View)(implicit activity: Activity) = {
-      addRule(RelativeLayout.LEFT_OF, otherView.uniqueId)
-      this
-    }
-
-    def rightOf(otherView: View)(implicit activity: Activity) = {
-      addRule(RelativeLayout.RIGHT_OF, otherView.uniqueId)
-      this
-    }
-
-    def centerHorizontal = {
-      addRule(RelativeLayout.CENTER_HORIZONTAL)
-      this
-    }
-
-    def centerInParent = {
-      addRule(RelativeLayout.CENTER_IN_PARENT)
-      this
-    }
-
-    def centerVertical = {
-      addRule(RelativeLayout.CENTER_VERTICAL)
-      this
-    }
-
-    def parent = SRelativeLayout.this
-
-    def >> : V = v
-
-  }
-
-$closeConcreteClassDef()$
-
-
-$richClassDef(android.widget.LinearLayout)$
-
-$openConcreteClassDef(android.widget.LinearLayout)$
-
-  val VERTICAL = LinearLayout.VERTICAL
-  val HORIZONTAL = LinearLayout.HORIZONTAL
-
-  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
-  <<
-
-  class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
-
-    def basis = this
-
-    v.setLayoutParams(this)
-
-    def Gravity(g: Int) = {
-      gravity = g
-      this
-    }
-
-    def Weight(w: Float) = {
-      weight = w
-      this
-    }
-    def parent = SLinearLayout.this
-
-    def >> : V = v
-
-  }
-
-$closeConcreteClassDef()$
+$wholeClassDef(android.widget.LinearLayout)$
 
 class SVerticalLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends SLinearLayout {
   orientation = VERTICAL
@@ -410,6 +181,8 @@ $wholeClassDef(android.widget.VideoView)$
 $wholeClassDef(android.view.ViewStub)$
 $wholeClassDef(android.widget.GridView)$
 $wholeClassDef(android.widget.ExpandableListView)$
+$wholeClassDef(android.widget.BaseAdapter)$
+$wholeClassDef(android.widget.BaseExpandableListAdapter)$
 $wholeClassDef(android.widget.AdapterView)$
 $wholeClassDef(android.widget.AbsSpinner)$
 $wholeClassDef(android.widget.Spinner)$
@@ -445,8 +218,11 @@ $wholeClassDef(android.widget.ZoomButtonsController)$
 $wholeClassDef(android.widget.SlidingDrawer)$
 $wholeClassDef(android.widget.ZoomControls)$
 $wholeClassDef(android.widget.DialerFilter)$
+$wholeClassDef(android.database.DataSetObserver)$
 $wholeClassDef(android.widget.TableRow)$
 $wholeClassDef(android.widget.TabWidget)$
+$wholeClassDef(android.widget.CursorAdapter)$
+$wholeClassDef(android.widget.ResourceCursorAdapter)$
 $wholeClassDef(android.widget.SimpleCursorAdapter)$
 $wholeClassDef(android.widget.Scroller)$
 $wholeClassDef(android.widget.SimpleAdapter)$
