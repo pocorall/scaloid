@@ -293,7 +293,6 @@ package object common extends Logger with SystemService with WidgetImplicits {
     }
 
 
-
   }
 
   trait TraitDialogPreference[V <: android.preference.DialogPreference] extends TraitPreference[V] {
@@ -374,7 +373,6 @@ package object common extends Logger with SystemService with WidgetImplicits {
       val v = new EditTextPreference(context) with SEditTextPreference
       v
     }
-
 
 
   }

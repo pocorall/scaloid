@@ -6,6 +6,9 @@ decap(str) ::= <<$str; format="decap"$>>
 name(t) ::= <<$t.name$>>
 names(ts) ::= <<$ts:name(); separator=", "$>>
 
+isEmpty ::= [
+  "" : true
+]
 
 // Implicit 
 
@@ -84,24 +87,47 @@ object $prefixedName$ {
 
   $constructors()$
 
-  $if(base.isA.TextView)$$textViewConstructor(...)$$endif$
-
-  $if(base.isA.Button)$$buttonConstructors(...)$$endif$
+  $customFullConstructors()$
 
 }
 >>
 
-textViewConstructor(base, name, prefixedName) ::= <<
+customConst(kind, sep) ::= <%
+$kind:{ key |
+  $if(base.isA.(key))$
+    $kind.(key); separator=sep$
+  $endif$
+}; separator=sep$
+%>
+
+customConstTypeParams() ::= <<$customConst(ConstTypeParams, ", ")$>>
+ConstTypeParams ::= [
+  "View" : {LP <: ViewGroupLayoutParams[_, $prefixedName$]}
+]
+
+customConstImplicitArgs() ::= <<$customConst(ConstImplicitArgs, ", ")$>>
+ConstImplicitArgs ::= [
+  "View" : {defaultLayoutParam: $prefixedName$ => LP}
+]
+
+customConstImplicitBodies() ::= <<$customConst(ConstImplicitBodies, "\n")$>>
+ConstImplicitBodies ::= [
+  "View" : {v.<<.parent.+=(v)}
+]
+
+customFullConstructors() ::= <<$customConst(FullConstructors, "\n")$>>
+FullConstructors ::= [
+  "TextView" : <<
 def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](txt: CharSequence)
     (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ =  {
   val v = new $name$(context) with $prefixedName$
   v text txt
   v.<<.parent.+=(v)
   v
-}  
->>
+}
+>>,
 
-buttonConstructors(base, name, prefixedName) ::= <<
+  "Button" : <<
 def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](text: CharSequence, onClickListener: (View) => Unit)
     (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ = {
   apply(text, func2ViewOnClickListener(onClickListener))
@@ -116,46 +142,42 @@ def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](text: CharSequence, on
   v
 }
 >>
-
-ConstTypeParams ::= [
-  "View" : {LP <: ViewGroupLayoutParams[_, $prefixedName$]}
 ]
-
-ConstImplicitArgs ::= [
-  "View" : {defaultLayoutParam: $prefixedName$ => LP}
-]
-
-ConstBodies ::= [
-  "View" : {v.<<.parent.+=(v)}
-]
-
 
 constArgs(args) ::= <%
 $args:{ a | $a.name$: $genType(a.tpe)$}; separator=", "$
 %>
 
-constImplicitArgs() ::= <<$_constImplicitArgs(con.implicitArgs, ConstImplicitArgs.(name) )$>>
-_constImplicitArgs(args, customArg) ::= <%
-$if (first(args).name || customArg)$
-(implicit $strip([constArgs(args), customArg]); separator=", "$)
+constImplicitArgs() ::= <<$_constImplicitArgs(con.implicitArgs, customConstImplicitArgs())$>>
+_constImplicitArgs(args, customArgs) ::= <%
+$if (first(args).name || !isEmpty.(customArgs))$
+(implicit $! "placeholder for traling space" !$
+  $if (isEmpty.(customArgs))$
+    $constArgs(args)$
+  $else$
+    $strip([constArgs(args), customArgs]); separator=", "$
+  $endif$
+)
 $endif$
 %>
 
-constTypeParams() ::= <<$_constTypeParams(con.paramedTypes, ConstTypeParams.(name))$>>
-_constTypeParams(pTypes, customType) ::= <%
-$if (first(pTypes).name || customType)$
-[$strip([pTypes:{t | $paramedType(t, true)$}, customType]); separator=", "$]
+constTypeParams() ::= <<$_constTypeParams(con.paramedTypes, strip(customConstTypeParams()))$>>
+_constTypeParams(pTypes, customTypes) ::= <%
+$if (first(pTypes).name || !isEmpty.(customTypes))$
+[
+  $if (isEmpty.(customTypes))$
+    $pTypes:{t | $paramedType(t, true)$}; separator=", "$
+  $else$
+    $strip([pTypes:{t | $paramedType(t, true)$}, customTypes]); separator=", "$
+  $endif$
+]
 $endif$
 %>
-
-constBodies() ::= <<
-$ConstBodies.(name)$
->>
 
 constructor(con) ::= <<
 def apply$constTypeParams()$($constArgs(con.explicitArgs)$)$constImplicitArgs()$: $prefixedName$$typeVar(base.tpe)$ = {
   val v = new $name$$typeVar(base.tpe)$($con.args:{a | $a.name$}; separator=", "$) with $prefixedName$$typeVar(base.tpe)$
-  $constBodies()$
+  $customConstImplicitBodies()$
   v
 }
 >>
