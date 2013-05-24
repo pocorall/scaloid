@@ -2,7 +2,7 @@ import sbt._
 import Keys._
 
 import java.beans.{Introspector, PropertyDescriptor, ParameterDescriptor, IndexedPropertyDescriptor}
-import java.lang.reflect._
+import java.lang.reflect.{Array => JavaArray, _}
 import java.util.jar.JarFile
 import java.net.URI
 import org.reflections._
@@ -12,97 +12,23 @@ import com.google.common.base.Predicates
 import scala.collection.JavaConversions._
 
 
-object AndroidClassExtractor {
+object AndroidClassExtractor extends JavaConversionHelpers {
 
-  def toScalaType(_tpe: Type): ScalaType = {
-    def step(tpe: Type, level: Int): ScalaType = {
-      val nextLevel = level + 1
-
-      if (level > 5)
-        ScalaType("_")
-      else
-        tpe match {
-          case null => throw new Error("Property cannot be null")
-          case t: GenericArrayType =>
-            ScalaType("Array", Seq(step(t.getGenericComponentType, nextLevel)))
-          case t: ParameterizedType =>
-            ScalaType(
-              step(t.getRawType, nextLevel).name,
-              t.getActualTypeArguments.map(step(_, nextLevel)).toSeq
-            )
-          case t: TypeVariable[_] =>
-            ScalaType(t.getName, Nil, bounds = t.getBounds.map(step(_, nextLevel)).toSeq, isVar = true)
-          case t: WildcardType =>
-            val bs = t.getUpperBounds.map(step(_, nextLevel)).toSeq.filter(_.name != "Any")
-            ScalaType("_", Nil, bounds = bs)
-          case t: Class[_] => {
-            if (t.isArray) {
-              ScalaType("Array", Seq(step(t.getComponentType, nextLevel)))
-            } else if (t.isPrimitive) {
-              ScalaType(t.getName match {
-                case "void" => "Unit"
-                case n => n.capitalize
-              })
-            } else if (t == classOf[java.lang.Object]) {
-              ScalaType("Any")
-            } else {
-              ScalaType(
-                t.getName.replace("$", "."),
-                t.getTypeParameters.map(step(_, nextLevel)).toSeq
-              )
-            }
-          }
-          case _ =>
-            throw new Error("Cannot find type of " + tpe.getClass + " ::" + tpe.toString)
-        }
-    }
-    step(_tpe, 0)
-  }
-
-  private def isAbstract(m: Member): Boolean = Modifier.isAbstract(m.getModifiers)
-  private def isAbstract(c: Class[_]): Boolean = Modifier.isAbstract(c.getModifiers)
-  private def isFinal(m: Member): Boolean = Modifier.isFinal(m.getModifiers)
-  private def isFinal(c: Class[_]): Boolean = Modifier.isFinal(c.getModifiers)
-
-  private def isOverride(m: Method): Boolean =
-    m.getDeclaringClass.getSuperclass match {
-      case null => false
-      case c =>
-        getAllMethods(c,
-          withName(m.getName),
-          withParameters(m.getParameterTypes: _*)
-        ).nonEmpty
-    }
-
-  private def methodSignature(m: Method): String = List(
-    m.getName,
-    m.getReturnType.getName,
-    "["+m.getParameterTypes.map(_.getName).toList.mkString(",")+"]"
-  ).mkString(":")
-
-  private def propDescSignature(pdesc: PropertyDescriptor): String = List(
-    pdesc.getName,
-    pdesc.getPropertyType
-  ).mkString(":")
-
-  val sourceJar = {
+  private val sourceJar = {
     val binUrl = getClass.getClassLoader.getResources("android").toList.head.toString
     val binFile = new File(binUrl.split("/|!").tail.dropRight(2).mkString("/", "/", ""))
     val basePath = binFile.getParentFile.getParentFile
-    val srcJar = new JarFile(basePath / "srcs" / (binFile.base +"-sources.jar"))
-    val docJar = new JarFile(basePath / "docs" / (binFile.base +"-javadoc.jar"))
-
-    srcJar
+    new JarFile(basePath / "srcs" / (binFile.base +"-sources.jar"))
   }
 
-  def extractSource(cls: Class[_]) = {
+  private def extractSource(cls: Class[_]) = {
     val fileName = cls.getName.split('$').head.replace(".", "/") + ".java"
     val is = sourceJar.getInputStream(sourceJar.getJarEntry(fileName))
     val bytes = Stream.continually(is.read).takeWhile(_ != -1).map(_.toByte).toArray
     new String(bytes)
   }
 
-  def fixClassParamedType(tpe: ScalaType) =
+  private def fixClassParamedType(tpe: ScalaType) =
     tpe.copy(params = tpe.params.map { t =>
       if (t.isVar && t.bounds.head.name == "Any") {
         t.copy(bounds = Seq(ScalaType("AnyRef")))
@@ -117,7 +43,7 @@ object AndroidClassExtractor {
 
     val fullName = cls.getName
 
-    val name = fullName.split('.').last
+    val name = simpleClassName(fullName)
     val tpe = fixClassParamedType(toScalaType(cls))
     val pkg = fullName.split('.').init.mkString
     val parentType = Option(cls.getGenericSuperclass)
@@ -258,32 +184,16 @@ object AndroidClassExtractor {
 
     def toScalaConstructor(cons: Constructor[_]): ScalaConstructor = {
 
+      val isVarArgs = cons.isVarArgs
+
       def isImplicit(a: Argument) = {
         a.tpe.simpleName == "Context"
-      }
-
-      def arrayNotation(implicit isLast: Boolean) = if (isLast && cons.isVarArgs) "..." else "[]"
-
-      def toTypeStr(t: Type)(implicit isLast: Boolean = false): String = t match {
-        case t: GenericArrayType =>
-          toTypeStr(t.getGenericComponentType) + arrayNotation
-        case t: ParameterizedType =>
-          t.toString.replace("$", ".")
-        case t: WildcardType => "?"
-        case t: Class[_] =>
-          if (t.isArray) {
-            toTypeStr(t.getComponentType) + arrayNotation
-          } else {
-            t.getName.replace("$", ".")
-          }
-        case _ =>
-          t.toString
       }
 
       val javaTypes = cons.getGenericParameterTypes.toList
       val typeStrs = javaTypes.reverse match {
         case Nil => Nil
-        case last :: init => (toTypeStr(last)(true) :: init.map(toTypeStr)).reverse
+        case last :: init => (toTypeStr(last, isVarArgs, true) :: init.map(toTypeStr(_, isVarArgs, false))).reverse
       }
 
       val args = typeStrs match {
@@ -303,7 +213,7 @@ object AndroidClassExtractor {
 
     def getHierarchy(c: Class[_], accu: List[String] = Nil): List[String] =
       if (c == null) accu
-      else getHierarchy(c.getSuperclass, c.getName.split('.').last :: accu)
+      else getHierarchy(c.getSuperclass, simpleClassName(c) :: accu)
 
     val props = Introspector.getBeanInfo(cls).getPropertyDescriptors.toSeq
                   .filter(isValidProperty)
@@ -321,7 +231,6 @@ object AndroidClassExtractor {
 
     val constructors = cls.getConstructors
                         .map(toScalaConstructor)
-                        .filter(c => name != "HeaderViewListAdapter") /* TODO Access android.widget.ListView.FixedViewInfo */
                         .toSeq
 
     val isA = getHierarchy(cls).toSet
@@ -354,3 +263,108 @@ object AndroidClassExtractor {
   }
 }
 
+
+trait JavaConversionHelpers {
+
+  def isAbstract(m: Member): Boolean = Modifier.isAbstract(m.getModifiers)
+  def isAbstract(c: Class[_]): Boolean = Modifier.isAbstract(c.getModifiers)
+  def isFinal(m: Member): Boolean = Modifier.isFinal(m.getModifiers)
+  def isFinal(c: Class[_]): Boolean = Modifier.isFinal(c.getModifiers)
+  def isInterface(c: Class[_]): Boolean = Modifier.isInterface(c.getModifiers)
+  def isStatic(c: Class[_]): Boolean = Modifier.isStatic(c.getModifiers)
+  def isConcrete(c: Class[_]): Boolean = ! (isInterface(c) || isStatic(c))
+  def isOverride(m: Method): Boolean =
+    m.getDeclaringClass.getSuperclass match {
+      case null => false
+      case c =>
+        getAllMethods(c,
+          withName(m.getName),
+          withParameters(m.getParameterTypes: _*)
+        ).nonEmpty
+    }
+
+  def methodSignature(m: Method): String = List(
+    m.getName,
+    m.getReturnType.getName,
+    "["+m.getParameterTypes.map(_.getName).toList.mkString(",")+"]"
+  ).mkString(":")
+
+  def propDescSignature(pdesc: PropertyDescriptor): String = List(
+    pdesc.getName,
+    pdesc.getPropertyType
+  ).mkString(":")
+
+  def simpleClassName(s: String): String = s.split(Array('.', '#')).last
+  def simpleClassName(c: Class[_]): String = simpleClassName(c.getName)
+
+  private def innerClassDelim(c: Class[_]) = if (isConcrete(c)) "#" else "."
+
+  def toScalaType(_tpe: Type): ScalaType = {
+    def step(tpe: Type, level: Int): ScalaType = {
+      val nextLevel = level + 1
+
+      if (level > 5)
+        ScalaType("_")
+      else
+        tpe match {
+          case null => throw new Error("Property cannot be null")
+          case ga: GenericArrayType =>
+            ScalaType("Array", Seq(step(ga.getGenericComponentType, nextLevel)))
+          case p: ParameterizedType =>
+            ScalaType(
+              step(p.getRawType, nextLevel).name,
+              p.getActualTypeArguments.map(step(_, nextLevel)).toSeq
+            )
+          case t: TypeVariable[_] =>
+            ScalaType(t.getName, Nil, bounds = t.getBounds.map(step(_, nextLevel)).toSeq, isVar = true)
+          case w: WildcardType =>
+            val bs = w.getUpperBounds.map(step(_, nextLevel)).toSeq.filter(_.name != "Any")
+            ScalaType("_", Nil, bounds = bs)
+          case c: Class[_] => {
+            if (c.isArray) {
+              ScalaType("Array", Seq(step(c.getComponentType, nextLevel)))
+            } else if (c.isPrimitive) {
+              ScalaType(c.getName match {
+                case "void" => "Unit"
+                case n => n.capitalize
+              })
+            } else if (c == classOf[java.lang.Object]) {
+              ScalaType("Any")
+            } else {
+              ScalaType(
+                c.getName.replace("$", innerClassDelim(c)),
+                c.getTypeParameters.map(step(_, nextLevel)).toSeq
+              )
+            }
+          }
+          case _ =>
+            throw new Error("Cannot find type of " + tpe.getClass + " ::" + tpe.toString)
+        }
+    }
+    step(_tpe, 0)
+  }
+
+  def toTypeStr(_tpe: Type, isVarArgs: Boolean, isLast: Boolean): String = {
+    def step(tpe: Type): String = {
+      val arrayNotation = if (isLast && isVarArgs) "..." else "[]"
+
+      tpe match {
+        case ga: GenericArrayType =>
+          step(ga.getGenericComponentType) + arrayNotation
+        case p: ParameterizedType =>
+          p.toString.replace("$", ".")
+        case _: WildcardType => "?"
+        case c: Class[_] =>
+          if (c.isArray) {
+            step(c.getComponentType) + arrayNotation
+          } else {
+            c.getName.replace("$", innerClassDelim(c))
+          }
+        case _ =>
+          tpe.toString
+      }
+    }
+    step(_tpe)
+  }
+
+}

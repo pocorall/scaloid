@@ -5205,7 +5205,7 @@ trait SHeaderViewListAdapter extends android.widget.HeaderViewListAdapter with T
 
 object SHeaderViewListAdapter {
 
-  def apply(headerViewInfos: java.util.ArrayList[android.widget.ListView.FixedViewInfo], footerViewInfos: java.util.ArrayList[android.widget.ListView.FixedViewInfo], adapter: android.widget.ListAdapter): SHeaderViewListAdapter = {
+  def apply(headerViewInfos: java.util.ArrayList[android.widget.ListView#FixedViewInfo], footerViewInfos: java.util.ArrayList[android.widget.ListView#FixedViewInfo], adapter: android.widget.ListAdapter): SHeaderViewListAdapter = {
     val v = new HeaderViewListAdapter(headerViewInfos, footerViewInfos, adapter) with SHeaderViewListAdapter
     v
   }
