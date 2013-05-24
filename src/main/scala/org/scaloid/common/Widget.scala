@@ -178,6 +178,7 @@ class RichView[V <: android.view.View](val basis: V) extends TraitView[V]
 trait TraitView[V <: android.view.View] extends ConstantsSupport {
 
   def basis: V
+
   def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
 
   def uniqueId(implicit activity: Activity): Int = {
@@ -218,6 +219,7 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
 
   @noEquivalentGetterExists
   @inline def padding: Int = 0
+
   @inline def animation = basis.getAnimation
   @inline def animation  (p: android.view.animation.Animation) =            animation_=  (p)
   @inline def animation_=(p: android.view.animation.Animation) = { basis.setAnimation    (p); basis }
@@ -601,7 +603,6 @@ trait SView extends android.view.View with TraitView[SView] { self =>
   def basis = self
 
 
-
 }
 
 object SView {
@@ -655,6 +656,7 @@ trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
     styles += stl
     basis
   }
+
   @inline def addStatesFromChildren  (p: Boolean) =            addStatesFromChildren_=  (p)
   @inline def addStatesFromChildren_=(p: Boolean) = { basis.setAddStatesFromChildren    (p); basis }
 
@@ -855,6 +857,7 @@ trait ViewGroupMarginLayoutParams[LP <: ViewGroupMarginLayoutParams[_,_], V <: V
 class RichTextView[V <: android.widget.TextView](val basis: V) extends TraitTextView[V]
 
 trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
+
 
 
 
@@ -1216,7 +1219,6 @@ trait STextView extends android.widget.TextView with TraitTextView[STextView] { 
   def basis = self
 
 
-
 }
 
 object STextView {
@@ -1252,6 +1254,7 @@ object STextView {
 
 
 trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView[V] {
+
 
 
 
@@ -1382,6 +1385,7 @@ trait TraitFrameLayout[V <: android.widget.FrameLayout] extends TraitViewGroup[V
 
 
 
+
   @inline def considerGoneChildrenWhenMeasuring = basis.getConsiderGoneChildrenWhenMeasuring
 
   @inline def foreground = basis.getForeground
@@ -1422,7 +1426,6 @@ trait SFrameLayout extends android.widget.FrameLayout with TraitFrameLayout[SFra
     def >> : V = v
 
   }
-
 }
 
 object SFrameLayout {
@@ -1452,6 +1455,7 @@ object SFrameLayout {
 class RichRelativeLayout[V <: android.widget.RelativeLayout](val basis: V) extends TraitRelativeLayout[V]
 
 trait TraitRelativeLayout[V <: android.widget.RelativeLayout] extends TraitViewGroup[V] {
+
 
 
 
@@ -1598,7 +1602,6 @@ trait SRelativeLayout extends android.widget.RelativeLayout with TraitRelativeLa
     def >> : V = v
 
   }
-
 }
 
 object SRelativeLayout {
@@ -1628,6 +1631,7 @@ object SRelativeLayout {
 class RichLinearLayout[V <: android.widget.LinearLayout](val basis: V) extends TraitLinearLayout[V]
 
 trait TraitLinearLayout[V <: android.widget.LinearLayout] extends TraitViewGroup[V] {
+
 
 
 
@@ -1693,7 +1697,6 @@ trait SLinearLayout extends android.widget.LinearLayout with TraitLinearLayout[S
     def >> : V = v
 
   }
-
 }
 
 object SLinearLayout {
@@ -1741,11 +1744,11 @@ trait TraitEditText[V <: android.widget.EditText] extends TraitTextView[V] {
 
 
 
+
 }
 
 trait SEditText extends android.widget.EditText with TraitEditText[SEditText] { self =>
   def basis = self
-
 
 
 }
@@ -1787,11 +1790,11 @@ trait TraitExtractEditText[V <: android.inputmethodservice.ExtractEditText] exte
 
 
 
+
 }
 
 trait SExtractEditText extends android.inputmethodservice.ExtractEditText with TraitExtractEditText[SExtractEditText] { self =>
   def basis = self
-
 
 
 }
@@ -1830,6 +1833,7 @@ object SExtractEditText {
 class RichAutoCompleteTextView[V <: android.widget.AutoCompleteTextView](val basis: V) extends TraitAutoCompleteTextView[V]
 
 trait TraitAutoCompleteTextView[V <: android.widget.AutoCompleteTextView] extends TraitEditText[V] {
+
 
 
 
@@ -1953,7 +1957,6 @@ trait SAutoCompleteTextView extends android.widget.AutoCompleteTextView with Tra
   def basis = self
 
 
-
 }
 
 object SAutoCompleteTextView {
@@ -1990,6 +1993,7 @@ object SAutoCompleteTextView {
 class RichListView[V <: android.widget.ListView](val basis: V) extends TraitListView[V]
 
 trait TraitListView[V <: android.widget.ListView] extends TraitAbsListView[V] {
+
 
 
 
@@ -2044,7 +2048,6 @@ trait SListView extends android.widget.ListView with TraitListView[SListView] { 
   def basis = self
 
 
-
 }
 
 object SListView {
@@ -2076,11 +2079,11 @@ trait TraitButton[V <: android.widget.Button] extends TraitTextView[V] {
 
 
 
+
 }
 
 trait SButton extends android.widget.Button with TraitButton[SButton] { self =>
   def basis = self
-
 
 
 }
@@ -2136,6 +2139,7 @@ trait TraitCompoundButton[V <: android.widget.CompoundButton] extends TraitButto
 
 
 
+
   @noEquivalentGetterExists
   @inline def buttonDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'buttonDrawable'")
   @inline def buttonDrawable  (p: Int) =            buttonDrawable_=  (p)
@@ -2174,11 +2178,11 @@ trait TraitCheckBox[V <: android.widget.CheckBox] extends TraitCompoundButton[V]
 
 
 
+
 }
 
 trait SCheckBox extends android.widget.CheckBox with TraitCheckBox[SCheckBox] { self =>
   def basis = self
-
 
 
 }
@@ -2236,11 +2240,11 @@ trait TraitRadioButton[V <: android.widget.RadioButton] extends TraitCompoundBut
 
 
 
+
 }
 
 trait SRadioButton extends android.widget.RadioButton with TraitRadioButton[SRadioButton] { self =>
   def basis = self
-
 
 
 }
@@ -2298,6 +2302,7 @@ trait TraitToggleButton[V <: android.widget.ToggleButton] extends TraitCompoundB
 
 
 
+
   @inline def textOff = basis.getTextOff
   @inline def textOff  (p: java.lang.CharSequence) =            textOff_=  (p)
   @inline def textOff_=(p: java.lang.CharSequence) = { basis.setTextOff    (p); basis }
@@ -2310,7 +2315,6 @@ trait TraitToggleButton[V <: android.widget.ToggleButton] extends TraitCompoundB
 
 trait SToggleButton extends android.widget.ToggleButton with TraitToggleButton[SToggleButton] { self =>
   def basis = self
-
 
 
 }
@@ -2368,6 +2372,7 @@ trait TraitCheckedTextView[V <: android.widget.CheckedTextView] extends TraitTex
 
 
 
+
   @noEquivalentGetterExists
   @inline def checkMarkDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'checkMarkDrawable'")
   @inline def checkMarkDrawable  (p: Int) =            checkMarkDrawable_=  (p)
@@ -2383,7 +2388,6 @@ trait TraitCheckedTextView[V <: android.widget.CheckedTextView] extends TraitTex
 
 trait SCheckedTextView extends android.widget.CheckedTextView with TraitCheckedTextView[SCheckedTextView] { self =>
   def basis = self
-
 
 
 }
@@ -2425,6 +2429,7 @@ trait TraitChronometer[V <: android.widget.Chronometer] extends TraitTextView[V]
 
 
 
+
   @inline def base = basis.getBase
   @inline def base  (p: Long) =            base_=  (p)
   @inline def base_=(p: Long) = { basis.setBase    (p); basis }
@@ -2454,7 +2459,6 @@ trait TraitChronometer[V <: android.widget.Chronometer] extends TraitTextView[V]
 
 trait SChronometer extends android.widget.Chronometer with TraitChronometer[SChronometer] { self =>
   def basis = self
-
 
 
 }
@@ -2496,11 +2500,11 @@ trait TraitDigitalClock[V <: android.widget.DigitalClock] extends TraitTextView[
 
 
 
+
 }
 
 trait SDigitalClock extends android.widget.DigitalClock with TraitDigitalClock[SDigitalClock] { self =>
   def basis = self
-
 
 
 }
@@ -2533,6 +2537,7 @@ object SDigitalClock {
 class RichKeyboardView[V <: android.inputmethodservice.KeyboardView](val basis: V) extends TraitKeyboardView[V]
 
 trait TraitKeyboardView[V <: android.inputmethodservice.KeyboardView] extends TraitView[V] {
+
 
 
 
@@ -2751,6 +2756,7 @@ trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
 
 
 
+
   @noEquivalentGetterExists
   @inline def adjustViewBounds(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'adjustViewBounds'")
   @inline def adjustViewBounds  (p: Boolean) =            adjustViewBounds_=  (p)
@@ -2812,7 +2818,6 @@ trait SImageView extends android.widget.ImageView with TraitImageView[SImageView
   def basis = self
 
 
-
 }
 
 object SImageView {
@@ -2844,11 +2849,11 @@ trait TraitImageButton[V <: android.widget.ImageButton] extends TraitImageView[V
 
 
 
+
 }
 
 trait SImageButton extends android.widget.ImageButton with TraitImageButton[SImageButton] { self =>
   def basis = self
-
 
 
 }
@@ -2882,6 +2887,7 @@ trait TraitQuickContactBadge[V <: android.widget.QuickContactBadge] extends Trai
 
 
 
+
   @noEquivalentGetterExists
   @inline def excludeMimes(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'excludeMimes'")
   @inline def excludeMimes  (p: Array[java.lang.String]) =            excludeMimes_=  (p)
@@ -2896,7 +2902,6 @@ trait TraitQuickContactBadge[V <: android.widget.QuickContactBadge] extends Trai
 
 trait SQuickContactBadge extends android.widget.QuickContactBadge with TraitQuickContactBadge[SQuickContactBadge] { self =>
   def basis = self
-
 
 
 }
@@ -2930,6 +2935,7 @@ trait TraitZoomButton[V <: android.widget.ZoomButton] extends TraitImageButton[V
 
 
 
+
   @noEquivalentGetterExists
   @inline def zoomSpeed(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'zoomSpeed'")
   @inline def zoomSpeed  (p: Long) =            zoomSpeed_=  (p)
@@ -2939,7 +2945,6 @@ trait TraitZoomButton[V <: android.widget.ZoomButton] extends TraitImageButton[V
 
 trait SZoomButton extends android.widget.ZoomButton with TraitZoomButton[SZoomButton] { self =>
   def basis = self
-
 
 
 }
@@ -2970,6 +2975,7 @@ object SZoomButton {
 class RichProgressBar[V <: android.widget.ProgressBar](val basis: V) extends TraitProgressBar[V]
 
 trait TraitProgressBar[V <: android.widget.ProgressBar] extends TraitView[V] {
+
 
 
 
@@ -3007,7 +3013,6 @@ trait SProgressBar extends android.widget.ProgressBar with TraitProgressBar[SPro
   def basis = self
 
 
-
 }
 
 object SProgressBar {
@@ -3039,11 +3044,11 @@ trait TraitAnalogClock[V <: android.widget.AnalogClock] extends TraitView[V] {
 
 
 
+
 }
 
 trait SAnalogClock extends android.widget.AnalogClock with TraitAnalogClock[SAnalogClock] { self =>
   def basis = self
-
 
 
 }
@@ -3077,6 +3082,7 @@ trait TraitSurfaceView[V <: android.view.SurfaceView] extends TraitView[V] {
 
 
 
+
   @noEquivalentGetterExists
   @inline def ZOrderMediaOverlay(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'ZOrderMediaOverlay'")
   @inline def ZOrderMediaOverlay  (p: Boolean) =            ZOrderMediaOverlay_=  (p)
@@ -3094,7 +3100,6 @@ trait TraitSurfaceView[V <: android.view.SurfaceView] extends TraitView[V] {
 
 trait SSurfaceView extends android.view.SurfaceView with TraitSurfaceView[SSurfaceView] { self =>
   def basis = self
-
 
 
 }
@@ -3125,6 +3130,7 @@ object SSurfaceView {
 class RichGLSurfaceView[V <: android.opengl.GLSurfaceView](val basis: V) extends TraitGLSurfaceView[V]
 
 trait TraitGLSurfaceView[V <: android.opengl.GLSurfaceView] extends TraitSurfaceView[V] {
+
 
 
 
@@ -3174,7 +3180,6 @@ trait SGLSurfaceView extends android.opengl.GLSurfaceView with TraitGLSurfaceVie
   def basis = self
 
 
-
 }
 
 object SGLSurfaceView {
@@ -3197,6 +3202,7 @@ object SGLSurfaceView {
 class RichVideoView[V <: android.widget.VideoView](val basis: V) extends TraitVideoView[V]
 
 trait TraitVideoView[V <: android.widget.VideoView] extends TraitSurfaceView[V] {
+
 
 
 
@@ -3285,7 +3291,6 @@ trait SVideoView extends android.widget.VideoView with TraitVideoView[SVideoView
   def basis = self
 
 
-
 }
 
 object SVideoView {
@@ -3314,6 +3319,7 @@ object SVideoView {
 class RichViewStub[V <: android.view.ViewStub](val basis: V) extends TraitViewStub[V]
 
 trait TraitViewStub[V <: android.view.ViewStub] extends TraitView[V] {
+
 
 
 
@@ -3352,6 +3358,7 @@ trait TraitGridView[V <: android.widget.GridView] extends TraitAbsListView[V] {
 
 
 
+
   @noEquivalentGetterExists
   @inline def columnWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'columnWidth'")
   @inline def columnWidth  (p: Int) =            columnWidth_=  (p)
@@ -3387,7 +3394,6 @@ trait SGridView extends android.widget.GridView with TraitGridView[SGridView] { 
   def basis = self
 
 
-
 }
 
 object SGridView {
@@ -3416,6 +3422,7 @@ object SGridView {
 class RichExpandableListView[V <: android.widget.ExpandableListView](val basis: V) extends TraitExpandableListView[V]
 
 trait TraitExpandableListView[V <: android.widget.ExpandableListView] extends TraitListView[V] {
+
 
 
 
@@ -3527,7 +3534,6 @@ trait SExpandableListView extends android.widget.ExpandableListView with TraitEx
   def basis = self
 
 
-
 }
 
 object SExpandableListView {
@@ -3557,6 +3563,8 @@ trait TraitBaseAdapter[V <: android.widget.BaseAdapter] {
 
   def basis: V
 
+
+
   @inline def empty = basis.isEmpty
 
   @inline def viewTypeCount = basis.getViewTypeCount
@@ -3569,6 +3577,8 @@ trait TraitBaseExpandableListAdapter[V <: android.widget.BaseExpandableListAdapt
 
   def basis: V
 
+
+
   @inline def childTypeCount = basis.getChildTypeCount
 
   @inline def empty = basis.isEmpty
@@ -3580,6 +3590,7 @@ trait TraitBaseExpandableListAdapter[V <: android.widget.BaseExpandableListAdapt
 
 
 trait TraitAdapterView[V <: android.widget.AdapterView[_]] extends TraitViewGroup[V] {
+
 
 
 
@@ -3682,12 +3693,14 @@ trait TraitAbsSpinner[V <: android.widget.AbsSpinner] extends TraitAdapterView[V
 
 
 
+
 }
 
 
 class RichSpinner[V <: android.widget.Spinner](val basis: V) extends TraitSpinner[V]
 
 trait TraitSpinner[V <: android.widget.Spinner] extends TraitAbsSpinner[V] {
+
 
 
 
@@ -3704,7 +3717,6 @@ trait TraitSpinner[V <: android.widget.Spinner] extends TraitAbsSpinner[V] {
 
 trait SSpinner extends android.widget.Spinner with TraitSpinner[SSpinner] { self =>
   def basis = self
-
 
 
 }
@@ -3735,6 +3747,7 @@ object SSpinner {
 class RichGallery[V <: android.widget.Gallery](val basis: V) extends TraitGallery[V]
 
 trait TraitGallery[V <: android.widget.Gallery] extends TraitAbsSpinner[V] {
+
 
 
 
@@ -3769,7 +3782,6 @@ trait SGallery extends android.widget.Gallery with TraitGallery[SGallery] { self
   def basis = self
 
 
-
 }
 
 object SGallery {
@@ -3799,6 +3811,7 @@ trait TraitAbsSeekBar[V <: android.widget.AbsSeekBar] extends TraitProgressBar[V
 
 
 
+
   @inline def keyProgressIncrement = basis.getKeyProgressIncrement
   @inline def keyProgressIncrement  (p: Int) =            keyProgressIncrement_=  (p)
   @inline def keyProgressIncrement_=(p: Int) = { basis.setKeyProgressIncrement    (p); basis }
@@ -3818,6 +3831,7 @@ trait TraitAbsSeekBar[V <: android.widget.AbsSeekBar] extends TraitProgressBar[V
 class RichSeekBar[V <: android.widget.SeekBar](val basis: V) extends TraitSeekBar[V]
 
 trait TraitSeekBar[V <: android.widget.SeekBar] extends TraitAbsSeekBar[V] {
+
 
 
 
@@ -3885,7 +3899,6 @@ trait SSeekBar extends android.widget.SeekBar with TraitSeekBar[SSeekBar] { self
   def basis = self
 
 
-
 }
 
 object SSeekBar {
@@ -3914,6 +3927,7 @@ object SSeekBar {
 class RichRatingBar[V <: android.widget.RatingBar](val basis: V) extends TraitRatingBar[V]
 
 trait TraitRatingBar[V <: android.widget.RatingBar] extends TraitAbsSeekBar[V] {
+
 
 
 
@@ -3957,7 +3971,6 @@ trait SRatingBar extends android.widget.RatingBar with TraitRatingBar[SRatingBar
   def basis = self
 
 
-
 }
 
 object SRatingBar {
@@ -3989,6 +4002,7 @@ trait TraitAppWidgetHostView[V <: android.appwidget.AppWidgetHostView] extends T
 
 
 
+
   @inline def appWidgetId = basis.getAppWidgetId
 
   @inline def appWidgetInfo = basis.getAppWidgetInfo
@@ -3998,7 +4012,6 @@ trait TraitAppWidgetHostView[V <: android.appwidget.AppWidgetHostView] extends T
 
 trait SAppWidgetHostView extends android.appwidget.AppWidgetHostView with TraitAppWidgetHostView[SAppWidgetHostView] { self =>
   def basis = self
-
 
 
 }
@@ -4026,6 +4039,7 @@ trait TraitHorizontalScrollView[V <: android.widget.HorizontalScrollView] extend
 
 
 
+
   @inline def fillViewport = basis.isFillViewport
   @inline def fillViewport  (p: Boolean) =            fillViewport_=  (p)
   @inline def fillViewport_=(p: Boolean) = { basis.setFillViewport    (p); basis }
@@ -4042,7 +4056,6 @@ trait TraitHorizontalScrollView[V <: android.widget.HorizontalScrollView] extend
 
 trait SHorizontalScrollView extends android.widget.HorizontalScrollView with TraitHorizontalScrollView[SHorizontalScrollView] { self =>
   def basis = self
-
 
 
 }
@@ -4076,6 +4089,7 @@ trait TraitMediaController[V <: android.widget.MediaController] extends TraitFra
 
 
 
+
   @noEquivalentGetterExists
   @inline def anchorView(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'anchorView'")
   @inline def anchorView  (p: android.view.View) =            anchorView_=  (p)
@@ -4093,7 +4107,6 @@ trait TraitMediaController[V <: android.widget.MediaController] extends TraitFra
 
 trait SMediaController extends android.widget.MediaController with TraitMediaController[SMediaController] { self =>
   def basis = self
-
 
 
 }
@@ -4127,6 +4140,7 @@ trait TraitScrollView[V <: android.widget.ScrollView] extends TraitFrameLayout[V
 
 
 
+
   @inline def fillViewport = basis.isFillViewport
   @inline def fillViewport  (p: Boolean) =            fillViewport_=  (p)
   @inline def fillViewport_=(p: Boolean) = { basis.setFillViewport    (p); basis }
@@ -4143,7 +4157,6 @@ trait TraitScrollView[V <: android.widget.ScrollView] extends TraitFrameLayout[V
 
 trait SScrollView extends android.widget.ScrollView with TraitScrollView[SScrollView] { self =>
   def basis = self
-
 
 
 }
@@ -4174,6 +4187,7 @@ object SScrollView {
 class RichTabHost[V <: android.widget.TabHost](val basis: V) extends TraitTabHost[V]
 
 trait TraitTabHost[V <: android.widget.TabHost] extends TraitFrameLayout[V] {
+
 
 
 
@@ -4225,7 +4239,6 @@ trait STabHost extends android.widget.TabHost with TraitTabHost[STabHost] { self
   def basis = self
 
 
-
 }
 
 object STabHost {
@@ -4248,6 +4261,7 @@ object STabHost {
 class RichTimePicker[V <: android.widget.TimePicker](val basis: V) extends TraitTimePicker[V]
 
 trait TraitTimePicker[V <: android.widget.TimePicker] extends TraitFrameLayout[V] {
+
 
 
 
@@ -4287,7 +4301,6 @@ trait STimePicker extends android.widget.TimePicker with TraitTimePicker[STimePi
   def basis = self
 
 
-
 }
 
 object STimePicker {
@@ -4319,6 +4332,7 @@ trait TraitViewAnimator[V <: android.widget.ViewAnimator] extends TraitFrameLayo
 
 
 
+
   @noEquivalentGetterExists
   @inline def animateFirstView(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'animateFirstView'")
   @inline def animateFirstView  (p: Boolean) =            animateFirstView_=  (p)
@@ -4342,7 +4356,6 @@ trait TraitViewAnimator[V <: android.widget.ViewAnimator] extends TraitFrameLayo
 
 trait SViewAnimator extends android.widget.ViewAnimator with TraitViewAnimator[SViewAnimator] { self =>
   def basis = self
-
 
 
 }
@@ -4370,6 +4383,7 @@ trait TraitViewFlipper[V <: android.widget.ViewFlipper] extends TraitViewAnimato
 
 
 
+
   @inline def autoStart = basis.isAutoStart
   @inline def autoStart  (p: Boolean) =            autoStart_=  (p)
   @inline def autoStart_=(p: Boolean) = { basis.setAutoStart    (p); basis }
@@ -4386,7 +4400,6 @@ trait TraitViewFlipper[V <: android.widget.ViewFlipper] extends TraitViewAnimato
 
 trait SViewFlipper extends android.widget.ViewFlipper with TraitViewFlipper[SViewFlipper] { self =>
   def basis = self
-
 
 
 }
@@ -4414,6 +4427,7 @@ trait TraitViewSwitcher[V <: android.widget.ViewSwitcher] extends TraitViewAnima
 
 
 
+
   @noEquivalentGetterExists
   @inline def factory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'factory'")
   @inline def factory  (p: android.widget.ViewSwitcher.ViewFactory) =            factory_=  (p)
@@ -4426,7 +4440,6 @@ trait TraitViewSwitcher[V <: android.widget.ViewSwitcher] extends TraitViewAnima
 
 trait SViewSwitcher extends android.widget.ViewSwitcher with TraitViewSwitcher[SViewSwitcher] { self =>
   def basis = self
-
 
 
 }
@@ -4454,6 +4467,7 @@ trait TraitImageSwitcher[V <: android.widget.ImageSwitcher] extends TraitViewSwi
 
 
 
+
   @noEquivalentGetterExists
   @inline def imageDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'imageDrawable'")
   @inline def imageDrawable  (p: android.graphics.drawable.Drawable) =            imageDrawable_=  (p)
@@ -4473,7 +4487,6 @@ trait TraitImageSwitcher[V <: android.widget.ImageSwitcher] extends TraitViewSwi
 
 trait SImageSwitcher extends android.widget.ImageSwitcher with TraitImageSwitcher[SImageSwitcher] { self =>
   def basis = self
-
 
 
 }
@@ -4501,6 +4514,7 @@ trait TraitTextSwitcher[V <: android.widget.TextSwitcher] extends TraitViewSwitc
 
 
 
+
   @noEquivalentGetterExists
   @inline def currentText(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'currentText'")
   @inline def currentText  (p: java.lang.CharSequence) =            currentText_=  (p)
@@ -4515,7 +4529,6 @@ trait TraitTextSwitcher[V <: android.widget.TextSwitcher] extends TraitViewSwitc
 
 trait STextSwitcher extends android.widget.TextSwitcher with TraitTextSwitcher[STextSwitcher] { self =>
   def basis = self
-
 
 
 }
@@ -4543,6 +4556,7 @@ trait TraitDatePicker[V <: android.widget.DatePicker] extends TraitFrameLayout[V
 
 
 
+
   @inline def dayOfMonth = basis.getDayOfMonth
 
   @inline def month = basis.getMonth
@@ -4554,7 +4568,6 @@ trait TraitDatePicker[V <: android.widget.DatePicker] extends TraitFrameLayout[V
 
 trait SDatePicker extends android.widget.DatePicker with TraitDatePicker[SDatePicker] { self =>
   def basis = self
-
 
 
 }
@@ -4585,6 +4598,7 @@ object SDatePicker {
 class RichGestureOverlayView[V <: android.gesture.GestureOverlayView](val basis: V) extends TraitGestureOverlayView[V]
 
 trait TraitGestureOverlayView[V <: android.gesture.GestureOverlayView] extends TraitFrameLayout[V] {
+
 
 
 
@@ -4781,7 +4795,6 @@ trait SGestureOverlayView extends android.gesture.GestureOverlayView with TraitG
   def basis = self
 
 
-
 }
 
 object SGestureOverlayView {
@@ -4812,6 +4825,8 @@ class RichPopupWindow[V <: android.widget.PopupWindow](val basis: V) extends Tra
 trait TraitPopupWindow[V <: android.widget.PopupWindow] {
 
   def basis: V
+
+
 
   @inline def aboveAnchor = basis.isAboveAnchor
 
@@ -4889,7 +4904,6 @@ trait SPopupWindow extends android.widget.PopupWindow with TraitPopupWindow[SPop
   def basis = self
 
 
-
 }
 
 object SPopupWindow {
@@ -4943,6 +4957,7 @@ trait TraitArrayAdapter[V <: android.widget.ArrayAdapter[_]] extends TraitBaseAd
 
 
 
+
   @inline def context = basis.getContext
 
   @noEquivalentGetterExists
@@ -4993,7 +5008,6 @@ trait SArrayAdapter[T <: AnyRef] extends android.widget.ArrayAdapter[T] with Tra
     _dropDownStyle = v
     this
   }
-
 }
 
 object SArrayAdapter {
@@ -5042,11 +5056,11 @@ trait TraitAbsoluteLayout[V <: android.widget.AbsoluteLayout] extends TraitViewG
 
 
 
+
 }
 
 trait SAbsoluteLayout extends android.widget.AbsoluteLayout with TraitAbsoluteLayout[SAbsoluteLayout] { self =>
   def basis = self
-
 
 
 }
@@ -5080,6 +5094,7 @@ trait TraitMultiAutoCompleteTextView[V <: android.widget.MultiAutoCompleteTextVi
 
 
 
+
   @noEquivalentGetterExists
   @inline def tokenizer(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'tokenizer'")
   @inline def tokenizer  (p: android.widget.MultiAutoCompleteTextView.Tokenizer) =            tokenizer_=  (p)
@@ -5089,7 +5104,6 @@ trait TraitMultiAutoCompleteTextView[V <: android.widget.MultiAutoCompleteTextVi
 
 trait SMultiAutoCompleteTextView extends android.widget.MultiAutoCompleteTextView with TraitMultiAutoCompleteTextView[SMultiAutoCompleteTextView] { self =>
   def basis = self
-
 
 
 }
@@ -5131,6 +5145,7 @@ trait TraitTableLayout[V <: android.widget.TableLayout] extends TraitLinearLayou
 
 
 
+
   @inline def shrinkAllColumns = basis.isShrinkAllColumns
   @inline def shrinkAllColumns  (p: Boolean) =            shrinkAllColumns_=  (p)
   @inline def shrinkAllColumns_=(p: Boolean) = { basis.setShrinkAllColumns    (p); basis }
@@ -5143,7 +5158,6 @@ trait TraitTableLayout[V <: android.widget.TableLayout] extends TraitLinearLayou
 
 trait STableLayout extends android.widget.TableLayout with TraitTableLayout[STableLayout] { self =>
   def basis = self
-
 
 
 }
@@ -5168,6 +5182,7 @@ object STableLayout {
 class RichRadioGroup[V <: android.widget.RadioGroup](val basis: V) extends TraitRadioGroup[V]
 
 trait TraitRadioGroup[V <: android.widget.RadioGroup] extends TraitLinearLayout[V] {
+
 
 
 
@@ -5197,7 +5212,6 @@ trait SRadioGroup extends android.widget.RadioGroup with TraitRadioGroup[SRadioG
   def basis = self
 
 
-
 }
 
 object SRadioGroup {
@@ -5223,11 +5237,11 @@ trait TraitSimpleExpandableListAdapter[V <: android.widget.SimpleExpandableListA
 
 
 
+
 }
 
 trait SSimpleExpandableListAdapter extends android.widget.SimpleExpandableListAdapter with TraitSimpleExpandableListAdapter[SSimpleExpandableListAdapter] { self =>
   def basis = self
-
 
 
 }
@@ -5258,6 +5272,7 @@ trait TraitAlphabetIndexer[V <: android.widget.AlphabetIndexer] extends TraitDat
 
 
 
+
   @noEquivalentGetterExists
   @inline def cursor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'cursor'")
   @inline def cursor  (p: android.database.Cursor) =            cursor_=  (p)
@@ -5270,7 +5285,6 @@ trait TraitAlphabetIndexer[V <: android.widget.AlphabetIndexer] extends TraitDat
 
 trait SAlphabetIndexer extends android.widget.AlphabetIndexer with TraitAlphabetIndexer[SAlphabetIndexer] { self =>
   def basis = self
-
 
 
 }
@@ -5291,6 +5305,7 @@ trait TraitTwoLineListItem[V <: android.widget.TwoLineListItem] extends TraitRel
 
 
 
+
   @inline def text1 = basis.getText1
 
   @inline def text2 = basis.getText2
@@ -5300,7 +5315,6 @@ trait TraitTwoLineListItem[V <: android.widget.TwoLineListItem] extends TraitRel
 
 trait STwoLineListItem extends android.widget.TwoLineListItem with TraitTwoLineListItem[STwoLineListItem] { self =>
   def basis = self
-
 
 
 }
@@ -5334,6 +5348,8 @@ trait TraitHeaderViewListAdapter[V <: android.widget.HeaderViewListAdapter] {
 
   def basis: V
 
+
+
   @inline def count = basis.getCount
 
   @inline def empty = basis.isEmpty
@@ -5355,7 +5371,6 @@ trait SHeaderViewListAdapter extends android.widget.HeaderViewListAdapter with T
   def basis = self
 
 
-
 }
 
 object SHeaderViewListAdapter {
@@ -5373,6 +5388,8 @@ class RichToast[V <: android.widget.Toast](val basis: V) extends TraitToast[V]
 trait TraitToast[V <: android.widget.Toast] {
 
   def basis: V
+
+
 
   @inline def XOffset = basis.getXOffset
 
@@ -5405,7 +5422,6 @@ trait SToast extends android.widget.Toast with TraitToast[SToast] { self =>
   def basis = self
 
 
-
 }
 
 object SToast {
@@ -5423,6 +5439,8 @@ class RichZoomButtonsController[V <: android.widget.ZoomButtonsController](val b
 trait TraitZoomButtonsController[V <: android.widget.ZoomButtonsController] {
 
   def basis: V
+
+
 
   @inline def autoDismissed = basis.isAutoDismissed
   @inline def autoDismissed  (p: Boolean) =            autoDismissed_=  (p)
@@ -5502,7 +5520,6 @@ trait SZoomButtonsController extends android.widget.ZoomButtonsController with T
   def basis = self
 
 
-
 }
 
 object SZoomButtonsController {
@@ -5518,6 +5535,7 @@ object SZoomButtonsController {
 class RichSlidingDrawer[V <: android.widget.SlidingDrawer](val basis: V) extends TraitSlidingDrawer[V]
 
 trait TraitSlidingDrawer[V <: android.widget.SlidingDrawer] extends TraitViewGroup[V] {
+
 
 
 
@@ -5587,7 +5605,6 @@ trait SSlidingDrawer extends android.widget.SlidingDrawer with TraitSlidingDrawe
   def basis = self
 
 
-
 }
 
 object SSlidingDrawer {
@@ -5610,6 +5627,7 @@ object SSlidingDrawer {
 class RichZoomControls[V <: android.widget.ZoomControls](val basis: V) extends TraitZoomControls[V]
 
 trait TraitZoomControls[V <: android.widget.ZoomControls] extends TraitLinearLayout[V] {
+
 
 
 
@@ -5675,7 +5693,6 @@ trait SZoomControls extends android.widget.ZoomControls with TraitZoomControls[S
   def basis = self
 
 
-
 }
 
 object SZoomControls {
@@ -5698,6 +5715,7 @@ object SZoomControls {
 class RichDialerFilter[V <: android.widget.DialerFilter](val basis: V) extends TraitDialerFilter[V]
 
 trait TraitDialerFilter[V <: android.widget.DialerFilter] extends TraitRelativeLayout[V] {
+
 
 
 
@@ -5735,7 +5753,6 @@ trait SDialerFilter extends android.widget.DialerFilter with TraitDialerFilter[S
   def basis = self
 
 
-
 }
 
 object SDialerFilter {
@@ -5759,12 +5776,15 @@ trait TraitDataSetObserver[V <: android.database.DataSetObserver] {
 
   def basis: V
 
+
+
 }
 
 
 class RichTableRow[V <: android.widget.TableRow](val basis: V) extends TraitTableRow[V]
 
 trait TraitTableRow[V <: android.widget.TableRow] extends TraitLinearLayout[V] {
+
 
 
 
@@ -5775,7 +5795,6 @@ trait TraitTableRow[V <: android.widget.TableRow] extends TraitLinearLayout[V] {
 
 trait STableRow extends android.widget.TableRow with TraitTableRow[STableRow] { self =>
   def basis = self
-
 
 
 }
@@ -5800,6 +5819,7 @@ object STableRow {
 class RichTabWidget[V <: android.widget.TabWidget](val basis: V) extends TraitTabWidget[V]
 
 trait TraitTabWidget[V <: android.widget.TabWidget] extends TraitLinearLayout[V] {
+
 
 
 
@@ -5844,7 +5864,6 @@ trait STabWidget extends android.widget.TabWidget with TraitTabWidget[STabWidget
   def basis = self
 
 
-
 }
 
 object STabWidget {
@@ -5874,6 +5893,7 @@ trait TraitCursorAdapter[V <: android.widget.CursorAdapter] extends TraitBaseAda
 
 
 
+
   @inline def cursor = basis.getCursor
 
   @inline def filter = basis.getFilter
@@ -5886,6 +5906,7 @@ trait TraitCursorAdapter[V <: android.widget.CursorAdapter] extends TraitBaseAda
 
 
 trait TraitResourceCursorAdapter[V <: android.widget.ResourceCursorAdapter] extends TraitCursorAdapter[V] {
+
 
 
 
@@ -5908,6 +5929,7 @@ trait TraitSimpleCursorAdapter[V <: android.widget.SimpleCursorAdapter] extends 
 
 
 
+
   @inline def cursorToStringConverter = basis.getCursorToStringConverter
   @inline def cursorToStringConverter  (p: android.widget.SimpleCursorAdapter.CursorToStringConverter) =            cursorToStringConverter_=  (p)
   @inline def cursorToStringConverter_=(p: android.widget.SimpleCursorAdapter.CursorToStringConverter) = { basis.setCursorToStringConverter    (p); basis }
@@ -5924,7 +5946,6 @@ trait TraitSimpleCursorAdapter[V <: android.widget.SimpleCursorAdapter] extends 
 
 trait SSimpleCursorAdapter extends android.widget.SimpleCursorAdapter with TraitSimpleCursorAdapter[SSimpleCursorAdapter] { self =>
   def basis = self
-
 
 
 }
@@ -5944,6 +5965,8 @@ class RichScroller[V <: android.widget.Scroller](val basis: V) extends TraitScro
 trait TraitScroller[V <: android.widget.Scroller] {
 
   def basis: V
+
+
 
   @inline def currX = basis.getCurrX
 
@@ -5972,7 +5995,6 @@ trait SScroller extends android.widget.Scroller with TraitScroller[SScroller] { 
   def basis = self
 
 
-
 }
 
 object SScroller {
@@ -5996,6 +6018,7 @@ trait TraitSimpleAdapter[V <: android.widget.SimpleAdapter] extends TraitBaseAda
 
 
 
+
   @noEquivalentGetterExists
   @inline def dropDownViewResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'dropDownViewResource'")
   @inline def dropDownViewResource  (p: Int) =            dropDownViewResource_=  (p)
@@ -6011,7 +6034,6 @@ trait TraitSimpleAdapter[V <: android.widget.SimpleAdapter] extends TraitBaseAda
 
 trait SSimpleAdapter extends android.widget.SimpleAdapter with TraitSimpleAdapter[SSimpleAdapter] { self =>
   def basis = self
-
 
 
 }
@@ -6032,6 +6054,8 @@ trait TraitRemoteViews[V <: android.widget.RemoteViews] {
 
   def basis: V
 
+
+
   @inline def layoutId = basis.getLayoutId
 
   @inline def `package` = basis.getPackage
@@ -6041,7 +6065,6 @@ trait TraitRemoteViews[V <: android.widget.RemoteViews] {
 
 trait SRemoteViews extends android.widget.RemoteViews with TraitRemoteViews[SRemoteViews] { self =>
   def basis = self
-
 
 
 }

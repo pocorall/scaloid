@@ -1,284 +1,284 @@
 View_traitBody() ::= <<
-  def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
+def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
 
-  def uniqueId(implicit activity: Activity): Int = {
-    if(basis.getId < 0) {
-      basis.setId(getUniqueId)
-    }
-    basis.getId
+def uniqueId(implicit activity: Activity): Int = {
+  if(basis.getId < 0) {
+    basis.setId(getUniqueId)
   }
+  basis.getId
+}
 
-  val FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT
+val FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT
 $if(ver.gte_8)$
-  val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
+val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
 $else$
-  val MATCH_PARENT = ViewGroup.LayoutParams.FILL_PARENT
+val MATCH_PARENT = ViewGroup.LayoutParams.FILL_PARENT
 $endif$
-  val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
+val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
 
-  def <<[LP <: ViewGroupLayoutParams[_,_]](implicit defaultLayoutParam: (V) => LP): LP =
-    defaultLayoutParam(basis)
+def <<[LP <: ViewGroupLayoutParams[_,_]](implicit defaultLayoutParam: (V) => LP): LP =
+  defaultLayoutParam(basis)
 
-  protected def parentViewGroupIfExists[LP <: ViewGroupLayoutParams[_,_]]
-      (implicit defaultLayoutParam: (V) => LP = (v:V)=> null): TraitViewGroup[_] = {
-    val lp = defaultLayoutParam(basis)
-    if(lp==null) null else lp.parent
-  }
+protected def parentViewGroupIfExists[LP <: ViewGroupLayoutParams[_,_]]
+    (implicit defaultLayoutParam: (V) => LP = (v:V)=> null): TraitViewGroup[_] = {
+  val lp = defaultLayoutParam(basis)
+  if(lp==null) null else lp.parent
+}
 
-  def <<[LP <: ViewGroupLayoutParams[_,_]](width:Int, height:Int)(implicit defaultLayoutParam: (V) => LP): LP = {
-    val lp = defaultLayoutParam(basis)
-    lp.height = height
-    lp.width = width
-    lp
-  }
+def <<[LP <: ViewGroupLayoutParams[_,_]](width:Int, height:Int)(implicit defaultLayoutParam: (V) => LP): LP = {
+  val lp = defaultLayoutParam(basis)
+  lp.height = height
+  lp.width = width
+  lp
+}
 
-  val parentViewGroup: TraitViewGroup[_] = null
+val parentViewGroup: TraitViewGroup[_] = null
 
-  @inline def padding_=(p: Int) = {
-    basis.setPadding(p, p, p, p)
-    basis
-  }
+@inline def padding_=(p: Int) = {
+  basis.setPadding(p, p, p, p)
+  basis
+}
 
-  @inline def padding(p: Int) = padding_=(p)
+@inline def padding(p: Int) = padding_=(p)
 
-  @noEquivalentGetterExists
-  @inline def padding: Int = 0
+@noEquivalentGetterExists
+@inline def padding: Int = 0
 >>
 
 
 ViewGroup_traitBody() ::= <<
-  implicit val pagentVG = this
+implicit val pagentVG = this
 
-  def applyStyle(v: View): View = {
-    var viw = v
-    if (parentViewGroup != null) viw = parentViewGroup.applyStyle(viw)
-    styles.foreach { st =>
-      if (st.isDefinedAt(viw)) viw = st(viw)
-    }
-    viw
+def applyStyle(v: View): View = {
+  var viw = v
+  if (parentViewGroup != null) viw = parentViewGroup.applyStyle(viw)
+  styles.foreach { st =>
+    if (st.isDefinedAt(viw)) viw = st(viw)
   }
+  viw
+}
 
-  def +=(v: View) = {
-    var viw = v
-    viw = applyStyle(viw)
-    basis.addView(viw)
-    basis
-  }
+def +=(v: View) = {
+  var viw = v
+  viw = applyStyle(viw)
+  basis.addView(viw)
+  basis
+}
 
-  val styles = new ArrayBuffer[View PartialFunction View]
+val styles = new ArrayBuffer[View PartialFunction View]
 
-  def style(stl: View PartialFunction View) = {
-    styles += stl
-    basis
-  }
+def style(stl: View PartialFunction View) = {
+  styles += stl
+  basis
+}
 >>
 
 
 FrameLayout_concreteBody() ::= <<
-  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
-  <<
+implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+<<
 
-  class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
+class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
 
-    def basis = this
+  def basis = this
 
-    v.setLayoutParams(this)
+  v.setLayoutParams(this)
 
-    def Gravity(g: Int) = {
-      gravity = g
-      this
-    }
-
-    def parent = SFrameLayout.this
-
-    def >\> : V = v
-
+  def Gravity(g: Int) = {
+    gravity = g
+    this
   }
+
+  def parent = SFrameLayout.this
+
+  def >\> : V = v
+
+}
 >>
 
 
 RelativeLayout_concreteBody() ::= <<
-  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
-  <<
+implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+<<
 
-  class LayoutParams[V <: View](v: V) extends RelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
-    def basis = this
+class LayoutParams[V <: View](v: V) extends RelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
+  def basis = this
 
-    v.setLayoutParams(this)
+  v.setLayoutParams(this)
 
-    def Gravity(g: Int) = {
-      gravity = g
-      this
-    }
-
-    def above(otherView: View)(implicit activity: Activity) = {
-      addRule(RelativeLayout.ABOVE, otherView.uniqueId)
-      this
-    }
-
-    def alignBaseline = {
-      addRule(RelativeLayout.ALIGN_BASELINE)
-      this
-    }
-
-    def alignBottom = {
-      addRule(RelativeLayout.ALIGN_BOTTOM)
-      this
-    }
-
-    //def alignEnd = {
-    //  addRule(RelativeLayout.ALIGN_END)
-    //  this
-    //}
-
-    def alignLeft = {
-      addRule(RelativeLayout.ALIGN_LEFT)
-      this
-    }
-
-    def alignParentBottom = {
-      addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
-      this
-    }
-
-    //def alignParentEnd = {
-    //  addRule(RelativeLayout.ALIGN_PARENT_END)
-    //  this
-    //}
-
-    def alignParentLeft = {
-      addRule(RelativeLayout.ALIGN_PARENT_LEFT)
-      this
-    }
-
-    def alignParentRight = {
-      addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-      this
-    }
-
-    //def alignParentStart = {
-    //  addRule(RelativeLayout.ALIGN_PARENT_START)
-    //  this
-    //}
-
-    def alignParentTop = {
-      addRule(RelativeLayout.ALIGN_PARENT_TOP)
-      this
-    }
-
-    def alignRight = {
-      addRule(RelativeLayout.ALIGN_RIGHT)
-      this
-    }
-
-    //def alignStart = {
-    //  addRule(RelativeLayout.ALIGN_START)
-    //  this
-    //}
-
-    def alignTop = {
-      addRule(RelativeLayout.ALIGN_TOP)
-      this
-    }
-
-    def below(otherView: View)(implicit activity: Activity) = {
-      addRule(RelativeLayout.BELOW, otherView.uniqueId)
-      this
-    }
-
-    def leftOf(otherView: View)(implicit activity: Activity) = {
-      addRule(RelativeLayout.LEFT_OF, otherView.uniqueId)
-      this
-    }
-
-    def rightOf(otherView: View)(implicit activity: Activity) = {
-      addRule(RelativeLayout.RIGHT_OF, otherView.uniqueId)
-      this
-    }
-
-    def centerHorizontal = {
-      addRule(RelativeLayout.CENTER_HORIZONTAL)
-      this
-    }
-
-    def centerInParent = {
-      addRule(RelativeLayout.CENTER_IN_PARENT)
-      this
-    }
-
-    def centerVertical = {
-      addRule(RelativeLayout.CENTER_VERTICAL)
-      this
-    }
-
-    def parent = SRelativeLayout.this
-
-    def >\> : V = v
-
+  def Gravity(g: Int) = {
+    gravity = g
+    this
   }
+
+  def above(otherView: View)(implicit activity: Activity) = {
+    addRule(RelativeLayout.ABOVE, otherView.uniqueId)
+    this
+  }
+
+  def alignBaseline = {
+    addRule(RelativeLayout.ALIGN_BASELINE)
+    this
+  }
+
+  def alignBottom = {
+    addRule(RelativeLayout.ALIGN_BOTTOM)
+    this
+  }
+
+  //def alignEnd = {
+  //  addRule(RelativeLayout.ALIGN_END)
+  //  this
+  //}
+
+  def alignLeft = {
+    addRule(RelativeLayout.ALIGN_LEFT)
+    this
+  }
+
+  def alignParentBottom = {
+    addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+    this
+  }
+
+  //def alignParentEnd = {
+  //  addRule(RelativeLayout.ALIGN_PARENT_END)
+  //  this
+  //}
+
+  def alignParentLeft = {
+    addRule(RelativeLayout.ALIGN_PARENT_LEFT)
+    this
+  }
+
+  def alignParentRight = {
+    addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+    this
+  }
+
+  //def alignParentStart = {
+  //  addRule(RelativeLayout.ALIGN_PARENT_START)
+  //  this
+  //}
+
+  def alignParentTop = {
+    addRule(RelativeLayout.ALIGN_PARENT_TOP)
+    this
+  }
+
+  def alignRight = {
+    addRule(RelativeLayout.ALIGN_RIGHT)
+    this
+  }
+
+  //def alignStart = {
+  //  addRule(RelativeLayout.ALIGN_START)
+  //  this
+  //}
+
+  def alignTop = {
+    addRule(RelativeLayout.ALIGN_TOP)
+    this
+  }
+
+  def below(otherView: View)(implicit activity: Activity) = {
+    addRule(RelativeLayout.BELOW, otherView.uniqueId)
+    this
+  }
+
+  def leftOf(otherView: View)(implicit activity: Activity) = {
+    addRule(RelativeLayout.LEFT_OF, otherView.uniqueId)
+    this
+  }
+
+  def rightOf(otherView: View)(implicit activity: Activity) = {
+    addRule(RelativeLayout.RIGHT_OF, otherView.uniqueId)
+    this
+  }
+
+  def centerHorizontal = {
+    addRule(RelativeLayout.CENTER_HORIZONTAL)
+    this
+  }
+
+  def centerInParent = {
+    addRule(RelativeLayout.CENTER_IN_PARENT)
+    this
+  }
+
+  def centerVertical = {
+    addRule(RelativeLayout.CENTER_VERTICAL)
+    this
+  }
+
+  def parent = SRelativeLayout.this
+
+  def >\> : V = v
+
+}
 >>
 
 
 LinearLayout_concreteBody() ::= <<
-  val VERTICAL = LinearLayout.VERTICAL
-  val HORIZONTAL = LinearLayout.HORIZONTAL
+val VERTICAL = LinearLayout.VERTICAL
+val HORIZONTAL = LinearLayout.HORIZONTAL
 
-  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
-  <<
+implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+<<
 
-  class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
+class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
 
-    def basis = this
+  def basis = this
 
-    v.setLayoutParams(this)
+  v.setLayoutParams(this)
 
-    def Gravity(g: Int) = {
-      gravity = g
-      this
-    }
-
-    def Weight(w: Float) = {
-      weight = w
-      this
-    }
-    def parent = SLinearLayout.this
-
-    def >\> : V = v
-
+  def Gravity(g: Int) = {
+    gravity = g
+    this
   }
+
+  def Weight(w: Float) = {
+    weight = w
+    this
+  }
+  def parent = SLinearLayout.this
+
+  def >\> : V = v
+
+}
 >>
 
 
 ArrayAdapter_concreteBody() ::= <<
-  def setItem(view: TextView, pos: Int): TextView = {
-    getItem(pos) match {
-      case i: CharSequence => view.setText(i)
-      case i => view.setText(i.toString)
-    }
-    view
+def setItem(view: TextView, pos: Int): TextView = {
+  getItem(pos) match {
+    case i: CharSequence => view.setText(i)
+    case i => view.setText(i.toString)
   }
+  view
+}
 
-  override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
-    val v = super.getView(position, convertView, parent)
-    if (_style != null) _style(v.asInstanceOf[TextView]) else v
-  }
+override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
+  val v = super.getView(position, convertView, parent)
+  if (_style != null) _style(v.asInstanceOf[TextView]) else v
+}
 
-  private var _style: TextView => TextView = null
+private var _style: TextView => TextView = null
 
-  def style(v: TextView => TextView) = {
-    _style = v
-    this
-  }
+def style(v: TextView => TextView) = {
+  _style = v
+  this
+}
 
-  override def getDropDownView(position: Int, convertView: View, parent: ViewGroup): View = {
-    val v = super.getDropDownView(position, convertView, parent)
-    if (_dropDownStyle != null) _dropDownStyle(v.asInstanceOf[TextView]) else v
-  }
+override def getDropDownView(position: Int, convertView: View, parent: ViewGroup): View = {
+  val v = super.getDropDownView(position, convertView, parent)
+  if (_dropDownStyle != null) _dropDownStyle(v.asInstanceOf[TextView]) else v
+}
 
-  private var _dropDownStyle: TextView => TextView = null
+private var _dropDownStyle: TextView => TextView = null
 
-  def dropDownStyle(v: TextView => TextView) = {
-    _dropDownStyle = v
-    this
-  }
+def dropDownStyle(v: TextView => TextView) = {
+  _dropDownStyle = v
+  this
+}
 >>

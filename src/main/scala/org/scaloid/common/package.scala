@@ -166,6 +166,8 @@ package object common extends Logger with SystemService with WidgetImplicits {
 
     def basis: V
 
+
+
     @inline def context = basis.getContext
 
     @noEquivalentGetterExists
@@ -272,7 +274,6 @@ package object common extends Logger with SystemService with WidgetImplicits {
     def basis = self
 
 
-
   }
 
   object SPreference {
@@ -296,6 +297,7 @@ package object common extends Logger with SystemService with WidgetImplicits {
   }
 
   trait TraitDialogPreference[V <: android.preference.DialogPreference] extends TraitPreference[V] {
+
 
 
 
@@ -342,6 +344,7 @@ package object common extends Logger with SystemService with WidgetImplicits {
 
 
 
+
     @inline def editText = basis.getEditText
 
     @inline def text = basis.getText
@@ -352,7 +355,6 @@ package object common extends Logger with SystemService with WidgetImplicits {
 
   trait SEditTextPreference extends android.preference.EditTextPreference with TraitEditTextPreference[SEditTextPreference] { self =>
     def basis = self
-
 
 
   }

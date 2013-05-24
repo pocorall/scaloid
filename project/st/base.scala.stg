@@ -25,11 +25,11 @@ $endif$
 
 // Class
 
-wholeClassDef(base, mixin, body) ::= <<
+wholeClassDef(base, mixin) ::= <<
 $richClassDef(...)$
 
 $if(! base.isAbstract && ! base.isFinal)$
-$concreteClassDef(base)$
+$prefixedTraitDef(base)$
 
 $companionObjectDef(...)$
 $endif$
@@ -42,14 +42,8 @@ $if(parent && mixin)$ with $endif$
 $mixin; separator=" with "$
 %>
 
-richClassDef(base, mixin, body) ::= <<
-$openRichClassDef(...)$
-$({$base.name$_traitBody})()$
-$closeRichClassDef(...)$
->>
-
-openRichClassDef(base, mixin, body) ::= <<$_openRichClassDef(base.name)$>>
-_openRichClassDef(name) ::= <<
+richClassDef(base, mixin) ::= <<$_richClassDef(base.name)$>>
+_richClassDef(name) ::= <<
 
 $if( ! base.isAbstract)$
 class Rich$name$[V <: $genType(base.tpe, true)$](val basis: V) extends Trait$name$[V]
@@ -58,9 +52,9 @@ $endif$
 trait Trait$name$[V <: $genType(base.tpe, true)$]$extendClause(base.parentType, mixin)$ {
 
   $if(! base.parentType)$def basis: V$endif$
->>
 
-closeRichClassDef(base) ::= <<
+  $({$base.name$_traitBody})()$
+
   $properties(base)$
   $listeners(base)$
 }
@@ -68,14 +62,12 @@ closeRichClassDef(base) ::= <<
 
 withPrefix(name) ::= "S$name$"
 
-concreteClassDef(base) ::= <<$_concreteClassDef(base.name, withPrefix(base.name))$>>
-
-_concreteClassDef(name, prefixedName) ::= <<
+prefixedTraitDef(base) ::= <<$_prefixedTraitDef(base.name, withPrefix(base.name))$>>
+_prefixedTraitDef(name, prefixedName) ::= <<
 trait $prefixedName$$paramedTypes(base.tpe.params)$ extends $genType(base.tpe)$ with Trait$name$[$prefixedName$$typeVar(base.tpe)$] { self =>
   def basis = self
 
-$({$base.name$_concreteBody})()$
-
+  $({$base.name$_concreteBody})()$
 }
 >>
 
@@ -154,6 +146,8 @@ constArgs(args) ::= <%
 $args:{ a | $a.name$: $genType(a.tpe)$}; separator=", "$
 %>
 
+constExplicitArgs() ::= <<($constArgs(con.explicitArgs)$)>>
+
 constImplicitArgs() ::= <<$_constImplicitArgs(con.implicitArgs, customConstImplicitArgs())$>>
 _constImplicitArgs(args, customArgs) ::= <%
 $if (first(args).name || !isEmpty.(customArgs))$
@@ -180,9 +174,13 @@ $if (first(pTypes).name || !isEmpty.(customTypes))$
 $endif$
 %>
 
+baseClassInstance() ::= <%
+new $name$$typeVar(base.tpe)$($con.args:{a | $a.name$}; separator=", "$)
+%>
+
 constructor(con) ::= <<
-def apply$constTypeParams()$($constArgs(con.explicitArgs)$)$constImplicitArgs()$: $prefixedName$$typeVar(base.tpe)$ = {
-  val v = new $name$$typeVar(base.tpe)$($con.args:{a | $a.name$}; separator=", "$) with $prefixedName$$typeVar(base.tpe)$
+def apply$constTypeParams()$$constExplicitArgs()$$constImplicitArgs()$: $prefixedName$$typeVar(base.tpe)$ = {
+  val v = $baseClassInstance()$ with $prefixedName$$typeVar(base.tpe)$
   $customConstImplicitBodies()$
   v
 }
