@@ -141,6 +141,12 @@ def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](text: CharSequence, on
   v.<<.parent.+=(v)
   v
 }
+>>,
+
+  "ArrayAdapter" : <<
+def apply[T <: AnyRef : Manifest](items: T*)(implicit context: Context): $prefixedName$[T] = $prefixedName$(items.toArray)
+
+def apply[T <: AnyRef](items: Array[T])(implicit context: Context): $prefixedName$[T] = $prefixedName$(android.R.layout.simple_spinner_item, items)
 >>
 ]
 

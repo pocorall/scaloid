@@ -45,6 +45,7 @@ $endif$
   @inline def padding: Int = 0
 >>
 
+
 ViewGroup_traitBody() ::= <<
   implicit val pagentVG = this
 
@@ -72,6 +73,7 @@ ViewGroup_traitBody() ::= <<
   }
 >>
 
+
 FrameLayout_concreteBody() ::= <<
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
   <<
@@ -93,6 +95,7 @@ FrameLayout_concreteBody() ::= <<
 
   }
 >>
+
 
 RelativeLayout_concreteBody() ::= <<
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
@@ -215,6 +218,7 @@ RelativeLayout_concreteBody() ::= <<
   }
 >>
 
+
 LinearLayout_concreteBody() ::= <<
   val VERTICAL = LinearLayout.VERTICAL
   val HORIZONTAL = LinearLayout.HORIZONTAL
@@ -241,5 +245,40 @@ LinearLayout_concreteBody() ::= <<
 
     def >\> : V = v
 
+  }
+>>
+
+
+ArrayAdapter_concreteBody() ::= <<
+  def setItem(view: TextView, pos: Int): TextView = {
+    getItem(pos) match {
+      case i: CharSequence => view.setText(i)
+      case i => view.setText(i.toString)
+    }
+    view
+  }
+
+  override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
+    val v = super.getView(position, convertView, parent)
+    if (_style != null) _style(v.asInstanceOf[TextView]) else v
+  }
+
+  private var _style: TextView => TextView = null
+
+  def style(v: TextView => TextView) = {
+    _style = v
+    this
+  }
+
+  override def getDropDownView(position: Int, convertView: View, parent: ViewGroup): View = {
+    val v = super.getDropDownView(position, convertView, parent)
+    if (_dropDownStyle != null) _dropDownStyle(v.asInstanceOf[TextView]) else v
+  }
+
+  private var _dropDownStyle: TextView => TextView = null
+
+  def dropDownStyle(v: TextView => TextView) = {
+    _dropDownStyle = v
+    this
   }
 >>

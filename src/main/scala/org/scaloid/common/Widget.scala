@@ -2103,6 +2103,7 @@ object SButton {
   }
 
 
+
   def apply[LP <: ViewGroupLayoutParams[_, SButton]](txt: CharSequence)
       (implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton =  {
     val v = new Button(context) with SButton
@@ -2200,6 +2201,7 @@ object SCheckBox {
   }
 
 
+
   def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]](txt: CharSequence)
       (implicit context: Context, defaultLayoutParam: (SCheckBox) => LP): SCheckBox =  {
     val v = new CheckBox(context) with SCheckBox
@@ -2259,6 +2261,7 @@ object SRadioButton {
     v.<<.parent.+=(v)
     v
   }
+
 
 
   def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]](txt: CharSequence)
@@ -2328,6 +2331,7 @@ object SToggleButton {
     v.<<.parent.+=(v)
     v
   }
+
 
 
   def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]](txt: CharSequence)
@@ -4941,7 +4945,37 @@ trait TraitArrayAdapter[V <: android.widget.ArrayAdapter[_]] extends TraitBaseAd
 trait SArrayAdapter[T <: AnyRef] extends android.widget.ArrayAdapter[T] with TraitArrayAdapter[SArrayAdapter[T]] { self =>
   def basis = self
 
+  def setItem(view: TextView, pos: Int): TextView = {
+    getItem(pos) match {
+      case i: CharSequence => view.setText(i)
+      case i => view.setText(i.toString)
+    }
+    view
+  }
 
+  override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
+    val v = super.getView(position, convertView, parent)
+    if (_style != null) _style(v.asInstanceOf[TextView]) else v
+  }
+
+  private var _style: TextView => TextView = null
+
+  def style(v: TextView => TextView) = {
+    _style = v
+    this
+  }
+
+  override def getDropDownView(position: Int, convertView: View, parent: ViewGroup): View = {
+    val v = super.getDropDownView(position, convertView, parent)
+    if (_dropDownStyle != null) _dropDownStyle(v.asInstanceOf[TextView]) else v
+  }
+
+  private var _dropDownStyle: TextView => TextView = null
+
+  def dropDownStyle(v: TextView => TextView) = {
+    _dropDownStyle = v
+    this
+  }
 
 }
 
@@ -4976,6 +5010,11 @@ object SArrayAdapter {
     val v = new ArrayAdapter[T](context, resource, textViewResourceId, objects) with SArrayAdapter[T]
     v
   }
+
+  def apply[T <: AnyRef : Manifest](items: T*)(implicit context: Context): SArrayAdapter[T] = SArrayAdapter(items.toArray)
+
+  def apply[T <: AnyRef](items: Array[T])(implicit context: Context): SArrayAdapter[T] = SArrayAdapter(android.R.layout.simple_spinner_item, items)
+
 
 
 }

@@ -297,48 +297,6 @@ package object common extends Logger with SystemService with WidgetImplicits {
       }
     }
 
-  /*
-  class SArrayAdapter[T <: AnyRef](items: Array[T])(implicit context: Context) extends ArrayAdapter[T](context, android.R.layout.simple_spinner_item, items) {
-    def setItem(view: TextView, pos: Int): TextView = {
-      getItem(pos) match {
-        case i: CharSequence => view.setText(i)
-        case i => view.setText(i.toString)
-      }
-      view
-    }
-
-    override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
-      val v = super.getView(position, convertView, parent)
-      if (_style != null) _style(v.asInstanceOf[TextView]) else v
-    }
-
-    private var _style: TextView => TextView = null
-
-    def style(v: TextView => TextView): SArrayAdapter[T] = {
-      _style = v
-      this
-    }
-
-    override def getDropDownView(position: Int, convertView: View, parent: ViewGroup): View = {
-      val v = super.getDropDownView(position, convertView, parent)
-      if (_dropDownStyle != null) _dropDownStyle(v.asInstanceOf[TextView]) else v
-    }
-
-    private var _dropDownStyle: TextView => TextView = null
-
-    def dropDownStyle(v: TextView => TextView): SArrayAdapter[T] = {
-      _dropDownStyle = v
-      this
-    }
-  }
-  
-  object SArrayAdapter {
-    def apply[T <: AnyRef : Manifest](items:T*)(implicit context: Context) = new SArrayAdapter(items.toArray)
-	
-    def apply[T <: AnyRef](items:Array[T])(implicit context: Context) = new SArrayAdapter(items)	
-  }  
-  */
-
   def broadcastReceiver(filter: IntentFilter)(onReceiveBody: (Context, Intent) => Any)(implicit ctx: Context, reg: Registerable) {
     val receiver = new BroadcastReceiver {
       def onReceive(context: Context, intent: Intent) {
