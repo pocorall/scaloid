@@ -152,9 +152,26 @@ $wholeClassDef(android.widget.RelativeLayout)$
 
 $wholeClassDef(android.widget.LinearLayout)$
 
-//class SVerticalLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends SLinearLayout {
-//  orientation = VERTICAL
-//}
+trait SVerticalLayout extends SLinearLayout {
+  orientation = VERTICAL
+}
+
+object SVerticalLayout {
+
+  def apply[LP <: ViewGroupLayoutParams[_, SVerticalLayout]]()
+        (implicit context: android.content.Context, defaultLayoutParam: SLinearLayout => LP): SVerticalLayout = {
+    val v = new LinearLayout(context) with SVerticalLayout
+    v.<<.parent.+=(v)
+    v
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SVerticalLayout]](attrs: android.util.AttributeSet)
+       (implicit context: android.content.Context, defaultLayoutParam: SLinearLayout => LP): SVerticalLayout = {
+    val v = new LinearLayout(context, attrs) with SVerticalLayout
+    v.<<.parent.+=(v)
+    v
+  }
+}
 
 $wholeClassDef(android.widget.EditText)$
 $wholeClassDef(android.inputmethodservice.ExtractEditText)$

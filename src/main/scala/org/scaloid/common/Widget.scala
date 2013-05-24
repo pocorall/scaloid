@@ -1714,9 +1714,26 @@ object SLinearLayout {
 }
 
 
-//class SVerticalLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends SLinearLayout {
-//  orientation = VERTICAL
-//}
+trait SVerticalLayout extends SLinearLayout {
+  orientation = VERTICAL
+}
+
+object SVerticalLayout {
+
+  def apply[LP <: ViewGroupLayoutParams[_, SVerticalLayout]]()
+        (implicit context: android.content.Context, defaultLayoutParam: SLinearLayout => LP): SVerticalLayout = {
+    val v = new LinearLayout(context) with SVerticalLayout
+    v.<<.parent.+=(v)
+    v
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SVerticalLayout]](attrs: android.util.AttributeSet)
+       (implicit context: android.content.Context, defaultLayoutParam: SLinearLayout => LP): SVerticalLayout = {
+    val v = new LinearLayout(context, attrs) with SVerticalLayout
+    v.<<.parent.+=(v)
+    v
+  }
+}
 
 class RichEditText[V <: android.widget.EditText](val basis: V) extends TraitEditText[V]
 
