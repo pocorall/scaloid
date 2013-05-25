@@ -26,7 +26,7 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-
+ 
 package org.scaloid.common
 
 import android.util.Log
