@@ -5,22 +5,36 @@ import scala.collection.JavaConversions._
 
 class StringTemplateSupport(version: Int, baseGroupFile: File) {
 
-  val group = {
-    val g = new STGroupFile(baseGroupFile.getAbsolutePath, '$', '$')
+  private val verDic = mapAsJavaMap(generateVersionRangeDictionary(version))
+
+  private val errorListener = new STErrorListener(){
+    import org.stringtemplate.v4.misc.STMessage
+    override def compileTimeError(msg: STMessage) = msg.cause
+    override def runTimeError(msg: STMessage) = msg.cause
+    override def IOError(msg: STMessage) = msg.cause
+    override def internalError(msg: STMessage) = msg.cause
+  }
+
+  private def initGroup(g: STGroup) = {
     g.registerRenderer(classOf[String], new StringRenderer())
-    g.defineDictionary("ver", mapAsJavaMap(generateVersionRangeDictionary(version)))
-    g.setListener(new STErrorListener(){
-      import org.stringtemplate.v4.misc.STMessage
-      override def compileTimeError(msg: STMessage) = msg.cause
-      override def runTimeError(msg: STMessage) = msg.cause
-      override def IOError(msg: STMessage) = msg.cause
-      override def internalError(msg: STMessage) = msg.cause
-    })
+    g.defineDictionary("ver", verDic)
+    g.setListener(errorListener)
     g
   }
 
-  def render(template: String, parameters: Map[String, Any]) = {
-    val st = new ST(group, template)
+  private def baseGroup = initGroup(new STGroupFile(baseGroupFile.getAbsolutePath, '$', '$'))
+
+  private def withCompanionGroup(file: File)(f: STGroup => String) = {
+    val g = baseGroup
+    Option(new File(file.absolutePath + ".stg")) filter (_.exists) foreach { cf =>
+      val cg = initGroup(new STGroupFile(cf.absolutePath, '$', '$'))
+      g.importTemplates(cg)
+    }
+    f(g)
+  }
+
+  def render(file: File, parameters: Map[String, Any]) = withCompanionGroup(file) { g: STGroup =>
+    val st = new ST(g, IO.read(file))
     val p = toJava(expandToPackageMap(parameters)).asInstanceOf[java.util.Map[String, Any]]
     p.foreach { case (k, v) =>
       st.add(k, v)
@@ -67,11 +81,10 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
   }
 
   private class StringRenderer extends AttributeRenderer {
-    import java.util._
 
     def toString(value: String): String = value 
 
-    override def toString(value: Any, formatName: String, locale: Locale): String = {
+    override def toString(value: Any, formatName: String, locale: java.util.Locale): String = {
       val formats = Option(formatName).getOrElse("").split(",").map(_.trim)
       formats.foldLeft(value.toString)(format)
     }
@@ -84,6 +97,12 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
       (if (jc.endsWith("MANAGER")) jc.split('_').init.mkString("_")
        else jc) + "_SERVICE"
     }
+
+    private val reservedKeywordsNotInJava = 
+      Set("def", "extends", "implicit", "import", "match", "lazy", "object", "package",
+        "requires", "sealed", "trait", "type", "val", "var", "with", "yield")
+    def safeIdentifier(s: String) = if (s.matches("^[0-9].*") || reservedKeywordsNotInJava(s)) "`"+s+"`" else s
+
     def span(s: String, i: Int) = s.padTo(i, " ").mkString
     val Span = """span(\d+)""".r
 
@@ -95,6 +114,7 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
       case "simple"   | "simplename"   => simpleName(value)
       case "javaconst"                 => toJavaConst(value)
       case "manager-to-service"        => managerToService(value) // TODO make proper case class for manager instead of this trick
+      case "safe-ident"                => safeIdentifier(value)
       case Span(i)                     => span(value, i.toInt)
       case _                           => value
     }

@@ -46,7 +46,7 @@ import language.implicitConversions
  *
  * @author Sung-Ho Lee
  */
-package object common extends Logger with SystemService with WidgetFamily {
+package object common extends Logger with SystemService with WidgetImplicits {
 
   /**
    * Launches a new activity for a give uri. For example, opens a web browser for http protocols.
@@ -75,40 +75,6 @@ package object common extends Logger with SystemService with WidgetFamily {
         f
       }
     }
-
-  private[scaloid] def _defaultValue[U]: U = {
-    class Default[W] {
-      var default: W = _
-    }
-    new Default[U].default
-  }
-
-  trait ConstantsSupport {
-    // android:inputType constants for TextView
-
-    import android.text.InputType._
-
-    val NONE = 0
-    val TEXT = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_NORMAL
-    val TEXT_CAP_CHARACTERS = TYPE_TEXT_FLAG_CAP_CHARACTERS
-    val TEXT_CAP_WORDS = TYPE_TEXT_FLAG_CAP_WORDS
-    val TEXT_CAP_SENTENCES = TYPE_TEXT_FLAG_CAP_SENTENCES
-    val TEXT_AUTO_CORRECT = TYPE_TEXT_FLAG_AUTO_CORRECT
-    val TEXT_AUTO_COMPLETE = TYPE_TEXT_FLAG_AUTO_COMPLETE
-    val TEXT_MULTI_LINE = TYPE_TEXT_FLAG_MULTI_LINE
-    val TEXT_IME_MULTI_LINE = TYPE_TEXT_FLAG_IME_MULTI_LINE
-    val TEXT_NO_SUGGESTIONS = TYPE_TEXT_FLAG_NO_SUGGESTIONS
-    val TEXT_URI = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_URI
-    val TEXT_EMAIL_ADDRESS = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-    val TEXT_EMAIL_SUBJECT = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_EMAIL_SUBJECT
-    val TEXT_SHORT_MESSAGE = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_SHORT_MESSAGE
-    val TEXT_LONG_MESSAGE = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_LONG_MESSAGE
-    val TEXT_PERSON_NAME = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PERSON_NAME
-    val TEXT_POSTAL_ADDRESS = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_POSTAL_ADDRESS
-    val TEXT_PASSWORD = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PASSWORD
-    // TODO: write more (http://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType)
-  }
-
 
   val idSequence = new java.util.concurrent.atomic.AtomicInteger(0)
 
@@ -194,18 +160,20 @@ package object common extends Logger with SystemService with WidgetFamily {
       }
     }
 
-  class RichPreference[V <: Preference](val basis: V) extends TraitPreference[V]
-  @inline implicit def preference2RichPreference[V <: Preference](preference: V) = new RichPreference[V](preference)
+  class RichPreference[V <: android.preference.Preference](val basis: V) extends TraitPreference[V]
 
   trait TraitPreference[V <: android.preference.Preference] {
 
     def basis: V
+
+
+
     @inline def context = basis.getContext
 
     @noEquivalentGetterExists
     @inline def defaultValue(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'defaultValue'")
-    @inline def defaultValue  (p: java.lang.Object) =            defaultValue_=  (p)
-    @inline def defaultValue_=(p: java.lang.Object) = { basis.setDefaultValue    (p); basis }
+    @inline def defaultValue  (p: Any) =            defaultValue_=  (p)
+    @inline def defaultValue_=(p: Any) = { basis.setDefaultValue    (p); basis }
 
     @inline def dependency = basis.getDependency
     @inline def dependency  (p: java.lang.String) =            dependency_=  (p)
@@ -273,16 +241,16 @@ package object common extends Logger with SystemService with WidgetFamily {
     @inline def widgetLayoutResource  (p: Int) =            widgetLayoutResource_=  (p)
     @inline def widgetLayoutResource_=(p: Int) = { basis.setWidgetLayoutResource    (p); basis }
 
-    @inline def onPreferenceChange(f: (android.preference.Preference, java.lang.Object) => Boolean): V = {
+    @inline def onPreferenceChange(f: (android.preference.Preference, Any) => Boolean): V = {
       basis.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener {
-        def onPreferenceChange(p1: android.preference.Preference, p2: java.lang.Object): Boolean = { f(p1, p2) }
+        def onPreferenceChange(p1: android.preference.Preference, p2: Any): Boolean = { f(p1, p2) }
       })
       basis
     }
 
     @inline def onPreferenceChange(f: => Boolean): V = {
       basis.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener {
-        def onPreferenceChange(p1: android.preference.Preference, p2: java.lang.Object): Boolean = { f }
+        def onPreferenceChange(p1: android.preference.Preference, p2: Any): Boolean = { f }
       })
       basis
     }
@@ -302,19 +270,26 @@ package object common extends Logger with SystemService with WidgetFamily {
     }
   }
 
-  class SPreference(implicit context: Context)
-      extends Preference(context) with TraitPreference[SPreference] {
-    def basis = this
+  class SPreference()(implicit context: android.content.Context)
+      extends android.preference.Preference(context) with TraitPreference[SPreference] {
+
+    val basis = this
+
 
   }
 
   object SPreference {
-
-    def apply()(implicit context: Context): SPreference = new SPreference
+    def apply(implicit context: android.content.Context): SPreference = {
+      val v = new SPreference
+      v
+    }
 
   }
 
+
   trait TraitDialogPreference[V <: android.preference.DialogPreference] extends TraitPreference[V] {
+
+
 
 
     @inline def dialog = basis.getDialog
@@ -354,10 +329,11 @@ package object common extends Logger with SystemService with WidgetFamily {
     @inline def positiveButtonText_=(p: java.lang.CharSequence) = { basis.setPositiveButtonText    (p); basis }
 
   }
-  class RichEditTextPreference[V <: EditTextPreference](val basis: V) extends TraitEditTextPreference[V]
-  @inline implicit def editTextPreference2RichEditTextPreference[V <: EditTextPreference](editTextPreference: V) = new RichEditTextPreference[V](editTextPreference)
+  class RichEditTextPreference[V <: android.preference.EditTextPreference](val basis: V) extends TraitEditTextPreference[V]
 
   trait TraitEditTextPreference[V <: android.preference.EditTextPreference] extends TraitDialogPreference[V] {
+
+
 
 
     @inline def editText = basis.getEditText
@@ -368,17 +344,22 @@ package object common extends Logger with SystemService with WidgetFamily {
 
   }
 
-  class SEditTextPreference(implicit context: Context)
-      extends EditTextPreference(context) with TraitEditTextPreference[SEditTextPreference] {
-    def basis = this
+  class SEditTextPreference()(implicit context: android.content.Context)
+      extends android.preference.EditTextPreference(context) with TraitEditTextPreference[SEditTextPreference] {
+
+    val basis = this
+
 
   }
 
   object SEditTextPreference {
-
-    def apply()(implicit context: Context): SEditTextPreference = new SEditTextPreference
+    def apply(implicit context: android.content.Context): SEditTextPreference = {
+      val v = new SEditTextPreference
+      v
+    }
 
   }
+
 
 
   class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = null)(implicit context: Context) extends AlertDialog.Builder(context) {
@@ -514,46 +495,6 @@ package object common extends Logger with SystemService with WidgetFamily {
         f
       }
     }
-
-  class SArrayAdapter[T <: AnyRef](items: Array[T])(implicit context: Context) extends ArrayAdapter[T](context, android.R.layout.simple_spinner_item, items) {
-    def setItem(view: TextView, pos: Int): TextView = {
-      getItem(pos) match {
-        case i: CharSequence => view.setText(i)
-        case i => view.setText(i.toString)
-      }
-      view
-    }
-
-    override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
-      val v = super.getView(position, convertView, parent)
-      if (_style != null) _style(v.asInstanceOf[TextView]) else v
-    }
-
-    private var _style: TextView => TextView = null
-
-    def style(v: TextView => TextView): SArrayAdapter[T] = {
-      _style = v
-      this
-    }
-
-    override def getDropDownView(position: Int, convertView: View, parent: ViewGroup): View = {
-      val v = super.getDropDownView(position, convertView, parent)
-      if (_dropDownStyle != null) _dropDownStyle(v.asInstanceOf[TextView]) else v
-    }
-
-    private var _dropDownStyle: TextView => TextView = null
-
-    def dropDownStyle(v: TextView => TextView): SArrayAdapter[T] = {
-      _dropDownStyle = v
-      this
-    }
-  }
-
-  object SArrayAdapter {
-    def apply[T <: AnyRef : Manifest](items:T*)(implicit context: Context) = new SArrayAdapter(items.toArray)
-
-    def apply[T <: AnyRef](items:Array[T])(implicit context: Context) = new SArrayAdapter(items)	
-  }  
 
   def broadcastReceiver(filter: IntentFilter)(onReceiveBody: (Context, Intent) => Any)(implicit ctx: Context, reg: Registerable) {
     val receiver = new BroadcastReceiver {
