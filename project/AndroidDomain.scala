@@ -1,8 +1,20 @@
 
 case class ScalaType(
   name: String,
-  params: Seq[ScalaType] = Nil,
-  isVar: Boolean = false
+  simpleName: String,
+  params: Seq[ScalaType],
+  bounds: Seq[ScalaType],
+  isVar: Boolean
+)
+
+object ScalaType {
+  def apply(name: String, params: Seq[ScalaType] = Nil, bounds: Seq[ScalaType] = Nil, isVar: Boolean = false): ScalaType =
+    ScalaType(name, name.split('.').last, params, bounds, isVar)
+}
+
+case class Argument(
+  name: String,
+  tpe: ScalaType
 )
 
 case class AndroidMethod(
@@ -36,6 +48,7 @@ case class AndroidListener(
   argTypes: Seq[ScalaType],
   hasParams: Boolean,
   setter: String,
+  setterArgTypes: Seq[ScalaType],
   callbackClassName: String,
   callbackMethods: Seq[AndroidCallbackMethod]
 ) {
@@ -43,16 +56,25 @@ case class AndroidListener(
     (! setter.startsWith("set")) || callbackMethods.length == 1 || callbackMethods.forall(_.retType.name == "Unit")
 }
 
+case class ScalaConstructor(
+  args: Seq[Argument],
+  implicitArgs: Seq[Argument],
+  explicitArgs: Seq[Argument],
+  paramedTypes: Seq[ScalaType],
+  isVarArgs: Boolean
+)
+
 case class AndroidClass(
   name: String,
   pkg: String,
   tpe: ScalaType,
   parentType: Option[ScalaType],
-  constructors: Seq[Seq[ScalaType]],
+  constructors: Seq[ScalaConstructor],
   properties: Seq[AndroidProperty],
   listeners: Seq[AndroidListener],
   isA: Set[String],
   isAbstract: Boolean,
-  isFinal: Boolean
+  isFinal: Boolean,
+  hasBlankConstructor: Boolean
 )
 
