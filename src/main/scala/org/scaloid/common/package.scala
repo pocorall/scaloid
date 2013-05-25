@@ -46,7 +46,7 @@ import language.implicitConversions
  *
  * @author Sung-Ho Lee
  */
-package object common extends Logger with SystemService with WidgetImplicits {
+package object common extends Logger with SystemService with Implicits {
 
   /**
    * Launches a new activity for a give uri. For example, opens a web browser for http protocols.
@@ -62,20 +62,6 @@ package object common extends Logger with SystemService with WidgetImplicits {
     }
   }
 
-  implicit def func2ViewOnClickListener[F](f: (View) => F): View.OnClickListener =
-    new View.OnClickListener() {
-      def onClick(view: View) {
-        f(view)
-      }
-    }
-
-  implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
-    new View.OnClickListener() {
-      def onClick(view: View) {
-        f
-      }
-    }
-
   val idSequence = new java.util.concurrent.atomic.AtomicInteger(0)
 
   def getUniqueId(implicit activity:Activity): Int = {
@@ -85,35 +71,6 @@ package object common extends Logger with SystemService with WidgetImplicits {
     } while(activity.findViewById(candidate) != null)
     candidate
   }
-
-  class RichMenu(menu: Menu) {
-    @inline def +=(txt: CharSequence) = menu.add(txt)
-
-    @inline def inflate(id: Int)(implicit activity: Activity) = {
-      val inflater = activity.getMenuInflater
-      inflater.inflate(id, menu)
-      true
-    }    
-  }
-
-  @inline implicit def menu2RichMenu(menu: Menu) = new RichMenu(menu)
-
-
-  class RichContextMenu(basis: ContextMenu) {
-
-    @inline def headerTitle_=(p: CharSequence) = {
-      basis.setHeaderTitle(p)
-      basis
-    }
-
-    @inline def headerTitle(p: CharSequence) = headerTitle_=(p)
-
-    @noEquivalentGetterExists
-    @inline def headerTitle(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'headerTitle'")
-
-  }
-
-  @inline implicit def contextMenu2RichContextMenu(menu: ContextMenu) = new RichContextMenu(menu)
 
   class UnitConversion(val ext: Double)(implicit context: Context) {
     def dip: Int = (ext * context.getResources().getDisplayMetrics().density).toInt
@@ -286,6 +243,8 @@ package object common extends Logger with SystemService with WidgetImplicits {
 
   }
 
+
+  class RichDialogPreference[V <: android.preference.DialogPreference](val basis: V) extends TraitDialogPreference[V]
 
   trait TraitDialogPreference[V <: android.preference.DialogPreference] extends TraitPreference[V] {
 
@@ -481,20 +440,6 @@ package object common extends Logger with SystemService with WidgetImplicits {
       return null
     }
   }
-
-  implicit def func2DialogOnClickListener[F](f: (DialogInterface, Int) => F): DialogInterface.OnClickListener =
-    new DialogInterface.OnClickListener {
-      def onClick(dialog: DialogInterface, which: Int) {
-        f(dialog, which)
-      }
-    }
-
-  implicit def lazy2DialogOnClickListener[F](f: => F): DialogInterface.OnClickListener =
-    new DialogInterface.OnClickListener {
-      def onClick(dialog: DialogInterface, which: Int) {
-        f
-      }
-    }
 
   def broadcastReceiver(filter: IntentFilter)(onReceiveBody: (Context, Intent) => Any)(implicit ctx: Context, reg: Registerable) {
     val receiver = new BroadcastReceiver {

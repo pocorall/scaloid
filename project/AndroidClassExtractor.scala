@@ -6,8 +6,9 @@ import java.lang.reflect.{Array => JavaArray, _}
 import java.util.jar.JarFile
 import java.net.URI
 import org.reflections._
-import org.reflections.ReflectionUtils._
 import org.reflections.scanners._
+import org.reflections.util._
+import org.reflections.ReflectionUtils._
 import com.google.common.base.Predicates
 import scala.collection.JavaConversions._
 
@@ -245,8 +246,14 @@ object AndroidClassExtractor extends JavaConversionHelpers {
 
     s.log.info("Extracting class info from Android...")
 
-    val r = new Reflections("android", new SubTypesScanner(false), new TypeElementsScanner(), new TypeAnnotationsScanner())
-    val clss: Set[Class[_]] = asScalaSet(r.getSubTypesOf(classOf[java.lang.Object])).toList.toSet
+    val classLoaders = List(ClasspathHelper.contextClassLoader(), ClasspathHelper.staticClassLoader())
+
+    val r = new Reflections(new ConfigurationBuilder()
+      .setScanners(new SubTypesScanner(false), new ResourcesScanner())
+      .setUrls(ClasspathHelper.forClassLoader(classLoaders: _*))
+      .filterInputsBy(new FilterBuilder().include(FilterBuilder.prefix("android"))))
+
+    val clss = asScalaSet(r.getSubTypesOf(classOf[java.lang.Object]))
     val res = clss.toList
                 .filter {
                   s.log.info("Excluding inner classes for now - let's deal with it later")
