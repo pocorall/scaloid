@@ -81,11 +81,10 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
   }
 
   private class StringRenderer extends AttributeRenderer {
-    import java.util._
 
     def toString(value: String): String = value 
 
-    override def toString(value: Any, formatName: String, locale: Locale): String = {
+    override def toString(value: Any, formatName: String, locale: java.util.Locale): String = {
       val formats = Option(formatName).getOrElse("").split(",").map(_.trim)
       formats.foldLeft(value.toString)(format)
     }
@@ -100,9 +99,9 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
     }
 
     private val reservedKeywordsNotInJava = 
-      Seq("def", "extends", "implicit", "import", "match", "lazy", "object", "package", 
+      Set("def", "extends", "implicit", "import", "match", "lazy", "object", "package",
         "requires", "sealed", "trait", "type", "val", "var", "with", "yield")
-    def safeIdentifier(s: String) = if (s.matches("^[0-9].*") || reservedKeywordsNotInJava.contains(s)) "`"+s+"`" else s
+    def safeIdentifier(s: String) = if (s.matches("^[0-9].*") || reservedKeywordsNotInJava(s)) "`"+s+"`" else s
 
     def span(s: String, i: Int) = s.padTo(i, " ").mkString
     val Span = """span(\d+)""".r
