@@ -29,9 +29,7 @@ wholeClassDef(base, mixin) ::= <<
 $richClassDef(...)$
 
 $if(! base.isAbstract && ! base.isFinal)$
-$prefixedTraitDef(base)$
-
-$companionObjectDef(...)$
+$prefixedClassDef(...)$
 $endif$
 >>
 
@@ -60,27 +58,31 @@ trait Trait$name$[V <: $genType(base.tpe, true)$]$extendClause(base.parentType, 
 }
 >>
 
-withPrefix(name) ::= "S$name$"
+withClassPrefix(name) ::= "S$name$"
 
-prefixedTraitDef(base) ::= <<$_prefixedTraitDef(base.name, withPrefix(base.name))$>>
-_prefixedTraitDef(name, prefixedName) ::= <<
-trait $prefixedName$$paramedTypes(base.tpe.params)$ extends $genType(base.tpe)$ with Trait$name$[$prefixedName$$typeVar(base.tpe)$] { self =>
-  def basis = self
+prefixedClassDef(base) ::= <<$_prefixedClassDef(base.name, withClassPrefix(base.name))$>>
+
+_prefixedClassDef(name, sClassName, con) ::= <<
+$if(base.hasBlankConstructor || ClassBodies.(name) || FullConstructors.(name))$
+class $sClassName$$paramedTypes(base.tpe.params)$($customClassExplicitArgs()$)$classImplicitArgs()$
+    extends $baseClassInstance()$ with Trait$name$[$sClassName$$typeVar(base.tpe)$] {
+
+  val basis = this
 
   $({$base.name$_concreteBody})()$
 }
->>
 
+$companionObjectDef(...)$
+$endif$
+>>
 // companion object
 
-companionObjectDef(base) ::= <<$_companionObjectDef(base.name, withPrefix(base.name))$>>
-_companionObjectDef(name, prefixedName) ::= <<
-object $prefixedName$ {
-
-  $constructors()$
+companionObjectDef(base) ::= <<$_companionObjectDef(base.name, withClassPrefix(base.name))$>>
+_companionObjectDef(name, sClassName) ::= <<
+object $sClassName$ {
+  $if(base.hasBlankConstructor)$$constructor(first(base.constructors))$$endif$
 
   $customFullConstructors()$
-
 }
 >>
 
@@ -94,12 +96,27 @@ $kind:{ key |
 
 customConstTypeParams() ::= <<$customConst(ConstTypeParams, ", ")$>>
 ConstTypeParams ::= [
-  "View" : {LP <: ViewGroupLayoutParams[_, $prefixedName$]}
+  "View" : {LP <: ViewGroupLayoutParams[_, $sClassName$]}
+]
+
+customClassExplicitArgs() ::= <<$customConst(ClassExplicitArgs, ", ")$>>
+ClassExplicitArgs ::= [
+  "ArrayAdapter" : {items: Array[T]}
+]
+
+customBaseClassArgs() ::= <<$customConst(BaseClassArgs, ", ")$>>
+BaseClassArgs ::= [
+  "ArrayAdapter" : {context, android.R.layout.simple_spinner_item}
+]
+
+customClassImplicitArgs() ::= <<$customConst(ClassImplicitArgs, ", ")$>>
+ClassImplicitArgs ::= [
+  "View" : {override val parentViewGroup: TraitViewGroup[_] = null}
 ]
 
 customConstImplicitArgs() ::= <<$customConst(ConstImplicitArgs, ", ")$>>
 ConstImplicitArgs ::= [
-  "View" : {defaultLayoutParam: $prefixedName$ => LP}
+  "View" : {defaultLayoutParam: $sClassName$ => LP}
 ]
 
 customConstImplicitBodies() ::= <<$customConst(ConstImplicitBodies, "\n")$>>
@@ -110,9 +127,9 @@ ConstImplicitBodies ::= [
 customFullConstructors() ::= <<$customConst(FullConstructors, "\n")$>>
 FullConstructors ::= [
   "TextView" : <<
-def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](txt: CharSequence)
-    (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ =  {
-  val v = new $name$(context) with $prefixedName$
+def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](txt: CharSequence)
+    (implicit context: Context, defaultLayoutParam: ($sClassName$) => LP): $sClassName$ =  {
+  val v = new $sClassName$
   v text txt
   v.<<.parent.+=(v)
   v
@@ -120,14 +137,14 @@ def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](txt: CharSequence)
 >>,
 
   "Button" : <<
-def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](text: CharSequence, onClickListener: (View) => Unit)
-    (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ = {
+def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](text: CharSequence, onClickListener: (View) => Unit)
+    (implicit context: Context, defaultLayoutParam: ($sClassName$) => LP): $sClassName$ = {
   apply(text, func2ViewOnClickListener(onClickListener))
 }
 
-def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](text: CharSequence, onClickListener: OnClickListener = {})
-    (implicit context: Context, defaultLayoutParam: ($prefixedName$) => LP): $prefixedName$ = {
-  val v = new $name$(context) with $prefixedName$
+def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](text: CharSequence, onClickListener: OnClickListener = {})
+    (implicit context: Context, defaultLayoutParam: ($sClassName$) => LP): $sClassName$ = {
+  val v = new $sClassName$
   v.text = text
   v.setOnClickListener(onClickListener)
   v.<<.parent.+=(v)
@@ -136,9 +153,9 @@ def apply[LP <: ViewGroupLayoutParams[_, $prefixedName$]](text: CharSequence, on
 >>,
 
   "ArrayAdapter" : <<
-def apply[T <: AnyRef : Manifest](items: T*)(implicit context: Context): $prefixedName$[T] = $prefixedName$(items.toArray)
+def apply[T <: AnyRef : Manifest](items: T*)(implicit context: Context): $sClassName$[T] = new $sClassName$(items.toArray)
 
-def apply[T <: AnyRef](items: Array[T])(implicit context: Context): $prefixedName$[T] = $prefixedName$(android.R.layout.simple_spinner_item, items)
+def apply[T <: AnyRef](items: Array[T])(implicit context: Context): $sClassName$[T] = new $sClassName$(items)
 >>
 ]
 
@@ -146,12 +163,15 @@ constArgs(args) ::= <%
 $args:{ a | $a.name$: $genType(a.tpe)$}; separator=", "$
 %>
 
-constExplicitArgs() ::= <<($constArgs(con.explicitArgs)$)>>
+constExplicitArgs() ::= <<$constArgs(con.explicitArgs)$>>
 
-constImplicitArgs() ::= <<$_constImplicitArgs(con.implicitArgs, customConstImplicitArgs())$>>
-_constImplicitArgs(args, customArgs) ::= <%
+classImplicitArgs() ::= <<$_concatArgs(first(base.constructors).implicitArgs, customClassImplicitArgs(), true)$>>
+
+constImplicitArgs() ::= <<$_concatArgs(con.implicitArgs, customConstImplicitArgs(), true)$>>
+
+_concatArgs(args, customArgs, isImplicit = false) ::= <%
 $if (first(args).name || !isEmpty.(customArgs))$
-(implicit $! "placeholder for traling space" !$
+($if(isImplicit)$implicit $endif$
   $if (isEmpty.(customArgs))$
     $constArgs(args)$
   $else$
@@ -174,13 +194,20 @@ $if (first(pTypes).name || !isEmpty.(customTypes))$
 $endif$
 %>
 
-baseClassInstance() ::= <%
-new $name$$typeVar(base.tpe)$($con.args:{a | $a.name$}; separator=", "$)
+baseClassInstance(con) ::= <%
+$base.tpe.name$$typeVar(base.tpe)$
+(
+  $if(BaseClassArgs.(name))$
+    $BaseClassArgs.(name)$
+  $else$
+    $names(first(base.constructors).args)$
+  $endif$
+)
 %>
 
 constructor(con) ::= <<
-def apply$constTypeParams()$$constExplicitArgs()$$constImplicitArgs()$: $prefixedName$$typeVar(base.tpe)$ = {
-  val v = $baseClassInstance()$ with $prefixedName$$typeVar(base.tpe)$
+def apply$constTypeParams()$$constExplicitArgs()$$constImplicitArgs()$: $sClassName$$typeVar(base.tpe)$ = {
+  val v = new $sClassName$$typeVar(base.tpe)$
   $customConstImplicitBodies()$
   v
 }

@@ -74,6 +74,7 @@ case class AndroidClass(
   listeners: Seq[AndroidListener],
   isA: Set[String],
   isAbstract: Boolean,
-  isFinal: Boolean
+  isFinal: Boolean,
+  hasBlankConstructor: Boolean
 )
 

@@ -270,31 +270,22 @@ package object common extends Logger with SystemService with WidgetImplicits {
     }
   }
 
-  trait SPreference extends android.preference.Preference with TraitPreference[SPreference] { self =>
-    def basis = self
+  class SPreference()(implicit context: android.content.Context)
+      extends android.preference.Preference(context) with TraitPreference[SPreference] {
+
+    val basis = this
 
 
   }
 
   object SPreference {
-
-    def apply(attrs: android.util.AttributeSet, defStyle: Int)(implicit context: android.content.Context): SPreference = {
-      val v = new Preference(context, attrs, defStyle) with SPreference
+    def apply(implicit context: android.content.Context): SPreference = {
+      val v = new SPreference
       v
     }
-
-    def apply(attrs: android.util.AttributeSet)(implicit context: android.content.Context): SPreference = {
-      val v = new Preference(context, attrs) with SPreference
-      v
-    }
-
-    def apply()(implicit context: android.content.Context): SPreference = {
-      val v = new Preference(context) with SPreference
-      v
-    }
-
 
   }
+
 
   trait TraitDialogPreference[V <: android.preference.DialogPreference] extends TraitPreference[V] {
 
@@ -353,31 +344,22 @@ package object common extends Logger with SystemService with WidgetImplicits {
 
   }
 
-  trait SEditTextPreference extends android.preference.EditTextPreference with TraitEditTextPreference[SEditTextPreference] { self =>
-    def basis = self
+  class SEditTextPreference()(implicit context: android.content.Context)
+      extends android.preference.EditTextPreference(context) with TraitEditTextPreference[SEditTextPreference] {
+
+    val basis = this
 
 
   }
 
   object SEditTextPreference {
-
-    def apply(attrs: android.util.AttributeSet, defStyle: Int)(implicit context: android.content.Context): SEditTextPreference = {
-      val v = new EditTextPreference(context, attrs, defStyle) with SEditTextPreference
+    def apply(implicit context: android.content.Context): SEditTextPreference = {
+      val v = new SEditTextPreference
       v
     }
-
-    def apply(attrs: android.util.AttributeSet)(implicit context: android.content.Context): SEditTextPreference = {
-      val v = new EditTextPreference(context, attrs) with SEditTextPreference
-      v
-    }
-
-    def apply()(implicit context: android.content.Context): SEditTextPreference = {
-      val v = new EditTextPreference(context) with SEditTextPreference
-      v
-    }
-
 
   }
+
 
 
   class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = null)(implicit context: Context) extends AlertDialog.Builder(context) {

@@ -76,7 +76,6 @@ def style(stl: View PartialFunction View) = {
 
 FrameLayout_concreteBody() ::= <<
 implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
-<<
 
 class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
 
@@ -99,7 +98,6 @@ class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PAREN
 
 RelativeLayout_concreteBody() ::= <<
 implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
-<<
 
 class LayoutParams[V <: View](v: V) extends RelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
   def basis = this
@@ -224,7 +222,6 @@ val VERTICAL = LinearLayout.VERTICAL
 val HORIZONTAL = LinearLayout.HORIZONTAL
 
 implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
-<<
 
 class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
 

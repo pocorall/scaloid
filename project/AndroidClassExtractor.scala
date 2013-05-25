@@ -232,10 +232,13 @@ object AndroidClassExtractor extends JavaConversionHelpers {
     val constructors = cls.getConstructors
                         .map(toScalaConstructor)
                         .toSeq
+                        .sortBy(_.explicitArgs.length)
 
     val isA = getHierarchy(cls).toSet
 
-    AndroidClass(name, pkg, tpe, parentType, constructors, props, listeners, isA, isAbstract(cls), isFinal(cls))
+    val hasBlankConstructor = constructors.exists(_.explicitArgs.length == 0)
+
+    AndroidClass(name, pkg, tpe, parentType, constructors, props, listeners, isA, isAbstract(cls), isFinal(cls), hasBlankConstructor)
   }
 
   def extractTask = (streams) map { s =>
