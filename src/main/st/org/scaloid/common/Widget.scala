@@ -3,82 +3,14 @@ $license()$
 package org.scaloid.common
 
 import android.app._
-import admin.DevicePolicyManager
-import android.view._
-import android.net._
-import android.os._
-import android.media._
-import collection.mutable.ArrayBuffer
-import android.util.Log
-
-import android.text._
-import android.view.accessibility._
-import android.accounts._
-import android.view.inputmethod._
-import android.location._
-import android.hardware._
-import android.telephony._
-import android.net.wifi._
 import android.content._
-import android.widget._
-import android.inputmethodservice._
-import android.preference._
-import android.preference.Preference._
-import android.view.WindowManager.LayoutParams._
+import android.view._
 import android.view.View._
-import android.graphics.drawable.Drawable
-import java.lang.CharSequence
-import scala.Int
-import android.view.ContextMenu.ContextMenuInfo
-import android.text.method._
-import android.gesture._
-import android.appwidget._
-import annotation.target.{beanGetter, getter}
-import android.view.ViewGroup.LayoutParams
-import android.widget.TextView.OnEditorActionListener
-import android.graphics._
-import android.opengl._
-
-import language.implicitConversions
-
-
-private[scaloid] trait ConstantsSupport {
-  // android:inputType constants for TextView
-
-  import android.text.InputType._
-
-  val NONE = 0
-  val TEXT = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_NORMAL
-  val TEXT_CAP_CHARACTERS = TYPE_TEXT_FLAG_CAP_CHARACTERS
-  val TEXT_CAP_WORDS = TYPE_TEXT_FLAG_CAP_WORDS
-  val TEXT_CAP_SENTENCES = TYPE_TEXT_FLAG_CAP_SENTENCES
-  val TEXT_AUTO_CORRECT = TYPE_TEXT_FLAG_AUTO_CORRECT
-  val TEXT_AUTO_COMPLETE = TYPE_TEXT_FLAG_AUTO_COMPLETE
-  val TEXT_MULTI_LINE = TYPE_TEXT_FLAG_MULTI_LINE
-  val TEXT_IME_MULTI_LINE = TYPE_TEXT_FLAG_IME_MULTI_LINE
-  val TEXT_NO_SUGGESTIONS = TYPE_TEXT_FLAG_NO_SUGGESTIONS
-  val TEXT_URI = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_URI
-  val TEXT_EMAIL_ADDRESS = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-  val TEXT_EMAIL_SUBJECT = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_EMAIL_SUBJECT
-  val TEXT_SHORT_MESSAGE = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_SHORT_MESSAGE
-  val TEXT_LONG_MESSAGE = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_LONG_MESSAGE
-  val TEXT_PERSON_NAME = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PERSON_NAME
-  val TEXT_POSTAL_ADDRESS = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_POSTAL_ADDRESS
-  val TEXT_PASSWORD = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PASSWORD
-  // TODO: write more (http://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType)
-}
-
-trait WidgetImplicits {
-  $implicitConversion(android.view.View)$
-  $implicitConversion(android.view.ViewGroup)$
-  $implicitConversion(android.view.SurfaceView)$
-  $implicitConversion(android.view.ViewStub)$
-  $implicitConversions(android.widget)$
-}
-
-object WidgetImplicits extends WidgetImplicits
-
+import android.widget._
+import scala.collection.mutable.ArrayBuffer
+import scala.language.implicitConversions
 import WidgetImplicits._
+
 
 $wholeClassDef(base=android.view.View, mixin="ConstantsSupport")$
 
