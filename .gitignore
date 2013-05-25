@@ -7,6 +7,7 @@ lib_managed
 # IntelliJ IDEA
 .idea
 .idea_modules
+.iml
 
 # VIM
 *.sw?
