@@ -1,9 +1,12 @@
 import sbt._
 import Keys._
 
-object BuildSettings {
+object ScaloidBuild extends Build {
+  import ScaloidSettings._
+  import Dependencies._
+
   lazy val basicSettings = Seq(
-    version               := "2.0-8-RC1-SNAPSHOT",
+    version               := "2.0-16-SNAPSHOT",
     organization          := "org.scaloid",
     organizationHomepage  := Some(new URL("http://blog.scaloid.org")),
     description           := "Rapid Android Development with Scala",
@@ -16,41 +19,29 @@ object BuildSettings {
     javacOptions          ++= Seq(
       "-source", "1.6",
       "-target", "1.6"))
-}
-
-object Dependencies {
-  val resolutionRepos = Seq(
-//    "typesafe releases" at "http://repo.typesafe.com/typesafe/releases",
-//    "typesafe snapshots" at "http://repo.typesafe.com/typesafe/snapshots",
-//    "sonatype releases" at "https://oss.sonatype.org/content/repositories/releases",
-//    "sonatype snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
-  )
-
-  def compile   (deps: ModuleID*): Seq[ModuleID] = deps map (_ % "compile")
-  def provided  (deps: ModuleID*): Seq[ModuleID] = deps map (_ % "provided")
-  def test      (deps: ModuleID*): Seq[ModuleID] = deps map (_ % "test")
-  def runtime   (deps: ModuleID*): Seq[ModuleID] = deps map (_ % "runtime")
-  def container (deps: ModuleID*): Seq[ModuleID] = deps map (_ % "container")
-
-  val android = "com.google.android" % "android" % "2.2.1"
-}
-
-object ScaloidBuild extends Build {
-  import BuildSettings._
-  import Dependencies._
-  import ScaloidSettings._
 
   // configure prompt to show current project
   override lazy val settings = super.settings :+ {
     shellPrompt := { s => Project.extract(s).currentProject.id + "> " }
   }
 
+
   // root project
-  lazy val scaloid = Project("scaloid", file("."))
+  lazy val parent = Project("parent", file("."))
+    .settings(scaloidSettings: _*)
+    .settings(publish := {}, publishLocal := {})
+    .aggregate(common, support_v4)
+
+  lazy val common = Project("scaloid", file("scaloid-common"))
     .settings(name := "scaloid", exportJars := true)
     .settings(basicSettings: _*)
     .settings(scaloidSettings: _*)
-    .settings(libraryDependencies ++= provided(android))
 
+  lazy val support_v4 = Project("scaloid-support-v4", file("scaloid-support-v4"))
+    .settings(name := "scaloid-support-v4", exportJars := true)
+    .settings(basicSettings: _*)
+    .settings(scaloidSettings: _*)
+    .settings(libraryDependencies += android_support_v4)
+    .dependsOn(common)
 }
 
