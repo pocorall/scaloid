@@ -34,19 +34,107 @@
 
 package org.scaloid.common
 
+import android.content._
+import android.graphics.Movie
+import android.graphics.drawable.Drawable
+import android.net.Uri
+import android.view._
 import language.implicitConversions
 
 
-trait WidgetImplicits {
+private[scaloid] class UnitConversion(val ext: Double)(implicit context: Context) {
+  def dip: Int = (ext * context.getResources().getDisplayMetrics().density).toInt
+  def sp : Int = (ext * context.getResources().getDisplayMetrics().scaledDensity).toInt
+}
+
+private[scaloid] class ResourceConversion(val id: Int)(implicit context: Context) {
+  def r2Text         : CharSequence        = context.getText(id)
+  def r2TextArray    : Array[CharSequence] = context.getResources.getTextArray(id)
+  def r2String       : String              = context.getResources.getString(id)
+  def r2StringArray  : Array[String]       = context.getResources.getStringArray(id)
+  def r2Drawable     : Drawable            = context.getResources.getDrawable(id)
+  def r2Movie        : Movie               = context.getResources.getMovie(id)
+}
+
+trait ConversionImplicits {
+  @inline implicit def Double2unitConversion(ext: Double)(implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
+  @inline implicit def Long2unitConversion  (ext: Long)  (implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
+  @inline implicit def Int2unitConversion   (ext: Int)   (implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
+
+  @inline implicit def Int2resource(ext: Int)(implicit context: Context): ResourceConversion = new ResourceConversion(ext)(context)
+
+  // r2String is not provided because it is ambiguous with r2Text
+  @inline implicit def r2Text       (id: Int)(implicit context: Context): CharSequence        = context.getText(id)
+  @inline implicit def r2TextArray  (id: Int)(implicit context: Context): Array[CharSequence] = context.getResources.getTextArray(id)
+  @inline implicit def r2StringArray(id: Int)(implicit context: Context): Array[String]       = context.getResources.getStringArray(id)
+  @inline implicit def r2Drawable   (id: Int)(implicit context: Context): Drawable            = context.getResources.getDrawable(id)
+  @inline implicit def r2Movie      (id: Int)(implicit context: Context): Movie               = context.getResources.getMovie(id)
+
+  @inline implicit def string2Uri           (str: String): Uri            = Uri.parse(str)
+  @inline implicit def string2IntentFilter  (str: String): IntentFilter   = new IntentFilter(str)
+}
+object ConversionImplicits extends ConversionImplicits
+
+trait InterfaceImplicits {
+  implicit def func2ViewOnClickListener[F](f: (View) => F): View.OnClickListener =
+    new View.OnClickListener() {
+      def onClick(view: View) {
+        f(view)
+      }
+    }
+
+  implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
+    new View.OnClickListener() {
+      def onClick(view: View) {
+        f
+      }
+    }
+
+  implicit def func2DialogOnClickListener[F](f: (DialogInterface, Int) => F): DialogInterface.OnClickListener =
+    new DialogInterface.OnClickListener {
+      def onClick(dialog: DialogInterface, which: Int) {
+        f(dialog, which)
+      }
+    }
+
+  implicit def lazy2DialogOnClickListener[F](f: => F): DialogInterface.OnClickListener =
+    new DialogInterface.OnClickListener {
+      def onClick(dialog: DialogInterface, which: Int) {
+        f
+      }
+    }
+
+  implicit def func2runnable[F](f: () => F): Runnable =
+    new Runnable() {
+      def run() {
+        f()
+      }
+    }
+
+  implicit def lazy2runnable[F](f: => F): Runnable =
+    new Runnable() {
+      def run() {
+        f
+      }
+    }
+}
+object InterfaceImpliciits extends InterfaceImplicits
+
+trait ViewImplicits {
+  @inline implicit def menu2RichMenu[V <: android.view.Menu](menu: V) = new RichMenu[V](menu)
+  @inline implicit def contextMenu2RichContextMenu[V <: android.view.ContextMenu](contextMenu: V) = new RichContextMenu[V](contextMenu)
   @inline implicit def view2RichView[V <: android.view.View](view: V) = new RichView[V](view)
-
+  @inline implicit def viewGroup2RichViewGroup[V <: android.view.ViewGroup](viewGroup: V) = new RichViewGroup[V](viewGroup)
   @inline implicit def surfaceView2RichSurfaceView[V <: android.view.SurfaceView](surfaceView: V) = new RichSurfaceView[V](surfaceView)
-
   @inline implicit def viewStub2RichViewStub[V <: android.view.ViewStub](viewStub: V) = new RichViewStub[V](viewStub)
+}
+object ViewImplicits extends ViewImplicits
 
+trait WidgetImplicits {
   @inline implicit def popupWindow2RichPopupWindow[V <: android.widget.PopupWindow](popupWindow: V) = new RichPopupWindow[V](popupWindow)
   @inline implicit def arrayAdapter2RichArrayAdapter[V <: android.widget.ArrayAdapter[_]](arrayAdapter: V) = new RichArrayAdapter[V](arrayAdapter)
   @inline implicit def absoluteLayout2RichAbsoluteLayout[V <: android.widget.AbsoluteLayout](absoluteLayout: V) = new RichAbsoluteLayout[V](absoluteLayout)
+  @inline implicit def spinnerAdapter2RichSpinnerAdapter[V <: android.widget.SpinnerAdapter](spinnerAdapter: V) = new RichSpinnerAdapter[V](spinnerAdapter)
   @inline implicit def imageButton2RichImageButton[V <: android.widget.ImageButton](imageButton: V) = new RichImageButton[V](imageButton)
   @inline implicit def listView2RichListView[V <: android.widget.ListView](listView: V) = new RichListView[V](listView)
   @inline implicit def editText2RichEditText[V <: android.widget.EditText](editText: V) = new RichEditText[V](editText)
@@ -54,25 +142,37 @@ trait WidgetImplicits {
   @inline implicit def analogClock2RichAnalogClock[V <: android.widget.AnalogClock](analogClock: V) = new RichAnalogClock[V](analogClock)
   @inline implicit def multiAutoCompleteTextView2RichMultiAutoCompleteTextView[V <: android.widget.MultiAutoCompleteTextView](multiAutoCompleteTextView: V) = new RichMultiAutoCompleteTextView[V](multiAutoCompleteTextView)
   @inline implicit def datePicker2RichDatePicker[V <: android.widget.DatePicker](datePicker: V) = new RichDatePicker[V](datePicker)
+  @inline implicit def absSeekBar2RichAbsSeekBar[V <: android.widget.AbsSeekBar](absSeekBar: V) = new RichAbsSeekBar[V](absSeekBar)
   @inline implicit def tableLayout2RichTableLayout[V <: android.widget.TableLayout](tableLayout: V) = new RichTableLayout[V](tableLayout)
+  @inline implicit def simpleCursorTreeAdapter2RichSimpleCursorTreeAdapter[V <: android.widget.SimpleCursorTreeAdapter](simpleCursorTreeAdapter: V) = new RichSimpleCursorTreeAdapter[V](simpleCursorTreeAdapter)
+  @inline implicit def cursorAdapter2RichCursorAdapter[V <: android.widget.CursorAdapter](cursorAdapter: V) = new RichCursorAdapter[V](cursorAdapter)
+  @inline implicit def resourceCursorTreeAdapter2RichResourceCursorTreeAdapter[V <: android.widget.ResourceCursorTreeAdapter](resourceCursorTreeAdapter: V) = new RichResourceCursorTreeAdapter[V](resourceCursorTreeAdapter)
   @inline implicit def tabHost2RichTabHost[V <: android.widget.TabHost](tabHost: V) = new RichTabHost[V](tabHost)
+  @inline implicit def heterogeneousExpandableList2RichHeterogeneousExpandableList[V <: android.widget.HeterogeneousExpandableList](heterogeneousExpandableList: V) = new RichHeterogeneousExpandableList[V](heterogeneousExpandableList)
   @inline implicit def radioGroup2RichRadioGroup[V <: android.widget.RadioGroup](radioGroup: V) = new RichRadioGroup[V](radioGroup)
   @inline implicit def ratingBar2RichRatingBar[V <: android.widget.RatingBar](ratingBar: V) = new RichRatingBar[V](ratingBar)
   @inline implicit def simpleExpandableListAdapter2RichSimpleExpandableListAdapter[V <: android.widget.SimpleExpandableListAdapter](simpleExpandableListAdapter: V) = new RichSimpleExpandableListAdapter[V](simpleExpandableListAdapter)
+  @inline implicit def expandableListAdapter2RichExpandableListAdapter[V <: android.widget.ExpandableListAdapter](expandableListAdapter: V) = new RichExpandableListAdapter[V](expandableListAdapter)
   @inline implicit def spinner2RichSpinner[V <: android.widget.Spinner](spinner: V) = new RichSpinner[V](spinner)
   @inline implicit def alphabetIndexer2RichAlphabetIndexer[V <: android.widget.AlphabetIndexer](alphabetIndexer: V) = new RichAlphabetIndexer[V](alphabetIndexer)
   @inline implicit def gridView2RichGridView[V <: android.widget.GridView](gridView: V) = new RichGridView[V](gridView)
   @inline implicit def relativeLayout2RichRelativeLayout[V <: android.widget.RelativeLayout](relativeLayout: V) = new RichRelativeLayout[V](relativeLayout)
   @inline implicit def chronometer2RichChronometer[V <: android.widget.Chronometer](chronometer: V) = new RichChronometer[V](chronometer)
+  @inline implicit def filterable2RichFilterable[V <: android.widget.Filterable](filterable: V) = new RichFilterable[V](filterable)
   @inline implicit def checkedTextView2RichCheckedTextView[V <: android.widget.CheckedTextView](checkedTextView: V) = new RichCheckedTextView[V](checkedTextView)
+  @inline implicit def sectionIndexer2RichSectionIndexer[V <: android.widget.SectionIndexer](sectionIndexer: V) = new RichSectionIndexer[V](sectionIndexer)
   @inline implicit def twoLineListItem2RichTwoLineListItem[V <: android.widget.TwoLineListItem](twoLineListItem: V) = new RichTwoLineListItem[V](twoLineListItem)
   @inline implicit def headerViewListAdapter2RichHeaderViewListAdapter[V <: android.widget.HeaderViewListAdapter](headerViewListAdapter: V) = new RichHeaderViewListAdapter[V](headerViewListAdapter)
   @inline implicit def imageSwitcher2RichImageSwitcher[V <: android.widget.ImageSwitcher](imageSwitcher: V) = new RichImageSwitcher[V](imageSwitcher)
   @inline implicit def timePicker2RichTimePicker[V <: android.widget.TimePicker](timePicker: V) = new RichTimePicker[V](timePicker)
   @inline implicit def expandableListView2RichExpandableListView[V <: android.widget.ExpandableListView](expandableListView: V) = new RichExpandableListView[V](expandableListView)
+  @inline implicit def absListView2RichAbsListView[V <: android.widget.AbsListView](absListView: V) = new RichAbsListView[V](absListView)
+  @inline implicit def absSpinner2RichAbsSpinner[V <: android.widget.AbsSpinner](absSpinner: V) = new RichAbsSpinner[V](absSpinner)
   @inline implicit def seekBar2RichSeekBar[V <: android.widget.SeekBar](seekBar: V) = new RichSeekBar[V](seekBar)
   @inline implicit def toast2RichToast[V <: android.widget.Toast](toast: V) = new RichToast[V](toast)
+  @inline implicit def listAdapter2RichListAdapter[V <: android.widget.ListAdapter](listAdapter: V) = new RichListAdapter[V](listAdapter)
   @inline implicit def zoomButtonsController2RichZoomButtonsController[V <: android.widget.ZoomButtonsController](zoomButtonsController: V) = new RichZoomButtonsController[V](zoomButtonsController)
+  @inline implicit def resourceCursorAdapter2RichResourceCursorAdapter[V <: android.widget.ResourceCursorAdapter](resourceCursorAdapter: V) = new RichResourceCursorAdapter[V](resourceCursorAdapter)
   @inline implicit def viewAnimator2RichViewAnimator[V <: android.widget.ViewAnimator](viewAnimator: V) = new RichViewAnimator[V](viewAnimator)
   @inline implicit def slidingDrawer2RichSlidingDrawer[V <: android.widget.SlidingDrawer](slidingDrawer: V) = new RichSlidingDrawer[V](slidingDrawer)
   @inline implicit def textSwitcher2RichTextSwitcher[V <: android.widget.TextSwitcher](textSwitcher: V) = new RichTextSwitcher[V](textSwitcher)
@@ -89,21 +189,32 @@ trait WidgetImplicits {
   @inline implicit def tableRow2RichTableRow[V <: android.widget.TableRow](tableRow: V) = new RichTableRow[V](tableRow)
   @inline implicit def tabWidget2RichTabWidget[V <: android.widget.TabWidget](tabWidget: V) = new RichTabWidget[V](tabWidget)
   @inline implicit def videoView2RichVideoView[V <: android.widget.VideoView](videoView: V) = new RichVideoView[V](videoView)
+  @inline implicit def adapterView2RichAdapterView[V <: android.widget.AdapterView[_]](adapterView: V) = new RichAdapterView[V](adapterView)
+  @inline implicit def checkable2RichCheckable[V <: android.widget.Checkable](checkable: V) = new RichCheckable[V](checkable)
   @inline implicit def horizontalScrollView2RichHorizontalScrollView[V <: android.widget.HorizontalScrollView](horizontalScrollView: V) = new RichHorizontalScrollView[V](horizontalScrollView)
   @inline implicit def progressBar2RichProgressBar[V <: android.widget.ProgressBar](progressBar: V) = new RichProgressBar[V](progressBar)
   @inline implicit def scrollView2RichScrollView[V <: android.widget.ScrollView](scrollView: V) = new RichScrollView[V](scrollView)
+  @inline implicit def cursorTreeAdapter2RichCursorTreeAdapter[V <: android.widget.CursorTreeAdapter](cursorTreeAdapter: V) = new RichCursorTreeAdapter[V](cursorTreeAdapter)
   @inline implicit def simpleCursorAdapter2RichSimpleCursorAdapter[V <: android.widget.SimpleCursorAdapter](simpleCursorAdapter: V) = new RichSimpleCursorAdapter[V](simpleCursorAdapter)
+  @inline implicit def baseExpandableListAdapter2RichBaseExpandableListAdapter[V <: android.widget.BaseExpandableListAdapter](baseExpandableListAdapter: V) = new RichBaseExpandableListAdapter[V](baseExpandableListAdapter)
   @inline implicit def viewSwitcher2RichViewSwitcher[V <: android.widget.ViewSwitcher](viewSwitcher: V) = new RichViewSwitcher[V](viewSwitcher)
   @inline implicit def zoomButton2RichZoomButton[V <: android.widget.ZoomButton](zoomButton: V) = new RichZoomButton[V](zoomButton)
   @inline implicit def gallery2RichGallery[V <: android.widget.Gallery](gallery: V) = new RichGallery[V](gallery)
+  @inline implicit def filterQueryProvider2RichFilterQueryProvider[V <: android.widget.FilterQueryProvider](filterQueryProvider: V) = new RichFilterQueryProvider[V](filterQueryProvider)
+  @inline implicit def compoundButton2RichCompoundButton[V <: android.widget.CompoundButton](compoundButton: V) = new RichCompoundButton[V](compoundButton)
+  @inline implicit def filter2RichFilter[V <: android.widget.Filter](filter: V) = new RichFilter[V](filter)
+  @inline implicit def wrapperListAdapter2RichWrapperListAdapter[V <: android.widget.WrapperListAdapter](wrapperListAdapter: V) = new RichWrapperListAdapter[V](wrapperListAdapter)
   @inline implicit def frameLayout2RichFrameLayout[V <: android.widget.FrameLayout](frameLayout: V) = new RichFrameLayout[V](frameLayout)
+  @inline implicit def adapter2RichAdapter[V <: android.widget.Adapter](adapter: V) = new RichAdapter[V](adapter)
   @inline implicit def textView2RichTextView[V <: android.widget.TextView](textView: V) = new RichTextView[V](textView)
   @inline implicit def viewFlipper2RichViewFlipper[V <: android.widget.ViewFlipper](viewFlipper: V) = new RichViewFlipper[V](viewFlipper)
   @inline implicit def scroller2RichScroller[V <: android.widget.Scroller](scroller: V) = new RichScroller[V](scroller)
   @inline implicit def simpleAdapter2RichSimpleAdapter[V <: android.widget.SimpleAdapter](simpleAdapter: V) = new RichSimpleAdapter[V](simpleAdapter)
   @inline implicit def autoCompleteTextView2RichAutoCompleteTextView[V <: android.widget.AutoCompleteTextView](autoCompleteTextView: V) = new RichAutoCompleteTextView[V](autoCompleteTextView)
   @inline implicit def remoteViews2RichRemoteViews[V <: android.widget.RemoteViews](remoteViews: V) = new RichRemoteViews[V](remoteViews)
-
+  @inline implicit def baseAdapter2RichBaseAdapter[V <: android.widget.BaseAdapter](baseAdapter: V) = new RichBaseAdapter[V](baseAdapter)
 }
-
 object WidgetImplicits extends WidgetImplicits
+
+trait Implicits extends ConversionImplicits with InterfaceImplicits with ViewImplicits with WidgetImplicits
+object Implicits extends Implicits
