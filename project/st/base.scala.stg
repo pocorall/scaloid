@@ -13,19 +13,22 @@ isEmpty ::= [
 // Implicit 
 
 implicitConversions(pkg) ::= <<
-$pkg:{ c | $implicitConversion(pkg.(c))$}$
+$pkg:{ c | $implicitConversion(pkg.(c))$}; separator="\n"$
 >>
 
 implicitConversion(base) ::= <<$_implicitConversion(base.name)$>>
 _implicitConversion(name) ::= <<
-$if( base.constructors && ! base.isAbstract)$@inline implicit def $decap(name)$2Rich$name$[V <: $genType(base.tpe, true)$]($decap(name)$: V) = new Rich$name$[V]($decap(name)$)
-$endif$
+@inline implicit def $decap(name)$2Rich$name$[V <: $genType(base.tpe, true)$]($decap(name)$: V) = new Rich$name$[V]($decap(name)$)
 >>
 
 
 // Class
 
-wholeClassDef(base, mixin) ::= <<
+wrapAllPackageMembers(pkg) ::= <<
+$pkg:{ c | $wholeClassDef(pkg.(c))$}; separator="\n\n"$
+>>
+
+wholeClassDef(base) ::= <<
 $richClassDef(...)$
 
 $if(! base.isAbstract && ! base.isFinal)$
@@ -33,25 +36,24 @@ $prefixedClassDef(...)$
 $endif$
 >>
 
-extendClause(parent, mixin) ::= <%
-$if(parent || mixin)$ extends $endif$
+extendClause() ::= <<$_extendClause(base.parentType, trim(({$base.name$_mixin})()))$>>
+_extendClause(parent, mixin) ::= <%
+$if(parent || ! isEmpty.(mixin))$ extends $endif$
 $if(parent)$Trait$parent.name; format="simple"$[V]$endif$
-$if(parent && mixin)$ with $endif$
+$if(parent && ! isEmpty.(mixin))$ with $endif$
 $mixin; separator=" with "$
 %>
 
 richClassDef(base, mixin) ::= <<$_richClassDef(base.name)$>>
 _richClassDef(name) ::= <<
 
-$if( ! base.isAbstract)$
 class Rich$name$[V <: $genType(base.tpe, true)$](val basis: V) extends Trait$name$[V]
-$endif$
 
-trait Trait$name$[V <: $genType(base.tpe, true)$]$extendClause(base.parentType, mixin)$ {
+trait Trait$name$[V <: $genType(base.tpe, true)$]$extendClause()$ {
 
   $if(! base.parentType)$def basis: V$endif$
 
-  $({$base.name$_traitBody})()$
+  $({$name$_traitBody})()$
 
   $properties(base)$
   $listeners(base)$
@@ -69,7 +71,7 @@ class $sClassName$$paramedTypes(base.tpe.params)$($customClassExplicitArgs()$)$c
 
   val basis = this
 
-  $({$base.name$_concreteBody})()$
+  $({$name$_concreteBody})()$
 }
 
 $companionObjectDef(...)$

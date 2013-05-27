@@ -1,7 +1,10 @@
+$license()$
+
 package org.scaloid.common
 
-import scala.language.dynamics
 import android.content.{Context, SharedPreferences}
+import scala.language.dynamics
+
 
 class StringPreferences(preferences: SharedPreferences) extends Dynamic {
   var defaultValue: String = _
@@ -77,3 +80,8 @@ class Preferences(val preferences: SharedPreferences) extends Dynamic {
 object Preferences {
   def apply()(implicit ctx: Context) = new Preferences(defaultSharedPreferences)
 }
+
+
+$wholeClassDef(android.preference.Preference)$
+$richClassDef(android.preference.DialogPreference)$
+$wholeClassDef(android.preference.EditTextPreference)$

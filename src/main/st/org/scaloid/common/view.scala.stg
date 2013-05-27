@@ -1,0 +1,87 @@
+View_mixin() ::= "ConstantsSupport"
+
+View_traitBody() ::= <<
+def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
+
+def uniqueId(implicit activity: Activity): Int = {
+  if(basis.getId < 0) {
+    basis.setId(getUniqueId)
+  }
+  basis.getId
+}
+
+val FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT
+$if(ver.gte_8)$
+val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
+$else$
+val MATCH_PARENT = ViewGroup.LayoutParams.FILL_PARENT
+$endif$
+val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
+
+def <<[LP <: ViewGroupLayoutParams[_,_]](implicit defaultLayoutParam: (V) => LP): LP =
+  defaultLayoutParam(basis)
+
+protected def parentViewGroupIfExists[LP <: ViewGroupLayoutParams[_,_]]
+    (implicit defaultLayoutParam: (V) => LP = (v:V)=> null): TraitViewGroup[_] = {
+  val lp = defaultLayoutParam(basis)
+  if(lp==null) null else lp.parent
+}
+
+def <<[LP <: ViewGroupLayoutParams[_,_]](width:Int, height:Int)(implicit defaultLayoutParam: (V) => LP): LP = {
+  val lp = defaultLayoutParam(basis)
+  lp.height = height
+  lp.width = width
+  lp
+}
+
+val parentViewGroup: TraitViewGroup[_] = null
+
+@inline def padding_=(p: Int) = {
+  basis.setPadding(p, p, p, p)
+  basis
+}
+
+@inline def padding(p: Int) = padding_=(p)
+
+@noEquivalentGetterExists
+@inline def padding: Int = 0
+>>
+
+
+ViewGroup_traitBody() ::= <<
+implicit val pagentVG = this
+
+def applyStyle(v: View): View = {
+  var viw = v
+  if (parentViewGroup != null) viw = parentViewGroup.applyStyle(viw)
+  styles.foreach { st =>
+    if (st.isDefinedAt(viw)) viw = st(viw)
+  }
+  viw
+}
+
+def +=(v: View) = {
+  var viw = v
+  viw = applyStyle(viw)
+  basis.addView(viw)
+  basis
+}
+
+val styles = new ArrayBuffer[View PartialFunction View]
+
+def style(stl: View PartialFunction View) = {
+  styles += stl
+  basis
+}
+>>
+
+
+Menu_traitBody() ::= <<
+@inline def +=(txt: CharSequence) = basis.add(txt)
+
+@inline def inflate(id: Int)(implicit activity: Activity) = {
+  val inflater = activity.getMenuInflater
+  inflater.inflate(id, basis)
+  true
+}    
+>>
