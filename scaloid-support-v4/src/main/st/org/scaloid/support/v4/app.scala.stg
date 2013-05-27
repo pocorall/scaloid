@@ -1,0 +1,3 @@
+FragmentActivity_traitBody() ::= <<
+override def basis: V
+>>

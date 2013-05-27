@@ -5,6 +5,7 @@ import Keys._
 object ScaloidSettings {
   import SourceGenerator._
   import AndroidClassExtractor._
+  import Dependencies._
 
   val Scaloid = config("scaloid") extend (Compile)
 
@@ -14,7 +15,7 @@ object ScaloidSettings {
   lazy val scaloidSettings = Seq(
     generate in Scaloid <<= generateTask,
     extract in Scaloid <<= extractTask,
-    compile <<= (compile in Compile) dependsOn (generate in Scaloid)
+    libraryDependencies += android
   )
 
 }

@@ -1,0 +1,17 @@
+Context_mixin() ::= "TagUtil"
+
+Context_traitBody() ::= <<
+implicit val ctx = basis
+
+def startActivity[T: ClassManifest] {
+  basis.startActivity(SIntent[T])
+}
+
+def startService[T: ClassManifest] {
+  basis.startService(SIntent[T])
+}
+
+def stopService[T: ClassManifest] {
+  basis.stopService(SIntent[T])
+}
+>>
