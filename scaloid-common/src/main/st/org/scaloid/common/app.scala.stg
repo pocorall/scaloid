@@ -1,0 +1,16 @@
+Service_mixin() ::= "TraitContext[V] with Destroyable with Creatable with Registerable"
+
+Service_traitBody() ::= <<
+def onRegister(body: => Any) = onCreate(body)
+def onUnregister(body: => Any) = onDestroy(body)
+
+def onCreate() {
+  super.onCreate()
+  onCreateBodies.foreach(_ ())
+}
+
+def onDestroy() {
+  onDestroyBodies.foreach(_ ())
+  super.onDestroy()
+}
+>>
