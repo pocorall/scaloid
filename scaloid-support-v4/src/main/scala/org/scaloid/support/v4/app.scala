@@ -47,13 +47,9 @@ trait TraitFragment[V <: android.support.v4.app.Fragment] {
 
   @inline def activity = basis.getActivity
 
-  @inline def added = basis.isAdded
-
   @inline def arguments = basis.getArguments
   @inline def arguments  (p: android.os.Bundle) =            arguments_=  (p)
   @inline def arguments_=(p: android.os.Bundle) = { basis.setArguments    (p); basis }
-
-  @inline def detached = basis.isDetached
 
   @inline def fragmentManager = basis.getFragmentManager
 
@@ -62,11 +58,7 @@ trait TraitFragment[V <: android.support.v4.app.Fragment] {
   @inline def hasOptionsMenu  (p: Boolean) =            hasOptionsMenu_=  (p)
   @inline def hasOptionsMenu_=(p: Boolean) = { basis.setHasOptionsMenu    (p); basis }
 
-  @inline def hidden = basis.isHidden
-
   @inline def id = basis.getId
-
-  @inline def inLayout = basis.isInLayout
 
   @noEquivalentGetterExists
   @inline def initialSavedState(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'initialSavedState'")
@@ -80,11 +72,7 @@ trait TraitFragment[V <: android.support.v4.app.Fragment] {
   @inline def menuVisibility  (p: Boolean) =            menuVisibility_=  (p)
   @inline def menuVisibility_=(p: Boolean) = { basis.setMenuVisibility    (p); basis }
 
-  @inline def removing = basis.isRemoving
-
   @inline def resources = basis.getResources
-
-  @inline def resumed = basis.isResumed
 
   @inline def retainInstance = basis.getRetainInstance
   @inline def retainInstance  (p: Boolean) =            retainInstance_=  (p)
@@ -101,8 +89,6 @@ trait TraitFragment[V <: android.support.v4.app.Fragment] {
   @inline def userVisibleHint_=(p: Boolean) = { basis.setUserVisibleHint    (p); basis }
 
   @inline def view = basis.getView
-
-  @inline def visible = basis.isVisible
 
 
 }
