@@ -175,7 +175,6 @@ object AndroidClassExtractor extends JavaConversionHelpers {
         }
       }
 
-
       callbackMethods.map { cm =>
         AndroidListener(
           listenerName(cm, androidCallbackMethods, setter),
@@ -251,12 +250,6 @@ object AndroidClassExtractor extends JavaConversionHelpers {
     def getHierarchy(c: Class[_], accu: List[String] = Nil): List[String] =
       if (c == null) accu
       else getHierarchy(c.getSuperclass, simpleClassName(c) :: accu)
-
-    //val props = Introspector.getBeanInfo(cls).getPropertyDescriptors.toSeq
-    //              .filter(isValidProperty)
-    //              .map(androidPropertyFromPropDesc)
-    //              .flatten
-    //              .sortBy(_.name)
 
     val listeners = resolveListenerDuplication(
                       cls.getMethods.view
