@@ -51,8 +51,6 @@ trait TraitPopupWindow[V <: android.widget.PopupWindow] {
 
 
 
-  @inline def aboveAnchor = basis.isAboveAnchor
-
   @inline def animationStyle = basis.getAnimationStyle
   @inline def animationStyle  (p: Int) =            animationStyle_=  (p)
   @inline def animationStyle_=(p: Int) = { basis.setAnimationStyle    (p); basis }
@@ -95,8 +93,6 @@ trait TraitPopupWindow[V <: android.widget.PopupWindow] {
   @inline def outsideTouchable = basis.isOutsideTouchable
   @inline def outsideTouchable  (p: Boolean) =            outsideTouchable_=  (p)
   @inline def outsideTouchable_=(p: Boolean) = { basis.setOutsideTouchable    (p); basis }
-
-  @inline def showing = basis.isShowing
 
   @inline def softInputMode = basis.getSoftInputMode
   @inline def softInputMode  (p: Int) =            softInputMode_=  (p)
@@ -301,6 +297,8 @@ trait TraitListView[V <: android.widget.ListView] extends TraitAbsListView[V] {
 
 
 
+  @inline override def adapter = basis.getAdapter
+
   @inline def checkItemIds = basis.getCheckItemIds
 
   @inline def divider = basis.getDivider
@@ -374,6 +372,14 @@ trait TraitEditText[V <: android.widget.EditText] extends TraitTextView[V] {
 
 
 
+  @noEquivalentGetterExists
+  @inline def selection(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'selection'")
+  @inline def selection  (p: Int) =            selection_=  (p)
+  @inline def selection_=(p: Int) = { basis.setSelection    (p); basis }
+
+  @inline override def text = basis.getText
+
+
 }
 
 class SEditText()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
@@ -414,6 +420,10 @@ trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
   @inline def adjustViewBounds = basis.getAdjustViewBounds
   @inline def adjustViewBounds  (p: Boolean) =            adjustViewBounds_=  (p)
   @inline def adjustViewBounds_=(p: Boolean) = { basis.setAdjustViewBounds    (p); basis }
+  @inline def alpha  (p: Int) =            alpha_=  (p)
+  @inline def alpha_=(p: Int) = { basis.setAlpha    (p); basis }
+  @inline def baseline  (p: Int) =            baseline_=  (p)
+  @inline def baseline_=(p: Int) = { basis.setBaseline    (p); basis }
 
   @inline def baselineAlignBottom = basis.getBaselineAlignBottom
   @inline def baselineAlignBottom  (p: Boolean) =            baselineAlignBottom_=  (p)
@@ -763,10 +773,6 @@ trait TraitTabHost[V <: android.widget.TabHost] extends TraitFrameLayout[V] {
 
   @inline def tabWidget = basis.getTabWidget
 
-  @noEquivalentGetterExists
-  @inline def up(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'up'")
-  @inline def up  (p: android.app.LocalActivityManager) =            up_=  (p)
-  @inline def up_=(p: android.app.LocalActivityManager) = { basis.setup    (p); basis }
 
   @inline def onTabChanged(f: java.lang.String => Unit): V = {
     basis.setOnTabChangedListener(new android.widget.TabHost.OnTabChangeListener {
@@ -934,8 +940,6 @@ trait TraitRatingBar[V <: android.widget.RatingBar] extends TraitAbsSeekBar[V] {
 
 
 
-  @inline def indicator = basis.isIndicator
-
   @inline def isIndicator  (p: Boolean) =            isIndicator_=  (p)
   @inline def isIndicator_=(p: Boolean) = { basis.setIsIndicator    (p); basis }
 
@@ -1009,8 +1013,6 @@ trait TraitExpandableListAdapter[V <: android.widget.ExpandableListAdapter] {
   def basis: V
 
 
-
-  @inline def empty = basis.isEmpty
 
   @inline def groupCount = basis.getGroupCount
 
@@ -1112,6 +1114,8 @@ trait TraitGridView[V <: android.widget.GridView] extends TraitAbsListView[V] {
 
 
 
+
+  @inline override def adapter = basis.getAdapter
 
   @inline def columnWidth = basis.getColumnWidth
   @inline def columnWidth  (p: Int) =            columnWidth_=  (p)
@@ -1620,8 +1624,6 @@ trait TraitHeaderViewListAdapter[V <: android.widget.HeaderViewListAdapter] {
 
   @inline def count = basis.getCount
 
-  @inline def empty = basis.isEmpty
-
   @inline def filter = basis.getFilter
 
   @inline def footersCount = basis.getFootersCount
@@ -1745,8 +1747,6 @@ trait TraitTimePicker[V <: android.widget.TimePicker] extends TraitFrameLayout[V
 
 
 
-  @inline def `24HourView` = basis.is24HourView
-
   @inline def currentHour = basis.getCurrentHour
   @inline def currentHour  (p: java.lang.Integer) =            currentHour_=  (p)
   @inline def currentHour_=(p: java.lang.Integer) = { basis.setCurrentHour    (p); basis }
@@ -1803,6 +1803,9 @@ trait TraitExpandableListView[V <: android.widget.ExpandableListView] extends Tr
 
 
 
+
+  @inline def adapter  (p: android.widget.ExpandableListAdapter) =            adapter_=  (p)
+  @inline def adapter_=(p: android.widget.ExpandableListAdapter) = { basis.setAdapter    (p); basis }
 
   @noEquivalentGetterExists
   @inline def childDivider(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'childDivider'")
@@ -1934,6 +1937,9 @@ trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView
 
 
 
+
+  @inline def adapter  (p: android.widget.ListAdapter) =            adapter_=  (p)
+  @inline def adapter_=(p: android.widget.ListAdapter) = { basis.setAdapter    (p); basis }
 
   @inline def cacheColorHint = basis.getCacheColorHint
   @inline def cacheColorHint  (p: Int) =            cacheColorHint_=  (p)
@@ -2104,6 +2110,10 @@ trait TraitAbsSpinner[V <: android.widget.AbsSpinner] extends TraitAdapterView[V
 
 
 
+  @inline override def adapter = basis.getAdapter
+  @inline def adapter  (p: android.widget.SpinnerAdapter) =            adapter_=  (p)
+  @inline def adapter_=(p: android.widget.SpinnerAdapter) = { basis.setAdapter    (p); basis }
+
 }
 
 
@@ -2204,10 +2214,6 @@ trait TraitToast[V <: android.widget.Toast] {
 
 
 
-  @inline def XOffset = basis.getXOffset
-
-  @inline def YOffset = basis.getYOffset
-
   @inline def duration = basis.getDuration
   @inline def duration  (p: Int) =            duration_=  (p)
   @inline def duration_=(p: Int) = { basis.setDuration    (p); basis }
@@ -2228,6 +2234,11 @@ trait TraitToast[V <: android.widget.Toast] {
   @inline def view = basis.getView
   @inline def view  (p: android.view.View) =            view_=  (p)
   @inline def view_=(p: android.view.View) = { basis.setView    (p); basis }
+
+  @inline def xOffset = basis.getXOffset
+
+  @inline def yOffset = basis.getYOffset
+
 
 }
 
@@ -2578,8 +2589,6 @@ trait TraitSlidingDrawer[V <: android.widget.SlidingDrawer] extends TraitViewGro
 
   @inline def handle = basis.getHandle
 
-  @inline def moving = basis.isMoving
-
   @noEquivalentGetterExists
   @inline def onDrawerCloseListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onDrawerCloseListener'")
   @inline def onDrawerCloseListener  (p: android.widget.SlidingDrawer.OnDrawerCloseListener) =            onDrawerCloseListener_=  (p)
@@ -2594,9 +2603,6 @@ trait TraitSlidingDrawer[V <: android.widget.SlidingDrawer] extends TraitViewGro
   @inline def onDrawerScrollListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onDrawerScrollListener'")
   @inline def onDrawerScrollListener  (p: android.widget.SlidingDrawer.OnDrawerScrollListener) =            onDrawerScrollListener_=  (p)
   @inline def onDrawerScrollListener_=(p: android.widget.SlidingDrawer.OnDrawerScrollListener) = { basis.setOnDrawerScrollListener    (p); basis }
-
-  @inline def opened = basis.isOpened
-
 
 
   @inline def onDrawerClosed(f: => Unit): V = {
@@ -2684,8 +2690,6 @@ trait TraitListPopupWindow[V <: android.widget.ListPopupWindow] {
   @inline def inputMethodMode  (p: Int) =            inputMethodMode_=  (p)
   @inline def inputMethodMode_=(p: Int) = { basis.setInputMethodMode    (p); basis }
 
-  @inline def inputMethodNotNeeded = basis.isInputMethodNotNeeded
-
   @noEquivalentGetterExists
   @inline def listSelector(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'listSelector'")
   @inline def listSelector  (p: android.graphics.drawable.Drawable) =            listSelector_=  (p)
@@ -2733,8 +2737,6 @@ trait TraitListPopupWindow[V <: android.widget.ListPopupWindow] {
   @inline def selection(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'selection'")
   @inline def selection  (p: Int) =            selection_=  (p)
   @inline def selection_=(p: Int) = { basis.setSelection    (p); basis }
-
-  @inline def showing = basis.isShowing
 
   @inline def softInputMode = basis.getSoftInputMode
   @inline def softInputMode  (p: Int) =            softInputMode_=  (p)
@@ -3083,9 +3085,6 @@ trait TraitDialerFilter[V <: android.widget.DialerFilter] extends TraitRelativeL
   @inline def mode  (p: Int) =            mode_=  (p)
   @inline def mode_=(p: Int) = { basis.setMode    (p); basis }
 
-  @inline def qwertyKeyboard = basis.isQwertyKeyboard
-
-
 }
 
 class SDialerFilter()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
@@ -3218,8 +3217,6 @@ trait TraitSearchView[V <: android.widget.SearchView] extends TraitLinearLayout[
 
 
 
-
-  @inline def iconfiedByDefault = basis.isIconfiedByDefault
 
   @inline def iconified = basis.isIconified
   @inline def iconified  (p: Boolean) =            iconified_=  (p)
@@ -3574,9 +3571,6 @@ trait TraitMediaController[V <: android.widget.MediaController] extends TraitFra
   @inline def mediaPlayer  (p: android.widget.MediaController.MediaPlayerControl) =            mediaPlayer_=  (p)
   @inline def mediaPlayer_=(p: android.widget.MediaController.MediaPlayerControl) = { basis.setMediaPlayer    (p); basis }
 
-  @inline def showing = basis.isShowing
-
-
 }
 
 class SMediaController()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
@@ -3642,6 +3636,8 @@ trait TraitTabWidget[V <: android.widget.TabWidget] extends TraitLinearLayout[V]
   @inline def currentTab(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'currentTab'")
   @inline def currentTab  (p: Int) =            currentTab_=  (p)
   @inline def currentTab_=(p: Int) = { basis.setCurrentTab    (p); basis }
+  @inline def dividerDrawable  (p: Int) =            dividerDrawable_=  (p)
+  @inline def dividerDrawable_=(p: Int) = { basis.setDividerDrawable    (p); basis }
 
   @noEquivalentGetterExists
   @inline def leftStripDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'leftStripDrawable'")
@@ -3721,8 +3717,6 @@ trait TraitVideoView[V <: android.widget.VideoView] extends TraitSurfaceView[V] 
   @inline def onPreparedListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onPreparedListener'")
   @inline def onPreparedListener  (p: android.media.MediaPlayer.OnPreparedListener) =            onPreparedListener_=  (p)
   @inline def onPreparedListener_=(p: android.media.MediaPlayer.OnPreparedListener) = { basis.setOnPreparedListener    (p); basis }
-
-  @inline def playing = basis.isPlaying
 
   @noEquivalentGetterExists
   @inline def videoPath(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'videoPath'")
@@ -3836,6 +3830,10 @@ trait TraitAdapterView[V <: android.widget.AdapterView[_]] extends TraitViewGrou
 
   @inline def selectedView = basis.getSelectedView
 
+  @noEquivalentGetterExists
+  @inline def selection(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'selection'")
+  @inline def selection  (p: Int) =            selection_=  (p)
+  @inline def selection_=(p: Int) = { basis.setSelection    (p); basis }
 
   @inline def onItemClick(f: (android.widget.AdapterView[_], android.view.View, Int, Long) => Unit): V = {
     basis.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener {
@@ -3910,7 +3908,8 @@ trait TraitCheckable[V <: android.widget.Checkable] {
 
 
   @inline def checked = basis.isChecked
-
+  @inline def checked  (p: Boolean) =            checked_=  (p)
+  @inline def checked_=(p: Boolean) = { basis.setChecked    (p); basis }
 
 }
 
@@ -4073,9 +4072,6 @@ trait TraitAdapterViewFlipper[V <: android.widget.AdapterViewFlipper] extends Tr
   @inline def flipInterval  (p: Int) =            flipInterval_=  (p)
   @inline def flipInterval_=(p: Int) = { basis.setFlipInterval    (p); basis }
 
-  @inline def flipping = basis.isFlipping
-
-
 }
 
 class SAdapterViewFlipper()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
@@ -4129,9 +4125,6 @@ trait TraitEdgeEffect[V <: android.widget.EdgeEffect] {
 
   def basis: V
 
-
-
-  @inline def finished = basis.isFinished
 
 
 }
@@ -4189,7 +4182,7 @@ trait TraitBaseExpandableListAdapter[V <: android.widget.BaseExpandableListAdapt
 
   @inline def childTypeCount = basis.getChildTypeCount
 
-  @inline def empty = basis.isEmpty
+  @inline def groupCount = basis.getGroupCount
 
   @inline def groupTypeCount = basis.getGroupTypeCount
 
@@ -4567,8 +4560,6 @@ trait TraitAdapter[V <: android.widget.Adapter] {
 
   @inline def count = basis.getCount
 
-  @inline def empty = basis.isEmpty
-
   @inline def viewTypeCount = basis.getViewTypeCount
 
 
@@ -4659,6 +4650,8 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def gravity = basis.getGravity
   @inline def gravity  (p: Int) =            gravity_=  (p)
   @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
+  @inline def height  (p: Int) =            height_=  (p)
+  @inline def height_=(p: Int) = { basis.setHeight    (p); basis }
 
   @inline def highlightColor = basis.getHighlightColor
   @inline def highlightColor  (p: Int) =            highlightColor_=  (p)
@@ -4700,8 +4693,6 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def inputExtras(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'inputExtras'")
   @inline def inputExtras  (p: Int) =            inputExtras_=  (p)
   @inline def inputExtras_=(p: Int) = { basis.setInputExtras    (p); basis }
-
-  @inline def inputMethodTarget = basis.isInputMethodTarget
 
   @inline def inputType = basis.getInputType
   @inline def inputType  (p: Int) =            inputType_=  (p)
@@ -4831,8 +4822,6 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def spannableFactory  (p: android.text.Spannable.Factory) =            spannableFactory_=  (p)
   @inline def spannableFactory_=(p: android.text.Spannable.Factory) = { basis.setSpannableFactory    (p); basis }
 
-  @inline def suggestionsEnabled = basis.isSuggestionsEnabled
-
   @inline def text = basis.getText
   @inline def text  (p: Int) =            text_=  (p)
   @inline def text_=(p: Int) = { basis.setText    (p); basis }
@@ -4862,8 +4851,6 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def textScaleX  (p: Float) =            textScaleX_=  (p)
   @inline def textScaleX_=(p: Float) = { basis.setTextScaleX    (p); basis }
 
-  @inline def textSelectable = basis.isTextSelectable
-
   @inline def textSize = basis.getTextSize
   @inline def textSize  (p: Float) =            textSize_=  (p)
   @inline def textSize_=(p: Float) = { basis.setTextSize    (p); basis }
@@ -4886,6 +4873,8 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
   @inline def urls = basis.getUrls
 
+  @inline def width  (p: Int) =            width_=  (p)
+  @inline def width_=(p: Int) = { basis.setWidth    (p); basis }
 
   @inline def afterTextChanged(f: android.text.Editable => Unit): V = {
     basis.addTextChangedListener(new android.text.TextWatcher {
@@ -5002,14 +4991,10 @@ trait TraitOverScroller[V <: android.widget.OverScroller] {
 
   @inline def finalY = basis.getFinalY
 
-  @inline def finished = basis.isFinished
-
   @noEquivalentGetterExists
   @inline def friction(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'friction'")
   @inline def friction  (p: Float) =            friction_=  (p)
   @inline def friction_=(p: Float) = { basis.setFriction    (p); basis }
-
-  @inline def overScrolled = basis.isOverScrolled
 
   @inline def startX = basis.getStartX
 
@@ -5052,9 +5037,6 @@ trait TraitViewFlipper[V <: android.widget.ViewFlipper] extends TraitViewAnimato
   @inline def flipInterval(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'flipInterval'")
   @inline def flipInterval  (p: Int) =            flipInterval_=  (p)
   @inline def flipInterval_=(p: Int) = { basis.setFlipInterval    (p); basis }
-
-  @inline def flipping = basis.isFlipping
-
 
 }
 
@@ -5101,8 +5083,6 @@ trait TraitScroller[V <: android.widget.Scroller] {
   @inline def finalY = basis.getFinalY
   @inline def finalY  (p: Int) =            finalY_=  (p)
   @inline def finalY_=(p: Int) = { basis.setFinalY    (p); basis }
-
-  @inline def finished = basis.isFinished
 
   @noEquivalentGetterExists
   @inline def friction(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'friction'")
@@ -5220,10 +5200,6 @@ trait TraitAutoCompleteTextView[V <: android.widget.AutoCompleteTextView] extend
   @inline def onItemSelectedListener = basis.getOnItemSelectedListener
   @inline def onItemSelectedListener  (p: android.widget.AdapterView.OnItemSelectedListener) =            onItemSelectedListener_=  (p)
   @inline def onItemSelectedListener_=(p: android.widget.AdapterView.OnItemSelectedListener) = { basis.setOnItemSelectedListener    (p); basis }
-
-  @inline def performingCompletion = basis.isPerformingCompletion
-
-  @inline def popupShowing = basis.isPopupShowing
 
   @inline def threshold = basis.getThreshold
   @inline def threshold  (p: Int) =            threshold_=  (p)
@@ -5430,7 +5406,7 @@ trait TraitBaseAdapter[V <: android.widget.BaseAdapter] {
 
 
 
-  @inline def empty = basis.isEmpty
+  @inline def count = basis.getCount
 
   @inline def viewTypeCount = basis.getViewTypeCount
 
@@ -5524,6 +5500,8 @@ trait TraitKeyboardView[V <: android.inputmethodservice.KeyboardView] extends Tr
 
 
   @inline def shifted = basis.isShifted
+  @inline def shifted  (p: Boolean) =            shifted_=  (p)
+  @inline def shifted_=(p: Boolean) = { basis.setShifted    (p); basis }
 
   @noEquivalentGetterExists
   @inline def verticalCorrection(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'verticalCorrection'")
@@ -5713,36 +5691,36 @@ trait TraitGLSurfaceView[V <: android.opengl.GLSurfaceView] extends TraitSurface
 
 
 
-  @noEquivalentGetterExists
-  @inline def EGLConfigChooser(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'EGLConfigChooser'")
-  @inline def EGLConfigChooser  (p: Boolean) =            EGLConfigChooser_=  (p)
-  @inline def EGLConfigChooser_=(p: Boolean) = { basis.setEGLConfigChooser    (p); basis }
-  @inline def EGLConfigChooser  (p: android.opengl.GLSurfaceView.EGLConfigChooser) =            EGLConfigChooser_=  (p)
-  @inline def EGLConfigChooser_=(p: android.opengl.GLSurfaceView.EGLConfigChooser) = { basis.setEGLConfigChooser    (p); basis }
-
-  @noEquivalentGetterExists
-  @inline def EGLContextClientVersion(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'EGLContextClientVersion'")
-  @inline def EGLContextClientVersion  (p: Int) =            EGLContextClientVersion_=  (p)
-  @inline def EGLContextClientVersion_=(p: Int) = { basis.setEGLContextClientVersion    (p); basis }
-
-  @noEquivalentGetterExists
-  @inline def EGLContextFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'EGLContextFactory'")
-  @inline def EGLContextFactory  (p: android.opengl.GLSurfaceView.EGLContextFactory) =            EGLContextFactory_=  (p)
-  @inline def EGLContextFactory_=(p: android.opengl.GLSurfaceView.EGLContextFactory) = { basis.setEGLContextFactory    (p); basis }
-
-  @noEquivalentGetterExists
-  @inline def EGLWindowSurfaceFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'EGLWindowSurfaceFactory'")
-  @inline def EGLWindowSurfaceFactory  (p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) =            EGLWindowSurfaceFactory_=  (p)
-  @inline def EGLWindowSurfaceFactory_=(p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) = { basis.setEGLWindowSurfaceFactory    (p); basis }
-
-  @noEquivalentGetterExists
-  @inline def GLWrapper(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'GLWrapper'")
-  @inline def GLWrapper  (p: android.opengl.GLSurfaceView.GLWrapper) =            GLWrapper_=  (p)
-  @inline def GLWrapper_=(p: android.opengl.GLSurfaceView.GLWrapper) = { basis.setGLWrapper    (p); basis }
-
   @inline def debugFlags = basis.getDebugFlags
   @inline def debugFlags  (p: Int) =            debugFlags_=  (p)
   @inline def debugFlags_=(p: Int) = { basis.setDebugFlags    (p); basis }
+
+  @noEquivalentGetterExists
+  @inline def eGLConfigChooser(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'eGLConfigChooser'")
+  @inline def eGLConfigChooser  (p: Boolean) =            eGLConfigChooser_=  (p)
+  @inline def eGLConfigChooser_=(p: Boolean) = { basis.setEGLConfigChooser    (p); basis }
+  @inline def eGLConfigChooser  (p: android.opengl.GLSurfaceView.EGLConfigChooser) =            eGLConfigChooser_=  (p)
+  @inline def eGLConfigChooser_=(p: android.opengl.GLSurfaceView.EGLConfigChooser) = { basis.setEGLConfigChooser    (p); basis }
+
+  @noEquivalentGetterExists
+  @inline def eGLContextClientVersion(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'eGLContextClientVersion'")
+  @inline def eGLContextClientVersion  (p: Int) =            eGLContextClientVersion_=  (p)
+  @inline def eGLContextClientVersion_=(p: Int) = { basis.setEGLContextClientVersion    (p); basis }
+
+  @noEquivalentGetterExists
+  @inline def eGLContextFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'eGLContextFactory'")
+  @inline def eGLContextFactory  (p: android.opengl.GLSurfaceView.EGLContextFactory) =            eGLContextFactory_=  (p)
+  @inline def eGLContextFactory_=(p: android.opengl.GLSurfaceView.EGLContextFactory) = { basis.setEGLContextFactory    (p); basis }
+
+  @noEquivalentGetterExists
+  @inline def eGLWindowSurfaceFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'eGLWindowSurfaceFactory'")
+  @inline def eGLWindowSurfaceFactory  (p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) =            eGLWindowSurfaceFactory_=  (p)
+  @inline def eGLWindowSurfaceFactory_=(p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) = { basis.setEGLWindowSurfaceFactory    (p); basis }
+
+  @noEquivalentGetterExists
+  @inline def gLWrapper(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'gLWrapper'")
+  @inline def gLWrapper  (p: android.opengl.GLSurfaceView.GLWrapper) =            gLWrapper_=  (p)
+  @inline def gLWrapper_=(p: android.opengl.GLSurfaceView.GLWrapper) = { basis.setGLWrapper    (p); basis }
 
   @inline def preserveEGLContextOnPause = basis.getPreserveEGLContextOnPause
   @inline def preserveEGLContextOnPause  (p: Boolean) =            preserveEGLContextOnPause_=  (p)
@@ -5869,8 +5847,6 @@ trait TraitGestureOverlayView[V <: android.gesture.GestureOverlayView] extends T
   @inline def gestureVisible = basis.isGestureVisible
   @inline def gestureVisible  (p: Boolean) =            gestureVisible_=  (p)
   @inline def gestureVisible_=(p: Boolean) = { basis.setGestureVisible    (p); basis }
-
-  @inline def gesturing = basis.isGesturing
 
   @inline def orientation = basis.getOrientation
   @inline def orientation  (p: Int) =            orientation_=  (p)

@@ -150,8 +150,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
 
   @inline def context = basis.getContext
 
-  @inline def dirty = basis.isDirty
-
   @inline def drawableState = basis.getDrawableState
 
   @inline def drawingCache = basis.getDrawingCache
@@ -205,8 +203,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def focusableInTouchMode  (p: Boolean) =            focusableInTouchMode_=  (p)
   @inline def focusableInTouchMode_=(p: Boolean) = { basis.setFocusableInTouchMode    (p); basis }
 
-  @inline def focused = basis.isFocused
-
   @inline def handler = basis.getHandler
 
   @inline def hapticFeedbackEnabled = basis.isHapticFeedbackEnabled
@@ -214,9 +210,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def hapticFeedbackEnabled_=(p: Boolean) = { basis.setHapticFeedbackEnabled    (p); basis }
   @inline def  enableHapticFeedback               = { basis.setHapticFeedbackEnabled(true ); basis }
   @inline def disableHapticFeedback               = { basis.setHapticFeedbackEnabled(false); basis }
-
-
-  @inline def hardwareAccelerated = basis.isHardwareAccelerated
 
   @inline def hasTransientState  (p: Boolean) =            hasTransientState_=  (p)
   @inline def hasTransientState_=(p: Boolean) = { basis.setHasTransientState    (p); basis }
@@ -251,21 +244,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def importantForAccessibility  (p: Int) =            importantForAccessibility_=  (p)
   @inline def importantForAccessibility_=(p: Int) = { basis.setImportantForAccessibility    (p); basis }
 
-  @inline def inEditMode = basis.isInEditMode
-
-  @inline def inTouchMode = basis.isInTouchMode
-
   @inline def keepScreenOn = basis.getKeepScreenOn
   @inline def keepScreenOn  (p: Boolean) =            keepScreenOn_=  (p)
   @inline def keepScreenOn_=(p: Boolean) = { basis.setKeepScreenOn    (p); basis }
 
   @inline def keyDispatcherState = basis.getKeyDispatcherState
 
+  @inline def layerType = basis.getLayerType
+
   @inline def layoutParams = basis.getLayoutParams
   @inline def layoutParams  (p: android.view.ViewGroup.LayoutParams) =            layoutParams_=  (p)
   @inline def layoutParams_=(p: android.view.ViewGroup.LayoutParams) = { basis.setLayoutParams    (p); basis }
-
-  @inline def layoutRequested = basis.isLayoutRequested
 
   @inline def left = basis.getLeft
   @inline def left  (p: Int) =            left_=  (p)
@@ -363,8 +352,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def onTouchListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onTouchListener'")
   @inline def onTouchListener  (p: android.view.View.OnTouchListener) =            onTouchListener_=  (p)
   @inline def onTouchListener_=(p: android.view.View.OnTouchListener) = { basis.setOnTouchListener    (p); basis }
-
-  @inline def opaque = basis.isOpaque
 
   @inline def overScrollMode = basis.getOverScrollMode
   @inline def overScrollMode  (p: Int) =            overScrollMode_=  (p)
@@ -475,8 +462,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def selected  (p: Boolean) =            selected_=  (p)
   @inline def selected_=(p: Boolean) = { basis.setSelected    (p); basis }
 
-  @inline def shown = basis.isShown
-
   @inline def solidColor = basis.getSolidColor
 
   @inline def soundEffectsEnabled = basis.isSoundEffectsEnabled
@@ -489,6 +474,10 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def systemUiVisibility = basis.getSystemUiVisibility
   @inline def systemUiVisibility  (p: Int) =            systemUiVisibility_=  (p)
   @inline def systemUiVisibility_=(p: Int) = { basis.setSystemUiVisibility    (p); basis }
+
+  @inline def tag = basis.getTag
+  @inline def tag  (p: Any) =            tag_=  (p)
+  @inline def tag_=(p: Any) = { basis.setTag    (p); basis }
 
   @inline def top = basis.getTop
   @inline def top  (p: Int) =            top_=  (p)
@@ -1017,6 +1006,11 @@ trait TraitMenu[V <: android.view.Menu] {
     true
   }    
 
+  @noEquivalentGetterExists
+  @inline def qwertyMode(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'qwertyMode'")
+  @inline def qwertyMode  (p: Boolean) =            qwertyMode_=  (p)
+  @inline def qwertyMode_=(p: Boolean) = { basis.setQwertyMode    (p); basis }
+
 }
 
 
@@ -1028,6 +1022,25 @@ trait TraitContextMenu[V <: android.view.ContextMenu] {
 
 
 
+  @noEquivalentGetterExists
+  @inline def headerIcon(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'headerIcon'")
+  @inline def headerIcon  (p: Int) =            headerIcon_=  (p)
+  @inline def headerIcon_=(p: Int) = { basis.setHeaderIcon    (p); basis }
+  @inline def headerIcon  (p: android.graphics.drawable.Drawable) =            headerIcon_=  (p)
+  @inline def headerIcon_=(p: android.graphics.drawable.Drawable) = { basis.setHeaderIcon    (p); basis }
+
+  @noEquivalentGetterExists
+  @inline def headerTitle(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'headerTitle'")
+  @inline def headerTitle  (p: Int) =            headerTitle_=  (p)
+  @inline def headerTitle_=(p: Int) = { basis.setHeaderTitle    (p); basis }
+  @inline def headerTitle  (p: java.lang.CharSequence) =            headerTitle_=  (p)
+  @inline def headerTitle_=(p: java.lang.CharSequence) = { basis.setHeaderTitle    (p); basis }
+
+  @noEquivalentGetterExists
+  @inline def headerView(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'headerView'")
+  @inline def headerView  (p: android.view.View) =            headerView_=  (p)
+  @inline def headerView_=(p: android.view.View) = { basis.setHeaderView    (p); basis }
+
 }
 
 
@@ -1038,18 +1051,17 @@ trait TraitSurfaceView[V <: android.view.SurfaceView] extends TraitView[V] {
 
 
 
-  @noEquivalentGetterExists
-  @inline def ZOrderMediaOverlay(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'ZOrderMediaOverlay'")
-  @inline def ZOrderMediaOverlay  (p: Boolean) =            ZOrderMediaOverlay_=  (p)
-  @inline def ZOrderMediaOverlay_=(p: Boolean) = { basis.setZOrderMediaOverlay    (p); basis }
-
-  @noEquivalentGetterExists
-  @inline def ZOrderOnTop(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'ZOrderOnTop'")
-  @inline def ZOrderOnTop  (p: Boolean) =            ZOrderOnTop_=  (p)
-  @inline def ZOrderOnTop_=(p: Boolean) = { basis.setZOrderOnTop    (p); basis }
-
   @inline def holder = basis.getHolder
 
+  @noEquivalentGetterExists
+  @inline def zOrderMediaOverlay(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'zOrderMediaOverlay'")
+  @inline def zOrderMediaOverlay  (p: Boolean) =            zOrderMediaOverlay_=  (p)
+  @inline def zOrderMediaOverlay_=(p: Boolean) = { basis.setZOrderMediaOverlay    (p); basis }
+
+  @noEquivalentGetterExists
+  @inline def zOrderOnTop(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'zOrderOnTop'")
+  @inline def zOrderOnTop  (p: Boolean) =            zOrderOnTop_=  (p)
+  @inline def zOrderOnTop_=(p: Boolean) = { basis.setZOrderOnTop    (p); basis }
 
 }
 
@@ -1123,9 +1135,6 @@ trait TraitActionProvider[V <: android.view.ActionProvider] {
   @inline def visibilityListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'visibilityListener'")
   @inline def visibilityListener  (p: android.view.ActionProvider.VisibilityListener) =            visibilityListener_=  (p)
   @inline def visibilityListener_=(p: android.view.ActionProvider.VisibilityListener) = { basis.setVisibilityListener    (p); basis }
-
-  @inline def visible = basis.isVisible
-
 
   @inline def onActionProviderVisibilityChanged(f: Boolean => Unit): V = {
     basis.setVisibilityListener(new android.view.ActionProvider.VisibilityListener {
