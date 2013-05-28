@@ -19,11 +19,11 @@ package object common extends Logger with SystemService with Helpers with Implic
 
   val idSequence = new java.util.concurrent.atomic.AtomicInteger(0)
 
-  def getUniqueId(implicit activity:Activity): Int = {
-    var candidate:Int = 0
+  def getUniqueId(implicit activity: Activity): Int = {
+    var candidate: Int = 0
     do {
       candidate = idSequence.incrementAndGet
-    } while(activity.findViewById(candidate) != null)
+    } while (activity.findViewById(candidate) != null)
     candidate
   }
 
@@ -35,8 +35,8 @@ package object common extends Logger with SystemService with Helpers with Implic
 
   lazy val uiThread = Looper.getMainLooper.getThread
 
-  def runOnUiThread[T >: Null](f: => T):T = {
-    if(uiThread == Thread.currentThread) {
+  def runOnUiThread[T >: Null](f: => T): T = {
+    if (uiThread == Thread.currentThread) {
       return f
     } else {
       handler.post(new Runnable() {
@@ -48,9 +48,7 @@ package object common extends Logger with SystemService with Helpers with Implic
     }
   }
 
-  @getter
-  @beanGetter
-  private[scaloid] class noEquivalentGetterExists extends annotation.StaticAnnotation
   private[scaloid] trait NoGetterForThisProperty
+
 }
 

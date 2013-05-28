@@ -87,7 +87,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
 
   @inline def padding(p: Int) = padding_=(p)
 
-  @noEquivalentGetterExists
   @inline def padding: Int = 0
 
   @inline def accessibilityDelegate(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'accessibilityDelegate'")
