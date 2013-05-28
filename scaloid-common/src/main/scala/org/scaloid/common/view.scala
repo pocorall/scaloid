@@ -90,7 +90,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @noEquivalentGetterExists
   @inline def padding: Int = 0
 
-  @noEquivalentGetterExists
   @inline def accessibilityDelegate(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'accessibilityDelegate'")
   @inline def accessibilityDelegate  (p: android.view.View.AccessibilityDelegate) =            accessibilityDelegate_=  (p)
   @inline def accessibilityDelegate_=(p: android.view.View.AccessibilityDelegate) = { basis.setAccessibilityDelegate    (p); basis }
@@ -115,17 +114,14 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def background  (p: android.graphics.drawable.Drawable) =            background_=  (p)
   @inline def background_=(p: android.graphics.drawable.Drawable) = { basis.setBackground    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def backgroundColor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'backgroundColor'")
   @inline def backgroundColor  (p: Int) =            backgroundColor_=  (p)
   @inline def backgroundColor_=(p: Int) = { basis.setBackgroundColor    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def backgroundDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'backgroundDrawable'")
   @inline def backgroundDrawable  (p: android.graphics.drawable.Drawable) =            backgroundDrawable_=  (p)
   @inline def backgroundDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setBackgroundDrawable    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def backgroundResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'backgroundResource'")
   @inline def backgroundResource  (p: Int) =            backgroundResource_=  (p)
   @inline def backgroundResource_=(p: Int) = { basis.setBackgroundResource    (p); basis }
@@ -182,7 +178,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def enabled  (p: Boolean) =            enabled_=  (p)
   @inline def enabled_=(p: Boolean) = { basis.setEnabled    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def fadingEdgeLength(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'fadingEdgeLength'")
   @inline def fadingEdgeLength  (p: Int) =            fadingEdgeLength_=  (p)
   @inline def fadingEdgeLength_=(p: Int) = { basis.setFadingEdgeLength    (p); basis }
@@ -304,17 +299,14 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def nextFocusUpId  (p: Int) =            nextFocusUpId_=  (p)
   @inline def nextFocusUpId_=(p: Int) = { basis.setNextFocusUpId    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def onClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onClickListener'")
   @inline def onClickListener  (p: android.view.View.OnClickListener) =            onClickListener_=  (p)
   @inline def onClickListener_=(p: android.view.View.OnClickListener) = { basis.setOnClickListener    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def onCreateContextMenuListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onCreateContextMenuListener'")
   @inline def onCreateContextMenuListener  (p: android.view.View.OnCreateContextMenuListener) =            onCreateContextMenuListener_=  (p)
   @inline def onCreateContextMenuListener_=(p: android.view.View.OnCreateContextMenuListener) = { basis.setOnCreateContextMenuListener    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def onDragListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onDragListener'")
   @inline def onDragListener  (p: android.view.View.OnDragListener) =            onDragListener_=  (p)
   @inline def onDragListener_=(p: android.view.View.OnDragListener) = { basis.setOnDragListener    (p); basis }
@@ -323,32 +315,26 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def onFocusChangeListener  (p: android.view.View.OnFocusChangeListener) =            onFocusChangeListener_=  (p)
   @inline def onFocusChangeListener_=(p: android.view.View.OnFocusChangeListener) = { basis.setOnFocusChangeListener    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def onGenericMotionListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onGenericMotionListener'")
   @inline def onGenericMotionListener  (p: android.view.View.OnGenericMotionListener) =            onGenericMotionListener_=  (p)
   @inline def onGenericMotionListener_=(p: android.view.View.OnGenericMotionListener) = { basis.setOnGenericMotionListener    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def onHoverListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onHoverListener'")
   @inline def onHoverListener  (p: android.view.View.OnHoverListener) =            onHoverListener_=  (p)
   @inline def onHoverListener_=(p: android.view.View.OnHoverListener) = { basis.setOnHoverListener    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def onKeyListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onKeyListener'")
   @inline def onKeyListener  (p: android.view.View.OnKeyListener) =            onKeyListener_=  (p)
   @inline def onKeyListener_=(p: android.view.View.OnKeyListener) = { basis.setOnKeyListener    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def onLongClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onLongClickListener'")
   @inline def onLongClickListener  (p: android.view.View.OnLongClickListener) =            onLongClickListener_=  (p)
   @inline def onLongClickListener_=(p: android.view.View.OnLongClickListener) = { basis.setOnLongClickListener    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def onSystemUiVisibilityChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onSystemUiVisibilityChangeListener'")
   @inline def onSystemUiVisibilityChangeListener  (p: android.view.View.OnSystemUiVisibilityChangeListener) =            onSystemUiVisibilityChangeListener_=  (p)
   @inline def onSystemUiVisibilityChangeListener_=(p: android.view.View.OnSystemUiVisibilityChangeListener) = { basis.setOnSystemUiVisibilityChangeListener    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def onTouchListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onTouchListener'")
   @inline def onTouchListener  (p: android.view.View.OnTouchListener) =            onTouchListener_=  (p)
   @inline def onTouchListener_=(p: android.view.View.OnTouchListener) = { basis.setOnTouchListener    (p); basis }
@@ -801,12 +787,10 @@ trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
 
   @inline def childCount = basis.getChildCount
 
-  @noEquivalentGetterExists
   @inline def clipChildren(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'clipChildren'")
   @inline def clipChildren  (p: Boolean) =            clipChildren_=  (p)
   @inline def clipChildren_=(p: Boolean) = { basis.setClipChildren    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def clipToPadding(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'clipToPadding'")
   @inline def clipToPadding  (p: Boolean) =            clipToPadding_=  (p)
   @inline def clipToPadding_=(p: Boolean) = { basis.setClipToPadding    (p); basis }
@@ -836,7 +820,6 @@ trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
   @inline def disableMotionEventSplitting               = { basis.setMotionEventSplittingEnabled(false); basis }
 
 
-  @noEquivalentGetterExists
   @inline def onHierarchyChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onHierarchyChangeListener'")
   @inline def onHierarchyChangeListener  (p: android.view.ViewGroup.OnHierarchyChangeListener) =            onHierarchyChangeListener_=  (p)
   @inline def onHierarchyChangeListener_=(p: android.view.ViewGroup.OnHierarchyChangeListener) = { basis.setOnHierarchyChangeListener    (p); basis }
@@ -1006,7 +989,6 @@ trait TraitMenu[V <: android.view.Menu] {
     true
   }    
 
-  @noEquivalentGetterExists
   @inline def qwertyMode(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'qwertyMode'")
   @inline def qwertyMode  (p: Boolean) =            qwertyMode_=  (p)
   @inline def qwertyMode_=(p: Boolean) = { basis.setQwertyMode    (p); basis }
@@ -1022,21 +1004,18 @@ trait TraitContextMenu[V <: android.view.ContextMenu] {
 
 
 
-  @noEquivalentGetterExists
   @inline def headerIcon(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'headerIcon'")
   @inline def headerIcon  (p: Int) =            headerIcon_=  (p)
   @inline def headerIcon_=(p: Int) = { basis.setHeaderIcon    (p); basis }
   @inline def headerIcon  (p: android.graphics.drawable.Drawable) =            headerIcon_=  (p)
   @inline def headerIcon_=(p: android.graphics.drawable.Drawable) = { basis.setHeaderIcon    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def headerTitle(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'headerTitle'")
   @inline def headerTitle  (p: Int) =            headerTitle_=  (p)
   @inline def headerTitle_=(p: Int) = { basis.setHeaderTitle    (p); basis }
   @inline def headerTitle  (p: java.lang.CharSequence) =            headerTitle_=  (p)
   @inline def headerTitle_=(p: java.lang.CharSequence) = { basis.setHeaderTitle    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def headerView(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'headerView'")
   @inline def headerView  (p: android.view.View) =            headerView_=  (p)
   @inline def headerView_=(p: android.view.View) = { basis.setHeaderView    (p); basis }
@@ -1053,12 +1032,10 @@ trait TraitSurfaceView[V <: android.view.SurfaceView] extends TraitView[V] {
 
   @inline def holder = basis.getHolder
 
-  @noEquivalentGetterExists
   @inline def zOrderMediaOverlay(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'zOrderMediaOverlay'")
   @inline def zOrderMediaOverlay  (p: Boolean) =            zOrderMediaOverlay_=  (p)
   @inline def zOrderMediaOverlay_=(p: Boolean) = { basis.setZOrderMediaOverlay    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def zOrderOnTop(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'zOrderOnTop'")
   @inline def zOrderOnTop  (p: Boolean) =            zOrderOnTop_=  (p)
   @inline def zOrderOnTop_=(p: Boolean) = { basis.setZOrderOnTop    (p); basis }
@@ -1102,7 +1079,6 @@ trait TraitViewStub[V <: android.view.ViewStub] extends TraitView[V] {
   @inline def layoutResource  (p: Int) =            layoutResource_=  (p)
   @inline def layoutResource_=(p: Int) = { basis.setLayoutResource    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def onInflateListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onInflateListener'")
   @inline def onInflateListener  (p: android.view.ViewStub.OnInflateListener) =            onInflateListener_=  (p)
   @inline def onInflateListener_=(p: android.view.ViewStub.OnInflateListener) = { basis.setOnInflateListener    (p); basis }
@@ -1131,7 +1107,6 @@ trait TraitActionProvider[V <: android.view.ActionProvider] {
 
 
 
-  @noEquivalentGetterExists
   @inline def visibilityListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'visibilityListener'")
   @inline def visibilityListener  (p: android.view.ActionProvider.VisibilityListener) =            visibilityListener_=  (p)
   @inline def visibilityListener_=(p: android.view.ActionProvider.VisibilityListener) = { basis.setVisibilityListener    (p); basis }

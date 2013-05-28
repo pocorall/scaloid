@@ -123,7 +123,6 @@ trait TraitPreference[V <: android.preference.Preference] {
 
   @inline def context = basis.getContext
 
-  @noEquivalentGetterExists
   @inline def defaultValue(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'defaultValue'")
   @inline def defaultValue  (p: Any) =            defaultValue_=  (p)
   @inline def defaultValue_=(p: Any) = { basis.setDefaultValue    (p); basis }

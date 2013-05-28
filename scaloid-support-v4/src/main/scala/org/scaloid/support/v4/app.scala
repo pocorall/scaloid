@@ -53,21 +53,18 @@ trait TraitFragment[V <: android.support.v4.app.Fragment] {
 
   @inline def fragmentManager = basis.getFragmentManager
 
-  @noEquivalentGetterExists
   @inline def hasOptionsMenu(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'hasOptionsMenu'")
   @inline def hasOptionsMenu  (p: Boolean) =            hasOptionsMenu_=  (p)
   @inline def hasOptionsMenu_=(p: Boolean) = { basis.setHasOptionsMenu    (p); basis }
 
   @inline def id = basis.getId
 
-  @noEquivalentGetterExists
   @inline def initialSavedState(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'initialSavedState'")
   @inline def initialSavedState  (p: android.support.v4.app.Fragment.SavedState) =            initialSavedState_=  (p)
   @inline def initialSavedState_=(p: android.support.v4.app.Fragment.SavedState) = { basis.setInitialSavedState    (p); basis }
 
   @inline def loaderManager = basis.getLoaderManager
 
-  @noEquivalentGetterExists
   @inline def menuVisibility(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'menuVisibility'")
   @inline def menuVisibility  (p: Boolean) =            menuVisibility_=  (p)
   @inline def menuVisibility_=(p: Boolean) = { basis.setMenuVisibility    (p); basis }
@@ -150,7 +147,6 @@ trait TraitListFragment[V <: android.support.v4.app.ListFragment] extends TraitF
 
 
 
-  @noEquivalentGetterExists
   @inline def emptyText(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'emptyText'")
   @inline def emptyText  (p: java.lang.CharSequence) =            emptyText_=  (p)
   @inline def emptyText_=(p: java.lang.CharSequence) = { basis.setEmptyText    (p); basis }
@@ -159,12 +155,10 @@ trait TraitListFragment[V <: android.support.v4.app.ListFragment] extends TraitF
   @inline def listAdapter  (p: android.widget.ListAdapter) =            listAdapter_=  (p)
   @inline def listAdapter_=(p: android.widget.ListAdapter) = { basis.setListAdapter    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def listShown(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'listShown'")
   @inline def listShown  (p: Boolean) =            listShown_=  (p)
   @inline def listShown_=(p: Boolean) = { basis.setListShown    (p); basis }
 
-  @noEquivalentGetterExists
   @inline def listShownNoAnimation(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'listShownNoAnimation'")
   @inline def listShownNoAnimation  (p: Boolean) =            listShownNoAnimation_=  (p)
   @inline def listShownNoAnimation_=(p: Boolean) = { basis.setListShownNoAnimation    (p); basis }
@@ -175,7 +169,6 @@ trait TraitListFragment[V <: android.support.v4.app.ListFragment] extends TraitF
 
   @inline def selectedItemPosition = basis.getSelectedItemPosition
 
-  @noEquivalentGetterExists
   @inline def selection(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'selection'")
   @inline def selection  (p: Int) =            selection_=  (p)
   @inline def selection_=(p: Int) = { basis.setSelection    (p); basis }

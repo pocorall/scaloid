@@ -51,7 +51,6 @@ trait TraitActivity[V <: Activity] {
 
   @inline def contentView(p: View) = contentView_=(p)
 
-  @noEquivalentGetterExists
   @inline def contentView(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'contentView'")
 
   def basis: Activity
