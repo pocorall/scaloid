@@ -103,7 +103,8 @@ object AndroidClassExtractor extends JavaConversionHelpers {
     val props: Seq[AndroidProperty] = {
       def propName(m: Method) = {
         val s = "^(get|is|set)".r.replaceAllIn(m.getName, "")
-        s.head.toLowerCase + s.tail
+        if (s.take(3).matches("[A-Z]{3}")) s
+        else s.head.toLowerCase + s.tail
       }
 
       val clsMethods = cls.getMethods
