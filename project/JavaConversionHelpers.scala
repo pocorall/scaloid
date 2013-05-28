@@ -6,6 +6,12 @@ import scala.collection.JavaConversions._
 
 trait JavaConversionHelpers {
 
+  def getSuperclass(cls: Class[_]): Option[Class[_]] =
+    cls.getSuperclass match {
+      case c: Class[_] => Some(c)
+      case _ => cls.getInterfaces.headOption
+    }
+
   def isAbstract(m: Member): Boolean = Modifier.isAbstract(m.getModifiers)
   def isAbstract(c: Class[_]): Boolean = Modifier.isAbstract(c.getModifiers)
   def isFinal(m: Member): Boolean = Modifier.isFinal(m.getModifiers)
@@ -14,13 +20,13 @@ trait JavaConversionHelpers {
   def isStatic(c: Class[_]): Boolean = Modifier.isStatic(c.getModifiers)
   def isConcrete(c: Class[_]): Boolean = ! (isInterface(c) || isStatic(c))
   def isOverride(m: Method): Boolean =
-    m.getDeclaringClass.getSuperclass match {
-      case null => false
-      case c =>
+    getSuperclass(m.getDeclaringClass) match {
+      case Some(c) =>
         getAllMethods(c,
           withName(m.getName),
           withParameters(m.getParameterTypes: _*)
         ).nonEmpty
+      case None => false
     }
 
   def methodSignature(m: Method): String = List(

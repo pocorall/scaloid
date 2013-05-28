@@ -344,11 +344,11 @@ $_setter("  ", {           $prop.name$_=  (p)})$
 $_setter("_=", {{ basis.$method.name$    (p); basis \}})$
 >>
 
-_setter(postFix, body) ::= <%
+_setter(postFix, body) ::= <%$if( ! method.isAbstract || ! first(method.paramedTypes).name )$
 @inline def ${$prop.name$$postFix$}; format="safe-ident"$
 $paramedTypes(method.paramedTypes)$
-($namedArgs(method.argTypes)$)
-$if( ! method.isAbstract)$ = $body$$endif$
+($namedArgs(method.argTypes)$) = $body$
+$endif$
 %>
 
 switch(name, setter) ::= <<

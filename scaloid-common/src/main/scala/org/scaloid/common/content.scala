@@ -131,11 +131,15 @@ trait TraitContext[V <: android.content.Context] extends TagUtil {
 
   @inline def resources = basis.getResources
 
-  @inline def restricted = basis.isRestricted
-
   @inline def theme = basis.getTheme
+  @inline def theme  (p: Int) =            theme_=  (p)
+  @inline def theme_=(p: Int) = { basis.setTheme    (p); basis }
 
   @inline def wallpaper = basis.getWallpaper
+  @inline def wallpaper  (p: android.graphics.Bitmap) =            wallpaper_=  (p)
+  @inline def wallpaper_=(p: android.graphics.Bitmap) = { basis.setWallpaper    (p); basis }
+  @inline def wallpaper  (p: java.io.InputStream) =            wallpaper_=  (p)
+  @inline def wallpaper_=(p: java.io.InputStream) = { basis.setWallpaper    (p); basis }
 
   @inline def wallpaperDesiredMinimumHeight = basis.getWallpaperDesiredMinimumHeight
 
