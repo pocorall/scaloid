@@ -5691,36 +5691,36 @@ trait TraitGLSurfaceView[V <: android.opengl.GLSurfaceView] extends TraitSurface
 
 
 
+  @noEquivalentGetterExists
+  @inline def EGLConfigChooser(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'EGLConfigChooser'")
+  @inline def EGLConfigChooser  (p: Boolean) =            EGLConfigChooser_=  (p)
+  @inline def EGLConfigChooser_=(p: Boolean) = { basis.setEGLConfigChooser    (p); basis }
+  @inline def EGLConfigChooser  (p: android.opengl.GLSurfaceView.EGLConfigChooser) =            EGLConfigChooser_=  (p)
+  @inline def EGLConfigChooser_=(p: android.opengl.GLSurfaceView.EGLConfigChooser) = { basis.setEGLConfigChooser    (p); basis }
+
+  @noEquivalentGetterExists
+  @inline def EGLContextClientVersion(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'EGLContextClientVersion'")
+  @inline def EGLContextClientVersion  (p: Int) =            EGLContextClientVersion_=  (p)
+  @inline def EGLContextClientVersion_=(p: Int) = { basis.setEGLContextClientVersion    (p); basis }
+
+  @noEquivalentGetterExists
+  @inline def EGLContextFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'EGLContextFactory'")
+  @inline def EGLContextFactory  (p: android.opengl.GLSurfaceView.EGLContextFactory) =            EGLContextFactory_=  (p)
+  @inline def EGLContextFactory_=(p: android.opengl.GLSurfaceView.EGLContextFactory) = { basis.setEGLContextFactory    (p); basis }
+
+  @noEquivalentGetterExists
+  @inline def EGLWindowSurfaceFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'EGLWindowSurfaceFactory'")
+  @inline def EGLWindowSurfaceFactory  (p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) =            EGLWindowSurfaceFactory_=  (p)
+  @inline def EGLWindowSurfaceFactory_=(p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) = { basis.setEGLWindowSurfaceFactory    (p); basis }
+
+  @noEquivalentGetterExists
+  @inline def GLWrapper(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'GLWrapper'")
+  @inline def GLWrapper  (p: android.opengl.GLSurfaceView.GLWrapper) =            GLWrapper_=  (p)
+  @inline def GLWrapper_=(p: android.opengl.GLSurfaceView.GLWrapper) = { basis.setGLWrapper    (p); basis }
+
   @inline def debugFlags = basis.getDebugFlags
   @inline def debugFlags  (p: Int) =            debugFlags_=  (p)
   @inline def debugFlags_=(p: Int) = { basis.setDebugFlags    (p); basis }
-
-  @noEquivalentGetterExists
-  @inline def eGLConfigChooser(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'eGLConfigChooser'")
-  @inline def eGLConfigChooser  (p: Boolean) =            eGLConfigChooser_=  (p)
-  @inline def eGLConfigChooser_=(p: Boolean) = { basis.setEGLConfigChooser    (p); basis }
-  @inline def eGLConfigChooser  (p: android.opengl.GLSurfaceView.EGLConfigChooser) =            eGLConfigChooser_=  (p)
-  @inline def eGLConfigChooser_=(p: android.opengl.GLSurfaceView.EGLConfigChooser) = { basis.setEGLConfigChooser    (p); basis }
-
-  @noEquivalentGetterExists
-  @inline def eGLContextClientVersion(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'eGLContextClientVersion'")
-  @inline def eGLContextClientVersion  (p: Int) =            eGLContextClientVersion_=  (p)
-  @inline def eGLContextClientVersion_=(p: Int) = { basis.setEGLContextClientVersion    (p); basis }
-
-  @noEquivalentGetterExists
-  @inline def eGLContextFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'eGLContextFactory'")
-  @inline def eGLContextFactory  (p: android.opengl.GLSurfaceView.EGLContextFactory) =            eGLContextFactory_=  (p)
-  @inline def eGLContextFactory_=(p: android.opengl.GLSurfaceView.EGLContextFactory) = { basis.setEGLContextFactory    (p); basis }
-
-  @noEquivalentGetterExists
-  @inline def eGLWindowSurfaceFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'eGLWindowSurfaceFactory'")
-  @inline def eGLWindowSurfaceFactory  (p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) =            eGLWindowSurfaceFactory_=  (p)
-  @inline def eGLWindowSurfaceFactory_=(p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) = { basis.setEGLWindowSurfaceFactory    (p); basis }
-
-  @noEquivalentGetterExists
-  @inline def gLWrapper(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'gLWrapper'")
-  @inline def gLWrapper  (p: android.opengl.GLSurfaceView.GLWrapper) =            gLWrapper_=  (p)
-  @inline def gLWrapper_=(p: android.opengl.GLSurfaceView.GLWrapper) = { basis.setGLWrapper    (p); basis }
 
   @inline def preserveEGLContextOnPause = basis.getPreserveEGLContextOnPause
   @inline def preserveEGLContextOnPause  (p: Boolean) =            preserveEGLContextOnPause_=  (p)
