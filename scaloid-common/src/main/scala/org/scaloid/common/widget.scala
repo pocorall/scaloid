@@ -124,8 +124,8 @@ trait TraitPopupWindow[V <: android.widget.PopupWindow] {
   }
 }
 
-class SPopupWindow()
-    extends android.widget.PopupWindow() with TraitPopupWindow[SPopupWindow] {
+class SPopupWindow()(implicit context: android.content.Context)
+    extends android.widget.PopupWindow(context) with TraitPopupWindow[SPopupWindow] {
 
   val basis = this
 
@@ -133,7 +133,7 @@ class SPopupWindow()
 }
 
 object SPopupWindow {
-  def apply: SPopupWindow = {
+  def apply(implicit context: android.content.Context): SPopupWindow = {
     val v = new SPopupWindow
     v
   }
@@ -2018,32 +2018,32 @@ trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView
 
   @inline def onScroll(f: (android.widget.AbsListView, Int, Int, Int) => Unit): V = {
     basis.setOnScrollListener(new android.widget.AbsListView.OnScrollListener {
-      def onScrollStateChanged(p1: android.widget.AbsListView, p2: Int): Unit = {  }
       def onScroll(p1: android.widget.AbsListView, p2: Int, p3: Int, p4: Int): Unit = { f(p1, p2, p3, p4) }
+      def onScrollStateChanged(p1: android.widget.AbsListView, p2: Int): Unit = {  }
     })
     basis
   }
 
   @inline def onScroll(f: => Unit): V = {
     basis.setOnScrollListener(new android.widget.AbsListView.OnScrollListener {
-      def onScrollStateChanged(p1: android.widget.AbsListView, p2: Int): Unit = {  }
       def onScroll(p1: android.widget.AbsListView, p2: Int, p3: Int, p4: Int): Unit = { f }
+      def onScrollStateChanged(p1: android.widget.AbsListView, p2: Int): Unit = {  }
     })
     basis
   }
 
   @inline def onScrollStateChanged(f: (android.widget.AbsListView, Int) => Unit): V = {
     basis.setOnScrollListener(new android.widget.AbsListView.OnScrollListener {
-      def onScrollStateChanged(p1: android.widget.AbsListView, p2: Int): Unit = { f(p1, p2) }
       def onScroll(p1: android.widget.AbsListView, p2: Int, p3: Int, p4: Int): Unit = {  }
+      def onScrollStateChanged(p1: android.widget.AbsListView, p2: Int): Unit = { f(p1, p2) }
     })
     basis
   }
 
   @inline def onScrollStateChanged(f: => Unit): V = {
     basis.setOnScrollListener(new android.widget.AbsListView.OnScrollListener {
-      def onScrollStateChanged(p1: android.widget.AbsListView, p2: Int): Unit = { f }
       def onScroll(p1: android.widget.AbsListView, p2: Int, p3: Int, p4: Int): Unit = {  }
+      def onScrollStateChanged(p1: android.widget.AbsListView, p2: Int): Unit = { f }
     })
     basis
   }
@@ -2560,8 +2560,8 @@ trait TraitSlidingDrawer[V <: android.widget.SlidingDrawer] extends TraitViewGro
 
   @inline def onScrollEnded(f: => Unit): V = {
     basis.setOnDrawerScrollListener(new android.widget.SlidingDrawer.OnDrawerScrollListener {
-      def onScrollStarted(): Unit = {  }
       def onScrollEnded(): Unit = { f }
+      def onScrollStarted(): Unit = {  }
     })
     basis
   }
@@ -2570,8 +2570,8 @@ trait TraitSlidingDrawer[V <: android.widget.SlidingDrawer] extends TraitViewGro
 
   @inline def onScrollStarted(f: => Unit): V = {
     basis.setOnDrawerScrollListener(new android.widget.SlidingDrawer.OnDrawerScrollListener {
-      def onScrollStarted(): Unit = { f }
       def onScrollEnded(): Unit = {  }
+      def onScrollStarted(): Unit = { f }
     })
     basis
   }
@@ -4738,8 +4738,8 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
   @inline def afterTextChanged(f: android.text.Editable => Unit): V = {
     basis.addTextChangedListener(new android.text.TextWatcher {
-      def beforeTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = {  }
       def afterTextChanged(p: android.text.Editable): Unit = { f(p) }
+      def beforeTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = {  }
       def onTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = {  }
     })
     basis
@@ -4747,8 +4747,8 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
   @inline def afterTextChanged(f: => Unit): V = {
     basis.addTextChangedListener(new android.text.TextWatcher {
-      def beforeTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = {  }
       def afterTextChanged(p: android.text.Editable): Unit = { f }
+      def beforeTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = {  }
       def onTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = {  }
     })
     basis
@@ -4756,8 +4756,8 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
   @inline def beforeTextChanged(f: (java.lang.CharSequence, Int, Int, Int) => Unit): V = {
     basis.addTextChangedListener(new android.text.TextWatcher {
-      def beforeTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = { f(p1, p2, p3, p4) }
       def afterTextChanged(p: android.text.Editable): Unit = {  }
+      def beforeTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = { f(p1, p2, p3, p4) }
       def onTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = {  }
     })
     basis
@@ -4765,8 +4765,8 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
   @inline def beforeTextChanged(f: => Unit): V = {
     basis.addTextChangedListener(new android.text.TextWatcher {
-      def beforeTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = { f }
       def afterTextChanged(p: android.text.Editable): Unit = {  }
+      def beforeTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = { f }
       def onTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = {  }
     })
     basis
@@ -4788,8 +4788,8 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
   @inline def onTextChanged(f: (java.lang.CharSequence, Int, Int, Int) => Unit): V = {
     basis.addTextChangedListener(new android.text.TextWatcher {
-      def beforeTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = {  }
       def afterTextChanged(p: android.text.Editable): Unit = {  }
+      def beforeTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = {  }
       def onTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = { f(p1, p2, p3, p4) }
     })
     basis
@@ -4797,8 +4797,8 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
   @inline def onTextChanged(f: => Unit): V = {
     basis.addTextChangedListener(new android.text.TextWatcher {
-      def beforeTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = {  }
       def afterTextChanged(p: android.text.Editable): Unit = {  }
+      def beforeTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = {  }
       def onTextChanged(p1: java.lang.CharSequence, p2: Int, p3: Int, p4: Int): Unit = { f }
     })
     basis
@@ -5358,112 +5358,112 @@ trait TraitKeyboardView[V <: android.inputmethodservice.KeyboardView] extends Tr
 
   @inline def onKey(f: (Int, Array[Int]) => Unit): V = {
     basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
+      def onKey(p1: Int, p2: Array[Int]): Unit = { f(p1, p2) }
+      def onPress(p: Int): Unit = {  }
       def onRelease(p: Int): Unit = {  }
       def onText(p: java.lang.CharSequence): Unit = {  }
-      def swipeUp(): Unit = {  }
-      def swipeLeft(): Unit = {  }
       def swipeDown(): Unit = {  }
+      def swipeLeft(): Unit = {  }
       def swipeRight(): Unit = {  }
-      def onPress(p: Int): Unit = {  }
-      def onKey(p1: Int, p2: Array[Int]): Unit = { f(p1, p2) }
+      def swipeUp(): Unit = {  }
     })
     basis
   }
 
   @inline def onKey(f: => Unit): V = {
     basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
+      def onKey(p1: Int, p2: Array[Int]): Unit = { f }
+      def onPress(p: Int): Unit = {  }
       def onRelease(p: Int): Unit = {  }
       def onText(p: java.lang.CharSequence): Unit = {  }
-      def swipeUp(): Unit = {  }
-      def swipeLeft(): Unit = {  }
       def swipeDown(): Unit = {  }
+      def swipeLeft(): Unit = {  }
       def swipeRight(): Unit = {  }
-      def onPress(p: Int): Unit = {  }
-      def onKey(p1: Int, p2: Array[Int]): Unit = { f }
+      def swipeUp(): Unit = {  }
     })
     basis
   }
 
   @inline def onPress(f: Int => Unit): V = {
     basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
+      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def onPress(p: Int): Unit = { f(p) }
       def onRelease(p: Int): Unit = {  }
       def onText(p: java.lang.CharSequence): Unit = {  }
-      def swipeUp(): Unit = {  }
-      def swipeLeft(): Unit = {  }
       def swipeDown(): Unit = {  }
+      def swipeLeft(): Unit = {  }
       def swipeRight(): Unit = {  }
-      def onPress(p: Int): Unit = { f(p) }
-      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def swipeUp(): Unit = {  }
     })
     basis
   }
 
   @inline def onPress(f: => Unit): V = {
     basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
+      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def onPress(p: Int): Unit = { f }
       def onRelease(p: Int): Unit = {  }
       def onText(p: java.lang.CharSequence): Unit = {  }
-      def swipeUp(): Unit = {  }
-      def swipeLeft(): Unit = {  }
       def swipeDown(): Unit = {  }
+      def swipeLeft(): Unit = {  }
       def swipeRight(): Unit = {  }
-      def onPress(p: Int): Unit = { f }
-      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def swipeUp(): Unit = {  }
     })
     basis
   }
 
   @inline def onRelease(f: Int => Unit): V = {
     basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
+      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def onPress(p: Int): Unit = {  }
       def onRelease(p: Int): Unit = { f(p) }
       def onText(p: java.lang.CharSequence): Unit = {  }
-      def swipeUp(): Unit = {  }
-      def swipeLeft(): Unit = {  }
       def swipeDown(): Unit = {  }
+      def swipeLeft(): Unit = {  }
       def swipeRight(): Unit = {  }
-      def onPress(p: Int): Unit = {  }
-      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def swipeUp(): Unit = {  }
     })
     basis
   }
 
   @inline def onRelease(f: => Unit): V = {
     basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
+      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def onPress(p: Int): Unit = {  }
       def onRelease(p: Int): Unit = { f }
       def onText(p: java.lang.CharSequence): Unit = {  }
-      def swipeUp(): Unit = {  }
-      def swipeLeft(): Unit = {  }
       def swipeDown(): Unit = {  }
+      def swipeLeft(): Unit = {  }
       def swipeRight(): Unit = {  }
-      def onPress(p: Int): Unit = {  }
-      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def swipeUp(): Unit = {  }
     })
     basis
   }
 
   @inline def onText(f: java.lang.CharSequence => Unit): V = {
     basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
+      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def onPress(p: Int): Unit = {  }
       def onRelease(p: Int): Unit = {  }
       def onText(p: java.lang.CharSequence): Unit = { f(p) }
-      def swipeUp(): Unit = {  }
-      def swipeLeft(): Unit = {  }
       def swipeDown(): Unit = {  }
+      def swipeLeft(): Unit = {  }
       def swipeRight(): Unit = {  }
-      def onPress(p: Int): Unit = {  }
-      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def swipeUp(): Unit = {  }
     })
     basis
   }
 
   @inline def onText(f: => Unit): V = {
     basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
+      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def onPress(p: Int): Unit = {  }
       def onRelease(p: Int): Unit = {  }
       def onText(p: java.lang.CharSequence): Unit = { f }
-      def swipeUp(): Unit = {  }
-      def swipeLeft(): Unit = {  }
       def swipeDown(): Unit = {  }
+      def swipeLeft(): Unit = {  }
       def swipeRight(): Unit = {  }
-      def onPress(p: Int): Unit = {  }
-      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def swipeUp(): Unit = {  }
     })
     basis
   }
@@ -5472,14 +5472,14 @@ trait TraitKeyboardView[V <: android.inputmethodservice.KeyboardView] extends Tr
 
   @inline def swipeDown(f: => Unit): V = {
     basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
+      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def onPress(p: Int): Unit = {  }
       def onRelease(p: Int): Unit = {  }
       def onText(p: java.lang.CharSequence): Unit = {  }
-      def swipeUp(): Unit = {  }
-      def swipeLeft(): Unit = {  }
       def swipeDown(): Unit = { f }
+      def swipeLeft(): Unit = {  }
       def swipeRight(): Unit = {  }
-      def onPress(p: Int): Unit = {  }
-      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def swipeUp(): Unit = {  }
     })
     basis
   }
@@ -5488,14 +5488,14 @@ trait TraitKeyboardView[V <: android.inputmethodservice.KeyboardView] extends Tr
 
   @inline def swipeLeft(f: => Unit): V = {
     basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
+      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def onPress(p: Int): Unit = {  }
       def onRelease(p: Int): Unit = {  }
       def onText(p: java.lang.CharSequence): Unit = {  }
-      def swipeUp(): Unit = {  }
-      def swipeLeft(): Unit = { f }
       def swipeDown(): Unit = {  }
+      def swipeLeft(): Unit = { f }
       def swipeRight(): Unit = {  }
-      def onPress(p: Int): Unit = {  }
-      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def swipeUp(): Unit = {  }
     })
     basis
   }
@@ -5504,14 +5504,14 @@ trait TraitKeyboardView[V <: android.inputmethodservice.KeyboardView] extends Tr
 
   @inline def swipeRight(f: => Unit): V = {
     basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
+      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def onPress(p: Int): Unit = {  }
       def onRelease(p: Int): Unit = {  }
       def onText(p: java.lang.CharSequence): Unit = {  }
-      def swipeUp(): Unit = {  }
-      def swipeLeft(): Unit = {  }
       def swipeDown(): Unit = {  }
+      def swipeLeft(): Unit = {  }
       def swipeRight(): Unit = { f }
-      def onPress(p: Int): Unit = {  }
-      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def swipeUp(): Unit = {  }
     })
     basis
   }
@@ -5520,14 +5520,14 @@ trait TraitKeyboardView[V <: android.inputmethodservice.KeyboardView] extends Tr
 
   @inline def swipeUp(f: => Unit): V = {
     basis.setOnKeyboardActionListener(new android.inputmethodservice.KeyboardView.OnKeyboardActionListener {
+      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def onPress(p: Int): Unit = {  }
       def onRelease(p: Int): Unit = {  }
       def onText(p: java.lang.CharSequence): Unit = {  }
-      def swipeUp(): Unit = { f }
-      def swipeLeft(): Unit = {  }
       def swipeDown(): Unit = {  }
+      def swipeLeft(): Unit = {  }
       def swipeRight(): Unit = {  }
-      def onPress(p: Int): Unit = {  }
-      def onKey(p1: Int, p2: Array[Int]): Unit = {  }
+      def swipeUp(): Unit = { f }
     })
     basis
   }
@@ -5700,60 +5700,60 @@ trait TraitGestureOverlayView[V <: android.gesture.GestureOverlayView] extends T
 
   @inline def onGesture(f: (android.gesture.GestureOverlayView, android.view.MotionEvent) => Unit): V = {
     basis.addOnGestureListener(new android.gesture.GestureOverlayView.OnGestureListener {
-      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
-      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
-      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
       def onGesture(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = { f(p1, p2) }
+      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
     })
     basis
   }
 
   @inline def onGesture(f: => Unit): V = {
     basis.addOnGestureListener(new android.gesture.GestureOverlayView.OnGestureListener {
-      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
-      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
-      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
       def onGesture(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = { f }
+      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
     })
     basis
   }
 
   @inline def onGestureCancelled(f: (android.gesture.GestureOverlayView, android.view.MotionEvent) => Unit): V = {
     basis.addOnGestureListener(new android.gesture.GestureOverlayView.OnGestureListener {
-      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
-      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
-      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = { f(p1, p2) }
       def onGesture(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = { f(p1, p2) }
+      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
     })
     basis
   }
 
   @inline def onGestureCancelled(f: => Unit): V = {
     basis.addOnGestureListener(new android.gesture.GestureOverlayView.OnGestureListener {
-      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
-      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
-      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = { f }
       def onGesture(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = { f }
+      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
     })
     basis
   }
 
   @inline def onGestureEnded(f: (android.gesture.GestureOverlayView, android.view.MotionEvent) => Unit): V = {
     basis.addOnGestureListener(new android.gesture.GestureOverlayView.OnGestureListener {
-      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
-      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = { f(p1, p2) }
-      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
       def onGesture(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = { f(p1, p2) }
+      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
     })
     basis
   }
 
   @inline def onGestureEnded(f: => Unit): V = {
     basis.addOnGestureListener(new android.gesture.GestureOverlayView.OnGestureListener {
-      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
-      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = { f }
-      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
       def onGesture(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = { f }
+      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
     })
     basis
   }
@@ -5774,20 +5774,20 @@ trait TraitGestureOverlayView[V <: android.gesture.GestureOverlayView] extends T
 
   @inline def onGestureStarted(f: (android.gesture.GestureOverlayView, android.view.MotionEvent) => Unit): V = {
     basis.addOnGestureListener(new android.gesture.GestureOverlayView.OnGestureListener {
-      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = { f(p1, p2) }
-      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
-      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
       def onGesture(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = { f(p1, p2) }
     })
     basis
   }
 
   @inline def onGestureStarted(f: => Unit): V = {
     basis.addOnGestureListener(new android.gesture.GestureOverlayView.OnGestureListener {
-      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = { f }
-      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
-      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
       def onGesture(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureCancelled(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureEnded(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = {  }
+      def onGestureStarted(p1: android.gesture.GestureOverlayView, p2: android.view.MotionEvent): Unit = { f }
     })
     basis
   }
