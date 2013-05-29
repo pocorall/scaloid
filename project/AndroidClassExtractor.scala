@@ -99,6 +99,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
         .filter(isCallbackMethod)
         .map(toAndroidMethod)
         .toList
+        .sortBy(_.name)
 
     val props: Seq[AndroidProperty] = {
       def propName(m: Method) = {
@@ -263,7 +264,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
     val constructors = cls.getConstructors
                         .map(toScalaConstructor)
                         .toSeq
-                        .sortBy(_.explicitArgs.length)
+                        .sortBy(c => (c.explicitArgs.length, -c.implicitArgs.length))
 
     val isA = getHierarchy(cls).toSet
 
