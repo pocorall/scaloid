@@ -829,54 +829,54 @@ trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
 
   @inline def onAnimationEnd(f: android.view.animation.Animation => Unit): V = {
     basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
-      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
       def onAnimationEnd(p: android.view.animation.Animation): Unit = { f(p) }
       def onAnimationRepeat(p: android.view.animation.Animation): Unit = {  }
+      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
     })
     basis
   }
 
   @inline def onAnimationEnd(f: => Unit): V = {
     basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
-      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
       def onAnimationEnd(p: android.view.animation.Animation): Unit = { f }
       def onAnimationRepeat(p: android.view.animation.Animation): Unit = {  }
+      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
     })
     basis
   }
 
   @inline def onAnimationRepeat(f: android.view.animation.Animation => Unit): V = {
     basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
-      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
       def onAnimationEnd(p: android.view.animation.Animation): Unit = {  }
       def onAnimationRepeat(p: android.view.animation.Animation): Unit = { f(p) }
+      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
     })
     basis
   }
 
   @inline def onAnimationRepeat(f: => Unit): V = {
     basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
-      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
       def onAnimationEnd(p: android.view.animation.Animation): Unit = {  }
       def onAnimationRepeat(p: android.view.animation.Animation): Unit = { f }
+      def onAnimationStart(p: android.view.animation.Animation): Unit = {  }
     })
     basis
   }
 
   @inline def onAnimationStart(f: android.view.animation.Animation => Unit): V = {
     basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
-      def onAnimationStart(p: android.view.animation.Animation): Unit = { f(p) }
       def onAnimationEnd(p: android.view.animation.Animation): Unit = {  }
       def onAnimationRepeat(p: android.view.animation.Animation): Unit = {  }
+      def onAnimationStart(p: android.view.animation.Animation): Unit = { f(p) }
     })
     basis
   }
 
   @inline def onAnimationStart(f: => Unit): V = {
     basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
-      def onAnimationStart(p: android.view.animation.Animation): Unit = { f }
       def onAnimationEnd(p: android.view.animation.Animation): Unit = {  }
       def onAnimationRepeat(p: android.view.animation.Animation): Unit = {  }
+      def onAnimationStart(p: android.view.animation.Animation): Unit = { f }
     })
     basis
   }
