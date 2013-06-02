@@ -69,7 +69,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
           .map(propDescSignature).toSet[String]
       }.getOrElse(Set())
 
-    val superMethods: Set[String] = 
+    val superMethods: Set[String] =
       superClass.map {
         _.getMethods.map(methodSignature).toSet
       }.getOrElse(Set())
@@ -290,24 +290,30 @@ object AndroidClassExtractor extends JavaConversionHelpers {
         .setUrls(ClasspathHelper.forClassLoader(classLoaders: _*))
         .filterInputsBy(inputFilter))
 
-      val clss = asScalaSet(r.getSubTypesOf(classOf[java.lang.Object]))
-      val res = clss.toList
-                  .filter {
-                    s.log.info("Excluding inner classes for now - let's deal with it later")
-                    ! _.getName.contains("$")
-                  }
-                  .filter(sourceExists)
-                  .map(toAndroidClass)
-                  .map(c => c.tpe.name -> c)
-                  .toMap
+      try {
+        val clss = asScalaSet(r.getSubTypesOf(classOf[java.lang.Object]))
+        val res = clss.toList
+                    .filter {
+                      s.log.info("Excluding inner classes for now - let's deal with it later")
+                      ! _.getName.contains("$")
+                    }
+                    .filter(sourceExists)
+                    .map(toAndroidClass)
+                    .map(c => c.tpe.name -> c)
+                    .toMap
 
-      val values = res.values.toList
-      s.log.info("Done.")
-      s.log.info("Classes: "+ values.length)
-      s.log.info("Properties: "+ values.map(_.properties).flatten.length)
-      s.log.info("Listeners: "+ values.map(_.listeners).flatten.length)
-      s.log.info("Constructors: "+ values.map(_.constructors).flatten.length)
-      res
+        val values = res.values.toList
+        s.log.info("Done.")
+        s.log.info("Classes: "+ values.length)
+        s.log.info("Properties: "+ values.map(_.properties).flatten.length)
+        s.log.info("Listeners: "+ values.map(_.listeners).flatten.length)
+        s.log.info("Constructors: "+ values.map(_.constructors).flatten.length)
+        res
+      } catch {
+        case e: ReflectionsException =>
+          s.log.info("Excluding a class that is not accessible")
+          Map[String, AndroidClass]()
+      }
     }
   }
 }
