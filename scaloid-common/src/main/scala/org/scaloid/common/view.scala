@@ -482,7 +482,6 @@ class RichViewGroup[V <: android.view.ViewGroup](val basis: V) extends TraitView
 trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
 
 
-  implicit val pagentVG = this
 
   def applyStyle(v: View): View = {
     var viw = v

@@ -48,7 +48,6 @@ val parentViewGroup: TraitViewGroup[_] = null
 
 
 ViewGroup_traitBody() ::= <<
-implicit val pagentVG = this
 
 def applyStyle(v: View): View = {
   var viw = v
