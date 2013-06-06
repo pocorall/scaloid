@@ -119,8 +119,6 @@ trait TraitContext[V <: android.content.Context] extends TagUtil {
 
   @inline def mainLooper = basis.getMainLooper
 
-  @inline def obbDir = basis.getObbDir
-
   @inline def packageCodePath = basis.getPackageCodePath
 
   @inline def packageManager = basis.getPackageManager

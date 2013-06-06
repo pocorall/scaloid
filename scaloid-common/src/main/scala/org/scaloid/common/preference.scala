@@ -137,18 +137,6 @@ trait TraitPreference[V <: android.preference.Preference] {
   @inline def enabled  (p: Boolean) =            enabled_=  (p)
   @inline def enabled_=(p: Boolean) = { basis.setEnabled    (p); basis }
 
-  @inline def extras = basis.getExtras
-
-  @inline def fragment = basis.getFragment
-  @inline def fragment  (p: java.lang.String) =            fragment_=  (p)
-  @inline def fragment_=(p: java.lang.String) = { basis.setFragment    (p); basis }
-
-  @inline def icon = basis.getIcon
-  @inline def icon  (p: Int) =            icon_=  (p)
-  @inline def icon_=(p: Int) = { basis.setIcon    (p); basis }
-  @inline def icon  (p: android.graphics.drawable.Drawable) =            icon_=  (p)
-  @inline def icon_=(p: android.graphics.drawable.Drawable) = { basis.setIcon    (p); basis }
-
   @inline def intent = basis.getIntent
   @inline def intent  (p: android.content.Intent) =            intent_=  (p)
   @inline def intent_=(p: android.content.Intent) = { basis.setIntent    (p); basis }
@@ -200,8 +188,6 @@ trait TraitPreference[V <: android.preference.Preference] {
   @inline def title_=(p: Int) = { basis.setTitle    (p); basis }
   @inline def title  (p: java.lang.CharSequence) =            title_=  (p)
   @inline def title_=(p: java.lang.CharSequence) = { basis.setTitle    (p); basis }
-
-  @inline def titleRes = basis.getTitleRes
 
   @inline def widgetLayoutResource = basis.getWidgetLayoutResource
   @inline def widgetLayoutResource  (p: Int) =            widgetLayoutResource_=  (p)

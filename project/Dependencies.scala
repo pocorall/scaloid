@@ -9,7 +9,7 @@ object Dependencies {
 //    "sonatype snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
   )
 
-  val android = "com.google.android" % "android" % "4.1.1.4" % "provided"
+  val android = "com.google.android" % "android" % "2.2.1" % "provided"
   val android_support_v4 = "com.google.android" % "support-v4" % "r7" % "provided"
 }
 

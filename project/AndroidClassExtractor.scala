@@ -290,12 +290,14 @@ object AndroidClassExtractor extends JavaConversionHelpers {
         .setUrls(ClasspathHelper.forClassLoader(classLoaders: _*))
         .filterInputsBy(inputFilter))
 
-      try {
         val clss = asScalaSet(r.getSubTypesOf(classOf[java.lang.Object]))
         val res = clss.toList
                     .filter {
                       s.log.info("Excluding inner classes for now - let's deal with it later")
                       ! _.getName.contains("$")
+                    }
+                    .filter {
+                       ! _.toString.contains("webkit")  // excluding android.webkit.* in Android 2.1.1, which is deprecated
                     }
                     .filter(sourceExists)
                     .map(toAndroidClass)
@@ -309,11 +311,6 @@ object AndroidClassExtractor extends JavaConversionHelpers {
         s.log.info("Listeners: "+ values.map(_.listeners).flatten.length)
         s.log.info("Constructors: "+ values.map(_.constructors).flatten.length)
         res
-      } catch {
-        case e: ReflectionsException =>
-          s.log.info("Excluding a class that is not accessible")
-          Map[String, AndroidClass]()
-      }
     }
   }
 }

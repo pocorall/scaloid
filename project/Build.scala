@@ -6,7 +6,7 @@ object ScaloidBuild extends Build {
   import Dependencies._
 
   lazy val basicSettings = Seq(
-    version               := "2.0-16-SNAPSHOT",
+    version               := "2.0-8-RC1",
     organization          := "org.scaloid",
     organizationHomepage  := Some(new URL("http://blog.scaloid.org")),
     description           := "Rapid Android Development with Scala",
@@ -27,10 +27,10 @@ object ScaloidBuild extends Build {
 
 
   // root project
-  lazy val parent = Project("parent", file("."))
-    .settings(scaloidSettings: _*)
-    .settings(publish := {}, publishLocal := {})
-    .aggregate(common, support_v4)
+//  lazy val parent = Project("parent", file("."))
+//    .settings(scaloidSettings: _*)
+//    .settings(publish := {}, publishLocal := {})
+//    .aggregate(common, support_v4)
 
   lazy val common = Project("scaloid", file("scaloid-common"))
     .settings(name := "scaloid", exportJars := true)

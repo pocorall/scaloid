@@ -96,13 +96,6 @@ trait TraitPopupWindow[V <: android.widget.PopupWindow] {
   @inline def softInputMode  (p: Int) =            softInputMode_=  (p)
   @inline def softInputMode_=(p: Int) = { basis.setSoftInputMode    (p); basis }
 
-  @inline def splitTouchEnabled = basis.isSplitTouchEnabled
-  @inline def splitTouchEnabled  (p: Boolean) =            splitTouchEnabled_=  (p)
-  @inline def splitTouchEnabled_=(p: Boolean) = { basis.setSplitTouchEnabled    (p); basis }
-  @inline def  enableSplitTouch               = { basis.setSplitTouchEnabled(true ); basis }
-  @inline def disableSplitTouch               = { basis.setSplitTouchEnabled(false); basis }
-
-
   @inline def touchInterceptor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'touchInterceptor'")
   @inline def touchInterceptor  (p: android.view.View.OnTouchListener) =            touchInterceptor_=  (p)
   @inline def touchInterceptor_=(p: android.view.View.OnTouchListener) = { basis.setTouchInterceptor    (p); basis }
@@ -293,8 +286,20 @@ trait TraitListView[V <: android.widget.ListView] extends TraitAbsListView[V] {
 
 
   @inline override def adapter = basis.getAdapter
+  @inline def adapter  (p: android.widget.ListAdapter) =            adapter_=  (p)
+  @inline def adapter_=(p: android.widget.ListAdapter) = { basis.setAdapter    (p); basis }
 
   @inline def checkItemIds = basis.getCheckItemIds
+
+  @inline def checkedItemIds = basis.getCheckedItemIds
+
+  @inline def checkedItemPosition = basis.getCheckedItemPosition
+
+  @inline def checkedItemPositions = basis.getCheckedItemPositions
+
+  @inline def choiceMode = basis.getChoiceMode
+  @inline def choiceMode  (p: Int) =            choiceMode_=  (p)
+  @inline def choiceMode_=(p: Int) = { basis.setChoiceMode    (p); basis }
 
   @inline def divider = basis.getDivider
   @inline def divider  (p: android.graphics.drawable.Drawable) =            divider_=  (p)
@@ -328,13 +333,6 @@ trait TraitListView[V <: android.widget.ListView] extends TraitAbsListView[V] {
 
   @inline def maxScrollAmount = basis.getMaxScrollAmount
 
-  @inline def overscrollFooter = basis.getOverscrollFooter
-  @inline def overscrollFooter  (p: android.graphics.drawable.Drawable) =            overscrollFooter_=  (p)
-  @inline def overscrollFooter_=(p: android.graphics.drawable.Drawable) = { basis.setOverscrollFooter    (p); basis }
-
-  @inline def overscrollHeader = basis.getOverscrollHeader
-  @inline def overscrollHeader  (p: android.graphics.drawable.Drawable) =            overscrollHeader_=  (p)
-  @inline def overscrollHeader_=(p: android.graphics.drawable.Drawable) = { basis.setOverscrollHeader    (p); basis }
 
 }
 
@@ -409,33 +407,21 @@ trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
 
 
 
-  @inline def adjustViewBounds = basis.getAdjustViewBounds
+  @inline def adjustViewBounds(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'adjustViewBounds'")
   @inline def adjustViewBounds  (p: Boolean) =            adjustViewBounds_=  (p)
   @inline def adjustViewBounds_=(p: Boolean) = { basis.setAdjustViewBounds    (p); basis }
+
+  @inline def alpha(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'alpha'")
   @inline def alpha  (p: Int) =            alpha_=  (p)
   @inline def alpha_=(p: Int) = { basis.setAlpha    (p); basis }
-  @inline def baseline  (p: Int) =            baseline_=  (p)
-  @inline def baseline_=(p: Int) = { basis.setBaseline    (p); basis }
 
-  @inline def baselineAlignBottom = basis.getBaselineAlignBottom
-  @inline def baselineAlignBottom  (p: Boolean) =            baselineAlignBottom_=  (p)
-  @inline def baselineAlignBottom_=(p: Boolean) = { basis.setBaselineAlignBottom    (p); basis }
-
-  @inline def colorFilter = basis.getColorFilter
+  @inline def colorFilter(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'colorFilter'")
   @inline def colorFilter  (p: Int) =            colorFilter_=  (p)
   @inline def colorFilter_=(p: Int) = { basis.setColorFilter    (p); basis }
   @inline def colorFilter  (p: android.graphics.ColorFilter) =            colorFilter_=  (p)
   @inline def colorFilter_=(p: android.graphics.ColorFilter) = { basis.setColorFilter    (p); basis }
 
-  @inline def cropToPadding = basis.getCropToPadding
-  @inline def cropToPadding  (p: Boolean) =            cropToPadding_=  (p)
-  @inline def cropToPadding_=(p: Boolean) = { basis.setCropToPadding    (p); basis }
-
   @inline def drawable = basis.getDrawable
-
-  @inline def imageAlpha = basis.getImageAlpha
-  @inline def imageAlpha  (p: Int) =            imageAlpha_=  (p)
-  @inline def imageAlpha_=(p: Int) = { basis.setImageAlpha    (p); basis }
 
   @inline def imageBitmap(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'imageBitmap'")
   @inline def imageBitmap  (p: android.graphics.Bitmap) =            imageBitmap_=  (p)
@@ -461,11 +447,11 @@ trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
   @inline def imageURI  (p: android.net.Uri) =            imageURI_=  (p)
   @inline def imageURI_=(p: android.net.Uri) = { basis.setImageURI    (p); basis }
 
-  @inline def maxHeight = basis.getMaxHeight
+  @inline def maxHeight(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxHeight'")
   @inline def maxHeight  (p: Int) =            maxHeight_=  (p)
   @inline def maxHeight_=(p: Int) = { basis.setMaxHeight    (p); basis }
 
-  @inline def maxWidth = basis.getMaxWidth
+  @inline def maxWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxWidth'")
   @inline def maxWidth  (p: Int) =            maxWidth_=  (p)
   @inline def maxWidth_=(p: Int) = { basis.setMaxWidth    (p); basis }
 
@@ -572,27 +558,9 @@ trait TraitDatePicker[V <: android.widget.DatePicker] extends TraitFrameLayout[V
 
 
 
-  @inline def calendarView = basis.getCalendarView
-
-  @inline def calendarViewShown = basis.getCalendarViewShown
-  @inline def calendarViewShown  (p: Boolean) =            calendarViewShown_=  (p)
-  @inline def calendarViewShown_=(p: Boolean) = { basis.setCalendarViewShown    (p); basis }
-
   @inline def dayOfMonth = basis.getDayOfMonth
 
-  @inline def maxDate = basis.getMaxDate
-  @inline def maxDate  (p: Long) =            maxDate_=  (p)
-  @inline def maxDate_=(p: Long) = { basis.setMaxDate    (p); basis }
-
-  @inline def minDate = basis.getMinDate
-  @inline def minDate  (p: Long) =            minDate_=  (p)
-  @inline def minDate_=(p: Long) = { basis.setMinDate    (p); basis }
-
   @inline def month = basis.getMonth
-
-  @inline def spinnersShown = basis.getSpinnersShown
-  @inline def spinnersShown  (p: Boolean) =            spinnersShown_=  (p)
-  @inline def spinnersShown_=(p: Boolean) = { basis.setSpinnersShown    (p); basis }
 
   @inline def year = basis.getYear
 
@@ -630,7 +598,7 @@ trait TraitAbsSeekBar[V <: android.widget.AbsSeekBar] extends TraitProgressBar[V
   @inline def keyProgressIncrement  (p: Int) =            keyProgressIncrement_=  (p)
   @inline def keyProgressIncrement_=(p: Int) = { basis.setKeyProgressIncrement    (p); basis }
 
-  @inline def thumb = basis.getThumb
+  @inline def thumb(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'thumb'")
   @inline def thumb  (p: android.graphics.drawable.Drawable) =            thumb_=  (p)
   @inline def thumb_=(p: android.graphics.drawable.Drawable) = { basis.setThumb    (p); basis }
 
@@ -784,63 +752,6 @@ class STabHost()(implicit context: android.content.Context, override val parentV
 object STabHost {
   def apply[LP <: ViewGroupLayoutParams[_, STabHost]](implicit context: android.content.Context, defaultLayoutParam: STabHost => LP): STabHost = {
     val v = new STabHost
-    v.<<.parent.+=(v)
-    v
-  }
-
-}
-
-
-
-
-class RichGridLayout[V <: android.widget.GridLayout](val basis: V) extends TraitGridLayout[V]
-
-trait TraitGridLayout[V <: android.widget.GridLayout] extends TraitViewGroup[V] {
-
-
-
-
-  @inline def alignmentMode = basis.getAlignmentMode
-  @inline def alignmentMode  (p: Int) =            alignmentMode_=  (p)
-  @inline def alignmentMode_=(p: Int) = { basis.setAlignmentMode    (p); basis }
-
-  @inline def columnCount = basis.getColumnCount
-  @inline def columnCount  (p: Int) =            columnCount_=  (p)
-  @inline def columnCount_=(p: Int) = { basis.setColumnCount    (p); basis }
-
-  @inline def columnOrderPreserved = basis.isColumnOrderPreserved
-  @inline def columnOrderPreserved  (p: Boolean) =            columnOrderPreserved_=  (p)
-  @inline def columnOrderPreserved_=(p: Boolean) = { basis.setColumnOrderPreserved    (p); basis }
-
-  @inline def orientation = basis.getOrientation
-  @inline def orientation  (p: Int) =            orientation_=  (p)
-  @inline def orientation_=(p: Int) = { basis.setOrientation    (p); basis }
-
-  @inline def rowCount = basis.getRowCount
-  @inline def rowCount  (p: Int) =            rowCount_=  (p)
-  @inline def rowCount_=(p: Int) = { basis.setRowCount    (p); basis }
-
-  @inline def rowOrderPreserved = basis.isRowOrderPreserved
-  @inline def rowOrderPreserved  (p: Boolean) =            rowOrderPreserved_=  (p)
-  @inline def rowOrderPreserved_=(p: Boolean) = { basis.setRowOrderPreserved    (p); basis }
-
-  @inline def useDefaultMargins = basis.getUseDefaultMargins
-  @inline def useDefaultMargins  (p: Boolean) =            useDefaultMargins_=  (p)
-  @inline def useDefaultMargins_=(p: Boolean) = { basis.setUseDefaultMargins    (p); basis }
-
-}
-
-class SGridLayout()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
-    extends android.widget.GridLayout(context) with TraitGridLayout[SGridLayout] {
-
-  val basis = this
-
-
-}
-
-object SGridLayout {
-  def apply[LP <: ViewGroupLayoutParams[_, SGridLayout]](implicit context: android.content.Context, defaultLayoutParam: SGridLayout => LP): SGridLayout = {
-    val v = new SGridLayout
     v.<<.parent.+=(v)
     v
   }
@@ -1012,32 +923,6 @@ trait TraitSpinner[V <: android.widget.Spinner] extends TraitAbsSpinner[V] {
 
 
 
-  @inline def dropDownHorizontalOffset = basis.getDropDownHorizontalOffset
-  @inline def dropDownHorizontalOffset  (p: Int) =            dropDownHorizontalOffset_=  (p)
-  @inline def dropDownHorizontalOffset_=(p: Int) = { basis.setDropDownHorizontalOffset    (p); basis }
-
-  @inline def dropDownVerticalOffset = basis.getDropDownVerticalOffset
-  @inline def dropDownVerticalOffset  (p: Int) =            dropDownVerticalOffset_=  (p)
-  @inline def dropDownVerticalOffset_=(p: Int) = { basis.setDropDownVerticalOffset    (p); basis }
-
-  @inline def dropDownWidth = basis.getDropDownWidth
-  @inline def dropDownWidth  (p: Int) =            dropDownWidth_=  (p)
-  @inline def dropDownWidth_=(p: Int) = { basis.setDropDownWidth    (p); basis }
-
-  @inline def gravity = basis.getGravity
-  @inline def gravity  (p: Int) =            gravity_=  (p)
-  @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
-
-  @inline def popupBackground = basis.getPopupBackground
-
-  @inline def popupBackgroundDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'popupBackgroundDrawable'")
-  @inline def popupBackgroundDrawable  (p: android.graphics.drawable.Drawable) =            popupBackgroundDrawable_=  (p)
-  @inline def popupBackgroundDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setPopupBackgroundDrawable    (p); basis }
-
-  @inline def popupBackgroundResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'popupBackgroundResource'")
-  @inline def popupBackgroundResource  (p: Int) =            popupBackgroundResource_=  (p)
-  @inline def popupBackgroundResource_=(p: Int) = { basis.setPopupBackgroundResource    (p); basis }
-
   @inline def prompt = basis.getPrompt
   @inline def prompt  (p: java.lang.CharSequence) =            prompt_=  (p)
   @inline def prompt_=(p: java.lang.CharSequence) = { basis.setPrompt    (p); basis }
@@ -1095,32 +980,30 @@ trait TraitGridView[V <: android.widget.GridView] extends TraitAbsListView[V] {
 
 
   @inline override def adapter = basis.getAdapter
+  @inline def adapter  (p: android.widget.ListAdapter) =            adapter_=  (p)
+  @inline def adapter_=(p: android.widget.ListAdapter) = { basis.setAdapter    (p); basis }
 
-  @inline def columnWidth = basis.getColumnWidth
+  @inline def columnWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'columnWidth'")
   @inline def columnWidth  (p: Int) =            columnWidth_=  (p)
   @inline def columnWidth_=(p: Int) = { basis.setColumnWidth    (p); basis }
 
-  @inline def gravity = basis.getGravity
+  @inline def gravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'gravity'")
   @inline def gravity  (p: Int) =            gravity_=  (p)
   @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
 
-  @inline def horizontalSpacing = basis.getHorizontalSpacing
+  @inline def horizontalSpacing(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'horizontalSpacing'")
   @inline def horizontalSpacing  (p: Int) =            horizontalSpacing_=  (p)
   @inline def horizontalSpacing_=(p: Int) = { basis.setHorizontalSpacing    (p); basis }
 
-  @inline def numColumns = basis.getNumColumns
+  @inline def numColumns(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'numColumns'")
   @inline def numColumns  (p: Int) =            numColumns_=  (p)
   @inline def numColumns_=(p: Int) = { basis.setNumColumns    (p); basis }
-
-  @inline def requestedColumnWidth = basis.getRequestedColumnWidth
-
-  @inline def requestedHorizontalSpacing = basis.getRequestedHorizontalSpacing
 
   @inline def stretchMode = basis.getStretchMode
   @inline def stretchMode  (p: Int) =            stretchMode_=  (p)
   @inline def stretchMode_=(p: Int) = { basis.setStretchMode    (p); basis }
 
-  @inline def verticalSpacing = basis.getVerticalSpacing
+  @inline def verticalSpacing(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'verticalSpacing'")
   @inline def verticalSpacing  (p: Int) =            verticalSpacing_=  (p)
   @inline def verticalSpacing_=(p: Int) = { basis.setVerticalSpacing    (p); basis }
 
@@ -1153,7 +1036,7 @@ trait TraitRelativeLayout[V <: android.widget.RelativeLayout] extends TraitViewG
 
 
 
-  @inline def gravity = basis.getGravity
+  @inline def gravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'gravity'")
   @inline def gravity  (p: Int) =            gravity_=  (p)
   @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
 
@@ -1307,98 +1190,6 @@ object SRelativeLayout {
 
 
 
-class RichNumberPicker[V <: android.widget.NumberPicker](val basis: V) extends TraitNumberPicker[V]
-
-trait TraitNumberPicker[V <: android.widget.NumberPicker] extends TraitLinearLayout[V] {
-
-
-
-
-  @inline def displayedValues = basis.getDisplayedValues
-  @inline def displayedValues  (p: Array[java.lang.String]) =            displayedValues_=  (p)
-  @inline def displayedValues_=(p: Array[java.lang.String]) = { basis.setDisplayedValues    (p); basis }
-
-  @inline def formatter(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'formatter'")
-  @inline def formatter  (p: android.widget.NumberPicker.Formatter) =            formatter_=  (p)
-  @inline def formatter_=(p: android.widget.NumberPicker.Formatter) = { basis.setFormatter    (p); basis }
-
-  @inline def maxValue = basis.getMaxValue
-  @inline def maxValue  (p: Int) =            maxValue_=  (p)
-  @inline def maxValue_=(p: Int) = { basis.setMaxValue    (p); basis }
-
-  @inline def minValue = basis.getMinValue
-  @inline def minValue  (p: Int) =            minValue_=  (p)
-  @inline def minValue_=(p: Int) = { basis.setMinValue    (p); basis }
-
-  @inline def onLongPressUpdateInterval(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onLongPressUpdateInterval'")
-  @inline def onLongPressUpdateInterval  (p: Long) =            onLongPressUpdateInterval_=  (p)
-  @inline def onLongPressUpdateInterval_=(p: Long) = { basis.setOnLongPressUpdateInterval    (p); basis }
-
-  @inline def onScrollListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onScrollListener'")
-  @inline def onScrollListener  (p: android.widget.NumberPicker.OnScrollListener) =            onScrollListener_=  (p)
-  @inline def onScrollListener_=(p: android.widget.NumberPicker.OnScrollListener) = { basis.setOnScrollListener    (p); basis }
-
-  @inline def onValueChangedListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onValueChangedListener'")
-  @inline def onValueChangedListener  (p: android.widget.NumberPicker.OnValueChangeListener) =            onValueChangedListener_=  (p)
-  @inline def onValueChangedListener_=(p: android.widget.NumberPicker.OnValueChangeListener) = { basis.setOnValueChangedListener    (p); basis }
-
-  @inline def value = basis.getValue
-  @inline def value  (p: Int) =            value_=  (p)
-  @inline def value_=(p: Int) = { basis.setValue    (p); basis }
-
-  @inline def wrapSelectorWheel = basis.getWrapSelectorWheel
-  @inline def wrapSelectorWheel  (p: Boolean) =            wrapSelectorWheel_=  (p)
-  @inline def wrapSelectorWheel_=(p: Boolean) = { basis.setWrapSelectorWheel    (p); basis }
-
-  @inline def onScrollStateChange(f: (android.widget.NumberPicker, Int) => Unit): V = {
-    basis.setOnScrollListener(new android.widget.NumberPicker.OnScrollListener {
-      def onScrollStateChange(p1: android.widget.NumberPicker, p2: Int): Unit = { f(p1, p2) }
-    })
-    basis
-  }
-
-  @inline def onScrollStateChange(f: => Unit): V = {
-    basis.setOnScrollListener(new android.widget.NumberPicker.OnScrollListener {
-      def onScrollStateChange(p1: android.widget.NumberPicker, p2: Int): Unit = { f }
-    })
-    basis
-  }
-
-  @inline def onValueChange(f: (android.widget.NumberPicker, Int, Int) => Unit): V = {
-    basis.setOnValueChangedListener(new android.widget.NumberPicker.OnValueChangeListener {
-      def onValueChange(p1: android.widget.NumberPicker, p2: Int, p3: Int): Unit = { f(p1, p2, p3) }
-    })
-    basis
-  }
-
-  @inline def onValueChange(f: => Unit): V = {
-    basis.setOnValueChangedListener(new android.widget.NumberPicker.OnValueChangeListener {
-      def onValueChange(p1: android.widget.NumberPicker, p2: Int, p3: Int): Unit = { f }
-    })
-    basis
-  }
-}
-
-class SNumberPicker()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
-    extends android.widget.NumberPicker(context) with TraitNumberPicker[SNumberPicker] {
-
-  val basis = this
-
-
-}
-
-object SNumberPicker {
-  def apply[LP <: ViewGroupLayoutParams[_, SNumberPicker]](implicit context: android.content.Context, defaultLayoutParam: SNumberPicker => LP): SNumberPicker = {
-    val v = new SNumberPicker
-    v.<<.parent.+=(v)
-    v
-  }
-
-}
-
-
-
-
 class RichChronometer[V <: android.widget.Chronometer](val basis: V) extends TraitChronometer[V]
 
 trait TraitChronometer[V <: android.widget.Chronometer] extends TraitTextView[V] {
@@ -1461,18 +1252,6 @@ object SChronometer {
 
 
 
-class RichRemoteViewsService[V <: android.widget.RemoteViewsService](val basis: V) extends TraitRemoteViewsService[V]
-
-trait TraitRemoteViewsService[V <: android.widget.RemoteViewsService] extends TraitService[V] {
-
-
-
-
-}
-
-
-
-
 class RichFilterable[V <: android.widget.Filterable](val basis: V) extends TraitFilterable[V]
 
 trait TraitFilterable[V <: android.widget.Filterable] {
@@ -1496,7 +1275,7 @@ trait TraitCheckedTextView[V <: android.widget.CheckedTextView] extends TraitTex
 
 
 
-  @inline def checkMarkDrawable = basis.getCheckMarkDrawable
+  @inline def checkMarkDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'checkMarkDrawable'")
   @inline def checkMarkDrawable  (p: Int) =            checkMarkDrawable_=  (p)
   @inline def checkMarkDrawable_=(p: Int) = { basis.setCheckMarkDrawable    (p); basis }
   @inline def checkMarkDrawable  (p: android.graphics.drawable.Drawable) =            checkMarkDrawable_=  (p)
@@ -1606,59 +1385,6 @@ trait TraitHeaderViewListAdapter[V <: android.widget.HeaderViewListAdapter] {
 
   @inline def wrappedAdapter = basis.getWrappedAdapter
 
-
-}
-
-
-
-
-class RichShareActionProvider[V <: android.widget.ShareActionProvider](val basis: V) extends TraitShareActionProvider[V]
-
-trait TraitShareActionProvider[V <: android.widget.ShareActionProvider] extends TraitActionProvider[V] {
-
-
-
-
-  @inline def onShareTargetSelectedListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onShareTargetSelectedListener'")
-  @inline def onShareTargetSelectedListener  (p: android.widget.ShareActionProvider.OnShareTargetSelectedListener) =            onShareTargetSelectedListener_=  (p)
-  @inline def onShareTargetSelectedListener_=(p: android.widget.ShareActionProvider.OnShareTargetSelectedListener) = { basis.setOnShareTargetSelectedListener    (p); basis }
-
-  @inline def shareHistoryFileName(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'shareHistoryFileName'")
-  @inline def shareHistoryFileName  (p: java.lang.String) =            shareHistoryFileName_=  (p)
-  @inline def shareHistoryFileName_=(p: java.lang.String) = { basis.setShareHistoryFileName    (p); basis }
-
-  @inline def shareIntent(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'shareIntent'")
-  @inline def shareIntent  (p: android.content.Intent) =            shareIntent_=  (p)
-  @inline def shareIntent_=(p: android.content.Intent) = { basis.setShareIntent    (p); basis }
-
-  @inline def onShareTargetSelected(f: (android.widget.ShareActionProvider, android.content.Intent) => Boolean): V = {
-    basis.setOnShareTargetSelectedListener(new android.widget.ShareActionProvider.OnShareTargetSelectedListener {
-      def onShareTargetSelected(p1: android.widget.ShareActionProvider, p2: android.content.Intent): Boolean = { f(p1, p2) }
-    })
-    basis
-  }
-
-  @inline def onShareTargetSelected(f: => Boolean): V = {
-    basis.setOnShareTargetSelectedListener(new android.widget.ShareActionProvider.OnShareTargetSelectedListener {
-      def onShareTargetSelected(p1: android.widget.ShareActionProvider, p2: android.content.Intent): Boolean = { f }
-    })
-    basis
-  }
-}
-
-class SShareActionProvider()(implicit context: android.content.Context)
-    extends android.widget.ShareActionProvider(context) with TraitShareActionProvider[SShareActionProvider] {
-
-  val basis = this
-
-
-}
-
-object SShareActionProvider {
-  def apply(implicit context: android.content.Context): SShareActionProvider = {
-    val v = new SShareActionProvider
-    v
-  }
 
 }
 
@@ -1895,32 +1621,13 @@ trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView
 
 
 
-  @inline def adapter  (p: android.widget.ListAdapter) =            adapter_=  (p)
-  @inline def adapter_=(p: android.widget.ListAdapter) = { basis.setAdapter    (p); basis }
-
   @inline def cacheColorHint = basis.getCacheColorHint
   @inline def cacheColorHint  (p: Int) =            cacheColorHint_=  (p)
   @inline def cacheColorHint_=(p: Int) = { basis.setCacheColorHint    (p); basis }
 
-  @inline def checkedItemCount = basis.getCheckedItemCount
-
-  @inline def checkedItemIds = basis.getCheckedItemIds
-
-  @inline def checkedItemPosition = basis.getCheckedItemPosition
-
-  @inline def checkedItemPositions = basis.getCheckedItemPositions
-
-  @inline def choiceMode = basis.getChoiceMode
-  @inline def choiceMode  (p: Int) =            choiceMode_=  (p)
-  @inline def choiceMode_=(p: Int) = { basis.setChoiceMode    (p); basis }
-
   @inline def drawSelectorOnTop(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'drawSelectorOnTop'")
   @inline def drawSelectorOnTop  (p: Boolean) =            drawSelectorOnTop_=  (p)
   @inline def drawSelectorOnTop_=(p: Boolean) = { basis.setDrawSelectorOnTop    (p); basis }
-
-  @inline def fastScrollAlwaysVisible = basis.isFastScrollAlwaysVisible
-  @inline def fastScrollAlwaysVisible  (p: Boolean) =            fastScrollAlwaysVisible_=  (p)
-  @inline def fastScrollAlwaysVisible_=(p: Boolean) = { basis.setFastScrollAlwaysVisible    (p); basis }
 
   @inline def fastScrollEnabled = basis.isFastScrollEnabled
   @inline def fastScrollEnabled  (p: Boolean) =            fastScrollEnabled_=  (p)
@@ -1933,10 +1640,6 @@ trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView
   @inline def filterText  (p: java.lang.String) =            filterText_=  (p)
   @inline def filterText_=(p: java.lang.String) = { basis.setFilterText    (p); basis }
 
-  @inline def friction(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'friction'")
-  @inline def friction  (p: Float) =            friction_=  (p)
-  @inline def friction_=(p: Float) = { basis.setFriction    (p); basis }
-
   @inline def listPaddingBottom = basis.getListPaddingBottom
 
   @inline def listPaddingLeft = basis.getListPaddingLeft
@@ -1945,10 +1648,6 @@ trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView
 
   @inline def listPaddingTop = basis.getListPaddingTop
 
-  @inline def multiChoiceModeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'multiChoiceModeListener'")
-  @inline def multiChoiceModeListener  (p: android.widget.AbsListView.MultiChoiceModeListener) =            multiChoiceModeListener_=  (p)
-  @inline def multiChoiceModeListener_=(p: android.widget.AbsListView.MultiChoiceModeListener) = { basis.setMultiChoiceModeListener    (p); basis }
-
   @inline def onScrollListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onScrollListener'")
   @inline def onScrollListener  (p: android.widget.AbsListView.OnScrollListener) =            onScrollListener_=  (p)
   @inline def onScrollListener_=(p: android.widget.AbsListView.OnScrollListener) = { basis.setOnScrollListener    (p); basis }
@@ -1956,10 +1655,6 @@ trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView
   @inline def recyclerListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'recyclerListener'")
   @inline def recyclerListener  (p: android.widget.AbsListView.RecyclerListener) =            recyclerListener_=  (p)
   @inline def recyclerListener_=(p: android.widget.AbsListView.RecyclerListener) = { basis.setRecyclerListener    (p); basis }
-
-  @inline def remoteViewsAdapter(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'remoteViewsAdapter'")
-  @inline def remoteViewsAdapter  (p: android.content.Intent) =            remoteViewsAdapter_=  (p)
-  @inline def remoteViewsAdapter_=(p: android.content.Intent) = { basis.setRemoteViewsAdapter    (p); basis }
 
   @inline def scrollingCacheEnabled = basis.isScrollingCacheEnabled
   @inline def scrollingCacheEnabled  (p: Boolean) =            scrollingCacheEnabled_=  (p)
@@ -1997,10 +1692,6 @@ trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView
   @inline def transcriptMode = basis.getTranscriptMode
   @inline def transcriptMode  (p: Int) =            transcriptMode_=  (p)
   @inline def transcriptMode_=(p: Int) = { basis.setTranscriptMode    (p); basis }
-
-  @inline def velocityScale(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'velocityScale'")
-  @inline def velocityScale  (p: Float) =            velocityScale_=  (p)
-  @inline def velocityScale_=(p: Float) = { basis.setVelocityScale    (p); basis }
 
   @inline def onMovedToScrapHeap(f: android.view.View => Unit): V = {
     basis.setRecyclerListener(new android.widget.AbsListView.RecyclerListener {
@@ -2221,48 +1912,6 @@ trait TraitListAdapter[V <: android.widget.ListAdapter] {
 
 
 
-class RichStackView[V <: android.widget.StackView](val basis: V) extends TraitStackView[V]
-
-trait TraitStackView[V <: android.widget.StackView] extends TraitAdapterViewAnimator[V] {
-
-
-
-
-}
-
-class SStackView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
-    extends android.widget.StackView(context) with TraitStackView[SStackView] {
-
-  val basis = this
-
-
-}
-
-object SStackView {
-  def apply[LP <: ViewGroupLayoutParams[_, SStackView]](implicit context: android.content.Context, defaultLayoutParam: SStackView => LP): SStackView = {
-    val v = new SStackView
-    v.<<.parent.+=(v)
-    v
-  }
-
-}
-
-
-
-
-class RichAdvanceable[V <: android.widget.Advanceable](val basis: V) extends TraitAdvanceable[V]
-
-trait TraitAdvanceable[V <: android.widget.Advanceable] {
-
-  def basis: V
-
-
-
-}
-
-
-
-
 class RichZoomButtonsController[V <: android.widget.ZoomButtonsController](val basis: V) extends TraitZoomButtonsController[V]
 
 trait TraitZoomButtonsController[V <: android.widget.ZoomButtonsController] {
@@ -2412,110 +2061,6 @@ object SViewAnimator {
 
 
 
-class RichCalendarView[V <: android.widget.CalendarView](val basis: V) extends TraitCalendarView[V]
-
-trait TraitCalendarView[V <: android.widget.CalendarView] extends TraitFrameLayout[V] {
-
-
-
-
-  @inline def date = basis.getDate
-  @inline def date  (p: Long) =            date_=  (p)
-  @inline def date_=(p: Long) = { basis.setDate    (p); basis }
-
-  @inline def dateTextAppearance = basis.getDateTextAppearance
-  @inline def dateTextAppearance  (p: Int) =            dateTextAppearance_=  (p)
-  @inline def dateTextAppearance_=(p: Int) = { basis.setDateTextAppearance    (p); basis }
-
-  @inline def firstDayOfWeek = basis.getFirstDayOfWeek
-  @inline def firstDayOfWeek  (p: Int) =            firstDayOfWeek_=  (p)
-  @inline def firstDayOfWeek_=(p: Int) = { basis.setFirstDayOfWeek    (p); basis }
-
-  @inline def focusedMonthDateColor = basis.getFocusedMonthDateColor
-  @inline def focusedMonthDateColor  (p: Int) =            focusedMonthDateColor_=  (p)
-  @inline def focusedMonthDateColor_=(p: Int) = { basis.setFocusedMonthDateColor    (p); basis }
-
-  @inline def maxDate = basis.getMaxDate
-  @inline def maxDate  (p: Long) =            maxDate_=  (p)
-  @inline def maxDate_=(p: Long) = { basis.setMaxDate    (p); basis }
-
-  @inline def minDate = basis.getMinDate
-  @inline def minDate  (p: Long) =            minDate_=  (p)
-  @inline def minDate_=(p: Long) = { basis.setMinDate    (p); basis }
-
-  @inline def onDateChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onDateChangeListener'")
-  @inline def onDateChangeListener  (p: android.widget.CalendarView.OnDateChangeListener) =            onDateChangeListener_=  (p)
-  @inline def onDateChangeListener_=(p: android.widget.CalendarView.OnDateChangeListener) = { basis.setOnDateChangeListener    (p); basis }
-
-  @inline def selectedDateVerticalBar = basis.getSelectedDateVerticalBar
-  @inline def selectedDateVerticalBar  (p: Int) =            selectedDateVerticalBar_=  (p)
-  @inline def selectedDateVerticalBar_=(p: Int) = { basis.setSelectedDateVerticalBar    (p); basis }
-  @inline def selectedDateVerticalBar  (p: android.graphics.drawable.Drawable) =            selectedDateVerticalBar_=  (p)
-  @inline def selectedDateVerticalBar_=(p: android.graphics.drawable.Drawable) = { basis.setSelectedDateVerticalBar    (p); basis }
-
-  @inline def selectedWeekBackgroundColor = basis.getSelectedWeekBackgroundColor
-  @inline def selectedWeekBackgroundColor  (p: Int) =            selectedWeekBackgroundColor_=  (p)
-  @inline def selectedWeekBackgroundColor_=(p: Int) = { basis.setSelectedWeekBackgroundColor    (p); basis }
-
-  @inline def showWeekNumber = basis.getShowWeekNumber
-  @inline def showWeekNumber  (p: Boolean) =            showWeekNumber_=  (p)
-  @inline def showWeekNumber_=(p: Boolean) = { basis.setShowWeekNumber    (p); basis }
-
-  @inline def shownWeekCount = basis.getShownWeekCount
-  @inline def shownWeekCount  (p: Int) =            shownWeekCount_=  (p)
-  @inline def shownWeekCount_=(p: Int) = { basis.setShownWeekCount    (p); basis }
-
-  @inline def unfocusedMonthDateColor = basis.getUnfocusedMonthDateColor
-  @inline def unfocusedMonthDateColor  (p: Int) =            unfocusedMonthDateColor_=  (p)
-  @inline def unfocusedMonthDateColor_=(p: Int) = { basis.setUnfocusedMonthDateColor    (p); basis }
-
-  @inline def weekDayTextAppearance = basis.getWeekDayTextAppearance
-  @inline def weekDayTextAppearance  (p: Int) =            weekDayTextAppearance_=  (p)
-  @inline def weekDayTextAppearance_=(p: Int) = { basis.setWeekDayTextAppearance    (p); basis }
-
-  @inline def weekNumberColor = basis.getWeekNumberColor
-  @inline def weekNumberColor  (p: Int) =            weekNumberColor_=  (p)
-  @inline def weekNumberColor_=(p: Int) = { basis.setWeekNumberColor    (p); basis }
-
-  @inline def weekSeparatorLineColor = basis.getWeekSeparatorLineColor
-  @inline def weekSeparatorLineColor  (p: Int) =            weekSeparatorLineColor_=  (p)
-  @inline def weekSeparatorLineColor_=(p: Int) = { basis.setWeekSeparatorLineColor    (p); basis }
-
-  @inline def onSelectedDayChange(f: (android.widget.CalendarView, Int, Int, Int) => Unit): V = {
-    basis.setOnDateChangeListener(new android.widget.CalendarView.OnDateChangeListener {
-      def onSelectedDayChange(p1: android.widget.CalendarView, p2: Int, p3: Int, p4: Int): Unit = { f(p1, p2, p3, p4) }
-    })
-    basis
-  }
-
-  @inline def onSelectedDayChange(f: => Unit): V = {
-    basis.setOnDateChangeListener(new android.widget.CalendarView.OnDateChangeListener {
-      def onSelectedDayChange(p1: android.widget.CalendarView, p2: Int, p3: Int, p4: Int): Unit = { f }
-    })
-    basis
-  }
-}
-
-class SCalendarView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
-    extends android.widget.CalendarView(context) with TraitCalendarView[SCalendarView] {
-
-  val basis = this
-
-
-}
-
-object SCalendarView {
-  def apply[LP <: ViewGroupLayoutParams[_, SCalendarView]](implicit context: android.content.Context, defaultLayoutParam: SCalendarView => LP): SCalendarView = {
-    val v = new SCalendarView
-    v.<<.parent.+=(v)
-    v
-  }
-
-}
-
-
-
-
 class RichSlidingDrawer[V <: android.widget.SlidingDrawer](val basis: V) extends TraitSlidingDrawer[V]
 
 trait TraitSlidingDrawer[V <: android.widget.SlidingDrawer] extends TraitViewGroup[V] {
@@ -2580,176 +2125,6 @@ trait TraitSlidingDrawer[V <: android.widget.SlidingDrawer] extends TraitViewGro
 
 
 
-class RichListPopupWindow[V <: android.widget.ListPopupWindow](val basis: V) extends TraitListPopupWindow[V]
-
-trait TraitListPopupWindow[V <: android.widget.ListPopupWindow] {
-
-  def basis: V
-
-
-
-  @inline def adapter(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'adapter'")
-  @inline def adapter  (p: android.widget.ListAdapter) =            adapter_=  (p)
-  @inline def adapter_=(p: android.widget.ListAdapter) = { basis.setAdapter    (p); basis }
-
-  @inline def anchorView = basis.getAnchorView
-  @inline def anchorView  (p: android.view.View) =            anchorView_=  (p)
-  @inline def anchorView_=(p: android.view.View) = { basis.setAnchorView    (p); basis }
-
-  @inline def animationStyle = basis.getAnimationStyle
-  @inline def animationStyle  (p: Int) =            animationStyle_=  (p)
-  @inline def animationStyle_=(p: Int) = { basis.setAnimationStyle    (p); basis }
-
-  @inline def background = basis.getBackground
-
-  @inline def backgroundDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'backgroundDrawable'")
-  @inline def backgroundDrawable  (p: android.graphics.drawable.Drawable) =            backgroundDrawable_=  (p)
-  @inline def backgroundDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setBackgroundDrawable    (p); basis }
-
-  @inline def contentWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'contentWidth'")
-  @inline def contentWidth  (p: Int) =            contentWidth_=  (p)
-  @inline def contentWidth_=(p: Int) = { basis.setContentWidth    (p); basis }
-
-  @inline def height = basis.getHeight
-  @inline def height  (p: Int) =            height_=  (p)
-  @inline def height_=(p: Int) = { basis.setHeight    (p); basis }
-
-  @inline def horizontalOffset = basis.getHorizontalOffset
-  @inline def horizontalOffset  (p: Int) =            horizontalOffset_=  (p)
-  @inline def horizontalOffset_=(p: Int) = { basis.setHorizontalOffset    (p); basis }
-
-  @inline def inputMethodMode = basis.getInputMethodMode
-  @inline def inputMethodMode  (p: Int) =            inputMethodMode_=  (p)
-  @inline def inputMethodMode_=(p: Int) = { basis.setInputMethodMode    (p); basis }
-
-  @inline def listSelector(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'listSelector'")
-  @inline def listSelector  (p: android.graphics.drawable.Drawable) =            listSelector_=  (p)
-  @inline def listSelector_=(p: android.graphics.drawable.Drawable) = { basis.setListSelector    (p); basis }
-
-  @inline def listView = basis.getListView
-
-  @inline def modal = basis.isModal
-  @inline def modal  (p: Boolean) =            modal_=  (p)
-  @inline def modal_=(p: Boolean) = { basis.setModal    (p); basis }
-
-  @inline def onDismissListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onDismissListener'")
-  @inline def onDismissListener  (p: android.widget.PopupWindow.OnDismissListener) =            onDismissListener_=  (p)
-  @inline def onDismissListener_=(p: android.widget.PopupWindow.OnDismissListener) = { basis.setOnDismissListener    (p); basis }
-
-  @inline def onItemClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onItemClickListener'")
-  @inline def onItemClickListener  (p: android.widget.AdapterView.OnItemClickListener) =            onItemClickListener_=  (p)
-  @inline def onItemClickListener_=(p: android.widget.AdapterView.OnItemClickListener) = { basis.setOnItemClickListener    (p); basis }
-
-  @inline def onItemSelectedListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onItemSelectedListener'")
-  @inline def onItemSelectedListener  (p: android.widget.AdapterView.OnItemSelectedListener) =            onItemSelectedListener_=  (p)
-  @inline def onItemSelectedListener_=(p: android.widget.AdapterView.OnItemSelectedListener) = { basis.setOnItemSelectedListener    (p); basis }
-
-  @inline def promptPosition = basis.getPromptPosition
-  @inline def promptPosition  (p: Int) =            promptPosition_=  (p)
-  @inline def promptPosition_=(p: Int) = { basis.setPromptPosition    (p); basis }
-
-  @inline def promptView(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'promptView'")
-  @inline def promptView  (p: android.view.View) =            promptView_=  (p)
-  @inline def promptView_=(p: android.view.View) = { basis.setPromptView    (p); basis }
-
-  @inline def selectedItem = basis.getSelectedItem
-
-  @inline def selectedItemId = basis.getSelectedItemId
-
-  @inline def selectedItemPosition = basis.getSelectedItemPosition
-
-  @inline def selectedView = basis.getSelectedView
-
-  @inline def selection(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'selection'")
-  @inline def selection  (p: Int) =            selection_=  (p)
-  @inline def selection_=(p: Int) = { basis.setSelection    (p); basis }
-
-  @inline def softInputMode = basis.getSoftInputMode
-  @inline def softInputMode  (p: Int) =            softInputMode_=  (p)
-  @inline def softInputMode_=(p: Int) = { basis.setSoftInputMode    (p); basis }
-
-  @inline def verticalOffset = basis.getVerticalOffset
-  @inline def verticalOffset  (p: Int) =            verticalOffset_=  (p)
-  @inline def verticalOffset_=(p: Int) = { basis.setVerticalOffset    (p); basis }
-
-  @inline def width = basis.getWidth
-  @inline def width  (p: Int) =            width_=  (p)
-  @inline def width_=(p: Int) = { basis.setWidth    (p); basis }
-
-
-  @inline def onDismiss(f: => Unit): V = {
-    basis.setOnDismissListener(new android.widget.PopupWindow.OnDismissListener {
-      def onDismiss(): Unit = { f }
-    })
-    basis
-  }
-
-  @inline def onItemClick(f: (android.widget.AdapterView[_], android.view.View, Int, Long) => Unit): V = {
-    basis.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener {
-      def onItemClick(p1: android.widget.AdapterView[_], p2: android.view.View, p3: Int, p4: Long): Unit = { f(p1, p2, p3, p4) }
-    })
-    basis
-  }
-
-  @inline def onItemClick(f: => Unit): V = {
-    basis.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener {
-      def onItemClick(p1: android.widget.AdapterView[_], p2: android.view.View, p3: Int, p4: Long): Unit = { f }
-    })
-    basis
-  }
-
-  @inline def onItemSelected(f: (android.widget.AdapterView[_], android.view.View, Int, Long) => Unit): V = {
-    basis.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener {
-      def onItemSelected(p1: android.widget.AdapterView[_], p2: android.view.View, p3: Int, p4: Long): Unit = { f(p1, p2, p3, p4) }
-      def onNothingSelected(p: android.widget.AdapterView[_]): Unit = {  }
-    })
-    basis
-  }
-
-  @inline def onItemSelected(f: => Unit): V = {
-    basis.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener {
-      def onItemSelected(p1: android.widget.AdapterView[_], p2: android.view.View, p3: Int, p4: Long): Unit = { f }
-      def onNothingSelected(p: android.widget.AdapterView[_]): Unit = {  }
-    })
-    basis
-  }
-
-  @inline def onNothingSelected(f: android.widget.AdapterView[_] => Unit): V = {
-    basis.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener {
-      def onItemSelected(p1: android.widget.AdapterView[_], p2: android.view.View, p3: Int, p4: Long): Unit = {  }
-      def onNothingSelected(p: android.widget.AdapterView[_]): Unit = { f(p) }
-    })
-    basis
-  }
-
-  @inline def onNothingSelected(f: => Unit): V = {
-    basis.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener {
-      def onItemSelected(p1: android.widget.AdapterView[_], p2: android.view.View, p3: Int, p4: Long): Unit = {  }
-      def onNothingSelected(p: android.widget.AdapterView[_]): Unit = { f }
-    })
-    basis
-  }
-}
-
-class SListPopupWindow()(implicit context: android.content.Context)
-    extends android.widget.ListPopupWindow(context) with TraitListPopupWindow[SListPopupWindow] {
-
-  val basis = this
-
-
-}
-
-object SListPopupWindow {
-  def apply(implicit context: android.content.Context): SListPopupWindow = {
-    val v = new SListPopupWindow
-    v
-  }
-
-}
-
-
-
-
 class RichTextSwitcher[V <: android.widget.TextSwitcher](val basis: V) extends TraitTextSwitcher[V]
 
 trait TraitTextSwitcher[V <: android.widget.TextSwitcher] extends TraitViewSwitcher[V] {
@@ -2802,14 +2177,6 @@ trait TraitLinearLayout[V <: android.widget.LinearLayout] extends TraitViewGroup
   @inline def baselineAlignedChildIndex  (p: Int) =            baselineAlignedChildIndex_=  (p)
   @inline def baselineAlignedChildIndex_=(p: Int) = { basis.setBaselineAlignedChildIndex    (p); basis }
 
-  @inline def dividerDrawable = basis.getDividerDrawable
-  @inline def dividerDrawable  (p: android.graphics.drawable.Drawable) =            dividerDrawable_=  (p)
-  @inline def dividerDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setDividerDrawable    (p); basis }
-
-  @inline def dividerPadding = basis.getDividerPadding
-  @inline def dividerPadding  (p: Int) =            dividerPadding_=  (p)
-  @inline def dividerPadding_=(p: Int) = { basis.setDividerPadding    (p); basis }
-
   @inline def gravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'gravity'")
   @inline def gravity  (p: Int) =            gravity_=  (p)
   @inline def gravity_=(p: Int) = { basis.setGravity    (p); basis }
@@ -2818,20 +2185,9 @@ trait TraitLinearLayout[V <: android.widget.LinearLayout] extends TraitViewGroup
   @inline def horizontalGravity  (p: Int) =            horizontalGravity_=  (p)
   @inline def horizontalGravity_=(p: Int) = { basis.setHorizontalGravity    (p); basis }
 
-  @inline def measureWithLargestChildEnabled = basis.isMeasureWithLargestChildEnabled
-  @inline def measureWithLargestChildEnabled  (p: Boolean) =            measureWithLargestChildEnabled_=  (p)
-  @inline def measureWithLargestChildEnabled_=(p: Boolean) = { basis.setMeasureWithLargestChildEnabled    (p); basis }
-  @inline def  enableMeasureWithLargestChild               = { basis.setMeasureWithLargestChildEnabled(true ); basis }
-  @inline def disableMeasureWithLargestChild               = { basis.setMeasureWithLargestChildEnabled(false); basis }
-
-
   @inline def orientation = basis.getOrientation
   @inline def orientation  (p: Int) =            orientation_=  (p)
   @inline def orientation_=(p: Int) = { basis.setOrientation    (p); basis }
-
-  @inline def showDividers = basis.getShowDividers
-  @inline def showDividers  (p: Int) =            showDividers_=  (p)
-  @inline def showDividers_=(p: Int) = { basis.setShowDividers    (p); basis }
 
   @inline def verticalGravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'verticalGravity'")
   @inline def verticalGravity  (p: Int) =            verticalGravity_=  (p)
@@ -3101,150 +2457,6 @@ class SQuickContactBadge()(implicit context: android.content.Context, override v
 object SQuickContactBadge {
   def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](implicit context: android.content.Context, defaultLayoutParam: SQuickContactBadge => LP): SQuickContactBadge = {
     val v = new SQuickContactBadge
-    v.<<.parent.+=(v)
-    v
-  }
-
-}
-
-
-
-
-class RichSpace[V <: android.widget.Space](val basis: V) extends TraitSpace[V]
-
-trait TraitSpace[V <: android.widget.Space] extends TraitView[V] {
-
-
-
-
-}
-
-
-
-
-class RichSearchView[V <: android.widget.SearchView](val basis: V) extends TraitSearchView[V]
-
-trait TraitSearchView[V <: android.widget.SearchView] extends TraitLinearLayout[V] {
-
-
-
-
-  @inline def iconified = basis.isIconified
-  @inline def iconified  (p: Boolean) =            iconified_=  (p)
-  @inline def iconified_=(p: Boolean) = { basis.setIconified    (p); basis }
-
-  @inline def iconifiedByDefault(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'iconifiedByDefault'")
-  @inline def iconifiedByDefault  (p: Boolean) =            iconifiedByDefault_=  (p)
-  @inline def iconifiedByDefault_=(p: Boolean) = { basis.setIconifiedByDefault    (p); basis }
-
-  @inline def imeOptions = basis.getImeOptions
-  @inline def imeOptions  (p: Int) =            imeOptions_=  (p)
-  @inline def imeOptions_=(p: Int) = { basis.setImeOptions    (p); basis }
-
-  @inline def inputType = basis.getInputType
-  @inline def inputType  (p: Int) =            inputType_=  (p)
-  @inline def inputType_=(p: Int) = { basis.setInputType    (p); basis }
-
-  @inline def maxWidth = basis.getMaxWidth
-  @inline def maxWidth  (p: Int) =            maxWidth_=  (p)
-  @inline def maxWidth_=(p: Int) = { basis.setMaxWidth    (p); basis }
-
-  @inline def onCloseListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onCloseListener'")
-  @inline def onCloseListener  (p: android.widget.SearchView.OnCloseListener) =            onCloseListener_=  (p)
-  @inline def onCloseListener_=(p: android.widget.SearchView.OnCloseListener) = { basis.setOnCloseListener    (p); basis }
-
-  @inline def onQueryTextFocusChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onQueryTextFocusChangeListener'")
-  @inline def onQueryTextFocusChangeListener  (p: android.view.View.OnFocusChangeListener) =            onQueryTextFocusChangeListener_=  (p)
-  @inline def onQueryTextFocusChangeListener_=(p: android.view.View.OnFocusChangeListener) = { basis.setOnQueryTextFocusChangeListener    (p); basis }
-
-  @inline def onQueryTextListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onQueryTextListener'")
-  @inline def onQueryTextListener  (p: android.widget.SearchView.OnQueryTextListener) =            onQueryTextListener_=  (p)
-  @inline def onQueryTextListener_=(p: android.widget.SearchView.OnQueryTextListener) = { basis.setOnQueryTextListener    (p); basis }
-
-  @inline def onSearchClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onSearchClickListener'")
-  @inline def onSearchClickListener  (p: android.view.View.OnClickListener) =            onSearchClickListener_=  (p)
-  @inline def onSearchClickListener_=(p: android.view.View.OnClickListener) = { basis.setOnSearchClickListener    (p); basis }
-
-  @inline def onSuggestionListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onSuggestionListener'")
-  @inline def onSuggestionListener  (p: android.widget.SearchView.OnSuggestionListener) =            onSuggestionListener_=  (p)
-  @inline def onSuggestionListener_=(p: android.widget.SearchView.OnSuggestionListener) = { basis.setOnSuggestionListener    (p); basis }
-
-  @inline def query = basis.getQuery
-
-  @inline def queryHint = basis.getQueryHint
-  @inline def queryHint  (p: java.lang.CharSequence) =            queryHint_=  (p)
-  @inline def queryHint_=(p: java.lang.CharSequence) = { basis.setQueryHint    (p); basis }
-
-  @inline def queryRefinementEnabled = basis.isQueryRefinementEnabled
-  @inline def queryRefinementEnabled  (p: Boolean) =            queryRefinementEnabled_=  (p)
-  @inline def queryRefinementEnabled_=(p: Boolean) = { basis.setQueryRefinementEnabled    (p); basis }
-  @inline def  enableQueryRefinement               = { basis.setQueryRefinementEnabled(true ); basis }
-  @inline def disableQueryRefinement               = { basis.setQueryRefinementEnabled(false); basis }
-
-
-  @inline def searchableInfo(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'searchableInfo'")
-  @inline def searchableInfo  (p: android.app.SearchableInfo) =            searchableInfo_=  (p)
-  @inline def searchableInfo_=(p: android.app.SearchableInfo) = { basis.setSearchableInfo    (p); basis }
-
-  @inline def submitButtonEnabled = basis.isSubmitButtonEnabled
-  @inline def submitButtonEnabled  (p: Boolean) =            submitButtonEnabled_=  (p)
-  @inline def submitButtonEnabled_=(p: Boolean) = { basis.setSubmitButtonEnabled    (p); basis }
-  @inline def  enableSubmitButton               = { basis.setSubmitButtonEnabled(true ); basis }
-  @inline def disableSubmitButton               = { basis.setSubmitButtonEnabled(false); basis }
-
-
-  @inline def suggestionsAdapter = basis.getSuggestionsAdapter
-  @inline def suggestionsAdapter  (p: android.widget.CursorAdapter) =            suggestionsAdapter_=  (p)
-  @inline def suggestionsAdapter_=(p: android.widget.CursorAdapter) = { basis.setSuggestionsAdapter    (p); basis }
-
-
-  @inline def onClose(f: => Boolean): V = {
-    basis.setOnCloseListener(new android.widget.SearchView.OnCloseListener {
-      def onClose(): Boolean = { f }
-    })
-    basis
-  }
-
-  @inline def onQueryTextFocusChange(f: (android.view.View, Boolean) => Unit): V = {
-    basis.setOnQueryTextFocusChangeListener(new android.view.View.OnFocusChangeListener {
-      def onFocusChange(p1: android.view.View, p2: Boolean): Unit = { f(p1, p2) }
-    })
-    basis
-  }
-
-  @inline def onQueryTextFocusChange(f: => Unit): V = {
-    basis.setOnQueryTextFocusChangeListener(new android.view.View.OnFocusChangeListener {
-      def onFocusChange(p1: android.view.View, p2: Boolean): Unit = { f }
-    })
-    basis
-  }
-
-  @inline def onSearchClick(f: android.view.View => Unit): V = {
-    basis.setOnSearchClickListener(new android.view.View.OnClickListener {
-      def onClick(p: android.view.View): Unit = { f(p) }
-    })
-    basis
-  }
-
-  @inline def onSearchClick(f: => Unit): V = {
-    basis.setOnSearchClickListener(new android.view.View.OnClickListener {
-      def onClick(p: android.view.View): Unit = { f }
-    })
-    basis
-  }
-}
-
-class SSearchView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
-    extends android.widget.SearchView(context) with TraitSearchView[SSearchView] {
-
-  val basis = this
-
-
-}
-
-object SSearchView {
-  def apply[LP <: ViewGroupLayoutParams[_, SSearchView]](implicit context: android.content.Context, defaultLayoutParam: SSearchView => LP): SSearchView = {
-    val v = new SSearchView
     v.<<.parent.+=(v)
     v
   }
@@ -3537,8 +2749,12 @@ trait TraitTabWidget[V <: android.widget.TabWidget] extends TraitLinearLayout[V]
   @inline def currentTab(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'currentTab'")
   @inline def currentTab  (p: Int) =            currentTab_=  (p)
   @inline def currentTab_=(p: Int) = { basis.setCurrentTab    (p); basis }
+
+  @inline def dividerDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'dividerDrawable'")
   @inline def dividerDrawable  (p: Int) =            dividerDrawable_=  (p)
   @inline def dividerDrawable_=(p: Int) = { basis.setDividerDrawable    (p); basis }
+  @inline def dividerDrawable  (p: android.graphics.drawable.Drawable) =            dividerDrawable_=  (p)
+  @inline def dividerDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setDividerDrawable    (p); basis }
 
   @inline def leftStripDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'leftStripDrawable'")
   @inline def leftStripDrawable  (p: Int) =            leftStripDrawable_=  (p)
@@ -3949,43 +3165,6 @@ object SScrollView {
 
 
 
-class RichAdapterViewFlipper[V <: android.widget.AdapterViewFlipper](val basis: V) extends TraitAdapterViewFlipper[V]
-
-trait TraitAdapterViewFlipper[V <: android.widget.AdapterViewFlipper] extends TraitAdapterViewAnimator[V] {
-
-
-
-
-  @inline def autoStart = basis.isAutoStart
-  @inline def autoStart  (p: Boolean) =            autoStart_=  (p)
-  @inline def autoStart_=(p: Boolean) = { basis.setAutoStart    (p); basis }
-
-  @inline def flipInterval = basis.getFlipInterval
-  @inline def flipInterval  (p: Int) =            flipInterval_=  (p)
-  @inline def flipInterval_=(p: Int) = { basis.setFlipInterval    (p); basis }
-
-}
-
-class SAdapterViewFlipper()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
-    extends android.widget.AdapterViewFlipper(context) with TraitAdapterViewFlipper[SAdapterViewFlipper] {
-
-  val basis = this
-
-
-}
-
-object SAdapterViewFlipper {
-  def apply[LP <: ViewGroupLayoutParams[_, SAdapterViewFlipper]](implicit context: android.content.Context, defaultLayoutParam: SAdapterViewFlipper => LP): SAdapterViewFlipper = {
-    val v = new SAdapterViewFlipper
-    v.<<.parent.+=(v)
-    v
-  }
-
-}
-
-
-
-
 class RichCursorTreeAdapter[V <: android.widget.CursorTreeAdapter](val basis: V) extends TraitCursorTreeAdapter[V]
 
 trait TraitCursorTreeAdapter[V <: android.widget.CursorTreeAdapter] extends TraitBaseExpandableListAdapter[V] {
@@ -4004,35 +3183,6 @@ trait TraitCursorTreeAdapter[V <: android.widget.CursorTreeAdapter] extends Trai
   @inline def groupCursor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'groupCursor'")
   @inline def groupCursor  (p: android.database.Cursor) =            groupCursor_=  (p)
   @inline def groupCursor_=(p: android.database.Cursor) = { basis.setGroupCursor    (p); basis }
-
-}
-
-
-
-
-class RichEdgeEffect[V <: android.widget.EdgeEffect](val basis: V) extends TraitEdgeEffect[V]
-
-trait TraitEdgeEffect[V <: android.widget.EdgeEffect] {
-
-  def basis: V
-
-
-
-}
-
-class SEdgeEffect()(implicit context: android.content.Context)
-    extends android.widget.EdgeEffect(context) with TraitEdgeEffect[SEdgeEffect] {
-
-  val basis = this
-
-
-}
-
-object SEdgeEffect {
-  def apply(implicit context: android.content.Context): SEdgeEffect = {
-    val v = new SEdgeEffect
-    v
-  }
 
 }
 
@@ -4214,58 +3364,6 @@ trait TraitFilterQueryProvider[V <: android.widget.FilterQueryProvider] {
 
 
 
-class RichPopupMenu[V <: android.widget.PopupMenu](val basis: V) extends TraitPopupMenu[V]
-
-trait TraitPopupMenu[V <: android.widget.PopupMenu] {
-
-  def basis: V
-
-
-
-  @inline def menu = basis.getMenu
-
-  @inline def menuInflater = basis.getMenuInflater
-
-  @inline def onDismissListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onDismissListener'")
-  @inline def onDismissListener  (p: android.widget.PopupMenu.OnDismissListener) =            onDismissListener_=  (p)
-  @inline def onDismissListener_=(p: android.widget.PopupMenu.OnDismissListener) = { basis.setOnDismissListener    (p); basis }
-
-  @inline def onMenuItemClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onMenuItemClickListener'")
-  @inline def onMenuItemClickListener  (p: android.widget.PopupMenu.OnMenuItemClickListener) =            onMenuItemClickListener_=  (p)
-  @inline def onMenuItemClickListener_=(p: android.widget.PopupMenu.OnMenuItemClickListener) = { basis.setOnMenuItemClickListener    (p); basis }
-
-  @inline def onDismiss(f: android.widget.PopupMenu => Unit): V = {
-    basis.setOnDismissListener(new android.widget.PopupMenu.OnDismissListener {
-      def onDismiss(p: android.widget.PopupMenu): Unit = { f(p) }
-    })
-    basis
-  }
-
-  @inline def onDismiss(f: => Unit): V = {
-    basis.setOnDismissListener(new android.widget.PopupMenu.OnDismissListener {
-      def onDismiss(p: android.widget.PopupMenu): Unit = { f }
-    })
-    basis
-  }
-
-  @inline def onMenuItemClick(f: android.view.MenuItem => Boolean): V = {
-    basis.setOnMenuItemClickListener(new android.widget.PopupMenu.OnMenuItemClickListener {
-      def onMenuItemClick(p: android.view.MenuItem): Boolean = { f(p) }
-    })
-    basis
-  }
-
-  @inline def onMenuItemClick(f: => Boolean): V = {
-    basis.setOnMenuItemClickListener(new android.widget.PopupMenu.OnMenuItemClickListener {
-      def onMenuItemClick(p: android.view.MenuItem): Boolean = { f }
-    })
-    basis
-  }
-}
-
-
-
-
 class RichCompoundButton[V <: android.widget.CompoundButton](val basis: V) extends TraitCompoundButton[V]
 
 trait TraitCompoundButton[V <: android.widget.CompoundButton] extends TraitButton[V] {
@@ -4300,40 +3398,6 @@ trait TraitCompoundButton[V <: android.widget.CompoundButton] extends TraitButto
     })
     basis
   }
-}
-
-
-
-
-class RichAdapterViewAnimator[V <: android.widget.AdapterViewAnimator](val basis: V) extends TraitAdapterViewAnimator[V]
-
-trait TraitAdapterViewAnimator[V <: android.widget.AdapterViewAnimator] extends TraitAdapterView[V] {
-
-
-
-
-  @inline def animateFirstView(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'animateFirstView'")
-  @inline def animateFirstView  (p: Boolean) =            animateFirstView_=  (p)
-  @inline def animateFirstView_=(p: Boolean) = { basis.setAnimateFirstView    (p); basis }
-
-  @inline def currentView = basis.getCurrentView
-
-  @inline def displayedChild = basis.getDisplayedChild
-  @inline def displayedChild  (p: Int) =            displayedChild_=  (p)
-  @inline def displayedChild_=(p: Int) = { basis.setDisplayedChild    (p); basis }
-
-  @inline def inAnimation = basis.getInAnimation
-  @inline def inAnimation  (p: android.animation.ObjectAnimator) =            inAnimation_=  (p)
-  @inline def inAnimation_=(p: android.animation.ObjectAnimator) = { basis.setInAnimation    (p); basis }
-
-  @inline def outAnimation = basis.getOutAnimation
-  @inline def outAnimation  (p: android.animation.ObjectAnimator) =            outAnimation_=  (p)
-  @inline def outAnimation_=(p: android.animation.ObjectAnimator) = { basis.setOutAnimation    (p); basis }
-
-  @inline def remoteViewsAdapter(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'remoteViewsAdapter'")
-  @inline def remoteViewsAdapter  (p: android.content.Intent) =            remoteViewsAdapter_=  (p)
-  @inline def remoteViewsAdapter_=(p: android.content.Intent) = { basis.setRemoteViewsAdapter    (p); basis }
-
 }
 
 
@@ -4381,11 +3445,11 @@ trait TraitFrameLayout[V <: android.widget.FrameLayout] extends TraitViewGroup[V
   @inline def foreground  (p: android.graphics.drawable.Drawable) =            foreground_=  (p)
   @inline def foreground_=(p: android.graphics.drawable.Drawable) = { basis.setForeground    (p); basis }
 
-  @inline def foregroundGravity = basis.getForegroundGravity
+  @inline def foregroundGravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'foregroundGravity'")
   @inline def foregroundGravity  (p: Int) =            foregroundGravity_=  (p)
   @inline def foregroundGravity_=(p: Int) = { basis.setForegroundGravity    (p); basis }
 
-  @inline def measureAllChildren = basis.getMeasureAllChildren
+  @inline def measureAllChildren(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'measureAllChildren'")
   @inline def measureAllChildren  (p: Boolean) =            measureAllChildren_=  (p)
   @inline def measureAllChildren_=(p: Boolean) = { basis.setMeasureAllChildren    (p); basis }
 
@@ -4453,10 +3517,6 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
 
 
-  @inline def allCaps(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'allCaps'")
-  @inline def allCaps  (p: Boolean) =            allCaps_=  (p)
-  @inline def allCaps_=(p: Boolean) = { basis.setAllCaps    (p); basis }
-
   @inline def autoLinkMask = basis.getAutoLinkMask
   @inline def autoLinkMask  (p: Int) =            autoLinkMask_=  (p)
   @inline def autoLinkMask_=(p: Int) = { basis.setAutoLinkMask    (p); basis }
@@ -4479,13 +3539,9 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
   @inline def currentTextColor = basis.getCurrentTextColor
 
-  @inline def cursorVisible = basis.isCursorVisible
+  @inline def cursorVisible(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'cursorVisible'")
   @inline def cursorVisible  (p: Boolean) =            cursorVisible_=  (p)
   @inline def cursorVisible_=(p: Boolean) = { basis.setCursorVisible    (p); basis }
-
-  @inline def customSelectionActionModeCallback = basis.getCustomSelectionActionModeCallback
-  @inline def customSelectionActionModeCallback  (p: android.view.ActionMode.Callback) =            customSelectionActionModeCallback_=  (p)
-  @inline def customSelectionActionModeCallback_=(p: android.view.ActionMode.Callback) = { basis.setCustomSelectionActionModeCallback    (p); basis }
 
   @inline def editableFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'editableFactory'")
   @inline def editableFactory  (p: android.text.Editable.Factory) =            editableFactory_=  (p)
@@ -4527,7 +3583,7 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def height  (p: Int) =            height_=  (p)
   @inline def height_=(p: Int) = { basis.setHeight    (p); basis }
 
-  @inline def highlightColor = basis.getHighlightColor
+  @inline def highlightColor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'highlightColor'")
   @inline def highlightColor  (p: Int) =            highlightColor_=  (p)
   @inline def highlightColor_=(p: Int) = { basis.setHighlightColor    (p); basis }
 
@@ -4557,7 +3613,7 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def imeOptions  (p: Int) =            imeOptions_=  (p)
   @inline def imeOptions_=(p: Int) = { basis.setImeOptions    (p); basis }
 
-  @inline def includeFontPadding = basis.getIncludeFontPadding
+  @inline def includeFontPadding(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'includeFontPadding'")
   @inline def includeFontPadding  (p: Boolean) =            includeFontPadding_=  (p)
   @inline def includeFontPadding_=(p: Boolean) = { basis.setIncludeFontPadding    (p); basis }
 
@@ -4579,10 +3635,6 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
   @inline def lineHeight = basis.getLineHeight
 
-  @inline def lineSpacingExtra = basis.getLineSpacingExtra
-
-  @inline def lineSpacingMultiplier = basis.getLineSpacingMultiplier
-
   @inline def lines(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'lines'")
   @inline def lines  (p: Int) =            lines_=  (p)
   @inline def lines_=(p: Int) = { basis.setLines    (p); basis }
@@ -4599,39 +3651,39 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def linksClickable  (p: Boolean) =            linksClickable_=  (p)
   @inline def linksClickable_=(p: Boolean) = { basis.setLinksClickable    (p); basis }
 
-  @inline def marqueeRepeatLimit = basis.getMarqueeRepeatLimit
+  @inline def marqueeRepeatLimit(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'marqueeRepeatLimit'")
   @inline def marqueeRepeatLimit  (p: Int) =            marqueeRepeatLimit_=  (p)
   @inline def marqueeRepeatLimit_=(p: Int) = { basis.setMarqueeRepeatLimit    (p); basis }
 
-  @inline def maxEms = basis.getMaxEms
+  @inline def maxEms(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxEms'")
   @inline def maxEms  (p: Int) =            maxEms_=  (p)
   @inline def maxEms_=(p: Int) = { basis.setMaxEms    (p); basis }
 
-  @inline def maxHeight = basis.getMaxHeight
+  @inline def maxHeight(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxHeight'")
   @inline def maxHeight  (p: Int) =            maxHeight_=  (p)
   @inline def maxHeight_=(p: Int) = { basis.setMaxHeight    (p); basis }
 
-  @inline def maxLines = basis.getMaxLines
+  @inline def maxLines(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxLines'")
   @inline def maxLines  (p: Int) =            maxLines_=  (p)
   @inline def maxLines_=(p: Int) = { basis.setMaxLines    (p); basis }
 
-  @inline def maxWidth = basis.getMaxWidth
+  @inline def maxWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxWidth'")
   @inline def maxWidth  (p: Int) =            maxWidth_=  (p)
   @inline def maxWidth_=(p: Int) = { basis.setMaxWidth    (p); basis }
 
-  @inline def minEms = basis.getMinEms
+  @inline def minEms(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minEms'")
   @inline def minEms  (p: Int) =            minEms_=  (p)
   @inline def minEms_=(p: Int) = { basis.setMinEms    (p); basis }
 
-  @inline def minHeight = basis.getMinHeight
+  @inline def minHeight(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minHeight'")
   @inline def minHeight  (p: Int) =            minHeight_=  (p)
   @inline def minHeight_=(p: Int) = { basis.setMinHeight    (p); basis }
 
-  @inline def minLines = basis.getMinLines
+  @inline def minLines(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minLines'")
   @inline def minLines  (p: Int) =            minLines_=  (p)
   @inline def minLines_=(p: Int) = { basis.setMinLines    (p); basis }
 
-  @inline def minWidth = basis.getMinWidth
+  @inline def minWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minWidth'")
   @inline def minWidth  (p: Int) =            minWidth_=  (p)
   @inline def minWidth_=(p: Int) = { basis.setMinWidth    (p); basis }
 
@@ -4669,14 +3721,6 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
   @inline def selectionStart = basis.getSelectionStart
 
-  @inline def shadowColor = basis.getShadowColor
-
-  @inline def shadowDx = basis.getShadowDx
-
-  @inline def shadowDy = basis.getShadowDy
-
-  @inline def shadowRadius = basis.getShadowRadius
-
   @inline def singleLine(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'singleLine'")
   @inline def singleLine  (p: Boolean) =            singleLine_=  (p)
   @inline def singleLine_=(p: Boolean) = { basis.setSingleLine    (p); basis }
@@ -4698,10 +3742,6 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def textColor_=(p: android.content.res.ColorStateList) = { basis.setTextColor    (p); basis }
 
   @inline def textColors = basis.getTextColors
-
-  @inline def textIsSelectable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'textIsSelectable'")
-  @inline def textIsSelectable  (p: Boolean) =            textIsSelectable_=  (p)
-  @inline def textIsSelectable_=(p: Boolean) = { basis.setTextIsSelectable    (p); basis }
 
   @inline def textKeepState(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'textKeepState'")
   @inline def textKeepState  (p: java.lang.CharSequence) =            textKeepState_=  (p)
@@ -4833,54 +3873,6 @@ object STextView {
 
 
 
-class RichOverScroller[V <: android.widget.OverScroller](val basis: V) extends TraitOverScroller[V]
-
-trait TraitOverScroller[V <: android.widget.OverScroller] {
-
-  def basis: V
-
-
-
-  @inline def currVelocity = basis.getCurrVelocity
-
-  @inline def currX = basis.getCurrX
-
-  @inline def currY = basis.getCurrY
-
-  @inline def finalX = basis.getFinalX
-
-  @inline def finalY = basis.getFinalY
-
-  @inline def friction(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'friction'")
-  @inline def friction  (p: Float) =            friction_=  (p)
-  @inline def friction_=(p: Float) = { basis.setFriction    (p); basis }
-
-  @inline def startX = basis.getStartX
-
-  @inline def startY = basis.getStartY
-
-
-}
-
-class SOverScroller()(implicit context: android.content.Context)
-    extends android.widget.OverScroller(context) with TraitOverScroller[SOverScroller] {
-
-  val basis = this
-
-
-}
-
-object SOverScroller {
-  def apply(implicit context: android.content.Context): SOverScroller = {
-    val v = new SOverScroller
-    v
-  }
-
-}
-
-
-
-
 class RichViewFlipper[V <: android.widget.ViewFlipper](val basis: V) extends TraitViewFlipper[V]
 
 trait TraitViewFlipper[V <: android.widget.ViewFlipper] extends TraitViewAnimator[V] {
@@ -4926,8 +3918,6 @@ trait TraitScroller[V <: android.widget.Scroller] {
 
 
 
-  @inline def currVelocity = basis.getCurrVelocity
-
   @inline def currX = basis.getCurrX
 
   @inline def currY = basis.getCurrY
@@ -4941,10 +3931,6 @@ trait TraitScroller[V <: android.widget.Scroller] {
   @inline def finalY = basis.getFinalY
   @inline def finalY  (p: Int) =            finalY_=  (p)
   @inline def finalY_=(p: Int) = { basis.setFinalY    (p); basis }
-
-  @inline def friction(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'friction'")
-  @inline def friction  (p: Float) =            friction_=  (p)
-  @inline def friction_=(p: Float) = { basis.setFriction    (p); basis }
 
   @inline def startX = basis.getStartX
 
@@ -5005,7 +3991,7 @@ trait TraitAutoCompleteTextView[V <: android.widget.AutoCompleteTextView] extend
   @inline def adapter  [T <: android.widget.ListAdapter with android.widget.Filterable](p: T) =            adapter_=  (p)
   @inline def adapter_=[T <: android.widget.ListAdapter with android.widget.Filterable](p: T) = { basis.setAdapter    (p); basis }
 
-  @inline def completionHint = basis.getCompletionHint
+  @inline def completionHint(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'completionHint'")
   @inline def completionHint  (p: java.lang.CharSequence) =            completionHint_=  (p)
   @inline def completionHint_=(p: java.lang.CharSequence) = { basis.setCompletionHint    (p); basis }
 
@@ -5150,99 +4136,6 @@ trait TraitRemoteViews[V <: android.widget.RemoteViews] {
 
   @inline def `package` = basis.getPackage
 
-
-}
-
-
-
-
-class RichSwitch[V <: android.widget.Switch](val basis: V) extends TraitSwitch[V]
-
-trait TraitSwitch[V <: android.widget.Switch] extends TraitCompoundButton[V] {
-
-
-
-
-  @inline def switchMinWidth = basis.getSwitchMinWidth
-  @inline def switchMinWidth  (p: Int) =            switchMinWidth_=  (p)
-  @inline def switchMinWidth_=(p: Int) = { basis.setSwitchMinWidth    (p); basis }
-
-  @inline def switchPadding = basis.getSwitchPadding
-  @inline def switchPadding  (p: Int) =            switchPadding_=  (p)
-  @inline def switchPadding_=(p: Int) = { basis.setSwitchPadding    (p); basis }
-
-  @inline def switchTypeface(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'switchTypeface'")
-  @inline def switchTypeface  (p: android.graphics.Typeface) =            switchTypeface_=  (p)
-  @inline def switchTypeface_=(p: android.graphics.Typeface) = { basis.setSwitchTypeface    (p); basis }
-
-  @inline def textOff = basis.getTextOff
-  @inline def textOff  (p: java.lang.CharSequence) =            textOff_=  (p)
-  @inline def textOff_=(p: java.lang.CharSequence) = { basis.setTextOff    (p); basis }
-
-  @inline def textOn = basis.getTextOn
-  @inline def textOn  (p: java.lang.CharSequence) =            textOn_=  (p)
-  @inline def textOn_=(p: java.lang.CharSequence) = { basis.setTextOn    (p); basis }
-
-  @inline def thumbDrawable = basis.getThumbDrawable
-  @inline def thumbDrawable  (p: android.graphics.drawable.Drawable) =            thumbDrawable_=  (p)
-  @inline def thumbDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setThumbDrawable    (p); basis }
-
-  @inline def thumbResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'thumbResource'")
-  @inline def thumbResource  (p: Int) =            thumbResource_=  (p)
-  @inline def thumbResource_=(p: Int) = { basis.setThumbResource    (p); basis }
-
-  @inline def thumbTextPadding = basis.getThumbTextPadding
-  @inline def thumbTextPadding  (p: Int) =            thumbTextPadding_=  (p)
-  @inline def thumbTextPadding_=(p: Int) = { basis.setThumbTextPadding    (p); basis }
-
-  @inline def trackDrawable = basis.getTrackDrawable
-  @inline def trackDrawable  (p: android.graphics.drawable.Drawable) =            trackDrawable_=  (p)
-  @inline def trackDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setTrackDrawable    (p); basis }
-
-  @inline def trackResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'trackResource'")
-  @inline def trackResource  (p: Int) =            trackResource_=  (p)
-  @inline def trackResource_=(p: Int) = { basis.setTrackResource    (p); basis }
-
-}
-
-class SSwitch()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
-    extends android.widget.Switch(context) with TraitSwitch[SSwitch] {
-
-  val basis = this
-
-
-}
-
-object SSwitch {
-  def apply[LP <: ViewGroupLayoutParams[_, SSwitch]](implicit context: android.content.Context, defaultLayoutParam: SSwitch => LP): SSwitch = {
-    val v = new SSwitch
-    v.<<.parent.+=(v)
-    v
-  }
-
-  def apply[LP <: ViewGroupLayoutParams[_, SSwitch]](text: CharSequence, onClickListener: (View) => Unit)
-      (implicit context: Context, defaultLayoutParam: (SSwitch) => LP): SSwitch = {
-    apply(text, func2ViewOnClickListener(onClickListener))
-  }
-
-  def apply[LP <: ViewGroupLayoutParams[_, SSwitch]](text: CharSequence, onClickListener: OnClickListener = {})
-      (implicit context: Context, defaultLayoutParam: (SSwitch) => LP): SSwitch = {
-    val v = new SSwitch
-    v.text = text
-    v.setOnClickListener(onClickListener)
-    v.<<.parent.+=(v)
-    v
-  }
-
-
-
-  def apply[LP <: ViewGroupLayoutParams[_, SSwitch]](txt: CharSequence)
-      (implicit context: Context, defaultLayoutParam: (SSwitch) => LP): SSwitch =  {
-    val v = new SSwitch
-    v text txt
-    v.<<.parent.+=(v)
-    v
-  }
 
 }
 
@@ -5564,10 +4457,6 @@ trait TraitGLSurfaceView[V <: android.opengl.GLSurfaceView] extends TraitSurface
   @inline def debugFlags = basis.getDebugFlags
   @inline def debugFlags  (p: Int) =            debugFlags_=  (p)
   @inline def debugFlags_=(p: Int) = { basis.setDebugFlags    (p); basis }
-
-  @inline def preserveEGLContextOnPause = basis.getPreserveEGLContextOnPause
-  @inline def preserveEGLContextOnPause  (p: Boolean) =            preserveEGLContextOnPause_=  (p)
-  @inline def preserveEGLContextOnPause_=(p: Boolean) = { basis.setPreserveEGLContextOnPause    (p); basis }
 
   @inline def renderMode = basis.getRenderMode
   @inline def renderMode  (p: Int) =            renderMode_=  (p)

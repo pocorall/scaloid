@@ -89,20 +89,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
 
   @inline def padding: Int = 0
 
-  @inline def accessibilityDelegate(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'accessibilityDelegate'")
-  @inline def accessibilityDelegate  (p: android.view.View.AccessibilityDelegate) =            accessibilityDelegate_=  (p)
-  @inline def accessibilityDelegate_=(p: android.view.View.AccessibilityDelegate) = { basis.setAccessibilityDelegate    (p); basis }
-
-  @inline def accessibilityNodeProvider = basis.getAccessibilityNodeProvider
-
-  @inline def activated = basis.isActivated
-  @inline def activated  (p: Boolean) =            activated_=  (p)
-  @inline def activated_=(p: Boolean) = { basis.setActivated    (p); basis }
-
-  @inline def alpha = basis.getAlpha
-  @inline def alpha  (p: Float) =            alpha_=  (p)
-  @inline def alpha_=(p: Float) = { basis.setAlpha    (p); basis }
-
   @inline def animation = basis.getAnimation
   @inline def animation  (p: android.view.animation.Animation) =            animation_=  (p)
   @inline def animation_=(p: android.view.animation.Animation) = { basis.setAnimation    (p); basis }
@@ -110,8 +96,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def applicationWindowToken = basis.getApplicationWindowToken
 
   @inline def background = basis.getBackground
-  @inline def background  (p: android.graphics.drawable.Drawable) =            background_=  (p)
-  @inline def background_=(p: android.graphics.drawable.Drawable) = { basis.setBackground    (p); basis }
 
   @inline def backgroundColor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'backgroundColor'")
   @inline def backgroundColor  (p: Int) =            backgroundColor_=  (p)
@@ -128,12 +112,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def baseline = basis.getBaseline
 
   @inline def bottom = basis.getBottom
-  @inline def bottom  (p: Int) =            bottom_=  (p)
-  @inline def bottom_=(p: Int) = { basis.setBottom    (p); basis }
-
-  @inline def cameraDistance = basis.getCameraDistance
-  @inline def cameraDistance  (p: Float) =            cameraDistance_=  (p)
-  @inline def cameraDistance_=(p: Float) = { basis.setCameraDistance    (p); basis }
 
   @inline def clickable = basis.isClickable
   @inline def clickable  (p: Boolean) =            clickable_=  (p)
@@ -181,14 +159,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def fadingEdgeLength  (p: Int) =            fadingEdgeLength_=  (p)
   @inline def fadingEdgeLength_=(p: Int) = { basis.setFadingEdgeLength    (p); basis }
 
-  @inline def filterTouchesWhenObscured = basis.getFilterTouchesWhenObscured
-  @inline def filterTouchesWhenObscured  (p: Boolean) =            filterTouchesWhenObscured_=  (p)
-  @inline def filterTouchesWhenObscured_=(p: Boolean) = { basis.setFilterTouchesWhenObscured    (p); basis }
-
-  @inline def fitsSystemWindows = basis.getFitsSystemWindows
-  @inline def fitsSystemWindows  (p: Boolean) =            fitsSystemWindows_=  (p)
-  @inline def fitsSystemWindows_=(p: Boolean) = { basis.setFitsSystemWindows    (p); basis }
-
   @inline def focusable = basis.isFocusable
   @inline def focusable  (p: Boolean) =            focusable_=  (p)
   @inline def focusable_=(p: Boolean) = { basis.setFocusable    (p); basis }
@@ -205,8 +175,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def  enableHapticFeedback               = { basis.setHapticFeedbackEnabled(true ); basis }
   @inline def disableHapticFeedback               = { basis.setHapticFeedbackEnabled(false); basis }
 
-  @inline def hasTransientState  (p: Boolean) =            hasTransientState_=  (p)
-  @inline def hasTransientState_=(p: Boolean) = { basis.setHasTransientState    (p); basis }
 
   @inline def height = basis.getHeight
 
@@ -226,17 +194,9 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def disableHorizontalScrollBar               = { basis.setHorizontalScrollBarEnabled(false); basis }
 
 
-  @inline def hovered = basis.isHovered
-  @inline def hovered  (p: Boolean) =            hovered_=  (p)
-  @inline def hovered_=(p: Boolean) = { basis.setHovered    (p); basis }
-
   @inline def id = basis.getId
   @inline def id  (p: Int) =            id_=  (p)
   @inline def id_=(p: Int) = { basis.setId    (p); basis }
-
-  @inline def importantForAccessibility = basis.getImportantForAccessibility
-  @inline def importantForAccessibility  (p: Int) =            importantForAccessibility_=  (p)
-  @inline def importantForAccessibility_=(p: Int) = { basis.setImportantForAccessibility    (p); basis }
 
   @inline def keepScreenOn = basis.getKeepScreenOn
   @inline def keepScreenOn  (p: Boolean) =            keepScreenOn_=  (p)
@@ -244,47 +204,31 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
 
   @inline def keyDispatcherState = basis.getKeyDispatcherState
 
-  @inline def layerType = basis.getLayerType
-
   @inline def layoutParams = basis.getLayoutParams
   @inline def layoutParams  (p: android.view.ViewGroup.LayoutParams) =            layoutParams_=  (p)
   @inline def layoutParams_=(p: android.view.ViewGroup.LayoutParams) = { basis.setLayoutParams    (p); basis }
 
   @inline def left = basis.getLeft
-  @inline def left  (p: Int) =            left_=  (p)
-  @inline def left_=(p: Int) = { basis.setLeft    (p); basis }
 
   @inline def longClickable = basis.isLongClickable
   @inline def longClickable  (p: Boolean) =            longClickable_=  (p)
   @inline def longClickable_=(p: Boolean) = { basis.setLongClickable    (p); basis }
 
-  @inline def matrix = basis.getMatrix
-
   @inline def measuredHeight = basis.getMeasuredHeight
-
-  @inline def measuredHeightAndState = basis.getMeasuredHeightAndState
-
-  @inline def measuredState = basis.getMeasuredState
 
   @inline def measuredWidth = basis.getMeasuredWidth
 
-  @inline def measuredWidthAndState = basis.getMeasuredWidthAndState
-
-  @inline def minimumHeight = basis.getMinimumHeight
+  @inline def minimumHeight(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minimumHeight'")
   @inline def minimumHeight  (p: Int) =            minimumHeight_=  (p)
   @inline def minimumHeight_=(p: Int) = { basis.setMinimumHeight    (p); basis }
 
-  @inline def minimumWidth = basis.getMinimumWidth
+  @inline def minimumWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minimumWidth'")
   @inline def minimumWidth  (p: Int) =            minimumWidth_=  (p)
   @inline def minimumWidth_=(p: Int) = { basis.setMinimumWidth    (p); basis }
 
   @inline def nextFocusDownId = basis.getNextFocusDownId
   @inline def nextFocusDownId  (p: Int) =            nextFocusDownId_=  (p)
   @inline def nextFocusDownId_=(p: Int) = { basis.setNextFocusDownId    (p); basis }
-
-  @inline def nextFocusForwardId = basis.getNextFocusForwardId
-  @inline def nextFocusForwardId  (p: Int) =            nextFocusForwardId_=  (p)
-  @inline def nextFocusForwardId_=(p: Int) = { basis.setNextFocusForwardId    (p); basis }
 
   @inline def nextFocusLeftId = basis.getNextFocusLeftId
   @inline def nextFocusLeftId  (p: Int) =            nextFocusLeftId_=  (p)
@@ -306,21 +250,9 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def onCreateContextMenuListener  (p: android.view.View.OnCreateContextMenuListener) =            onCreateContextMenuListener_=  (p)
   @inline def onCreateContextMenuListener_=(p: android.view.View.OnCreateContextMenuListener) = { basis.setOnCreateContextMenuListener    (p); basis }
 
-  @inline def onDragListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onDragListener'")
-  @inline def onDragListener  (p: android.view.View.OnDragListener) =            onDragListener_=  (p)
-  @inline def onDragListener_=(p: android.view.View.OnDragListener) = { basis.setOnDragListener    (p); basis }
-
   @inline def onFocusChangeListener = basis.getOnFocusChangeListener
   @inline def onFocusChangeListener  (p: android.view.View.OnFocusChangeListener) =            onFocusChangeListener_=  (p)
   @inline def onFocusChangeListener_=(p: android.view.View.OnFocusChangeListener) = { basis.setOnFocusChangeListener    (p); basis }
-
-  @inline def onGenericMotionListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onGenericMotionListener'")
-  @inline def onGenericMotionListener  (p: android.view.View.OnGenericMotionListener) =            onGenericMotionListener_=  (p)
-  @inline def onGenericMotionListener_=(p: android.view.View.OnGenericMotionListener) = { basis.setOnGenericMotionListener    (p); basis }
-
-  @inline def onHoverListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onHoverListener'")
-  @inline def onHoverListener  (p: android.view.View.OnHoverListener) =            onHoverListener_=  (p)
-  @inline def onHoverListener_=(p: android.view.View.OnHoverListener) = { basis.setOnHoverListener    (p); basis }
 
   @inline def onKeyListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onKeyListener'")
   @inline def onKeyListener  (p: android.view.View.OnKeyListener) =            onKeyListener_=  (p)
@@ -330,17 +262,9 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def onLongClickListener  (p: android.view.View.OnLongClickListener) =            onLongClickListener_=  (p)
   @inline def onLongClickListener_=(p: android.view.View.OnLongClickListener) = { basis.setOnLongClickListener    (p); basis }
 
-  @inline def onSystemUiVisibilityChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onSystemUiVisibilityChangeListener'")
-  @inline def onSystemUiVisibilityChangeListener  (p: android.view.View.OnSystemUiVisibilityChangeListener) =            onSystemUiVisibilityChangeListener_=  (p)
-  @inline def onSystemUiVisibilityChangeListener_=(p: android.view.View.OnSystemUiVisibilityChangeListener) = { basis.setOnSystemUiVisibilityChangeListener    (p); basis }
-
   @inline def onTouchListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onTouchListener'")
   @inline def onTouchListener  (p: android.view.View.OnTouchListener) =            onTouchListener_=  (p)
   @inline def onTouchListener_=(p: android.view.View.OnTouchListener) = { basis.setOnTouchListener    (p); basis }
-
-  @inline def overScrollMode = basis.getOverScrollMode
-  @inline def overScrollMode  (p: Int) =            overScrollMode_=  (p)
-  @inline def overScrollMode_=(p: Int) = { basis.setOverScrollMode    (p); basis }
 
   @inline def paddingBottom = basis.getPaddingBottom
 
@@ -352,16 +276,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
 
   @inline def parent = basis.getParent
 
-  @inline def parentForAccessibility = basis.getParentForAccessibility
-
-  @inline def pivotX = basis.getPivotX
-  @inline def pivotX  (p: Float) =            pivotX_=  (p)
-  @inline def pivotX_=(p: Float) = { basis.setPivotX    (p); basis }
-
-  @inline def pivotY = basis.getPivotY
-  @inline def pivotY  (p: Float) =            pivotY_=  (p)
-  @inline def pivotY_=(p: Float) = { basis.setPivotY    (p); basis }
-
   @inline def pressed = basis.isPressed
   @inline def pressed  (p: Boolean) =            pressed_=  (p)
   @inline def pressed_=(p: Boolean) = { basis.setPressed    (p); basis }
@@ -369,22 +283,8 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def resources = basis.getResources
 
   @inline def right = basis.getRight
-  @inline def right  (p: Int) =            right_=  (p)
-  @inline def right_=(p: Int) = { basis.setRight    (p); basis }
 
   @inline def rootView = basis.getRootView
-
-  @inline def rotation = basis.getRotation
-  @inline def rotation  (p: Float) =            rotation_=  (p)
-  @inline def rotation_=(p: Float) = { basis.setRotation    (p); basis }
-
-  @inline def rotationX = basis.getRotationX
-  @inline def rotationX  (p: Float) =            rotationX_=  (p)
-  @inline def rotationX_=(p: Float) = { basis.setRotationX    (p); basis }
-
-  @inline def rotationY = basis.getRotationY
-  @inline def rotationY  (p: Float) =            rotationY_=  (p)
-  @inline def rotationY_=(p: Float) = { basis.setRotationY    (p); basis }
 
   @inline def saveEnabled = basis.isSaveEnabled
   @inline def saveEnabled  (p: Boolean) =            saveEnabled_=  (p)
@@ -393,48 +293,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def disableSave               = { basis.setSaveEnabled(false); basis }
 
 
-  @inline def saveFromParentEnabled = basis.isSaveFromParentEnabled
-  @inline def saveFromParentEnabled  (p: Boolean) =            saveFromParentEnabled_=  (p)
-  @inline def saveFromParentEnabled_=(p: Boolean) = { basis.setSaveFromParentEnabled    (p); basis }
-  @inline def  enableSaveFromParent               = { basis.setSaveFromParentEnabled(true ); basis }
-  @inline def disableSaveFromParent               = { basis.setSaveFromParentEnabled(false); basis }
-
-
-  @inline def scaleX = basis.getScaleX
-  @inline def scaleX  (p: Float) =            scaleX_=  (p)
-  @inline def scaleX_=(p: Float) = { basis.setScaleX    (p); basis }
-
-  @inline def scaleY = basis.getScaleY
-  @inline def scaleY  (p: Float) =            scaleY_=  (p)
-  @inline def scaleY_=(p: Float) = { basis.setScaleY    (p); basis }
-
-  @inline def scrollBarDefaultDelayBeforeFade = basis.getScrollBarDefaultDelayBeforeFade
-  @inline def scrollBarDefaultDelayBeforeFade  (p: Int) =            scrollBarDefaultDelayBeforeFade_=  (p)
-  @inline def scrollBarDefaultDelayBeforeFade_=(p: Int) = { basis.setScrollBarDefaultDelayBeforeFade    (p); basis }
-
-  @inline def scrollBarFadeDuration = basis.getScrollBarFadeDuration
-  @inline def scrollBarFadeDuration  (p: Int) =            scrollBarFadeDuration_=  (p)
-  @inline def scrollBarFadeDuration_=(p: Int) = { basis.setScrollBarFadeDuration    (p); basis }
-
-  @inline def scrollBarSize = basis.getScrollBarSize
-  @inline def scrollBarSize  (p: Int) =            scrollBarSize_=  (p)
-  @inline def scrollBarSize_=(p: Int) = { basis.setScrollBarSize    (p); basis }
-
   @inline def scrollBarStyle = basis.getScrollBarStyle
   @inline def scrollBarStyle  (p: Int) =            scrollBarStyle_=  (p)
   @inline def scrollBarStyle_=(p: Int) = { basis.setScrollBarStyle    (p); basis }
 
-  @inline def scrollContainer = basis.isScrollContainer
+  @inline def scrollContainer(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'scrollContainer'")
   @inline def scrollContainer  (p: Boolean) =            scrollContainer_=  (p)
   @inline def scrollContainer_=(p: Boolean) = { basis.setScrollContainer    (p); basis }
 
   @inline def scrollX = basis.getScrollX
-  @inline def scrollX  (p: Int) =            scrollX_=  (p)
-  @inline def scrollX_=(p: Int) = { basis.setScrollX    (p); basis }
 
   @inline def scrollY = basis.getScrollY
-  @inline def scrollY  (p: Int) =            scrollY_=  (p)
-  @inline def scrollY_=(p: Int) = { basis.setScrollY    (p); basis }
 
   @inline def scrollbarFadingEnabled = basis.isScrollbarFadingEnabled
   @inline def scrollbarFadingEnabled  (p: Boolean) =            scrollbarFadingEnabled_=  (p)
@@ -456,31 +325,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def disableSoundEffects               = { basis.setSoundEffectsEnabled(false); basis }
 
 
-  @inline def systemUiVisibility = basis.getSystemUiVisibility
-  @inline def systemUiVisibility  (p: Int) =            systemUiVisibility_=  (p)
-  @inline def systemUiVisibility_=(p: Int) = { basis.setSystemUiVisibility    (p); basis }
-
   @inline def tag = basis.getTag
   @inline def tag  (p: Any) =            tag_=  (p)
   @inline def tag_=(p: Any) = { basis.setTag    (p); basis }
 
   @inline def top = basis.getTop
-  @inline def top  (p: Int) =            top_=  (p)
-  @inline def top_=(p: Int) = { basis.setTop    (p); basis }
 
   @inline def touchDelegate = basis.getTouchDelegate
   @inline def touchDelegate  (p: android.view.TouchDelegate) =            touchDelegate_=  (p)
   @inline def touchDelegate_=(p: android.view.TouchDelegate) = { basis.setTouchDelegate    (p); basis }
 
   @inline def touchables = basis.getTouchables
-
-  @inline def translationX = basis.getTranslationX
-  @inline def translationX  (p: Float) =            translationX_=  (p)
-  @inline def translationX_=(p: Float) = { basis.setTranslationX    (p); basis }
-
-  @inline def translationY = basis.getTranslationY
-  @inline def translationY  (p: Float) =            translationY_=  (p)
-  @inline def translationY_=(p: Float) = { basis.setTranslationY    (p); basis }
 
   @inline def verticalFadingEdgeEnabled = basis.isVerticalFadingEdgeEnabled
   @inline def verticalFadingEdgeEnabled  (p: Boolean) =            verticalFadingEdgeEnabled_=  (p)
@@ -498,10 +353,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def disableVerticalScrollBar               = { basis.setVerticalScrollBarEnabled(false); basis }
 
 
-  @inline def verticalScrollbarPosition = basis.getVerticalScrollbarPosition
-  @inline def verticalScrollbarPosition  (p: Int) =            verticalScrollbarPosition_=  (p)
-  @inline def verticalScrollbarPosition_=(p: Int) = { basis.setVerticalScrollbarPosition    (p); basis }
-
   @inline def verticalScrollbarWidth = basis.getVerticalScrollbarWidth
 
   @inline def viewTreeObserver = basis.getViewTreeObserver
@@ -517,19 +368,10 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def willNotDraw  (p: Boolean) =            willNotDraw_=  (p)
   @inline def willNotDraw_=(p: Boolean) = { basis.setWillNotDraw    (p); basis }
 
-  @inline def windowSystemUiVisibility = basis.getWindowSystemUiVisibility
-
   @inline def windowToken = basis.getWindowToken
 
   @inline def windowVisibility = basis.getWindowVisibility
 
-  @inline def x = basis.getX
-  @inline def x  (p: Float) =            x_=  (p)
-  @inline def x_=(p: Float) = { basis.setX    (p); basis }
-
-  @inline def y = basis.getY
-  @inline def y  (p: Float) =            y_=  (p)
-  @inline def y_=(p: Float) = { basis.setY    (p); basis }
 
   @inline def onClick(f: android.view.View => Unit): V = {
     basis.setOnClickListener(new android.view.View.OnClickListener {
@@ -559,20 +401,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
     basis
   }
 
-  @inline def onDrag(f: (android.view.View, android.view.DragEvent) => Boolean): V = {
-    basis.setOnDragListener(new android.view.View.OnDragListener {
-      def onDrag(p1: android.view.View, p2: android.view.DragEvent): Boolean = { f(p1, p2) }
-    })
-    basis
-  }
-
-  @inline def onDrag(f: => Boolean): V = {
-    basis.setOnDragListener(new android.view.View.OnDragListener {
-      def onDrag(p1: android.view.View, p2: android.view.DragEvent): Boolean = { f }
-    })
-    basis
-  }
-
   @inline def onFocusChange(f: (android.view.View, Boolean) => Unit): V = {
     basis.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener {
       def onFocusChange(p1: android.view.View, p2: Boolean): Unit = { f(p1, p2) }
@@ -583,34 +411,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def onFocusChange(f: => Unit): V = {
     basis.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener {
       def onFocusChange(p1: android.view.View, p2: Boolean): Unit = { f }
-    })
-    basis
-  }
-
-  @inline def onGenericMotion(f: (android.view.View, android.view.MotionEvent) => Boolean): V = {
-    basis.setOnGenericMotionListener(new android.view.View.OnGenericMotionListener {
-      def onGenericMotion(p1: android.view.View, p2: android.view.MotionEvent): Boolean = { f(p1, p2) }
-    })
-    basis
-  }
-
-  @inline def onGenericMotion(f: => Boolean): V = {
-    basis.setOnGenericMotionListener(new android.view.View.OnGenericMotionListener {
-      def onGenericMotion(p1: android.view.View, p2: android.view.MotionEvent): Boolean = { f }
-    })
-    basis
-  }
-
-  @inline def onHover(f: (android.view.View, android.view.MotionEvent) => Boolean): V = {
-    basis.setOnHoverListener(new android.view.View.OnHoverListener {
-      def onHover(p1: android.view.View, p2: android.view.MotionEvent): Boolean = { f(p1, p2) }
-    })
-    basis
-  }
-
-  @inline def onHover(f: => Boolean): V = {
-    basis.setOnHoverListener(new android.view.View.OnHoverListener {
-      def onHover(p1: android.view.View, p2: android.view.MotionEvent): Boolean = { f }
     })
     basis
   }
@@ -629,20 +429,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
     basis
   }
 
-  @inline def onLayoutChange(f: (android.view.View, Int, Int, Int, Int, Int, Int, Int, Int) => Unit): V = {
-    basis.addOnLayoutChangeListener(new android.view.View.OnLayoutChangeListener {
-      def onLayoutChange(p1: android.view.View, p2: Int, p3: Int, p4: Int, p5: Int, p6: Int, p7: Int, p8: Int, p9: Int): Unit = { f(p1, p2, p3, p4, p5, p6, p7, p8, p9) }
-    })
-    basis
-  }
-
-  @inline def onLayoutChange(f: => Unit): V = {
-    basis.addOnLayoutChangeListener(new android.view.View.OnLayoutChangeListener {
-      def onLayoutChange(p1: android.view.View, p2: Int, p3: Int, p4: Int, p5: Int, p6: Int, p7: Int, p8: Int, p9: Int): Unit = { f }
-    })
-    basis
-  }
-
   @inline def onLongClick(f: android.view.View => Boolean): V = {
     basis.setOnLongClickListener(new android.view.View.OnLongClickListener {
       def onLongClick(p: android.view.View): Boolean = { f(p) }
@@ -657,20 +443,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
     basis
   }
 
-  @inline def onSystemUiVisibilityChange(f: Int => Unit): V = {
-    basis.setOnSystemUiVisibilityChangeListener(new android.view.View.OnSystemUiVisibilityChangeListener {
-      def onSystemUiVisibilityChange(p: Int): Unit = { f(p) }
-    })
-    basis
-  }
-
-  @inline def onSystemUiVisibilityChange(f: => Unit): V = {
-    basis.setOnSystemUiVisibilityChangeListener(new android.view.View.OnSystemUiVisibilityChangeListener {
-      def onSystemUiVisibilityChange(p: Int): Unit = { f }
-    })
-    basis
-  }
-
   @inline def onTouch(f: (android.view.View, android.view.MotionEvent) => Boolean): V = {
     basis.setOnTouchListener(new android.view.View.OnTouchListener {
       def onTouch(p1: android.view.View, p2: android.view.MotionEvent): Boolean = { f(p1, p2) }
@@ -681,38 +453,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def onTouch(f: => Boolean): V = {
     basis.setOnTouchListener(new android.view.View.OnTouchListener {
       def onTouch(p1: android.view.View, p2: android.view.MotionEvent): Boolean = { f }
-    })
-    basis
-  }
-
-  @inline def onViewAttachedToWindow(f: android.view.View => Unit): V = {
-    basis.addOnAttachStateChangeListener(new android.view.View.OnAttachStateChangeListener {
-      def onViewAttachedToWindow(p: android.view.View): Unit = { f(p) }
-      def onViewDetachedFromWindow(p: android.view.View): Unit = {  }
-    })
-    basis
-  }
-
-  @inline def onViewAttachedToWindow(f: => Unit): V = {
-    basis.addOnAttachStateChangeListener(new android.view.View.OnAttachStateChangeListener {
-      def onViewAttachedToWindow(p: android.view.View): Unit = { f }
-      def onViewDetachedFromWindow(p: android.view.View): Unit = {  }
-    })
-    basis
-  }
-
-  @inline def onViewDetachedFromWindow(f: android.view.View => Unit): V = {
-    basis.addOnAttachStateChangeListener(new android.view.View.OnAttachStateChangeListener {
-      def onViewAttachedToWindow(p: android.view.View): Unit = {  }
-      def onViewDetachedFromWindow(p: android.view.View): Unit = { f(p) }
-    })
-    basis
-  }
-
-  @inline def onViewDetachedFromWindow(f: => Unit): V = {
-    basis.addOnAttachStateChangeListener(new android.view.View.OnAttachStateChangeListener {
-      def onViewAttachedToWindow(p: android.view.View): Unit = {  }
-      def onViewDetachedFromWindow(p: android.view.View): Unit = { f }
     })
     basis
   }
@@ -807,17 +547,6 @@ trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
   @inline def layoutAnimationListener = basis.getLayoutAnimationListener
   @inline def layoutAnimationListener  (p: android.view.animation.Animation.AnimationListener) =            layoutAnimationListener_=  (p)
   @inline def layoutAnimationListener_=(p: android.view.animation.Animation.AnimationListener) = { basis.setLayoutAnimationListener    (p); basis }
-
-  @inline def layoutTransition = basis.getLayoutTransition
-  @inline def layoutTransition  (p: android.animation.LayoutTransition) =            layoutTransition_=  (p)
-  @inline def layoutTransition_=(p: android.animation.LayoutTransition) = { basis.setLayoutTransition    (p); basis }
-
-  @inline def motionEventSplittingEnabled = basis.isMotionEventSplittingEnabled
-  @inline def motionEventSplittingEnabled  (p: Boolean) =            motionEventSplittingEnabled_=  (p)
-  @inline def motionEventSplittingEnabled_=(p: Boolean) = { basis.setMotionEventSplittingEnabled    (p); basis }
-  @inline def  enableMotionEventSplitting               = { basis.setMotionEventSplittingEnabled(true ); basis }
-  @inline def disableMotionEventSplitting               = { basis.setMotionEventSplittingEnabled(false); basis }
-
 
   @inline def onHierarchyChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onHierarchyChangeListener'")
   @inline def onHierarchyChangeListener  (p: android.view.ViewGroup.OnHierarchyChangeListener) =            onHierarchyChangeListener_=  (p)
@@ -1070,10 +799,6 @@ trait TraitViewStub[V <: android.view.ViewStub] extends TraitView[V] {
   @inline def inflatedId  (p: Int) =            inflatedId_=  (p)
   @inline def inflatedId_=(p: Int) = { basis.setInflatedId    (p); basis }
 
-  @inline def layoutInflater = basis.getLayoutInflater
-  @inline def layoutInflater  (p: android.view.LayoutInflater) =            layoutInflater_=  (p)
-  @inline def layoutInflater_=(p: android.view.LayoutInflater) = { basis.setLayoutInflater    (p); basis }
-
   @inline def layoutResource = basis.getLayoutResource
   @inline def layoutResource  (p: Int) =            layoutResource_=  (p)
   @inline def layoutResource_=(p: Int) = { basis.setLayoutResource    (p); basis }
@@ -1098,31 +823,14 @@ trait TraitViewStub[V <: android.view.ViewStub] extends TraitView[V] {
 }
 
 
-class RichActionProvider[V <: android.view.ActionProvider](val basis: V) extends TraitActionProvider[V]
+class Rich[V <: ](val basis: V) extends Trait[V]
 
-trait TraitActionProvider[V <: android.view.ActionProvider] {
+trait Trait[V <: ] {
 
   def basis: V
 
 
 
-  @inline def visibilityListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'visibilityListener'")
-  @inline def visibilityListener  (p: android.view.ActionProvider.VisibilityListener) =            visibilityListener_=  (p)
-  @inline def visibilityListener_=(p: android.view.ActionProvider.VisibilityListener) = { basis.setVisibilityListener    (p); basis }
-
-  @inline def onActionProviderVisibilityChanged(f: Boolean => Unit): V = {
-    basis.setVisibilityListener(new android.view.ActionProvider.VisibilityListener {
-      def onActionProviderVisibilityChanged(p: Boolean): Unit = { f(p) }
-    })
-    basis
-  }
-
-  @inline def onActionProviderVisibilityChanged(f: => Unit): V = {
-    basis.setVisibilityListener(new android.view.ActionProvider.VisibilityListener {
-      def onActionProviderVisibilityChanged(p: Boolean): Unit = { f }
-    })
-    basis
-  }
 }
 
 
