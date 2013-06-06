@@ -88,9 +88,6 @@ trait SystemService {
   @inline def dropBoxManager(implicit context: Context) =
     context.getSystemService(Context.DROPBOX_SERVICE).asInstanceOf[android.os.DropBoxManager]
 
-  @inline def (implicit context: Context) =
-    context.getSystemService(Context.).asInstanceOf[]
-
   @inline def inputMethodManager(implicit context: Context) =
     context.getSystemService(Context.INPUT_METHOD_SERVICE).asInstanceOf[android.view.inputmethod.InputMethodManager]
 
@@ -103,14 +100,8 @@ trait SystemService {
   @inline def locationManager(implicit context: Context) =
     context.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[android.location.LocationManager]
 
-  @inline def (implicit context: Context) =
-    context.getSystemService(Context.).asInstanceOf[]
-
   @inline def notificationManager(implicit context: Context) =
     context.getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[android.app.NotificationManager]
-
-  @inline def (implicit context: Context) =
-    context.getSystemService(Context.).asInstanceOf[]
 
   @inline def powerManager(implicit context: Context) =
     context.getSystemService(Context.POWER_SERVICE).asInstanceOf[android.os.PowerManager]

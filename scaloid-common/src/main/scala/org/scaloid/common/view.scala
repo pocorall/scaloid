@@ -59,7 +59,7 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   }
 
   val FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT
-  val MATCH_PARENT = ViewGroup.LayoutParams.FILL_PARENT
+  val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
   val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
 
   def <<[LP <: ViewGroupLayoutParams[_,_]](implicit defaultLayoutParam: (V) => LP): LP =
@@ -820,17 +820,6 @@ trait TraitViewStub[V <: android.view.ViewStub] extends TraitView[V] {
     })
     basis
   }
-}
-
-
-class Rich[V <: ](val basis: V) extends Trait[V]
-
-trait Trait[V <: ] {
-
-  def basis: V
-
-
-
 }
 
 

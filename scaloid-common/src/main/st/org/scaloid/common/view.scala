@@ -78,4 +78,7 @@ $wholeClassDef(android.view.Menu)$
 $wholeClassDef(android.view.ContextMenu)$
 $wholeClassDef(android.view.SurfaceView)$
 $wholeClassDef(android.view.ViewStub)$
-$wholeClassDef(android.view.ActionProvider)$
+$if(ver.gte_14)$
+  $wholeClassDef(android.view.ActionProvider)$
+$endif$
+

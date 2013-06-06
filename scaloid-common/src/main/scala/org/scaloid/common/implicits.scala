@@ -126,7 +126,6 @@ trait ViewImplicits {
   @inline implicit def viewGroup2RichViewGroup[V <: android.view.ViewGroup](viewGroup: V) = new RichViewGroup[V](viewGroup)
   @inline implicit def surfaceView2RichSurfaceView[V <: android.view.SurfaceView](surfaceView: V) = new RichSurfaceView[V](surfaceView)
   @inline implicit def viewStub2RichViewStub[V <: android.view.ViewStub](viewStub: V) = new RichViewStub[V](viewStub)
-  @inline implicit def 2Rich[V <: ](: V) = new Rich[V]()
 }
 object ViewImplicits extends ViewImplicits
 

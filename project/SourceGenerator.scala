@@ -3,11 +3,12 @@ import Keys._
 
 
 object SourceGenerator {
+
   import ScaloidSettings._
 
   private def recursiveListFiles(dir: File, filter: FileFilter): Seq[File] = {
     def step(f: File, files: List[File] = Nil): List[File] =
-      if (! f.isDirectory)
+      if (!f.isDirectory)
         if (filter.accept(f)) f :: files else files
       else f.listFiles.map(step(_, files)).flatten.toList
 
@@ -25,7 +26,7 @@ object SourceGenerator {
         val relativePath = Path.relativeTo(templateDir)
         val scalaTemplates = recursiveListFiles(templateDir, (s: String) => s.endsWith(".scala"))
 
-        val ver = 16 // TODO as SettingKey
+        val ver = 8 // TODO as SettingKey
         val stg = new StringTemplateSupport(ver, stGroupsDir / "base.scala.stg")
 
         scalaTemplates.map { (file: File) =>

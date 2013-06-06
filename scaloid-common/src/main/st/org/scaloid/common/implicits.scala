@@ -95,7 +95,9 @@ trait ViewImplicits {
   $implicitConversion(android.view.ViewGroup)$
   $implicitConversion(android.view.SurfaceView)$
   $implicitConversion(android.view.ViewStub)$
+$if(ver.gte_14)$
   $implicitConversion(android.view.ActionProvider)$
+$endif$
 }
 object ViewImplicits extends ViewImplicits
 
