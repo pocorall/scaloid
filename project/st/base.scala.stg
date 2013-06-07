@@ -165,7 +165,7 @@ constArgs(args) ::= <%
 $args:{ a | $a.name$: $genType(a.tpe)$}; separator=", "$
 %>
 
-constExplicitArgs() ::= <<$constArgs(con.explicitArgs)$>>
+constExplicitArgs() ::= <<($constArgs(con.explicitArgs)$)>>
 
 classImplicitArgs() ::= <<$_concatArgs(first(base.constructors).implicitArgs, customClassImplicitArgs(), true)$>>
 

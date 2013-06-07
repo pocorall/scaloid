@@ -467,7 +467,7 @@ class SView()(implicit context: android.content.Context, override val parentView
 }
 
 object SView {
-  def apply[LP <: ViewGroupLayoutParams[_, SView]](implicit context: android.content.Context, defaultLayoutParam: SView => LP): SView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SView]]()(implicit context: android.content.Context, defaultLayoutParam: SView => LP): SView = {
     val v = new SView
     v.<<.parent.+=(v)
     v
@@ -778,7 +778,7 @@ class SSurfaceView()(implicit context: android.content.Context, override val par
 }
 
 object SSurfaceView {
-  def apply[LP <: ViewGroupLayoutParams[_, SSurfaceView]](implicit context: android.content.Context, defaultLayoutParam: SSurfaceView => LP): SSurfaceView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SSurfaceView]]()(implicit context: android.content.Context, defaultLayoutParam: SSurfaceView => LP): SSurfaceView = {
     val v = new SSurfaceView
     v.<<.parent.+=(v)
     v

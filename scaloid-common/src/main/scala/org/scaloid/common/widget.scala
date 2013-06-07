@@ -126,7 +126,7 @@ class SPopupWindow()(implicit context: android.content.Context)
 }
 
 object SPopupWindow {
-  def apply(implicit context: android.content.Context): SPopupWindow = {
+  def apply()(implicit context: android.content.Context): SPopupWindow = {
     val v = new SPopupWindow
     v
   }
@@ -225,7 +225,7 @@ class SAbsoluteLayout()(implicit context: android.content.Context, override val 
 }
 
 object SAbsoluteLayout {
-  def apply[LP <: ViewGroupLayoutParams[_, SAbsoluteLayout]](implicit context: android.content.Context, defaultLayoutParam: SAbsoluteLayout => LP): SAbsoluteLayout = {
+  def apply[LP <: ViewGroupLayoutParams[_, SAbsoluteLayout]]()(implicit context: android.content.Context, defaultLayoutParam: SAbsoluteLayout => LP): SAbsoluteLayout = {
     val v = new SAbsoluteLayout
     v.<<.parent.+=(v)
     v
@@ -267,7 +267,7 @@ class SImageButton()(implicit context: android.content.Context, override val par
 }
 
 object SImageButton {
-  def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](implicit context: android.content.Context, defaultLayoutParam: SImageButton => LP): SImageButton = {
+  def apply[LP <: ViewGroupLayoutParams[_, SImageButton]]()(implicit context: android.content.Context, defaultLayoutParam: SImageButton => LP): SImageButton = {
     val v = new SImageButton
     v.<<.parent.+=(v)
     v
@@ -345,7 +345,7 @@ class SListView()(implicit context: android.content.Context, override val parent
 }
 
 object SListView {
-  def apply[LP <: ViewGroupLayoutParams[_, SListView]](implicit context: android.content.Context, defaultLayoutParam: SListView => LP): SListView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SListView]]()(implicit context: android.content.Context, defaultLayoutParam: SListView => LP): SListView = {
     val v = new SListView
     v.<<.parent.+=(v)
     v
@@ -381,7 +381,7 @@ class SEditText()(implicit context: android.content.Context, override val parent
 }
 
 object SEditText {
-  def apply[LP <: ViewGroupLayoutParams[_, SEditText]](implicit context: android.content.Context, defaultLayoutParam: SEditText => LP): SEditText = {
+  def apply[LP <: ViewGroupLayoutParams[_, SEditText]]()(implicit context: android.content.Context, defaultLayoutParam: SEditText => LP): SEditText = {
     val v = new SEditText
     v.<<.parent.+=(v)
     v
@@ -470,7 +470,7 @@ class SImageView()(implicit context: android.content.Context, override val paren
 }
 
 object SImageView {
-  def apply[LP <: ViewGroupLayoutParams[_, SImageView]](implicit context: android.content.Context, defaultLayoutParam: SImageView => LP): SImageView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SImageView]]()(implicit context: android.content.Context, defaultLayoutParam: SImageView => LP): SImageView = {
     val v = new SImageView
     v.<<.parent.+=(v)
     v
@@ -499,7 +499,7 @@ class SAnalogClock()(implicit context: android.content.Context, override val par
 }
 
 object SAnalogClock {
-  def apply[LP <: ViewGroupLayoutParams[_, SAnalogClock]](implicit context: android.content.Context, defaultLayoutParam: SAnalogClock => LP): SAnalogClock = {
+  def apply[LP <: ViewGroupLayoutParams[_, SAnalogClock]]()(implicit context: android.content.Context, defaultLayoutParam: SAnalogClock => LP): SAnalogClock = {
     val v = new SAnalogClock
     v.<<.parent.+=(v)
     v
@@ -532,7 +532,7 @@ class SMultiAutoCompleteTextView()(implicit context: android.content.Context, ov
 }
 
 object SMultiAutoCompleteTextView {
-  def apply[LP <: ViewGroupLayoutParams[_, SMultiAutoCompleteTextView]](implicit context: android.content.Context, defaultLayoutParam: SMultiAutoCompleteTextView => LP): SMultiAutoCompleteTextView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SMultiAutoCompleteTextView]]()(implicit context: android.content.Context, defaultLayoutParam: SMultiAutoCompleteTextView => LP): SMultiAutoCompleteTextView = {
     val v = new SMultiAutoCompleteTextView
     v.<<.parent.+=(v)
     v
@@ -576,7 +576,7 @@ class SDatePicker()(implicit context: android.content.Context, override val pare
 }
 
 object SDatePicker {
-  def apply[LP <: ViewGroupLayoutParams[_, SDatePicker]](implicit context: android.content.Context, defaultLayoutParam: SDatePicker => LP): SDatePicker = {
+  def apply[LP <: ViewGroupLayoutParams[_, SDatePicker]]()(implicit context: android.content.Context, defaultLayoutParam: SDatePicker => LP): SDatePicker = {
     val v = new SDatePicker
     v.<<.parent.+=(v)
     v
@@ -637,7 +637,7 @@ class STableLayout()(implicit context: android.content.Context, override val par
 }
 
 object STableLayout {
-  def apply[LP <: ViewGroupLayoutParams[_, STableLayout]](implicit context: android.content.Context, defaultLayoutParam: STableLayout => LP): STableLayout = {
+  def apply[LP <: ViewGroupLayoutParams[_, STableLayout]]()(implicit context: android.content.Context, defaultLayoutParam: STableLayout => LP): STableLayout = {
     val v = new STableLayout
     v.<<.parent.+=(v)
     v
@@ -750,7 +750,7 @@ class STabHost()(implicit context: android.content.Context, override val parentV
 }
 
 object STabHost {
-  def apply[LP <: ViewGroupLayoutParams[_, STabHost]](implicit context: android.content.Context, defaultLayoutParam: STabHost => LP): STabHost = {
+  def apply[LP <: ViewGroupLayoutParams[_, STabHost]]()(implicit context: android.content.Context, defaultLayoutParam: STabHost => LP): STabHost = {
     val v = new STabHost
     v.<<.parent.+=(v)
     v
@@ -816,7 +816,7 @@ class SRadioGroup()(implicit context: android.content.Context, override val pare
 }
 
 object SRadioGroup {
-  def apply[LP <: ViewGroupLayoutParams[_, SRadioGroup]](implicit context: android.content.Context, defaultLayoutParam: SRadioGroup => LP): SRadioGroup = {
+  def apply[LP <: ViewGroupLayoutParams[_, SRadioGroup]]()(implicit context: android.content.Context, defaultLayoutParam: SRadioGroup => LP): SRadioGroup = {
     val v = new SRadioGroup
     v.<<.parent.+=(v)
     v
@@ -877,7 +877,7 @@ class SRatingBar()(implicit context: android.content.Context, override val paren
 }
 
 object SRatingBar {
-  def apply[LP <: ViewGroupLayoutParams[_, SRatingBar]](implicit context: android.content.Context, defaultLayoutParam: SRatingBar => LP): SRatingBar = {
+  def apply[LP <: ViewGroupLayoutParams[_, SRatingBar]]()(implicit context: android.content.Context, defaultLayoutParam: SRatingBar => LP): SRatingBar = {
     val v = new SRatingBar
     v.<<.parent.+=(v)
     v
@@ -942,7 +942,7 @@ class SSpinner()(implicit context: android.content.Context, override val parentV
 }
 
 object SSpinner {
-  def apply[LP <: ViewGroupLayoutParams[_, SSpinner]](implicit context: android.content.Context, defaultLayoutParam: SSpinner => LP): SSpinner = {
+  def apply[LP <: ViewGroupLayoutParams[_, SSpinner]]()(implicit context: android.content.Context, defaultLayoutParam: SSpinner => LP): SSpinner = {
     val v = new SSpinner
     v.<<.parent.+=(v)
     v
@@ -1018,7 +1018,7 @@ class SGridView()(implicit context: android.content.Context, override val parent
 }
 
 object SGridView {
-  def apply[LP <: ViewGroupLayoutParams[_, SGridView]](implicit context: android.content.Context, defaultLayoutParam: SGridView => LP): SGridView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SGridView]]()(implicit context: android.content.Context, defaultLayoutParam: SGridView => LP): SGridView = {
     val v = new SGridView
     v.<<.parent.+=(v)
     v
@@ -1179,7 +1179,7 @@ class SRelativeLayout()(implicit context: android.content.Context, override val 
 }
 
 object SRelativeLayout {
-  def apply[LP <: ViewGroupLayoutParams[_, SRelativeLayout]](implicit context: android.content.Context, defaultLayoutParam: SRelativeLayout => LP): SRelativeLayout = {
+  def apply[LP <: ViewGroupLayoutParams[_, SRelativeLayout]]()(implicit context: android.content.Context, defaultLayoutParam: SRelativeLayout => LP): SRelativeLayout = {
     val v = new SRelativeLayout
     v.<<.parent.+=(v)
     v
@@ -1233,7 +1233,7 @@ class SChronometer()(implicit context: android.content.Context, override val par
 }
 
 object SChronometer {
-  def apply[LP <: ViewGroupLayoutParams[_, SChronometer]](implicit context: android.content.Context, defaultLayoutParam: SChronometer => LP): SChronometer = {
+  def apply[LP <: ViewGroupLayoutParams[_, SChronometer]]()(implicit context: android.content.Context, defaultLayoutParam: SChronometer => LP): SChronometer = {
     val v = new SChronometer
     v.<<.parent.+=(v)
     v
@@ -1296,7 +1296,7 @@ class SCheckedTextView()(implicit context: android.content.Context, override val
 }
 
 object SCheckedTextView {
-  def apply[LP <: ViewGroupLayoutParams[_, SCheckedTextView]](implicit context: android.content.Context, defaultLayoutParam: SCheckedTextView => LP): SCheckedTextView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SCheckedTextView]]()(implicit context: android.content.Context, defaultLayoutParam: SCheckedTextView => LP): SCheckedTextView = {
     val v = new SCheckedTextView
     v.<<.parent.+=(v)
     v
@@ -1354,7 +1354,7 @@ class STwoLineListItem()(implicit context: android.content.Context, override val
 }
 
 object STwoLineListItem {
-  def apply[LP <: ViewGroupLayoutParams[_, STwoLineListItem]](implicit context: android.content.Context, defaultLayoutParam: STwoLineListItem => LP): STwoLineListItem = {
+  def apply[LP <: ViewGroupLayoutParams[_, STwoLineListItem]]()(implicit context: android.content.Context, defaultLayoutParam: STwoLineListItem => LP): STwoLineListItem = {
     val v = new STwoLineListItem
     v.<<.parent.+=(v)
     v
@@ -1421,7 +1421,7 @@ class SImageSwitcher()(implicit context: android.content.Context, override val p
 }
 
 object SImageSwitcher {
-  def apply[LP <: ViewGroupLayoutParams[_, SImageSwitcher]](implicit context: android.content.Context, defaultLayoutParam: SImageSwitcher => LP): SImageSwitcher = {
+  def apply[LP <: ViewGroupLayoutParams[_, SImageSwitcher]]()(implicit context: android.content.Context, defaultLayoutParam: SImageSwitcher => LP): SImageSwitcher = {
     val v = new SImageSwitcher
     v.<<.parent.+=(v)
     v
@@ -1477,7 +1477,7 @@ class STimePicker()(implicit context: android.content.Context, override val pare
 }
 
 object STimePicker {
-  def apply[LP <: ViewGroupLayoutParams[_, STimePicker]](implicit context: android.content.Context, defaultLayoutParam: STimePicker => LP): STimePicker = {
+  def apply[LP <: ViewGroupLayoutParams[_, STimePicker]]()(implicit context: android.content.Context, defaultLayoutParam: STimePicker => LP): STimePicker = {
     val v = new STimePicker
     v.<<.parent.+=(v)
     v
@@ -1603,7 +1603,7 @@ class SExpandableListView()(implicit context: android.content.Context, override 
 }
 
 object SExpandableListView {
-  def apply[LP <: ViewGroupLayoutParams[_, SExpandableListView]](implicit context: android.content.Context, defaultLayoutParam: SExpandableListView => LP): SExpandableListView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SExpandableListView]]()(implicit context: android.content.Context, defaultLayoutParam: SExpandableListView => LP): SExpandableListView = {
     val v = new SExpandableListView
     v.<<.parent.+=(v)
     v
@@ -1834,7 +1834,7 @@ class SSeekBar()(implicit context: android.content.Context, override val parentV
 }
 
 object SSeekBar {
-  def apply[LP <: ViewGroupLayoutParams[_, SSeekBar]](implicit context: android.content.Context, defaultLayoutParam: SSeekBar => LP): SSeekBar = {
+  def apply[LP <: ViewGroupLayoutParams[_, SSeekBar]]()(implicit context: android.content.Context, defaultLayoutParam: SSeekBar => LP): SSeekBar = {
     val v = new SSeekBar
     v.<<.parent.+=(v)
     v
@@ -1889,7 +1889,7 @@ class SToast()(implicit context: android.content.Context)
 }
 
 object SToast {
-  def apply(implicit context: android.content.Context): SToast = {
+  def apply()(implicit context: android.content.Context): SToast = {
     val v = new SToast
     v
   }
@@ -2050,7 +2050,7 @@ class SViewAnimator()(implicit context: android.content.Context, override val pa
 }
 
 object SViewAnimator {
-  def apply[LP <: ViewGroupLayoutParams[_, SViewAnimator]](implicit context: android.content.Context, defaultLayoutParam: SViewAnimator => LP): SViewAnimator = {
+  def apply[LP <: ViewGroupLayoutParams[_, SViewAnimator]]()(implicit context: android.content.Context, defaultLayoutParam: SViewAnimator => LP): SViewAnimator = {
     val v = new SViewAnimator
     v.<<.parent.+=(v)
     v
@@ -2151,7 +2151,7 @@ class STextSwitcher()(implicit context: android.content.Context, override val pa
 }
 
 object STextSwitcher {
-  def apply[LP <: ViewGroupLayoutParams[_, STextSwitcher]](implicit context: android.content.Context, defaultLayoutParam: STextSwitcher => LP): STextSwitcher = {
+  def apply[LP <: ViewGroupLayoutParams[_, STextSwitcher]]()(implicit context: android.content.Context, defaultLayoutParam: STextSwitcher => LP): STextSwitcher = {
     val v = new STextSwitcher
     v.<<.parent.+=(v)
     v
@@ -2232,7 +2232,7 @@ class SLinearLayout()(implicit context: android.content.Context, override val pa
 }
 
 object SLinearLayout {
-  def apply[LP <: ViewGroupLayoutParams[_, SLinearLayout]](implicit context: android.content.Context, defaultLayoutParam: SLinearLayout => LP): SLinearLayout = {
+  def apply[LP <: ViewGroupLayoutParams[_, SLinearLayout]]()(implicit context: android.content.Context, defaultLayoutParam: SLinearLayout => LP): SLinearLayout = {
     val v = new SLinearLayout
     v.<<.parent.+=(v)
     v
@@ -2314,7 +2314,7 @@ class SZoomControls()(implicit context: android.content.Context, override val pa
 }
 
 object SZoomControls {
-  def apply[LP <: ViewGroupLayoutParams[_, SZoomControls]](implicit context: android.content.Context, defaultLayoutParam: SZoomControls => LP): SZoomControls = {
+  def apply[LP <: ViewGroupLayoutParams[_, SZoomControls]]()(implicit context: android.content.Context, defaultLayoutParam: SZoomControls => LP): SZoomControls = {
     val v = new SZoomControls
     v.<<.parent.+=(v)
     v
@@ -2365,7 +2365,7 @@ class SDialerFilter()(implicit context: android.content.Context, override val pa
 }
 
 object SDialerFilter {
-  def apply[LP <: ViewGroupLayoutParams[_, SDialerFilter]](implicit context: android.content.Context, defaultLayoutParam: SDialerFilter => LP): SDialerFilter = {
+  def apply[LP <: ViewGroupLayoutParams[_, SDialerFilter]]()(implicit context: android.content.Context, defaultLayoutParam: SDialerFilter => LP): SDialerFilter = {
     val v = new SDialerFilter
     v.<<.parent.+=(v)
     v
@@ -2394,7 +2394,7 @@ class SRadioButton()(implicit context: android.content.Context, override val par
 }
 
 object SRadioButton {
-  def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]](implicit context: android.content.Context, defaultLayoutParam: SRadioButton => LP): SRadioButton = {
+  def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]]()(implicit context: android.content.Context, defaultLayoutParam: SRadioButton => LP): SRadioButton = {
     val v = new SRadioButton
     v.<<.parent.+=(v)
     v
@@ -2455,7 +2455,7 @@ class SQuickContactBadge()(implicit context: android.content.Context, override v
 }
 
 object SQuickContactBadge {
-  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](implicit context: android.content.Context, defaultLayoutParam: SQuickContactBadge => LP): SQuickContactBadge = {
+  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]]()(implicit context: android.content.Context, defaultLayoutParam: SQuickContactBadge => LP): SQuickContactBadge = {
     val v = new SQuickContactBadge
     v.<<.parent.+=(v)
     v
@@ -2484,7 +2484,7 @@ class SDigitalClock()(implicit context: android.content.Context, override val pa
 }
 
 object SDigitalClock {
-  def apply[LP <: ViewGroupLayoutParams[_, SDigitalClock]](implicit context: android.content.Context, defaultLayoutParam: SDigitalClock => LP): SDigitalClock = {
+  def apply[LP <: ViewGroupLayoutParams[_, SDigitalClock]]()(implicit context: android.content.Context, defaultLayoutParam: SDigitalClock => LP): SDigitalClock = {
     val v = new SDigitalClock
     v.<<.parent.+=(v)
     v
@@ -2529,7 +2529,7 @@ class SToggleButton()(implicit context: android.content.Context, override val pa
 }
 
 object SToggleButton {
-  def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]](implicit context: android.content.Context, defaultLayoutParam: SToggleButton => LP): SToggleButton = {
+  def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]]()(implicit context: android.content.Context, defaultLayoutParam: SToggleButton => LP): SToggleButton = {
     val v = new SToggleButton
     v.<<.parent.+=(v)
     v
@@ -2582,7 +2582,7 @@ class SButton()(implicit context: android.content.Context, override val parentVi
 }
 
 object SButton {
-  def apply[LP <: ViewGroupLayoutParams[_, SButton]](implicit context: android.content.Context, defaultLayoutParam: SButton => LP): SButton = {
+  def apply[LP <: ViewGroupLayoutParams[_, SButton]]()(implicit context: android.content.Context, defaultLayoutParam: SButton => LP): SButton = {
     val v = new SButton
     v.<<.parent.+=(v)
     v
@@ -2635,7 +2635,7 @@ class SCheckBox()(implicit context: android.content.Context, override val parent
 }
 
 object SCheckBox {
-  def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]](implicit context: android.content.Context, defaultLayoutParam: SCheckBox => LP): SCheckBox = {
+  def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]]()(implicit context: android.content.Context, defaultLayoutParam: SCheckBox => LP): SCheckBox = {
     val v = new SCheckBox
     v.<<.parent.+=(v)
     v
@@ -2696,7 +2696,7 @@ class SMediaController()(implicit context: android.content.Context, override val
 }
 
 object SMediaController {
-  def apply[LP <: ViewGroupLayoutParams[_, SMediaController]](implicit context: android.content.Context, defaultLayoutParam: SMediaController => LP): SMediaController = {
+  def apply[LP <: ViewGroupLayoutParams[_, SMediaController]]()(implicit context: android.content.Context, defaultLayoutParam: SMediaController => LP): SMediaController = {
     val v = new SMediaController
     v.<<.parent.+=(v)
     v
@@ -2728,7 +2728,7 @@ class STableRow()(implicit context: android.content.Context, override val parent
 }
 
 object STableRow {
-  def apply[LP <: ViewGroupLayoutParams[_, STableRow]](implicit context: android.content.Context, defaultLayoutParam: STableRow => LP): STableRow = {
+  def apply[LP <: ViewGroupLayoutParams[_, STableRow]]()(implicit context: android.content.Context, defaultLayoutParam: STableRow => LP): STableRow = {
     val v = new STableRow
     v.<<.parent.+=(v)
     v
@@ -2789,7 +2789,7 @@ class STabWidget()(implicit context: android.content.Context, override val paren
 }
 
 object STabWidget {
-  def apply[LP <: ViewGroupLayoutParams[_, STabWidget]](implicit context: android.content.Context, defaultLayoutParam: STabWidget => LP): STabWidget = {
+  def apply[LP <: ViewGroupLayoutParams[_, STabWidget]]()(implicit context: android.content.Context, defaultLayoutParam: STabWidget => LP): STabWidget = {
     val v = new STabWidget
     v.<<.parent.+=(v)
     v
@@ -2889,7 +2889,7 @@ class SVideoView()(implicit context: android.content.Context, override val paren
 }
 
 object SVideoView {
-  def apply[LP <: ViewGroupLayoutParams[_, SVideoView]](implicit context: android.content.Context, defaultLayoutParam: SVideoView => LP): SVideoView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SVideoView]]()(implicit context: android.content.Context, defaultLayoutParam: SVideoView => LP): SVideoView = {
     val v = new SVideoView
     v.<<.parent.+=(v)
     v
@@ -3055,7 +3055,7 @@ class SHorizontalScrollView()(implicit context: android.content.Context, overrid
 }
 
 object SHorizontalScrollView {
-  def apply[LP <: ViewGroupLayoutParams[_, SHorizontalScrollView]](implicit context: android.content.Context, defaultLayoutParam: SHorizontalScrollView => LP): SHorizontalScrollView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SHorizontalScrollView]]()(implicit context: android.content.Context, defaultLayoutParam: SHorizontalScrollView => LP): SHorizontalScrollView = {
     val v = new SHorizontalScrollView
     v.<<.parent.+=(v)
     v
@@ -3112,7 +3112,7 @@ class SProgressBar()(implicit context: android.content.Context, override val par
 }
 
 object SProgressBar {
-  def apply[LP <: ViewGroupLayoutParams[_, SProgressBar]](implicit context: android.content.Context, defaultLayoutParam: SProgressBar => LP): SProgressBar = {
+  def apply[LP <: ViewGroupLayoutParams[_, SProgressBar]]()(implicit context: android.content.Context, defaultLayoutParam: SProgressBar => LP): SProgressBar = {
     val v = new SProgressBar
     v.<<.parent.+=(v)
     v
@@ -3154,7 +3154,7 @@ class SScrollView()(implicit context: android.content.Context, override val pare
 }
 
 object SScrollView {
-  def apply[LP <: ViewGroupLayoutParams[_, SScrollView]](implicit context: android.content.Context, defaultLayoutParam: SScrollView => LP): SScrollView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SScrollView]]()(implicit context: android.content.Context, defaultLayoutParam: SScrollView => LP): SScrollView = {
     val v = new SScrollView
     v.<<.parent.+=(v)
     v
@@ -3258,7 +3258,7 @@ class SViewSwitcher()(implicit context: android.content.Context, override val pa
 }
 
 object SViewSwitcher {
-  def apply[LP <: ViewGroupLayoutParams[_, SViewSwitcher]](implicit context: android.content.Context, defaultLayoutParam: SViewSwitcher => LP): SViewSwitcher = {
+  def apply[LP <: ViewGroupLayoutParams[_, SViewSwitcher]]()(implicit context: android.content.Context, defaultLayoutParam: SViewSwitcher => LP): SViewSwitcher = {
     val v = new SViewSwitcher
     v.<<.parent.+=(v)
     v
@@ -3291,7 +3291,7 @@ class SZoomButton()(implicit context: android.content.Context, override val pare
 }
 
 object SZoomButton {
-  def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](implicit context: android.content.Context, defaultLayoutParam: SZoomButton => LP): SZoomButton = {
+  def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]]()(implicit context: android.content.Context, defaultLayoutParam: SZoomButton => LP): SZoomButton = {
     val v = new SZoomButton
     v.<<.parent.+=(v)
     v
@@ -3340,7 +3340,7 @@ class SGallery()(implicit context: android.content.Context, override val parentV
 }
 
 object SGallery {
-  def apply[LP <: ViewGroupLayoutParams[_, SGallery]](implicit context: android.content.Context, defaultLayoutParam: SGallery => LP): SGallery = {
+  def apply[LP <: ViewGroupLayoutParams[_, SGallery]]()(implicit context: android.content.Context, defaultLayoutParam: SGallery => LP): SGallery = {
     val v = new SGallery
     v.<<.parent.+=(v)
     v
@@ -3481,7 +3481,7 @@ class SFrameLayout()(implicit context: android.content.Context, override val par
 }
 
 object SFrameLayout {
-  def apply[LP <: ViewGroupLayoutParams[_, SFrameLayout]](implicit context: android.content.Context, defaultLayoutParam: SFrameLayout => LP): SFrameLayout = {
+  def apply[LP <: ViewGroupLayoutParams[_, SFrameLayout]]()(implicit context: android.content.Context, defaultLayoutParam: SFrameLayout => LP): SFrameLayout = {
     val v = new SFrameLayout
     v.<<.parent.+=(v)
     v
@@ -3854,7 +3854,7 @@ class STextView()(implicit context: android.content.Context, override val parent
 }
 
 object STextView {
-  def apply[LP <: ViewGroupLayoutParams[_, STextView]](implicit context: android.content.Context, defaultLayoutParam: STextView => LP): STextView = {
+  def apply[LP <: ViewGroupLayoutParams[_, STextView]]()(implicit context: android.content.Context, defaultLayoutParam: STextView => LP): STextView = {
     val v = new STextView
     v.<<.parent.+=(v)
     v
@@ -3899,7 +3899,7 @@ class SViewFlipper()(implicit context: android.content.Context, override val par
 }
 
 object SViewFlipper {
-  def apply[LP <: ViewGroupLayoutParams[_, SViewFlipper]](implicit context: android.content.Context, defaultLayoutParam: SViewFlipper => LP): SViewFlipper = {
+  def apply[LP <: ViewGroupLayoutParams[_, SViewFlipper]]()(implicit context: android.content.Context, defaultLayoutParam: SViewFlipper => LP): SViewFlipper = {
     val v = new SViewFlipper
     v.<<.parent.+=(v)
     v
@@ -3948,7 +3948,7 @@ class SScroller()(implicit context: android.content.Context)
 }
 
 object SScroller {
-  def apply(implicit context: android.content.Context): SScroller = {
+  def apply()(implicit context: android.content.Context): SScroller = {
     val v = new SScroller
     v
   }
@@ -4105,7 +4105,7 @@ class SAutoCompleteTextView()(implicit context: android.content.Context, overrid
 }
 
 object SAutoCompleteTextView {
-  def apply[LP <: ViewGroupLayoutParams[_, SAutoCompleteTextView]](implicit context: android.content.Context, defaultLayoutParam: SAutoCompleteTextView => LP): SAutoCompleteTextView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SAutoCompleteTextView]]()(implicit context: android.content.Context, defaultLayoutParam: SAutoCompleteTextView => LP): SAutoCompleteTextView = {
     val v = new SAutoCompleteTextView
     v.<<.parent.+=(v)
     v
@@ -4191,7 +4191,7 @@ class SExtractEditText()(implicit context: android.content.Context, override val
 }
 
 object SExtractEditText {
-  def apply[LP <: ViewGroupLayoutParams[_, SExtractEditText]](implicit context: android.content.Context, defaultLayoutParam: SExtractEditText => LP): SExtractEditText = {
+  def apply[LP <: ViewGroupLayoutParams[_, SExtractEditText]]()(implicit context: android.content.Context, defaultLayoutParam: SExtractEditText => LP): SExtractEditText = {
     val v = new SExtractEditText
     v.<<.parent.+=(v)
     v
@@ -4477,7 +4477,7 @@ class SGLSurfaceView()(implicit context: android.content.Context, override val p
 }
 
 object SGLSurfaceView {
-  def apply[LP <: ViewGroupLayoutParams[_, SGLSurfaceView]](implicit context: android.content.Context, defaultLayoutParam: SGLSurfaceView => LP): SGLSurfaceView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SGLSurfaceView]]()(implicit context: android.content.Context, defaultLayoutParam: SGLSurfaceView => LP): SGLSurfaceView = {
     val v = new SGLSurfaceView
     v.<<.parent.+=(v)
     v
@@ -4509,7 +4509,7 @@ class SAppWidgetHostView()(implicit context: android.content.Context, override v
 }
 
 object SAppWidgetHostView {
-  def apply[LP <: ViewGroupLayoutParams[_, SAppWidgetHostView]](implicit context: android.content.Context, defaultLayoutParam: SAppWidgetHostView => LP): SAppWidgetHostView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SAppWidgetHostView]]()(implicit context: android.content.Context, defaultLayoutParam: SAppWidgetHostView => LP): SAppWidgetHostView = {
     val v = new SAppWidgetHostView
     v.<<.parent.+=(v)
     v
@@ -4723,7 +4723,7 @@ class SGestureOverlayView()(implicit context: android.content.Context, override 
 }
 
 object SGestureOverlayView {
-  def apply[LP <: ViewGroupLayoutParams[_, SGestureOverlayView]](implicit context: android.content.Context, defaultLayoutParam: SGestureOverlayView => LP): SGestureOverlayView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SGestureOverlayView]]()(implicit context: android.content.Context, defaultLayoutParam: SGestureOverlayView => LP): SGestureOverlayView = {
     val v = new SGestureOverlayView
     v.<<.parent.+=(v)
     v

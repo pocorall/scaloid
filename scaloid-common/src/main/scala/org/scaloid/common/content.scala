@@ -168,7 +168,7 @@ class SContextWrapper()(implicit base: android.content.Context)
 }
 
 object SContextWrapper {
-  def apply(implicit base: android.content.Context): SContextWrapper = {
+  def apply()(implicit base: android.content.Context): SContextWrapper = {
     val v = new SContextWrapper
     v
   }
@@ -197,7 +197,7 @@ trait UnregisterReceiver extends ContextWrapper with Destroyable {
 
 
 object SIntent {
-  @inline def apply[T]()(implicit context: Context, mt: ClassManifest[T]) = new Intent(context, mt.erasure)
+  @inline def apply[T](implicit context: Context, mt: ClassManifest[T]) = new Intent(context, mt.erasure)
 
   @inline def apply[T](action: String)(implicit context: Context, mt: ClassManifest[T]): Intent = SIntent[T].setAction(action)
 }
