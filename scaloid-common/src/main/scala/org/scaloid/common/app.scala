@@ -177,21 +177,10 @@ trait ScreenOnActivity extends SActivity {
 
 class RichService[V <: android.app.Service](val basis: V) extends TraitService[V]
 
-trait TraitService[V <: android.app.Service] extends TraitContextWrapper[V] with TraitContext[V] with Destroyable with Creatable with Registerable {
+trait TraitService[V <: android.app.Service] extends TraitContextWrapper[V] with TraitContext[V] {
 
 
-  def onRegister(body: => Any) = onCreate(body)
-  def onUnregister(body: => Any) = onDestroy(body)
 
-  def onCreate() {
-    super.onCreate()
-    onCreateBodies.foreach(_ ())
-  }
-
-  def onDestroy() {
-    onDestroyBodies.foreach(_ ())
-    super.onDestroy()
-  }
 
   @inline def application = basis.getApplication
 
@@ -203,7 +192,24 @@ trait TraitService[V <: android.app.Service] extends TraitContextWrapper[V] with
 
 
 
-trait LocalService extends TraitService[android.app.Service] {
+trait SService extends Service with TraitService[SService] with Destroyable with Creatable with Registerable{
+  override implicit val ctx = this
+
+  def onRegister(body: => Any) = onCreate(body)
+  def onUnregister(body: => Any) = onDestroy(body)
+
+  override def onCreate() {
+    super.onCreate()
+    onCreateBodies.foreach(_ ())
+  }
+
+  override def onDestroy() {
+    onDestroyBodies.foreach(_ ())
+    super.onDestroy()
+  }
+}
+
+trait LocalService extends SService {
   private val binder = new ScaloidServiceBinder
 
   def onBind(intent: Intent): IBinder = binder
