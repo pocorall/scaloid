@@ -458,11 +458,11 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   }
 }
 
-class SView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.view.View(context) with TraitView[SView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -770,11 +770,11 @@ trait TraitSurfaceView[V <: android.view.SurfaceView] extends TraitView[V] {
 
 }
 
-class SSurfaceView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SSurfaceView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.view.SurfaceView(context) with TraitSurfaceView[SSurfaceView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 

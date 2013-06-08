@@ -71,8 +71,8 @@ $if(base.hasBlankConstructor || ClassBodies.(name) || FullConstructors.(name))$
 class $sClassName$$paramedTypes(base.tpe.params)$($customClassExplicitArgs()$)$classImplicitArgs()$
     extends $baseClassInstance()$ with $helperTraitName(base)$[$sClassName$$typeVar(base.tpe)$] {
 
-  val basis = this
-
+  def basis = this
+  $customClassBodies()$
   $({$name$_concreteBody})()$
 }
 
@@ -115,7 +115,12 @@ BaseClassArgs ::= [
 
 customClassImplicitArgs() ::= <<$customConst(ClassImplicitArgs, ", ")$>>
 ClassImplicitArgs ::= [
-  "View" : {override val parentViewGroup: TraitViewGroup[_] = null}
+  "View" : {parentVGroup: TraitViewGroup[_] = null}
+]
+
+customClassBodies() ::= <<$customConst(CustomClassBodies, " ")$>>
+CustomClassBodies ::= [
+  "View" : {override val parentViewGroup = parentVGroup}
 ]
 
 customConstImplicitArgs() ::= <<$customConst(ConstImplicitArgs, ", ")$>>

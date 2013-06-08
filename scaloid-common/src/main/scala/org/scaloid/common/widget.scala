@@ -120,8 +120,7 @@ trait TraitPopupWindow[V <: android.widget.PopupWindow] {
 class SPopupWindow()(implicit context: android.content.Context)
     extends android.widget.PopupWindow(context) with TraitPopupWindow[SPopupWindow] {
 
-  val basis = this
-
+  def basis = this
 
 }
 
@@ -160,8 +159,7 @@ trait TraitArrayAdapter[V <: android.widget.ArrayAdapter[_]] extends TraitBaseAd
 class SArrayAdapter[T <: AnyRef](items: Array[T])(implicit context: android.content.Context)
     extends android.widget.ArrayAdapter[T](context, android.R.layout.simple_spinner_item) with TraitArrayAdapter[SArrayAdapter[T]] {
 
-  val basis = this
-
+  def basis = this
   def setItem(view: TextView, pos: Int): TextView = {
     getItem(pos) match {
       case i: CharSequence => view.setText(i)
@@ -216,11 +214,11 @@ trait TraitAbsoluteLayout[V <: android.widget.AbsoluteLayout] extends TraitViewG
 
 }
 
-class SAbsoluteLayout()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SAbsoluteLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.AbsoluteLayout(context) with TraitAbsoluteLayout[SAbsoluteLayout] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -258,11 +256,11 @@ trait TraitImageButton[V <: android.widget.ImageButton] extends TraitImageView[V
 
 }
 
-class SImageButton()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SImageButton()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ImageButton(context) with TraitImageButton[SImageButton] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -336,11 +334,11 @@ trait TraitListView[V <: android.widget.ListView] extends TraitAbsListView[V] {
 
 }
 
-class SListView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SListView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ListView(context) with TraitListView[SListView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -372,11 +370,11 @@ trait TraitEditText[V <: android.widget.EditText] extends TraitTextView[V] {
 
 }
 
-class SEditText()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SEditText()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.EditText(context) with TraitEditText[SEditText] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -461,11 +459,11 @@ trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
 
 }
 
-class SImageView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SImageView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ImageView(context) with TraitImageView[SImageView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -490,11 +488,11 @@ trait TraitAnalogClock[V <: android.widget.AnalogClock] extends TraitView[V] {
 
 }
 
-class SAnalogClock()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SAnalogClock()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.AnalogClock(context) with TraitAnalogClock[SAnalogClock] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -523,11 +521,11 @@ trait TraitMultiAutoCompleteTextView[V <: android.widget.MultiAutoCompleteTextVi
 
 }
 
-class SMultiAutoCompleteTextView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SMultiAutoCompleteTextView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.MultiAutoCompleteTextView(context) with TraitMultiAutoCompleteTextView[SMultiAutoCompleteTextView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -567,11 +565,11 @@ trait TraitDatePicker[V <: android.widget.DatePicker] extends TraitFrameLayout[V
 
 }
 
-class SDatePicker()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SDatePicker()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.DatePicker(context) with TraitDatePicker[SDatePicker] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -628,11 +626,11 @@ trait TraitTableLayout[V <: android.widget.TableLayout] extends TraitLinearLayou
 
 }
 
-class STableLayout()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class STableLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TableLayout(context) with TraitTableLayout[STableLayout] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -741,11 +739,11 @@ trait TraitTabHost[V <: android.widget.TabHost] extends TraitFrameLayout[V] {
   }
 }
 
-class STabHost()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class STabHost()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TabHost(context) with TraitTabHost[STabHost] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -807,11 +805,11 @@ trait TraitRadioGroup[V <: android.widget.RadioGroup] extends TraitLinearLayout[
   }
 }
 
-class SRadioGroup()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SRadioGroup()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.RadioGroup(context) with TraitRadioGroup[SRadioGroup] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -868,11 +866,11 @@ trait TraitRatingBar[V <: android.widget.RatingBar] extends TraitAbsSeekBar[V] {
   }
 }
 
-class SRatingBar()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SRatingBar()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.RatingBar(context) with TraitRatingBar[SRatingBar] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -933,11 +931,11 @@ trait TraitSpinner[V <: android.widget.Spinner] extends TraitAbsSpinner[V] {
 
 }
 
-class SSpinner()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SSpinner()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.Spinner(context) with TraitSpinner[SSpinner] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -1009,11 +1007,11 @@ trait TraitGridView[V <: android.widget.GridView] extends TraitAbsListView[V] {
 
 }
 
-class SGridView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SGridView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.GridView(context) with TraitGridView[SGridView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -1054,11 +1052,11 @@ trait TraitRelativeLayout[V <: android.widget.RelativeLayout] extends TraitViewG
 
 }
 
-class SRelativeLayout()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SRelativeLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.RelativeLayout(context) with TraitRelativeLayout[SRelativeLayout] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
 
   class LayoutParams[V <: View](v: V) extends RelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
@@ -1224,11 +1222,11 @@ trait TraitChronometer[V <: android.widget.Chronometer] extends TraitTextView[V]
   }
 }
 
-class SChronometer()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SChronometer()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.Chronometer(context) with TraitChronometer[SChronometer] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -1287,11 +1285,11 @@ trait TraitCheckedTextView[V <: android.widget.CheckedTextView] extends TraitTex
 
 }
 
-class SCheckedTextView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SCheckedTextView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.CheckedTextView(context) with TraitCheckedTextView[SCheckedTextView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -1345,11 +1343,11 @@ trait TraitTwoLineListItem[V <: android.widget.TwoLineListItem] extends TraitRel
 
 }
 
-class STwoLineListItem()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class STwoLineListItem()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TwoLineListItem(context) with TraitTwoLineListItem[STwoLineListItem] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -1412,11 +1410,11 @@ trait TraitImageSwitcher[V <: android.widget.ImageSwitcher] extends TraitViewSwi
 
 }
 
-class SImageSwitcher()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SImageSwitcher()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ImageSwitcher(context) with TraitImageSwitcher[SImageSwitcher] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -1468,11 +1466,11 @@ trait TraitTimePicker[V <: android.widget.TimePicker] extends TraitFrameLayout[V
   }
 }
 
-class STimePicker()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class STimePicker()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TimePicker(context) with TraitTimePicker[STimePicker] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -1594,11 +1592,11 @@ trait TraitExpandableListView[V <: android.widget.ExpandableListView] extends Tr
   }
 }
 
-class SExpandableListView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SExpandableListView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ExpandableListView(context) with TraitExpandableListView[SExpandableListView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -1825,11 +1823,11 @@ trait TraitSeekBar[V <: android.widget.SeekBar] extends TraitAbsSeekBar[V] {
   }
 }
 
-class SSeekBar()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SSeekBar()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.SeekBar(context) with TraitSeekBar[SSeekBar] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -1883,8 +1881,7 @@ trait TraitToast[V <: android.widget.Toast] {
 class SToast()(implicit context: android.content.Context)
     extends android.widget.Toast(context) with TraitToast[SToast] {
 
-  val basis = this
-
+  def basis = this
 
 }
 
@@ -2041,11 +2038,11 @@ trait TraitViewAnimator[V <: android.widget.ViewAnimator] extends TraitFrameLayo
 
 }
 
-class SViewAnimator()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SViewAnimator()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ViewAnimator(context) with TraitViewAnimator[SViewAnimator] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -2142,11 +2139,11 @@ trait TraitTextSwitcher[V <: android.widget.TextSwitcher] extends TraitViewSwitc
 
 }
 
-class STextSwitcher()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class STextSwitcher()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TextSwitcher(context) with TraitTextSwitcher[STextSwitcher] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -2199,11 +2196,11 @@ trait TraitLinearLayout[V <: android.widget.LinearLayout] extends TraitViewGroup
 
 }
 
-class SLinearLayout()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SLinearLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.LinearLayout(context) with TraitLinearLayout[SLinearLayout] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
   val VERTICAL = LinearLayout.VERTICAL
   val HORIZONTAL = LinearLayout.HORIZONTAL
 
@@ -2306,11 +2303,11 @@ trait TraitZoomControls[V <: android.widget.ZoomControls] extends TraitLinearLay
   }
 }
 
-class SZoomControls()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SZoomControls()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ZoomControls(context) with TraitZoomControls[SZoomControls] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -2357,11 +2354,11 @@ trait TraitDialerFilter[V <: android.widget.DialerFilter] extends TraitRelativeL
 
 }
 
-class SDialerFilter()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SDialerFilter()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.DialerFilter(context) with TraitDialerFilter[SDialerFilter] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -2386,11 +2383,11 @@ trait TraitRadioButton[V <: android.widget.RadioButton] extends TraitCompoundBut
 
 }
 
-class SRadioButton()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SRadioButton()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.RadioButton(context) with TraitRadioButton[SRadioButton] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -2447,11 +2444,11 @@ trait TraitQuickContactBadge[V <: android.widget.QuickContactBadge] extends Trai
 
 }
 
-class SQuickContactBadge()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SQuickContactBadge()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.QuickContactBadge(context) with TraitQuickContactBadge[SQuickContactBadge] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -2476,11 +2473,11 @@ trait TraitDigitalClock[V <: android.widget.DigitalClock] extends TraitTextView[
 
 }
 
-class SDigitalClock()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SDigitalClock()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.DigitalClock(context) with TraitDigitalClock[SDigitalClock] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -2521,11 +2518,11 @@ trait TraitToggleButton[V <: android.widget.ToggleButton] extends TraitCompoundB
 
 }
 
-class SToggleButton()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SToggleButton()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ToggleButton(context) with TraitToggleButton[SToggleButton] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -2574,11 +2571,11 @@ trait TraitButton[V <: android.widget.Button] extends TraitTextView[V] {
 
 }
 
-class SButton()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SButton()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.Button(context) with TraitButton[SButton] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -2627,11 +2624,11 @@ trait TraitCheckBox[V <: android.widget.CheckBox] extends TraitCompoundButton[V]
 
 }
 
-class SCheckBox()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SCheckBox()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.CheckBox(context) with TraitCheckBox[SCheckBox] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -2688,11 +2685,11 @@ trait TraitMediaController[V <: android.widget.MediaController] extends TraitFra
 
 }
 
-class SMediaController()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SMediaController()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.MediaController(context) with TraitMediaController[SMediaController] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -2720,11 +2717,11 @@ trait TraitTableRow[V <: android.widget.TableRow] extends TraitLinearLayout[V] {
 
 }
 
-class STableRow()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class STableRow()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TableRow(context) with TraitTableRow[STableRow] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -2781,11 +2778,11 @@ trait TraitTabWidget[V <: android.widget.TabWidget] extends TraitLinearLayout[V]
 
 }
 
-class STabWidget()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class STabWidget()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TabWidget(context) with TraitTabWidget[STabWidget] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -2881,11 +2878,11 @@ trait TraitVideoView[V <: android.widget.VideoView] extends TraitSurfaceView[V] 
   }
 }
 
-class SVideoView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SVideoView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.VideoView(context) with TraitVideoView[SVideoView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -3047,11 +3044,11 @@ trait TraitHorizontalScrollView[V <: android.widget.HorizontalScrollView] extend
 
 }
 
-class SHorizontalScrollView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SHorizontalScrollView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.HorizontalScrollView(context) with TraitHorizontalScrollView[SHorizontalScrollView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -3104,11 +3101,11 @@ trait TraitProgressBar[V <: android.widget.ProgressBar] extends TraitView[V] {
 
 }
 
-class SProgressBar()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SProgressBar()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ProgressBar(context) with TraitProgressBar[SProgressBar] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -3146,11 +3143,11 @@ trait TraitScrollView[V <: android.widget.ScrollView] extends TraitFrameLayout[V
 
 }
 
-class SScrollView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SScrollView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ScrollView(context) with TraitScrollView[SScrollView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -3250,11 +3247,11 @@ trait TraitViewSwitcher[V <: android.widget.ViewSwitcher] extends TraitViewAnima
 
 }
 
-class SViewSwitcher()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SViewSwitcher()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ViewSwitcher(context) with TraitViewSwitcher[SViewSwitcher] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -3283,11 +3280,11 @@ trait TraitZoomButton[V <: android.widget.ZoomButton] extends TraitImageButton[V
 
 }
 
-class SZoomButton()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SZoomButton()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ZoomButton(context) with TraitZoomButton[SZoomButton] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -3332,11 +3329,11 @@ trait TraitGallery[V <: android.widget.Gallery] extends TraitAbsSpinner[V] {
 
 }
 
-class SGallery()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SGallery()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.Gallery(context) with TraitGallery[SGallery] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -3456,11 +3453,11 @@ trait TraitFrameLayout[V <: android.widget.FrameLayout] extends TraitViewGroup[V
 
 }
 
-class SFrameLayout()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SFrameLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.FrameLayout(context) with TraitFrameLayout[SFrameLayout] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
 
   class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
@@ -3846,11 +3843,11 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   }
 }
 
-class STextView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class STextView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TextView(context) with TraitTextView[STextView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -3891,11 +3888,11 @@ trait TraitViewFlipper[V <: android.widget.ViewFlipper] extends TraitViewAnimato
 
 }
 
-class SViewFlipper()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SViewFlipper()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ViewFlipper(context) with TraitViewFlipper[SViewFlipper] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -3943,8 +3940,7 @@ trait TraitScroller[V <: android.widget.Scroller] {
 class SScroller()(implicit context: android.content.Context)
     extends android.widget.Scroller(context) with TraitScroller[SScroller] {
 
-  val basis = this
-
+  def basis = this
 
 }
 
@@ -4097,11 +4093,11 @@ trait TraitAutoCompleteTextView[V <: android.widget.AutoCompleteTextView] extend
   }
 }
 
-class SAutoCompleteTextView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SAutoCompleteTextView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.AutoCompleteTextView(context) with TraitAutoCompleteTextView[SAutoCompleteTextView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -4183,11 +4179,11 @@ trait TraitExtractEditText[V <: android.inputmethodservice.ExtractEditText] exte
 
 }
 
-class SExtractEditText()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SExtractEditText()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.inputmethodservice.ExtractEditText(context) with TraitExtractEditText[SExtractEditText] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -4469,11 +4465,11 @@ trait TraitGLSurfaceView[V <: android.opengl.GLSurfaceView] extends TraitSurface
 
 }
 
-class SGLSurfaceView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SGLSurfaceView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.opengl.GLSurfaceView(context) with TraitGLSurfaceView[SGLSurfaceView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -4501,11 +4497,11 @@ trait TraitAppWidgetHostView[V <: android.appwidget.AppWidgetHostView] extends T
 
 }
 
-class SAppWidgetHostView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SAppWidgetHostView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.appwidget.AppWidgetHostView(context) with TraitAppWidgetHostView[SAppWidgetHostView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -4715,11 +4711,11 @@ trait TraitGestureOverlayView[V <: android.gesture.GestureOverlayView] extends T
   }
 }
 
-class SGestureOverlayView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SGestureOverlayView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.gesture.GestureOverlayView(context) with TraitGestureOverlayView[SGestureOverlayView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 

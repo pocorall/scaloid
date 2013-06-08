@@ -166,8 +166,7 @@ trait TraitContextWrapper[V <: android.content.ContextWrapper] extends TraitCont
 class SContextWrapper()(implicit base: android.content.Context)
     extends android.content.ContextWrapper(base) with TraitContextWrapper[SContextWrapper] {
 
-  val basis = this
-
+  def basis = this
 
 }
 

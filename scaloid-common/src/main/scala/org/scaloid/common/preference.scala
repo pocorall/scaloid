@@ -225,8 +225,7 @@ trait TraitPreference[V <: android.preference.Preference] {
 class SPreference()(implicit context: android.content.Context)
     extends android.preference.Preference(context) with TraitPreference[SPreference] {
 
-  val basis = this
-
+  def basis = this
 
 }
 
@@ -301,8 +300,7 @@ trait TraitEditTextPreference[V <: android.preference.EditTextPreference] extend
 class SEditTextPreference()(implicit context: android.content.Context)
     extends android.preference.EditTextPreference(context) with TraitEditTextPreference[SEditTextPreference] {
 
-  val basis = this
-
+  def basis = this
 
 }
 
