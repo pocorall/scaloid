@@ -83,7 +83,7 @@ trait Registerable {
 
 class RichContext[V <: android.content.Context](val basis: V) extends TraitContext[V]
 
-trait TraitContext[V <: android.content.Context] extends TagUtil {
+trait TraitContext[V <: android.content.Context] {
 
   def basis: V
 
@@ -147,6 +147,10 @@ trait TraitContext[V <: android.content.Context] extends TagUtil {
 }
 
 
+
+trait SContext extends Context with TraitContext[SContext] with TagUtil {
+}
+
 class RichContextWrapper[V <: android.content.ContextWrapper](val basis: V) extends TraitContextWrapper[V]
 
 trait TraitContextWrapper[V <: android.content.ContextWrapper] extends TraitContext[V] {
@@ -162,13 +166,12 @@ trait TraitContextWrapper[V <: android.content.ContextWrapper] extends TraitCont
 class SContextWrapper()(implicit base: android.content.Context)
     extends android.content.ContextWrapper(base) with TraitContextWrapper[SContextWrapper] {
 
-  val basis = this
-
+  def basis = this
 
 }
 
 object SContextWrapper {
-  def apply(implicit base: android.content.Context): SContextWrapper = {
+  def apply()(implicit base: android.content.Context): SContextWrapper = {
     val v = new SContextWrapper
     v
   }
@@ -197,7 +200,7 @@ trait UnregisterReceiver extends ContextWrapper with Destroyable {
 
 
 object SIntent {
-  @inline def apply[T]()(implicit context: Context, mt: ClassManifest[T]) = new Intent(context, mt.erasure)
+  @inline def apply[T](implicit context: Context, mt: ClassManifest[T]) = new Intent(context, mt.erasure)
 
   @inline def apply[T](action: String)(implicit context: Context, mt: ClassManifest[T]): Intent = SIntent[T].setAction(action)
 }

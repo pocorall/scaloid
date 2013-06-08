@@ -225,13 +225,12 @@ trait TraitPreference[V <: android.preference.Preference] {
 class SPreference()(implicit context: android.content.Context)
     extends android.preference.Preference(context) with TraitPreference[SPreference] {
 
-  val basis = this
-
+  def basis = this
 
 }
 
 object SPreference {
-  def apply(implicit context: android.content.Context): SPreference = {
+  def apply()(implicit context: android.content.Context): SPreference = {
     val v = new SPreference
     v
   }
@@ -301,13 +300,12 @@ trait TraitEditTextPreference[V <: android.preference.EditTextPreference] extend
 class SEditTextPreference()(implicit context: android.content.Context)
     extends android.preference.EditTextPreference(context) with TraitEditTextPreference[SEditTextPreference] {
 
-  val basis = this
-
+  def basis = this
 
 }
 
 object SEditTextPreference {
-  def apply(implicit context: android.content.Context): SEditTextPreference = {
+  def apply()(implicit context: android.content.Context): SEditTextPreference = {
     val v = new SEditTextPreference
     v
   }

@@ -36,10 +36,12 @@ $prefixedClassDef(...)$
 $endif$
 >>
 
+helperTraitName(base) ::= <<Trait$base.name; format="simple"$>>
+
 extendClause() ::= <<$_extendClause(base.parentType, trim(({$base.name$_mixin})()))$>>
 _extendClause(parent, mixin) ::= <%
 $if(parent || ! isEmpty.(mixin))$ extends $endif$
-$if(parent)$Trait$parent.name; format="simple"$[V]$endif$
+$if(parent)$$helperTraitName(parent)$[V]$endif$
 $if(parent && ! isEmpty.(mixin))$ with $endif$
 $mixin; separator=" with "$
 %>
@@ -47,9 +49,9 @@ $mixin; separator=" with "$
 richClassDef(base, mixin) ::= <<$_richClassDef(base.name)$>>
 _richClassDef(name) ::= <<
 
-class Rich$name$[V <: $genType(base.tpe, true)$](val basis: V) extends Trait$name$[V]
+class Rich$name$[V <: $genType(base.tpe, true)$](val basis: V) extends $helperTraitName(base)$[V]
 
-trait Trait$name$[V <: $genType(base.tpe, true)$]$extendClause()$ {
+trait $helperTraitName(base)$[V <: $genType(base.tpe, true)$]$extendClause()$ {
 
   $if(! base.parentType)$def basis: V$endif$
 
@@ -62,15 +64,15 @@ trait Trait$name$[V <: $genType(base.tpe, true)$]$extendClause()$ {
 
 withClassPrefix(name) ::= "S$name$"
 
-prefixedClassDef(base) ::= <<$_prefixedClassDef(base.name, withClassPrefix(base.name))$>>
+prefixedClassDef(base) ::= <<$_prefixedClassDef(base, base.name, withClassPrefix(base.name))$>>
 
-_prefixedClassDef(name, sClassName, con) ::= <<
+_prefixedClassDef(base, name, sClassName, con) ::= <<
 $if(base.hasBlankConstructor || ClassBodies.(name) || FullConstructors.(name))$
 class $sClassName$$paramedTypes(base.tpe.params)$($customClassExplicitArgs()$)$classImplicitArgs()$
-    extends $baseClassInstance()$ with Trait$name$[$sClassName$$typeVar(base.tpe)$] {
+    extends $baseClassInstance()$ with $helperTraitName(base)$[$sClassName$$typeVar(base.tpe)$] {
 
-  val basis = this
-
+  def basis = this
+  $customClassBodies()$
   $({$name$_concreteBody})()$
 }
 
@@ -113,7 +115,12 @@ BaseClassArgs ::= [
 
 customClassImplicitArgs() ::= <<$customConst(ClassImplicitArgs, ", ")$>>
 ClassImplicitArgs ::= [
-  "View" : {override val parentViewGroup: TraitViewGroup[_] = null}
+  "View" : {parentVGroup: TraitViewGroup[_] = null}
+]
+
+customClassBodies() ::= <<$customConst(CustomClassBodies, " ")$>>
+CustomClassBodies ::= [
+  "View" : {override val parentViewGroup = parentVGroup}
 ]
 
 customConstImplicitArgs() ::= <<$customConst(ConstImplicitArgs, ", ")$>>
@@ -165,7 +172,7 @@ constArgs(args) ::= <%
 $args:{ a | $a.name$: $genType(a.tpe)$}; separator=", "$
 %>
 
-constExplicitArgs() ::= <<$constArgs(con.explicitArgs)$>>
+constExplicitArgs() ::= <<($constArgs(con.explicitArgs)$)>>
 
 classImplicitArgs() ::= <<$_concatArgs(first(base.constructors).implicitArgs, customClassImplicitArgs(), true)$>>
 

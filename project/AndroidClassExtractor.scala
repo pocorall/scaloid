@@ -116,6 +116,9 @@ object AndroidClassExtractor extends JavaConversionHelpers {
             (arity == 0 && name.matches("^(get|is)[^a-z].*")) || (arity == 1 && name.matches("^set[^a-z].*"))
           )
         }
+        .filter { m =>
+        !cls.getName.endsWith("Service") || !m.getName.equals("setForeground")  // Android 2.1.1 has a weird undocumented method. manually ingore this.
+      }
 
       val allMethodNames = clsMethods.map(_.getName).toSet
 

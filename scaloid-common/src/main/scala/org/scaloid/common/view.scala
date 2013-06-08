@@ -458,16 +458,16 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   }
 }
 
-class SView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.view.View(context) with TraitView[SView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
 object SView {
-  def apply[LP <: ViewGroupLayoutParams[_, SView]](implicit context: android.content.Context, defaultLayoutParam: SView => LP): SView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SView]]()(implicit context: android.content.Context, defaultLayoutParam: SView => LP): SView = {
     val v = new SView
     v.<<.parent.+=(v)
     v
@@ -482,7 +482,7 @@ class RichViewGroup[V <: android.view.ViewGroup](val basis: V) extends TraitView
 trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
 
 
-  implicit val pagentVG = this
+  implicit val parentVG = this
 
   def applyStyle(v: View): View = {
     var viw = v
@@ -770,16 +770,16 @@ trait TraitSurfaceView[V <: android.view.SurfaceView] extends TraitView[V] {
 
 }
 
-class SSurfaceView()(implicit context: android.content.Context, override val parentViewGroup: TraitViewGroup[_] = null)
+class SSurfaceView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.view.SurfaceView(context) with TraitSurfaceView[SSurfaceView] {
 
-  val basis = this
-
+  def basis = this
+  override val parentViewGroup = parentVGroup
 
 }
 
 object SSurfaceView {
-  def apply[LP <: ViewGroupLayoutParams[_, SSurfaceView]](implicit context: android.content.Context, defaultLayoutParam: SSurfaceView => LP): SSurfaceView = {
+  def apply[LP <: ViewGroupLayoutParams[_, SSurfaceView]]()(implicit context: android.content.Context, defaultLayoutParam: SSurfaceView => LP): SSurfaceView = {
     val v = new SSurfaceView
     v.<<.parent.+=(v)
     v

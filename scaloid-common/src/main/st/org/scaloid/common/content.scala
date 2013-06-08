@@ -51,6 +51,10 @@ trait Registerable {
 
 
 $wholeClassDef(android.content.Context)$
+
+trait SContext extends Context with TraitContext[SContext] with TagUtil {
+}
+
 $wholeClassDef(android.content.ContextWrapper)$
 
 
@@ -73,7 +77,7 @@ trait UnregisterReceiver extends ContextWrapper with Destroyable {
 
 
 object SIntent {
-  @inline def apply[T]()(implicit context: Context, mt: ClassManifest[T]) = new Intent(context, mt.erasure)
+  @inline def apply[T](implicit context: Context, mt: ClassManifest[T]) = new Intent(context, mt.erasure)
 
   @inline def apply[T](action: String)(implicit context: Context, mt: ClassManifest[T]): Intent = SIntent[T].setAction(action)
 }

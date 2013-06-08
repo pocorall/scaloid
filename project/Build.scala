@@ -6,7 +6,7 @@ object ScaloidBuild extends Build {
   import Dependencies._
 
   lazy val basicSettings = Seq(
-    version               := "2.0-8-RC1",
+    version               := "2.0-8-RC2",
     organization          := "org.scaloid",
     organizationHomepage  := Some(new URL("http://blog.scaloid.org")),
     description           := "Rapid Android Development with Scala",
