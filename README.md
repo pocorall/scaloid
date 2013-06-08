@@ -67,7 +67,7 @@ SButton("Greet", toast("Hello!"))
  * [<b>Hello world of Scaloid for maven</b>](https://github.com/pocorall/hello-scaloid-maven)<br/>
    Fork this to start a new project.
  * [<b>Examples for sbt</b>](https://github.com/placrosse/scaloid-examples)<br/>
-   Fork this for sbt build. **DO NOT WORK for now!** Use maven project
+   <s>Fork this for sbt build.</s> **DO NOT WORK for now!** Use maven project
  * [<b>Scaloid port of apidemos app</b>](https://github.com/pocorall/scaloid-apidemos)<br/>
    Learn how Scaloid can be used in action.
 
@@ -1452,6 +1452,7 @@ This software is licensed under the [Apache 2 license](http://www.apache.org/lic
 * **Automatically unregister SensorEventListener onStop()**
 * **Support Google services** <br/>
   Including Google Cloud Messaging (GCM)
-* **iOS?**
+* **Google glass?**
+* **iOS??**
 
 
