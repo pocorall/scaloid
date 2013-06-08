@@ -193,6 +193,7 @@ trait TraitService[V <: android.app.Service] extends TraitContextWrapper[V] with
 
 
 trait SService extends Service with TraitService[SService] with Destroyable with Creatable with Registerable{
+  def basis = this
   override implicit val ctx = this
 
   def onRegister(body: => Any) = onCreate(body)
