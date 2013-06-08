@@ -83,7 +83,7 @@ trait Registerable {
 
 class RichContext[V <: android.content.Context](val basis: V) extends TraitContext[V]
 
-trait TraitContext[V <: android.content.Context] extends TagUtil {
+trait TraitContext[V <: android.content.Context] {
 
   def basis: V
 
@@ -146,6 +146,10 @@ trait TraitContext[V <: android.content.Context] extends TagUtil {
 
 }
 
+
+
+trait SContext extends Context with TraitContext[SContext] with TagUtil {
+}
 
 class RichContextWrapper[V <: android.content.ContextWrapper](val basis: V) extends TraitContextWrapper[V]
 

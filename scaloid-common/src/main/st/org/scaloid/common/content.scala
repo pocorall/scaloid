@@ -51,6 +51,10 @@ trait Registerable {
 
 
 $wholeClassDef(android.content.Context)$
+
+trait SContext extends Context with TraitContext[SContext] with TagUtil {
+}
+
 $wholeClassDef(android.content.ContextWrapper)$
 
 
