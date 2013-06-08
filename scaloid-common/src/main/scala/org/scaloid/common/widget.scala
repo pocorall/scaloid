@@ -2208,6 +2208,7 @@ class SLinearLayout()(implicit context: android.content.Context, override val pa
   val HORIZONTAL = LinearLayout.HORIZONTAL
 
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+  <<
 
   class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
 
