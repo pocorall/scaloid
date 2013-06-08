@@ -184,9 +184,6 @@ trait TraitService[V <: android.app.Service] extends TraitContextWrapper[V] with
 
   @inline def application = basis.getApplication
 
-  @inline def foreground(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'foreground'")
-  @inline def foreground  (p: Boolean) =            foreground_=  (p)
-  @inline def foreground_=(p: Boolean) = { basis.setForeground    (p); basis }
 
 }
 
