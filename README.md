@@ -1402,29 +1402,18 @@ It's not hard. There is an [maven project template](https://github.com/pocorall/
 
 ## Let's make it together!
 
-This project is in its early stages, and I will grow it constantly. If you have any idea to improve Scaloid, feel free to open issues or post patches.
+Scaloid is an Apache licensed project. 
+If you have any idea to improve Scaloid, feel free to open issues or post patches.
+If you want look into inside of Scaloid, this document would be helpful:
 
-Check the [official Scaloid blog](http://blog.scaloid.org) for news and announcements.
+ * [Inside Scaloid](https://github.com/pocorall/scaloid/wiki/Inside-Scaloid)
 
-### Pull Requests
-
-* Create topic branches. Don't ask us to pull from your master branch.
-
-* One pull request per feature. If you want to do more than one thing, send multiple pull requests.
-
-* Document any change in behaviour. Make sure the README and any other relevant documentation are kept up-to-date.
-
-* Send coherent history. Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please squash them before sending them to us.
-
+ 
 ### Sub projects of Scaloid
 
  - [Scaloid common package](https://github.com/pocorall/scaloid) - This project
  - [Support-v4 package](https://github.com/pocorall/scaloid-support-v4) - Scaloid port of support-v4 compatibility library
  - [Scaloid-stamper](https://github.com/pocorall/scaloid-stamper) - A wrapper generator
-
-### License
-
-This software is licensed under the [Apache 2 license](http://www.apache.org/licenses/LICENSE-2.0.html).
 
 ### List of projects using Scaloid
 
