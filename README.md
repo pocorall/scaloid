@@ -70,13 +70,8 @@ SButton("Greet", toast("Hello!"))
    <s>Fork this for sbt build.</s> **DO NOT WORK for now!** Use maven project
  * [<b>Scaloid port of apidemos app</b>](https://github.com/pocorall/scaloid-apidemos)<br/>
    Learn how Scaloid can be used in action.
-
  * [<b>List of projects using Scaloid</b>](#list-of-projects-using-scaloid)
- * [<b>FAQs</b>](#faqs)
-     * [Why Scala rather than Xtend?](#why-scala-rather-than-xtend)
-     * [Why Scala rather than JRuby?](#why-scala-rather-than-jruby)
-     * [FAQs about Scala on Android](#faqs-about-scala-on-android)
- * [<b>Contributing</b>](#lets-make-it-together)
+
 
 ## Features
 
@@ -98,8 +93,16 @@ SButton("Greet", toast("Hello!"))
    * [Beauty ArrayAdapter](#class-sarrayadapter)
    * [Dynamically Preferences](#class-preferences)  [<sub>`Read in blog`</sub>](http://blog.scaloid.org/2013/03/dynamicly-accessing-sharedpreferences.html)
    * [Binding services concisely](#class-localservice)  [<sub>`Read in blog`</sub>](http://blog.scaloid.org/2013/03/introducing-localservice.html)
-
-...and many other things! Check the [official Scaloid blog](http://blog.scaloid.org) for news and announcements.
+   
+## Other links   
+ * [<b>API doc</b>](http://docs.scaloid.org/)
+ * [<b>Blog</b>](http://blog.scaloid.org/)
+ * [<b>Twitter</b>](https://twitter.com/scaloid/)
+ * [<b>FAQs</b>](#faqs)
+     * [Why Scala rather than Xtend?](#why-scala-rather-than-xtend)
+     * [Why Scala rather than JRuby?](#why-scala-rather-than-jruby)
+     * [FAQs about Scala on Android](#faqs-about-scala-on-android)
+ * [<b>Contributing</b>](#lets-make-it-together)
 
 ## UI Layout without XML
 <p align="center"><img src="http://o-n2.com/verboseSimple.png"></p>
