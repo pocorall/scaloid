@@ -30,7 +30,7 @@
 
 # Less painful Android development with Scala
 
-Scaloid is a library that simplifies your Android code. It makes your code easy to understand and maintain by [leveraging Scala language](#faqs-about-scala-on-android).
+Scaloid is a library that simplifies your Android code. It makes your code easy to understand and maintain by [leveraging Scala language](/wiki/Appendix#faqs-about-scala-on-android).
 
 For example, the code block shown below:
 
@@ -98,11 +98,11 @@ SButton("Greet", toast("Hello!"))
  * [<b>API doc</b>](http://docs.scaloid.org/)
  * [<b>Blog</b>](http://blog.scaloid.org/)
  * [<b>Twitter</b>](https://twitter.com/scaloid/)
- * [<b>FAQs</b>](#faqs)
-     * [Why Scala rather than Xtend?](#why-scala-rather-than-xtend)
-     * [Why Scala rather than JRuby?](#why-scala-rather-than-jruby)
-     * [FAQs about Scala on Android](#faqs-about-scala-on-android)
- * [<b>Contributing</b>](#lets-make-it-together)
+ * [<b>FAQs</b>](wiki/Appendix#faqs-about-scala-on-android)
+     * [Why Scala rather than Xtend?](wiki/Appendix#why-scala-rather-than-xtend)
+     * [Why Scala rather than JRuby?](wiki/Appendix#why-scala-rather-than-jruby)
+     * [FAQs about Scala on Android](wiki/Appendix#faqs-about-scala-on-android)
+ * [<b>Inside Scaloid</b>](wiki/Inside-Scaloid)
 
 ## UI Layout without XML
 <p align="center"><img src="http://o-n2.com/verboseSimple.png"></p>
@@ -1355,50 +1355,6 @@ Please note that Android API provides backward compatibility. Therefore you can 
  * Scaloid can be built with Android API level 8 or higher and Scala version 2.10.0 or higher.
 
 
-## FAQs
-
-### Why Scala rather than Xtend?
-
-Xtend natively supports 1) converting Java bean style getter/setters into the assignment style 2) automatically shorten the clutters when calling one-method callback interface by converting it into closure-like style. Because these are language features, Xtend users can enjoy these features without any wrapper library. We hope that Scala also adopt these benefits soon.
-
-However, We think that Scala is a better alternative for Android platform, because Scala is mature than Xtend and has these advanced features:
-
-* **Implicit conversion** <br/>
-  Check [implicit conversions](#implicit-conversions) section to see how Scaloid leverage it.
-
-* **Implicit parameter** <br/>
-  Hiding some common values (e.g. [context object](#context-as-an-implicit-parameter), [tag for logging](#logging), and [layout context](#layout-context)) from the parameter list is possible by the Scala's implicit parameters.
-
-* **Advanced type system** <br/>
-  Scaloid [layout parameter](#layout-context) is simple, intuitive, and type-safe.
-
-* **Traits** <br/>
-  Many useful features such as [automatic unregistering receivers](#trait-unregisterreceiverservice) are implemented as traits which permits multiple inheritance.
-
-
-### Why Scala rather than JRuby?
-
-* **Type-safety**
-
-* **Runtime performance** (and your precious battery)<br/>
-  See a [benchmark](http://shootout.alioth.debian.org/)
-
-### FAQs about Scala on Android
-
-Because programming in Scala on Android is not a widely known practice yet, many people asks me basic questions about it. Here are some frequently asked questions:
-
-##### How big is the compiled apk?
-For Scala + Android projects, using [proguard](http://proguard.sourceforge.net/) is mandatory. After the library is reduced by proguard, overhead caused by the Scala standard library is about several hundred kilobytes, although it depends on how much you used the library in your code.
-
-##### How much slow the application?
-According to a [benchmark](http://shootout.alioth.debian.org/), runtime performance of Scala is a little worse than that of Java. However, because most of the code using Scaloid is writing UI and core logic, these performance difference is nearly not noticeable. Still, the display will consume most of the battery life, not Scala.
-
-##### How much slow the compilation?
-Compiling Scala source code and applying proguard takes some time. However, if you have a machine with a multi-core CPU and SSD, it would be a matter of few seconds.
-
-##### Is it hard to setup a Scala + Android project?
-It's not hard. There is an [maven project template](https://github.com/pocorall/hello-scaloid-maven) or [sbt project template](https://github.com/placrosse/scaloid-examples).
-
 
 ## Let's make it together!
 
@@ -1419,31 +1375,5 @@ If you want look into inside of Scaloid, this document would be helpful:
 * [Soundcorset metronome & tuner](http://blog.scaloid.org/2013/01/scaloid-powered-soundcorset-metronome.html)
 
 **Share your experience of using Scaloid** by blogging about it and let me know the URL of the post and the name of your Android application via pocorall@gmail.com. Then I will add a link to your post here.
-
-## Roadmap
-
-* **Cover full Android API versions** <br/>
-  Currently, only API level 8 is supported. Scaloid may not be compiled with below that API level, and new features introduced above that level are not covered.
-  Some of the features to be covered are:
-  1. Fragment
-  1. New system services
-  1. Action bar
-
-* **Build an example Android app** <br/>
-  Finish a [Scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos) and try another.
-* **Build a dedicated website**
-* **Write a complete API document**
-* **Write the Beginner's guide**
-* **Build an example of laying out multiple UI**
-* **Write a converter that turns an XML layout into a Scaloid code** <br/>
-  [A simple web application](http://layout.scaloid.org) is demonstrated. Providing this functionality as an Eclipse or Intellij plugin would also be great.
-* **WYSIWYG layout builder**
-* **Cover full listener shortcuts**
-* **Cover OpenGL ES and renderscript**
-* **Automatically unregister SensorEventListener onStop()**
-* **Support Google services** <br/>
-  Including Google Cloud Messaging (GCM)
-* **Google glass?**
-* **iOS??**
 
 
