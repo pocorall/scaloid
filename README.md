@@ -56,7 +56,7 @@ SButton("Greet", toast("Hello!"))
  * **Write elegant Android software**<br/>
    Scaloid provides a concise and type-safe way of writing Android application.
  * **Simple to use**<br/>
-   Check our [quick start guide](#quick-start)
+   Check our [quick start guide](https://github.com/pocorall/scaloid/wiki/Installation#quick-start)
  * **Compatible with your legacy code**<br/>
    You can use both Scaloid and plain-old Java Android API. You can gradually improve your legacy code.
  * **Maintained actively**<br/>
@@ -1290,70 +1290,6 @@ class MyView(implicit ctx: Context) extends View(ctx) with TraitView[MyView] {
 ## Static fields on protected interfaces
 
 Android API has some protected interfaces which has static fields, and inherited it in public classes. For example `android.provider.ContactsContract.Contacts` inherits a protected interface `android.provider.ContactsContract.ContactsColumns`, which defines a static field `ContactsColumns.DISPLAY_NAME`. In Java code, you can access to it with `Contacts.DISPLAY_NAME`. However, Scala does not support accessing in this way (please refer [this](https://issues.scala-lang.org/browse/SI-1806) and [this](http://www.scala-lang.org/faq/4)). It is bad news for an Android-Scala programmer. So we provide a workaround implementation for this problem. Declare `import org.scaloid.Workarounds._`. Then you can use the interfaces publicly which is originally defined as protected.
-
-## Quick start
-
-### Starting a new project
-
-**For maven:**
-
-Fork [Hello world of Scaloid project](https://github.com/pocorall/hello-scaloid-maven).
-
-**For sbt:**
-
-Fork [Scaloid examples for sbt](https://github.com/placrosse/scaloid-examples)
-
-### Add Scaloid into your existing project
-
-Before start using Scaloid, *check your project is properly configured with Scala language*.
-
- 1. [Import Scaloid to your project](#import-it-to-your-project)
- 1. Declare `import org.scaloid.common._` in your code.
- 1. Modify the signature of your classes
-  * If your class inherits `Activity`, change it to `SActivity`
-  * If your class inherits `Service`, change it to `SService`
-  * If your class (indirectly) inherits `Context`, add `trait SContext with LoggerTag`
-  * Otherwise, setting an implicit value is required <br/>
-    `implicit val ctx: Context = ...`
-
-Then, you are ready to use Scaloid.
-
-If you want to see how Scaloid can be used in action, check a [Scala port of apidemos app](https://github.com/pocorall/scaloid-apidemos).
-
-## Import Scaloid to your project
-
-Scaloid is released to the central maven repository.
-
-For maven:
-
-```xml
-<dependency>
-    <groupId>org.scaloid</groupId>
-    <artifactId>scaloid</artifactId>
-    <version>1.1_8_2.10</version>
-</dependency>
-```
-
-For sbt:
-
-```scala
-libraryDependencies += "org.scaloid" % "scaloid" % "1.1_8_2.10"
-```
-
-##### Version number
-Version number of Scaloid is consisted of three parts, separated by `_` characters. The first part is the version of Scaloid, the second is the level of Android API, and the last one is the version of Scala.
-
-Please note that Android API provides backward compatibility. Therefore you can use a Scaloid artifact targeted to API level 8 for the Android application using the level 8 or *above*. In other side, Scala does not provide binary compatibility. The Scaloid artifact uploaded to the central repo is compiled with Scala 2.10. If you use other Scala versions, build the artifact as shown in the following subsection.
-
-
-### Build the source
-
-1. Clone the git repository
-1. If needed, change version of Android API or Scala in pom.xml
-1. Issue `mvn package`
-
- * Scaloid can be built with Android API level 8 or higher and Scala version 2.10.0 or higher.
-
 
 
 ## Let's make it together!
