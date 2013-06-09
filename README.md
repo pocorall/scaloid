@@ -30,7 +30,7 @@
 
 # Less painful Android development with Scala
 
-Scaloid is a library that simplifies your Android code. It makes your code easy to understand and maintain by [leveraging Scala language](/wiki/Appendix#faqs-about-scala-on-android).
+Scaloid is a library that simplifies your Android code. It makes your code easy to understand and maintain by [leveraging Scala language](./wiki/Appendix#faqs-about-scala-on-android).
 
 For example, the code block shown below:
 
@@ -98,11 +98,11 @@ SButton("Greet", toast("Hello!"))
  * [<b>API doc</b>](http://docs.scaloid.org/)
  * [<b>Blog</b>](http://blog.scaloid.org/)
  * [<b>Twitter</b>](https://twitter.com/scaloid/)
- * [<b>FAQs</b>](wiki/Appendix#faqs-about-scala-on-android)
-     * [Why Scala rather than Xtend?](wiki/Appendix#why-scala-rather-than-xtend)
-     * [Why Scala rather than JRuby?](wiki/Appendix#why-scala-rather-than-jruby)
-     * [FAQs about Scala on Android](wiki/Appendix#faqs-about-scala-on-android)
- * [<b>Inside Scaloid</b>](wiki/Inside-Scaloid)
+ * [<b>FAQs</b>](./wiki/Appendix#faqs-about-scala-on-android)
+     * [Why Scala rather than Xtend?](./wiki/Appendix#why-scala-rather-than-xtend)
+     * [Why Scala rather than JRuby?](./wiki/Appendix#why-scala-rather-than-jruby)
+     * [FAQs about Scala on Android](./wiki/Appendix#faqs-about-scala-on-android)
+ * [<b>Inside Scaloid</b>](./wiki/Inside-Scaloid)
 
 ## UI Layout without XML
 <p align="center"><img src="http://o-n2.com/verboseSimple.png"></p>
