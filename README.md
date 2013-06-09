@@ -67,7 +67,7 @@ SButton("Greet", toast("Hello!"))
  * [<b>Hello world of Scaloid for maven</b>](https://github.com/pocorall/hello-scaloid-maven)<br/>
    Fork this to start a new project.
  * [<b>Examples for sbt</b>](https://github.com/placrosse/scaloid-examples)<br/>
-   <s>Fork this for sbt build.</s> **DO NOT WORK for now!** Use maven project
+   <del>Fork this for sbt build.</del> **DO NOT WORK for now!** Use maven project instead
  * [<b>Scaloid port of apidemos app</b>](https://github.com/pocorall/scaloid-apidemos)<br/>
    Learn how Scaloid can be used in action.
  * [<b>List of projects using Scaloid</b>](#list-of-projects-using-scaloid)
@@ -1413,7 +1413,6 @@ If you want look into inside of Scaloid, this document would be helpful:
 
  - [Scaloid common package](https://github.com/pocorall/scaloid) - This project
  - [Support-v4 package](https://github.com/pocorall/scaloid-support-v4) - Scaloid port of support-v4 compatibility library
- - [Scaloid-stamper](https://github.com/pocorall/scaloid-stamper) - A wrapper generator
 
 ### List of projects using Scaloid
 
