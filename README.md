@@ -30,7 +30,7 @@
 
 # Less painful Android development with Scala
 
-Scaloid is a library that simplifies your Android code. It makes your code easy to understand and maintain by [leveraging Scala language](https://github.com/pocorall/wiki/Appendix#faqs-about-scala-on-android).
+Scaloid is a library that simplifies your Android code. It makes your code easy to understand and maintain by [leveraging Scala language](https://github.com/pocorall/scaloid/wiki/Appendix#faqs-about-scala-on-android).
 
 For example, the code block shown below:
 
@@ -98,11 +98,11 @@ SButton("Greet", toast("Hello!"))
  * [<b>API doc</b>](http://docs.scaloid.org/)
  * [<b>Blog</b>](http://blog.scaloid.org/)
  * [<b>Twitter</b>](https://twitter.com/scaloid/)
- * [<b>FAQs</b>](https://github.com/pocorall/wiki/Appendix#faqs-about-scala-on-android)
-     * [Why Scala rather than Xtend?](https://github.com/pocorall/wiki/Appendix#why-scala-rather-than-xtend)
-     * [Why Scala rather than JRuby?](https://github.com/pocorall/wiki/Appendix#why-scala-rather-than-jruby)
-     * [FAQs about Scala on Android](https://github.com/pocorall/wiki/Appendix#faqs-about-scala-on-android)
- * [<b>Inside Scaloid</b>](https://github.com/pocorall/wiki/Inside-Scaloid)
+ * [<b>FAQs</b>](https://github.com/pocorall/scaloid/wiki/Appendix#faqs-about-scala-on-android)
+     * [Why Scala rather than Xtend?](https://github.com/pocorall/scaloid/wiki/Appendix#why-scala-rather-than-xtend)
+     * [Why Scala rather than JRuby?](https://github.com/pocorall/scaloid/wiki/Appendix#why-scala-rather-than-jruby)
+     * [FAQs about Scala on Android](https://github.com/pocorall/scaloid/wiki/Appendix#faqs-about-scala-on-android)
+ * [<b>Inside Scaloid</b>](https://github.com/pocorall/scaloid/wiki/Inside-Scaloid)
 
 ## UI Layout without XML
 <p align="center"><img src="http://o-n2.com/verboseSimple.png"></p>
