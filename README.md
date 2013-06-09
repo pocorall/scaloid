@@ -95,6 +95,7 @@ SButton("Greet", toast("Hello!"))
    * [Binding services concisely](#class-localservice)  [<sub>`Read in blog`</sub>](http://blog.scaloid.org/2013/03/introducing-localservice.html)
    
 ## Other links   
+ * [<b>Quick start guide</b>](https://github.com/pocorall/scaloid/wiki/Installation#quick-start)
  * [<b>API doc</b>](http://docs.scaloid.org/)
  * [<b>Blog</b>](http://blog.scaloid.org/)
  * [<b>Twitter</b>](https://twitter.com/scaloid/)
