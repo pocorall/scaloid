@@ -83,10 +83,13 @@ trait Registerable {
 }
 
 
+/**
+* Automatically generated enriching class of android.content.Context.
+*/
 class RichContext[V <: android.content.Context](val basis: V) extends TraitContext[V]
 
 /**
- * Automatically generated helper trait of Context. This contains several property accessors.
+ * Automatically generated helper trait of android.content.Context. This contains several property accessors.
  */
 trait TraitContext[V <: android.content.Context] {
 
@@ -157,10 +160,13 @@ trait SContext extends Context with TraitContext[SContext] with TagUtil {
   def basis: SContext = this
 }
 
+/**
+* Automatically generated enriching class of android.content.ContextWrapper.
+*/
 class RichContextWrapper[V <: android.content.ContextWrapper](val basis: V) extends TraitContextWrapper[V]
 
 /**
- * Automatically generated helper trait of ContextWrapper. This contains several property accessors.
+ * Automatically generated helper trait of android.content.ContextWrapper. This contains several property accessors.
  */
 trait TraitContextWrapper[V <: android.content.ContextWrapper] extends TraitContext[V] {
 
@@ -173,7 +179,7 @@ trait TraitContextWrapper[V <: android.content.ContextWrapper] extends TraitCont
 }
 
 /**
-* Automatically generated concrete helper class of ContextWrapper.
+* Automatically generated concrete helper class of android.content.ContextWrapper.
 */
 class SContextWrapper()(implicit base: android.content.Context)
     extends android.content.ContextWrapper(base) with TraitContextWrapper[SContextWrapper] {

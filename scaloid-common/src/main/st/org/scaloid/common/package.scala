@@ -28,10 +28,10 @@ import language.implicitConversions
  *         case b:SButton => b.textSize(22 dip)
  *       }
  *
- *       STextView("Welcome").textSize(22 sp).\<\<.marginBottom(22 dip).>>
+ *       STextView("Welcome").textSize(22 sp).<<.marginBottom(22 dip).>>
  *
  *       val name = SEditText()
- *       STextView("What is your name?").\<\<.marginBottom(22 dip).>>
+ *       STextView("What is your name?").<<.marginBottom(22 dip).>>
  *
  *       SButton("GO").onClick(longToast(s"Hello, \${name.getText}"))
  *     }.padding(20 dip)
