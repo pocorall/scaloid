@@ -229,7 +229,19 @@ trait LocalService extends SService {
 
 }
 
-
+/**
+ * A Scala-style builder for AlertDialog.
+ * {{{
+ *  new AlertDialogBuilder(R.string.title, R.string.message) {
+ *    neutralButton()
+ *  }.show()
+ * }}}
+ * This displays an alert dialog with given string resources.
+ *
+ * Please refer to the URL below for more details.
+ *
+ * [[https://github.com/pocorall/scaloid/wiki/Basics#class-alertdialogbuilder]]
+ */
 class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = null)(implicit context: Context) extends AlertDialog.Builder(context) {
   if (_title != null) setTitle(_title)
   if (_message != null) setMessage(_message)
