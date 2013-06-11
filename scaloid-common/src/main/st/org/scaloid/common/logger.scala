@@ -8,7 +8,8 @@ import android.util.Log
  * Tag for loggers.
  *
  * Please refer to the URL below for more details.
- * https://github.com/pocorall/scaloid/wiki/Basics#logging
+ *
+ * [[https://github.com/pocorall/scaloid/wiki/Basics#logging]]
  */
 case class LoggerTag(_tag: String) {
   private val MAX_TAG_LEN = 22
@@ -19,7 +20,8 @@ case class LoggerTag(_tag: String) {
  * Defines a LoggerTag type implicit variable as its class name.
  *
  * Please refer to the URL below for more details.
- * https://github.com/pocorall/scaloid/wiki/Basics#logging
+ *
+ * [[https://github.com/pocorall/scaloid/wiki/Basics#logging]]
  */
 trait TagUtil {
   implicit val tag = LoggerTag(this.getClass.getName)
@@ -29,7 +31,8 @@ trait TagUtil {
  * Contains logger helpers.
  *
  * Please refer to the URL below for more details.
- * https://github.com/pocorall/scaloid/wiki/Basics#logging
+ *
+ * [[https://github.com/pocorall/scaloid/wiki/Basics#logging]]
  */
 trait Logger {
   @inline private def loggingText(str: String, t: Throwable) = str + (if (t == null) "" else "\n" + Log.getStackTraceString(t))

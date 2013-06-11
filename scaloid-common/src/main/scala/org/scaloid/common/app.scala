@@ -72,6 +72,10 @@ trait TraitActivity[V <: Activity] {
   }
 }
 
+/**
+ * Enriched trait for the class android.app.Activity.
+ * To enable Scaloid, inherit this trait instead of the class Activity.
+ */
 trait SActivity extends Activity with TraitContext[android.content.Context] with TraitActivity[SActivity] with Destroyable with Creatable with Registerable {
 
   def basis = this
@@ -157,7 +161,7 @@ trait SActivity extends Activity with TraitContext[android.content.Context] with
  * Follows a parent's action of onBackPressed().
  * When an activity is a tab that hosted by TabActivity, you may want a common back-button action for each tab.
  *
- * Please refer http://stackoverflow.com/questions/2796050/key-events-in-tabactivities
+ * Please refer to [[http://stackoverflow.com/questions/2796050/key-events-in-tabactivities]]
  */
 trait FollowParentBackButton extends SActivity {
   override def onBackPressed() {
