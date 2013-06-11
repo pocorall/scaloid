@@ -24,6 +24,9 @@ class EventSource2[T <: Function2[_, _, _]] extends ArrayBuffer[T] {
   def apply(e: T) = append(e)
 }
 
+/**
+ * Callback handler for classes that can be destroyed.
+ */
 trait Destroyable {
   protected val onDestroyBodies = new ArrayBuffer[() => Any]
 
@@ -34,6 +37,9 @@ trait Destroyable {
   }
 }
 
+/**
+ * Callback handler for classes that can be created.
+ */
 trait Creatable {
   protected val onCreateBodies = new ArrayBuffer[() => Any]
 
@@ -44,6 +50,9 @@ trait Creatable {
   }
 }
 
+/**
+ * Callback handler for classes that can be registered and unregistered.
+ */
 trait Registerable {
   def onRegister(body: => Any): () => Any
   def onUnregister(body: => Any): () => Any
@@ -52,6 +61,9 @@ trait Registerable {
 
 $wholeClassDef(android.content.Context)$
 
+/**
+ * Enriched trait of the class android.content.Context. To enable Scaloid support for subclasses android.content.Context, extend this trait.
+ */
 trait SContext extends Context with TraitContext[SContext] with TagUtil {
   def basis: SContext = this
 }

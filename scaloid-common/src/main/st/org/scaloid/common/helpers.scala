@@ -11,7 +11,11 @@ import android.widget._
 
 
 trait AppHelpers {
-  
+
+  /**
+   * Displays a simple alert dialog.
+   * @param clickCallback This is called when the button is clicked. Does nothing by default.
+   */
   @inline def alert(title: CharSequence, text: CharSequence, clickCallback: => Unit = {})(implicit context: Context) {
     new AlertDialogBuilder(title, text) {
       neutralButton(android.R.string.ok, clickCallback)
@@ -55,7 +59,9 @@ object ContentHelpers extends ContentHelpers
 
 
 trait MediaHelpers {
-
+  /**
+   * Plays a sound from a given Uri.
+   */
   def play(uri: Uri = notificationSound)(implicit context: Context) {
     val r = RingtoneManager.getRingtone(context, uri)
     if (r != null) {
@@ -74,30 +80,55 @@ object MediaHelpers extends MediaHelpers
 
 
 trait PreferenceHelpers {
-
+  /**
+   * Returns DefaultSharedPreferences object for given implicit context.
+   */
   @inline def defaultSharedPreferences(implicit context: Context): SharedPreferences =
     PreferenceManager.getDefaultSharedPreferences(context)
 
 }
 object PreferenceHelpers extends PreferenceHelpers
 
-
+/**
+ * Contains helper methods that displaying some UI elements.
+ */
 trait WidgetHelpers {
-
+  /**
+   * Displays a toast message.
+   * This method can be called from any threads.
+   */
   @inline def toast(message: CharSequence)(implicit context: Context) {
     runOnUiThread(Toast.makeText(context, message, Toast.LENGTH_SHORT).show())
   }
 
+  /**
+   * Displays a toast message for a longer time.
+   * This method can be called from any threads.
+   */
   @inline def longToast(message: CharSequence)(implicit context: Context) {
     runOnUiThread(Toast.makeText(context, message, Toast.LENGTH_LONG).show())
   }
 
+  /**
+   * Displays a dialog with spinner icon.
+   * This method can be called from any threads.
+   */
   @inline def spinnerDialog(title: String, message: String)(implicit context: Context): ProgressDialog =
     runOnUiThread(ProgressDialog.show(context, title, message, true))
 
 }
+
+/**
+ * Contains helper methods that displaying some UI elements.
+ */
 object WidgetHelpers extends WidgetHelpers
 
-
+/**
+ * Aggregate trait for helpers.
+ */
 trait Helpers extends AppHelpers with ContentHelpers with MediaHelpers with PreferenceHelpers with WidgetHelpers
+
+/**
+ * Aggregate object for helpers.
+ */
 object Helpers extends Helpers

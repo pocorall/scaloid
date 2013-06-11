@@ -197,6 +197,9 @@ trait TraitService[V <: android.app.Service] extends TraitContextWrapper[V] with
 
 
 
+/**
+ * Enriched trait of the class android.app.Service. To enable Scaloid support for subclasses of android.app.Service, extend this trait.
+ */
 trait SService extends Service with TraitService[SService] with Destroyable with Creatable with Registerable{
   def basis = this
   override implicit val ctx = this
