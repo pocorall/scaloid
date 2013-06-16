@@ -9,6 +9,7 @@ import android.view._
 import android.view.WindowManager.LayoutParams._
 import scala.collection.mutable.ArrayBuffer
 import Implicits._
+import scala.deprecated
 
 
 trait TraitActivity[V <: Activity] {
@@ -130,6 +131,7 @@ trait SActivity extends Activity with TraitContext[android.content.Context] with
  *
  * Please refer to [[http://stackoverflow.com/questions/2796050/key-events-in-tabactivities]]
  */
+@deprecated("Use org.scaloid.util package instead. This will be removed from Scaloid 3.0.", "2.0")
 trait FollowParentBackButton extends SActivity {
   override def onBackPressed() {
     val p = getParent
@@ -141,6 +143,7 @@ trait FollowParentBackButton extends SActivity {
  * Turn screen on and show the activity even if the screen is locked.
  * This is useful when notifying some important information.
  */
+@deprecated("Use org.scaloid.util package instead. This will be removed from Scaloid 3.0.", "2.0")
 trait ScreenOnActivity extends SActivity {
   onCreate {
     getWindow.addFlags(FLAG_DISMISS_KEYGUARD | FLAG_SHOW_WHEN_LOCKED | FLAG_TURN_SCREEN_ON)
