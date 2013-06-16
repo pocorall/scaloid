@@ -38,7 +38,7 @@ package org.scaloid.common
 import android.content.{Context, SharedPreferences}
 import scala.language.dynamics
 
-@deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.")
+@deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.", "2.0")
 class StringPreferences(preferences: SharedPreferences) extends Dynamic {
   var defaultValue: String = _
 
@@ -47,7 +47,7 @@ class StringPreferences(preferences: SharedPreferences) extends Dynamic {
   def applyDynamic(name: String)(defaultVal: String): String = preferences.getString(name, defaultVal)
 }
 
-@deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.")
+@deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.", "2.0")
 class IntPreferences(preferences: SharedPreferences) extends Dynamic {
   var defaultValue: Int = _
 
@@ -60,7 +60,7 @@ class IntPreferences(preferences: SharedPreferences) extends Dynamic {
   def applyDynamic(name: String)(defaultVal: Int): Int = preferences.getInt(name, defaultVal)
 }
 
-@deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.")
+@deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.", "2.0")
 class LongPreferences(preferences: SharedPreferences) extends Dynamic {
   var defaultValue: Long = _
 
@@ -69,7 +69,7 @@ class LongPreferences(preferences: SharedPreferences) extends Dynamic {
   def applyDynamic(name: String)(defaultVal: Long): Long = preferences.getLong(name, defaultVal)
 }
 
-@deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.")
+@deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.", "2.0")
 class FloatPreferences(preferences: SharedPreferences) extends Dynamic {
   var defaultValue: Float = _
 
@@ -79,7 +79,7 @@ class FloatPreferences(preferences: SharedPreferences) extends Dynamic {
 
 }
 
-@deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.")
+@deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.", "2.0")
 class BooleanPreferences(preferences: SharedPreferences) extends Dynamic {
   var defaultValue: Boolean = _
 
@@ -111,15 +111,15 @@ class Preferences(val preferences: SharedPreferences) extends Dynamic {
     case v: Float => preferences.getFloat(name, v).asInstanceOf[T]
   }
 
-  @deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.")
+  @deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.", "2.0")
   val String = new StringPreferences(preferences)
-  @deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.")
+  @deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.", "2.0")
   val Int = new IntPreferences(preferences)
-  @deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.")
+  @deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.", "2.0")
   val Long = new LongPreferences(preferences)
-  @deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.")
+  @deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.", "2.0")
   val Float = new FloatPreferences(preferences)
-  @deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.")
+  @deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.", "2.0")
   val Boolean = new BooleanPreferences(preferences)
 }
 
