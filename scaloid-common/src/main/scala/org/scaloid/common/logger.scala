@@ -57,7 +57,7 @@ case class LoggerTag(_tag: String) {
  * [[https://github.com/pocorall/scaloid/wiki/Basics#logging]]
  */
 trait TagUtil {
-  implicit val tag = LoggerTag(this.getClass.getName)
+  implicit val loggerTag = LoggerTag(this.getClass.getName)
 }
 
 /**

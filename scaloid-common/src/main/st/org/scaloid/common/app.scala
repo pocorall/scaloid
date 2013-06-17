@@ -44,9 +44,9 @@ trait TraitActivity[V <: Activity] {
  * Enriched trait for the class android.app.Activity.
  * To enable Scaloid, inherit this trait instead of the class Activity.
  */
-trait SActivity extends Activity with TraitContext[android.content.Context] with TraitActivity[SActivity] with Destroyable with Creatable with Registerable {
+trait SActivity extends Activity with SContext with TraitActivity[SActivity] with Destroyable with Creatable with Registerable {
 
-  def basis = this
+  override def basis = this
   override implicit val ctx = this
 
   def onRegister(body: => Any) = onResume(body)

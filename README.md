@@ -990,7 +990,7 @@ A new unique ID is assigned to the `anchor` if it is not assigned already, and p
 Unlike other logging frameworks, Android Logging API requires a `String` tag for every log call. We eliminate this by introducing an implicit parameter. Define an implicit value type of `LoggerTag` as shown:
 
 ```scala
-implicit val tag = LoggerTag("MyAppTag")
+implicit val loggerTag = LoggerTag("MyAppTag")
 ```
 
 or, extend trait `TagUtil` or `SContext` which defines the tag by default. Then you can simply log like this:
