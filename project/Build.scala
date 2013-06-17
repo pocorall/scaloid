@@ -11,7 +11,7 @@ object ScaloidBuild extends Build {
     organizationHomepage  := Some(new URL("http://blog.scaloid.org")),
     description           := "Rapid Android Development with Scala",
     startYear             := Some(2012),
-    scalaVersion          := "2.10.1",
+    scalaVersion          := "2.10.2",
     resolvers             ++= Dependencies.resolutionRepos,
     publishMavenStyle := true,
     publishTo <<= version { (v: String) =>
