@@ -185,30 +185,10 @@ trait ScreenOnActivity extends SActivity {
 
 
 /**
-* Automatically generated enriching class of android.app.Service.
-*/
-class RichService[V <: android.app.Service](val basis: V) extends TraitService[V]
-
-/**
- * Automatically generated helper trait of android.app.Service. This contains several property accessors.
- */
-trait TraitService[V <: android.app.Service] extends TraitContextWrapper[V] with TraitContext[V] {
-
-
-
-
-  @inline def application = basis.getApplication
-
-
-}
-
-
-
-/**
  * Enriched trait of the class android.app.Service. To enable Scaloid support for subclasses of android.app.Service, extend this trait.
  */
-trait SService extends Service with TraitService[SService] with Destroyable with Creatable with Registerable{
-  def basis = this
+trait SService extends Service with SContext with Destroyable with Creatable with Registerable{
+  override def basis = this
   override implicit val ctx = this
 
   def onRegister(body: => Any) = onCreate(body)
