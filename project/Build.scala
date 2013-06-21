@@ -6,10 +6,10 @@ object ScaloidBuild extends Build {
   import Dependencies._
 
   lazy val basicSettings = Seq(
-    version               := "2.0-8",
+    version               := "2.1-8-SNAPSHOT",
     organization          := "org.scaloid",
     organizationHomepage  := Some(new URL("http://blog.scaloid.org")),
-    description           := "Rapid Android Development with Scala",
+    description           := "Less Painful Android Development with Scala",
     startYear             := Some(2012),
     scalaVersion          := "2.10.2",
     resolvers             ++= Dependencies.resolutionRepos,

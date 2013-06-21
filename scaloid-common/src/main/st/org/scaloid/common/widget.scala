@@ -34,4 +34,4 @@ $wholeClassDef(android.opengl.GLSurfaceView)$
 $wholeClassDef(android.appwidget.AppWidgetHostView)$
 $wholeClassDef(android.gesture.GestureOverlayView)$
 $wholeClassDef(android.database.DataSetObserver)$
-
+$wholeClassDef(android.webkit.WebView)$

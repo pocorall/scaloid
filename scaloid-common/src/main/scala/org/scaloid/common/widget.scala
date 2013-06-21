@@ -5435,4 +5435,127 @@ trait TraitDataSetObserver[V <: android.database.DataSetObserver] {
 }
 
 
+/**
+* Automatically generated enriching class of android.webkit.WebView.
+*/
+class RichWebView[V <: android.webkit.WebView](val basis: V) extends TraitWebView[V]
+
+/**
+ * Automatically generated helper trait of android.webkit.WebView. This contains several property accessors.
+ */
+trait TraitWebView[V <: android.webkit.WebView] extends TraitAbsoluteLayout[V] {
+
+
+
+
+  @inline def certificate = basis.getCertificate
+  @inline def certificate  (p: android.net.http.SslCertificate) =            certificate_=  (p)
+  @inline def certificate_=(p: android.net.http.SslCertificate) = { basis.setCertificate    (p); basis }
+
+  @inline def contentHeight = basis.getContentHeight
+
+  @inline def downloadListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'downloadListener'")
+  @inline def downloadListener  (p: android.webkit.DownloadListener) =            downloadListener_=  (p)
+  @inline def downloadListener_=(p: android.webkit.DownloadListener) = { basis.setDownloadListener    (p); basis }
+
+  @inline def favicon = basis.getFavicon
+
+  @inline def hitTestResult = basis.getHitTestResult
+
+  @inline def horizontalScrollbarOverlay(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'horizontalScrollbarOverlay'")
+  @inline def horizontalScrollbarOverlay  (p: Boolean) =            horizontalScrollbarOverlay_=  (p)
+  @inline def horizontalScrollbarOverlay_=(p: Boolean) = { basis.setHorizontalScrollbarOverlay    (p); basis }
+
+  @inline def initialScale(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'initialScale'")
+  @inline def initialScale  (p: Int) =            initialScale_=  (p)
+  @inline def initialScale_=(p: Int) = { basis.setInitialScale    (p); basis }
+
+  @inline def mapTrackballToArrowKeys(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'mapTrackballToArrowKeys'")
+  @inline def mapTrackballToArrowKeys  (p: Boolean) =            mapTrackballToArrowKeys_=  (p)
+  @inline def mapTrackballToArrowKeys_=(p: Boolean) = { basis.setMapTrackballToArrowKeys    (p); basis }
+
+  @inline def networkAvailable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'networkAvailable'")
+  @inline def networkAvailable  (p: Boolean) =            networkAvailable_=  (p)
+  @inline def networkAvailable_=(p: Boolean) = { basis.setNetworkAvailable    (p); basis }
+
+  @inline def originalUrl = basis.getOriginalUrl
+
+  @inline def pictureListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'pictureListener'")
+  @inline def pictureListener  (p: android.webkit.WebView.PictureListener) =            pictureListener_=  (p)
+  @inline def pictureListener_=(p: android.webkit.WebView.PictureListener) = { basis.setPictureListener    (p); basis }
+
+  @inline def progress = basis.getProgress
+
+  @inline def scale = basis.getScale
+
+  @inline def settings = basis.getSettings
+
+  @inline def title = basis.getTitle
+
+  @inline def url = basis.getUrl
+
+  @inline def verticalScrollbarOverlay(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'verticalScrollbarOverlay'")
+  @inline def verticalScrollbarOverlay  (p: Boolean) =            verticalScrollbarOverlay_=  (p)
+  @inline def verticalScrollbarOverlay_=(p: Boolean) = { basis.setVerticalScrollbarOverlay    (p); basis }
+
+  @inline def webChromeClient(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'webChromeClient'")
+  @inline def webChromeClient  (p: android.webkit.WebChromeClient) =            webChromeClient_=  (p)
+  @inline def webChromeClient_=(p: android.webkit.WebChromeClient) = { basis.setWebChromeClient    (p); basis }
+
+  @inline def webViewClient(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'webViewClient'")
+  @inline def webViewClient  (p: android.webkit.WebViewClient) =            webViewClient_=  (p)
+  @inline def webViewClient_=(p: android.webkit.WebViewClient) = { basis.setWebViewClient    (p); basis }
+
+  @inline def zoomControls = basis.getZoomControls
+
+
+  @inline def onDownloadStart(f: (java.lang.String, java.lang.String, java.lang.String, java.lang.String, Long) => Unit): V = {
+    basis.setDownloadListener(new android.webkit.DownloadListener {
+      def onDownloadStart(p1: java.lang.String, p2: java.lang.String, p3: java.lang.String, p4: java.lang.String, p5: Long): Unit = { f(p1, p2, p3, p4, p5) }
+    })
+    basis
+  }
+
+  @inline def onDownloadStart(f: => Unit): V = {
+    basis.setDownloadListener(new android.webkit.DownloadListener {
+      def onDownloadStart(p1: java.lang.String, p2: java.lang.String, p3: java.lang.String, p4: java.lang.String, p5: Long): Unit = { f }
+    })
+    basis
+  }
+
+  @inline def onNewPicture(f: (android.webkit.WebView, android.graphics.Picture) => Unit): V = {
+    basis.setPictureListener(new android.webkit.WebView.PictureListener {
+      def onNewPicture(p1: android.webkit.WebView, p2: android.graphics.Picture): Unit = { f(p1, p2) }
+    })
+    basis
+  }
+
+  @inline def onNewPicture(f: => Unit): V = {
+    basis.setPictureListener(new android.webkit.WebView.PictureListener {
+      def onNewPicture(p1: android.webkit.WebView, p2: android.graphics.Picture): Unit = { f }
+    })
+    basis
+  }
+}
+
+/**
+* Automatically generated concrete helper class of android.webkit.WebView.
+*/
+class SWebView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
+    extends android.webkit.WebView(context) with TraitWebView[SWebView] {
+
+  def basis = this
+  override val parentViewGroup = parentVGroup
+
+}
+
+object SWebView {
+  def apply[LP <: ViewGroupLayoutParams[_, SWebView]]()(implicit context: android.content.Context, defaultLayoutParam: SWebView => LP): SWebView = {
+    val v = new SWebView
+    v.<<.parent.+=(v)
+    v
+  }
+
+}
+
 
