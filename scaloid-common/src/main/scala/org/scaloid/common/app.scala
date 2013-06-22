@@ -76,6 +76,31 @@ trait TraitActivity[V <: Activity] {
 /**
  * Enriched trait for the class android.app.Activity.
  * To enable Scaloid, inherit this trait instead of the class Activity.
+ *
+ * SActivity has shortcut methods for each lifecycle stages. These methods shorten the method overriding, which is
+ * very frequent for activity classes.
+ *
+ * For example, instead of this:
+ *
+ * {{{
+ *   override def onCreate(b: Bundle) {
+ *     super.onCreate(b)
+ *     // do something for onCreate
+ *   }
+ * }}}
+ *
+ * The equivalent is:
+ *
+ * {{{
+ *   onCreate {
+ *     // do something for onCreate
+ *   }
+ * }}}
+ * or
+ * {{{
+ *   onCreate(doSomething())
+ * }}}
+ *
  */
 trait SActivity extends Activity with SContext with TraitActivity[SActivity] with Destroyable with Creatable with Registerable {
 
@@ -219,8 +244,9 @@ trait LocalService extends SService {
 /**
  * A Scala-style builder for AlertDialog.
  * {{{
- *  new AlertDialogBuilder(R.string.title, R.string.message) {
- *    neutralButton()
+ *  new AlertDialogBuilder("Exit the app", "Do you really want to exit?") {
+ *    positiveButton("Exit", finishTheApplication())
+ *    negativeButton("Cancel")
  *  }.show()
  * }}}
  * This displays an alert dialog with given string resources.
@@ -230,6 +256,8 @@ trait LocalService extends SService {
  * Please refer to the URL below for more details.
  *
  * [[https://github.com/pocorall/scaloid/wiki/Basics#class-alertdialogbuilder]]
+ *
+ * See also: `alert()`
  */
 class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = null)(implicit context: Context) extends AlertDialog.Builder(context) {
   if (_title != null) setTitle(_title)
