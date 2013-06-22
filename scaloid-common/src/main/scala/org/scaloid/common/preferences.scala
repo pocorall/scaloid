@@ -89,6 +89,17 @@ class BooleanPreferences(preferences: SharedPreferences) extends Dynamic {
 }
 
 /**
+ * An accessor of SharedPreferences.
+ *
+ * {{{
+ *   val pref = Preferences
+ *   val ec = pref.executionCount(0)
+ *   pref.executionCount = ec + 1
+ * }}}
+ *
+ * Refer to the URL below for more details.
+ *
+ * [[http://blog.scaloid.org/2013/03/dynamicly-accessing-sharedpreferences.html]]
  *
  * @param preferences
  */

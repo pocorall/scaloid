@@ -246,7 +246,7 @@ trait UnregisterReceiver extends ContextWrapper with Destroyable {
 
 
 object SIntent {
-  @inline def apply[T](implicit context: Context, mt: ClassTag[T]) = new Intent(context, mt.erasure)
+  @inline def apply[T](implicit context: Context, mt: ClassTag[T]) = new Intent(context, mt.runtimeClass)
 
   @inline def apply[T](action: String)(implicit context: Context, mt: ClassTag[T]): Intent = SIntent[T].setAction(action)
 }

@@ -33,7 +33,7 @@ import language.implicitConversions
  *       val name = SEditText()
  *       STextView("What is your name?").<<.marginBottom(22 dip).>>
  *
- *       SButton("GO").onClick(longToast(s"Hello, ${name.getText}"))
+ *       SButton("GO").onClick(longToast("Hello, " + name.getText))
  *     }.padding(20 dip)
  *   }
  * }
