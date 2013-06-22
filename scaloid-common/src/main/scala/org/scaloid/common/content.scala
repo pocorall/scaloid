@@ -39,6 +39,7 @@ import android.content._
 import android.util.Log
 import android.os._
 import scala.collection.mutable.ArrayBuffer
+import scala.reflect._
 
 
 class EventSource0[T] extends ArrayBuffer[() => T] {
@@ -106,15 +107,15 @@ trait TraitContext[V <: android.content.Context] {
 
   implicit val ctx = basis
 
-  def startActivity[T: ClassManifest] {
+  def startActivity[T: ClassTag] {
     basis.startActivity(SIntent[T])
   }
 
-  def startService[T: ClassManifest] {
+  def startService[T: ClassTag] {
     basis.startService(SIntent[T])
   }
 
-  def stopService[T: ClassManifest] {
+  def stopService[T: ClassTag] {
     basis.stopService(SIntent[T])
   }
 
@@ -230,13 +231,13 @@ trait UnregisterReceiver extends ContextWrapper with Destroyable {
 
 
 object SIntent {
-  @inline def apply[T](implicit context: Context, mt: ClassManifest[T]) = new Intent(context, mt.erasure)
+  @inline def apply[T](implicit context: Context, mt: ClassTag[T]) = new Intent(context, mt.erasure)
 
-  @inline def apply[T](action: String)(implicit context: Context, mt: ClassManifest[T]): Intent = SIntent[T].setAction(action)
+  @inline def apply[T](action: String)(implicit context: Context, mt: ClassTag[T]): Intent = SIntent[T].setAction(action)
 }
 
 
-class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUTO_CREATE)(implicit ctx: Context, reg: Registerable, ev: Null <:< S, mf: ClassManifest[S]) extends ServiceConnection {
+class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUTO_CREATE)(implicit ctx: Context, reg: Registerable, ev: Null <:< S, mf: ClassTag[S]) extends ServiceConnection {
   var service: S = null
   var componentName:ComponentName = _
   var binder: IBinder = _

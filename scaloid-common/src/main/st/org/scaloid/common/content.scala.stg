@@ -1,15 +1,15 @@
 Context_traitBody() ::= <<
 implicit val ctx = basis
 
-def startActivity[T: ClassManifest] {
+def startActivity[T: ClassTag] {
   basis.startActivity(SIntent[T])
 }
 
-def startService[T: ClassManifest] {
+def startService[T: ClassTag] {
   basis.startService(SIntent[T])
 }
 
-def stopService[T: ClassManifest] {
+def stopService[T: ClassTag] {
   basis.stopService(SIntent[T])
 }
 >>

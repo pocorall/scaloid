@@ -42,7 +42,6 @@ import android.net.Uri
 import android.view._
 import language.implicitConversions
 
-
 private[scaloid] class UnitConversion(val ext: Double)(implicit context: Context) {
   def dip: Int = (ext * context.getResources().getDisplayMetrics().density).toInt
   def sp : Int = (ext * context.getResources().getDisplayMetrics().scaledDensity).toInt

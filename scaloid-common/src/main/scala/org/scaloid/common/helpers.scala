@@ -41,7 +41,7 @@ import android.media._
 import android.net._
 import android.preference._
 import android.widget._
-
+import scala.reflect._
 
 trait AppHelpers {
 
@@ -71,7 +71,7 @@ trait AppHelpers {
   @inline def pendingActivity(intent: Intent)(implicit context: Context) =
     PendingIntent.getActivity(context, 0, intent, 0)
 
-  @inline def pendingActivity[T](implicit context: Context, mt: ClassManifest[T]) =
+  @inline def pendingActivity[T](implicit context: Context, mt: ClassTag[T]) =
     PendingIntent.getActivity(context, 0, SIntent[T], 0)
 
 }
