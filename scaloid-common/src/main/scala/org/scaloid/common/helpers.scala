@@ -47,7 +47,10 @@ trait AppHelpers {
 
   /**
    * Displays a simple alert dialog.
-   * @param clickCallback This is called when the button is clicked. Does nothing by default.
+   *
+   * Although this builder displays some UI element, this builder can be called from any thread, because the method `show()` handles threading internally.
+   *
+   * @param clickCallback This callback is run when the button is clicked. Does nothing by default.
    */
   @inline def alert(title: CharSequence, text: CharSequence, clickCallback: => Unit = {})(implicit context: Context) {
     new AlertDialogBuilder(title, text) {
@@ -72,6 +75,7 @@ trait AppHelpers {
     PendingIntent.getActivity(context, 0, SIntent[T], 0)
 
 }
+
 object AppHelpers extends AppHelpers
 
 
@@ -88,6 +92,7 @@ trait ContentHelpers {
   }
 
 }
+
 object ContentHelpers extends ContentHelpers
 
 
@@ -109,6 +114,7 @@ trait MediaHelpers {
   @inline def ringtoneSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
 
 }
+
 object MediaHelpers extends MediaHelpers
 
 
@@ -120,6 +126,7 @@ trait PreferenceHelpers {
     PreferenceManager.getDefaultSharedPreferences(context)
 
 }
+
 object PreferenceHelpers extends PreferenceHelpers
 
 /**

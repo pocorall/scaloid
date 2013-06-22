@@ -192,6 +192,8 @@ trait LocalService extends SService {
  * }}}
  * This displays an alert dialog with given string resources.
  *
+ * Although this builder displays some UI element, this builder can be called from any thread, because the method `show()` handles threading internally.
+ *
  * Please refer to the URL below for more details.
  *
  * [[https://github.com/pocorall/scaloid/wiki/Basics#class-alertdialogbuilder]]
@@ -251,5 +253,9 @@ class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = n
 
   @inline def message = tit
 
+  /**
+   * Shows the dialog that is currently building.
+   * Because this method runs runOnUiThread internally, you can call this method from any thread.
+   */
   override def show():AlertDialog = runOnUiThread(super.show())
 }
