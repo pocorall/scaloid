@@ -237,6 +237,13 @@ object SIntent {
 }
 
 
+/**
+ * An in-process service connector that can bound [[LocalService]]. This yields far more concise code than that uses plain-old Android API.
+ *
+ * Please refer to the URL below for more details.
+ *
+ * [[http://blog.scaloid.org/2013/03/introducing-localservice.html]]
+ */
 class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUTO_CREATE)(implicit ctx: Context, reg: Registerable, ev: Null <:< S, mf: ClassTag[S]) extends ServiceConnection {
   var service: S = null
   var componentName:ComponentName = _

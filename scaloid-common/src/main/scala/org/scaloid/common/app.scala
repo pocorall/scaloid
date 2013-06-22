@@ -230,6 +230,13 @@ trait SService extends Service with SContext with Destroyable with Creatable wit
   }
 }
 
+/**
+ * An in-process service that can be bound with [[LocalServiceConnection]]. This yields far more concise code than that uses plain-old Android API.
+ *
+ * Please refer to the URL below for more details.
+ *
+ * [[http://blog.scaloid.org/2013/03/introducing-localservice.html]]
+ */
 trait LocalService extends SService {
   private val binder = new ScaloidServiceBinder
 
