@@ -100,10 +100,6 @@ $endif$
 }
 object ViewImplicits extends ViewImplicits
 
-trait WidgetImplicits {
-  $implicitConversions(android.widget)$
-}
-object WidgetImplicits extends WidgetImplicits
 
 trait Implicits extends ConversionImplicits with InterfaceImplicits with ViewImplicits with WidgetImplicits
 object Implicits extends Implicits

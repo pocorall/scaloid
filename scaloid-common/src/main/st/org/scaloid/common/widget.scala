@@ -35,3 +35,18 @@ $wholeClassDef(android.appwidget.AppWidgetHostView)$
 $wholeClassDef(android.gesture.GestureOverlayView)$
 $wholeClassDef(android.database.DataSetObserver)$
 $wholeClassDef(android.webkit.WebView)$
+
+
+
+trait WidgetImplicits {
+  $implicitConversions(android.widget)$
+
+  $implicitConversion(android.inputmethodservice.ExtractEditText)$
+  $implicitConversion(android.inputmethodservice.KeyboardView)$
+  $implicitConversion(android.opengl.GLSurfaceView)$
+  $implicitConversion(android.appwidget.AppWidgetHostView)$
+  $implicitConversion(android.gesture.GestureOverlayView)$
+  $implicitConversion(android.database.DataSetObserver)$
+  $implicitConversion(android.webkit.WebView)$
+}
+object WidgetImplicits extends WidgetImplicits
