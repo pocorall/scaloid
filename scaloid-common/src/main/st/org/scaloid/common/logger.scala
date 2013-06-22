@@ -17,7 +17,7 @@ case class LoggerTag(_tag: String) {
 }
 
 /**
- * Defines a LoggerTag type implicit variable as its class name.
+ * Defines a [[org.scaloid.common.LoggerTag]] type implicit variable as its class name.
  *
  * Please refer to the URL below for more details.
  *
@@ -29,6 +29,7 @@ trait TagUtil {
 
 /**
  * Contains logger helpers.
+ * Normally, you don't need to inherit this class, because the package object [[org.scaloid.common]] inherits this.
  *
  * Please refer to the URL below for more details.
  *

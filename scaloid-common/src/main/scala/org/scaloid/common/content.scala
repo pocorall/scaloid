@@ -211,7 +211,22 @@ object SContextWrapper {
 
 
 
-
+/**
+ * When you register BroadcastReceiver with Context.registerReceiver() you have to unregister it to prevent memory leak.
+ * Trait UnregisterReceiver handles these chores for you.
+ * All you need to do is append the trait to your class.
+ *
+ * {{{
+ *class MyService extends SService with UnregisterReceiver {
+   def func() {
+     // ...
+     registerReceiver(receiver, intentFilter)
+     // Done! automatically unregistered at UnregisterReceiverService.onDestroy()
+   }
+ }
+ * }}}
+ * See also: [[https://github.com/pocorall/scaloid/wiki/Basics#trait-unregisterreceiver]]
+ */
 trait UnregisterReceiver extends ContextWrapper with Destroyable {
   override def registerReceiver(receiver: BroadcastReceiver, filter: IntentFilter): android.content.Intent = {
     onDestroy {

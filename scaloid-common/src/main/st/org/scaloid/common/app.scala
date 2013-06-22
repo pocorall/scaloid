@@ -68,6 +68,8 @@ trait TraitActivity[V <: Activity] {
  *   onCreate(doSomething())
  * }}}
  *
+ * In contrast of method overriding, this shortcut can be called multiple times from different places of your code.
+ *
  */
 trait SActivity extends Activity with SContext with TraitActivity[SActivity] with Destroyable with Creatable with Registerable {
 
