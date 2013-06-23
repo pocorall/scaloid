@@ -304,6 +304,8 @@ object AndroidClassExtractor extends JavaConversionHelpers {
 
         val inputFilter = new FilterBuilder()
           .include(FilterBuilder.prefix("android"))
+          .exclude(".*Honeycomb.*")
+          .exclude(".*Compat.*")
 
         val r = new Reflections(new ConfigurationBuilder()
           .addClassLoaders(classLoaders: _*)
