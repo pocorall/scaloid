@@ -87,19 +87,6 @@ trait InterfaceImplicits {
 }
 object InterfaceImpliciits extends InterfaceImplicits
 
-trait ViewImplicits {
-  $implicitConversion(android.view.Menu)$
-  $implicitConversion(android.view.ContextMenu)$
-  $implicitConversion(android.view.View)$
-  $implicitConversion(android.view.ViewGroup)$
-  $implicitConversion(android.view.SurfaceView)$
-  $implicitConversion(android.view.ViewStub)$
-$if(ver.gte_14)$
-  $implicitConversion(android.view.ActionProvider)$
-$endif$
-}
-object ViewImplicits extends ViewImplicits
-
 
 trait Implicits extends ConversionImplicits with InterfaceImplicits with ViewImplicits with WidgetImplicits
 object Implicits extends Implicits

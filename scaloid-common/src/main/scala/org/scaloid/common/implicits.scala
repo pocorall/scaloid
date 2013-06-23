@@ -120,16 +120,6 @@ trait InterfaceImplicits {
 }
 object InterfaceImpliciits extends InterfaceImplicits
 
-trait ViewImplicits {
-  @inline implicit def menu2RichMenu[V <: android.view.Menu](menu: V) = new RichMenu[V](menu)
-  @inline implicit def contextMenu2RichContextMenu[V <: android.view.ContextMenu](contextMenu: V) = new RichContextMenu[V](contextMenu)
-  @inline implicit def view2RichView[V <: android.view.View](view: V) = new RichView[V](view)
-  @inline implicit def viewGroup2RichViewGroup[V <: android.view.ViewGroup](viewGroup: V) = new RichViewGroup[V](viewGroup)
-  @inline implicit def surfaceView2RichSurfaceView[V <: android.view.SurfaceView](surfaceView: V) = new RichSurfaceView[V](surfaceView)
-  @inline implicit def viewStub2RichViewStub[V <: android.view.ViewStub](viewStub: V) = new RichViewStub[V](viewStub)
-}
-object ViewImplicits extends ViewImplicits
-
 
 trait Implicits extends ConversionImplicits with InterfaceImplicits with ViewImplicits with WidgetImplicits
 object Implicits extends Implicits

@@ -82,3 +82,16 @@ $if(ver.gte_14)$
   $wholeClassDef(android.view.ActionProvider)$
 $endif$
 
+
+trait ViewImplicits {
+  $implicitConversion(android.view.View)$
+  $implicitConversion(android.view.ViewGroup)$
+  $implicitConversion(android.view.Menu)$
+  $implicitConversion(android.view.ContextMenu)$
+  $implicitConversion(android.view.SurfaceView)$
+  $implicitConversion(android.view.ViewStub)$
+$if(ver.gte_14)$
+  $implicitConversion(android.view.ActionProvider)$
+$endif$
+}
+object ViewImplicits extends ViewImplicits
