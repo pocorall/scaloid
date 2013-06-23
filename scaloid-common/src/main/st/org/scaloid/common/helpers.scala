@@ -27,8 +27,12 @@ trait AppHelpers {
 
   /**
    * Launches a new activity for a give uri. For example, opens a web browser for http protocols.
+   *
+   * {{{
+   *   openUri("http://scaloid.org")
+   * }}}
    */
-  def openUri(uri: Uri)(implicit context: Context) {
+  @inline def openUri(uri: Uri)(implicit context: Context) {
     context.startActivity(new Intent(Intent.ACTION_VIEW, uri))
   }
 
@@ -47,7 +51,20 @@ object AppHelpers extends AppHelpers
 
 
 trait ContentHelpers {
-
+  /**
+   * When you register BroadcastReceiver with Context.registerReceiver() you have to unregister it to prevent memory leak.
+   * Trait UnregisterReceiver handles these chores for you.
+   * All you need to do is append the trait to your class.
+     {{{
+   class MyService extends SService with UnregisterReceiver {
+     def func() {
+       // ...
+       registerReceiver(receiver, intentFilter)
+       // Done! automatically unregistered at UnregisterReceiverService.onDestroy()
+     }
+   }
+     }}}
+   */
   def broadcastReceiver(filter: IntentFilter)(onReceiveBody: (Context, Intent) => Any)(implicit ctx: Context, reg: Registerable) {
     val receiver = new BroadcastReceiver {
       def onReceive(context: Context, intent: Intent) {
@@ -66,6 +83,9 @@ object ContentHelpers extends ContentHelpers
 trait MediaHelpers {
   /**
    * Plays a sound from a given Uri.
+   * {{{
+   *   play("content://media/internal/audio/media/50")
+   * }}}
    */
   def play(uri: Uri = notificationSound)(implicit context: Context) {
     val r = RingtoneManager.getRingtone(context, uri)

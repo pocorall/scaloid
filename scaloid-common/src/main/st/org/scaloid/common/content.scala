@@ -64,6 +64,11 @@ $wholeClassDef(android.content.Context)$
 
 /**
  * Enriched trait of the class android.content.Context. To enable Scaloid support for subclasses android.content.Context, extend this trait.
+ *
+ * Refer the URL below for more details.
+ *
+ * [[https://github.com/pocorall/scaloid/?134#trait-scontext]]
+ *
  */
 trait SContext extends Context with TraitContext[SContext] with TagUtil {
   def basis: SContext = this
@@ -104,7 +109,14 @@ trait UnregisterReceiver extends ContextWrapper with Destroyable {
   }
 }
 
-
+/**
+ * Provides shortcut for intent creation.
+ *
+ * {{{
+ *   SIntent[MyActivity]
+ * }}}
+ *
+ */
 object SIntent {
   @inline def apply[T](implicit context: Context, mt: ClassTag[T]) = new Intent(context, mt.runtimeClass)
 
