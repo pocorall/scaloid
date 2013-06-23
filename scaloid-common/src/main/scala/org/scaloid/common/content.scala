@@ -233,6 +233,9 @@ object SContextWrapper {
  * See also: [[https://github.com/pocorall/scaloid/wiki/Basics#trait-unregisterreceiver]]
  */
 trait UnregisterReceiver extends ContextWrapper with Destroyable {
+  /**
+    * Internal implementation for (un)registering the receiver. You do not need to call this method.
+    */
   override def registerReceiver(receiver: BroadcastReceiver, filter: IntentFilter): android.content.Intent = {
     onDestroy {
       Log.i("ScalaUtils", "Unregister BroadcastReceiver: "+receiver)
@@ -250,7 +253,7 @@ trait UnregisterReceiver extends ContextWrapper with Destroyable {
 }
 
 /**
- * Provides shortcut for intent creation.
+ * Provides shortcuts for intent creation.
  *
  * {{{
  *   SIntent[MyActivity]
@@ -278,6 +281,9 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
   var onConnected = new EventSource0[Unit]
   var onDisconnected = new EventSource0[Unit]
 
+  /**
+   * Internal implementation for handling the service connection. You do not need to call this method.
+   */
   def onServiceConnected(p1: ComponentName, b: IBinder) {
     service = (b.asInstanceOf[LocalService#ScaloidServiceBinder]).service.asInstanceOf[S]
     componentName = p1
@@ -285,11 +291,17 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
     onConnected.run()
   }
 
+  /**
+   * Internal implementation for handling the service connection. You do not need to call this method.
+   */
   def onServiceDisconnected(p1: ComponentName) {
     service = null
     onDisconnected.run()
   }
 
+  /**
+   * Returns true if the service is currently connected.
+   */
   def connected: Boolean = service != null
 
   reg.onRegister {

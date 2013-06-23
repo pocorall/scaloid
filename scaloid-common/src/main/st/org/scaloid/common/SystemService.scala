@@ -21,6 +21,13 @@ import java.lang.CharSequence
 
 import language.implicitConversions
 
+/**
+ * Shortcuts for Android system services.
+ *
+ * Refer to the URL below:
+ *
+ * [[https://github.com/pocorall/scaloid/#system-services]]
+ */
 trait SystemService {
   $systemServiceHead(android.view.accessibility.AccessibilityManager)$
   $systemServiceHead(android.accounts.AccountManager)$

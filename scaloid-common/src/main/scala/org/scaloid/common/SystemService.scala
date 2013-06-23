@@ -54,6 +54,13 @@ import java.lang.CharSequence
 
 import language.implicitConversions
 
+/**
+ * Shortcuts for Android system services.
+ *
+ * Refer to the URL below:
+ *
+ * [[https://github.com/pocorall/scaloid/#system-services]]
+ */
 trait SystemService {
   @inline def accessibilityManager(implicit context: Context) =
     context.getSystemService(Context.ACCESSIBILITY_SERVICE).asInstanceOf[android.view.accessibility.AccessibilityManager]

@@ -214,7 +214,7 @@ trait ScreenOnActivity extends SActivity {
 /**
  * Enriched trait of the class android.app.Service. To enable Scaloid support for subclasses of android.app.Service, extend this trait.
  */
-trait SService extends Service with SContext with Destroyable with Creatable with Registerable{
+trait SService extends Service with SContext with Destroyable with Creatable with Registerable {
   override def basis = this
   override implicit val ctx = this
 
