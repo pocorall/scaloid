@@ -119,7 +119,7 @@ ClassExplicitArgs ::= [
 
 customBaseClassArgs() ::= <<$customConst(BaseClassArgs, ", ")$>>
 BaseClassArgs ::= [
-  "ArrayAdapter" : {context, android.R.layout.simple_spinner_item}
+  "ArrayAdapter" : {context, android.R.layout.simple_spinner_item, items}
 ]
 
 customClassImplicitArgs() ::= <<$customConst(ClassImplicitArgs, ", ")$>>

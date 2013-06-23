@@ -177,7 +177,7 @@ trait TraitArrayAdapter[V <: android.widget.ArrayAdapter[_]] extends TraitBaseAd
 * Automatically generated concrete helper class of android.widget.ArrayAdapter[_].
 */
 class SArrayAdapter[T <: AnyRef](items: Array[T])(implicit context: android.content.Context)
-    extends android.widget.ArrayAdapter[T](context, android.R.layout.simple_spinner_item) with TraitArrayAdapter[SArrayAdapter[T]] {
+    extends android.widget.ArrayAdapter[T](context, android.R.layout.simple_spinner_item, items) with TraitArrayAdapter[SArrayAdapter[T]] {
 
   def basis = this
   def setItem(view: TextView, pos: Int): TextView = {
