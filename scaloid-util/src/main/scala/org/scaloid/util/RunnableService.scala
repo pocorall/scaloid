@@ -1,5 +1,9 @@
 package org.scaloid.util
 
+
+/**
+ * A service that can be start and stop.
+ */
 trait RunnableService {
   var running: Boolean = false
   var startTime = 0L
@@ -25,6 +29,7 @@ object UpdateEvent extends Enumeration {
 }
 
 import UpdateEvent._
+
 
 abstract class RunnableServiceConnector(activity: SActivity) {
   def runnableService: RunnableService

@@ -5,7 +5,16 @@ import android.content.res.Configuration
 import java.util.Locale
 import android.util.DisplayMetrics
 
-
+/**
+ * Shortcuts for various device support.
+ *
+ * {{{
+ *   import org.scaloid.util.Config._
+ *
+ *   if(long) SButton("This button is only for a long layout")
+ *   if(dpi >= HDPI) SButton("You have a high resolution display!")
+ * }}}
+ */
 object Config {
   @inline def config(implicit context: Context) = context.getResources.getConfiguration
 
