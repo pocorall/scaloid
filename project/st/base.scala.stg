@@ -65,6 +65,7 @@ trait $helperTraitName(base)$[V <: $genType(base.tpe, true)$]$extendClause()$ {
 
   $properties(base)$
   $listeners(base)$
+  $intentMethods(base)$
 }
 >>
 
@@ -336,6 +337,12 @@ $unitListener(l)$
 >>
 
 listeners(base) ::= <<$base.listeners:listener(); separator="\n\n"$>>
+
+intentMethod(l) ::= <<
+@inline def $l.name$[T: ClassTag]$if(!l.zeroArgs)$($namedArgs(l.argTypes)$)$endif$(implicit context: Context): $genType(l.retType)$ = basis.$l.name$(SIntent[T]$if(!l.zeroArgs)$, $callArgs(l.argTypes); separator=", "$$endif$)
+>>
+
+intentMethods(base) ::= <<$base.intentMethods:intentMethod(); separator="\n\n"$>>
 
 
 // property

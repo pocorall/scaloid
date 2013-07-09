@@ -4,6 +4,8 @@ package org.scaloid.support.v4
 
 import org.scaloid.common._
 import android.support.v4.app._
+import reflect._
+import android.content._
 
 
 $wholeClassDef(android.support.v4.app.Fragment)$

@@ -4,6 +4,7 @@ package org.scaloid.common
 
 import android.content.{Context, SharedPreferences}
 import scala.language.dynamics
+import scala.reflect._
 
 @deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.", "2.0")
 class StringPreferences(preferences: SharedPreferences) extends Dynamic {

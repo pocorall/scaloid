@@ -37,6 +37,8 @@ package org.scaloid.support.v4
 
 import org.scaloid.common._
 import android.support.v4.app._
+import reflect._
+import android.content._
 
 
 /**
@@ -96,6 +98,9 @@ trait TraitFragment[V <: android.support.v4.app.Fragment] {
   @inline def view = basis.getView
 
 
+  @inline def startActivity[T: ClassTag](implicit context: Context): Unit = basis.startActivity(SIntent[T])
+
+  @inline def startActivityForResult[T: ClassTag](p: Int)(implicit context: Context): Unit = basis.startActivityForResult(SIntent[T], p)
 }
 
 /**

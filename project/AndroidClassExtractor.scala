@@ -91,6 +91,12 @@ object AndroidClassExtractor extends JavaConversionHelpers {
       name.matches("^(set|add).+Listener$") && !superMethods(methodSignature(m))
     }
 
+    def hasIntentAsParam(m: Method): Boolean = {
+      val params = m.getParameterTypes
+      if (params.length > 0) "android.content.Intent".equals(m.getParameterTypes.apply(0).getName) && !superMethods(methodSignature(m))
+      else false
+    }
+
     def isCallbackMethod(m: Method): Boolean =
       isAbstract(m) && !m.getName.startsWith("get")
 
@@ -101,20 +107,24 @@ object AndroidClassExtractor extends JavaConversionHelpers {
         .toList
         .sortBy(_.name)
 
-    val props: Seq[AndroidProperty] = {
-      def propName(m: Method) = {
-        val s = "^(get|is|set)".r.replaceAllIn(m.getName, "")
-        if (s.take(3).matches("[A-Z]{3}")) s
-        else s.head.toLowerCase + s.tail
-      }
+    def propName(name: String) = {
+      val s = "^(get|is|set)".r.replaceAllIn(name, "")
+      if (s.take(3).matches("[A-Z]{3}")) s
+      else s.head.toLower + s.tail
+    }
 
+    def isGetter(name: String) = name.matches("^(get|is)[^a-z].*")
+
+    def isSetter(name: String) = name.matches("^set[^a-z].*")
+
+    val props: Seq[AndroidProperty] = {
       val clsMethods = cls.getMethods
       val accessors = clsMethods.filter {
         m =>
           val name = m.getName
           val arity = m.getParameterTypes.length
           !superMethods(methodSignature(m)) && (
-            (arity == 0 && name.matches("^(get|is)[^a-z].*")) || (arity == 1 && name.matches("^set[^a-z].*"))
+            (arity == 0 && isGetter(name)) || (arity == 1 && isSetter(name))
             )
       }
         .filter {
@@ -124,7 +134,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
 
       val allMethodNames = clsMethods.map(_.getName).toSet
 
-      accessors.groupBy(propName(_)).map {
+      accessors.groupBy(m => propName(m.getName)).map {
         case (name, methods) =>
           val (_setters, _getters) = methods.filter {
             !_.toGenericString.contains("static")
@@ -143,6 +153,13 @@ object AndroidClassExtractor extends JavaConversionHelpers {
             Some(AndroidProperty(name, tpe, getter, setters, switch, nameClashes))
           }
       }.flatten.toSeq.sortBy(_.name)
+    }
+
+
+    def toAndroidIntentMethods(method: Method): AndroidIntentMethod = {
+      val am = toAndroidMethod(method)
+      val args = am.argTypes.tail
+      AndroidIntentMethod(method.getName, am.retType, args, args.length == 0)
     }
 
     def toAndroidListeners(method: Method): Seq[AndroidListener] = {
@@ -281,6 +298,8 @@ object AndroidClassExtractor extends JavaConversionHelpers {
         .sortBy(_.name)
         .toSeq)
 
+    val intentMethods = cls.getMethods.view.filter(hasIntentAsParam).map(toAndroidIntentMethods).sortBy(_.name).toSeq
+
     val constructors = cls.getConstructors
       .map(toScalaConstructor)
       .toSeq
@@ -290,7 +309,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
 
     val hasBlankConstructor = constructors.exists(_.explicitArgs.length == 0)
 
-    AndroidClass(clsName, pkg, tpe, parentType, constructors, props, listeners, isA, isAbstract(cls), isFinal(cls), hasBlankConstructor)
+    AndroidClass(clsName, pkg, tpe, parentType, constructors, props, listeners, intentMethods, isA, isAbstract(cls), isFinal(cls), hasBlankConstructor)
   }
 
   def extractTask = (moduleName, baseDirectory, streams) map {
@@ -304,7 +323,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
 
         val inputFilter = new FilterBuilder()
           .include(FilterBuilder.prefix("android"))
-          .exclude(".*Honeycomb.*")
+          .exclude(".*Honeycomb.*") // excluding some classes that depends on the Android library ABOVE 2.1.1
           .exclude(".*Compat.*")
 
         val r = new Reflections(new ConfigurationBuilder()

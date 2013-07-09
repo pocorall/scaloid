@@ -56,6 +56,13 @@ case class AndroidListener(
     (! setter.startsWith("set")) || callbackMethods.length == 1 || callbackMethods.forall(_.retType.name == "Unit")
 }
 
+case class AndroidIntentMethod (
+  name: String,
+  retType: ScalaType,
+  argTypes: Seq[ScalaType],
+  zeroArgs:Boolean
+)
+
 case class ScalaConstructor(
   args: Seq[Argument],
   implicitArgs: Seq[Argument],
@@ -72,6 +79,7 @@ case class AndroidClass(
   constructors: Seq[ScalaConstructor],
   properties: Seq[AndroidProperty],
   listeners: Seq[AndroidListener],
+  intentMethods: Seq[AndroidIntentMethod],
   isA: Set[String],
   isAbstract: Boolean,
   isFinal: Boolean,
