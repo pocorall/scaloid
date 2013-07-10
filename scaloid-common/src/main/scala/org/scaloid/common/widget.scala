@@ -5506,9 +5506,6 @@ trait TraitWebView[V <: android.webkit.WebView] extends TraitAbsoluteLayout[V] {
   @inline def webViewClient  (p: android.webkit.WebViewClient) =            webViewClient_=  (p)
   @inline def webViewClient_=(p: android.webkit.WebViewClient) = { basis.setWebViewClient    (p); basis }
 
-  @inline def zoomControls = basis.getZoomControls
-
-
   @inline def onDownloadStart(f: (java.lang.String, java.lang.String, java.lang.String, java.lang.String, Long) => Unit): V = {
     basis.setDownloadListener(new android.webkit.DownloadListener {
       def onDownloadStart(p1: java.lang.String, p2: java.lang.String, p3: java.lang.String, p4: java.lang.String, p5: Long): Unit = { f(p1, p2, p3, p4, p5) }

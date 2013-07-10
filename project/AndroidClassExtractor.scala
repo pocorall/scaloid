@@ -129,7 +129,8 @@ object AndroidClassExtractor extends JavaConversionHelpers {
       }
         .filter {
         m =>
-          !cls.getName.endsWith("Service") || !m.getName.equals("setForeground") // Android 2.1.1 has a weird undocumented method. manually ingore this.
+          (!cls.getName.endsWith("Service") || !m.getName.equals("setForeground")) && // Android 2.1.1 has a weird undocumented method. manually ingore this.
+            (!cls.getName.endsWith("WebView") || !m.getName.equals("getZoomControls")) //https://github.com/pocorall/scaloid/issues/56
       }
 
       val allMethodNames = clsMethods.map(_.getName).toSet
@@ -298,7 +299,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
         .sortBy(_.name)
         .toSeq)
 
-    val intentMethods = cls.getMethods.view.filter(hasIntentAsParam).map(toAndroidIntentMethods).sortBy(_.name).toSeq
+    val intentMethods = cls.getMethods.view.filter(hasIntentAsParam).map(toAndroidIntentMethods).sortBy(m => m.name + m.argTypes.length).toSeq
 
     val constructors = cls.getConstructors
       .map(toScalaConstructor)
