@@ -438,6 +438,21 @@ is reduced to:
 SIntent[MyActivity]
 ```
 
+When a method takes an `Intent` as a first parameter in which we want to pass the newly created intent object, the parameter can be omitted. For example:
+
+```scala
+startService(new Intent(context, classOf[MyService]))
+stopService(new Intent(context, classOf[MyService]))
+```
+
+is reduced to:
+
+```scala
+startService[MyService]
+stopService[MyService]
+```
+
+
 ##### Toast
 
 ```scala
@@ -895,19 +910,6 @@ class MyService extends SService with UnregisterReceiver {
 
 Trait `SContext` includes several shortcuts for frequently used android idioms, and inherits `TagUtil`.
 
-##### Starting and stopping service
-
-```scala
-startService(new Intent(context, classOf[MyService]))
-stopService(new Intent(context, classOf[MyService]))
-```
-
-is reduced to:
-
-```scala
-startService[MyService]
-stopService[MyService]
-```
 
 
 ##### Starting activity
