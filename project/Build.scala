@@ -11,7 +11,7 @@ object Dependencies {
 
   val android = "com.google.android" % "android" % "2.2.1" % "provided"
   val android_support_v4 = "com.google.android" % "support-v4" % "r7" % "provided"
-  val scaloidVersion = "2.2-8-SNAPSHOT"
+  val scaloidVersion = "2.2-8"
   val scaloid = "org.scaloid" %% "scaloid" % scaloidVersion
 }
 
@@ -90,7 +90,7 @@ object ScaloidBuild extends Build {
 
   lazy val support_v4 = Project("support-v4", file("scaloid-support-v4"))
     .settings(name := "scaloid-support-v4", exportJars := true)
-    .settings(version := "2.1.0-8")
+    .settings(version := "2.2.0-8")
     .settings(basicSettings: _*)
     .settings(scaloidSettings: _*)
     .settings(libraryDependencies += android_support_v4)
@@ -99,7 +99,7 @@ object ScaloidBuild extends Build {
 
   lazy val util = Project("util", file("scaloid-util"))
     .settings(name := "scaloid-util", exportJars := true)
-    .settings(version := "2.1.0-8")
+    .settings(version := "2.2.0-8")
     .settings(basicSettings: _*)
     .settings(scaloidSettings: _*)
     .settings(libraryDependencies += scaloid)
