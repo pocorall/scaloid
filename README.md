@@ -404,7 +404,7 @@ val inPixel2:Int = (22 sp)
 (_ => Any) => Runnable
 ```
 
-`Runnable` also covered with [rich](#enriched-implicit-classes) and [prefixed classes](#prefixed-classes).
+`Runnable` also covered with [rich](#enriched-implicit-classes) and [prefixed classes](https://github.com/pocorall/scaloid/wiki/Basics#prefixed-classes).
 
 There are more implicit conversions available. Check the source code as needed.
 
@@ -698,7 +698,7 @@ override def onCreate(savedInstanceState: Bundle) {
 // ... uses the button somewhere in other methods (e.g. changing text or adding listeners)
 ```
 
-[Prefixed classes](#prefixed-classes) in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. These methods also append the component to the layout context that enclose the component. 
+[Prefixed classes](https://github.com/pocorall/scaloid/wiki/Basics#prefixed-classes) in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. These methods also append the component to the layout context that enclose the component. 
 Therefore, the code block from the above example:
 
 ```scala
@@ -1062,94 +1062,11 @@ Note: Using `.apply(String)` method on object `STextView`, you can further reduc
 STextView("Hello") textSize 15
 ```
 
+**Further readings:**
 
-### Return value of setters
-
-Unlike most setters in the Android API, our setters return the object itself. This feature can be used as a syntactic sugar when setters need to be chained or a function returning some object. For example, a snippet of [Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList1.java?av=h) from ApiDemos that is shown below:
-
-```java
-public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-  TextView textView = getGenericView();
-  textView.setText(getGroup(groupPosition).toString());
-  return textView;
-}
-```
-
-is reduced to:
-
-```scala
-def getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View, parent: ViewGroup): View =
-  getGenericView.text = getGroup(groupPosition).toString
-```
-
-**Design considerations on returning values:** In C or Java, the assignment operator `=` returns a right hand side object. However, chaining assignment operator is very rarely used in these languages. Assigning the same value to multiple variables might means that your code is badly designed (except some context such as involving intensive mathematical computations). However, in Scala DSLs, setters return a left hand side object, and chaining setters are more frequent. For example:
-
-```scala
-getGenericView text "hello" maxHeight 8
-```
-
-### Prefixed classes
-
-If you want to use scala style getters/setters, implicit conversions do the magic on native Android objects:
-
-```scala
-val v: TextView = ...
-v.text = "Hello"    // Valid code. Implicit conversion handles this.
-```
-
-However, if you use it in constructors, the compiler will not find the correct implicit conversion:
-
-```scala
-def getInstance = new TextView(context) {
-  text = "Hello"    // Compilation Error.
-}
-```
-
-Therefore, we extended Android classes with the same name prefixed with the 'S' character:
-
-```scala
-def getInstance = new STextView {
-  text = "Hello"    // OK.
-}
-```
-
-These classes explicitly provide the extra methods that was provided implicitly.
-
-Aditionally, prefixed classes support [implicit context value](#context-as-an-implicit-parameter) and additional syntactic sugar. For example, many classes have `.apply(...)` methods for creating a new instance:
-
-```scala
-STextView("Hello")
-SButton("title", onClickBehavior())
-SIntent[MyActivity]
-```
-
-**Design considerations on making prefixed classes:** In modern programming language, using packages (or namespaces) are preferred than prefixing. However, when we use both classes from Android API and Scaloid, using a package name is more verbose than prefixing the class name itself (compare with `common.Button` and `SButton`) and can be confused when you use both classes at the same code. We choose pragmatism rather than discipline.
-
-### Sweet-little sugar
-
-If the setter ends with `...Enabled`, Scaloid adds functions named `enable...` and `disable...`. For example:
-
-```scala
-new SLinearLayout().disableVerticalScrollBar
-```
-
-is equivalent to:
-
-```scala
-new SLinearLayout().verticalScrollBarEnabled(false)
-```
-
-Because setting the property `orientation = VERTICAL` for `SLinearLayout` is frequently used, we provide a shorthand:
-
-```scala
-new SVerticalLayout()
-```
-
-that is equivalent to:
-
-```scala
-new SLinearLayout().orientation(LinearLayout.VERTICAL)
-```
+ * [Return value of setters](https://github.com/pocorall/scaloid/wiki/Basics#return-value-of-setters)
+ * [Prefixed classes](https://github.com/pocorall/scaloid/wiki/Basics#prefixed-classes)
+ * [Sweet-little sugar](https://github.com/pocorall/scaloid/wiki/Basics#sweet-little-sugar)
 
 
 ## Classes
