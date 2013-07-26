@@ -11,7 +11,12 @@ import android.util.DisplayMetrics
  * {{{
  *   import org.scaloid.util.Config._
  *
- *   if(long) SButton("This button is only for a long layout")
+ *   if(long) SButton("This button is shown only for a long screen dimension (" + width + ", " + height + ")")
+ *   if(landscape) SLinearLayout {
+ *     SButton("Buttons for")
+ *     SButton("landscape")
+ *     SButton("layout")
+ *   }
  *   if(dpi >= HDPI) SButton("You have a high resolution display!")
  * }}}
  */
