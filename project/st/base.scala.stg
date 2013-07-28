@@ -128,7 +128,7 @@ ClassImplicitArgs ::= [
   "View" : {parentVGroup: TraitViewGroup[_] = null}
 ]
 
-customClassBodies() ::= <<$customConst(CustomClassBodies, " ")$>>
+customClassBodies() ::= <<$customConst(CustomClassBodies, "")$>>
 CustomClassBodies ::= [
   "View" : {override val parentViewGroup = parentVGroup},
   "Button" : <<
@@ -136,6 +136,12 @@ def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: 
   this()
   this.text = text
   this.setOnClickListener(onClickListener)
+}
+>>,
+  "ImageButton" : <<
+def this(imageResource: Int)(implicit context: Context) = {
+  this()
+  this.imageResource = imageResource
 }
 >>
 ]
@@ -161,7 +167,6 @@ def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](txt: CharSequence)
   v
 }
 >>,
-
   "Button" : <<
 def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](text: CharSequence, onClickListener: (View) => Unit)
     (implicit context: Context, defaultLayoutParam: ($sClassName$) => LP): $sClassName$ = {
@@ -177,7 +182,15 @@ def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](text: CharSequence, onCl
   v
 }
 >>,
-
+   "ImageButton" : <<
+def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](imageResource: Int)
+    (implicit context: Context, defaultLayoutParam: ($sClassName$) => LP): $sClassName$ = {
+  val v = new $sClassName$
+  v.imageResource = imageResource
+  v.<<.parent.+=(v)
+  v
+}
+>>,
   "ArrayAdapter" : <<
 def apply[T <: AnyRef : Manifest](items: T*)(implicit context: Context): $sClassName$[T] = new $sClassName$(items.toArray)
 

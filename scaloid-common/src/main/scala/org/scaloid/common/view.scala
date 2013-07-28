@@ -478,7 +478,7 @@ class SView()(implicit context: android.content.Context, parentVGroup: TraitView
     extends android.view.View(context) with TraitView[SView] {
 
   def basis = this
-  override val parentViewGroup = parentVGroup 
+  override val parentViewGroup = parentVGroup
 
 }
 
@@ -817,7 +817,7 @@ class SSurfaceView()(implicit context: android.content.Context, parentVGroup: Tr
     extends android.view.SurfaceView(context) with TraitSurfaceView[SSurfaceView] {
 
   def basis = this
-  override val parentViewGroup = parentVGroup 
+  override val parentViewGroup = parentVGroup
 
 }
 
