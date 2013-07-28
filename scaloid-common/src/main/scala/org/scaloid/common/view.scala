@@ -97,6 +97,11 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
 
   @inline def padding: Int = 0
 
+  @inline def padding(p1: Int, p2: Int, p3: Int, p4: Int) = {
+    basis.setPadding(p1, p2, p3, p4)
+    basis
+  }
+
   @inline def animation = basis.getAnimation
   @inline def animation  (p: android.view.animation.Animation) =            animation_=  (p)
   @inline def animation_=(p: android.view.animation.Animation) = { basis.setAnimation    (p); basis }
@@ -473,7 +478,7 @@ class SView()(implicit context: android.content.Context, parentVGroup: TraitView
     extends android.view.View(context) with TraitView[SView] {
 
   def basis = this
-  override val parentViewGroup = parentVGroup
+  override val parentViewGroup = parentVGroup 
 
 }
 
@@ -812,7 +817,7 @@ class SSurfaceView()(implicit context: android.content.Context, parentVGroup: Tr
     extends android.view.SurfaceView(context) with TraitSurfaceView[SSurfaceView] {
 
   def basis = this
-  override val parentViewGroup = parentVGroup
+  override val parentViewGroup = parentVGroup 
 
 }
 

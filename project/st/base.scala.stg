@@ -130,7 +130,14 @@ ClassImplicitArgs ::= [
 
 customClassBodies() ::= <<$customConst(CustomClassBodies, " ")$>>
 CustomClassBodies ::= [
-  "View" : {override val parentViewGroup = parentVGroup}
+  "View" : {override val parentViewGroup = parentVGroup},
+  "Button" : <<
+def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+  this()
+  this.text = text
+  this.setOnClickListener(onClickListener)
+}
+>>
 ]
 
 customConstImplicitArgs() ::= <<$customConst(ConstImplicitArgs, ", ")$>>

@@ -44,6 +44,11 @@ val parentViewGroup: TraitViewGroup[_] = null
 @inline def padding(p: Int) = padding_=(p)
 
 @inline def padding: Int = 0
+
+@inline def padding(p1: Int, p2: Int, p3: Int, p4: Int) = {
+  basis.setPadding(p1, p2, p3, p4)
+  basis
+}
 >>
 
 
