@@ -329,6 +329,20 @@ object SImageButton {
     v
   }
 
+  def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](imageResource: Int, onClickListener: (View) => Unit)
+      (implicit context: Context, defaultLayoutParam: (SImageButton) => LP): SImageButton = {
+    apply(imageResource, func2ViewOnClickListener(onClickListener))
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](imageResource: Int, onClickListener: OnClickListener)
+      (implicit context: Context, defaultLayoutParam: (SImageButton) => LP): SImageButton = {
+    val v = new SImageButton
+    v.imageResource = imageResource
+    v.setOnClickListener(onClickListener)
+    v.<<.parent.+=(v)
+    v
+  }
+
 
 }
 
@@ -470,6 +484,20 @@ object SEditText {
     v
   }
 
+  def apply[LP <: ViewGroupLayoutParams[_, SEditText]](text: CharSequence, onClickListener: (View) => Unit)
+      (implicit context: Context, defaultLayoutParam: (SEditText) => LP): SEditText = {
+    apply(text, func2ViewOnClickListener(onClickListener))
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SEditText]](text: CharSequence, onClickListener: OnClickListener)
+      (implicit context: Context, defaultLayoutParam: (SEditText) => LP): SEditText = {
+    val v = new SEditText
+    v.text = text
+    v.setOnClickListener(onClickListener)
+    v.<<.parent.+=(v)
+    v
+  }
+
 }
 
 
@@ -573,6 +601,20 @@ object SImageView {
     v
   }
 
+  def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: Int, onClickListener: (View) => Unit)
+      (implicit context: Context, defaultLayoutParam: (SImageView) => LP): SImageView = {
+    apply(imageResource, func2ViewOnClickListener(onClickListener))
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: Int, onClickListener: OnClickListener)
+      (implicit context: Context, defaultLayoutParam: (SImageView) => LP): SImageView = {
+    val v = new SImageView
+    v.imageResource = imageResource
+    v.setOnClickListener(onClickListener)
+    v.<<.parent.+=(v)
+    v
+  }
+
 
 }
 
@@ -658,6 +700,20 @@ object SMultiAutoCompleteTextView {
       (implicit context: Context, defaultLayoutParam: (SMultiAutoCompleteTextView) => LP): SMultiAutoCompleteTextView =  {
     val v = new SMultiAutoCompleteTextView
     v text txt
+    v.<<.parent.+=(v)
+    v
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SMultiAutoCompleteTextView]](text: CharSequence, onClickListener: (View) => Unit)
+      (implicit context: Context, defaultLayoutParam: (SMultiAutoCompleteTextView) => LP): SMultiAutoCompleteTextView = {
+    apply(text, func2ViewOnClickListener(onClickListener))
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SMultiAutoCompleteTextView]](text: CharSequence, onClickListener: OnClickListener)
+      (implicit context: Context, defaultLayoutParam: (SMultiAutoCompleteTextView) => LP): SMultiAutoCompleteTextView = {
+    val v = new SMultiAutoCompleteTextView
+    v.text = text
+    v.setOnClickListener(onClickListener)
     v.<<.parent.+=(v)
     v
   }
@@ -1492,6 +1548,20 @@ object SChronometer {
     v
   }
 
+  def apply[LP <: ViewGroupLayoutParams[_, SChronometer]](text: CharSequence, onClickListener: (View) => Unit)
+      (implicit context: Context, defaultLayoutParam: (SChronometer) => LP): SChronometer = {
+    apply(text, func2ViewOnClickListener(onClickListener))
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SChronometer]](text: CharSequence, onClickListener: OnClickListener)
+      (implicit context: Context, defaultLayoutParam: (SChronometer) => LP): SChronometer = {
+    val v = new SChronometer
+    v.text = text
+    v.setOnClickListener(onClickListener)
+    v.<<.parent.+=(v)
+    v
+  }
+
 }
 
 
@@ -1566,6 +1636,20 @@ object SCheckedTextView {
       (implicit context: Context, defaultLayoutParam: (SCheckedTextView) => LP): SCheckedTextView =  {
     val v = new SCheckedTextView
     v text txt
+    v.<<.parent.+=(v)
+    v
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SCheckedTextView]](text: CharSequence, onClickListener: (View) => Unit)
+      (implicit context: Context, defaultLayoutParam: (SCheckedTextView) => LP): SCheckedTextView = {
+    apply(text, func2ViewOnClickListener(onClickListener))
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SCheckedTextView]](text: CharSequence, onClickListener: OnClickListener)
+      (implicit context: Context, defaultLayoutParam: (SCheckedTextView) => LP): SCheckedTextView = {
+    val v = new SCheckedTextView
+    v.text = text
+    v.setOnClickListener(onClickListener)
     v.<<.parent.+=(v)
     v
   }
@@ -2822,27 +2906,24 @@ object SRadioButton {
     v
   }
 
+  def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]](txt: CharSequence)
+      (implicit context: Context, defaultLayoutParam: (SRadioButton) => LP): SRadioButton =  {
+    val v = new SRadioButton
+    v text txt
+    v.<<.parent.+=(v)
+    v
+  }
+
   def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]](text: CharSequence, onClickListener: (View) => Unit)
       (implicit context: Context, defaultLayoutParam: (SRadioButton) => LP): SRadioButton = {
     apply(text, func2ViewOnClickListener(onClickListener))
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]](text: CharSequence, onClickListener: OnClickListener = {})
+  def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]](text: CharSequence, onClickListener: OnClickListener)
       (implicit context: Context, defaultLayoutParam: (SRadioButton) => LP): SRadioButton = {
     val v = new SRadioButton
     v.text = text
     v.setOnClickListener(onClickListener)
-    v.<<.parent.+=(v)
-    v
-  }
-
-
-
-
-  def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]](txt: CharSequence)
-      (implicit context: Context, defaultLayoutParam: (SRadioButton) => LP): SRadioButton =  {
-    val v = new SRadioButton
-    v text txt
     v.<<.parent.+=(v)
     v
   }
@@ -2906,6 +2987,20 @@ object SQuickContactBadge {
     v
   }
 
+  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: Int, onClickListener: (View) => Unit)
+      (implicit context: Context, defaultLayoutParam: (SQuickContactBadge) => LP): SQuickContactBadge = {
+    apply(imageResource, func2ViewOnClickListener(onClickListener))
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: Int, onClickListener: OnClickListener)
+      (implicit context: Context, defaultLayoutParam: (SQuickContactBadge) => LP): SQuickContactBadge = {
+    val v = new SQuickContactBadge
+    v.imageResource = imageResource
+    v.setOnClickListener(onClickListener)
+    v.<<.parent.+=(v)
+    v
+  }
+
 
 }
 
@@ -2949,6 +3044,20 @@ object SDigitalClock {
       (implicit context: Context, defaultLayoutParam: (SDigitalClock) => LP): SDigitalClock =  {
     val v = new SDigitalClock
     v text txt
+    v.<<.parent.+=(v)
+    v
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SDigitalClock]](text: CharSequence, onClickListener: (View) => Unit)
+      (implicit context: Context, defaultLayoutParam: (SDigitalClock) => LP): SDigitalClock = {
+    apply(text, func2ViewOnClickListener(onClickListener))
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SDigitalClock]](text: CharSequence, onClickListener: OnClickListener)
+      (implicit context: Context, defaultLayoutParam: (SDigitalClock) => LP): SDigitalClock = {
+    val v = new SDigitalClock
+    v.text = text
+    v.setOnClickListener(onClickListener)
     v.<<.parent.+=(v)
     v
   }
@@ -3005,27 +3114,24 @@ object SToggleButton {
     v
   }
 
+  def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]](txt: CharSequence)
+      (implicit context: Context, defaultLayoutParam: (SToggleButton) => LP): SToggleButton =  {
+    val v = new SToggleButton
+    v text txt
+    v.<<.parent.+=(v)
+    v
+  }
+
   def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]](text: CharSequence, onClickListener: (View) => Unit)
       (implicit context: Context, defaultLayoutParam: (SToggleButton) => LP): SToggleButton = {
     apply(text, func2ViewOnClickListener(onClickListener))
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]](text: CharSequence, onClickListener: OnClickListener = {})
+  def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]](text: CharSequence, onClickListener: OnClickListener)
       (implicit context: Context, defaultLayoutParam: (SToggleButton) => LP): SToggleButton = {
     val v = new SToggleButton
     v.text = text
     v.setOnClickListener(onClickListener)
-    v.<<.parent.+=(v)
-    v
-  }
-
-
-
-
-  def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]](txt: CharSequence)
-      (implicit context: Context, defaultLayoutParam: (SToggleButton) => LP): SToggleButton =  {
-    val v = new SToggleButton
-    v text txt
     v.<<.parent.+=(v)
     v
   }
@@ -3074,27 +3180,24 @@ object SButton {
     v
   }
 
+  def apply[LP <: ViewGroupLayoutParams[_, SButton]](txt: CharSequence)
+      (implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton =  {
+    val v = new SButton
+    v text txt
+    v.<<.parent.+=(v)
+    v
+  }
+
   def apply[LP <: ViewGroupLayoutParams[_, SButton]](text: CharSequence, onClickListener: (View) => Unit)
       (implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton = {
     apply(text, func2ViewOnClickListener(onClickListener))
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SButton]](text: CharSequence, onClickListener: OnClickListener = {})
+  def apply[LP <: ViewGroupLayoutParams[_, SButton]](text: CharSequence, onClickListener: OnClickListener)
       (implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton = {
     val v = new SButton
     v.text = text
     v.setOnClickListener(onClickListener)
-    v.<<.parent.+=(v)
-    v
-  }
-
-
-
-
-  def apply[LP <: ViewGroupLayoutParams[_, SButton]](txt: CharSequence)
-      (implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton =  {
-    val v = new SButton
-    v text txt
     v.<<.parent.+=(v)
     v
   }
@@ -3143,27 +3246,24 @@ object SCheckBox {
     v
   }
 
+  def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]](txt: CharSequence)
+      (implicit context: Context, defaultLayoutParam: (SCheckBox) => LP): SCheckBox =  {
+    val v = new SCheckBox
+    v text txt
+    v.<<.parent.+=(v)
+    v
+  }
+
   def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]](text: CharSequence, onClickListener: (View) => Unit)
       (implicit context: Context, defaultLayoutParam: (SCheckBox) => LP): SCheckBox = {
     apply(text, func2ViewOnClickListener(onClickListener))
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]](text: CharSequence, onClickListener: OnClickListener = {})
+  def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]](text: CharSequence, onClickListener: OnClickListener)
       (implicit context: Context, defaultLayoutParam: (SCheckBox) => LP): SCheckBox = {
     val v = new SCheckBox
     v.text = text
     v.setOnClickListener(onClickListener)
-    v.<<.parent.+=(v)
-    v
-  }
-
-
-
-
-  def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]](txt: CharSequence)
-      (implicit context: Context, defaultLayoutParam: (SCheckBox) => LP): SCheckBox =  {
-    val v = new SCheckBox
-    v text txt
     v.<<.parent.+=(v)
     v
   }
@@ -3924,6 +4024,20 @@ object SZoomButton {
     v
   }
 
+  def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](imageResource: Int, onClickListener: (View) => Unit)
+      (implicit context: Context, defaultLayoutParam: (SZoomButton) => LP): SZoomButton = {
+    apply(imageResource, func2ViewOnClickListener(onClickListener))
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](imageResource: Int, onClickListener: OnClickListener)
+      (implicit context: Context, defaultLayoutParam: (SZoomButton) => LP): SZoomButton = {
+    val v = new SZoomButton
+    v.imageResource = imageResource
+    v.setOnClickListener(onClickListener)
+    v.<<.parent.+=(v)
+    v
+  }
+
 
 }
 
@@ -4553,6 +4667,20 @@ object STextView {
     v
   }
 
+  def apply[LP <: ViewGroupLayoutParams[_, STextView]](text: CharSequence, onClickListener: (View) => Unit)
+      (implicit context: Context, defaultLayoutParam: (STextView) => LP): STextView = {
+    apply(text, func2ViewOnClickListener(onClickListener))
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, STextView]](text: CharSequence, onClickListener: OnClickListener)
+      (implicit context: Context, defaultLayoutParam: (STextView) => LP): STextView = {
+    val v = new STextView
+    v.text = text
+    v.setOnClickListener(onClickListener)
+    v.<<.parent.+=(v)
+    v
+  }
+
 }
 
 
@@ -4836,6 +4964,20 @@ object SAutoCompleteTextView {
     v
   }
 
+  def apply[LP <: ViewGroupLayoutParams[_, SAutoCompleteTextView]](text: CharSequence, onClickListener: (View) => Unit)
+      (implicit context: Context, defaultLayoutParam: (SAutoCompleteTextView) => LP): SAutoCompleteTextView = {
+    apply(text, func2ViewOnClickListener(onClickListener))
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SAutoCompleteTextView]](text: CharSequence, onClickListener: OnClickListener)
+      (implicit context: Context, defaultLayoutParam: (SAutoCompleteTextView) => LP): SAutoCompleteTextView = {
+    val v = new SAutoCompleteTextView
+    v.text = text
+    v.setOnClickListener(onClickListener)
+    v.<<.parent.+=(v)
+    v
+  }
+
 }
 
 
@@ -4939,6 +5081,20 @@ object SExtractEditText {
       (implicit context: Context, defaultLayoutParam: (SExtractEditText) => LP): SExtractEditText =  {
     val v = new SExtractEditText
     v text txt
+    v.<<.parent.+=(v)
+    v
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SExtractEditText]](text: CharSequence, onClickListener: (View) => Unit)
+      (implicit context: Context, defaultLayoutParam: (SExtractEditText) => LP): SExtractEditText = {
+    apply(text, func2ViewOnClickListener(onClickListener))
+  }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SExtractEditText]](text: CharSequence, onClickListener: OnClickListener)
+      (implicit context: Context, defaultLayoutParam: (SExtractEditText) => LP): SExtractEditText = {
+    val v = new SExtractEditText
+    v.text = text
+    v.setOnClickListener(onClickListener)
     v.<<.parent.+=(v)
     v
   }

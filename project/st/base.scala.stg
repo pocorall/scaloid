@@ -166,14 +166,13 @@ def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](txt: CharSequence)
   v.<<.parent.+=(v)
   v
 }
->>,
-  "Button" : <<
+
 def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](text: CharSequence, onClickListener: (View) => Unit)
     (implicit context: Context, defaultLayoutParam: ($sClassName$) => LP): $sClassName$ = {
   apply(text, func2ViewOnClickListener(onClickListener))
 }
 
-def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](text: CharSequence, onClickListener: OnClickListener = {})
+def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](text: CharSequence, onClickListener: OnClickListener)
     (implicit context: Context, defaultLayoutParam: ($sClassName$) => LP): $sClassName$ = {
   val v = new $sClassName$
   v.text = text
@@ -187,6 +186,20 @@ def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](imageResource: Int)
     (implicit context: Context, defaultLayoutParam: ($sClassName$) => LP): $sClassName$ = {
   val v = new $sClassName$
   v.imageResource = imageResource
+  v.<<.parent.+=(v)
+  v
+}
+
+def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](imageResource: Int, onClickListener: (View) => Unit)
+    (implicit context: Context, defaultLayoutParam: ($sClassName$) => LP): $sClassName$ = {
+  apply(imageResource, func2ViewOnClickListener(onClickListener))
+}
+
+def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](imageResource: Int, onClickListener: OnClickListener)
+    (implicit context: Context, defaultLayoutParam: ($sClassName$) => LP): $sClassName$ = {
+  val v = new $sClassName$
+  v.imageResource = imageResource
+  v.setOnClickListener(onClickListener)
   v.<<.parent.+=(v)
   v
 }
