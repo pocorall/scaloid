@@ -466,6 +466,18 @@ class SEditText()(implicit context: android.content.Context, parentVGroup: Trait
 
   def basis = this
   override val parentViewGroup = parentVGroup
+  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
+  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
 
 }
 
@@ -686,6 +698,18 @@ class SMultiAutoCompleteTextView()(implicit context: android.content.Context, pa
 
   def basis = this
   override val parentViewGroup = parentVGroup
+  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
+  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
 
 }
 
@@ -1530,6 +1554,18 @@ class SChronometer()(implicit context: android.content.Context, parentVGroup: Tr
 
   def basis = this
   override val parentViewGroup = parentVGroup
+  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
+  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
 
 }
 
@@ -1622,6 +1658,18 @@ class SCheckedTextView()(implicit context: android.content.Context, parentVGroup
 
   def basis = this
   override val parentViewGroup = parentVGroup
+  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
+  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
 
 }
 
@@ -2896,6 +2944,12 @@ class SRadioButton()(implicit context: android.content.Context, parentVGroup: Tr
     this.setOnClickListener(onClickListener)
   }
 
+  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
 
 }
 
@@ -3030,6 +3084,18 @@ class SDigitalClock()(implicit context: android.content.Context, parentVGroup: T
 
   def basis = this
   override val parentViewGroup = parentVGroup
+  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
+  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
 
 }
 
@@ -3104,6 +3170,12 @@ class SToggleButton()(implicit context: android.content.Context, parentVGroup: T
     this.setOnClickListener(onClickListener)
   }
 
+  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
 
 }
 
@@ -3170,6 +3242,12 @@ class SButton()(implicit context: android.content.Context, parentVGroup: TraitVi
     this.setOnClickListener(onClickListener)
   }
 
+  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
 
 }
 
@@ -3231,6 +3309,12 @@ class SCheckBox()(implicit context: android.content.Context, parentVGroup: Trait
   def basis = this
   override val parentViewGroup = parentVGroup
   def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
+  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
     this()
     this.text = text
     this.setOnClickListener(onClickListener)
@@ -4649,6 +4733,18 @@ class STextView()(implicit context: android.content.Context, parentVGroup: Trait
 
   def basis = this
   override val parentViewGroup = parentVGroup
+  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
+  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
 
 }
 
@@ -4946,6 +5042,18 @@ class SAutoCompleteTextView()(implicit context: android.content.Context, parentV
 
   def basis = this
   override val parentViewGroup = parentVGroup
+  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
+  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
 
 }
 
@@ -5067,6 +5175,18 @@ class SExtractEditText()(implicit context: android.content.Context, parentVGroup
 
   def basis = this
   override val parentViewGroup = parentVGroup
+  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
+  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
+    this()
+    this.text = text
+    this.setOnClickListener(onClickListener)
+  }
+
 
 }
 
