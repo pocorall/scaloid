@@ -138,7 +138,7 @@ def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: 
   this.setOnClickListener(onClickListener)
 }
 >>,
-  "ImageButton" : <<
+  "ImageView" : <<
 def this(imageResource: Int)(implicit context: Context) = {
   this()
   this.imageResource = imageResource
@@ -182,7 +182,7 @@ def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](text: CharSequence, onCl
   v
 }
 >>,
-   "ImageButton" : <<
+   "ImageView" : <<
 def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](imageResource: Int)
     (implicit context: Context, defaultLayoutParam: ($sClassName$) => LP): $sClassName$ = {
   val v = new $sClassName$

@@ -220,6 +220,7 @@ object SArrayAdapter {
   def apply[T <: AnyRef](items: Array[T])(implicit context: Context): SArrayAdapter[T] = new SArrayAdapter(items)
 
 
+
 }
 
 
@@ -327,7 +328,6 @@ object SImageButton {
     v.<<.parent.+=(v)
     v
   }
-
 
 
 }
@@ -550,6 +550,11 @@ class SImageView()(implicit context: android.content.Context, parentVGroup: Trai
 
   def basis = this
   override val parentViewGroup = parentVGroup
+  def this(imageResource: Int)(implicit context: Context) = {
+    this()
+    this.imageResource = imageResource
+  }
+
 
 }
 
@@ -559,6 +564,15 @@ object SImageView {
     v.<<.parent.+=(v)
     v
   }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: Int)
+      (implicit context: Context, defaultLayoutParam: (SImageView) => LP): SImageView = {
+    val v = new SImageView
+    v.imageResource = imageResource
+    v.<<.parent.+=(v)
+    v
+  }
+
 
 }
 
@@ -2869,6 +2883,11 @@ class SQuickContactBadge()(implicit context: android.content.Context, parentVGro
 
   def basis = this
   override val parentViewGroup = parentVGroup
+  def this(imageResource: Int)(implicit context: Context) = {
+    this()
+    this.imageResource = imageResource
+  }
+
 
 }
 
@@ -2878,6 +2897,15 @@ object SQuickContactBadge {
     v.<<.parent.+=(v)
     v
   }
+
+  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: Int)
+      (implicit context: Context, defaultLayoutParam: (SQuickContactBadge) => LP): SQuickContactBadge = {
+    val v = new SQuickContactBadge
+    v.imageResource = imageResource
+    v.<<.parent.+=(v)
+    v
+  }
+
 
 }
 
@@ -3895,7 +3923,6 @@ object SZoomButton {
     v.<<.parent.+=(v)
     v
   }
-
 
 
 }
