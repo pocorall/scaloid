@@ -4395,8 +4395,15 @@ class RichTextView[V <: android.widget.TextView](val basis: V) extends TraitText
 trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
 
-   def hi = "hello"
+  import android.graphics.drawable.Drawable
 
+   def drawableLeft(img: Drawable) = basis.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+
+   def drawableTop(img: Drawable) = basis.setCompoundDrawablesWithIntrinsicBounds(null, img, null, null)
+
+   def drawableRight(img: Drawable) = basis.setCompoundDrawablesWithIntrinsicBounds(null, null, img, null)
+
+   def drawableBottom(img: Drawable) = basis.setCompoundDrawablesWithIntrinsicBounds(null, null, null, img)
 
   @inline def autoLinkMask = basis.getAutoLinkMask
   @inline def autoLinkMask  (p: Int) =            autoLinkMask_=  (p)

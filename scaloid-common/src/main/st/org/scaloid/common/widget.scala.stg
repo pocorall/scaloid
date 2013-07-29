@@ -20,8 +20,15 @@ class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PAREN
 >>
 
 TextView_traitBody() ::= <<
- def hi = "hello"
+import android.graphics.drawable.Drawable
 
+ def drawableLeft(img: Drawable) = basis.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null)
+
+ def drawableTop(img: Drawable) = basis.setCompoundDrawablesWithIntrinsicBounds(null, img, null, null)
+
+ def drawableRight(img: Drawable) = basis.setCompoundDrawablesWithIntrinsicBounds(null, null, img, null)
+
+ def drawableBottom(img: Drawable) = basis.setCompoundDrawablesWithIntrinsicBounds(null, null, null, img)
 >>
 
 RelativeLayout_concreteBody() ::= <<
