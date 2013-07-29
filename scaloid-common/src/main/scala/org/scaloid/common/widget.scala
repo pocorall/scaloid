@@ -4395,6 +4395,7 @@ class RichTextView[V <: android.widget.TextView](val basis: V) extends TraitText
 trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
 
+   def hi = "hello"
 
 
   @inline def autoLinkMask = basis.getAutoLinkMask

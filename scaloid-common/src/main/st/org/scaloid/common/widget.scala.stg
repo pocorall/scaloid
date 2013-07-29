@@ -19,6 +19,10 @@ class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PAREN
 }
 >>
 
+TextView_traitBody() ::= <<
+ def hi = "hello"
+
+>>
 
 RelativeLayout_concreteBody() ::= <<
 implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
