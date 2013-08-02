@@ -205,13 +205,29 @@ def setItem(view: TextView, pos: Int): TextView = {
 
 override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
   val v = super.getView(position, convertView, parent)
-  if (_style != null) _style(v.asInstanceOf[TextView]) else v
+  styles(v)
 }
 
-private var _style: TextView => TextView = null
+class Stylizer {
+  val styles = new ArrayBuffer[View PartialFunction View]
 
-def style(v: TextView => TextView) = {
-  _style = v
+  def apply(v: View PartialFunction View) = {
+    styles += v
+  }
+
+  def apply(v: View) = {
+    var viw = v
+    styles.foreach { st =>
+      if (st.isDefinedAt(viw)) viw = st(viw)
+    }
+    viw
+  }
+}
+
+protected val styles = new Stylizer
+
+def style(v: View PartialFunction View) = {
+  styles(v)
   this
 }
 
@@ -220,10 +236,10 @@ override def getDropDownView(position: Int, convertView: View, parent: ViewGroup
   if (_dropDownStyle != null) _dropDownStyle(v.asInstanceOf[TextView]) else v
 }
 
-private var _dropDownStyle: TextView => TextView = null
+protected val dropDownStyles = new Stylizer
 
-def dropDownStyle(v: TextView => TextView) = {
-  _dropDownStyle = v
+def dropDownStyle(v: View PartialFunction View) = {
+  dropDownStyles(v)
   this
 }
 >>

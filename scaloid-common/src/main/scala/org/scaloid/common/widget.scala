@@ -190,13 +190,29 @@ class SArrayAdapter[T <: AnyRef](items: Array[T])(implicit context: android.cont
 
   override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
     val v = super.getView(position, convertView, parent)
-    if (_style != null) _style(v.asInstanceOf[TextView]) else v
+    styles(v)
   }
 
-  private var _style: TextView => TextView = null
+  class Stylizer {
+    val styles = new ArrayBuffer[View PartialFunction View]
 
-  def style(v: TextView => TextView) = {
-    _style = v
+    def apply(v: View PartialFunction View) = {
+      styles += v
+    }
+
+    def apply(v: View) = {
+      var viw = v
+      styles.foreach { st =>
+        if (st.isDefinedAt(viw)) viw = st(viw)
+      }
+      viw
+    }
+  }
+
+  protected val styles = new Stylizer
+
+  def style(v: View PartialFunction View) = {
+    styles(v)
     this
   }
 
@@ -205,19 +221,19 @@ class SArrayAdapter[T <: AnyRef](items: Array[T])(implicit context: android.cont
     if (_dropDownStyle != null) _dropDownStyle(v.asInstanceOf[TextView]) else v
   }
 
-  private var _dropDownStyle: TextView => TextView = null
+  protected val dropDownStyles = new Stylizer
 
-  def dropDownStyle(v: TextView => TextView) = {
-    _dropDownStyle = v
+  def dropDownStyle(v: View PartialFunction View) = {
+    dropDownStyles(v)
     this
   }
 }
 
 object SArrayAdapter {
 
-  def apply[T <: AnyRef : Manifest](items: T*)(implicit context: Context): SArrayAdapter[T] = new SArrayAdapter(items.toArray)
+  def apply[T <: AnyRef : Manifest](items: T*)(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](items.toArray)
 
-  def apply[T <: AnyRef](items: Array[T])(implicit context: Context): SArrayAdapter[T] = new SArrayAdapter(items)
+  def apply[T <: AnyRef](items: Array[T])(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](items)
 
 
 
