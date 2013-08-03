@@ -149,7 +149,8 @@ object AndroidClassExtractor extends JavaConversionHelpers {
           else {
             val nameClashes = allMethodNames(name) || superGetterExists
             val tpe = getter.map(_.retType).getOrElse(setters.first.argTypes.first)
-            val switch = if (name.endsWith("Enabled")) Some(name.replace("Enabled", "").capitalize) else None
+            val switch = if (name.endsWith("Enabled")) Some(name.replace("Enabled", "").capitalize)
+            else if (name.equals("enabled")) Some("") else None
 
             Some(AndroidProperty(name, tpe, getter, setters, switch, nameClashes))
           }

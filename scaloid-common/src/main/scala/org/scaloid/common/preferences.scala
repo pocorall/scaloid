@@ -169,6 +169,9 @@ trait TraitPreference[V <: android.preference.Preference] {
   @inline def enabled = basis.isEnabled
   @inline def enabled  (p: Boolean) =            enabled_=  (p)
   @inline def enabled_=(p: Boolean) = { basis.setEnabled    (p); basis }
+  @inline def  enable               = { basis.setEnabled(true ); basis }
+  @inline def disable               = { basis.setEnabled(false); basis }
+
 
   @inline def intent = basis.getIntent
   @inline def intent  (p: android.content.Intent) =            intent_=  (p)

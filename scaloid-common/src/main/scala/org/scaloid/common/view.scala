@@ -167,6 +167,9 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
   @inline def enabled = basis.isEnabled
   @inline def enabled  (p: Boolean) =            enabled_=  (p)
   @inline def enabled_=(p: Boolean) = { basis.setEnabled    (p); basis }
+  @inline def  enable               = { basis.setEnabled(true ); basis }
+  @inline def disable               = { basis.setEnabled(false); basis }
+
 
   @inline def fadingEdgeLength(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'fadingEdgeLength'")
   @inline def fadingEdgeLength  (p: Int) =            fadingEdgeLength_=  (p)
