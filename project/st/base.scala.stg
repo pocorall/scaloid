@@ -125,12 +125,12 @@ SimpleGenericsArgs ::= [
 
 customClassExplicitArgs() ::= <<$customConst(ClassExplicitArgs, ", ")$>>
 ClassExplicitArgs ::= [
-  "ArrayAdapter" : {items: Array[T]}
+  "ArrayAdapter" : {items: Array[T], textViewResourceId: Int = android.R.layout.simple_spinner_item}
 ]
 
 customBaseClassArgs() ::= <<$customConst(BaseClassArgs, ", ")$>>
 BaseClassArgs ::= [
-  "ArrayAdapter" : {context, android.R.layout.simple_spinner_item, items}
+  "ArrayAdapter" : {context, textViewResourceId, items}
 ]
 
 customClassImplicitArgs() ::= <<$customConst(ClassImplicitArgs, ", ")$>>
@@ -223,7 +223,11 @@ def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](imageResource: Int, onCl
   "ArrayAdapter" : <<
 def apply[T <: AnyRef : Manifest](items: T*)(implicit context: Context): $sClassName$[TextView, T] = new $sClassName$[TextView, T](items.toArray)
 
+def apply[T <: AnyRef : Manifest](textViewResourceId: Int, items: T*)(implicit context: Context): $sClassName$[TextView, T] = new $sClassName$[TextView, T](items.toArray, textViewResourceId)
+
 def apply[T <: AnyRef](items: Array[T])(implicit context: Context): $sClassName$[TextView, T] = new $sClassName$[TextView, T](items)
+
+def apply[T <: AnyRef](textViewResourceId: Int, items: Array[T])(implicit context: Context): $sClassName$[TextView, T] = new $sClassName$[TextView, T](items, textViewResourceId)
 >>
 ]
 

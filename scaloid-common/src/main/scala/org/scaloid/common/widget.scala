@@ -176,8 +176,8 @@ trait TraitArrayAdapter[V <: android.widget.ArrayAdapter[_]] extends TraitBaseAd
 /**
 * Automatically generated concrete helper class of android.widget.ArrayAdapter[_].
 */
-class SArrayAdapter[V <: android.view.View, T <: AnyRef](items: Array[T])(implicit context: android.content.Context)
-    extends android.widget.ArrayAdapter[T](context, android.R.layout.simple_spinner_item, items) with TraitArrayAdapter[SArrayAdapter[V, T]] {
+class SArrayAdapter[V <: android.view.View, T <: AnyRef](items: Array[T], textViewResourceId: Int = android.R.layout.simple_spinner_item)(implicit context: android.content.Context)
+    extends android.widget.ArrayAdapter[T](context, textViewResourceId, items) with TraitArrayAdapter[SArrayAdapter[V, T]] {
 
   def basis = this
   def setItem(view: TextView, pos: Int): TextView = {
@@ -217,7 +217,11 @@ object SArrayAdapter {
 
   def apply[T <: AnyRef : Manifest](items: T*)(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](items.toArray)
 
+  def apply[T <: AnyRef : Manifest](textViewResourceId: Int, items: T*)(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](items.toArray, textViewResourceId)
+
   def apply[T <: AnyRef](items: Array[T])(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](items)
+
+  def apply[T <: AnyRef](textViewResourceId: Int, items: Array[T])(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](items, textViewResourceId)
 
 
 
