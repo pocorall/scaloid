@@ -79,7 +79,7 @@ $if(base.hasBlankConstructor || ClassBodies.(name) || FullConstructors.(name))$
 * Automatically generated concrete helper class of $genType(base.tpe, true)$.
 */
 class $sClassName$$customClassGenerics()$($customClassExplicitArgs()$)$classImplicitArgs()$
-    extends $baseClassInstance()$ with $helperTraitName(base)$[$sClassName$$typeVar(base.tpe)$] {
+    extends $baseClassInstance()$ with $helperTraitName(base)$[$sClassName$$customSimpleClassGenerics()$] {
 
   def basis = this
   $customClassBodies()$
@@ -115,7 +115,12 @@ ConstTypeParams ::= [
 
 customClassGenerics() ::= <<$customConst(GenericsArgs, ", ")$>>
 GenericsArgs ::= [
-  "ArrayAdapter" : {[T <: AnyRef]}
+  "ArrayAdapter" : {[V <: android.view.View, T <: AnyRef]}
+]
+
+customSimpleClassGenerics() ::= <<$customConst(SimpleGenericsArgs, ", ")$>>
+SimpleGenericsArgs ::= [
+  "ArrayAdapter" : {[V, T]}
 ]
 
 customClassExplicitArgs() ::= <<$customConst(ClassExplicitArgs, ", ")$>>

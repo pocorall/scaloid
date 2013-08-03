@@ -176,8 +176,8 @@ trait TraitArrayAdapter[V <: android.widget.ArrayAdapter[_]] extends TraitBaseAd
 /**
 * Automatically generated concrete helper class of android.widget.ArrayAdapter[_].
 */
-class SArrayAdapter[T <: AnyRef](items: Array[T])(implicit context: android.content.Context)
-    extends android.widget.ArrayAdapter[T](context, android.R.layout.simple_spinner_item, items) with TraitArrayAdapter[SArrayAdapter[T]] {
+class SArrayAdapter[V <: android.view.View, T <: AnyRef](items: Array[T])(implicit context: android.content.Context)
+    extends android.widget.ArrayAdapter[T](context, android.R.layout.simple_spinner_item, items) with TraitArrayAdapter[SArrayAdapter[V, T]] {
 
   def basis = this
   def setItem(view: TextView, pos: Int): TextView = {
@@ -190,41 +190,25 @@ class SArrayAdapter[T <: AnyRef](items: Array[T])(implicit context: android.cont
 
   override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
     val v = super.getView(position, convertView, parent)
-    styles(v)
+    if (_style != null) _style(v.asInstanceOf[V]) else v
   }
 
-  class Stylizer {
-    val styles = new ArrayBuffer[View PartialFunction View]
+  protected var _style: V => V = null
 
-    def apply(v: View PartialFunction View) = {
-      styles += v
-    }
-
-    def apply(v: View) = {
-      var viw = v
-      styles.foreach { st =>
-        if (st.isDefinedAt(viw)) viw = st(viw)
-      }
-      viw
-    }
-  }
-
-  protected val styles = new Stylizer
-
-  def style(v: View PartialFunction View) = {
-    styles(v)
+  def style(v: V => V) = {
+    _style = v
     this
   }
 
   override def getDropDownView(position: Int, convertView: View, parent: ViewGroup): View = {
     val v = super.getDropDownView(position, convertView, parent)
-    if (_dropDownStyle != null) _dropDownStyle(v.asInstanceOf[TextView]) else v
+    if (_dropDownStyle != null) _dropDownStyle(v.asInstanceOf[V]) else v
   }
 
-  protected val dropDownStyles = new Stylizer
+  protected var _dropDownStyle: V => V = null
 
-  def dropDownStyle(v: View PartialFunction View) = {
-    dropDownStyles(v)
+  def dropDownStyle(v: V => V) = {
+    _dropDownStyle = v
     this
   }
 }
