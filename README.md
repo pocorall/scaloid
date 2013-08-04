@@ -1114,7 +1114,7 @@ new AlertDialog.Builder(context)
   }).show()
 ```
 
-When you call `show()` or `alert` from non-UI thread, you [don't have to mind about threading](#asynchronous-task-processing).
+When you call `show()` or `alert` from non-UI thread, you [don't have to mind about threading](https://github.com/pocorall/scaloid/wiki/Basics#asynchronous-task-processing).
 
 ### Class `SArrayAdapter`
 
