@@ -939,7 +939,7 @@ use a shorthand:
 find[Button](R.id.login)
 ```
 
-Although we provide this shorthand, Scaloid recommends [programmatically laying out UI, not with XML](#ui-layout-without-xml).
+Although we provide this shorthand, Scaloid recommends [programmatically laying out UI, not with XML](https://github.com/pocorall/scaloid/wiki/UI-Layout-without-XML).
 
 ## Activity as an implicit parameter
 Similar to the [implicit context](#context-as-an-implicit-parameter), an `Activity` typed implicit parameter is also required for some methods. Therefore, you have to define an activity as an implicit value:
