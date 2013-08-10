@@ -41,6 +41,9 @@ import android.graphics.drawable.Drawable
    basis.setCompoundDrawablesWithIntrinsicBounds(null, null, null, img)
    basis
  }
+
+  @inline def textSize  (p: Int) =            textSize_=  (p)
+  @inline def textSize_=(p: Int) = { basis.setTextSize    (android.util.TypedValue.COMPLEX_UNIT_PX, p); basis }
 >>
 
 RelativeLayout_concreteBody() ::= <<

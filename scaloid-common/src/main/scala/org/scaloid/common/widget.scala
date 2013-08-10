@@ -4421,6 +4421,9 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
      basis
    }
 
+    @inline def textSize  (p: Int) =            textSize_=  (p)
+    @inline def textSize_=(p: Int) = { basis.setTextSize    (android.util.TypedValue.COMPLEX_UNIT_PX, p); basis }
+
   @inline def autoLinkMask = basis.getAutoLinkMask
   @inline def autoLinkMask  (p: Int) =            autoLinkMask_=  (p)
   @inline def autoLinkMask_=(p: Int) = { basis.setAutoLinkMask    (p); basis }
