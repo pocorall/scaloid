@@ -317,11 +317,11 @@ class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = n
   var msg: CharSequence = null
 
   @inline def message_=(str: CharSequence) = {
-    tit = str
+    msg = str
     setMessage(str)
   }
 
-  @inline def message = tit
+  @inline def message = msg
 
   /**
    * Shows the dialog that is currently building.
