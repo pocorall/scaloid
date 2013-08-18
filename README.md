@@ -66,8 +66,8 @@ SButton("Greet", toast("Hello!"))
 
  * [<b>Hello world of Scaloid for maven</b>](https://github.com/pocorall/hello-scaloid-maven)<br/>
    Fork this to start a new project.
- * [<b>Examples for sbt</b>](https://github.com/placrosse/scaloid-examples)<br/>
-   <del>Fork this for sbt build.</del> **DO NOT WORK for now!** Use maven project instead
+ * [<b>Hello world of Scaloid for sbt</b>](https://github.com/pocorall/hello-scaloid-sbt)<br/>
+   Fork this for sbt build.
  * [<b>Scaloid port of apidemos app</b>](https://github.com/pocorall/scaloid-apidemos)<br/>
    Learn how Scaloid can be used in action.
  * [<b>List of projects using Scaloid</b>](#list-of-projects-using-scaloid)
