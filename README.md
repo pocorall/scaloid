@@ -56,7 +56,7 @@ SButton("Greet", toast("Hello!"))
  * **Write elegant Android software**<br/>
    Scaloid provides a concise and type-safe way of writing Android application.
  * **Simple to use**<br/>
-   Check our [quick start guide](https://github.com/pocorall/scaloid/wiki/Installation#quick-start)
+   Check the [quick start guide](https://github.com/pocorall/scaloid/wiki/Installation#quick-start)
  * **Compatible with your legacy code**<br/>
    You can use both Scaloid and plain-old Java Android API. You can gradually improve your legacy code.
  * **Maintained actively**<br/>
