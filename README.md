@@ -1229,6 +1229,7 @@ If you want look into inside of Scaloid, this document would be helpful:
 ### List of projects using Scaloid
 
 * [Soundcorset metronome & tuner](http://blog.scaloid.org/2013/01/scaloid-powered-soundcorset-metronome.html)
+* [SSH Beam](https://github.com/fxthomas/sshbeam)
 
 **Share your experience of using Scaloid** by blogging about it and let me know the URL of the post and the name of your Android application via pocorall@gmail.com. Then I will add a link to your post here.
 
