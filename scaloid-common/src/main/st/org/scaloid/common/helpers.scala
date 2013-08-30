@@ -36,14 +36,18 @@ trait AppHelpers {
     context.startActivity(new Intent(Intent.ACTION_VIEW, uri))
   }
 
-  @inline def pendingService(intent: Intent)(implicit context: Context) =
-    PendingIntent.getService(context, 0, intent, 0)
+  @inline def pendingService(intent: Intent, flags: Int = 0)(implicit context: Context) =
+    PendingIntent.getService(context, 0, intent, flags)
 
-  @inline def pendingActivity(intent: Intent)(implicit context: Context) =
-    PendingIntent.getActivity(context, 0, intent, 0)
+  @inline def pendingService[T](implicit context: Context) =
+    PendingIntent.getService(context, 0, SIntent[T], 0)
+
+  @inline def pendingActivity(intent: Intent, flags: Int = 0)(implicit context: Context) =
+    PendingIntent.getActivity(context, 0, intent, flags)
 
   @inline def pendingActivity[T](implicit context: Context, mt: ClassTag[T]) =
     PendingIntent.getActivity(context, 0, SIntent[T], 0)
+
 
 }
 
