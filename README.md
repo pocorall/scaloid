@@ -393,8 +393,8 @@ Then Scaloid implicit conversions will take care about these resource type conve
 Units `dip` and `sp` can be converted into the pixel unit.
 
 ```scala
-val inPixel:Int = (32 dip)
-val inPixel2:Int = (22 sp)
+val inPixel:Int = 32.dip
+val inPixel2:Int = 22.sp
 ```
 
 
@@ -1220,12 +1220,13 @@ If you want look into inside of Scaloid, this document would be helpful:
 
  * [Inside Scaloid](https://github.com/pocorall/scaloid/wiki/Inside-Scaloid)
 
- 
+<!-- 
 ### Sub projects of Scaloid
 
  - [Scaloid common package](https://github.com/pocorall/scaloid) - This project
  - [Support-v4 package](https://github.com/pocorall/scaloid-support-v4) - Scaloid port of support-v4 compatibility library
-
+-->
+ 
 ### List of projects using Scaloid
 
 * [Soundcorset metronome & tuner](http://blog.scaloid.org/2013/01/scaloid-powered-soundcorset-metronome.html)
