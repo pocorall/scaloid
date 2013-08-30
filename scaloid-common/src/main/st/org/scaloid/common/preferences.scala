@@ -3,6 +3,7 @@ $license()$
 package org.scaloid.common
 
 import android.content.{Context, SharedPreferences}
+import scala.collection.JavaConversions._
 import scala.language.dynamics
 import scala.reflect._
 
@@ -72,6 +73,8 @@ class BooleanPreferences(preferences: SharedPreferences) extends Dynamic {
  * @param preferences
  */
 class Preferences(val preferences: SharedPreferences) extends Dynamic {
+  type SS = Set[String]
+
   def updateDynamic(name: String)(value: Any) {
     value match {
       case v: String => preferences.edit().putString(name, v).commit()
@@ -79,6 +82,7 @@ class Preferences(val preferences: SharedPreferences) extends Dynamic {
       case v: Long => preferences.edit().putLong(name, v).commit()
       case v: Boolean => preferences.edit().putBoolean(name, v).commit()
       case v: Float => preferences.edit().putFloat(name, v).commit()
+      case v: SS => preferences.edit().putStringSet(name, v).commit()
     }
   }
 
@@ -88,6 +92,11 @@ class Preferences(val preferences: SharedPreferences) extends Dynamic {
     case v: Long => preferences.getLong(name, v).asInstanceOf[T]
     case v: Boolean => preferences.getBoolean(name, v).asInstanceOf[T]
     case v: Float => preferences.getFloat(name, v).asInstanceOf[T]
+    case v: SS => preferences.getStringSet(name, v).toSet.asInstanceOf[T]
+  }
+
+  def remove(name: String) {
+    preferences.edit().remove(name).commit()
   }
 
   @deprecated("Use Preferences instead. This will be removed from Scaloid 3.0.", "2.0")
