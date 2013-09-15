@@ -73,7 +73,6 @@ class BooleanPreferences(preferences: SharedPreferences) extends Dynamic {
  * @param preferences
  */
 class Preferences(val preferences: SharedPreferences) extends Dynamic {
-  type SS = Set[String]
 
   def updateDynamic(name: String)(value: Any) {
     value match {
@@ -82,7 +81,9 @@ class Preferences(val preferences: SharedPreferences) extends Dynamic {
       case v: Long => preferences.edit().putLong(name, v).commit()
       case v: Boolean => preferences.edit().putBoolean(name, v).commit()
       case v: Float => preferences.edit().putFloat(name, v).commit()
-      case v: SS => preferences.edit().putStringSet(name, v).commit()
+$if(ver.gte_11)$
+      case v: Set[String] => preferences.edit().putStringSet(name, v).commit()
+$endif$
     }
   }
 
@@ -92,7 +93,9 @@ class Preferences(val preferences: SharedPreferences) extends Dynamic {
     case v: Long => preferences.getLong(name, v).asInstanceOf[T]
     case v: Boolean => preferences.getBoolean(name, v).asInstanceOf[T]
     case v: Float => preferences.getFloat(name, v).asInstanceOf[T]
-    case v: SS => preferences.getStringSet(name, v).toSet.asInstanceOf[T]
+$if(ver.gte_11)$
+    case v: Set[String] => preferences.getStringSet(name, v).toSet.asInstanceOf[T]
+$endif$
   }
 
   def remove(name: String) {
