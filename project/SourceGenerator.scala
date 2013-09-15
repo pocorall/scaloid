@@ -15,28 +15,27 @@ object SourceGenerator {
     step(dir).toSeq
   }
 
-  def generateTask = (moduleName, baseDirectory, sourceDirectory in Compile, extract in Scaloid, streams) map {
-    (mName, baseDir, srcDir, androidClasses, s) =>
-      import NameFilter._
+  def generateTask =
+    (moduleName, baseDirectory, sourceDirectory in Compile, extract in Scaloid, apiVersion in Scaloid, streams) map {
+      (mName, baseDir, srcDir, androidClasses, ver, s) =>
+        import NameFilter._
 
-      if (mName == "parent") Nil
-      else {
-        val stGroupsDir = baseDir / ".." / "project" / "st"
-        val templateDir = srcDir / "st"
-        val relativePath = Path.relativeTo(templateDir)
-        val scalaTemplates = recursiveListFiles(templateDir, (s: String) => s.endsWith(".scala"))
+        if (mName == "parent") Nil
+        else {
+          val stGroupsDir = baseDir / ".." / "project" / "st"
+          val templateDir = srcDir / "st"
+          val relativePath = Path.relativeTo(templateDir)
+          val scalaTemplates = recursiveListFiles(templateDir, (s: String) => s.endsWith(".scala"))
+          val stg = new StringTemplateSupport(ver, stGroupsDir / "base.scala.stg")
 
-        val ver = 8 // TODO as SettingKey
-        val stg = new StringTemplateSupport(ver, stGroupsDir / "base.scala.stg")
-
-        scalaTemplates.map { (file: File) =>
-          val outFile = srcDir / "scala" / relativePath(file).get
-          val params = androidClasses
-          IO.write(outFile, stg.render(file, params))
-          s.log.info("Generating " + outFile)
-          outFile
+          scalaTemplates.map { (file: File) =>
+            val outFile = srcDir / "scala" / relativePath(file).get
+            val params = androidClasses
+            IO.write(outFile, stg.render(file, params))
+            s.log.info("Generating " + outFile)
+            outFile
+          }
         }
-      }
-  }
+    }
 
 }
