@@ -77,10 +77,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
     def toAndroidMethod(m: Method): AndroidMethod = {
       val name = m.getName
       val retType = AndroidClassExtractor.toScalaType(m.getGenericReturnType)
-      val argTypes = Option(m.getGenericParameterTypes)
-        .flatten
-        .toSeq
-        .map(AndroidClassExtractor.toScalaType(_))
+      val argTypes = m.getGenericParameterTypes.toSeq.map(AndroidClassExtractor.toScalaType(_))
       val paramedTypes = (retType +: argTypes).filter(_.isVar).distinct
 
       AndroidMethod(name, retType, argTypes, paramedTypes, isAbstract(m), isOverride(m))
@@ -148,7 +145,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
           if (setters.isEmpty && (getter.isEmpty || getter.get.name.startsWith("is"))) None
           else {
             val nameClashes = allMethodNames(name) || superGetterExists
-            val tpe = getter.map(_.retType).getOrElse(setters.first.argTypes.first)
+            val tpe = getter.map(_.retType).getOrElse(setters.head.argTypes.head)
             val switch = if (name.endsWith("Enabled")) Some(name.replace("Enabled", "").capitalize)
             else if (name.equals("enabled")) Some("") else None
 
@@ -191,7 +188,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
           val transforms = List[String => String](
             _.replace("$", "."),
             "(^set|^add|Listener$|ElementListener$)".r.replaceAllIn(_, ""),
-            ((s: String) => s.head.toLowerCase + s.tail),
+            ((s: String) => s.head.toLower + s.tail),
             "Changed$".r.replaceAllIn(_, "Change")
           ).reduce(_ andThen _)
 
@@ -227,7 +224,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
         l =>
           if (listeners.filter(l2 => l.name == l2.name && l.setterArgTypes == l2.setterArgTypes).length > 1) {
             val t = "(^set|^add|Listener$)".r.replaceAllIn(l.setter, "")
-            l.copy(name = t.head.toLowerCase + t.tail)
+            l.copy(name = t.head.toLower + t.tail)
           } else l
       }
 
@@ -296,11 +293,10 @@ object AndroidClassExtractor extends JavaConversionHelpers {
       cls.getMethods.view
         .filter(isListenerSetterOrAdder)
         .map(toAndroidListeners)
-        .flatten
-        .sortBy(_.name)
-        .toSeq)
+        .flatten.toSeq
+        .sortBy(_.name))
 
-    val intentMethods = cls.getMethods.view.filter(hasIntentAsParam).map(toAndroidIntentMethods).sortBy(m => m.name + m.argTypes.length).toSeq
+    val intentMethods = cls.getMethods.view.filter(hasIntentAsParam).map(toAndroidIntentMethods).toSeq.sortBy(m => m.name + m.argTypes.length)
 
     val constructors = cls.getConstructors
       .map(toScalaConstructor)
