@@ -70,7 +70,7 @@ SButton("Greet", toast("Hello!"))
    Fork this for sbt build.
  * [<b>Scaloid port of apidemos app</b>](https://github.com/pocorall/scaloid-apidemos)<br/>
    Learn how Scaloid can be used in action.
- * [<b>List of projects using Scaloid</b>](#list-of-projects-using-scaloid)
+ * [<b>List of projects using Scaloid</b>](https://github.com/pocorall/scaloid/wiki#list-of-projects-using-scaloid)
  * [<b>Tutorial by Gaston Hillar</b>](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240161584)
 
 
@@ -1228,11 +1228,5 @@ If you want look into inside of Scaloid, this document would be helpful:
  - [Support-v4 package](https://github.com/pocorall/scaloid-support-v4) - Scaloid port of support-v4 compatibility library
 -->
  
-### List of projects using Scaloid
-
-* [Soundcorset metronome & tuner](http://blog.scaloid.org/2013/01/scaloid-powered-soundcorset-metronome.html)
-* [SSH Beam](https://github.com/fxthomas/sshbeam)
-
-**Share your experience of using Scaloid** by blogging about it and let me know the URL of the post and the name of your Android application via pocorall@gmail.com. Then I will add a link to your post here.
-
+### [List of projects using Scaloid](https://github.com/pocorall/scaloid/wiki#list-of-projects-using-scaloid)
 
