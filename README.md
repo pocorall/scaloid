@@ -71,7 +71,7 @@ SButton("Greet", toast("Hello!"))
  * [<b>Scaloid port of apidemos app</b>](https://github.com/pocorall/scaloid-apidemos)<br/>
    Learn how Scaloid can be used in action.
  * [<b>List of projects using Scaloid</b>](https://github.com/pocorall/scaloid/wiki/Appendix#list-of-projects-using-scaloid)
- * [<b>Tutorial by Gaston Hillar</b>](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240161584)
+ * [<b>Tutorial by Gaston Hillar</b>](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240161584) - [part 1](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240161584) and [part 2](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240162204)
 
 
 ## Features
