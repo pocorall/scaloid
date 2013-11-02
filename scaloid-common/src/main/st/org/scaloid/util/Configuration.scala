@@ -1,7 +1,6 @@
 package org.scaloid.util
 
 import android.content.Context
-import android.content.res.Configuration
 import java.util.Locale
 import android.util.DisplayMetrics
 
@@ -25,13 +24,13 @@ object Configuration {
 
   @inline def orientation(implicit context: Context): Int = conf.orientation
 
-  @inline def portrait(implicit context: Context): Boolean = orientation == Configuration.ORIENTATION_PORTRAIT
+  @inline def portrait(implicit context: Context): Boolean = orientation == android.content.res.Configuration.ORIENTATION_PORTRAIT
 
-  @inline def landscape(implicit context: Context): Boolean = orientation == Configuration.ORIENTATION_LANDSCAPE
+  @inline def landscape(implicit context: Context): Boolean = orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
 
-  @inline def square(implicit context: Context): Boolean = orientation == Configuration.ORIENTATION_SQUARE
+  @inline def square(implicit context: Context): Boolean = orientation == android.content.res.Configuration.ORIENTATION_SQUARE
 
-  @inline def long(implicit context: Context): Boolean = (conf.screenLayout & Configuration.SCREENLAYOUT_LONG_YES) != 0
+  @inline def long(implicit context: Context): Boolean = (conf.screenLayout & android.content.res.Configuration.SCREENLAYOUT_LONG_YES) != 0
 
   @inline def locale(implicit context: Context): Locale = conf.locale
 
