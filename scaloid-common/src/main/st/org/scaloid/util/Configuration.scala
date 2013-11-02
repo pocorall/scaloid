@@ -9,7 +9,7 @@ import android.util.DisplayMetrics
  * Shortcuts for various device support.
  *
  * {{{
- *   import org.scaloid.util.Config._
+ *   import org.scaloid.util.Configuration._
  *
  *   if(long) SButton("This button is shown only for a long screen dimension (" + width + ", " + height + ")")
  *   if(landscape) SLinearLayout {
@@ -20,10 +20,10 @@ import android.util.DisplayMetrics
  *   if(dpi >= HDPI) SButton("You have a high resolution display!")
  * }}}
  */
-object Config {
-  @inline def config(implicit context: Context) = context.getResources.getConfiguration
+object Configuration {
+  @inline def conf(implicit context: Context) = context.getResources.getConfiguration
 
-  @inline def orientation(implicit context: Context): Int = config.orientation
+  @inline def orientation(implicit context: Context): Int = conf.orientation
 
   @inline def portrait(implicit context: Context): Boolean = orientation == Configuration.ORIENTATION_PORTRAIT
 
@@ -31,15 +31,17 @@ object Config {
 
   @inline def square(implicit context: Context): Boolean = orientation == Configuration.ORIENTATION_SQUARE
 
-  @inline def long(implicit context: Context): Boolean = (config.screenLayout & Configuration.SCREENLAYOUT_LONG_YES) != 0
+  @inline def long(implicit context: Context): Boolean = (conf.screenLayout & Configuration.SCREENLAYOUT_LONG_YES) != 0
 
-  @inline def locale(implicit context: Context): Locale = config.locale
+  @inline def locale(implicit context: Context): Locale = conf.locale
 
-  @inline def width(implicit context: Context): Int = context.getResources.getDisplayMetrics.widthPixels
+  @inline def displayMetrics(implicit context: Context) = context.getResources.getDisplayMetrics
 
-  @inline def height(implicit context: Context): Int = context.getResources.getDisplayMetrics.heightPixels
+  @inline def width(implicit context: Context): Int = displayMetrics.widthPixels
 
-  @inline def dpi(implicit context: Context): Int = context.getResources.getDisplayMetrics.densityDpi
+  @inline def height(implicit context: Context): Int = displayMetrics.heightPixels
+
+  @inline def dpi(implicit context: Context): Int = displayMetrics.densityDpi
 
   val LDPI = DisplayMetrics.DENSITY_LOW
 
