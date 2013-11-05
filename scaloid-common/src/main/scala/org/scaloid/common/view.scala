@@ -106,12 +106,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getAnimation() getAnimation()]]`
    */
   @inline def animation = basis.getAnimation
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setAnimation(android.view.animation.Animation) setAnimation(android.view.animation.Animation)]]`
-   */@inline def animation  (p: android.view.animation.Animation) =            animation_=  (p)
+   */
+  @inline def animation  (p: android.view.animation.Animation) =            animation_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setAnimation(android.view.animation.Animation) setAnimation(android.view.animation.Animation)]]`
-   */@inline def animation_=(p: android.view.animation.Animation) = { basis.setAnimation    (p); basis }
+   */
+  @inline def animation_=(p: android.view.animation.Animation) = { basis.setAnimation(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getApplicationWindowToken() getApplicationWindowToken()]]`
@@ -126,28 +131,43 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
 
 
   @inline def backgroundColor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'backgroundColor'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackgroundColor(int) setBackgroundColor(int)]]`
-   */@inline def backgroundColor  (p: Int) =            backgroundColor_=  (p)
+   */
+  @inline def backgroundColor  (p: Int) =            backgroundColor_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackgroundColor(int) setBackgroundColor(int)]]`
-   */@inline def backgroundColor_=(p: Int) = { basis.setBackgroundColor    (p); basis }
+   */
+  @inline def backgroundColor_=(p: Int) = { basis.setBackgroundColor(p); basis }
+
 
   @inline def backgroundDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'backgroundDrawable'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackgroundDrawable(android.graphics.drawable.Drawable) setBackgroundDrawable(android.graphics.drawable.Drawable)]]`
-   */@inline def backgroundDrawable  (p: android.graphics.drawable.Drawable) =            backgroundDrawable_=  (p)
+   */
+  @inline def backgroundDrawable  (p: android.graphics.drawable.Drawable) =            backgroundDrawable_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackgroundDrawable(android.graphics.drawable.Drawable) setBackgroundDrawable(android.graphics.drawable.Drawable)]]`
-   */@inline def backgroundDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setBackgroundDrawable    (p); basis }
+   */
+  @inline def backgroundDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setBackgroundDrawable(p); basis }
+
 
   @inline def backgroundResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'backgroundResource'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackgroundResource(int) setBackgroundResource(int)]]`
-   */@inline def backgroundResource  (p: Int) =            backgroundResource_=  (p)
+   */
+  @inline def backgroundResource  (p: Int) =            backgroundResource_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackgroundResource(int) setBackgroundResource(int)]]`
-   */@inline def backgroundResource_=(p: Int) = { basis.setBackgroundResource    (p); basis }
+   */
+  @inline def backgroundResource_=(p: Int) = { basis.setBackgroundResource(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getBaseline() getBaseline()]]`
@@ -165,23 +185,33 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isClickable() isClickable()]]`
    */
   @inline def clickable = basis.isClickable
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setClickable(boolean) setClickable(boolean)]]`
-   */@inline def clickable  (p: Boolean) =            clickable_=  (p)
+   */
+  @inline def clickable  (p: Boolean) =            clickable_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setClickable(boolean) setClickable(boolean)]]`
-   */@inline def clickable_=(p: Boolean) = { basis.setClickable    (p); basis }
+   */
+  @inline def clickable_=(p: Boolean) = { basis.setClickable(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getContentDescription() getContentDescription()]]`
    */
   @inline def contentDescription = basis.getContentDescription
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setContentDescription(java.lang.CharSequence) setContentDescription(java.lang.CharSequence)]]`
-   */@inline def contentDescription  (p: java.lang.CharSequence) =            contentDescription_=  (p)
+   */
+  @inline def contentDescription  (p: java.lang.CharSequence) =            contentDescription_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setContentDescription(java.lang.CharSequence) setContentDescription(java.lang.CharSequence)]]`
-   */@inline def contentDescription_=(p: java.lang.CharSequence) = { basis.setContentDescription    (p); basis }
+   */
+  @inline def contentDescription_=(p: java.lang.CharSequence) = { basis.setContentDescription(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getContext() getContext()]]`
@@ -205,23 +235,33 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getDrawingCacheBackgroundColor() getDrawingCacheBackgroundColor()]]`
    */
   @inline def drawingCacheBackgroundColor = basis.getDrawingCacheBackgroundColor
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setDrawingCacheBackgroundColor(int) setDrawingCacheBackgroundColor(int)]]`
-   */@inline def drawingCacheBackgroundColor  (p: Int) =            drawingCacheBackgroundColor_=  (p)
+   */
+  @inline def drawingCacheBackgroundColor  (p: Int) =            drawingCacheBackgroundColor_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setDrawingCacheBackgroundColor(int) setDrawingCacheBackgroundColor(int)]]`
-   */@inline def drawingCacheBackgroundColor_=(p: Int) = { basis.setDrawingCacheBackgroundColor    (p); basis }
+   */
+  @inline def drawingCacheBackgroundColor_=(p: Int) = { basis.setDrawingCacheBackgroundColor(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isDrawingCacheEnabled() isDrawingCacheEnabled()]]`
    */
   @inline def drawingCacheEnabled = basis.isDrawingCacheEnabled
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setDrawingCacheEnabled(boolean) setDrawingCacheEnabled(boolean)]]`
-   */@inline def drawingCacheEnabled  (p: Boolean) =            drawingCacheEnabled_=  (p)
+   */
+  @inline def drawingCacheEnabled  (p: Boolean) =            drawingCacheEnabled_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setDrawingCacheEnabled(boolean) setDrawingCacheEnabled(boolean)]]`
-   */@inline def drawingCacheEnabled_=(p: Boolean) = { basis.setDrawingCacheEnabled    (p); basis }
+   */
+  @inline def drawingCacheEnabled_=(p: Boolean) = { basis.setDrawingCacheEnabled(p); basis }
+
   @inline def  enableDrawingCache               = { basis.setDrawingCacheEnabled(true ); basis }
   @inline def disableDrawingCache               = { basis.setDrawingCacheEnabled(false); basis }
 
@@ -230,12 +270,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getDrawingCacheQuality() getDrawingCacheQuality()]]`
    */
   @inline def drawingCacheQuality = basis.getDrawingCacheQuality
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setDrawingCacheQuality(int) setDrawingCacheQuality(int)]]`
-   */@inline def drawingCacheQuality  (p: Int) =            drawingCacheQuality_=  (p)
+   */
+  @inline def drawingCacheQuality  (p: Int) =            drawingCacheQuality_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setDrawingCacheQuality(int) setDrawingCacheQuality(int)]]`
-   */@inline def drawingCacheQuality_=(p: Int) = { basis.setDrawingCacheQuality    (p); basis }
+   */
+  @inline def drawingCacheQuality_=(p: Int) = { basis.setDrawingCacheQuality(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getDrawingTime() getDrawingTime()]]`
@@ -247,12 +292,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isDuplicateParentStateEnabled() isDuplicateParentStateEnabled()]]`
    */
   @inline def duplicateParentStateEnabled = basis.isDuplicateParentStateEnabled
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setDuplicateParentStateEnabled(boolean) setDuplicateParentStateEnabled(boolean)]]`
-   */@inline def duplicateParentStateEnabled  (p: Boolean) =            duplicateParentStateEnabled_=  (p)
+   */
+  @inline def duplicateParentStateEnabled  (p: Boolean) =            duplicateParentStateEnabled_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setDuplicateParentStateEnabled(boolean) setDuplicateParentStateEnabled(boolean)]]`
-   */@inline def duplicateParentStateEnabled_=(p: Boolean) = { basis.setDuplicateParentStateEnabled    (p); basis }
+   */
+  @inline def duplicateParentStateEnabled_=(p: Boolean) = { basis.setDuplicateParentStateEnabled(p); basis }
+
   @inline def  enableDuplicateParentState               = { basis.setDuplicateParentStateEnabled(true ); basis }
   @inline def disableDuplicateParentState               = { basis.setDuplicateParentStateEnabled(false); basis }
 
@@ -261,45 +311,65 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isEnabled() isEnabled()]]`
    */
   @inline def enabled = basis.isEnabled
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setEnabled(boolean) setEnabled(boolean)]]`
-   */@inline def enabled  (p: Boolean) =            enabled_=  (p)
+   */
+  @inline def enabled  (p: Boolean) =            enabled_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setEnabled(boolean) setEnabled(boolean)]]`
-   */@inline def enabled_=(p: Boolean) = { basis.setEnabled    (p); basis }
+   */
+  @inline def enabled_=(p: Boolean) = { basis.setEnabled(p); basis }
+
   @inline def  enable               = { basis.setEnabled(true ); basis }
   @inline def disable               = { basis.setEnabled(false); basis }
 
 
   @inline def fadingEdgeLength(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'fadingEdgeLength'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setFadingEdgeLength(int) setFadingEdgeLength(int)]]`
-   */@inline def fadingEdgeLength  (p: Int) =            fadingEdgeLength_=  (p)
+   */
+  @inline def fadingEdgeLength  (p: Int) =            fadingEdgeLength_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setFadingEdgeLength(int) setFadingEdgeLength(int)]]`
-   */@inline def fadingEdgeLength_=(p: Int) = { basis.setFadingEdgeLength    (p); basis }
+   */
+  @inline def fadingEdgeLength_=(p: Int) = { basis.setFadingEdgeLength(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isFocusable() isFocusable()]]`
    */
   @inline def focusable = basis.isFocusable
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setFocusable(boolean) setFocusable(boolean)]]`
-   */@inline def focusable  (p: Boolean) =            focusable_=  (p)
+   */
+  @inline def focusable  (p: Boolean) =            focusable_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setFocusable(boolean) setFocusable(boolean)]]`
-   */@inline def focusable_=(p: Boolean) = { basis.setFocusable    (p); basis }
+   */
+  @inline def focusable_=(p: Boolean) = { basis.setFocusable(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isFocusableInTouchMode() isFocusableInTouchMode()]]`
    */
   @inline def focusableInTouchMode = basis.isFocusableInTouchMode
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setFocusableInTouchMode(boolean) setFocusableInTouchMode(boolean)]]`
-   */@inline def focusableInTouchMode  (p: Boolean) =            focusableInTouchMode_=  (p)
+   */
+  @inline def focusableInTouchMode  (p: Boolean) =            focusableInTouchMode_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setFocusableInTouchMode(boolean) setFocusableInTouchMode(boolean)]]`
-   */@inline def focusableInTouchMode_=(p: Boolean) = { basis.setFocusableInTouchMode    (p); basis }
+   */
+  @inline def focusableInTouchMode_=(p: Boolean) = { basis.setFocusableInTouchMode(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getHandler() getHandler()]]`
@@ -311,12 +381,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isHapticFeedbackEnabled() isHapticFeedbackEnabled()]]`
    */
   @inline def hapticFeedbackEnabled = basis.isHapticFeedbackEnabled
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setHapticFeedbackEnabled(boolean) setHapticFeedbackEnabled(boolean)]]`
-   */@inline def hapticFeedbackEnabled  (p: Boolean) =            hapticFeedbackEnabled_=  (p)
+   */
+  @inline def hapticFeedbackEnabled  (p: Boolean) =            hapticFeedbackEnabled_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setHapticFeedbackEnabled(boolean) setHapticFeedbackEnabled(boolean)]]`
-   */@inline def hapticFeedbackEnabled_=(p: Boolean) = { basis.setHapticFeedbackEnabled    (p); basis }
+   */
+  @inline def hapticFeedbackEnabled_=(p: Boolean) = { basis.setHapticFeedbackEnabled(p); basis }
+
   @inline def  enableHapticFeedback               = { basis.setHapticFeedbackEnabled(true ); basis }
   @inline def disableHapticFeedback               = { basis.setHapticFeedbackEnabled(false); basis }
 
@@ -331,12 +406,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isHorizontalFadingEdgeEnabled() isHorizontalFadingEdgeEnabled()]]`
    */
   @inline def horizontalFadingEdgeEnabled = basis.isHorizontalFadingEdgeEnabled
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setHorizontalFadingEdgeEnabled(boolean) setHorizontalFadingEdgeEnabled(boolean)]]`
-   */@inline def horizontalFadingEdgeEnabled  (p: Boolean) =            horizontalFadingEdgeEnabled_=  (p)
+   */
+  @inline def horizontalFadingEdgeEnabled  (p: Boolean) =            horizontalFadingEdgeEnabled_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setHorizontalFadingEdgeEnabled(boolean) setHorizontalFadingEdgeEnabled(boolean)]]`
-   */@inline def horizontalFadingEdgeEnabled_=(p: Boolean) = { basis.setHorizontalFadingEdgeEnabled    (p); basis }
+   */
+  @inline def horizontalFadingEdgeEnabled_=(p: Boolean) = { basis.setHorizontalFadingEdgeEnabled(p); basis }
+
   @inline def  enableHorizontalFadingEdge               = { basis.setHorizontalFadingEdgeEnabled(true ); basis }
   @inline def disableHorizontalFadingEdge               = { basis.setHorizontalFadingEdgeEnabled(false); basis }
 
@@ -351,12 +431,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isHorizontalScrollBarEnabled() isHorizontalScrollBarEnabled()]]`
    */
   @inline def horizontalScrollBarEnabled = basis.isHorizontalScrollBarEnabled
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setHorizontalScrollBarEnabled(boolean) setHorizontalScrollBarEnabled(boolean)]]`
-   */@inline def horizontalScrollBarEnabled  (p: Boolean) =            horizontalScrollBarEnabled_=  (p)
+   */
+  @inline def horizontalScrollBarEnabled  (p: Boolean) =            horizontalScrollBarEnabled_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setHorizontalScrollBarEnabled(boolean) setHorizontalScrollBarEnabled(boolean)]]`
-   */@inline def horizontalScrollBarEnabled_=(p: Boolean) = { basis.setHorizontalScrollBarEnabled    (p); basis }
+   */
+  @inline def horizontalScrollBarEnabled_=(p: Boolean) = { basis.setHorizontalScrollBarEnabled(p); basis }
+
   @inline def  enableHorizontalScrollBar               = { basis.setHorizontalScrollBarEnabled(true ); basis }
   @inline def disableHorizontalScrollBar               = { basis.setHorizontalScrollBarEnabled(false); basis }
 
@@ -365,23 +450,33 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getId() getId()]]`
    */
   @inline def id = basis.getId
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setId(int) setId(int)]]`
-   */@inline def id  (p: Int) =            id_=  (p)
+   */
+  @inline def id  (p: Int) =            id_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setId(int) setId(int)]]`
-   */@inline def id_=(p: Int) = { basis.setId    (p); basis }
+   */
+  @inline def id_=(p: Int) = { basis.setId(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getKeepScreenOn() getKeepScreenOn()]]`
    */
   @inline def keepScreenOn = basis.getKeepScreenOn
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setKeepScreenOn(boolean) setKeepScreenOn(boolean)]]`
-   */@inline def keepScreenOn  (p: Boolean) =            keepScreenOn_=  (p)
+   */
+  @inline def keepScreenOn  (p: Boolean) =            keepScreenOn_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setKeepScreenOn(boolean) setKeepScreenOn(boolean)]]`
-   */@inline def keepScreenOn_=(p: Boolean) = { basis.setKeepScreenOn    (p); basis }
+   */
+  @inline def keepScreenOn_=(p: Boolean) = { basis.setKeepScreenOn(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getKeyDispatcherState() getKeyDispatcherState()]]`
@@ -393,12 +488,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getLayoutParams() getLayoutParams()]]`
    */
   @inline def layoutParams = basis.getLayoutParams
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setLayoutParams(android.view.ViewGroup.LayoutParams) setLayoutParams(android.view.ViewGroup.LayoutParams)]]`
-   */@inline def layoutParams  (p: android.view.ViewGroup.LayoutParams) =            layoutParams_=  (p)
+   */
+  @inline def layoutParams  (p: android.view.ViewGroup.LayoutParams) =            layoutParams_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setLayoutParams(android.view.ViewGroup.LayoutParams) setLayoutParams(android.view.ViewGroup.LayoutParams)]]`
-   */@inline def layoutParams_=(p: android.view.ViewGroup.LayoutParams) = { basis.setLayoutParams    (p); basis }
+   */
+  @inline def layoutParams_=(p: android.view.ViewGroup.LayoutParams) = { basis.setLayoutParams(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getLeft() getLeft()]]`
@@ -410,12 +510,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isLongClickable() isLongClickable()]]`
    */
   @inline def longClickable = basis.isLongClickable
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setLongClickable(boolean) setLongClickable(boolean)]]`
-   */@inline def longClickable  (p: Boolean) =            longClickable_=  (p)
+   */
+  @inline def longClickable  (p: Boolean) =            longClickable_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setLongClickable(boolean) setLongClickable(boolean)]]`
-   */@inline def longClickable_=(p: Boolean) = { basis.setLongClickable    (p); basis }
+   */
+  @inline def longClickable_=(p: Boolean) = { basis.setLongClickable(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getMeasuredHeight() getMeasuredHeight()]]`
@@ -430,115 +535,175 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
 
 
   @inline def minimumHeight(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minimumHeight'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setMinimumHeight(int) setMinimumHeight(int)]]`
-   */@inline def minimumHeight  (p: Int) =            minimumHeight_=  (p)
+   */
+  @inline def minimumHeight  (p: Int) =            minimumHeight_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setMinimumHeight(int) setMinimumHeight(int)]]`
-   */@inline def minimumHeight_=(p: Int) = { basis.setMinimumHeight    (p); basis }
+   */
+  @inline def minimumHeight_=(p: Int) = { basis.setMinimumHeight(p); basis }
+
 
   @inline def minimumWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minimumWidth'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setMinimumWidth(int) setMinimumWidth(int)]]`
-   */@inline def minimumWidth  (p: Int) =            minimumWidth_=  (p)
+   */
+  @inline def minimumWidth  (p: Int) =            minimumWidth_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setMinimumWidth(int) setMinimumWidth(int)]]`
-   */@inline def minimumWidth_=(p: Int) = { basis.setMinimumWidth    (p); basis }
+   */
+  @inline def minimumWidth_=(p: Int) = { basis.setMinimumWidth(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getNextFocusDownId() getNextFocusDownId()]]`
    */
   @inline def nextFocusDownId = basis.getNextFocusDownId
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setNextFocusDownId(int) setNextFocusDownId(int)]]`
-   */@inline def nextFocusDownId  (p: Int) =            nextFocusDownId_=  (p)
+   */
+  @inline def nextFocusDownId  (p: Int) =            nextFocusDownId_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setNextFocusDownId(int) setNextFocusDownId(int)]]`
-   */@inline def nextFocusDownId_=(p: Int) = { basis.setNextFocusDownId    (p); basis }
+   */
+  @inline def nextFocusDownId_=(p: Int) = { basis.setNextFocusDownId(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getNextFocusLeftId() getNextFocusLeftId()]]`
    */
   @inline def nextFocusLeftId = basis.getNextFocusLeftId
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setNextFocusLeftId(int) setNextFocusLeftId(int)]]`
-   */@inline def nextFocusLeftId  (p: Int) =            nextFocusLeftId_=  (p)
+   */
+  @inline def nextFocusLeftId  (p: Int) =            nextFocusLeftId_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setNextFocusLeftId(int) setNextFocusLeftId(int)]]`
-   */@inline def nextFocusLeftId_=(p: Int) = { basis.setNextFocusLeftId    (p); basis }
+   */
+  @inline def nextFocusLeftId_=(p: Int) = { basis.setNextFocusLeftId(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getNextFocusRightId() getNextFocusRightId()]]`
    */
   @inline def nextFocusRightId = basis.getNextFocusRightId
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setNextFocusRightId(int) setNextFocusRightId(int)]]`
-   */@inline def nextFocusRightId  (p: Int) =            nextFocusRightId_=  (p)
+   */
+  @inline def nextFocusRightId  (p: Int) =            nextFocusRightId_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setNextFocusRightId(int) setNextFocusRightId(int)]]`
-   */@inline def nextFocusRightId_=(p: Int) = { basis.setNextFocusRightId    (p); basis }
+   */
+  @inline def nextFocusRightId_=(p: Int) = { basis.setNextFocusRightId(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getNextFocusUpId() getNextFocusUpId()]]`
    */
   @inline def nextFocusUpId = basis.getNextFocusUpId
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setNextFocusUpId(int) setNextFocusUpId(int)]]`
-   */@inline def nextFocusUpId  (p: Int) =            nextFocusUpId_=  (p)
+   */
+  @inline def nextFocusUpId  (p: Int) =            nextFocusUpId_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setNextFocusUpId(int) setNextFocusUpId(int)]]`
-   */@inline def nextFocusUpId_=(p: Int) = { basis.setNextFocusUpId    (p); basis }
+   */
+  @inline def nextFocusUpId_=(p: Int) = { basis.setNextFocusUpId(p); basis }
+
 
   @inline def onClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onClickListener'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnClickListener(android.view.View.OnClickListener) setOnClickListener(android.view.View.OnClickListener)]]`
-   */@inline def onClickListener  (p: android.view.View.OnClickListener) =            onClickListener_=  (p)
+   */
+  @inline def onClickListener  (p: android.view.View.OnClickListener) =            onClickListener_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnClickListener(android.view.View.OnClickListener) setOnClickListener(android.view.View.OnClickListener)]]`
-   */@inline def onClickListener_=(p: android.view.View.OnClickListener) = { basis.setOnClickListener    (p); basis }
+   */
+  @inline def onClickListener_=(p: android.view.View.OnClickListener) = { basis.setOnClickListener(p); basis }
+
 
   @inline def onCreateContextMenuListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onCreateContextMenuListener'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnCreateContextMenuListener(android.view.View.OnCreateContextMenuListener) setOnCreateContextMenuListener(android.view.View.OnCreateContextMenuListener)]]`
-   */@inline def onCreateContextMenuListener  (p: android.view.View.OnCreateContextMenuListener) =            onCreateContextMenuListener_=  (p)
+   */
+  @inline def onCreateContextMenuListener  (p: android.view.View.OnCreateContextMenuListener) =            onCreateContextMenuListener_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnCreateContextMenuListener(android.view.View.OnCreateContextMenuListener) setOnCreateContextMenuListener(android.view.View.OnCreateContextMenuListener)]]`
-   */@inline def onCreateContextMenuListener_=(p: android.view.View.OnCreateContextMenuListener) = { basis.setOnCreateContextMenuListener    (p); basis }
+   */
+  @inline def onCreateContextMenuListener_=(p: android.view.View.OnCreateContextMenuListener) = { basis.setOnCreateContextMenuListener(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getOnFocusChangeListener() getOnFocusChangeListener()]]`
    */
   @inline def onFocusChangeListener = basis.getOnFocusChangeListener
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnFocusChangeListener(android.view.View.OnFocusChangeListener) setOnFocusChangeListener(android.view.View.OnFocusChangeListener)]]`
-   */@inline def onFocusChangeListener  (p: android.view.View.OnFocusChangeListener) =            onFocusChangeListener_=  (p)
+   */
+  @inline def onFocusChangeListener  (p: android.view.View.OnFocusChangeListener) =            onFocusChangeListener_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnFocusChangeListener(android.view.View.OnFocusChangeListener) setOnFocusChangeListener(android.view.View.OnFocusChangeListener)]]`
-   */@inline def onFocusChangeListener_=(p: android.view.View.OnFocusChangeListener) = { basis.setOnFocusChangeListener    (p); basis }
+   */
+  @inline def onFocusChangeListener_=(p: android.view.View.OnFocusChangeListener) = { basis.setOnFocusChangeListener(p); basis }
+
 
   @inline def onKeyListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onKeyListener'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnKeyListener(android.view.View.OnKeyListener) setOnKeyListener(android.view.View.OnKeyListener)]]`
-   */@inline def onKeyListener  (p: android.view.View.OnKeyListener) =            onKeyListener_=  (p)
+   */
+  @inline def onKeyListener  (p: android.view.View.OnKeyListener) =            onKeyListener_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnKeyListener(android.view.View.OnKeyListener) setOnKeyListener(android.view.View.OnKeyListener)]]`
-   */@inline def onKeyListener_=(p: android.view.View.OnKeyListener) = { basis.setOnKeyListener    (p); basis }
+   */
+  @inline def onKeyListener_=(p: android.view.View.OnKeyListener) = { basis.setOnKeyListener(p); basis }
+
 
   @inline def onLongClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onLongClickListener'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnLongClickListener(android.view.View.OnLongClickListener) setOnLongClickListener(android.view.View.OnLongClickListener)]]`
-   */@inline def onLongClickListener  (p: android.view.View.OnLongClickListener) =            onLongClickListener_=  (p)
+   */
+  @inline def onLongClickListener  (p: android.view.View.OnLongClickListener) =            onLongClickListener_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnLongClickListener(android.view.View.OnLongClickListener) setOnLongClickListener(android.view.View.OnLongClickListener)]]`
-   */@inline def onLongClickListener_=(p: android.view.View.OnLongClickListener) = { basis.setOnLongClickListener    (p); basis }
+   */
+  @inline def onLongClickListener_=(p: android.view.View.OnLongClickListener) = { basis.setOnLongClickListener(p); basis }
+
 
   @inline def onTouchListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onTouchListener'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnTouchListener(android.view.View.OnTouchListener) setOnTouchListener(android.view.View.OnTouchListener)]]`
-   */@inline def onTouchListener  (p: android.view.View.OnTouchListener) =            onTouchListener_=  (p)
+   */
+  @inline def onTouchListener  (p: android.view.View.OnTouchListener) =            onTouchListener_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnTouchListener(android.view.View.OnTouchListener) setOnTouchListener(android.view.View.OnTouchListener)]]`
-   */@inline def onTouchListener_=(p: android.view.View.OnTouchListener) = { basis.setOnTouchListener    (p); basis }
+   */
+  @inline def onTouchListener_=(p: android.view.View.OnTouchListener) = { basis.setOnTouchListener(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getPaddingBottom() getPaddingBottom()]]`
@@ -574,12 +739,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isPressed() isPressed()]]`
    */
   @inline def pressed = basis.isPressed
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setPressed(boolean) setPressed(boolean)]]`
-   */@inline def pressed  (p: Boolean) =            pressed_=  (p)
+   */
+  @inline def pressed  (p: Boolean) =            pressed_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setPressed(boolean) setPressed(boolean)]]`
-   */@inline def pressed_=(p: Boolean) = { basis.setPressed    (p); basis }
+   */
+  @inline def pressed_=(p: Boolean) = { basis.setPressed(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getResources() getResources()]]`
@@ -603,12 +773,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isSaveEnabled() isSaveEnabled()]]`
    */
   @inline def saveEnabled = basis.isSaveEnabled
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setSaveEnabled(boolean) setSaveEnabled(boolean)]]`
-   */@inline def saveEnabled  (p: Boolean) =            saveEnabled_=  (p)
+   */
+  @inline def saveEnabled  (p: Boolean) =            saveEnabled_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setSaveEnabled(boolean) setSaveEnabled(boolean)]]`
-   */@inline def saveEnabled_=(p: Boolean) = { basis.setSaveEnabled    (p); basis }
+   */
+  @inline def saveEnabled_=(p: Boolean) = { basis.setSaveEnabled(p); basis }
+
   @inline def  enableSave               = { basis.setSaveEnabled(true ); basis }
   @inline def disableSave               = { basis.setSaveEnabled(false); basis }
 
@@ -617,20 +792,30 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getScrollBarStyle() getScrollBarStyle()]]`
    */
   @inline def scrollBarStyle = basis.getScrollBarStyle
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollBarStyle(int) setScrollBarStyle(int)]]`
-   */@inline def scrollBarStyle  (p: Int) =            scrollBarStyle_=  (p)
+   */
+  @inline def scrollBarStyle  (p: Int) =            scrollBarStyle_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollBarStyle(int) setScrollBarStyle(int)]]`
-   */@inline def scrollBarStyle_=(p: Int) = { basis.setScrollBarStyle    (p); basis }
+   */
+  @inline def scrollBarStyle_=(p: Int) = { basis.setScrollBarStyle(p); basis }
+
 
   @inline def scrollContainer(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'scrollContainer'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollContainer(boolean) setScrollContainer(boolean)]]`
-   */@inline def scrollContainer  (p: Boolean) =            scrollContainer_=  (p)
+   */
+  @inline def scrollContainer  (p: Boolean) =            scrollContainer_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollContainer(boolean) setScrollContainer(boolean)]]`
-   */@inline def scrollContainer_=(p: Boolean) = { basis.setScrollContainer    (p); basis }
+   */
+  @inline def scrollContainer_=(p: Boolean) = { basis.setScrollContainer(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getScrollX() getScrollX()]]`
@@ -648,12 +833,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isScrollbarFadingEnabled() isScrollbarFadingEnabled()]]`
    */
   @inline def scrollbarFadingEnabled = basis.isScrollbarFadingEnabled
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollbarFadingEnabled(boolean) setScrollbarFadingEnabled(boolean)]]`
-   */@inline def scrollbarFadingEnabled  (p: Boolean) =            scrollbarFadingEnabled_=  (p)
+   */
+  @inline def scrollbarFadingEnabled  (p: Boolean) =            scrollbarFadingEnabled_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollbarFadingEnabled(boolean) setScrollbarFadingEnabled(boolean)]]`
-   */@inline def scrollbarFadingEnabled_=(p: Boolean) = { basis.setScrollbarFadingEnabled    (p); basis }
+   */
+  @inline def scrollbarFadingEnabled_=(p: Boolean) = { basis.setScrollbarFadingEnabled(p); basis }
+
   @inline def  enableScrollbarFading               = { basis.setScrollbarFadingEnabled(true ); basis }
   @inline def disableScrollbarFading               = { basis.setScrollbarFadingEnabled(false); basis }
 
@@ -662,12 +852,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isSelected() isSelected()]]`
    */
   @inline def selected = basis.isSelected
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setSelected(boolean) setSelected(boolean)]]`
-   */@inline def selected  (p: Boolean) =            selected_=  (p)
+   */
+  @inline def selected  (p: Boolean) =            selected_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setSelected(boolean) setSelected(boolean)]]`
-   */@inline def selected_=(p: Boolean) = { basis.setSelected    (p); basis }
+   */
+  @inline def selected_=(p: Boolean) = { basis.setSelected(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getSolidColor() getSolidColor()]]`
@@ -679,12 +874,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isSoundEffectsEnabled() isSoundEffectsEnabled()]]`
    */
   @inline def soundEffectsEnabled = basis.isSoundEffectsEnabled
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setSoundEffectsEnabled(boolean) setSoundEffectsEnabled(boolean)]]`
-   */@inline def soundEffectsEnabled  (p: Boolean) =            soundEffectsEnabled_=  (p)
+   */
+  @inline def soundEffectsEnabled  (p: Boolean) =            soundEffectsEnabled_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setSoundEffectsEnabled(boolean) setSoundEffectsEnabled(boolean)]]`
-   */@inline def soundEffectsEnabled_=(p: Boolean) = { basis.setSoundEffectsEnabled    (p); basis }
+   */
+  @inline def soundEffectsEnabled_=(p: Boolean) = { basis.setSoundEffectsEnabled(p); basis }
+
   @inline def  enableSoundEffects               = { basis.setSoundEffectsEnabled(true ); basis }
   @inline def disableSoundEffects               = { basis.setSoundEffectsEnabled(false); basis }
 
@@ -693,12 +893,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getTag() getTag()]]`
    */
   @inline def tag = basis.getTag
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setTag(java.lang.Object) setTag(java.lang.Object)]]`
-   */@inline def tag  (p: Any) =            tag_=  (p)
+   */
+  @inline def tag  (p: Any) =            tag_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setTag(java.lang.Object) setTag(java.lang.Object)]]`
-   */@inline def tag_=(p: Any) = { basis.setTag    (p); basis }
+   */
+  @inline def tag_=(p: Any) = { basis.setTag(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getTop() getTop()]]`
@@ -710,12 +915,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getTouchDelegate() getTouchDelegate()]]`
    */
   @inline def touchDelegate = basis.getTouchDelegate
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setTouchDelegate(android.view.TouchDelegate) setTouchDelegate(android.view.TouchDelegate)]]`
-   */@inline def touchDelegate  (p: android.view.TouchDelegate) =            touchDelegate_=  (p)
+   */
+  @inline def touchDelegate  (p: android.view.TouchDelegate) =            touchDelegate_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setTouchDelegate(android.view.TouchDelegate) setTouchDelegate(android.view.TouchDelegate)]]`
-   */@inline def touchDelegate_=(p: android.view.TouchDelegate) = { basis.setTouchDelegate    (p); basis }
+   */
+  @inline def touchDelegate_=(p: android.view.TouchDelegate) = { basis.setTouchDelegate(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getTouchables() getTouchables()]]`
@@ -727,12 +937,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isVerticalFadingEdgeEnabled() isVerticalFadingEdgeEnabled()]]`
    */
   @inline def verticalFadingEdgeEnabled = basis.isVerticalFadingEdgeEnabled
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setVerticalFadingEdgeEnabled(boolean) setVerticalFadingEdgeEnabled(boolean)]]`
-   */@inline def verticalFadingEdgeEnabled  (p: Boolean) =            verticalFadingEdgeEnabled_=  (p)
+   */
+  @inline def verticalFadingEdgeEnabled  (p: Boolean) =            verticalFadingEdgeEnabled_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setVerticalFadingEdgeEnabled(boolean) setVerticalFadingEdgeEnabled(boolean)]]`
-   */@inline def verticalFadingEdgeEnabled_=(p: Boolean) = { basis.setVerticalFadingEdgeEnabled    (p); basis }
+   */
+  @inline def verticalFadingEdgeEnabled_=(p: Boolean) = { basis.setVerticalFadingEdgeEnabled(p); basis }
+
   @inline def  enableVerticalFadingEdge               = { basis.setVerticalFadingEdgeEnabled(true ); basis }
   @inline def disableVerticalFadingEdge               = { basis.setVerticalFadingEdgeEnabled(false); basis }
 
@@ -747,12 +962,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isVerticalScrollBarEnabled() isVerticalScrollBarEnabled()]]`
    */
   @inline def verticalScrollBarEnabled = basis.isVerticalScrollBarEnabled
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setVerticalScrollBarEnabled(boolean) setVerticalScrollBarEnabled(boolean)]]`
-   */@inline def verticalScrollBarEnabled  (p: Boolean) =            verticalScrollBarEnabled_=  (p)
+   */
+  @inline def verticalScrollBarEnabled  (p: Boolean) =            verticalScrollBarEnabled_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setVerticalScrollBarEnabled(boolean) setVerticalScrollBarEnabled(boolean)]]`
-   */@inline def verticalScrollBarEnabled_=(p: Boolean) = { basis.setVerticalScrollBarEnabled    (p); basis }
+   */
+  @inline def verticalScrollBarEnabled_=(p: Boolean) = { basis.setVerticalScrollBarEnabled(p); basis }
+
   @inline def  enableVerticalScrollBar               = { basis.setVerticalScrollBarEnabled(true ); basis }
   @inline def disableVerticalScrollBar               = { basis.setVerticalScrollBarEnabled(false); basis }
 
@@ -773,30 +993,45 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getVisibility() getVisibility()]]`
    */
   @inline def visibility = basis.getVisibility
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setVisibility(int) setVisibility(int)]]`
-   */@inline def visibility  (p: Int) =            visibility_=  (p)
+   */
+  @inline def visibility  (p: Int) =            visibility_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setVisibility(int) setVisibility(int)]]`
-   */@inline def visibility_=(p: Int) = { basis.setVisibility    (p); basis }
+   */
+  @inline def visibility_=(p: Int) = { basis.setVisibility(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getWidth() getWidth()]]`
    */
   @inline def width = basis.getWidth
 
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setWillNotCacheDrawing(boolean) setWillNotCacheDrawing(boolean)]]`
-   */@inline def willNotCacheDrawing  (p: Boolean) =            willNotCacheDrawing_=  (p)
+   */
+  @inline def willNotCacheDrawing  (p: Boolean) =            willNotCacheDrawing_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setWillNotCacheDrawing(boolean) setWillNotCacheDrawing(boolean)]]`
-   */@inline def willNotCacheDrawing_=(p: Boolean) = { basis.setWillNotCacheDrawing    (p); basis }
+   */
+  @inline def willNotCacheDrawing_=(p: Boolean) = { basis.setWillNotCacheDrawing(p); basis }
+
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setWillNotDraw(boolean) setWillNotDraw(boolean)]]`
-   */@inline def willNotDraw  (p: Boolean) =            willNotDraw_=  (p)
+   */
+  @inline def willNotDraw  (p: Boolean) =            willNotDraw_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setWillNotDraw(boolean) setWillNotDraw(boolean)]]`
-   */@inline def willNotDraw_=(p: Boolean) = { basis.setWillNotDraw    (p); basis }
+   */
+  @inline def willNotDraw_=(p: Boolean) = { basis.setWillNotDraw(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getWindowToken() getWindowToken()]]`
@@ -955,21 +1190,30 @@ trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setAddStatesFromChildren(boolean) setAddStatesFromChildren(boolean)]]`
-   */@inline def addStatesFromChildren  (p: Boolean) =            addStatesFromChildren_=  (p)
+   */
+  @inline def addStatesFromChildren  (p: Boolean) =            addStatesFromChildren_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setAddStatesFromChildren(boolean) setAddStatesFromChildren(boolean)]]`
-   */@inline def addStatesFromChildren_=(p: Boolean) = { basis.setAddStatesFromChildren    (p); basis }
+   */
+  @inline def addStatesFromChildren_=(p: Boolean) = { basis.setAddStatesFromChildren(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#isAlwaysDrawnWithCacheEnabled() isAlwaysDrawnWithCacheEnabled()]]`
    */
   @inline def alwaysDrawnWithCacheEnabled = basis.isAlwaysDrawnWithCacheEnabled
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setAlwaysDrawnWithCacheEnabled(boolean) setAlwaysDrawnWithCacheEnabled(boolean)]]`
-   */@inline def alwaysDrawnWithCacheEnabled  (p: Boolean) =            alwaysDrawnWithCacheEnabled_=  (p)
+   */
+  @inline def alwaysDrawnWithCacheEnabled  (p: Boolean) =            alwaysDrawnWithCacheEnabled_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setAlwaysDrawnWithCacheEnabled(boolean) setAlwaysDrawnWithCacheEnabled(boolean)]]`
-   */@inline def alwaysDrawnWithCacheEnabled_=(p: Boolean) = { basis.setAlwaysDrawnWithCacheEnabled    (p); basis }
+   */
+  @inline def alwaysDrawnWithCacheEnabled_=(p: Boolean) = { basis.setAlwaysDrawnWithCacheEnabled(p); basis }
+
   @inline def  enableAlwaysDrawnWithCache               = { basis.setAlwaysDrawnWithCacheEnabled(true ); basis }
   @inline def disableAlwaysDrawnWithCache               = { basis.setAlwaysDrawnWithCacheEnabled(false); basis }
 
@@ -978,12 +1222,17 @@ trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#isAnimationCacheEnabled() isAnimationCacheEnabled()]]`
    */
   @inline def animationCacheEnabled = basis.isAnimationCacheEnabled
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setAnimationCacheEnabled(boolean) setAnimationCacheEnabled(boolean)]]`
-   */@inline def animationCacheEnabled  (p: Boolean) =            animationCacheEnabled_=  (p)
+   */
+  @inline def animationCacheEnabled  (p: Boolean) =            animationCacheEnabled_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setAnimationCacheEnabled(boolean) setAnimationCacheEnabled(boolean)]]`
-   */@inline def animationCacheEnabled_=(p: Boolean) = { basis.setAnimationCacheEnabled    (p); basis }
+   */
+  @inline def animationCacheEnabled_=(p: Boolean) = { basis.setAnimationCacheEnabled(p); basis }
+
   @inline def  enableAnimationCache               = { basis.setAnimationCacheEnabled(true ); basis }
   @inline def disableAnimationCache               = { basis.setAnimationCacheEnabled(false); basis }
 
@@ -995,31 +1244,46 @@ trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
 
 
   @inline def clipChildren(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'clipChildren'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setClipChildren(boolean) setClipChildren(boolean)]]`
-   */@inline def clipChildren  (p: Boolean) =            clipChildren_=  (p)
+   */
+  @inline def clipChildren  (p: Boolean) =            clipChildren_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setClipChildren(boolean) setClipChildren(boolean)]]`
-   */@inline def clipChildren_=(p: Boolean) = { basis.setClipChildren    (p); basis }
+   */
+  @inline def clipChildren_=(p: Boolean) = { basis.setClipChildren(p); basis }
+
 
   @inline def clipToPadding(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'clipToPadding'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setClipToPadding(boolean) setClipToPadding(boolean)]]`
-   */@inline def clipToPadding  (p: Boolean) =            clipToPadding_=  (p)
+   */
+  @inline def clipToPadding  (p: Boolean) =            clipToPadding_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setClipToPadding(boolean) setClipToPadding(boolean)]]`
-   */@inline def clipToPadding_=(p: Boolean) = { basis.setClipToPadding    (p); basis }
+   */
+  @inline def clipToPadding_=(p: Boolean) = { basis.setClipToPadding(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#getDescendantFocusability() getDescendantFocusability()]]`
    */
   @inline def descendantFocusability = basis.getDescendantFocusability
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setDescendantFocusability(int) setDescendantFocusability(int)]]`
-   */@inline def descendantFocusability  (p: Int) =            descendantFocusability_=  (p)
+   */
+  @inline def descendantFocusability  (p: Int) =            descendantFocusability_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setDescendantFocusability(int) setDescendantFocusability(int)]]`
-   */@inline def descendantFocusability_=(p: Int) = { basis.setDescendantFocusability    (p); basis }
+   */
+  @inline def descendantFocusability_=(p: Int) = { basis.setDescendantFocusability(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#getFocusedChild() getFocusedChild()]]`
@@ -1031,42 +1295,62 @@ trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#getLayoutAnimation() getLayoutAnimation()]]`
    */
   @inline def layoutAnimation = basis.getLayoutAnimation
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setLayoutAnimation(android.view.animation.LayoutAnimationController) setLayoutAnimation(android.view.animation.LayoutAnimationController)]]`
-   */@inline def layoutAnimation  (p: android.view.animation.LayoutAnimationController) =            layoutAnimation_=  (p)
+   */
+  @inline def layoutAnimation  (p: android.view.animation.LayoutAnimationController) =            layoutAnimation_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setLayoutAnimation(android.view.animation.LayoutAnimationController) setLayoutAnimation(android.view.animation.LayoutAnimationController)]]`
-   */@inline def layoutAnimation_=(p: android.view.animation.LayoutAnimationController) = { basis.setLayoutAnimation    (p); basis }
+   */
+  @inline def layoutAnimation_=(p: android.view.animation.LayoutAnimationController) = { basis.setLayoutAnimation(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#getLayoutAnimationListener() getLayoutAnimationListener()]]`
    */
   @inline def layoutAnimationListener = basis.getLayoutAnimationListener
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setLayoutAnimationListener(android.view.animation.Animation.AnimationListener) setLayoutAnimationListener(android.view.animation.Animation.AnimationListener)]]`
-   */@inline def layoutAnimationListener  (p: android.view.animation.Animation.AnimationListener) =            layoutAnimationListener_=  (p)
+   */
+  @inline def layoutAnimationListener  (p: android.view.animation.Animation.AnimationListener) =            layoutAnimationListener_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setLayoutAnimationListener(android.view.animation.Animation.AnimationListener) setLayoutAnimationListener(android.view.animation.Animation.AnimationListener)]]`
-   */@inline def layoutAnimationListener_=(p: android.view.animation.Animation.AnimationListener) = { basis.setLayoutAnimationListener    (p); basis }
+   */
+  @inline def layoutAnimationListener_=(p: android.view.animation.Animation.AnimationListener) = { basis.setLayoutAnimationListener(p); basis }
+
 
   @inline def onHierarchyChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onHierarchyChangeListener'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setOnHierarchyChangeListener(android.view.ViewGroup.OnHierarchyChangeListener) setOnHierarchyChangeListener(android.view.ViewGroup.OnHierarchyChangeListener)]]`
-   */@inline def onHierarchyChangeListener  (p: android.view.ViewGroup.OnHierarchyChangeListener) =            onHierarchyChangeListener_=  (p)
+   */
+  @inline def onHierarchyChangeListener  (p: android.view.ViewGroup.OnHierarchyChangeListener) =            onHierarchyChangeListener_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setOnHierarchyChangeListener(android.view.ViewGroup.OnHierarchyChangeListener) setOnHierarchyChangeListener(android.view.ViewGroup.OnHierarchyChangeListener)]]`
-   */@inline def onHierarchyChangeListener_=(p: android.view.ViewGroup.OnHierarchyChangeListener) = { basis.setOnHierarchyChangeListener    (p); basis }
+   */
+  @inline def onHierarchyChangeListener_=(p: android.view.ViewGroup.OnHierarchyChangeListener) = { basis.setOnHierarchyChangeListener(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#getPersistentDrawingCache() getPersistentDrawingCache()]]`
    */
   @inline def persistentDrawingCache = basis.getPersistentDrawingCache
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setPersistentDrawingCache(int) setPersistentDrawingCache(int)]]`
-   */@inline def persistentDrawingCache  (p: Int) =            persistentDrawingCache_=  (p)
+   */
+  @inline def persistentDrawingCache  (p: Int) =            persistentDrawingCache_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setPersistentDrawingCache(int) setPersistentDrawingCache(int)]]`
-   */@inline def persistentDrawingCache_=(p: Int) = { basis.setPersistentDrawingCache    (p); basis }
+   */
+  @inline def persistentDrawingCache_=(p: Int) = { basis.setPersistentDrawingCache(p); basis }
+
 
   @inline def onAnimationEnd(f: android.view.animation.Animation => Unit): V = {
     basis.setLayoutAnimationListener(new android.view.animation.Animation.AnimationListener {
@@ -1236,12 +1520,17 @@ trait TraitMenu[V <: android.view.Menu] {
   }    
 
   @inline def qwertyMode(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'qwertyMode'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/Menu.html#setQwertyMode(boolean) setQwertyMode(boolean)]]`
-   */@inline def qwertyMode  (p: Boolean) =            qwertyMode_=  (p)
+   */
+  @inline def qwertyMode  (p: Boolean) =            qwertyMode_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/Menu.html#setQwertyMode(boolean) setQwertyMode(boolean)]]`
-   */@inline def qwertyMode_=(p: Boolean) = { basis.setQwertyMode    (p); basis }
+   */
+  @inline def qwertyMode_=(p: Boolean) = { basis.setQwertyMode(p); basis }
+
 
 }
 
@@ -1261,40 +1550,65 @@ trait TraitContextMenu[V <: android.view.ContextMenu] {
 
 
   @inline def headerIcon(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'headerIcon'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ContextMenu.html#setHeaderIcon(int) setHeaderIcon(int)]]`
-   */@inline def headerIcon  (p: Int) =            headerIcon_=  (p)
+   */
+  @inline def headerIcon  (p: Int) =            headerIcon_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ContextMenu.html#setHeaderIcon(int) setHeaderIcon(int)]]`
-   */@inline def headerIcon_=(p: Int) = { basis.setHeaderIcon    (p); basis }
+   */
+  @inline def headerIcon_=(p: Int) = { basis.setHeaderIcon(p); basis }
+
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ContextMenu.html#setHeaderIcon(android.graphics.drawable.Drawable) setHeaderIcon(android.graphics.drawable.Drawable)]]`
-   */@inline def headerIcon  (p: android.graphics.drawable.Drawable) =            headerIcon_=  (p)
+   */
+  @inline def headerIcon  (p: android.graphics.drawable.Drawable) =            headerIcon_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ContextMenu.html#setHeaderIcon(android.graphics.drawable.Drawable) setHeaderIcon(android.graphics.drawable.Drawable)]]`
-   */@inline def headerIcon_=(p: android.graphics.drawable.Drawable) = { basis.setHeaderIcon    (p); basis }
+   */
+  @inline def headerIcon_=(p: android.graphics.drawable.Drawable) = { basis.setHeaderIcon(p); basis }
+
 
   @inline def headerTitle(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'headerTitle'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ContextMenu.html#setHeaderTitle(int) setHeaderTitle(int)]]`
-   */@inline def headerTitle  (p: Int) =            headerTitle_=  (p)
+   */
+  @inline def headerTitle  (p: Int) =            headerTitle_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ContextMenu.html#setHeaderTitle(int) setHeaderTitle(int)]]`
-   */@inline def headerTitle_=(p: Int) = { basis.setHeaderTitle    (p); basis }
+   */
+  @inline def headerTitle_=(p: Int) = { basis.setHeaderTitle(p); basis }
+
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ContextMenu.html#setHeaderTitle(java.lang.CharSequence) setHeaderTitle(java.lang.CharSequence)]]`
-   */@inline def headerTitle  (p: java.lang.CharSequence) =            headerTitle_=  (p)
+   */
+  @inline def headerTitle  (p: java.lang.CharSequence) =            headerTitle_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ContextMenu.html#setHeaderTitle(java.lang.CharSequence) setHeaderTitle(java.lang.CharSequence)]]`
-   */@inline def headerTitle_=(p: java.lang.CharSequence) = { basis.setHeaderTitle    (p); basis }
+   */
+  @inline def headerTitle_=(p: java.lang.CharSequence) = { basis.setHeaderTitle(p); basis }
+
 
   @inline def headerView(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'headerView'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ContextMenu.html#setHeaderView(android.view.View) setHeaderView(android.view.View)]]`
-   */@inline def headerView  (p: android.view.View) =            headerView_=  (p)
+   */
+  @inline def headerView  (p: android.view.View) =            headerView_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ContextMenu.html#setHeaderView(android.view.View) setHeaderView(android.view.View)]]`
-   */@inline def headerView_=(p: android.view.View) = { basis.setHeaderView    (p); basis }
+   */
+  @inline def headerView_=(p: android.view.View) = { basis.setHeaderView(p); basis }
+
 
 }
 
@@ -1319,20 +1633,30 @@ trait TraitSurfaceView[V <: android.view.SurfaceView] extends TraitView[V] {
 
 
   @inline def zOrderMediaOverlay(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'zOrderMediaOverlay'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/SurfaceView.html#setZOrderMediaOverlay(boolean) setZOrderMediaOverlay(boolean)]]`
-   */@inline def zOrderMediaOverlay  (p: Boolean) =            zOrderMediaOverlay_=  (p)
+   */
+  @inline def zOrderMediaOverlay  (p: Boolean) =            zOrderMediaOverlay_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/SurfaceView.html#setZOrderMediaOverlay(boolean) setZOrderMediaOverlay(boolean)]]`
-   */@inline def zOrderMediaOverlay_=(p: Boolean) = { basis.setZOrderMediaOverlay    (p); basis }
+   */
+  @inline def zOrderMediaOverlay_=(p: Boolean) = { basis.setZOrderMediaOverlay(p); basis }
+
 
   @inline def zOrderOnTop(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'zOrderOnTop'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/SurfaceView.html#setZOrderOnTop(boolean) setZOrderOnTop(boolean)]]`
-   */@inline def zOrderOnTop  (p: Boolean) =            zOrderOnTop_=  (p)
+   */
+  @inline def zOrderOnTop  (p: Boolean) =            zOrderOnTop_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/SurfaceView.html#setZOrderOnTop(boolean) setZOrderOnTop(boolean)]]`
-   */@inline def zOrderOnTop_=(p: Boolean) = { basis.setZOrderOnTop    (p); basis }
+   */
+  @inline def zOrderOnTop_=(p: Boolean) = { basis.setZOrderOnTop(p); basis }
+
 
 }
 
@@ -1374,31 +1698,46 @@ trait TraitViewStub[V <: android.view.ViewStub] extends TraitView[V] {
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#getInflatedId() getInflatedId()]]`
    */
   @inline def inflatedId = basis.getInflatedId
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#setInflatedId(int) setInflatedId(int)]]`
-   */@inline def inflatedId  (p: Int) =            inflatedId_=  (p)
+   */
+  @inline def inflatedId  (p: Int) =            inflatedId_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#setInflatedId(int) setInflatedId(int)]]`
-   */@inline def inflatedId_=(p: Int) = { basis.setInflatedId    (p); basis }
+   */
+  @inline def inflatedId_=(p: Int) = { basis.setInflatedId(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#getLayoutResource() getLayoutResource()]]`
    */
   @inline def layoutResource = basis.getLayoutResource
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#setLayoutResource(int) setLayoutResource(int)]]`
-   */@inline def layoutResource  (p: Int) =            layoutResource_=  (p)
+   */
+  @inline def layoutResource  (p: Int) =            layoutResource_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#setLayoutResource(int) setLayoutResource(int)]]`
-   */@inline def layoutResource_=(p: Int) = { basis.setLayoutResource    (p); basis }
+   */
+  @inline def layoutResource_=(p: Int) = { basis.setLayoutResource(p); basis }
+
 
   @inline def onInflateListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onInflateListener'")
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#setOnInflateListener(android.view.ViewStub.OnInflateListener) setOnInflateListener(android.view.ViewStub.OnInflateListener)]]`
-   */@inline def onInflateListener  (p: android.view.ViewStub.OnInflateListener) =            onInflateListener_=  (p)
+   */
+  @inline def onInflateListener  (p: android.view.ViewStub.OnInflateListener) =            onInflateListener_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#setOnInflateListener(android.view.ViewStub.OnInflateListener) setOnInflateListener(android.view.ViewStub.OnInflateListener)]]`
-   */@inline def onInflateListener_=(p: android.view.ViewStub.OnInflateListener) = { basis.setOnInflateListener    (p); basis }
+   */
+  @inline def onInflateListener_=(p: android.view.ViewStub.OnInflateListener) = { basis.setOnInflateListener(p); basis }
+
 
   @inline def onInflate(f: (android.view.ViewStub, android.view.View) => Unit): V = {
     basis.setOnInflateListener(new android.view.ViewStub.OnInflateListener {

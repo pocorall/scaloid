@@ -410,17 +410,16 @@ $endif$
 >>
 
 setter(prop, method) ::= <<
-$_setter("  ", {           $prop.name$_=  (p)})$
-$_setter("_=", {{ basis.$method.name$    (p); basis \}})$
+$_setter("  ", {           $prop.name$_=(p)})$
+$_setter("_=", {{ basis.$method.name$(p); basis \}})$
 >>
 
-_setter(postFix, body) ::= <%$if( ! method.isAbstract || ! first(method.paramedTypes).name )$
+_setter(postFix, body) ::= <<
+$if( ! method.isAbstract || ! first(method.paramedTypes).name )$
 $methodScalaDoc(base, method)$
-@inline def ${$prop.name$$postFix$}; format="safe-ident"$
-$paramedTypes(method.paramedTypes)$
-($namedArgs(method.argTypes)$) = $body$
+@inline def ${$prop.name$$postFix$}; format="safe-ident"$$paramedTypes(method.paramedTypes)$($namedArgs(method.argTypes)$) = $body$
 $endif$
-%>
+>>
 
 switch(name, setter) ::= <<
 $if(setter.name)$

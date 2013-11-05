@@ -196,29 +196,44 @@ trait TraitContext[V <: android.content.Context] {
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getTheme() getTheme()]]`
    */
   @inline def theme = basis.getTheme
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setTheme(int) setTheme(int)]]`
-   */@inline def theme  (p: Int) =            theme_=  (p)
+   */
+  @inline def theme  (p: Int) =            theme_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setTheme(int) setTheme(int)]]`
-   */@inline def theme_=(p: Int) = { basis.setTheme    (p); basis }
+   */
+  @inline def theme_=(p: Int) = { basis.setTheme(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getWallpaper() getWallpaper()]]`
    */
   @inline def wallpaper = basis.getWallpaper
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(android.graphics.Bitmap) setWallpaper(android.graphics.Bitmap)]]`
-   */@inline def wallpaper  (p: android.graphics.Bitmap) =            wallpaper_=  (p)
+   */
+  @inline def wallpaper  (p: android.graphics.Bitmap) =            wallpaper_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(android.graphics.Bitmap) setWallpaper(android.graphics.Bitmap)]]`
-   */@inline def wallpaper_=(p: android.graphics.Bitmap) = { basis.setWallpaper    (p); basis }
+   */
+  @inline def wallpaper_=(p: android.graphics.Bitmap) = { basis.setWallpaper(p); basis }
+
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(java.io.InputStream) setWallpaper(java.io.InputStream)]]`
-   */@inline def wallpaper  (p: java.io.InputStream) =            wallpaper_=  (p)
+   */
+  @inline def wallpaper  (p: java.io.InputStream) =            wallpaper_=(p)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(java.io.InputStream) setWallpaper(java.io.InputStream)]]`
-   */@inline def wallpaper_=(p: java.io.InputStream) = { basis.setWallpaper    (p); basis }
+   */
+  @inline def wallpaper_=(p: java.io.InputStream) = { basis.setWallpaper(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getWallpaperDesiredMinimumHeight() getWallpaperDesiredMinimumHeight()]]`
