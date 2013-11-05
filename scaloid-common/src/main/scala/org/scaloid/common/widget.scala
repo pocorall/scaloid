@@ -144,10 +144,10 @@ trait TraitPopupWindow[V <: android.widget.PopupWindow] {
 
   @inline def onDismissListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onDismissListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/PopupWindow.html#setOnDismissListener(android.widget.PopupWindow$OnDismissListener) setOnDismissListener(android.widget.PopupWindow$OnDismissListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/PopupWindow.html#setOnDismissListener(android.widget.PopupWindow.OnDismissListener) setOnDismissListener(android.widget.PopupWindow.OnDismissListener)]]`
    */@inline def onDismissListener  (p: android.widget.PopupWindow.OnDismissListener) =            onDismissListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/PopupWindow.html#setOnDismissListener(android.widget.PopupWindow$OnDismissListener) setOnDismissListener(android.widget.PopupWindow$OnDismissListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/PopupWindow.html#setOnDismissListener(android.widget.PopupWindow.OnDismissListener) setOnDismissListener(android.widget.PopupWindow.OnDismissListener)]]`
    */@inline def onDismissListener_=(p: android.widget.PopupWindow.OnDismissListener) = { basis.setOnDismissListener    (p); basis }
 
   /**
@@ -174,10 +174,10 @@ trait TraitPopupWindow[V <: android.widget.PopupWindow] {
 
   @inline def touchInterceptor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'touchInterceptor'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/PopupWindow.html#setTouchInterceptor(android.view.View$OnTouchListener) setTouchInterceptor(android.view.View$OnTouchListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/PopupWindow.html#setTouchInterceptor(android.view.View.OnTouchListener) setTouchInterceptor(android.view.View.OnTouchListener)]]`
    */@inline def touchInterceptor  (p: android.view.View.OnTouchListener) =            touchInterceptor_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/PopupWindow.html#setTouchInterceptor(android.view.View$OnTouchListener) setTouchInterceptor(android.view.View$OnTouchListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/PopupWindow.html#setTouchInterceptor(android.view.View.OnTouchListener) setTouchInterceptor(android.view.View.OnTouchListener)]]`
    */@inline def touchInterceptor_=(p: android.view.View.OnTouchListener) = { basis.setTouchInterceptor    (p); basis }
 
   /**
@@ -819,10 +819,10 @@ trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
    */
   @inline def scaleType = basis.getScaleType
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#setScaleType(android.widget.ImageView$ScaleType) setScaleType(android.widget.ImageView$ScaleType)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#setScaleType(android.widget.ImageView.ScaleType) setScaleType(android.widget.ImageView.ScaleType)]]`
    */@inline def scaleType  (p: android.widget.ImageView.ScaleType) =            scaleType_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#setScaleType(android.widget.ImageView$ScaleType) setScaleType(android.widget.ImageView$ScaleType)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#setScaleType(android.widget.ImageView.ScaleType) setScaleType(android.widget.ImageView.ScaleType)]]`
    */@inline def scaleType_=(p: android.widget.ImageView.ScaleType) = { basis.setScaleType    (p); basis }
 
 }
@@ -931,10 +931,10 @@ trait TraitMultiAutoCompleteTextView[V <: android.widget.MultiAutoCompleteTextVi
 
   @inline def tokenizer(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'tokenizer'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/MultiAutoCompleteTextView.html#setTokenizer(android.widget.MultiAutoCompleteTextView$Tokenizer) setTokenizer(android.widget.MultiAutoCompleteTextView$Tokenizer)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/MultiAutoCompleteTextView.html#setTokenizer(android.widget.MultiAutoCompleteTextView.Tokenizer) setTokenizer(android.widget.MultiAutoCompleteTextView.Tokenizer)]]`
    */@inline def tokenizer  (p: android.widget.MultiAutoCompleteTextView.Tokenizer) =            tokenizer_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/MultiAutoCompleteTextView.html#setTokenizer(android.widget.MultiAutoCompleteTextView$Tokenizer) setTokenizer(android.widget.MultiAutoCompleteTextView$Tokenizer)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/MultiAutoCompleteTextView.html#setTokenizer(android.widget.MultiAutoCompleteTextView.Tokenizer) setTokenizer(android.widget.MultiAutoCompleteTextView.Tokenizer)]]`
    */@inline def tokenizer_=(p: android.widget.MultiAutoCompleteTextView.Tokenizer) = { basis.setTokenizer    (p); basis }
 
 }
@@ -1178,10 +1178,10 @@ trait TraitSimpleCursorTreeAdapter[V <: android.widget.SimpleCursorTreeAdapter] 
    */
   @inline def viewBinder = basis.getViewBinder
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleCursorTreeAdapter.html#setViewBinder(android.widget.SimpleCursorTreeAdapter$ViewBinder) setViewBinder(android.widget.SimpleCursorTreeAdapter$ViewBinder)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleCursorTreeAdapter.html#setViewBinder(android.widget.SimpleCursorTreeAdapter.ViewBinder) setViewBinder(android.widget.SimpleCursorTreeAdapter.ViewBinder)]]`
    */@inline def viewBinder  (p: android.widget.SimpleCursorTreeAdapter.ViewBinder) =            viewBinder_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleCursorTreeAdapter.html#setViewBinder(android.widget.SimpleCursorTreeAdapter$ViewBinder) setViewBinder(android.widget.SimpleCursorTreeAdapter$ViewBinder)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleCursorTreeAdapter.html#setViewBinder(android.widget.SimpleCursorTreeAdapter.ViewBinder) setViewBinder(android.widget.SimpleCursorTreeAdapter.ViewBinder)]]`
    */@inline def viewBinder_=(p: android.widget.SimpleCursorTreeAdapter.ViewBinder) = { basis.setViewBinder    (p); basis }
 
 }
@@ -1300,10 +1300,10 @@ trait TraitTabHost[V <: android.widget.TabHost] extends TraitFrameLayout[V] {
 
   @inline def onTabChangedListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onTabChangedListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/TabHost.html#setOnTabChangedListener(android.widget.TabHost$OnTabChangeListener) setOnTabChangedListener(android.widget.TabHost$OnTabChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TabHost.html#setOnTabChangedListener(android.widget.TabHost.OnTabChangeListener) setOnTabChangedListener(android.widget.TabHost.OnTabChangeListener)]]`
    */@inline def onTabChangedListener  (p: android.widget.TabHost.OnTabChangeListener) =            onTabChangedListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/TabHost.html#setOnTabChangedListener(android.widget.TabHost$OnTabChangeListener) setOnTabChangedListener(android.widget.TabHost$OnTabChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TabHost.html#setOnTabChangedListener(android.widget.TabHost.OnTabChangeListener) setOnTabChangedListener(android.widget.TabHost.OnTabChangeListener)]]`
    */@inline def onTabChangedListener_=(p: android.widget.TabHost.OnTabChangeListener) = { basis.setOnTabChangedListener    (p); basis }
 
   /**
@@ -1408,10 +1408,10 @@ trait TraitRadioGroup[V <: android.widget.RadioGroup] extends TraitLinearLayout[
 
   @inline def onCheckedChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onCheckedChangeListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/RadioGroup.html#setOnCheckedChangeListener(android.widget.RadioGroup$OnCheckedChangeListener) setOnCheckedChangeListener(android.widget.RadioGroup$OnCheckedChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/RadioGroup.html#setOnCheckedChangeListener(android.widget.RadioGroup.OnCheckedChangeListener) setOnCheckedChangeListener(android.widget.RadioGroup.OnCheckedChangeListener)]]`
    */@inline def onCheckedChangeListener  (p: android.widget.RadioGroup.OnCheckedChangeListener) =            onCheckedChangeListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/RadioGroup.html#setOnCheckedChangeListener(android.widget.RadioGroup$OnCheckedChangeListener) setOnCheckedChangeListener(android.widget.RadioGroup$OnCheckedChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/RadioGroup.html#setOnCheckedChangeListener(android.widget.RadioGroup.OnCheckedChangeListener) setOnCheckedChangeListener(android.widget.RadioGroup.OnCheckedChangeListener)]]`
    */@inline def onCheckedChangeListener_=(p: android.widget.RadioGroup.OnCheckedChangeListener) = { basis.setOnCheckedChangeListener    (p); basis }
 
   @inline def onCheckedChanged(f: (android.widget.RadioGroup, Int) => Unit): V = {
@@ -1488,10 +1488,10 @@ trait TraitRatingBar[V <: android.widget.RatingBar] extends TraitAbsSeekBar[V] {
    */
   @inline def onRatingBarChangeListener = basis.getOnRatingBarChangeListener
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/RatingBar.html#setOnRatingBarChangeListener(android.widget.RatingBar$OnRatingBarChangeListener) setOnRatingBarChangeListener(android.widget.RatingBar$OnRatingBarChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/RatingBar.html#setOnRatingBarChangeListener(android.widget.RatingBar.OnRatingBarChangeListener) setOnRatingBarChangeListener(android.widget.RatingBar.OnRatingBarChangeListener)]]`
    */@inline def onRatingBarChangeListener  (p: android.widget.RatingBar.OnRatingBarChangeListener) =            onRatingBarChangeListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/RatingBar.html#setOnRatingBarChangeListener(android.widget.RatingBar$OnRatingBarChangeListener) setOnRatingBarChangeListener(android.widget.RatingBar$OnRatingBarChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/RatingBar.html#setOnRatingBarChangeListener(android.widget.RatingBar.OnRatingBarChangeListener) setOnRatingBarChangeListener(android.widget.RatingBar.OnRatingBarChangeListener)]]`
    */@inline def onRatingBarChangeListener_=(p: android.widget.RatingBar.OnRatingBarChangeListener) = { basis.setOnRatingBarChangeListener    (p); basis }
 
   /**
@@ -2012,10 +2012,10 @@ trait TraitChronometer[V <: android.widget.Chronometer] extends TraitTextView[V]
    */
   @inline def onChronometerTickListener = basis.getOnChronometerTickListener
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/Chronometer.html#setOnChronometerTickListener(android.widget.Chronometer$OnChronometerTickListener) setOnChronometerTickListener(android.widget.Chronometer$OnChronometerTickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Chronometer.html#setOnChronometerTickListener(android.widget.Chronometer.OnChronometerTickListener) setOnChronometerTickListener(android.widget.Chronometer.OnChronometerTickListener)]]`
    */@inline def onChronometerTickListener  (p: android.widget.Chronometer.OnChronometerTickListener) =            onChronometerTickListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/Chronometer.html#setOnChronometerTickListener(android.widget.Chronometer$OnChronometerTickListener) setOnChronometerTickListener(android.widget.Chronometer$OnChronometerTickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Chronometer.html#setOnChronometerTickListener(android.widget.Chronometer.OnChronometerTickListener) setOnChronometerTickListener(android.widget.Chronometer.OnChronometerTickListener)]]`
    */@inline def onChronometerTickListener_=(p: android.widget.Chronometer.OnChronometerTickListener) = { basis.setOnChronometerTickListener    (p); basis }
 
   @inline def onChronometerTick(f: android.widget.Chronometer => Unit): V = {
@@ -2447,10 +2447,10 @@ trait TraitTimePicker[V <: android.widget.TimePicker] extends TraitFrameLayout[V
 
   @inline def onTimeChangedListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onTimeChangedListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/TimePicker.html#setOnTimeChangedListener(android.widget.TimePicker$OnTimeChangedListener) setOnTimeChangedListener(android.widget.TimePicker$OnTimeChangedListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TimePicker.html#setOnTimeChangedListener(android.widget.TimePicker.OnTimeChangedListener) setOnTimeChangedListener(android.widget.TimePicker.OnTimeChangedListener)]]`
    */@inline def onTimeChangedListener  (p: android.widget.TimePicker.OnTimeChangedListener) =            onTimeChangedListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/TimePicker.html#setOnTimeChangedListener(android.widget.TimePicker$OnTimeChangedListener) setOnTimeChangedListener(android.widget.TimePicker$OnTimeChangedListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TimePicker.html#setOnTimeChangedListener(android.widget.TimePicker.OnTimeChangedListener) setOnTimeChangedListener(android.widget.TimePicker.OnTimeChangedListener)]]`
    */@inline def onTimeChangedListener_=(p: android.widget.TimePicker.OnTimeChangedListener) = { basis.setOnTimeChangedListener    (p); basis }
 
   @inline def onTimeChanged(f: (android.widget.TimePicker, Int, Int) => Unit): V = {
@@ -2543,34 +2543,34 @@ trait TraitExpandableListView[V <: android.widget.ExpandableListView] extends Tr
 
   @inline def onChildClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onChildClickListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnChildClickListener(android.widget.ExpandableListView$OnChildClickListener) setOnChildClickListener(android.widget.ExpandableListView$OnChildClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnChildClickListener(android.widget.ExpandableListView.OnChildClickListener) setOnChildClickListener(android.widget.ExpandableListView.OnChildClickListener)]]`
    */@inline def onChildClickListener  (p: android.widget.ExpandableListView.OnChildClickListener) =            onChildClickListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnChildClickListener(android.widget.ExpandableListView$OnChildClickListener) setOnChildClickListener(android.widget.ExpandableListView$OnChildClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnChildClickListener(android.widget.ExpandableListView.OnChildClickListener) setOnChildClickListener(android.widget.ExpandableListView.OnChildClickListener)]]`
    */@inline def onChildClickListener_=(p: android.widget.ExpandableListView.OnChildClickListener) = { basis.setOnChildClickListener    (p); basis }
 
   @inline def onGroupClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onGroupClickListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnGroupClickListener(android.widget.ExpandableListView$OnGroupClickListener) setOnGroupClickListener(android.widget.ExpandableListView$OnGroupClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnGroupClickListener(android.widget.ExpandableListView.OnGroupClickListener) setOnGroupClickListener(android.widget.ExpandableListView.OnGroupClickListener)]]`
    */@inline def onGroupClickListener  (p: android.widget.ExpandableListView.OnGroupClickListener) =            onGroupClickListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnGroupClickListener(android.widget.ExpandableListView$OnGroupClickListener) setOnGroupClickListener(android.widget.ExpandableListView$OnGroupClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnGroupClickListener(android.widget.ExpandableListView.OnGroupClickListener) setOnGroupClickListener(android.widget.ExpandableListView.OnGroupClickListener)]]`
    */@inline def onGroupClickListener_=(p: android.widget.ExpandableListView.OnGroupClickListener) = { basis.setOnGroupClickListener    (p); basis }
 
   @inline def onGroupCollapseListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onGroupCollapseListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnGroupCollapseListener(android.widget.ExpandableListView$OnGroupCollapseListener) setOnGroupCollapseListener(android.widget.ExpandableListView$OnGroupCollapseListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnGroupCollapseListener(android.widget.ExpandableListView.OnGroupCollapseListener) setOnGroupCollapseListener(android.widget.ExpandableListView.OnGroupCollapseListener)]]`
    */@inline def onGroupCollapseListener  (p: android.widget.ExpandableListView.OnGroupCollapseListener) =            onGroupCollapseListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnGroupCollapseListener(android.widget.ExpandableListView$OnGroupCollapseListener) setOnGroupCollapseListener(android.widget.ExpandableListView$OnGroupCollapseListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnGroupCollapseListener(android.widget.ExpandableListView.OnGroupCollapseListener) setOnGroupCollapseListener(android.widget.ExpandableListView.OnGroupCollapseListener)]]`
    */@inline def onGroupCollapseListener_=(p: android.widget.ExpandableListView.OnGroupCollapseListener) = { basis.setOnGroupCollapseListener    (p); basis }
 
   @inline def onGroupExpandListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onGroupExpandListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnGroupExpandListener(android.widget.ExpandableListView$OnGroupExpandListener) setOnGroupExpandListener(android.widget.ExpandableListView$OnGroupExpandListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnGroupExpandListener(android.widget.ExpandableListView.OnGroupExpandListener) setOnGroupExpandListener(android.widget.ExpandableListView.OnGroupExpandListener)]]`
    */@inline def onGroupExpandListener  (p: android.widget.ExpandableListView.OnGroupExpandListener) =            onGroupExpandListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnGroupExpandListener(android.widget.ExpandableListView$OnGroupExpandListener) setOnGroupExpandListener(android.widget.ExpandableListView$OnGroupExpandListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ExpandableListView.html#setOnGroupExpandListener(android.widget.ExpandableListView.OnGroupExpandListener) setOnGroupExpandListener(android.widget.ExpandableListView.OnGroupExpandListener)]]`
    */@inline def onGroupExpandListener_=(p: android.widget.ExpandableListView.OnGroupExpandListener) = { basis.setOnGroupExpandListener    (p); basis }
 
   @inline def selectedGroup(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'selectedGroup'")
@@ -2753,18 +2753,18 @@ trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView
 
   @inline def onScrollListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onScrollListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AbsListView.html#setOnScrollListener(android.widget.AbsListView$OnScrollListener) setOnScrollListener(android.widget.AbsListView$OnScrollListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AbsListView.html#setOnScrollListener(android.widget.AbsListView.OnScrollListener) setOnScrollListener(android.widget.AbsListView.OnScrollListener)]]`
    */@inline def onScrollListener  (p: android.widget.AbsListView.OnScrollListener) =            onScrollListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AbsListView.html#setOnScrollListener(android.widget.AbsListView$OnScrollListener) setOnScrollListener(android.widget.AbsListView$OnScrollListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AbsListView.html#setOnScrollListener(android.widget.AbsListView.OnScrollListener) setOnScrollListener(android.widget.AbsListView.OnScrollListener)]]`
    */@inline def onScrollListener_=(p: android.widget.AbsListView.OnScrollListener) = { basis.setOnScrollListener    (p); basis }
 
   @inline def recyclerListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'recyclerListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AbsListView.html#setRecyclerListener(android.widget.AbsListView$RecyclerListener) setRecyclerListener(android.widget.AbsListView$RecyclerListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AbsListView.html#setRecyclerListener(android.widget.AbsListView.RecyclerListener) setRecyclerListener(android.widget.AbsListView.RecyclerListener)]]`
    */@inline def recyclerListener  (p: android.widget.AbsListView.RecyclerListener) =            recyclerListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AbsListView.html#setRecyclerListener(android.widget.AbsListView$RecyclerListener) setRecyclerListener(android.widget.AbsListView$RecyclerListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AbsListView.html#setRecyclerListener(android.widget.AbsListView.RecyclerListener) setRecyclerListener(android.widget.AbsListView.RecyclerListener)]]`
    */@inline def recyclerListener_=(p: android.widget.AbsListView.RecyclerListener) = { basis.setRecyclerListener    (p); basis }
 
   /**
@@ -2948,10 +2948,10 @@ trait TraitSeekBar[V <: android.widget.SeekBar] extends TraitAbsSeekBar[V] {
 
   @inline def onSeekBarChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onSeekBarChangeListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SeekBar.html#setOnSeekBarChangeListener(android.widget.SeekBar$OnSeekBarChangeListener) setOnSeekBarChangeListener(android.widget.SeekBar$OnSeekBarChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SeekBar.html#setOnSeekBarChangeListener(android.widget.SeekBar.OnSeekBarChangeListener) setOnSeekBarChangeListener(android.widget.SeekBar.OnSeekBarChangeListener)]]`
    */@inline def onSeekBarChangeListener  (p: android.widget.SeekBar.OnSeekBarChangeListener) =            onSeekBarChangeListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SeekBar.html#setOnSeekBarChangeListener(android.widget.SeekBar$OnSeekBarChangeListener) setOnSeekBarChangeListener(android.widget.SeekBar$OnSeekBarChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SeekBar.html#setOnSeekBarChangeListener(android.widget.SeekBar.OnSeekBarChangeListener) setOnSeekBarChangeListener(android.widget.SeekBar.OnSeekBarChangeListener)]]`
    */@inline def onSeekBarChangeListener_=(p: android.widget.SeekBar.OnSeekBarChangeListener) = { basis.setOnSeekBarChangeListener    (p); basis }
 
   @inline def onProgressChanged(f: (android.widget.SeekBar, Int, Boolean) => Unit): V = {
@@ -3195,10 +3195,10 @@ trait TraitZoomButtonsController[V <: android.widget.ZoomButtonsController] {
 
   @inline def onZoomListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onZoomListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ZoomButtonsController.html#setOnZoomListener(android.widget.ZoomButtonsController$OnZoomListener) setOnZoomListener(android.widget.ZoomButtonsController$OnZoomListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ZoomButtonsController.html#setOnZoomListener(android.widget.ZoomButtonsController.OnZoomListener) setOnZoomListener(android.widget.ZoomButtonsController.OnZoomListener)]]`
    */@inline def onZoomListener  (p: android.widget.ZoomButtonsController.OnZoomListener) =            onZoomListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ZoomButtonsController.html#setOnZoomListener(android.widget.ZoomButtonsController$OnZoomListener) setOnZoomListener(android.widget.ZoomButtonsController$OnZoomListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ZoomButtonsController.html#setOnZoomListener(android.widget.ZoomButtonsController.OnZoomListener) setOnZoomListener(android.widget.ZoomButtonsController.OnZoomListener)]]`
    */@inline def onZoomListener_=(p: android.widget.ZoomButtonsController.OnZoomListener) = { basis.setOnZoomListener    (p); basis }
 
   /**
@@ -3430,26 +3430,26 @@ trait TraitSlidingDrawer[V <: android.widget.SlidingDrawer] extends TraitViewGro
 
   @inline def onDrawerCloseListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onDrawerCloseListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SlidingDrawer.html#setOnDrawerCloseListener(android.widget.SlidingDrawer$OnDrawerCloseListener) setOnDrawerCloseListener(android.widget.SlidingDrawer$OnDrawerCloseListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SlidingDrawer.html#setOnDrawerCloseListener(android.widget.SlidingDrawer.OnDrawerCloseListener) setOnDrawerCloseListener(android.widget.SlidingDrawer.OnDrawerCloseListener)]]`
    */@inline def onDrawerCloseListener  (p: android.widget.SlidingDrawer.OnDrawerCloseListener) =            onDrawerCloseListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SlidingDrawer.html#setOnDrawerCloseListener(android.widget.SlidingDrawer$OnDrawerCloseListener) setOnDrawerCloseListener(android.widget.SlidingDrawer$OnDrawerCloseListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SlidingDrawer.html#setOnDrawerCloseListener(android.widget.SlidingDrawer.OnDrawerCloseListener) setOnDrawerCloseListener(android.widget.SlidingDrawer.OnDrawerCloseListener)]]`
    */@inline def onDrawerCloseListener_=(p: android.widget.SlidingDrawer.OnDrawerCloseListener) = { basis.setOnDrawerCloseListener    (p); basis }
 
   @inline def onDrawerOpenListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onDrawerOpenListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SlidingDrawer.html#setOnDrawerOpenListener(android.widget.SlidingDrawer$OnDrawerOpenListener) setOnDrawerOpenListener(android.widget.SlidingDrawer$OnDrawerOpenListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SlidingDrawer.html#setOnDrawerOpenListener(android.widget.SlidingDrawer.OnDrawerOpenListener) setOnDrawerOpenListener(android.widget.SlidingDrawer.OnDrawerOpenListener)]]`
    */@inline def onDrawerOpenListener  (p: android.widget.SlidingDrawer.OnDrawerOpenListener) =            onDrawerOpenListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SlidingDrawer.html#setOnDrawerOpenListener(android.widget.SlidingDrawer$OnDrawerOpenListener) setOnDrawerOpenListener(android.widget.SlidingDrawer$OnDrawerOpenListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SlidingDrawer.html#setOnDrawerOpenListener(android.widget.SlidingDrawer.OnDrawerOpenListener) setOnDrawerOpenListener(android.widget.SlidingDrawer.OnDrawerOpenListener)]]`
    */@inline def onDrawerOpenListener_=(p: android.widget.SlidingDrawer.OnDrawerOpenListener) = { basis.setOnDrawerOpenListener    (p); basis }
 
   @inline def onDrawerScrollListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onDrawerScrollListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SlidingDrawer.html#setOnDrawerScrollListener(android.widget.SlidingDrawer$OnDrawerScrollListener) setOnDrawerScrollListener(android.widget.SlidingDrawer$OnDrawerScrollListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SlidingDrawer.html#setOnDrawerScrollListener(android.widget.SlidingDrawer.OnDrawerScrollListener) setOnDrawerScrollListener(android.widget.SlidingDrawer.OnDrawerScrollListener)]]`
    */@inline def onDrawerScrollListener  (p: android.widget.SlidingDrawer.OnDrawerScrollListener) =            onDrawerScrollListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SlidingDrawer.html#setOnDrawerScrollListener(android.widget.SlidingDrawer$OnDrawerScrollListener) setOnDrawerScrollListener(android.widget.SlidingDrawer$OnDrawerScrollListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SlidingDrawer.html#setOnDrawerScrollListener(android.widget.SlidingDrawer.OnDrawerScrollListener) setOnDrawerScrollListener(android.widget.SlidingDrawer.OnDrawerScrollListener)]]`
    */@inline def onDrawerScrollListener_=(p: android.widget.SlidingDrawer.OnDrawerScrollListener) = { basis.setOnDrawerScrollListener    (p); basis }
 
 
@@ -3715,18 +3715,18 @@ trait TraitZoomControls[V <: android.widget.ZoomControls] extends TraitLinearLay
 
   @inline def onZoomInClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onZoomInClickListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ZoomControls.html#setOnZoomInClickListener(android.view.View$OnClickListener) setOnZoomInClickListener(android.view.View$OnClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ZoomControls.html#setOnZoomInClickListener(android.view.View.OnClickListener) setOnZoomInClickListener(android.view.View.OnClickListener)]]`
    */@inline def onZoomInClickListener  (p: android.view.View.OnClickListener) =            onZoomInClickListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ZoomControls.html#setOnZoomInClickListener(android.view.View$OnClickListener) setOnZoomInClickListener(android.view.View$OnClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ZoomControls.html#setOnZoomInClickListener(android.view.View.OnClickListener) setOnZoomInClickListener(android.view.View.OnClickListener)]]`
    */@inline def onZoomInClickListener_=(p: android.view.View.OnClickListener) = { basis.setOnZoomInClickListener    (p); basis }
 
   @inline def onZoomOutClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onZoomOutClickListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ZoomControls.html#setOnZoomOutClickListener(android.view.View$OnClickListener) setOnZoomOutClickListener(android.view.View$OnClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ZoomControls.html#setOnZoomOutClickListener(android.view.View.OnClickListener) setOnZoomOutClickListener(android.view.View.OnClickListener)]]`
    */@inline def onZoomOutClickListener  (p: android.view.View.OnClickListener) =            onZoomOutClickListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ZoomControls.html#setOnZoomOutClickListener(android.view.View$OnClickListener) setOnZoomOutClickListener(android.view.View$OnClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ZoomControls.html#setOnZoomOutClickListener(android.view.View.OnClickListener) setOnZoomOutClickListener(android.view.View.OnClickListener)]]`
    */@inline def onZoomOutClickListener_=(p: android.view.View.OnClickListener) = { basis.setOnZoomOutClickListener    (p); basis }
 
   @inline def zoomSpeed(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'zoomSpeed'")
@@ -4367,10 +4367,10 @@ trait TraitMediaController[V <: android.widget.MediaController] extends TraitFra
 
   @inline def mediaPlayer(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'mediaPlayer'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/MediaController.html#setMediaPlayer(android.widget.MediaController$MediaPlayerControl) setMediaPlayer(android.widget.MediaController$MediaPlayerControl)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/MediaController.html#setMediaPlayer(android.widget.MediaController.MediaPlayerControl) setMediaPlayer(android.widget.MediaController.MediaPlayerControl)]]`
    */@inline def mediaPlayer  (p: android.widget.MediaController.MediaPlayerControl) =            mediaPlayer_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/MediaController.html#setMediaPlayer(android.widget.MediaController$MediaPlayerControl) setMediaPlayer(android.widget.MediaController$MediaPlayerControl)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/MediaController.html#setMediaPlayer(android.widget.MediaController.MediaPlayerControl) setMediaPlayer(android.widget.MediaController.MediaPlayerControl)]]`
    */@inline def mediaPlayer_=(p: android.widget.MediaController.MediaPlayerControl) = { basis.setMediaPlayer    (p); basis }
 
 }
@@ -4591,26 +4591,26 @@ trait TraitVideoView[V <: android.widget.VideoView] extends TraitSurfaceView[V] 
 
   @inline def onCompletionListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onCompletionListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/VideoView.html#setOnCompletionListener(android.media.MediaPlayer$OnCompletionListener) setOnCompletionListener(android.media.MediaPlayer$OnCompletionListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/VideoView.html#setOnCompletionListener(android.media.MediaPlayer.OnCompletionListener) setOnCompletionListener(android.media.MediaPlayer.OnCompletionListener)]]`
    */@inline def onCompletionListener  (p: android.media.MediaPlayer.OnCompletionListener) =            onCompletionListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/VideoView.html#setOnCompletionListener(android.media.MediaPlayer$OnCompletionListener) setOnCompletionListener(android.media.MediaPlayer$OnCompletionListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/VideoView.html#setOnCompletionListener(android.media.MediaPlayer.OnCompletionListener) setOnCompletionListener(android.media.MediaPlayer.OnCompletionListener)]]`
    */@inline def onCompletionListener_=(p: android.media.MediaPlayer.OnCompletionListener) = { basis.setOnCompletionListener    (p); basis }
 
   @inline def onErrorListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onErrorListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/VideoView.html#setOnErrorListener(android.media.MediaPlayer$OnErrorListener) setOnErrorListener(android.media.MediaPlayer$OnErrorListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/VideoView.html#setOnErrorListener(android.media.MediaPlayer.OnErrorListener) setOnErrorListener(android.media.MediaPlayer.OnErrorListener)]]`
    */@inline def onErrorListener  (p: android.media.MediaPlayer.OnErrorListener) =            onErrorListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/VideoView.html#setOnErrorListener(android.media.MediaPlayer$OnErrorListener) setOnErrorListener(android.media.MediaPlayer$OnErrorListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/VideoView.html#setOnErrorListener(android.media.MediaPlayer.OnErrorListener) setOnErrorListener(android.media.MediaPlayer.OnErrorListener)]]`
    */@inline def onErrorListener_=(p: android.media.MediaPlayer.OnErrorListener) = { basis.setOnErrorListener    (p); basis }
 
   @inline def onPreparedListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onPreparedListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/VideoView.html#setOnPreparedListener(android.media.MediaPlayer$OnPreparedListener) setOnPreparedListener(android.media.MediaPlayer$OnPreparedListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/VideoView.html#setOnPreparedListener(android.media.MediaPlayer.OnPreparedListener) setOnPreparedListener(android.media.MediaPlayer.OnPreparedListener)]]`
    */@inline def onPreparedListener  (p: android.media.MediaPlayer.OnPreparedListener) =            onPreparedListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/VideoView.html#setOnPreparedListener(android.media.MediaPlayer$OnPreparedListener) setOnPreparedListener(android.media.MediaPlayer$OnPreparedListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/VideoView.html#setOnPreparedListener(android.media.MediaPlayer.OnPreparedListener) setOnPreparedListener(android.media.MediaPlayer.OnPreparedListener)]]`
    */@inline def onPreparedListener_=(p: android.media.MediaPlayer.OnPreparedListener) = { basis.setOnPreparedListener    (p); basis }
 
   @inline def videoPath(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'videoPath'")
@@ -4748,10 +4748,10 @@ trait TraitAdapterView[V <: android.widget.AdapterView[_]] extends TraitViewGrou
    */
   @inline def onItemClickListener = basis.getOnItemClickListener
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AdapterView.html#setOnItemClickListener(android.widget.AdapterView$OnItemClickListener) setOnItemClickListener(android.widget.AdapterView$OnItemClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AdapterView.html#setOnItemClickListener(android.widget.AdapterView.OnItemClickListener) setOnItemClickListener(android.widget.AdapterView.OnItemClickListener)]]`
    */@inline def onItemClickListener  (p: android.widget.AdapterView.OnItemClickListener) =            onItemClickListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AdapterView.html#setOnItemClickListener(android.widget.AdapterView$OnItemClickListener) setOnItemClickListener(android.widget.AdapterView$OnItemClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AdapterView.html#setOnItemClickListener(android.widget.AdapterView.OnItemClickListener) setOnItemClickListener(android.widget.AdapterView.OnItemClickListener)]]`
    */@inline def onItemClickListener_=(p: android.widget.AdapterView.OnItemClickListener) = { basis.setOnItemClickListener    (p); basis }
 
   /**
@@ -4759,10 +4759,10 @@ trait TraitAdapterView[V <: android.widget.AdapterView[_]] extends TraitViewGrou
    */
   @inline def onItemLongClickListener = basis.getOnItemLongClickListener
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AdapterView.html#setOnItemLongClickListener(android.widget.AdapterView$OnItemLongClickListener) setOnItemLongClickListener(android.widget.AdapterView$OnItemLongClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AdapterView.html#setOnItemLongClickListener(android.widget.AdapterView.OnItemLongClickListener) setOnItemLongClickListener(android.widget.AdapterView.OnItemLongClickListener)]]`
    */@inline def onItemLongClickListener  (p: android.widget.AdapterView.OnItemLongClickListener) =            onItemLongClickListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AdapterView.html#setOnItemLongClickListener(android.widget.AdapterView$OnItemLongClickListener) setOnItemLongClickListener(android.widget.AdapterView$OnItemLongClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AdapterView.html#setOnItemLongClickListener(android.widget.AdapterView.OnItemLongClickListener) setOnItemLongClickListener(android.widget.AdapterView.OnItemLongClickListener)]]`
    */@inline def onItemLongClickListener_=(p: android.widget.AdapterView.OnItemLongClickListener) = { basis.setOnItemLongClickListener    (p); basis }
 
   /**
@@ -4770,10 +4770,10 @@ trait TraitAdapterView[V <: android.widget.AdapterView[_]] extends TraitViewGrou
    */
   @inline def onItemSelectedListener = basis.getOnItemSelectedListener
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AdapterView.html#setOnItemSelectedListener(android.widget.AdapterView$OnItemSelectedListener) setOnItemSelectedListener(android.widget.AdapterView$OnItemSelectedListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AdapterView.html#setOnItemSelectedListener(android.widget.AdapterView.OnItemSelectedListener) setOnItemSelectedListener(android.widget.AdapterView.OnItemSelectedListener)]]`
    */@inline def onItemSelectedListener  (p: android.widget.AdapterView.OnItemSelectedListener) =            onItemSelectedListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AdapterView.html#setOnItemSelectedListener(android.widget.AdapterView$OnItemSelectedListener) setOnItemSelectedListener(android.widget.AdapterView$OnItemSelectedListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AdapterView.html#setOnItemSelectedListener(android.widget.AdapterView.OnItemSelectedListener) setOnItemSelectedListener(android.widget.AdapterView.OnItemSelectedListener)]]`
    */@inline def onItemSelectedListener_=(p: android.widget.AdapterView.OnItemSelectedListener) = { basis.setOnItemSelectedListener    (p); basis }
 
   /**
@@ -5222,10 +5222,10 @@ trait TraitSimpleCursorAdapter[V <: android.widget.SimpleCursorAdapter] extends 
    */
   @inline def cursorToStringConverter = basis.getCursorToStringConverter
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleCursorAdapter.html#setCursorToStringConverter(android.widget.SimpleCursorAdapter$CursorToStringConverter) setCursorToStringConverter(android.widget.SimpleCursorAdapter$CursorToStringConverter)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleCursorAdapter.html#setCursorToStringConverter(android.widget.SimpleCursorAdapter.CursorToStringConverter) setCursorToStringConverter(android.widget.SimpleCursorAdapter.CursorToStringConverter)]]`
    */@inline def cursorToStringConverter  (p: android.widget.SimpleCursorAdapter.CursorToStringConverter) =            cursorToStringConverter_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleCursorAdapter.html#setCursorToStringConverter(android.widget.SimpleCursorAdapter$CursorToStringConverter) setCursorToStringConverter(android.widget.SimpleCursorAdapter$CursorToStringConverter)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleCursorAdapter.html#setCursorToStringConverter(android.widget.SimpleCursorAdapter.CursorToStringConverter) setCursorToStringConverter(android.widget.SimpleCursorAdapter.CursorToStringConverter)]]`
    */@inline def cursorToStringConverter_=(p: android.widget.SimpleCursorAdapter.CursorToStringConverter) = { basis.setCursorToStringConverter    (p); basis }
 
   /**
@@ -5244,10 +5244,10 @@ trait TraitSimpleCursorAdapter[V <: android.widget.SimpleCursorAdapter] extends 
    */
   @inline def viewBinder = basis.getViewBinder
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleCursorAdapter.html#setViewBinder(android.widget.SimpleCursorAdapter$ViewBinder) setViewBinder(android.widget.SimpleCursorAdapter$ViewBinder)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleCursorAdapter.html#setViewBinder(android.widget.SimpleCursorAdapter.ViewBinder) setViewBinder(android.widget.SimpleCursorAdapter.ViewBinder)]]`
    */@inline def viewBinder  (p: android.widget.SimpleCursorAdapter.ViewBinder) =            viewBinder_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleCursorAdapter.html#setViewBinder(android.widget.SimpleCursorAdapter$ViewBinder) setViewBinder(android.widget.SimpleCursorAdapter$ViewBinder)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleCursorAdapter.html#setViewBinder(android.widget.SimpleCursorAdapter.ViewBinder) setViewBinder(android.widget.SimpleCursorAdapter.ViewBinder)]]`
    */@inline def viewBinder_=(p: android.widget.SimpleCursorAdapter.ViewBinder) = { basis.setViewBinder    (p); basis }
 
 }
@@ -5307,10 +5307,10 @@ trait TraitViewSwitcher[V <: android.widget.ViewSwitcher] extends TraitViewAnima
 
   @inline def factory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'factory'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ViewSwitcher.html#setFactory(android.widget.ViewSwitcher$ViewFactory) setFactory(android.widget.ViewSwitcher$ViewFactory)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ViewSwitcher.html#setFactory(android.widget.ViewSwitcher.ViewFactory) setFactory(android.widget.ViewSwitcher.ViewFactory)]]`
    */@inline def factory  (p: android.widget.ViewSwitcher.ViewFactory) =            factory_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/ViewSwitcher.html#setFactory(android.widget.ViewSwitcher$ViewFactory) setFactory(android.widget.ViewSwitcher$ViewFactory)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ViewSwitcher.html#setFactory(android.widget.ViewSwitcher.ViewFactory) setFactory(android.widget.ViewSwitcher.ViewFactory)]]`
    */@inline def factory_=(p: android.widget.ViewSwitcher.ViewFactory) = { basis.setFactory    (p); basis }
 
   /**
@@ -5555,10 +5555,10 @@ trait TraitCompoundButton[V <: android.widget.CompoundButton] extends TraitButto
 
   @inline def onCheckedChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onCheckedChangeListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/CompoundButton.html#setOnCheckedChangeListener(android.widget.CompoundButton$OnCheckedChangeListener) setOnCheckedChangeListener(android.widget.CompoundButton$OnCheckedChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CompoundButton.html#setOnCheckedChangeListener(android.widget.CompoundButton.OnCheckedChangeListener) setOnCheckedChangeListener(android.widget.CompoundButton.OnCheckedChangeListener)]]`
    */@inline def onCheckedChangeListener  (p: android.widget.CompoundButton.OnCheckedChangeListener) =            onCheckedChangeListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/CompoundButton.html#setOnCheckedChangeListener(android.widget.CompoundButton$OnCheckedChangeListener) setOnCheckedChangeListener(android.widget.CompoundButton$OnCheckedChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CompoundButton.html#setOnCheckedChangeListener(android.widget.CompoundButton.OnCheckedChangeListener) setOnCheckedChangeListener(android.widget.CompoundButton.OnCheckedChangeListener)]]`
    */@inline def onCheckedChangeListener_=(p: android.widget.CompoundButton.OnCheckedChangeListener) = { basis.setOnCheckedChangeListener    (p); basis }
 
   @inline def onCheckedChanged(f: (android.widget.CompoundButton, Boolean) => Unit): V = {
@@ -5852,10 +5852,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
   @inline def editableFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'editableFactory'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setEditableFactory(android.text.Editable$Factory) setEditableFactory(android.text.Editable$Factory)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setEditableFactory(android.text.Editable.Factory) setEditableFactory(android.text.Editable.Factory)]]`
    */@inline def editableFactory  (p: android.text.Editable.Factory) =            editableFactory_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setEditableFactory(android.text.Editable$Factory) setEditableFactory(android.text.Editable$Factory)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setEditableFactory(android.text.Editable.Factory) setEditableFactory(android.text.Editable.Factory)]]`
    */@inline def editableFactory_=(p: android.text.Editable.Factory) = { basis.setEditableFactory    (p); basis }
 
   /**
@@ -5869,10 +5869,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
    */
   @inline def ellipsize = basis.getEllipsize
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setEllipsize(android.text.TextUtils$TruncateAt) setEllipsize(android.text.TextUtils$TruncateAt)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setEllipsize(android.text.TextUtils.TruncateAt) setEllipsize(android.text.TextUtils.TruncateAt)]]`
    */@inline def ellipsize  (p: android.text.TextUtils.TruncateAt) =            ellipsize_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setEllipsize(android.text.TextUtils$TruncateAt) setEllipsize(android.text.TextUtils$TruncateAt)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setEllipsize(android.text.TextUtils.TruncateAt) setEllipsize(android.text.TextUtils.TruncateAt)]]`
    */@inline def ellipsize_=(p: android.text.TextUtils.TruncateAt) = { basis.setEllipsize    (p); basis }
 
   @inline def ems(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'ems'")
@@ -6209,10 +6209,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
   @inline def onEditorActionListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onEditorActionListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setOnEditorActionListener(android.widget.TextView$OnEditorActionListener) setOnEditorActionListener(android.widget.TextView$OnEditorActionListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setOnEditorActionListener(android.widget.TextView.OnEditorActionListener) setOnEditorActionListener(android.widget.TextView.OnEditorActionListener)]]`
    */@inline def onEditorActionListener  (p: android.widget.TextView.OnEditorActionListener) =            onEditorActionListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setOnEditorActionListener(android.widget.TextView$OnEditorActionListener) setOnEditorActionListener(android.widget.TextView$OnEditorActionListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setOnEditorActionListener(android.widget.TextView.OnEditorActionListener) setOnEditorActionListener(android.widget.TextView.OnEditorActionListener)]]`
    */@inline def onEditorActionListener_=(p: android.widget.TextView.OnEditorActionListener) = { basis.setOnEditorActionListener    (p); basis }
 
   /**
@@ -6289,10 +6289,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
   @inline def spannableFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'spannableFactory'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setSpannableFactory(android.text.Spannable$Factory) setSpannableFactory(android.text.Spannable$Factory)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setSpannableFactory(android.text.Spannable.Factory) setSpannableFactory(android.text.Spannable.Factory)]]`
    */@inline def spannableFactory  (p: android.text.Spannable.Factory) =            spannableFactory_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setSpannableFactory(android.text.Spannable$Factory) setSpannableFactory(android.text.Spannable$Factory)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setSpannableFactory(android.text.Spannable.Factory) setSpannableFactory(android.text.Spannable.Factory)]]`
    */@inline def spannableFactory_=(p: android.text.Spannable.Factory) = { basis.setSpannableFactory    (p); basis }
 
   /**
@@ -6724,10 +6724,10 @@ trait TraitSimpleAdapter[V <: android.widget.SimpleAdapter] extends TraitBaseAda
    */
   @inline def viewBinder = basis.getViewBinder
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleAdapter.html#setViewBinder(android.widget.SimpleAdapter$ViewBinder) setViewBinder(android.widget.SimpleAdapter$ViewBinder)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleAdapter.html#setViewBinder(android.widget.SimpleAdapter.ViewBinder) setViewBinder(android.widget.SimpleAdapter.ViewBinder)]]`
    */@inline def viewBinder  (p: android.widget.SimpleAdapter.ViewBinder) =            viewBinder_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleAdapter.html#setViewBinder(android.widget.SimpleAdapter$ViewBinder) setViewBinder(android.widget.SimpleAdapter$ViewBinder)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SimpleAdapter.html#setViewBinder(android.widget.SimpleAdapter.ViewBinder) setViewBinder(android.widget.SimpleAdapter.ViewBinder)]]`
    */@inline def viewBinder_=(p: android.widget.SimpleAdapter.ViewBinder) = { basis.setViewBinder    (p); basis }
 
 }
@@ -6872,10 +6872,10 @@ trait TraitAutoCompleteTextView[V <: android.widget.AutoCompleteTextView] extend
    */
   @inline def onItemClickListener = basis.getOnItemClickListener
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#setOnItemClickListener(android.widget.AdapterView$OnItemClickListener) setOnItemClickListener(android.widget.AdapterView$OnItemClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#setOnItemClickListener(android.widget.AdapterView.OnItemClickListener) setOnItemClickListener(android.widget.AdapterView.OnItemClickListener)]]`
    */@inline def onItemClickListener  (p: android.widget.AdapterView.OnItemClickListener) =            onItemClickListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#setOnItemClickListener(android.widget.AdapterView$OnItemClickListener) setOnItemClickListener(android.widget.AdapterView$OnItemClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#setOnItemClickListener(android.widget.AdapterView.OnItemClickListener) setOnItemClickListener(android.widget.AdapterView.OnItemClickListener)]]`
    */@inline def onItemClickListener_=(p: android.widget.AdapterView.OnItemClickListener) = { basis.setOnItemClickListener    (p); basis }
 
   /**
@@ -6883,10 +6883,10 @@ trait TraitAutoCompleteTextView[V <: android.widget.AutoCompleteTextView] extend
    */
   @inline def onItemSelectedListener = basis.getOnItemSelectedListener
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#setOnItemSelectedListener(android.widget.AdapterView$OnItemSelectedListener) setOnItemSelectedListener(android.widget.AdapterView$OnItemSelectedListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#setOnItemSelectedListener(android.widget.AdapterView.OnItemSelectedListener) setOnItemSelectedListener(android.widget.AdapterView.OnItemSelectedListener)]]`
    */@inline def onItemSelectedListener  (p: android.widget.AdapterView.OnItemSelectedListener) =            onItemSelectedListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#setOnItemSelectedListener(android.widget.AdapterView$OnItemSelectedListener) setOnItemSelectedListener(android.widget.AdapterView$OnItemSelectedListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#setOnItemSelectedListener(android.widget.AdapterView.OnItemSelectedListener) setOnItemSelectedListener(android.widget.AdapterView.OnItemSelectedListener)]]`
    */@inline def onItemSelectedListener_=(p: android.widget.AdapterView.OnItemSelectedListener) = { basis.setOnItemSelectedListener    (p); basis }
 
   /**
@@ -6905,10 +6905,10 @@ trait TraitAutoCompleteTextView[V <: android.widget.AutoCompleteTextView] extend
    */
   @inline def validator = basis.getValidator
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#setValidator(android.widget.AutoCompleteTextView$Validator) setValidator(android.widget.AutoCompleteTextView$Validator)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#setValidator(android.widget.AutoCompleteTextView.Validator) setValidator(android.widget.AutoCompleteTextView.Validator)]]`
    */@inline def validator  (p: android.widget.AutoCompleteTextView.Validator) =            validator_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#setValidator(android.widget.AutoCompleteTextView$Validator) setValidator(android.widget.AutoCompleteTextView$Validator)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#setValidator(android.widget.AutoCompleteTextView.Validator) setValidator(android.widget.AutoCompleteTextView.Validator)]]`
    */@inline def validator_=(p: android.widget.AutoCompleteTextView.Validator) = { basis.setValidator    (p); basis }
 
   @inline def onItemClick(f: (android.widget.AdapterView[_], android.view.View, Int, Long) => Unit): V = {
@@ -7186,10 +7186,10 @@ trait TraitKeyboardView[V <: android.inputmethodservice.KeyboardView] extends Tr
 
   @inline def onKeyboardActionListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onKeyboardActionListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/inputmethodservice/KeyboardView.html#setOnKeyboardActionListener(android.inputmethodservice.KeyboardView$OnKeyboardActionListener) setOnKeyboardActionListener(android.inputmethodservice.KeyboardView$OnKeyboardActionListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/inputmethodservice/KeyboardView.html#setOnKeyboardActionListener(android.inputmethodservice.KeyboardView.OnKeyboardActionListener) setOnKeyboardActionListener(android.inputmethodservice.KeyboardView.OnKeyboardActionListener)]]`
    */@inline def onKeyboardActionListener  (p: android.inputmethodservice.KeyboardView.OnKeyboardActionListener) =            onKeyboardActionListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/inputmethodservice/KeyboardView.html#setOnKeyboardActionListener(android.inputmethodservice.KeyboardView$OnKeyboardActionListener) setOnKeyboardActionListener(android.inputmethodservice.KeyboardView$OnKeyboardActionListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/inputmethodservice/KeyboardView.html#setOnKeyboardActionListener(android.inputmethodservice.KeyboardView.OnKeyboardActionListener) setOnKeyboardActionListener(android.inputmethodservice.KeyboardView.OnKeyboardActionListener)]]`
    */@inline def onKeyboardActionListener_=(p: android.inputmethodservice.KeyboardView.OnKeyboardActionListener) = { basis.setOnKeyboardActionListener    (p); basis }
 
   @inline def popupParent(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'popupParent'")
@@ -7444,10 +7444,10 @@ trait TraitGLSurfaceView[V <: android.opengl.GLSurfaceView] extends TraitSurface
    * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setEGLConfigChooser(boolean) setEGLConfigChooser(boolean)]]`
    */@inline def EGLConfigChooser_=(p: Boolean) = { basis.setEGLConfigChooser    (p); basis }
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setEGLConfigChooser(android.opengl.GLSurfaceView$EGLConfigChooser) setEGLConfigChooser(android.opengl.GLSurfaceView$EGLConfigChooser)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setEGLConfigChooser(android.opengl.GLSurfaceView.EGLConfigChooser) setEGLConfigChooser(android.opengl.GLSurfaceView.EGLConfigChooser)]]`
    */@inline def EGLConfigChooser  (p: android.opengl.GLSurfaceView.EGLConfigChooser) =            EGLConfigChooser_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setEGLConfigChooser(android.opengl.GLSurfaceView$EGLConfigChooser) setEGLConfigChooser(android.opengl.GLSurfaceView$EGLConfigChooser)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setEGLConfigChooser(android.opengl.GLSurfaceView.EGLConfigChooser) setEGLConfigChooser(android.opengl.GLSurfaceView.EGLConfigChooser)]]`
    */@inline def EGLConfigChooser_=(p: android.opengl.GLSurfaceView.EGLConfigChooser) = { basis.setEGLConfigChooser    (p); basis }
 
   @inline def EGLContextClientVersion(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'EGLContextClientVersion'")
@@ -7460,26 +7460,26 @@ trait TraitGLSurfaceView[V <: android.opengl.GLSurfaceView] extends TraitSurface
 
   @inline def EGLContextFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'EGLContextFactory'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setEGLContextFactory(android.opengl.GLSurfaceView$EGLContextFactory) setEGLContextFactory(android.opengl.GLSurfaceView$EGLContextFactory)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setEGLContextFactory(android.opengl.GLSurfaceView.EGLContextFactory) setEGLContextFactory(android.opengl.GLSurfaceView.EGLContextFactory)]]`
    */@inline def EGLContextFactory  (p: android.opengl.GLSurfaceView.EGLContextFactory) =            EGLContextFactory_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setEGLContextFactory(android.opengl.GLSurfaceView$EGLContextFactory) setEGLContextFactory(android.opengl.GLSurfaceView$EGLContextFactory)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setEGLContextFactory(android.opengl.GLSurfaceView.EGLContextFactory) setEGLContextFactory(android.opengl.GLSurfaceView.EGLContextFactory)]]`
    */@inline def EGLContextFactory_=(p: android.opengl.GLSurfaceView.EGLContextFactory) = { basis.setEGLContextFactory    (p); basis }
 
   @inline def EGLWindowSurfaceFactory(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'EGLWindowSurfaceFactory'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setEGLWindowSurfaceFactory(android.opengl.GLSurfaceView$EGLWindowSurfaceFactory) setEGLWindowSurfaceFactory(android.opengl.GLSurfaceView$EGLWindowSurfaceFactory)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setEGLWindowSurfaceFactory(android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) setEGLWindowSurfaceFactory(android.opengl.GLSurfaceView.EGLWindowSurfaceFactory)]]`
    */@inline def EGLWindowSurfaceFactory  (p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) =            EGLWindowSurfaceFactory_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setEGLWindowSurfaceFactory(android.opengl.GLSurfaceView$EGLWindowSurfaceFactory) setEGLWindowSurfaceFactory(android.opengl.GLSurfaceView$EGLWindowSurfaceFactory)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setEGLWindowSurfaceFactory(android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) setEGLWindowSurfaceFactory(android.opengl.GLSurfaceView.EGLWindowSurfaceFactory)]]`
    */@inline def EGLWindowSurfaceFactory_=(p: android.opengl.GLSurfaceView.EGLWindowSurfaceFactory) = { basis.setEGLWindowSurfaceFactory    (p); basis }
 
   @inline def GLWrapper(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'GLWrapper'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setGLWrapper(android.opengl.GLSurfaceView$GLWrapper) setGLWrapper(android.opengl.GLSurfaceView$GLWrapper)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setGLWrapper(android.opengl.GLSurfaceView.GLWrapper) setGLWrapper(android.opengl.GLSurfaceView.GLWrapper)]]`
    */@inline def GLWrapper  (p: android.opengl.GLSurfaceView.GLWrapper) =            GLWrapper_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setGLWrapper(android.opengl.GLSurfaceView$GLWrapper) setGLWrapper(android.opengl.GLSurfaceView$GLWrapper)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setGLWrapper(android.opengl.GLSurfaceView.GLWrapper) setGLWrapper(android.opengl.GLSurfaceView.GLWrapper)]]`
    */@inline def GLWrapper_=(p: android.opengl.GLSurfaceView.GLWrapper) = { basis.setGLWrapper    (p); basis }
 
   /**
@@ -7506,10 +7506,10 @@ trait TraitGLSurfaceView[V <: android.opengl.GLSurfaceView] extends TraitSurface
 
   @inline def renderer(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'renderer'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setRenderer(android.opengl.GLSurfaceView$Renderer) setRenderer(android.opengl.GLSurfaceView$Renderer)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setRenderer(android.opengl.GLSurfaceView.Renderer) setRenderer(android.opengl.GLSurfaceView.Renderer)]]`
    */@inline def renderer  (p: android.opengl.GLSurfaceView.Renderer) =            renderer_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setRenderer(android.opengl.GLSurfaceView$Renderer) setRenderer(android.opengl.GLSurfaceView$Renderer)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html#setRenderer(android.opengl.GLSurfaceView.Renderer) setRenderer(android.opengl.GLSurfaceView.Renderer)]]`
    */@inline def renderer_=(p: android.opengl.GLSurfaceView.Renderer) = { basis.setRenderer    (p); basis }
 
 }
@@ -8012,10 +8012,10 @@ trait TraitWebView[V <: android.webkit.WebView] extends TraitAbsoluteLayout[V] {
 
   @inline def pictureListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'pictureListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/webkit/WebView.html#setPictureListener(android.webkit.WebView$PictureListener) setPictureListener(android.webkit.WebView$PictureListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/webkit/WebView.html#setPictureListener(android.webkit.WebView.PictureListener) setPictureListener(android.webkit.WebView.PictureListener)]]`
    */@inline def pictureListener  (p: android.webkit.WebView.PictureListener) =            pictureListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/webkit/WebView.html#setPictureListener(android.webkit.WebView$PictureListener) setPictureListener(android.webkit.WebView$PictureListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/webkit/WebView.html#setPictureListener(android.webkit.WebView.PictureListener) setPictureListener(android.webkit.WebView.PictureListener)]]`
    */@inline def pictureListener_=(p: android.webkit.WebView.PictureListener) = { basis.setPictureListener    (p); basis }
 
   /**

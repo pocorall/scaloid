@@ -394,10 +394,10 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    */
   @inline def layoutParams = basis.getLayoutParams
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setLayoutParams(android.view.ViewGroup$LayoutParams) setLayoutParams(android.view.ViewGroup$LayoutParams)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setLayoutParams(android.view.ViewGroup.LayoutParams) setLayoutParams(android.view.ViewGroup.LayoutParams)]]`
    */@inline def layoutParams  (p: android.view.ViewGroup.LayoutParams) =            layoutParams_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setLayoutParams(android.view.ViewGroup$LayoutParams) setLayoutParams(android.view.ViewGroup$LayoutParams)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setLayoutParams(android.view.ViewGroup.LayoutParams) setLayoutParams(android.view.ViewGroup.LayoutParams)]]`
    */@inline def layoutParams_=(p: android.view.ViewGroup.LayoutParams) = { basis.setLayoutParams    (p); basis }
 
   /**
@@ -491,18 +491,18 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
 
   @inline def onClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onClickListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnClickListener(android.view.View$OnClickListener) setOnClickListener(android.view.View$OnClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnClickListener(android.view.View.OnClickListener) setOnClickListener(android.view.View.OnClickListener)]]`
    */@inline def onClickListener  (p: android.view.View.OnClickListener) =            onClickListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnClickListener(android.view.View$OnClickListener) setOnClickListener(android.view.View$OnClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnClickListener(android.view.View.OnClickListener) setOnClickListener(android.view.View.OnClickListener)]]`
    */@inline def onClickListener_=(p: android.view.View.OnClickListener) = { basis.setOnClickListener    (p); basis }
 
   @inline def onCreateContextMenuListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onCreateContextMenuListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnCreateContextMenuListener(android.view.View$OnCreateContextMenuListener) setOnCreateContextMenuListener(android.view.View$OnCreateContextMenuListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnCreateContextMenuListener(android.view.View.OnCreateContextMenuListener) setOnCreateContextMenuListener(android.view.View.OnCreateContextMenuListener)]]`
    */@inline def onCreateContextMenuListener  (p: android.view.View.OnCreateContextMenuListener) =            onCreateContextMenuListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnCreateContextMenuListener(android.view.View$OnCreateContextMenuListener) setOnCreateContextMenuListener(android.view.View$OnCreateContextMenuListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnCreateContextMenuListener(android.view.View.OnCreateContextMenuListener) setOnCreateContextMenuListener(android.view.View.OnCreateContextMenuListener)]]`
    */@inline def onCreateContextMenuListener_=(p: android.view.View.OnCreateContextMenuListener) = { basis.setOnCreateContextMenuListener    (p); basis }
 
   /**
@@ -510,34 +510,34 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
    */
   @inline def onFocusChangeListener = basis.getOnFocusChangeListener
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnFocusChangeListener(android.view.View$OnFocusChangeListener) setOnFocusChangeListener(android.view.View$OnFocusChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnFocusChangeListener(android.view.View.OnFocusChangeListener) setOnFocusChangeListener(android.view.View.OnFocusChangeListener)]]`
    */@inline def onFocusChangeListener  (p: android.view.View.OnFocusChangeListener) =            onFocusChangeListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnFocusChangeListener(android.view.View$OnFocusChangeListener) setOnFocusChangeListener(android.view.View$OnFocusChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnFocusChangeListener(android.view.View.OnFocusChangeListener) setOnFocusChangeListener(android.view.View.OnFocusChangeListener)]]`
    */@inline def onFocusChangeListener_=(p: android.view.View.OnFocusChangeListener) = { basis.setOnFocusChangeListener    (p); basis }
 
   @inline def onKeyListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onKeyListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnKeyListener(android.view.View$OnKeyListener) setOnKeyListener(android.view.View$OnKeyListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnKeyListener(android.view.View.OnKeyListener) setOnKeyListener(android.view.View.OnKeyListener)]]`
    */@inline def onKeyListener  (p: android.view.View.OnKeyListener) =            onKeyListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnKeyListener(android.view.View$OnKeyListener) setOnKeyListener(android.view.View$OnKeyListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnKeyListener(android.view.View.OnKeyListener) setOnKeyListener(android.view.View.OnKeyListener)]]`
    */@inline def onKeyListener_=(p: android.view.View.OnKeyListener) = { basis.setOnKeyListener    (p); basis }
 
   @inline def onLongClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onLongClickListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnLongClickListener(android.view.View$OnLongClickListener) setOnLongClickListener(android.view.View$OnLongClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnLongClickListener(android.view.View.OnLongClickListener) setOnLongClickListener(android.view.View.OnLongClickListener)]]`
    */@inline def onLongClickListener  (p: android.view.View.OnLongClickListener) =            onLongClickListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnLongClickListener(android.view.View$OnLongClickListener) setOnLongClickListener(android.view.View$OnLongClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnLongClickListener(android.view.View.OnLongClickListener) setOnLongClickListener(android.view.View.OnLongClickListener)]]`
    */@inline def onLongClickListener_=(p: android.view.View.OnLongClickListener) = { basis.setOnLongClickListener    (p); basis }
 
   @inline def onTouchListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onTouchListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnTouchListener(android.view.View$OnTouchListener) setOnTouchListener(android.view.View$OnTouchListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnTouchListener(android.view.View.OnTouchListener) setOnTouchListener(android.view.View.OnTouchListener)]]`
    */@inline def onTouchListener  (p: android.view.View.OnTouchListener) =            onTouchListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnTouchListener(android.view.View$OnTouchListener) setOnTouchListener(android.view.View$OnTouchListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnTouchListener(android.view.View.OnTouchListener) setOnTouchListener(android.view.View.OnTouchListener)]]`
    */@inline def onTouchListener_=(p: android.view.View.OnTouchListener) = { basis.setOnTouchListener    (p); basis }
 
   /**
@@ -1043,18 +1043,18 @@ trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
    */
   @inline def layoutAnimationListener = basis.getLayoutAnimationListener
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setLayoutAnimationListener(android.view.animation.Animation$AnimationListener) setLayoutAnimationListener(android.view.animation.Animation$AnimationListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setLayoutAnimationListener(android.view.animation.Animation.AnimationListener) setLayoutAnimationListener(android.view.animation.Animation.AnimationListener)]]`
    */@inline def layoutAnimationListener  (p: android.view.animation.Animation.AnimationListener) =            layoutAnimationListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setLayoutAnimationListener(android.view.animation.Animation$AnimationListener) setLayoutAnimationListener(android.view.animation.Animation$AnimationListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setLayoutAnimationListener(android.view.animation.Animation.AnimationListener) setLayoutAnimationListener(android.view.animation.Animation.AnimationListener)]]`
    */@inline def layoutAnimationListener_=(p: android.view.animation.Animation.AnimationListener) = { basis.setLayoutAnimationListener    (p); basis }
 
   @inline def onHierarchyChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onHierarchyChangeListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setOnHierarchyChangeListener(android.view.ViewGroup$OnHierarchyChangeListener) setOnHierarchyChangeListener(android.view.ViewGroup$OnHierarchyChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setOnHierarchyChangeListener(android.view.ViewGroup.OnHierarchyChangeListener) setOnHierarchyChangeListener(android.view.ViewGroup.OnHierarchyChangeListener)]]`
    */@inline def onHierarchyChangeListener  (p: android.view.ViewGroup.OnHierarchyChangeListener) =            onHierarchyChangeListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setOnHierarchyChangeListener(android.view.ViewGroup$OnHierarchyChangeListener) setOnHierarchyChangeListener(android.view.ViewGroup$OnHierarchyChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setOnHierarchyChangeListener(android.view.ViewGroup.OnHierarchyChangeListener) setOnHierarchyChangeListener(android.view.ViewGroup.OnHierarchyChangeListener)]]`
    */@inline def onHierarchyChangeListener_=(p: android.view.ViewGroup.OnHierarchyChangeListener) = { basis.setOnHierarchyChangeListener    (p); basis }
 
   /**
@@ -1394,10 +1394,10 @@ trait TraitViewStub[V <: android.view.ViewStub] extends TraitView[V] {
 
   @inline def onInflateListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onInflateListener'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#setOnInflateListener(android.view.ViewStub$OnInflateListener) setOnInflateListener(android.view.ViewStub$OnInflateListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#setOnInflateListener(android.view.ViewStub.OnInflateListener) setOnInflateListener(android.view.ViewStub.OnInflateListener)]]`
    */@inline def onInflateListener  (p: android.view.ViewStub.OnInflateListener) =            onInflateListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#setOnInflateListener(android.view.ViewStub$OnInflateListener) setOnInflateListener(android.view.ViewStub$OnInflateListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#setOnInflateListener(android.view.ViewStub.OnInflateListener) setOnInflateListener(android.view.ViewStub.OnInflateListener)]]`
    */@inline def onInflateListener_=(p: android.view.ViewStub.OnInflateListener) = { basis.setOnInflateListener    (p); basis }
 
   @inline def onInflate(f: (android.view.ViewStub, android.view.View) => Unit): V = {

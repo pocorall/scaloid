@@ -88,7 +88,7 @@ trait JavaConversionHelpers {
         }
     }
 
-    val javaName = _tpe.toString.replaceFirst("^[^ ]+ ", "")
+    val javaName = _tpe.toString.replaceFirst("^[^ ]+ ", "").replace("$", ".")
 
     step(_tpe, 0).copy(javaName = javaName)
   }

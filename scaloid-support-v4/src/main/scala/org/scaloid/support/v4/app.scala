@@ -94,10 +94,10 @@ trait TraitFragment[V <: android.support.v4.app.Fragment] {
 
   @inline def initialSavedState(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'initialSavedState'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setInitialSavedState(android.support.v4.app.Fragment$SavedState) setInitialSavedState(android.support.v4.app.Fragment$SavedState)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setInitialSavedState(android.support.v4.app.Fragment.SavedState) setInitialSavedState(android.support.v4.app.Fragment.SavedState)]]`
    */@inline def initialSavedState  (p: android.support.v4.app.Fragment.SavedState) =            initialSavedState_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setInitialSavedState(android.support.v4.app.Fragment$SavedState) setInitialSavedState(android.support.v4.app.Fragment$SavedState)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setInitialSavedState(android.support.v4.app.Fragment.SavedState) setInitialSavedState(android.support.v4.app.Fragment.SavedState)]]`
    */@inline def initialSavedState_=(p: android.support.v4.app.Fragment.SavedState) = { basis.setInitialSavedState    (p); basis }
 
   /**

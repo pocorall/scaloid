@@ -243,10 +243,10 @@ trait TraitPreference[V <: android.preference.Preference] {
    */
   @inline def onPreferenceChangeListener = basis.getOnPreferenceChangeListener
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#setOnPreferenceChangeListener(android.preference.Preference$OnPreferenceChangeListener) setOnPreferenceChangeListener(android.preference.Preference$OnPreferenceChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#setOnPreferenceChangeListener(android.preference.Preference.OnPreferenceChangeListener) setOnPreferenceChangeListener(android.preference.Preference.OnPreferenceChangeListener)]]`
    */@inline def onPreferenceChangeListener  (p: android.preference.Preference.OnPreferenceChangeListener) =            onPreferenceChangeListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#setOnPreferenceChangeListener(android.preference.Preference$OnPreferenceChangeListener) setOnPreferenceChangeListener(android.preference.Preference$OnPreferenceChangeListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#setOnPreferenceChangeListener(android.preference.Preference.OnPreferenceChangeListener) setOnPreferenceChangeListener(android.preference.Preference.OnPreferenceChangeListener)]]`
    */@inline def onPreferenceChangeListener_=(p: android.preference.Preference.OnPreferenceChangeListener) = { basis.setOnPreferenceChangeListener    (p); basis }
 
   /**
@@ -254,10 +254,10 @@ trait TraitPreference[V <: android.preference.Preference] {
    */
   @inline def onPreferenceClickListener = basis.getOnPreferenceClickListener
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#setOnPreferenceClickListener(android.preference.Preference$OnPreferenceClickListener) setOnPreferenceClickListener(android.preference.Preference$OnPreferenceClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#setOnPreferenceClickListener(android.preference.Preference.OnPreferenceClickListener) setOnPreferenceClickListener(android.preference.Preference.OnPreferenceClickListener)]]`
    */@inline def onPreferenceClickListener  (p: android.preference.Preference.OnPreferenceClickListener) =            onPreferenceClickListener_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#setOnPreferenceClickListener(android.preference.Preference$OnPreferenceClickListener) setOnPreferenceClickListener(android.preference.Preference$OnPreferenceClickListener)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#setOnPreferenceClickListener(android.preference.Preference.OnPreferenceClickListener) setOnPreferenceClickListener(android.preference.Preference.OnPreferenceClickListener)]]`
    */@inline def onPreferenceClickListener_=(p: android.preference.Preference.OnPreferenceClickListener) = { basis.setOnPreferenceClickListener    (p); basis }
 
   /**
