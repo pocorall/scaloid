@@ -88,7 +88,19 @@ trait JavaConversionHelpers {
         }
     }
 
-    val javaName = _tpe.toString.replaceFirst("^[^ ]+ ", "").replace("$", ".")
+    def javaTypeName(t: Type) =
+      t.toString.replaceFirst("^[^ ]+ ", "").replace("$", ".")
+
+    val javaName =
+      _tpe match {
+        case c: Class[_] =>
+          if (c.isArray) javaTypeName(c.getComponentType) + "[]"
+          else if (c.isPrimitive) _tpe.toString
+          else c.getCanonicalName
+
+        case _ => // TODO match generic types
+          javaTypeName(_tpe)
+      }
 
     step(_tpe, 0).copy(javaName = javaName)
   }

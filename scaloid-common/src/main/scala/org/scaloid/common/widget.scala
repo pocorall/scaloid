@@ -3967,10 +3967,10 @@ trait TraitQuickContactBadge[V <: android.widget.QuickContactBadge] extends Trai
 
   @inline def excludeMimes(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'excludeMimes'")
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/QuickContactBadge.html#setExcludeMimes([Ljava.lang.String;) setExcludeMimes([Ljava.lang.String;)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/QuickContactBadge.html#setExcludeMimes(java.lang.String[]) setExcludeMimes(java.lang.String[])]]`
    */@inline def excludeMimes  (p: Array[java.lang.String]) =            excludeMimes_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/QuickContactBadge.html#setExcludeMimes([Ljava.lang.String;) setExcludeMimes([Ljava.lang.String;)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/QuickContactBadge.html#setExcludeMimes(java.lang.String[]) setExcludeMimes(java.lang.String[])]]`
    */@inline def excludeMimes_=(p: Array[java.lang.String]) = { basis.setExcludeMimes    (p); basis }
 
   @inline def mode(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'mode'")
@@ -5919,10 +5919,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
    */
   @inline def filters = basis.getFilters
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setFilters([Landroid.text.InputFilter;) setFilters([Landroid.text.InputFilter;)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setFilters(android.text.InputFilter[]) setFilters(android.text.InputFilter[])]]`
    */@inline def filters  (p: Array[android.text.InputFilter]) =            filters_=  (p)
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setFilters([Landroid.text.InputFilter;) setFilters([Landroid.text.InputFilter;)]]`
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setFilters(android.text.InputFilter[]) setFilters(android.text.InputFilter[])]]`
    */@inline def filters_=(p: Array[android.text.InputFilter]) = { basis.setFilters    (p); basis }
 
   /**
