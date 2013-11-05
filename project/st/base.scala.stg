@@ -49,14 +49,10 @@ $mixin; separator=" with "$
 richClassDef(base, mixin) ::= <<$_richClassDef(base.name)$>>
 _richClassDef(name) ::= <<
 
-/**
-* Automatically generated enriching class of $genType(base.tpe, true)$.
-*/
+$richClassScalaDoc(base)$
 class Rich$name$[V <: $genType(base.tpe, true)$](val basis: V) extends $helperTraitName(base)$[V]
 
-/**
- * Automatically generated helper trait of $genType(base.tpe, true)$. This contains several property accessors.
- */
+$helperTraitScalaDoc(base)$
 trait $helperTraitName(base)$[V <: $genType(base.tpe, true)$]$extendClause()$ {
 
   $if(! base.parentType)$def basis: V$endif$
@@ -75,9 +71,7 @@ prefixedClassDef(base) ::= <<$_prefixedClassDef(base, base.name, withClassPrefix
 
 _prefixedClassDef(base, name, sClassName, con) ::= <<
 $if(base.hasBlankConstructor || ClassBodies.(name) || FullConstructors.(name))$
-/**
-* Automatically generated concrete helper class of $genType(base.tpe, true)$.
-*/
+$prefixedClassScalaDoc(base)$
 class $sClassName$$customClassGenerics()$($customClassExplicitArgs()$)$classImplicitArgs()$
     extends $baseClassInstance()$ with $helperTraitName(base)$[$sClassName$$customSimpleClassGenerics()$] {
 
@@ -408,6 +402,7 @@ noGetter(name) ::= <<
 
 getter(prop) ::= <<
 $if(prop.getter)$
+$methodScalaDoc(base, prop.getter)$
 @inline$override(prop.getter)$ def $prop.name; format="safe-ident"$ = basis.$prop.getter.name$
 $elseif( ! prop.nameClashes)$
 $noGetter(prop.name)$
@@ -415,16 +410,16 @@ $endif$
 >>
 
 setter(prop, method) ::= <<
-$_setter("  ", {           $prop.name$_=  (p)})$
-$_setter("_=", {{ basis.$method.name$    (p); basis \}})$
+$_setter("  ", {           $prop.name$_=(p)})$
+$_setter("_=", {{ basis.$method.name$(p); basis \}})$
 >>
 
-_setter(postFix, body) ::= <%$if( ! method.isAbstract || ! first(method.paramedTypes).name )$
-@inline def ${$prop.name$$postFix$}; format="safe-ident"$
-$paramedTypes(method.paramedTypes)$
-($namedArgs(method.argTypes)$) = $body$
+_setter(postFix, body) ::= <<
+$if( ! method.isAbstract || ! first(method.paramedTypes).name )$
+$methodScalaDoc(base, method)$
+@inline def ${$prop.name$$postFix$}; format="safe-ident"$$paramedTypes(method.paramedTypes)$($namedArgs(method.argTypes)$) = $body$
 $endif$
-%>
+>>
 
 switch(name, setter) ::= <<
 $if(setter.name)$
@@ -440,9 +435,9 @@ $switch(prop.switch, first(prop.setters))$
 $endif$
 >>
 
-property(prop) ::= <<$getter(prop)$$setters(prop)$>>
+property(prop) ::= <%$getter(prop)$$setters(prop)$%>
 
-properties(base) ::= <<$base.properties:property()$>>
+properties(base) ::= <%$base.properties:{ prop | $property(prop)$}$%>
 
 
 // service
@@ -451,6 +446,45 @@ systemServiceHead(base) ::= <<
 @inline def $decap(base.name)$(implicit context: Context) =
   context.getSystemService(Context.$base.name; format="manager-to-service"$).asInstanceOf[$base.tpe.name$]
 
+>>
+
+
+// scaladoc
+
+androidDocBase() ::= <<https://developer.android.com/reference>>
+
+androidClassUrl(cls) ::= <<$androidDocBase()$/$cls.pkg; format="dot-to-slash"$/$cls.name$.html>>
+
+androidReference(cls) ::= <<`[[$androidClassUrl(cls)$ $genType(cls.tpe, true)$]]`>>
+
+methodSignature(method, sep) ::= <<$method.name$($method.argTypes:{ arg |$arg.javaName$}; separator=sep$)>>
+
+androidMethodReference(cls, method) ::= <%
+`[[$androidClassUrl(cls)$#$methodSignature(method, ",\%20")$ $methodSignature(method, ", ")$]]`
+%>
+
+methodScalaDoc(cls, method) ::= <<
+/**
+ * Shortcut for $androidMethodReference(cls, method)$
+ */
+>>
+
+richClassScalaDoc(cls) ::= <<
+/**
+ * Automatically generated enriching class of $androidReference(cls)$.
+ */
+>>
+
+helperTraitScalaDoc(cls) ::= <<
+/**
+ * Automatically generated helper trait of $androidReference(cls)$. This contains several property accessors.
+ */
+>>
+
+prefixedClassScalaDoc(cls) ::= <<
+/**
+ * Automatically generated concrete helper class of $androidReference(cls)$.
+ */
 >>
 
 // etc

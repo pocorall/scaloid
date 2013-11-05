@@ -57,7 +57,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
 
     val clsName = simpleClassName(fullName)
     val tpe = fixClassParamedType(toScalaType(cls))
-    val pkg = fullName.split('.').init.mkString
+    val pkg = fullName.split('.').init.mkString(".")
     val parentType = Option(cls.getGenericSuperclass)
       .map(toScalaType)
       .filter(_.name.startsWith("android"))

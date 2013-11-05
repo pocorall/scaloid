@@ -87,7 +87,22 @@ trait JavaConversionHelpers {
             throw new Error("Cannot find type of " + tpe.getClass + " ::" + tpe.toString)
         }
     }
-    step(_tpe, 0)
+
+    def javaTypeName(t: Type) =
+      t.toString.replaceFirst("^[^ ]+ ", "").replace("$", ".")
+
+    val javaName =
+      _tpe match {
+        case c: Class[_] =>
+          if (c.isArray) javaTypeName(c.getComponentType) + "[]"
+          else if (c.isPrimitive) _tpe.toString
+          else c.getCanonicalName
+
+        case _ => // TODO match generic types
+          javaTypeName(_tpe)
+      }
+
+    step(_tpe, 0).copy(javaName = javaName)
   }
 
   def toTypeStr(_tpe: Type, isVarArgs: Boolean, isLast: Boolean): String = {
