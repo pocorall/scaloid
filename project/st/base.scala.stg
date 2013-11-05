@@ -402,6 +402,7 @@ noGetter(name) ::= <<
 
 getter(prop) ::= <<
 $if(prop.getter)$
+$methodScalaDoc(base, prop.getter)$
 @inline$override(prop.getter)$ def $prop.name; format="safe-ident"$ = basis.$prop.getter.name$
 $elseif( ! prop.nameClashes)$
 $noGetter(prop.name)$
@@ -414,6 +415,7 @@ $_setter("_=", {{ basis.$method.name$    (p); basis \}})$
 >>
 
 _setter(postFix, body) ::= <%$if( ! method.isAbstract || ! first(method.paramedTypes).name )$
+$methodScalaDoc(base, method)$
 @inline def ${$prop.name$$postFix$}; format="safe-ident"$
 $paramedTypes(method.paramedTypes)$
 ($namedArgs(method.argTypes)$) = $body$
@@ -434,9 +436,9 @@ $switch(prop.switch, first(prop.setters))$
 $endif$
 >>
 
-property(prop) ::= <<$getter(prop)$$setters(prop)$>>
+property(prop) ::= <%$getter(prop)$$setters(prop)$%>
 
-properties(base) ::= <<$base.properties:property()$>>
+properties(base) ::= <%$base.properties:{ prop | $property(prop)$}$%>
 
 
 // service
@@ -452,8 +454,20 @@ systemServiceHead(base) ::= <<
 
 androidDocBase() ::= <<https://developer.android.com/reference>>
 
-androidReference(cls) ::= <<
-`[[$androidDocBase()$/$cls.pkg; format="dot-to-slash"$/$cls.name$.html $genType(cls.tpe, true)$]]`
+androidClassUrl(cls) ::= <<$androidDocBase()$/$cls.pkg; format="dot-to-slash"$/$cls.name$.html>>
+
+androidReference(cls) ::= <<`[[$androidClassUrl(cls)$ $genType(cls.tpe, true)$]]`>>
+
+methodSignature(method, sep) ::= <<$method.name$($method.argTypes:{ arg |$arg.javaName$}; separator=sep$)>>
+
+androidMethodReference(cls, method) ::= <%
+`[[$androidClassUrl(cls)$#$methodSignature(method, ",\%20")$ $methodSignature(method, ", ")$]]`
+%>
+
+methodScalaDoc(cls, method) ::= <<
+/**
+ * Shortcut for $androidMethodReference(cls, method)$
+ */
 >>
 
 richClassScalaDoc(cls) ::= <<

@@ -4,12 +4,13 @@ case class ScalaType(
   simpleName: String,
   params: Seq[ScalaType],
   bounds: Seq[ScalaType],
-  isVar: Boolean
+  isVar: Boolean,
+  javaName: String
 )
 
 object ScalaType {
   def apply(name: String, params: Seq[ScalaType] = Nil, bounds: Seq[ScalaType] = Nil, isVar: Boolean = false): ScalaType =
-    ScalaType(name, name.split('.').last, params, bounds, isVar)
+    ScalaType(name, name.split('.').last, params, bounds, isVar, name /* reuse scala name by default */)
 }
 
 case class Argument(

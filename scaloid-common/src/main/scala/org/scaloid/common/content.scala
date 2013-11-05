@@ -108,46 +108,127 @@ trait TraitContext[V <: android.content.Context] {
   implicit val ctx = basis
 
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getApplicationContext() getApplicationContext()]]`
+   */
   @inline def applicationContext = basis.getApplicationContext
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getApplicationInfo() getApplicationInfo()]]`
+   */
   @inline def applicationInfo = basis.getApplicationInfo
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getAssets() getAssets()]]`
+   */
   @inline def assets = basis.getAssets
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getCacheDir() getCacheDir()]]`
+   */
   @inline def cacheDir = basis.getCacheDir
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getClassLoader() getClassLoader()]]`
+   */
   @inline def classLoader = basis.getClassLoader
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getContentResolver() getContentResolver()]]`
+   */
   @inline def contentResolver = basis.getContentResolver
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getExternalCacheDir() getExternalCacheDir()]]`
+   */
   @inline def externalCacheDir = basis.getExternalCacheDir
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getFilesDir() getFilesDir()]]`
+   */
   @inline def filesDir = basis.getFilesDir
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getMainLooper() getMainLooper()]]`
+   */
   @inline def mainLooper = basis.getMainLooper
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getPackageCodePath() getPackageCodePath()]]`
+   */
   @inline def packageCodePath = basis.getPackageCodePath
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getPackageManager() getPackageManager()]]`
+   */
   @inline def packageManager = basis.getPackageManager
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getPackageName() getPackageName()]]`
+   */
   @inline def packageName = basis.getPackageName
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getPackageResourcePath() getPackageResourcePath()]]`
+   */
   @inline def packageResourcePath = basis.getPackageResourcePath
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getResources() getResources()]]`
+   */
   @inline def resources = basis.getResources
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getTheme() getTheme()]]`
+   */
   @inline def theme = basis.getTheme
-  @inline def theme  (p: Int) =            theme_=  (p)
-  @inline def theme_=(p: Int) = { basis.setTheme    (p); basis }
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setTheme(int) setTheme(int)]]`
+   */@inline def theme  (p: Int) =            theme_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setTheme(int) setTheme(int)]]`
+   */@inline def theme_=(p: Int) = { basis.setTheme    (p); basis }
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getWallpaper() getWallpaper()]]`
+   */
   @inline def wallpaper = basis.getWallpaper
-  @inline def wallpaper  (p: android.graphics.Bitmap) =            wallpaper_=  (p)
-  @inline def wallpaper_=(p: android.graphics.Bitmap) = { basis.setWallpaper    (p); basis }
-  @inline def wallpaper  (p: java.io.InputStream) =            wallpaper_=  (p)
-  @inline def wallpaper_=(p: java.io.InputStream) = { basis.setWallpaper    (p); basis }
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(android.graphics.Bitmap) setWallpaper(android.graphics.Bitmap)]]`
+   */@inline def wallpaper  (p: android.graphics.Bitmap) =            wallpaper_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(android.graphics.Bitmap) setWallpaper(android.graphics.Bitmap)]]`
+   */@inline def wallpaper_=(p: android.graphics.Bitmap) = { basis.setWallpaper    (p); basis }
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(java.io.InputStream) setWallpaper(java.io.InputStream)]]`
+   */@inline def wallpaper  (p: java.io.InputStream) =            wallpaper_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(java.io.InputStream) setWallpaper(java.io.InputStream)]]`
+   */@inline def wallpaper_=(p: java.io.InputStream) = { basis.setWallpaper    (p); basis }
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getWallpaperDesiredMinimumHeight() getWallpaperDesiredMinimumHeight()]]`
+   */
   @inline def wallpaperDesiredMinimumHeight = basis.getWallpaperDesiredMinimumHeight
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getWallpaperDesiredMinimumWidth() getWallpaperDesiredMinimumWidth()]]`
+   */
   @inline def wallpaperDesiredMinimumWidth = basis.getWallpaperDesiredMinimumWidth
 
 
@@ -201,6 +282,9 @@ trait TraitContextWrapper[V <: android.content.ContextWrapper] extends TraitCont
 
 
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/ContextWrapper.html#getBaseContext() getBaseContext()]]`
+   */
   @inline def baseContext = basis.getBaseContext
 
 

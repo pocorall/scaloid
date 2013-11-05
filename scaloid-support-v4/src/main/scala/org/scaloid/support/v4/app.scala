@@ -55,46 +55,114 @@ trait TraitFragment[V <: android.support.v4.app.Fragment] {
 
 
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#getActivity() getActivity()]]`
+   */
   @inline def activity = basis.getActivity
 
-  @inline def arguments = basis.getArguments
-  @inline def arguments  (p: android.os.Bundle) =            arguments_=  (p)
-  @inline def arguments_=(p: android.os.Bundle) = { basis.setArguments    (p); basis }
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#getArguments() getArguments()]]`
+   */
+  @inline def arguments = basis.getArguments
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setArguments(android.os.Bundle) setArguments(android.os.Bundle)]]`
+   */@inline def arguments  (p: android.os.Bundle) =            arguments_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setArguments(android.os.Bundle) setArguments(android.os.Bundle)]]`
+   */@inline def arguments_=(p: android.os.Bundle) = { basis.setArguments    (p); basis }
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#getFragmentManager() getFragmentManager()]]`
+   */
   @inline def fragmentManager = basis.getFragmentManager
 
-  @inline def hasOptionsMenu(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'hasOptionsMenu'")
-  @inline def hasOptionsMenu  (p: Boolean) =            hasOptionsMenu_=  (p)
-  @inline def hasOptionsMenu_=(p: Boolean) = { basis.setHasOptionsMenu    (p); basis }
 
+  @inline def hasOptionsMenu(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'hasOptionsMenu'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setHasOptionsMenu(boolean) setHasOptionsMenu(boolean)]]`
+   */@inline def hasOptionsMenu  (p: Boolean) =            hasOptionsMenu_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setHasOptionsMenu(boolean) setHasOptionsMenu(boolean)]]`
+   */@inline def hasOptionsMenu_=(p: Boolean) = { basis.setHasOptionsMenu    (p); basis }
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#getId() getId()]]`
+   */
   @inline def id = basis.getId
 
-  @inline def initialSavedState(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'initialSavedState'")
-  @inline def initialSavedState  (p: android.support.v4.app.Fragment.SavedState) =            initialSavedState_=  (p)
-  @inline def initialSavedState_=(p: android.support.v4.app.Fragment.SavedState) = { basis.setInitialSavedState    (p); basis }
 
+  @inline def initialSavedState(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'initialSavedState'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setInitialSavedState(android.support.v4.app.Fragment$SavedState) setInitialSavedState(android.support.v4.app.Fragment$SavedState)]]`
+   */@inline def initialSavedState  (p: android.support.v4.app.Fragment.SavedState) =            initialSavedState_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setInitialSavedState(android.support.v4.app.Fragment$SavedState) setInitialSavedState(android.support.v4.app.Fragment$SavedState)]]`
+   */@inline def initialSavedState_=(p: android.support.v4.app.Fragment.SavedState) = { basis.setInitialSavedState    (p); basis }
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#getLoaderManager() getLoaderManager()]]`
+   */
   @inline def loaderManager = basis.getLoaderManager
 
-  @inline def menuVisibility(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'menuVisibility'")
-  @inline def menuVisibility  (p: Boolean) =            menuVisibility_=  (p)
-  @inline def menuVisibility_=(p: Boolean) = { basis.setMenuVisibility    (p); basis }
 
+  @inline def menuVisibility(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'menuVisibility'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setMenuVisibility(boolean) setMenuVisibility(boolean)]]`
+   */@inline def menuVisibility  (p: Boolean) =            menuVisibility_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setMenuVisibility(boolean) setMenuVisibility(boolean)]]`
+   */@inline def menuVisibility_=(p: Boolean) = { basis.setMenuVisibility    (p); basis }
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#getResources() getResources()]]`
+   */
   @inline def resources = basis.getResources
 
-  @inline def retainInstance = basis.getRetainInstance
-  @inline def retainInstance  (p: Boolean) =            retainInstance_=  (p)
-  @inline def retainInstance_=(p: Boolean) = { basis.setRetainInstance    (p); basis }
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#getRetainInstance() getRetainInstance()]]`
+   */
+  @inline def retainInstance = basis.getRetainInstance
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setRetainInstance(boolean) setRetainInstance(boolean)]]`
+   */@inline def retainInstance  (p: Boolean) =            retainInstance_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setRetainInstance(boolean) setRetainInstance(boolean)]]`
+   */@inline def retainInstance_=(p: Boolean) = { basis.setRetainInstance    (p); basis }
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#getTag() getTag()]]`
+   */
   @inline def tag = basis.getTag
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#getTargetFragment() getTargetFragment()]]`
+   */
   @inline def targetFragment = basis.getTargetFragment
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#getTargetRequestCode() getTargetRequestCode()]]`
+   */
   @inline def targetRequestCode = basis.getTargetRequestCode
 
-  @inline def userVisibleHint = basis.getUserVisibleHint
-  @inline def userVisibleHint  (p: Boolean) =            userVisibleHint_=  (p)
-  @inline def userVisibleHint_=(p: Boolean) = { basis.setUserVisibleHint    (p); basis }
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#getUserVisibleHint() getUserVisibleHint()]]`
+   */
+  @inline def userVisibleHint = basis.getUserVisibleHint
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setUserVisibleHint(boolean) setUserVisibleHint(boolean)]]`
+   */@inline def userVisibleHint  (p: Boolean) =            userVisibleHint_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#setUserVisibleHint(boolean) setUserVisibleHint(boolean)]]`
+   */@inline def userVisibleHint_=(p: Boolean) = { basis.setUserVisibleHint    (p); basis }
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#getView() getView()]]`
+   */
   @inline def view = basis.getView
 
 
@@ -135,10 +203,21 @@ trait TraitFragmentActivity[V <: android.support.v4.app.FragmentActivity] extend
 
   override def basis: V
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentActivity.html#getLastCustomNonConfigurationInstance() getLastCustomNonConfigurationInstance()]]`
+   */
   @inline def lastCustomNonConfigurationInstance = basis.getLastCustomNonConfigurationInstance
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentActivity.html#getSupportFragmentManager() getSupportFragmentManager()]]`
+   */
   @inline def supportFragmentManager = basis.getSupportFragmentManager
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentActivity.html#getSupportLoaderManager() getSupportLoaderManager()]]`
+   */
   @inline def supportLoaderManager = basis.getSupportLoaderManager
 
 
@@ -177,30 +256,65 @@ trait TraitListFragment[V <: android.support.v4.app.ListFragment] extends TraitF
 
 
   @inline def emptyText(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'emptyText'")
-  @inline def emptyText  (p: java.lang.CharSequence) =            emptyText_=  (p)
-  @inline def emptyText_=(p: java.lang.CharSequence) = { basis.setEmptyText    (p); basis }
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html#setEmptyText(java.lang.CharSequence) setEmptyText(java.lang.CharSequence)]]`
+   */@inline def emptyText  (p: java.lang.CharSequence) =            emptyText_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html#setEmptyText(java.lang.CharSequence) setEmptyText(java.lang.CharSequence)]]`
+   */@inline def emptyText_=(p: java.lang.CharSequence) = { basis.setEmptyText    (p); basis }
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html#getListAdapter() getListAdapter()]]`
+   */
   @inline def listAdapter = basis.getListAdapter
-  @inline def listAdapter  (p: android.widget.ListAdapter) =            listAdapter_=  (p)
-  @inline def listAdapter_=(p: android.widget.ListAdapter) = { basis.setListAdapter    (p); basis }
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html#setListAdapter(android.widget.ListAdapter) setListAdapter(android.widget.ListAdapter)]]`
+   */@inline def listAdapter  (p: android.widget.ListAdapter) =            listAdapter_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html#setListAdapter(android.widget.ListAdapter) setListAdapter(android.widget.ListAdapter)]]`
+   */@inline def listAdapter_=(p: android.widget.ListAdapter) = { basis.setListAdapter    (p); basis }
 
   @inline def listShown(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'listShown'")
-  @inline def listShown  (p: Boolean) =            listShown_=  (p)
-  @inline def listShown_=(p: Boolean) = { basis.setListShown    (p); basis }
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html#setListShown(boolean) setListShown(boolean)]]`
+   */@inline def listShown  (p: Boolean) =            listShown_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html#setListShown(boolean) setListShown(boolean)]]`
+   */@inline def listShown_=(p: Boolean) = { basis.setListShown    (p); basis }
 
   @inline def listShownNoAnimation(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'listShownNoAnimation'")
-  @inline def listShownNoAnimation  (p: Boolean) =            listShownNoAnimation_=  (p)
-  @inline def listShownNoAnimation_=(p: Boolean) = { basis.setListShownNoAnimation    (p); basis }
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html#setListShownNoAnimation(boolean) setListShownNoAnimation(boolean)]]`
+   */@inline def listShownNoAnimation  (p: Boolean) =            listShownNoAnimation_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html#setListShownNoAnimation(boolean) setListShownNoAnimation(boolean)]]`
+   */@inline def listShownNoAnimation_=(p: Boolean) = { basis.setListShownNoAnimation    (p); basis }
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html#getListView() getListView()]]`
+   */
   @inline def listView = basis.getListView
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html#getSelectedItemId() getSelectedItemId()]]`
+   */
   @inline def selectedItemId = basis.getSelectedItemId
 
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html#getSelectedItemPosition() getSelectedItemPosition()]]`
+   */
   @inline def selectedItemPosition = basis.getSelectedItemPosition
 
+
   @inline def selection(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'selection'")
-  @inline def selection  (p: Int) =            selection_=  (p)
-  @inline def selection_=(p: Int) = { basis.setSelection    (p); basis }
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html#setSelection(int) setSelection(int)]]`
+   */@inline def selection  (p: Int) =            selection_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html#setSelection(int) setSelection(int)]]`
+   */@inline def selection_=(p: Int) = { basis.setSelection    (p); basis }
 
 }
 
@@ -236,16 +350,37 @@ trait TraitDialogFragment[V <: android.support.v4.app.DialogFragment] extends Tr
 
 
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/DialogFragment.html#isCancelable() isCancelable()]]`
+   */
   @inline def cancelable = basis.isCancelable
-  @inline def cancelable  (p: Boolean) =            cancelable_=  (p)
-  @inline def cancelable_=(p: Boolean) = { basis.setCancelable    (p); basis }
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/DialogFragment.html#setCancelable(boolean) setCancelable(boolean)]]`
+   */@inline def cancelable  (p: Boolean) =            cancelable_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/DialogFragment.html#setCancelable(boolean) setCancelable(boolean)]]`
+   */@inline def cancelable_=(p: Boolean) = { basis.setCancelable    (p); basis }
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/DialogFragment.html#getDialog() getDialog()]]`
+   */
   @inline def dialog = basis.getDialog
 
-  @inline def showsDialog = basis.getShowsDialog
-  @inline def showsDialog  (p: Boolean) =            showsDialog_=  (p)
-  @inline def showsDialog_=(p: Boolean) = { basis.setShowsDialog    (p); basis }
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/DialogFragment.html#getShowsDialog() getShowsDialog()]]`
+   */
+  @inline def showsDialog = basis.getShowsDialog
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/DialogFragment.html#setShowsDialog(boolean) setShowsDialog(boolean)]]`
+   */@inline def showsDialog  (p: Boolean) =            showsDialog_=  (p)
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/DialogFragment.html#setShowsDialog(boolean) setShowsDialog(boolean)]]`
+   */@inline def showsDialog_=(p: Boolean) = { basis.setShowsDialog    (p); basis }
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/DialogFragment.html#getTheme() getTheme()]]`
+   */
   @inline def theme = basis.getTheme
 
 

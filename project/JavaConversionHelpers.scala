@@ -87,7 +87,10 @@ trait JavaConversionHelpers {
             throw new Error("Cannot find type of " + tpe.getClass + " ::" + tpe.toString)
         }
     }
-    step(_tpe, 0)
+
+    val javaName = _tpe.toString.replaceFirst("^[^ ]+ ", "")
+
+    step(_tpe, 0).copy(javaName = javaName)
   }
 
   def toTypeStr(_tpe: Type, isVarArgs: Boolean, isLast: Boolean): String = {
