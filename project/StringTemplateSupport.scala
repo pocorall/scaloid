@@ -98,6 +98,8 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
        else jc) + "_SERVICE"
     }
 
+    def dotToSlash(s: String) = s.replace(".", "/")
+
     private val reservedKeywordsNotInJava = 
       Set("def", "extends", "implicit", "import", "match", "lazy", "object", "package",
         "requires", "sealed", "trait", "type", "val", "var", "with", "yield")
@@ -115,6 +117,7 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
       case "javaconst"                 => toJavaConst(value)
       case "manager-to-service"        => managerToService(value) // TODO make proper case class for manager instead of this trick
       case "safe-ident"                => safeIdentifier(value)
+      case "dot-to-slash"              => dotToSlash(value)
       case Span(i)                     => span(value, i.toInt)
       case _                           => value
     }

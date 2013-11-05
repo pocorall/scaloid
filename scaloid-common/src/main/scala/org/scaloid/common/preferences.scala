@@ -147,12 +147,12 @@ object Preferences {
 
 
 /**
-* Automatically generated enriching class of android.preference.Preference.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/preference/Preference.html android.preference.Preference]]`.
+ */
 class RichPreference[V <: android.preference.Preference](val basis: V) extends TraitPreference[V]
 
 /**
- * Automatically generated helper trait of android.preference.Preference. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/preference/Preference.html android.preference.Preference]]`. This contains several property accessors.
  */
 trait TraitPreference[V <: android.preference.Preference] {
 
@@ -266,8 +266,8 @@ trait TraitPreference[V <: android.preference.Preference] {
 }
 
 /**
-* Automatically generated concrete helper class of android.preference.Preference.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/preference/Preference.html android.preference.Preference]]`.
+ */
 class SPreference()(implicit context: android.content.Context)
     extends android.preference.Preference(context) with TraitPreference[SPreference] {
 
@@ -285,12 +285,12 @@ object SPreference {
 
 
 /**
-* Automatically generated enriching class of android.preference.DialogPreference.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/preference/DialogPreference.html android.preference.DialogPreference]]`.
+ */
 class RichDialogPreference[V <: android.preference.DialogPreference](val basis: V) extends TraitDialogPreference[V]
 
 /**
- * Automatically generated helper trait of android.preference.DialogPreference. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/preference/DialogPreference.html android.preference.DialogPreference]]`. This contains several property accessors.
  */
 trait TraitDialogPreference[V <: android.preference.DialogPreference] extends TraitPreference[V] {
 
@@ -335,12 +335,12 @@ trait TraitDialogPreference[V <: android.preference.DialogPreference] extends Tr
 
 }
 /**
-* Automatically generated enriching class of android.preference.EditTextPreference.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/preference/EditTextPreference.html android.preference.EditTextPreference]]`.
+ */
 class RichEditTextPreference[V <: android.preference.EditTextPreference](val basis: V) extends TraitEditTextPreference[V]
 
 /**
- * Automatically generated helper trait of android.preference.EditTextPreference. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/preference/EditTextPreference.html android.preference.EditTextPreference]]`. This contains several property accessors.
  */
 trait TraitEditTextPreference[V <: android.preference.EditTextPreference] extends TraitDialogPreference[V] {
 
@@ -356,8 +356,8 @@ trait TraitEditTextPreference[V <: android.preference.EditTextPreference] extend
 }
 
 /**
-* Automatically generated concrete helper class of android.preference.EditTextPreference.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/preference/EditTextPreference.html android.preference.EditTextPreference]]`.
+ */
 class SEditTextPreference()(implicit context: android.content.Context)
     extends android.preference.EditTextPreference(context) with TraitEditTextPreference[SEditTextPreference] {
 

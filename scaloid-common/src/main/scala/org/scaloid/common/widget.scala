@@ -46,12 +46,12 @@ import WidgetImplicits._
 
 
 /**
-* Automatically generated enriching class of android.widget.PopupWindow.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/PopupWindow.html android.widget.PopupWindow]]`.
+ */
 class RichPopupWindow[V <: android.widget.PopupWindow](val basis: V) extends TraitPopupWindow[V]
 
 /**
- * Automatically generated helper trait of android.widget.PopupWindow. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/PopupWindow.html android.widget.PopupWindow]]`. This contains several property accessors.
  */
 trait TraitPopupWindow[V <: android.widget.PopupWindow] {
 
@@ -126,8 +126,8 @@ trait TraitPopupWindow[V <: android.widget.PopupWindow] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.PopupWindow.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/PopupWindow.html android.widget.PopupWindow]]`.
+ */
 class SPopupWindow()(implicit context: android.content.Context)
     extends android.widget.PopupWindow(context) with TraitPopupWindow[SPopupWindow] {
 
@@ -147,12 +147,12 @@ object SPopupWindow {
 
 
 /**
-* Automatically generated enriching class of android.widget.ArrayAdapter[_].
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ArrayAdapter.html android.widget.ArrayAdapter[_]]]`.
+ */
 class RichArrayAdapter[V <: android.widget.ArrayAdapter[_]](val basis: V) extends TraitArrayAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.ArrayAdapter[_]. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ArrayAdapter.html android.widget.ArrayAdapter[_]]]`. This contains several property accessors.
  */
 trait TraitArrayAdapter[V <: android.widget.ArrayAdapter[_]] extends TraitBaseAdapter[V] {
 
@@ -174,8 +174,8 @@ trait TraitArrayAdapter[V <: android.widget.ArrayAdapter[_]] extends TraitBaseAd
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.ArrayAdapter[_].
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ArrayAdapter.html android.widget.ArrayAdapter[_]]]`.
+ */
 class SArrayAdapter[V <: android.view.View, T <: AnyRef](items: Array[T], textViewResourceId: Int = android.R.layout.simple_spinner_item)(implicit context: android.content.Context)
     extends android.widget.ArrayAdapter[T](context, textViewResourceId, items) with TraitArrayAdapter[SArrayAdapter[V, T]] {
 
@@ -231,12 +231,12 @@ object SArrayAdapter {
 
 
 /**
-* Automatically generated enriching class of android.widget.AbsoluteLayout.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/AbsoluteLayout.html android.widget.AbsoluteLayout]]`.
+ */
 class RichAbsoluteLayout[V <: android.widget.AbsoluteLayout](val basis: V) extends TraitAbsoluteLayout[V]
 
 /**
- * Automatically generated helper trait of android.widget.AbsoluteLayout. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/AbsoluteLayout.html android.widget.AbsoluteLayout]]`. This contains several property accessors.
  */
 trait TraitAbsoluteLayout[V <: android.widget.AbsoluteLayout] extends TraitViewGroup[V] {
 
@@ -246,8 +246,8 @@ trait TraitAbsoluteLayout[V <: android.widget.AbsoluteLayout] extends TraitViewG
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.AbsoluteLayout.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/AbsoluteLayout.html android.widget.AbsoluteLayout]]`.
+ */
 class SAbsoluteLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.AbsoluteLayout(context) with TraitAbsoluteLayout[SAbsoluteLayout] {
 
@@ -269,12 +269,12 @@ object SAbsoluteLayout {
 
 
 /**
-* Automatically generated enriching class of android.widget.SpinnerAdapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/SpinnerAdapter.html android.widget.SpinnerAdapter]]`.
+ */
 class RichSpinnerAdapter[V <: android.widget.SpinnerAdapter](val basis: V) extends TraitSpinnerAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.SpinnerAdapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/SpinnerAdapter.html android.widget.SpinnerAdapter]]`. This contains several property accessors.
  */
 trait TraitSpinnerAdapter[V <: android.widget.SpinnerAdapter] {
 
@@ -288,12 +288,12 @@ trait TraitSpinnerAdapter[V <: android.widget.SpinnerAdapter] {
 
 
 /**
-* Automatically generated enriching class of android.widget.ImageButton.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ImageButton.html android.widget.ImageButton]]`.
+ */
 class RichImageButton[V <: android.widget.ImageButton](val basis: V) extends TraitImageButton[V]
 
 /**
- * Automatically generated helper trait of android.widget.ImageButton. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ImageButton.html android.widget.ImageButton]]`. This contains several property accessors.
  */
 trait TraitImageButton[V <: android.widget.ImageButton] extends TraitImageView[V] {
 
@@ -303,8 +303,8 @@ trait TraitImageButton[V <: android.widget.ImageButton] extends TraitImageView[V
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.ImageButton.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ImageButton.html android.widget.ImageButton]]`.
+ */
 class SImageButton()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ImageButton(context) with TraitImageButton[SImageButton] {
 
@@ -354,12 +354,12 @@ object SImageButton {
 
 
 /**
-* Automatically generated enriching class of android.widget.ListView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ListView.html android.widget.ListView]]`.
+ */
 class RichListView[V <: android.widget.ListView](val basis: V) extends TraitListView[V]
 
 /**
- * Automatically generated helper trait of android.widget.ListView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ListView.html android.widget.ListView]]`. This contains several property accessors.
  */
 trait TraitListView[V <: android.widget.ListView] extends TraitAbsListView[V] {
 
@@ -418,8 +418,8 @@ trait TraitListView[V <: android.widget.ListView] extends TraitAbsListView[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.ListView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ListView.html android.widget.ListView]]`.
+ */
 class SListView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ListView(context) with TraitListView[SListView] {
 
@@ -441,12 +441,12 @@ object SListView {
 
 
 /**
-* Automatically generated enriching class of android.widget.EditText.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/EditText.html android.widget.EditText]]`.
+ */
 class RichEditText[V <: android.widget.EditText](val basis: V) extends TraitEditText[V]
 
 /**
- * Automatically generated helper trait of android.widget.EditText. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/EditText.html android.widget.EditText]]`. This contains several property accessors.
  */
 trait TraitEditText[V <: android.widget.EditText] extends TraitTextView[V] {
 
@@ -463,8 +463,8 @@ trait TraitEditText[V <: android.widget.EditText] extends TraitTextView[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.EditText.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/EditText.html android.widget.EditText]]`.
+ */
 class SEditText()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.EditText(context) with TraitEditText[SEditText] {
 
@@ -520,12 +520,12 @@ object SEditText {
 
 
 /**
-* Automatically generated enriching class of android.widget.ImageView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ImageView.html android.widget.ImageView]]`.
+ */
 class RichImageView[V <: android.widget.ImageView](val basis: V) extends TraitImageView[V]
 
 /**
- * Automatically generated helper trait of android.widget.ImageView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ImageView.html android.widget.ImageView]]`. This contains several property accessors.
  */
 trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
 
@@ -587,8 +587,8 @@ trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.ImageView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ImageView.html android.widget.ImageView]]`.
+ */
 class SImageView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ImageView(context) with TraitImageView[SImageView] {
 
@@ -638,12 +638,12 @@ object SImageView {
 
 
 /**
-* Automatically generated enriching class of android.widget.AnalogClock.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/AnalogClock.html android.widget.AnalogClock]]`.
+ */
 class RichAnalogClock[V <: android.widget.AnalogClock](val basis: V) extends TraitAnalogClock[V]
 
 /**
- * Automatically generated helper trait of android.widget.AnalogClock. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/AnalogClock.html android.widget.AnalogClock]]`. This contains several property accessors.
  */
 trait TraitAnalogClock[V <: android.widget.AnalogClock] extends TraitView[V] {
 
@@ -653,8 +653,8 @@ trait TraitAnalogClock[V <: android.widget.AnalogClock] extends TraitView[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.AnalogClock.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/AnalogClock.html android.widget.AnalogClock]]`.
+ */
 class SAnalogClock()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.AnalogClock(context) with TraitAnalogClock[SAnalogClock] {
 
@@ -676,12 +676,12 @@ object SAnalogClock {
 
 
 /**
-* Automatically generated enriching class of android.widget.MultiAutoCompleteTextView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/MultiAutoCompleteTextView.html android.widget.MultiAutoCompleteTextView]]`.
+ */
 class RichMultiAutoCompleteTextView[V <: android.widget.MultiAutoCompleteTextView](val basis: V) extends TraitMultiAutoCompleteTextView[V]
 
 /**
- * Automatically generated helper trait of android.widget.MultiAutoCompleteTextView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/MultiAutoCompleteTextView.html android.widget.MultiAutoCompleteTextView]]`. This contains several property accessors.
  */
 trait TraitMultiAutoCompleteTextView[V <: android.widget.MultiAutoCompleteTextView] extends TraitAutoCompleteTextView[V] {
 
@@ -695,8 +695,8 @@ trait TraitMultiAutoCompleteTextView[V <: android.widget.MultiAutoCompleteTextVi
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.MultiAutoCompleteTextView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/MultiAutoCompleteTextView.html android.widget.MultiAutoCompleteTextView]]`.
+ */
 class SMultiAutoCompleteTextView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.MultiAutoCompleteTextView(context) with TraitMultiAutoCompleteTextView[SMultiAutoCompleteTextView] {
 
@@ -752,12 +752,12 @@ object SMultiAutoCompleteTextView {
 
 
 /**
-* Automatically generated enriching class of android.widget.DatePicker.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/DatePicker.html android.widget.DatePicker]]`.
+ */
 class RichDatePicker[V <: android.widget.DatePicker](val basis: V) extends TraitDatePicker[V]
 
 /**
- * Automatically generated helper trait of android.widget.DatePicker. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/DatePicker.html android.widget.DatePicker]]`. This contains several property accessors.
  */
 trait TraitDatePicker[V <: android.widget.DatePicker] extends TraitFrameLayout[V] {
 
@@ -774,8 +774,8 @@ trait TraitDatePicker[V <: android.widget.DatePicker] extends TraitFrameLayout[V
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.DatePicker.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/DatePicker.html android.widget.DatePicker]]`.
+ */
 class SDatePicker()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.DatePicker(context) with TraitDatePicker[SDatePicker] {
 
@@ -797,12 +797,12 @@ object SDatePicker {
 
 
 /**
-* Automatically generated enriching class of android.widget.AbsSeekBar.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/AbsSeekBar.html android.widget.AbsSeekBar]]`.
+ */
 class RichAbsSeekBar[V <: android.widget.AbsSeekBar](val basis: V) extends TraitAbsSeekBar[V]
 
 /**
- * Automatically generated helper trait of android.widget.AbsSeekBar. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/AbsSeekBar.html android.widget.AbsSeekBar]]`. This contains several property accessors.
  */
 trait TraitAbsSeekBar[V <: android.widget.AbsSeekBar] extends TraitProgressBar[V] {
 
@@ -827,12 +827,12 @@ trait TraitAbsSeekBar[V <: android.widget.AbsSeekBar] extends TraitProgressBar[V
 
 
 /**
-* Automatically generated enriching class of android.widget.TableLayout.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/TableLayout.html android.widget.TableLayout]]`.
+ */
 class RichTableLayout[V <: android.widget.TableLayout](val basis: V) extends TraitTableLayout[V]
 
 /**
- * Automatically generated helper trait of android.widget.TableLayout. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/TableLayout.html android.widget.TableLayout]]`. This contains several property accessors.
  */
 trait TraitTableLayout[V <: android.widget.TableLayout] extends TraitLinearLayout[V] {
 
@@ -850,8 +850,8 @@ trait TraitTableLayout[V <: android.widget.TableLayout] extends TraitLinearLayou
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.TableLayout.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TableLayout.html android.widget.TableLayout]]`.
+ */
 class STableLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TableLayout(context) with TraitTableLayout[STableLayout] {
 
@@ -873,12 +873,12 @@ object STableLayout {
 
 
 /**
-* Automatically generated enriching class of android.widget.SimpleCursorTreeAdapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/SimpleCursorTreeAdapter.html android.widget.SimpleCursorTreeAdapter]]`.
+ */
 class RichSimpleCursorTreeAdapter[V <: android.widget.SimpleCursorTreeAdapter](val basis: V) extends TraitSimpleCursorTreeAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.SimpleCursorTreeAdapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/SimpleCursorTreeAdapter.html android.widget.SimpleCursorTreeAdapter]]`. This contains several property accessors.
  */
 trait TraitSimpleCursorTreeAdapter[V <: android.widget.SimpleCursorTreeAdapter] extends TraitResourceCursorTreeAdapter[V] {
 
@@ -895,12 +895,12 @@ trait TraitSimpleCursorTreeAdapter[V <: android.widget.SimpleCursorTreeAdapter] 
 
 
 /**
-* Automatically generated enriching class of android.widget.CursorAdapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/CursorAdapter.html android.widget.CursorAdapter]]`.
+ */
 class RichCursorAdapter[V <: android.widget.CursorAdapter](val basis: V) extends TraitCursorAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.CursorAdapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/CursorAdapter.html android.widget.CursorAdapter]]`. This contains several property accessors.
  */
 trait TraitCursorAdapter[V <: android.widget.CursorAdapter] extends TraitBaseAdapter[V] {
 
@@ -921,12 +921,12 @@ trait TraitCursorAdapter[V <: android.widget.CursorAdapter] extends TraitBaseAda
 
 
 /**
-* Automatically generated enriching class of android.widget.ResourceCursorTreeAdapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ResourceCursorTreeAdapter.html android.widget.ResourceCursorTreeAdapter]]`.
+ */
 class RichResourceCursorTreeAdapter[V <: android.widget.ResourceCursorTreeAdapter](val basis: V) extends TraitResourceCursorTreeAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.ResourceCursorTreeAdapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ResourceCursorTreeAdapter.html android.widget.ResourceCursorTreeAdapter]]`. This contains several property accessors.
  */
 trait TraitResourceCursorTreeAdapter[V <: android.widget.ResourceCursorTreeAdapter] extends TraitCursorTreeAdapter[V] {
 
@@ -939,12 +939,12 @@ trait TraitResourceCursorTreeAdapter[V <: android.widget.ResourceCursorTreeAdapt
 
 
 /**
-* Automatically generated enriching class of android.widget.TabHost.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/TabHost.html android.widget.TabHost]]`.
+ */
 class RichTabHost[V <: android.widget.TabHost](val basis: V) extends TraitTabHost[V]
 
 /**
- * Automatically generated helper trait of android.widget.TabHost. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/TabHost.html android.widget.TabHost]]`. This contains several property accessors.
  */
 trait TraitTabHost[V <: android.widget.TabHost] extends TraitFrameLayout[V] {
 
@@ -990,8 +990,8 @@ trait TraitTabHost[V <: android.widget.TabHost] extends TraitFrameLayout[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.TabHost.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TabHost.html android.widget.TabHost]]`.
+ */
 class STabHost()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TabHost(context) with TraitTabHost[STabHost] {
 
@@ -1013,12 +1013,12 @@ object STabHost {
 
 
 /**
-* Automatically generated enriching class of android.widget.HeterogeneousExpandableList.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/HeterogeneousExpandableList.html android.widget.HeterogeneousExpandableList]]`.
+ */
 class RichHeterogeneousExpandableList[V <: android.widget.HeterogeneousExpandableList](val basis: V) extends TraitHeterogeneousExpandableList[V]
 
 /**
- * Automatically generated helper trait of android.widget.HeterogeneousExpandableList. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/HeterogeneousExpandableList.html android.widget.HeterogeneousExpandableList]]`. This contains several property accessors.
  */
 trait TraitHeterogeneousExpandableList[V <: android.widget.HeterogeneousExpandableList] {
 
@@ -1037,12 +1037,12 @@ trait TraitHeterogeneousExpandableList[V <: android.widget.HeterogeneousExpandab
 
 
 /**
-* Automatically generated enriching class of android.widget.RadioGroup.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/RadioGroup.html android.widget.RadioGroup]]`.
+ */
 class RichRadioGroup[V <: android.widget.RadioGroup](val basis: V) extends TraitRadioGroup[V]
 
 /**
- * Automatically generated helper trait of android.widget.RadioGroup. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/RadioGroup.html android.widget.RadioGroup]]`. This contains several property accessors.
  */
 trait TraitRadioGroup[V <: android.widget.RadioGroup] extends TraitLinearLayout[V] {
 
@@ -1071,8 +1071,8 @@ trait TraitRadioGroup[V <: android.widget.RadioGroup] extends TraitLinearLayout[
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.RadioGroup.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/RadioGroup.html android.widget.RadioGroup]]`.
+ */
 class SRadioGroup()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.RadioGroup(context) with TraitRadioGroup[SRadioGroup] {
 
@@ -1094,12 +1094,12 @@ object SRadioGroup {
 
 
 /**
-* Automatically generated enriching class of android.widget.RatingBar.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/RatingBar.html android.widget.RatingBar]]`.
+ */
 class RichRatingBar[V <: android.widget.RatingBar](val basis: V) extends TraitRatingBar[V]
 
 /**
- * Automatically generated helper trait of android.widget.RatingBar. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/RatingBar.html android.widget.RatingBar]]`. This contains several property accessors.
  */
 trait TraitRatingBar[V <: android.widget.RatingBar] extends TraitAbsSeekBar[V] {
 
@@ -1141,8 +1141,8 @@ trait TraitRatingBar[V <: android.widget.RatingBar] extends TraitAbsSeekBar[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.RatingBar.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/RatingBar.html android.widget.RatingBar]]`.
+ */
 class SRatingBar()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.RatingBar(context) with TraitRatingBar[SRatingBar] {
 
@@ -1164,12 +1164,12 @@ object SRatingBar {
 
 
 /**
-* Automatically generated enriching class of android.widget.SimpleExpandableListAdapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/SimpleExpandableListAdapter.html android.widget.SimpleExpandableListAdapter]]`.
+ */
 class RichSimpleExpandableListAdapter[V <: android.widget.SimpleExpandableListAdapter](val basis: V) extends TraitSimpleExpandableListAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.SimpleExpandableListAdapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/SimpleExpandableListAdapter.html android.widget.SimpleExpandableListAdapter]]`. This contains several property accessors.
  */
 trait TraitSimpleExpandableListAdapter[V <: android.widget.SimpleExpandableListAdapter] extends TraitBaseExpandableListAdapter[V] {
 
@@ -1182,12 +1182,12 @@ trait TraitSimpleExpandableListAdapter[V <: android.widget.SimpleExpandableListA
 
 
 /**
-* Automatically generated enriching class of android.widget.ExpandableListAdapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ExpandableListAdapter.html android.widget.ExpandableListAdapter]]`.
+ */
 class RichExpandableListAdapter[V <: android.widget.ExpandableListAdapter](val basis: V) extends TraitExpandableListAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.ExpandableListAdapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ExpandableListAdapter.html android.widget.ExpandableListAdapter]]`. This contains several property accessors.
  */
 trait TraitExpandableListAdapter[V <: android.widget.ExpandableListAdapter] {
 
@@ -1204,12 +1204,12 @@ trait TraitExpandableListAdapter[V <: android.widget.ExpandableListAdapter] {
 
 
 /**
-* Automatically generated enriching class of android.widget.Spinner.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/Spinner.html android.widget.Spinner]]`.
+ */
 class RichSpinner[V <: android.widget.Spinner](val basis: V) extends TraitSpinner[V]
 
 /**
- * Automatically generated helper trait of android.widget.Spinner. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/Spinner.html android.widget.Spinner]]`. This contains several property accessors.
  */
 trait TraitSpinner[V <: android.widget.Spinner] extends TraitAbsSpinner[V] {
 
@@ -1227,8 +1227,8 @@ trait TraitSpinner[V <: android.widget.Spinner] extends TraitAbsSpinner[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.Spinner.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/Spinner.html android.widget.Spinner]]`.
+ */
 class SSpinner()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.Spinner(context) with TraitSpinner[SSpinner] {
 
@@ -1250,12 +1250,12 @@ object SSpinner {
 
 
 /**
-* Automatically generated enriching class of android.widget.AlphabetIndexer.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/AlphabetIndexer.html android.widget.AlphabetIndexer]]`.
+ */
 class RichAlphabetIndexer[V <: android.widget.AlphabetIndexer](val basis: V) extends TraitAlphabetIndexer[V]
 
 /**
- * Automatically generated helper trait of android.widget.AlphabetIndexer. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/AlphabetIndexer.html android.widget.AlphabetIndexer]]`. This contains several property accessors.
  */
 trait TraitAlphabetIndexer[V <: android.widget.AlphabetIndexer] extends TraitDataSetObserver[V] {
 
@@ -1275,12 +1275,12 @@ trait TraitAlphabetIndexer[V <: android.widget.AlphabetIndexer] extends TraitDat
 
 
 /**
-* Automatically generated enriching class of android.widget.GridView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/GridView.html android.widget.GridView]]`.
+ */
 class RichGridView[V <: android.widget.GridView](val basis: V) extends TraitGridView[V]
 
 /**
- * Automatically generated helper trait of android.widget.GridView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/GridView.html android.widget.GridView]]`. This contains several property accessors.
  */
 trait TraitGridView[V <: android.widget.GridView] extends TraitAbsListView[V] {
 
@@ -1318,8 +1318,8 @@ trait TraitGridView[V <: android.widget.GridView] extends TraitAbsListView[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.GridView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/GridView.html android.widget.GridView]]`.
+ */
 class SGridView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.GridView(context) with TraitGridView[SGridView] {
 
@@ -1341,12 +1341,12 @@ object SGridView {
 
 
 /**
-* Automatically generated enriching class of android.widget.RelativeLayout.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/RelativeLayout.html android.widget.RelativeLayout]]`.
+ */
 class RichRelativeLayout[V <: android.widget.RelativeLayout](val basis: V) extends TraitRelativeLayout[V]
 
 /**
- * Automatically generated helper trait of android.widget.RelativeLayout. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/RelativeLayout.html android.widget.RelativeLayout]]`. This contains several property accessors.
  */
 trait TraitRelativeLayout[V <: android.widget.RelativeLayout] extends TraitViewGroup[V] {
 
@@ -1372,8 +1372,8 @@ trait TraitRelativeLayout[V <: android.widget.RelativeLayout] extends TraitViewG
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.RelativeLayout.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/RelativeLayout.html android.widget.RelativeLayout]]`.
+ */
 class SRelativeLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.RelativeLayout(context) with TraitRelativeLayout[SRelativeLayout] {
 
@@ -1511,12 +1511,12 @@ object SRelativeLayout {
 
 
 /**
-* Automatically generated enriching class of android.widget.Chronometer.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/Chronometer.html android.widget.Chronometer]]`.
+ */
 class RichChronometer[V <: android.widget.Chronometer](val basis: V) extends TraitChronometer[V]
 
 /**
- * Automatically generated helper trait of android.widget.Chronometer. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/Chronometer.html android.widget.Chronometer]]`. This contains several property accessors.
  */
 trait TraitChronometer[V <: android.widget.Chronometer] extends TraitTextView[V] {
 
@@ -1551,8 +1551,8 @@ trait TraitChronometer[V <: android.widget.Chronometer] extends TraitTextView[V]
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.Chronometer.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/Chronometer.html android.widget.Chronometer]]`.
+ */
 class SChronometer()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.Chronometer(context) with TraitChronometer[SChronometer] {
 
@@ -1608,12 +1608,12 @@ object SChronometer {
 
 
 /**
-* Automatically generated enriching class of android.widget.Filterable.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/Filterable.html android.widget.Filterable]]`.
+ */
 class RichFilterable[V <: android.widget.Filterable](val basis: V) extends TraitFilterable[V]
 
 /**
- * Automatically generated helper trait of android.widget.Filterable. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/Filterable.html android.widget.Filterable]]`. This contains several property accessors.
  */
 trait TraitFilterable[V <: android.widget.Filterable] {
 
@@ -1630,12 +1630,12 @@ trait TraitFilterable[V <: android.widget.Filterable] {
 
 
 /**
-* Automatically generated enriching class of android.widget.CheckedTextView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/CheckedTextView.html android.widget.CheckedTextView]]`.
+ */
 class RichCheckedTextView[V <: android.widget.CheckedTextView](val basis: V) extends TraitCheckedTextView[V]
 
 /**
- * Automatically generated helper trait of android.widget.CheckedTextView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/CheckedTextView.html android.widget.CheckedTextView]]`. This contains several property accessors.
  */
 trait TraitCheckedTextView[V <: android.widget.CheckedTextView] extends TraitTextView[V] {
 
@@ -1655,8 +1655,8 @@ trait TraitCheckedTextView[V <: android.widget.CheckedTextView] extends TraitTex
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.CheckedTextView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/CheckedTextView.html android.widget.CheckedTextView]]`.
+ */
 class SCheckedTextView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.CheckedTextView(context) with TraitCheckedTextView[SCheckedTextView] {
 
@@ -1712,12 +1712,12 @@ object SCheckedTextView {
 
 
 /**
-* Automatically generated enriching class of android.widget.SectionIndexer.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/SectionIndexer.html android.widget.SectionIndexer]]`.
+ */
 class RichSectionIndexer[V <: android.widget.SectionIndexer](val basis: V) extends TraitSectionIndexer[V]
 
 /**
- * Automatically generated helper trait of android.widget.SectionIndexer. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/SectionIndexer.html android.widget.SectionIndexer]]`. This contains several property accessors.
  */
 trait TraitSectionIndexer[V <: android.widget.SectionIndexer] {
 
@@ -1734,12 +1734,12 @@ trait TraitSectionIndexer[V <: android.widget.SectionIndexer] {
 
 
 /**
-* Automatically generated enriching class of android.widget.TwoLineListItem.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/TwoLineListItem.html android.widget.TwoLineListItem]]`.
+ */
 class RichTwoLineListItem[V <: android.widget.TwoLineListItem](val basis: V) extends TraitTwoLineListItem[V]
 
 /**
- * Automatically generated helper trait of android.widget.TwoLineListItem. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/TwoLineListItem.html android.widget.TwoLineListItem]]`. This contains several property accessors.
  */
 trait TraitTwoLineListItem[V <: android.widget.TwoLineListItem] extends TraitRelativeLayout[V] {
 
@@ -1754,8 +1754,8 @@ trait TraitTwoLineListItem[V <: android.widget.TwoLineListItem] extends TraitRel
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.TwoLineListItem.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TwoLineListItem.html android.widget.TwoLineListItem]]`.
+ */
 class STwoLineListItem()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TwoLineListItem(context) with TraitTwoLineListItem[STwoLineListItem] {
 
@@ -1777,12 +1777,12 @@ object STwoLineListItem {
 
 
 /**
-* Automatically generated enriching class of android.widget.HeaderViewListAdapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/HeaderViewListAdapter.html android.widget.HeaderViewListAdapter]]`.
+ */
 class RichHeaderViewListAdapter[V <: android.widget.HeaderViewListAdapter](val basis: V) extends TraitHeaderViewListAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.HeaderViewListAdapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/HeaderViewListAdapter.html android.widget.HeaderViewListAdapter]]`. This contains several property accessors.
  */
 trait TraitHeaderViewListAdapter[V <: android.widget.HeaderViewListAdapter] {
 
@@ -1809,12 +1809,12 @@ trait TraitHeaderViewListAdapter[V <: android.widget.HeaderViewListAdapter] {
 
 
 /**
-* Automatically generated enriching class of android.widget.ImageSwitcher.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ImageSwitcher.html android.widget.ImageSwitcher]]`.
+ */
 class RichImageSwitcher[V <: android.widget.ImageSwitcher](val basis: V) extends TraitImageSwitcher[V]
 
 /**
- * Automatically generated helper trait of android.widget.ImageSwitcher. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ImageSwitcher.html android.widget.ImageSwitcher]]`. This contains several property accessors.
  */
 trait TraitImageSwitcher[V <: android.widget.ImageSwitcher] extends TraitViewSwitcher[V] {
 
@@ -1836,8 +1836,8 @@ trait TraitImageSwitcher[V <: android.widget.ImageSwitcher] extends TraitViewSwi
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.ImageSwitcher.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ImageSwitcher.html android.widget.ImageSwitcher]]`.
+ */
 class SImageSwitcher()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ImageSwitcher(context) with TraitImageSwitcher[SImageSwitcher] {
 
@@ -1859,12 +1859,12 @@ object SImageSwitcher {
 
 
 /**
-* Automatically generated enriching class of android.widget.TimePicker.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/TimePicker.html android.widget.TimePicker]]`.
+ */
 class RichTimePicker[V <: android.widget.TimePicker](val basis: V) extends TraitTimePicker[V]
 
 /**
- * Automatically generated helper trait of android.widget.TimePicker. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/TimePicker.html android.widget.TimePicker]]`. This contains several property accessors.
  */
 trait TraitTimePicker[V <: android.widget.TimePicker] extends TraitFrameLayout[V] {
 
@@ -1901,8 +1901,8 @@ trait TraitTimePicker[V <: android.widget.TimePicker] extends TraitFrameLayout[V
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.TimePicker.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TimePicker.html android.widget.TimePicker]]`.
+ */
 class STimePicker()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TimePicker(context) with TraitTimePicker[STimePicker] {
 
@@ -1924,12 +1924,12 @@ object STimePicker {
 
 
 /**
-* Automatically generated enriching class of android.widget.ExpandableListView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ExpandableListView.html android.widget.ExpandableListView]]`.
+ */
 class RichExpandableListView[V <: android.widget.ExpandableListView](val basis: V) extends TraitExpandableListView[V]
 
 /**
- * Automatically generated helper trait of android.widget.ExpandableListView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ExpandableListView.html android.widget.ExpandableListView]]`. This contains several property accessors.
  */
 trait TraitExpandableListView[V <: android.widget.ExpandableListView] extends TraitListView[V] {
 
@@ -2036,8 +2036,8 @@ trait TraitExpandableListView[V <: android.widget.ExpandableListView] extends Tr
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.ExpandableListView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ExpandableListView.html android.widget.ExpandableListView]]`.
+ */
 class SExpandableListView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ExpandableListView(context) with TraitExpandableListView[SExpandableListView] {
 
@@ -2059,12 +2059,12 @@ object SExpandableListView {
 
 
 /**
-* Automatically generated enriching class of android.widget.AbsListView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/AbsListView.html android.widget.AbsListView]]`.
+ */
 class RichAbsListView[V <: android.widget.AbsListView](val basis: V) extends TraitAbsListView[V]
 
 /**
- * Automatically generated helper trait of android.widget.AbsListView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/AbsListView.html android.widget.AbsListView]]`. This contains several property accessors.
  */
 trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView[V] {
 
@@ -2194,12 +2194,12 @@ trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView
 
 
 /**
-* Automatically generated enriching class of android.widget.AbsSpinner.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/AbsSpinner.html android.widget.AbsSpinner]]`.
+ */
 class RichAbsSpinner[V <: android.widget.AbsSpinner](val basis: V) extends TraitAbsSpinner[V]
 
 /**
- * Automatically generated helper trait of android.widget.AbsSpinner. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/AbsSpinner.html android.widget.AbsSpinner]]`. This contains several property accessors.
  */
 trait TraitAbsSpinner[V <: android.widget.AbsSpinner] extends TraitAdapterView[V] {
 
@@ -2216,12 +2216,12 @@ trait TraitAbsSpinner[V <: android.widget.AbsSpinner] extends TraitAdapterView[V
 
 
 /**
-* Automatically generated enriching class of android.widget.SeekBar.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/SeekBar.html android.widget.SeekBar]]`.
+ */
 class RichSeekBar[V <: android.widget.SeekBar](val basis: V) extends TraitSeekBar[V]
 
 /**
- * Automatically generated helper trait of android.widget.SeekBar. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/SeekBar.html android.widget.SeekBar]]`. This contains several property accessors.
  */
 trait TraitSeekBar[V <: android.widget.SeekBar] extends TraitAbsSeekBar[V] {
 
@@ -2288,8 +2288,8 @@ trait TraitSeekBar[V <: android.widget.SeekBar] extends TraitAbsSeekBar[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.SeekBar.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/SeekBar.html android.widget.SeekBar]]`.
+ */
 class SSeekBar()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.SeekBar(context) with TraitSeekBar[SSeekBar] {
 
@@ -2311,12 +2311,12 @@ object SSeekBar {
 
 
 /**
-* Automatically generated enriching class of android.widget.Toast.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/Toast.html android.widget.Toast]]`.
+ */
 class RichToast[V <: android.widget.Toast](val basis: V) extends TraitToast[V]
 
 /**
- * Automatically generated helper trait of android.widget.Toast. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/Toast.html android.widget.Toast]]`. This contains several property accessors.
  */
 trait TraitToast[V <: android.widget.Toast] {
 
@@ -2352,8 +2352,8 @@ trait TraitToast[V <: android.widget.Toast] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.Toast.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/Toast.html android.widget.Toast]]`.
+ */
 class SToast()(implicit context: android.content.Context)
     extends android.widget.Toast(context) with TraitToast[SToast] {
 
@@ -2373,12 +2373,12 @@ object SToast {
 
 
 /**
-* Automatically generated enriching class of android.widget.ListAdapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ListAdapter.html android.widget.ListAdapter]]`.
+ */
 class RichListAdapter[V <: android.widget.ListAdapter](val basis: V) extends TraitListAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.ListAdapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ListAdapter.html android.widget.ListAdapter]]`. This contains several property accessors.
  */
 trait TraitListAdapter[V <: android.widget.ListAdapter] {
 
@@ -2392,12 +2392,12 @@ trait TraitListAdapter[V <: android.widget.ListAdapter] {
 
 
 /**
-* Automatically generated enriching class of android.widget.ZoomButtonsController.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ZoomButtonsController.html android.widget.ZoomButtonsController]]`.
+ */
 class RichZoomButtonsController[V <: android.widget.ZoomButtonsController](val basis: V) extends TraitZoomButtonsController[V]
 
 /**
- * Automatically generated helper trait of android.widget.ZoomButtonsController. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ZoomButtonsController.html android.widget.ZoomButtonsController]]`. This contains several property accessors.
  */
 trait TraitZoomButtonsController[V <: android.widget.ZoomButtonsController] {
 
@@ -2480,12 +2480,12 @@ trait TraitZoomButtonsController[V <: android.widget.ZoomButtonsController] {
 
 
 /**
-* Automatically generated enriching class of android.widget.ResourceCursorAdapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ResourceCursorAdapter.html android.widget.ResourceCursorAdapter]]`.
+ */
 class RichResourceCursorAdapter[V <: android.widget.ResourceCursorAdapter](val basis: V) extends TraitResourceCursorAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.ResourceCursorAdapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ResourceCursorAdapter.html android.widget.ResourceCursorAdapter]]`. This contains several property accessors.
  */
 trait TraitResourceCursorAdapter[V <: android.widget.ResourceCursorAdapter] extends TraitCursorAdapter[V] {
 
@@ -2506,12 +2506,12 @@ trait TraitResourceCursorAdapter[V <: android.widget.ResourceCursorAdapter] exte
 
 
 /**
-* Automatically generated enriching class of android.widget.ViewAnimator.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ViewAnimator.html android.widget.ViewAnimator]]`.
+ */
 class RichViewAnimator[V <: android.widget.ViewAnimator](val basis: V) extends TraitViewAnimator[V]
 
 /**
- * Automatically generated helper trait of android.widget.ViewAnimator. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ViewAnimator.html android.widget.ViewAnimator]]`. This contains several property accessors.
  */
 trait TraitViewAnimator[V <: android.widget.ViewAnimator] extends TraitFrameLayout[V] {
 
@@ -2539,8 +2539,8 @@ trait TraitViewAnimator[V <: android.widget.ViewAnimator] extends TraitFrameLayo
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.ViewAnimator.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ViewAnimator.html android.widget.ViewAnimator]]`.
+ */
 class SViewAnimator()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ViewAnimator(context) with TraitViewAnimator[SViewAnimator] {
 
@@ -2562,12 +2562,12 @@ object SViewAnimator {
 
 
 /**
-* Automatically generated enriching class of android.widget.SlidingDrawer.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/SlidingDrawer.html android.widget.SlidingDrawer]]`.
+ */
 class RichSlidingDrawer[V <: android.widget.SlidingDrawer](val basis: V) extends TraitSlidingDrawer[V]
 
 /**
- * Automatically generated helper trait of android.widget.SlidingDrawer. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/SlidingDrawer.html android.widget.SlidingDrawer]]`. This contains several property accessors.
  */
 trait TraitSlidingDrawer[V <: android.widget.SlidingDrawer] extends TraitViewGroup[V] {
 
@@ -2632,12 +2632,12 @@ trait TraitSlidingDrawer[V <: android.widget.SlidingDrawer] extends TraitViewGro
 
 
 /**
-* Automatically generated enriching class of android.widget.TextSwitcher.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/TextSwitcher.html android.widget.TextSwitcher]]`.
+ */
 class RichTextSwitcher[V <: android.widget.TextSwitcher](val basis: V) extends TraitTextSwitcher[V]
 
 /**
- * Automatically generated helper trait of android.widget.TextSwitcher. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/TextSwitcher.html android.widget.TextSwitcher]]`. This contains several property accessors.
  */
 trait TraitTextSwitcher[V <: android.widget.TextSwitcher] extends TraitViewSwitcher[V] {
 
@@ -2655,8 +2655,8 @@ trait TraitTextSwitcher[V <: android.widget.TextSwitcher] extends TraitViewSwitc
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.TextSwitcher.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TextSwitcher.html android.widget.TextSwitcher]]`.
+ */
 class STextSwitcher()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TextSwitcher(context) with TraitTextSwitcher[STextSwitcher] {
 
@@ -2678,12 +2678,12 @@ object STextSwitcher {
 
 
 /**
-* Automatically generated enriching class of android.widget.LinearLayout.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/LinearLayout.html android.widget.LinearLayout]]`.
+ */
 class RichLinearLayout[V <: android.widget.LinearLayout](val basis: V) extends TraitLinearLayout[V]
 
 /**
- * Automatically generated helper trait of android.widget.LinearLayout. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/LinearLayout.html android.widget.LinearLayout]]`. This contains several property accessors.
  */
 trait TraitLinearLayout[V <: android.widget.LinearLayout] extends TraitViewGroup[V] {
 
@@ -2721,8 +2721,8 @@ trait TraitLinearLayout[V <: android.widget.LinearLayout] extends TraitViewGroup
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.LinearLayout.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/LinearLayout.html android.widget.LinearLayout]]`.
+ */
 class SLinearLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.LinearLayout(context) with TraitLinearLayout[SLinearLayout] {
 
@@ -2769,12 +2769,12 @@ object SLinearLayout {
 
 
 /**
-* Automatically generated enriching class of android.widget.ZoomControls.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ZoomControls.html android.widget.ZoomControls]]`.
+ */
 class RichZoomControls[V <: android.widget.ZoomControls](val basis: V) extends TraitZoomControls[V]
 
 /**
- * Automatically generated helper trait of android.widget.ZoomControls. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ZoomControls.html android.widget.ZoomControls]]`. This contains several property accessors.
  */
 trait TraitZoomControls[V <: android.widget.ZoomControls] extends TraitLinearLayout[V] {
 
@@ -2837,8 +2837,8 @@ trait TraitZoomControls[V <: android.widget.ZoomControls] extends TraitLinearLay
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.ZoomControls.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ZoomControls.html android.widget.ZoomControls]]`.
+ */
 class SZoomControls()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ZoomControls(context) with TraitZoomControls[SZoomControls] {
 
@@ -2860,12 +2860,12 @@ object SZoomControls {
 
 
 /**
-* Automatically generated enriching class of android.widget.DialerFilter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/DialerFilter.html android.widget.DialerFilter]]`.
+ */
 class RichDialerFilter[V <: android.widget.DialerFilter](val basis: V) extends TraitDialerFilter[V]
 
 /**
- * Automatically generated helper trait of android.widget.DialerFilter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/DialerFilter.html android.widget.DialerFilter]]`. This contains several property accessors.
  */
 trait TraitDialerFilter[V <: android.widget.DialerFilter] extends TraitRelativeLayout[V] {
 
@@ -2897,8 +2897,8 @@ trait TraitDialerFilter[V <: android.widget.DialerFilter] extends TraitRelativeL
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.DialerFilter.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/DialerFilter.html android.widget.DialerFilter]]`.
+ */
 class SDialerFilter()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.DialerFilter(context) with TraitDialerFilter[SDialerFilter] {
 
@@ -2920,12 +2920,12 @@ object SDialerFilter {
 
 
 /**
-* Automatically generated enriching class of android.widget.RadioButton.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/RadioButton.html android.widget.RadioButton]]`.
+ */
 class RichRadioButton[V <: android.widget.RadioButton](val basis: V) extends TraitRadioButton[V]
 
 /**
- * Automatically generated helper trait of android.widget.RadioButton. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/RadioButton.html android.widget.RadioButton]]`. This contains several property accessors.
  */
 trait TraitRadioButton[V <: android.widget.RadioButton] extends TraitCompoundButton[V] {
 
@@ -2935,8 +2935,8 @@ trait TraitRadioButton[V <: android.widget.RadioButton] extends TraitCompoundBut
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.RadioButton.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/RadioButton.html android.widget.RadioButton]]`.
+ */
 class SRadioButton()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.RadioButton(context) with TraitRadioButton[SRadioButton] {
 
@@ -2992,12 +2992,12 @@ object SRadioButton {
 
 
 /**
-* Automatically generated enriching class of android.widget.QuickContactBadge.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/QuickContactBadge.html android.widget.QuickContactBadge]]`.
+ */
 class RichQuickContactBadge[V <: android.widget.QuickContactBadge](val basis: V) extends TraitQuickContactBadge[V]
 
 /**
- * Automatically generated helper trait of android.widget.QuickContactBadge. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/QuickContactBadge.html android.widget.QuickContactBadge]]`. This contains several property accessors.
  */
 trait TraitQuickContactBadge[V <: android.widget.QuickContactBadge] extends TraitImageView[V] {
 
@@ -3015,8 +3015,8 @@ trait TraitQuickContactBadge[V <: android.widget.QuickContactBadge] extends Trai
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.QuickContactBadge.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/QuickContactBadge.html android.widget.QuickContactBadge]]`.
+ */
 class SQuickContactBadge()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.QuickContactBadge(context) with TraitQuickContactBadge[SQuickContactBadge] {
 
@@ -3066,12 +3066,12 @@ object SQuickContactBadge {
 
 
 /**
-* Automatically generated enriching class of android.widget.DigitalClock.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/DigitalClock.html android.widget.DigitalClock]]`.
+ */
 class RichDigitalClock[V <: android.widget.DigitalClock](val basis: V) extends TraitDigitalClock[V]
 
 /**
- * Automatically generated helper trait of android.widget.DigitalClock. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/DigitalClock.html android.widget.DigitalClock]]`. This contains several property accessors.
  */
 trait TraitDigitalClock[V <: android.widget.DigitalClock] extends TraitTextView[V] {
 
@@ -3081,8 +3081,8 @@ trait TraitDigitalClock[V <: android.widget.DigitalClock] extends TraitTextView[
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.DigitalClock.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/DigitalClock.html android.widget.DigitalClock]]`.
+ */
 class SDigitalClock()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.DigitalClock(context) with TraitDigitalClock[SDigitalClock] {
 
@@ -3138,12 +3138,12 @@ object SDigitalClock {
 
 
 /**
-* Automatically generated enriching class of android.widget.ToggleButton.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ToggleButton.html android.widget.ToggleButton]]`.
+ */
 class RichToggleButton[V <: android.widget.ToggleButton](val basis: V) extends TraitToggleButton[V]
 
 /**
- * Automatically generated helper trait of android.widget.ToggleButton. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ToggleButton.html android.widget.ToggleButton]]`. This contains several property accessors.
  */
 trait TraitToggleButton[V <: android.widget.ToggleButton] extends TraitCompoundButton[V] {
 
@@ -3161,8 +3161,8 @@ trait TraitToggleButton[V <: android.widget.ToggleButton] extends TraitCompoundB
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.ToggleButton.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ToggleButton.html android.widget.ToggleButton]]`.
+ */
 class SToggleButton()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ToggleButton(context) with TraitToggleButton[SToggleButton] {
 
@@ -3218,12 +3218,12 @@ object SToggleButton {
 
 
 /**
-* Automatically generated enriching class of android.widget.Button.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/Button.html android.widget.Button]]`.
+ */
 class RichButton[V <: android.widget.Button](val basis: V) extends TraitButton[V]
 
 /**
- * Automatically generated helper trait of android.widget.Button. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/Button.html android.widget.Button]]`. This contains several property accessors.
  */
 trait TraitButton[V <: android.widget.Button] extends TraitTextView[V] {
 
@@ -3233,8 +3233,8 @@ trait TraitButton[V <: android.widget.Button] extends TraitTextView[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.Button.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/Button.html android.widget.Button]]`.
+ */
 class SButton()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.Button(context) with TraitButton[SButton] {
 
@@ -3290,12 +3290,12 @@ object SButton {
 
 
 /**
-* Automatically generated enriching class of android.widget.CheckBox.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/CheckBox.html android.widget.CheckBox]]`.
+ */
 class RichCheckBox[V <: android.widget.CheckBox](val basis: V) extends TraitCheckBox[V]
 
 /**
- * Automatically generated helper trait of android.widget.CheckBox. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/CheckBox.html android.widget.CheckBox]]`. This contains several property accessors.
  */
 trait TraitCheckBox[V <: android.widget.CheckBox] extends TraitCompoundButton[V] {
 
@@ -3305,8 +3305,8 @@ trait TraitCheckBox[V <: android.widget.CheckBox] extends TraitCompoundButton[V]
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.CheckBox.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/CheckBox.html android.widget.CheckBox]]`.
+ */
 class SCheckBox()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.CheckBox(context) with TraitCheckBox[SCheckBox] {
 
@@ -3362,12 +3362,12 @@ object SCheckBox {
 
 
 /**
-* Automatically generated enriching class of android.widget.MediaController.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/MediaController.html android.widget.MediaController]]`.
+ */
 class RichMediaController[V <: android.widget.MediaController](val basis: V) extends TraitMediaController[V]
 
 /**
- * Automatically generated helper trait of android.widget.MediaController. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/MediaController.html android.widget.MediaController]]`. This contains several property accessors.
  */
 trait TraitMediaController[V <: android.widget.MediaController] extends TraitFrameLayout[V] {
 
@@ -3385,8 +3385,8 @@ trait TraitMediaController[V <: android.widget.MediaController] extends TraitFra
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.MediaController.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/MediaController.html android.widget.MediaController]]`.
+ */
 class SMediaController()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.MediaController(context) with TraitMediaController[SMediaController] {
 
@@ -3408,12 +3408,12 @@ object SMediaController {
 
 
 /**
-* Automatically generated enriching class of android.widget.TableRow.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/TableRow.html android.widget.TableRow]]`.
+ */
 class RichTableRow[V <: android.widget.TableRow](val basis: V) extends TraitTableRow[V]
 
 /**
- * Automatically generated helper trait of android.widget.TableRow. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/TableRow.html android.widget.TableRow]]`. This contains several property accessors.
  */
 trait TraitTableRow[V <: android.widget.TableRow] extends TraitLinearLayout[V] {
 
@@ -3426,8 +3426,8 @@ trait TraitTableRow[V <: android.widget.TableRow] extends TraitLinearLayout[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.TableRow.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TableRow.html android.widget.TableRow]]`.
+ */
 class STableRow()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TableRow(context) with TraitTableRow[STableRow] {
 
@@ -3449,12 +3449,12 @@ object STableRow {
 
 
 /**
-* Automatically generated enriching class of android.widget.TabWidget.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/TabWidget.html android.widget.TabWidget]]`.
+ */
 class RichTabWidget[V <: android.widget.TabWidget](val basis: V) extends TraitTabWidget[V]
 
 /**
- * Automatically generated helper trait of android.widget.TabWidget. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/TabWidget.html android.widget.TabWidget]]`. This contains several property accessors.
  */
 trait TraitTabWidget[V <: android.widget.TabWidget] extends TraitLinearLayout[V] {
 
@@ -3496,8 +3496,8 @@ trait TraitTabWidget[V <: android.widget.TabWidget] extends TraitLinearLayout[V]
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.TabWidget.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TabWidget.html android.widget.TabWidget]]`.
+ */
 class STabWidget()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TabWidget(context) with TraitTabWidget[STabWidget] {
 
@@ -3519,12 +3519,12 @@ object STabWidget {
 
 
 /**
-* Automatically generated enriching class of android.widget.VideoView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/VideoView.html android.widget.VideoView]]`.
+ */
 class RichVideoView[V <: android.widget.VideoView](val basis: V) extends TraitVideoView[V]
 
 /**
- * Automatically generated helper trait of android.widget.VideoView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/VideoView.html android.widget.VideoView]]`. This contains several property accessors.
  */
 trait TraitVideoView[V <: android.widget.VideoView] extends TraitSurfaceView[V] {
 
@@ -3605,8 +3605,8 @@ trait TraitVideoView[V <: android.widget.VideoView] extends TraitSurfaceView[V] 
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.VideoView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/VideoView.html android.widget.VideoView]]`.
+ */
 class SVideoView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.VideoView(context) with TraitVideoView[SVideoView] {
 
@@ -3628,12 +3628,12 @@ object SVideoView {
 
 
 /**
-* Automatically generated enriching class of android.widget.AdapterView[_].
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/AdapterView.html android.widget.AdapterView[_]]]`.
+ */
 class RichAdapterView[V <: android.widget.AdapterView[_]](val basis: V) extends TraitAdapterView[V]
 
 /**
- * Automatically generated helper trait of android.widget.AdapterView[_]. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/AdapterView.html android.widget.AdapterView[_]]]`. This contains several property accessors.
  */
 trait TraitAdapterView[V <: android.widget.AdapterView[_]] extends TraitViewGroup[V] {
 
@@ -3741,12 +3741,12 @@ trait TraitAdapterView[V <: android.widget.AdapterView[_]] extends TraitViewGrou
 
 
 /**
-* Automatically generated enriching class of android.widget.Checkable.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/Checkable.html android.widget.Checkable]]`.
+ */
 class RichCheckable[V <: android.widget.Checkable](val basis: V) extends TraitCheckable[V]
 
 /**
- * Automatically generated helper trait of android.widget.Checkable. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/Checkable.html android.widget.Checkable]]`. This contains several property accessors.
  */
 trait TraitCheckable[V <: android.widget.Checkable] {
 
@@ -3764,12 +3764,12 @@ trait TraitCheckable[V <: android.widget.Checkable] {
 
 
 /**
-* Automatically generated enriching class of android.widget.HorizontalScrollView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/HorizontalScrollView.html android.widget.HorizontalScrollView]]`.
+ */
 class RichHorizontalScrollView[V <: android.widget.HorizontalScrollView](val basis: V) extends TraitHorizontalScrollView[V]
 
 /**
- * Automatically generated helper trait of android.widget.HorizontalScrollView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/HorizontalScrollView.html android.widget.HorizontalScrollView]]`. This contains several property accessors.
  */
 trait TraitHorizontalScrollView[V <: android.widget.HorizontalScrollView] extends TraitFrameLayout[V] {
 
@@ -3792,8 +3792,8 @@ trait TraitHorizontalScrollView[V <: android.widget.HorizontalScrollView] extend
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.HorizontalScrollView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/HorizontalScrollView.html android.widget.HorizontalScrollView]]`.
+ */
 class SHorizontalScrollView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.HorizontalScrollView(context) with TraitHorizontalScrollView[SHorizontalScrollView] {
 
@@ -3815,12 +3815,12 @@ object SHorizontalScrollView {
 
 
 /**
-* Automatically generated enriching class of android.widget.ProgressBar.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ProgressBar.html android.widget.ProgressBar]]`.
+ */
 class RichProgressBar[V <: android.widget.ProgressBar](val basis: V) extends TraitProgressBar[V]
 
 /**
- * Automatically generated helper trait of android.widget.ProgressBar. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ProgressBar.html android.widget.ProgressBar]]`. This contains several property accessors.
  */
 trait TraitProgressBar[V <: android.widget.ProgressBar] extends TraitView[V] {
 
@@ -3858,8 +3858,8 @@ trait TraitProgressBar[V <: android.widget.ProgressBar] extends TraitView[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.ProgressBar.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ProgressBar.html android.widget.ProgressBar]]`.
+ */
 class SProgressBar()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ProgressBar(context) with TraitProgressBar[SProgressBar] {
 
@@ -3881,12 +3881,12 @@ object SProgressBar {
 
 
 /**
-* Automatically generated enriching class of android.widget.ScrollView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ScrollView.html android.widget.ScrollView]]`.
+ */
 class RichScrollView[V <: android.widget.ScrollView](val basis: V) extends TraitScrollView[V]
 
 /**
- * Automatically generated helper trait of android.widget.ScrollView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ScrollView.html android.widget.ScrollView]]`. This contains several property accessors.
  */
 trait TraitScrollView[V <: android.widget.ScrollView] extends TraitFrameLayout[V] {
 
@@ -3909,8 +3909,8 @@ trait TraitScrollView[V <: android.widget.ScrollView] extends TraitFrameLayout[V
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.ScrollView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ScrollView.html android.widget.ScrollView]]`.
+ */
 class SScrollView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ScrollView(context) with TraitScrollView[SScrollView] {
 
@@ -3932,12 +3932,12 @@ object SScrollView {
 
 
 /**
-* Automatically generated enriching class of android.widget.CursorTreeAdapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/CursorTreeAdapter.html android.widget.CursorTreeAdapter]]`.
+ */
 class RichCursorTreeAdapter[V <: android.widget.CursorTreeAdapter](val basis: V) extends TraitCursorTreeAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.CursorTreeAdapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/CursorTreeAdapter.html android.widget.CursorTreeAdapter]]`. This contains several property accessors.
  */
 trait TraitCursorTreeAdapter[V <: android.widget.CursorTreeAdapter] extends TraitBaseExpandableListAdapter[V] {
 
@@ -3962,12 +3962,12 @@ trait TraitCursorTreeAdapter[V <: android.widget.CursorTreeAdapter] extends Trai
 
 
 /**
-* Automatically generated enriching class of android.widget.SimpleCursorAdapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/SimpleCursorAdapter.html android.widget.SimpleCursorAdapter]]`.
+ */
 class RichSimpleCursorAdapter[V <: android.widget.SimpleCursorAdapter](val basis: V) extends TraitSimpleCursorAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.SimpleCursorAdapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/SimpleCursorAdapter.html android.widget.SimpleCursorAdapter]]`. This contains several property accessors.
  */
 trait TraitSimpleCursorAdapter[V <: android.widget.SimpleCursorAdapter] extends TraitResourceCursorAdapter[V] {
 
@@ -3992,12 +3992,12 @@ trait TraitSimpleCursorAdapter[V <: android.widget.SimpleCursorAdapter] extends 
 
 
 /**
-* Automatically generated enriching class of android.widget.BaseExpandableListAdapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/BaseExpandableListAdapter.html android.widget.BaseExpandableListAdapter]]`.
+ */
 class RichBaseExpandableListAdapter[V <: android.widget.BaseExpandableListAdapter](val basis: V) extends TraitBaseExpandableListAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.BaseExpandableListAdapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/BaseExpandableListAdapter.html android.widget.BaseExpandableListAdapter]]`. This contains several property accessors.
  */
 trait TraitBaseExpandableListAdapter[V <: android.widget.BaseExpandableListAdapter] {
 
@@ -4018,12 +4018,12 @@ trait TraitBaseExpandableListAdapter[V <: android.widget.BaseExpandableListAdapt
 
 
 /**
-* Automatically generated enriching class of android.widget.ViewSwitcher.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ViewSwitcher.html android.widget.ViewSwitcher]]`.
+ */
 class RichViewSwitcher[V <: android.widget.ViewSwitcher](val basis: V) extends TraitViewSwitcher[V]
 
 /**
- * Automatically generated helper trait of android.widget.ViewSwitcher. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ViewSwitcher.html android.widget.ViewSwitcher]]`. This contains several property accessors.
  */
 trait TraitViewSwitcher[V <: android.widget.ViewSwitcher] extends TraitViewAnimator[V] {
 
@@ -4040,8 +4040,8 @@ trait TraitViewSwitcher[V <: android.widget.ViewSwitcher] extends TraitViewAnima
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.ViewSwitcher.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ViewSwitcher.html android.widget.ViewSwitcher]]`.
+ */
 class SViewSwitcher()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ViewSwitcher(context) with TraitViewSwitcher[SViewSwitcher] {
 
@@ -4063,12 +4063,12 @@ object SViewSwitcher {
 
 
 /**
-* Automatically generated enriching class of android.widget.ZoomButton.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ZoomButton.html android.widget.ZoomButton]]`.
+ */
 class RichZoomButton[V <: android.widget.ZoomButton](val basis: V) extends TraitZoomButton[V]
 
 /**
- * Automatically generated helper trait of android.widget.ZoomButton. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ZoomButton.html android.widget.ZoomButton]]`. This contains several property accessors.
  */
 trait TraitZoomButton[V <: android.widget.ZoomButton] extends TraitImageButton[V] {
 
@@ -4082,8 +4082,8 @@ trait TraitZoomButton[V <: android.widget.ZoomButton] extends TraitImageButton[V
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.ZoomButton.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ZoomButton.html android.widget.ZoomButton]]`.
+ */
 class SZoomButton()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ZoomButton(context) with TraitZoomButton[SZoomButton] {
 
@@ -4133,12 +4133,12 @@ object SZoomButton {
 
 
 /**
-* Automatically generated enriching class of android.widget.Gallery.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/Gallery.html android.widget.Gallery]]`.
+ */
 class RichGallery[V <: android.widget.Gallery](val basis: V) extends TraitGallery[V]
 
 /**
- * Automatically generated helper trait of android.widget.Gallery. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/Gallery.html android.widget.Gallery]]`. This contains several property accessors.
  */
 trait TraitGallery[V <: android.widget.Gallery] extends TraitAbsSpinner[V] {
 
@@ -4168,8 +4168,8 @@ trait TraitGallery[V <: android.widget.Gallery] extends TraitAbsSpinner[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.Gallery.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/Gallery.html android.widget.Gallery]]`.
+ */
 class SGallery()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.Gallery(context) with TraitGallery[SGallery] {
 
@@ -4191,12 +4191,12 @@ object SGallery {
 
 
 /**
-* Automatically generated enriching class of android.widget.FilterQueryProvider.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/FilterQueryProvider.html android.widget.FilterQueryProvider]]`.
+ */
 class RichFilterQueryProvider[V <: android.widget.FilterQueryProvider](val basis: V) extends TraitFilterQueryProvider[V]
 
 /**
- * Automatically generated helper trait of android.widget.FilterQueryProvider. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/FilterQueryProvider.html android.widget.FilterQueryProvider]]`. This contains several property accessors.
  */
 trait TraitFilterQueryProvider[V <: android.widget.FilterQueryProvider] {
 
@@ -4210,12 +4210,12 @@ trait TraitFilterQueryProvider[V <: android.widget.FilterQueryProvider] {
 
 
 /**
-* Automatically generated enriching class of android.widget.CompoundButton.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/CompoundButton.html android.widget.CompoundButton]]`.
+ */
 class RichCompoundButton[V <: android.widget.CompoundButton](val basis: V) extends TraitCompoundButton[V]
 
 /**
- * Automatically generated helper trait of android.widget.CompoundButton. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/CompoundButton.html android.widget.CompoundButton]]`. This contains several property accessors.
  */
 trait TraitCompoundButton[V <: android.widget.CompoundButton] extends TraitButton[V] {
 
@@ -4255,12 +4255,12 @@ trait TraitCompoundButton[V <: android.widget.CompoundButton] extends TraitButto
 
 
 /**
-* Automatically generated enriching class of android.widget.Filter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/Filter.html android.widget.Filter]]`.
+ */
 class RichFilter[V <: android.widget.Filter](val basis: V) extends TraitFilter[V]
 
 /**
- * Automatically generated helper trait of android.widget.Filter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/Filter.html android.widget.Filter]]`. This contains several property accessors.
  */
 trait TraitFilter[V <: android.widget.Filter] {
 
@@ -4274,12 +4274,12 @@ trait TraitFilter[V <: android.widget.Filter] {
 
 
 /**
-* Automatically generated enriching class of android.widget.WrapperListAdapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/WrapperListAdapter.html android.widget.WrapperListAdapter]]`.
+ */
 class RichWrapperListAdapter[V <: android.widget.WrapperListAdapter](val basis: V) extends TraitWrapperListAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.WrapperListAdapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/WrapperListAdapter.html android.widget.WrapperListAdapter]]`. This contains several property accessors.
  */
 trait TraitWrapperListAdapter[V <: android.widget.WrapperListAdapter] {
 
@@ -4296,12 +4296,12 @@ trait TraitWrapperListAdapter[V <: android.widget.WrapperListAdapter] {
 
 
 /**
-* Automatically generated enriching class of android.widget.FrameLayout.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/FrameLayout.html android.widget.FrameLayout]]`.
+ */
 class RichFrameLayout[V <: android.widget.FrameLayout](val basis: V) extends TraitFrameLayout[V]
 
 /**
- * Automatically generated helper trait of android.widget.FrameLayout. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/FrameLayout.html android.widget.FrameLayout]]`. This contains several property accessors.
  */
 trait TraitFrameLayout[V <: android.widget.FrameLayout] extends TraitViewGroup[V] {
 
@@ -4325,8 +4325,8 @@ trait TraitFrameLayout[V <: android.widget.FrameLayout] extends TraitViewGroup[V
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.FrameLayout.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/FrameLayout.html android.widget.FrameLayout]]`.
+ */
 class SFrameLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.FrameLayout(context) with TraitFrameLayout[SFrameLayout] {
 
@@ -4365,12 +4365,12 @@ object SFrameLayout {
 
 
 /**
-* Automatically generated enriching class of android.widget.Adapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/Adapter.html android.widget.Adapter]]`.
+ */
 class RichAdapter[V <: android.widget.Adapter](val basis: V) extends TraitAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.Adapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/Adapter.html android.widget.Adapter]]`. This contains several property accessors.
  */
 trait TraitAdapter[V <: android.widget.Adapter] {
 
@@ -4389,12 +4389,12 @@ trait TraitAdapter[V <: android.widget.Adapter] {
 
 
 /**
-* Automatically generated enriching class of android.widget.TextView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/TextView.html android.widget.TextView]]`.
+ */
 class RichTextView[V <: android.widget.TextView](val basis: V) extends TraitTextView[V]
 
 /**
- * Automatically generated helper trait of android.widget.TextView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/TextView.html android.widget.TextView]]`. This contains several property accessors.
  */
 trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 
@@ -4753,8 +4753,8 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.TextView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TextView.html android.widget.TextView]]`.
+ */
 class STextView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.TextView(context) with TraitTextView[STextView] {
 
@@ -4810,12 +4810,12 @@ object STextView {
 
 
 /**
-* Automatically generated enriching class of android.widget.ViewFlipper.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ViewFlipper.html android.widget.ViewFlipper]]`.
+ */
 class RichViewFlipper[V <: android.widget.ViewFlipper](val basis: V) extends TraitViewFlipper[V]
 
 /**
- * Automatically generated helper trait of android.widget.ViewFlipper. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/ViewFlipper.html android.widget.ViewFlipper]]`. This contains several property accessors.
  */
 trait TraitViewFlipper[V <: android.widget.ViewFlipper] extends TraitViewAnimator[V] {
 
@@ -4833,8 +4833,8 @@ trait TraitViewFlipper[V <: android.widget.ViewFlipper] extends TraitViewAnimato
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.ViewFlipper.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ViewFlipper.html android.widget.ViewFlipper]]`.
+ */
 class SViewFlipper()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.ViewFlipper(context) with TraitViewFlipper[SViewFlipper] {
 
@@ -4856,12 +4856,12 @@ object SViewFlipper {
 
 
 /**
-* Automatically generated enriching class of android.widget.Scroller.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/Scroller.html android.widget.Scroller]]`.
+ */
 class RichScroller[V <: android.widget.Scroller](val basis: V) extends TraitScroller[V]
 
 /**
- * Automatically generated helper trait of android.widget.Scroller. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/Scroller.html android.widget.Scroller]]`. This contains several property accessors.
  */
 trait TraitScroller[V <: android.widget.Scroller] {
 
@@ -4891,8 +4891,8 @@ trait TraitScroller[V <: android.widget.Scroller] {
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.Scroller.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/Scroller.html android.widget.Scroller]]`.
+ */
 class SScroller()(implicit context: android.content.Context)
     extends android.widget.Scroller(context) with TraitScroller[SScroller] {
 
@@ -4912,12 +4912,12 @@ object SScroller {
 
 
 /**
-* Automatically generated enriching class of android.widget.SimpleAdapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/SimpleAdapter.html android.widget.SimpleAdapter]]`.
+ */
 class RichSimpleAdapter[V <: android.widget.SimpleAdapter](val basis: V) extends TraitSimpleAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.SimpleAdapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/SimpleAdapter.html android.widget.SimpleAdapter]]`. This contains several property accessors.
  */
 trait TraitSimpleAdapter[V <: android.widget.SimpleAdapter] extends TraitBaseAdapter[V] {
 
@@ -4940,12 +4940,12 @@ trait TraitSimpleAdapter[V <: android.widget.SimpleAdapter] extends TraitBaseAda
 
 
 /**
-* Automatically generated enriching class of android.widget.AutoCompleteTextView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html android.widget.AutoCompleteTextView]]`.
+ */
 class RichAutoCompleteTextView[V <: android.widget.AutoCompleteTextView](val basis: V) extends TraitAutoCompleteTextView[V]
 
 /**
- * Automatically generated helper trait of android.widget.AutoCompleteTextView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html android.widget.AutoCompleteTextView]]`. This contains several property accessors.
  */
 trait TraitAutoCompleteTextView[V <: android.widget.AutoCompleteTextView] extends TraitEditText[V] {
 
@@ -5062,8 +5062,8 @@ trait TraitAutoCompleteTextView[V <: android.widget.AutoCompleteTextView] extend
 }
 
 /**
-* Automatically generated concrete helper class of android.widget.AutoCompleteTextView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html android.widget.AutoCompleteTextView]]`.
+ */
 class SAutoCompleteTextView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.AutoCompleteTextView(context) with TraitAutoCompleteTextView[SAutoCompleteTextView] {
 
@@ -5119,12 +5119,12 @@ object SAutoCompleteTextView {
 
 
 /**
-* Automatically generated enriching class of android.widget.RemoteViews.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/RemoteViews.html android.widget.RemoteViews]]`.
+ */
 class RichRemoteViews[V <: android.widget.RemoteViews](val basis: V) extends TraitRemoteViews[V]
 
 /**
- * Automatically generated helper trait of android.widget.RemoteViews. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/RemoteViews.html android.widget.RemoteViews]]`. This contains several property accessors.
  */
 trait TraitRemoteViews[V <: android.widget.RemoteViews] {
 
@@ -5143,12 +5143,12 @@ trait TraitRemoteViews[V <: android.widget.RemoteViews] {
 
 
 /**
-* Automatically generated enriching class of android.widget.BaseAdapter.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/BaseAdapter.html android.widget.BaseAdapter]]`.
+ */
 class RichBaseAdapter[V <: android.widget.BaseAdapter](val basis: V) extends TraitBaseAdapter[V]
 
 /**
- * Automatically generated helper trait of android.widget.BaseAdapter. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/BaseAdapter.html android.widget.BaseAdapter]]`. This contains several property accessors.
  */
 trait TraitBaseAdapter[V <: android.widget.BaseAdapter] {
 
@@ -5180,12 +5180,12 @@ object SVerticalLayout {
 }
 
 /**
-* Automatically generated enriching class of android.inputmethodservice.ExtractEditText.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/inputmethodservice/ExtractEditText.html android.inputmethodservice.ExtractEditText]]`.
+ */
 class RichExtractEditText[V <: android.inputmethodservice.ExtractEditText](val basis: V) extends TraitExtractEditText[V]
 
 /**
- * Automatically generated helper trait of android.inputmethodservice.ExtractEditText. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/inputmethodservice/ExtractEditText.html android.inputmethodservice.ExtractEditText]]`. This contains several property accessors.
  */
 trait TraitExtractEditText[V <: android.inputmethodservice.ExtractEditText] extends TraitEditText[V] {
 
@@ -5195,8 +5195,8 @@ trait TraitExtractEditText[V <: android.inputmethodservice.ExtractEditText] exte
 }
 
 /**
-* Automatically generated concrete helper class of android.inputmethodservice.ExtractEditText.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/inputmethodservice/ExtractEditText.html android.inputmethodservice.ExtractEditText]]`.
+ */
 class SExtractEditText()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.inputmethodservice.ExtractEditText(context) with TraitExtractEditText[SExtractEditText] {
 
@@ -5250,12 +5250,12 @@ object SExtractEditText {
 
 
 /**
-* Automatically generated enriching class of android.inputmethodservice.KeyboardView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/inputmethodservice/KeyboardView.html android.inputmethodservice.KeyboardView]]`.
+ */
 class RichKeyboardView[V <: android.inputmethodservice.KeyboardView](val basis: V) extends TraitKeyboardView[V]
 
 /**
- * Automatically generated helper trait of android.inputmethodservice.KeyboardView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/inputmethodservice/KeyboardView.html android.inputmethodservice.KeyboardView]]`. This contains several property accessors.
  */
 trait TraitKeyboardView[V <: android.inputmethodservice.KeyboardView] extends TraitView[V] {
 
@@ -5473,12 +5473,12 @@ trait TraitKeyboardView[V <: android.inputmethodservice.KeyboardView] extends Tr
   }
 }
 /**
-* Automatically generated enriching class of android.opengl.GLSurfaceView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html android.opengl.GLSurfaceView]]`.
+ */
 class RichGLSurfaceView[V <: android.opengl.GLSurfaceView](val basis: V) extends TraitGLSurfaceView[V]
 
 /**
- * Automatically generated helper trait of android.opengl.GLSurfaceView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html android.opengl.GLSurfaceView]]`. This contains several property accessors.
  */
 trait TraitGLSurfaceView[V <: android.opengl.GLSurfaceView] extends TraitSurfaceView[V] {
 
@@ -5522,8 +5522,8 @@ trait TraitGLSurfaceView[V <: android.opengl.GLSurfaceView] extends TraitSurface
 }
 
 /**
-* Automatically generated concrete helper class of android.opengl.GLSurfaceView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html android.opengl.GLSurfaceView]]`.
+ */
 class SGLSurfaceView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.opengl.GLSurfaceView(context) with TraitGLSurfaceView[SGLSurfaceView] {
 
@@ -5543,12 +5543,12 @@ object SGLSurfaceView {
 
 
 /**
-* Automatically generated enriching class of android.appwidget.AppWidgetHostView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/appwidget/AppWidgetHostView.html android.appwidget.AppWidgetHostView]]`.
+ */
 class RichAppWidgetHostView[V <: android.appwidget.AppWidgetHostView](val basis: V) extends TraitAppWidgetHostView[V]
 
 /**
- * Automatically generated helper trait of android.appwidget.AppWidgetHostView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/appwidget/AppWidgetHostView.html android.appwidget.AppWidgetHostView]]`. This contains several property accessors.
  */
 trait TraitAppWidgetHostView[V <: android.appwidget.AppWidgetHostView] extends TraitFrameLayout[V] {
 
@@ -5563,8 +5563,8 @@ trait TraitAppWidgetHostView[V <: android.appwidget.AppWidgetHostView] extends T
 }
 
 /**
-* Automatically generated concrete helper class of android.appwidget.AppWidgetHostView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/appwidget/AppWidgetHostView.html android.appwidget.AppWidgetHostView]]`.
+ */
 class SAppWidgetHostView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.appwidget.AppWidgetHostView(context) with TraitAppWidgetHostView[SAppWidgetHostView] {
 
@@ -5584,12 +5584,12 @@ object SAppWidgetHostView {
 
 
 /**
-* Automatically generated enriching class of android.gesture.GestureOverlayView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/gesture/GestureOverlayView.html android.gesture.GestureOverlayView]]`.
+ */
 class RichGestureOverlayView[V <: android.gesture.GestureOverlayView](val basis: V) extends TraitGestureOverlayView[V]
 
 /**
- * Automatically generated helper trait of android.gesture.GestureOverlayView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/gesture/GestureOverlayView.html android.gesture.GestureOverlayView]]`. This contains several property accessors.
  */
 trait TraitGestureOverlayView[V <: android.gesture.GestureOverlayView] extends TraitFrameLayout[V] {
 
@@ -5786,8 +5786,8 @@ trait TraitGestureOverlayView[V <: android.gesture.GestureOverlayView] extends T
 }
 
 /**
-* Automatically generated concrete helper class of android.gesture.GestureOverlayView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/gesture/GestureOverlayView.html android.gesture.GestureOverlayView]]`.
+ */
 class SGestureOverlayView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.gesture.GestureOverlayView(context) with TraitGestureOverlayView[SGestureOverlayView] {
 
@@ -5807,12 +5807,12 @@ object SGestureOverlayView {
 
 
 /**
-* Automatically generated enriching class of android.database.DataSetObserver.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/database/DataSetObserver.html android.database.DataSetObserver]]`.
+ */
 class RichDataSetObserver[V <: android.database.DataSetObserver](val basis: V) extends TraitDataSetObserver[V]
 
 /**
- * Automatically generated helper trait of android.database.DataSetObserver. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/database/DataSetObserver.html android.database.DataSetObserver]]`. This contains several property accessors.
  */
 trait TraitDataSetObserver[V <: android.database.DataSetObserver] {
 
@@ -5824,12 +5824,12 @@ trait TraitDataSetObserver[V <: android.database.DataSetObserver] {
 
 
 /**
-* Automatically generated enriching class of android.webkit.WebView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/webkit/WebView.html android.webkit.WebView]]`.
+ */
 class RichWebView[V <: android.webkit.WebView](val basis: V) extends TraitWebView[V]
 
 /**
- * Automatically generated helper trait of android.webkit.WebView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/webkit/WebView.html android.webkit.WebView]]`. This contains several property accessors.
  */
 trait TraitWebView[V <: android.webkit.WebView] extends TraitAbsoluteLayout[V] {
 
@@ -5924,8 +5924,8 @@ trait TraitWebView[V <: android.webkit.WebView] extends TraitAbsoluteLayout[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.webkit.WebView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/webkit/WebView.html android.webkit.WebView]]`.
+ */
 class SWebView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.webkit.WebView(context) with TraitWebView[SWebView] {
 

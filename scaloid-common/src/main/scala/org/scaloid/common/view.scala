@@ -46,12 +46,12 @@ import ViewImplicits._
 
 
 /**
-* Automatically generated enriching class of android.view.View.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/view/View.html android.view.View]]`.
+ */
 class RichView[V <: android.view.View](val basis: V) extends TraitView[V]
 
 /**
- * Automatically generated helper trait of android.view.View. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/view/View.html android.view.View]]`. This contains several property accessors.
  */
 trait TraitView[V <: android.view.View] extends ConstantsSupport {
 
@@ -475,8 +475,8 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport {
 }
 
 /**
-* Automatically generated concrete helper class of android.view.View.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/view/View.html android.view.View]]`.
+ */
 class SView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.view.View(context) with TraitView[SView] {
 
@@ -497,12 +497,12 @@ object SView {
 
 
 /**
-* Automatically generated enriching class of android.view.ViewGroup.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/view/ViewGroup.html android.view.ViewGroup]]`.
+ */
 class RichViewGroup[V <: android.view.ViewGroup](val basis: V) extends TraitViewGroup[V]
 
 /**
- * Automatically generated helper trait of android.view.ViewGroup. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/view/ViewGroup.html android.view.ViewGroup]]`. This contains several property accessors.
  */
 trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
 
@@ -729,12 +729,12 @@ trait ViewGroupMarginLayoutParams[LP <: ViewGroupMarginLayoutParams[_,_], V <: V
 }
 
 /**
-* Automatically generated enriching class of android.view.Menu.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/view/Menu.html android.view.Menu]]`.
+ */
 class RichMenu[V <: android.view.Menu](val basis: V) extends TraitMenu[V]
 
 /**
- * Automatically generated helper trait of android.view.Menu. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/view/Menu.html android.view.Menu]]`. This contains several property accessors.
  */
 trait TraitMenu[V <: android.view.Menu] {
 
@@ -756,12 +756,12 @@ trait TraitMenu[V <: android.view.Menu] {
 
 
 /**
-* Automatically generated enriching class of android.view.ContextMenu.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/view/ContextMenu.html android.view.ContextMenu]]`.
+ */
 class RichContextMenu[V <: android.view.ContextMenu](val basis: V) extends TraitContextMenu[V]
 
 /**
- * Automatically generated helper trait of android.view.ContextMenu. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/view/ContextMenu.html android.view.ContextMenu]]`. This contains several property accessors.
  */
 trait TraitContextMenu[V <: android.view.ContextMenu] {
 
@@ -789,12 +789,12 @@ trait TraitContextMenu[V <: android.view.ContextMenu] {
 
 
 /**
-* Automatically generated enriching class of android.view.SurfaceView.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/view/SurfaceView.html android.view.SurfaceView]]`.
+ */
 class RichSurfaceView[V <: android.view.SurfaceView](val basis: V) extends TraitSurfaceView[V]
 
 /**
- * Automatically generated helper trait of android.view.SurfaceView. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/view/SurfaceView.html android.view.SurfaceView]]`. This contains several property accessors.
  */
 trait TraitSurfaceView[V <: android.view.SurfaceView] extends TraitView[V] {
 
@@ -814,8 +814,8 @@ trait TraitSurfaceView[V <: android.view.SurfaceView] extends TraitView[V] {
 }
 
 /**
-* Automatically generated concrete helper class of android.view.SurfaceView.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/view/SurfaceView.html android.view.SurfaceView]]`.
+ */
 class SSurfaceView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.view.SurfaceView(context) with TraitSurfaceView[SSurfaceView] {
 
@@ -835,12 +835,12 @@ object SSurfaceView {
 
 
 /**
-* Automatically generated enriching class of android.view.ViewStub.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/view/ViewStub.html android.view.ViewStub]]`.
+ */
 class RichViewStub[V <: android.view.ViewStub](val basis: V) extends TraitViewStub[V]
 
 /**
- * Automatically generated helper trait of android.view.ViewStub. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/view/ViewStub.html android.view.ViewStub]]`. This contains several property accessors.
  */
 trait TraitViewStub[V <: android.view.ViewStub] extends TraitView[V] {
 

@@ -42,12 +42,12 @@ import android.content._
 
 
 /**
-* Automatically generated enriching class of android.support.v4.app.Fragment.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html android.support.v4.app.Fragment]]`.
+ */
 class RichFragment[V <: android.support.v4.app.Fragment](val basis: V) extends TraitFragment[V]
 
 /**
- * Automatically generated helper trait of android.support.v4.app.Fragment. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html android.support.v4.app.Fragment]]`. This contains several property accessors.
  */
 trait TraitFragment[V <: android.support.v4.app.Fragment] {
 
@@ -104,8 +104,8 @@ trait TraitFragment[V <: android.support.v4.app.Fragment] {
 }
 
 /**
-* Automatically generated concrete helper class of android.support.v4.app.Fragment.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html android.support.v4.app.Fragment]]`.
+ */
 class SFragment()
     extends android.support.v4.app.Fragment() with TraitFragment[SFragment] {
 
@@ -123,12 +123,12 @@ object SFragment {
 
 
 /**
-* Automatically generated enriching class of android.support.v4.app.FragmentActivity.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/app/FragmentActivity.html android.support.v4.app.FragmentActivity]]`.
+ */
 class RichFragmentActivity[V <: android.support.v4.app.FragmentActivity](val basis: V) extends TraitFragmentActivity[V]
 
 /**
- * Automatically generated helper trait of android.support.v4.app.FragmentActivity. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/support/v4/app/FragmentActivity.html android.support.v4.app.FragmentActivity]]`. This contains several property accessors.
  */
 trait TraitFragmentActivity[V <: android.support.v4.app.FragmentActivity] extends TraitActivity[V] {
 
@@ -145,8 +145,8 @@ trait TraitFragmentActivity[V <: android.support.v4.app.FragmentActivity] extend
 }
 
 /**
-* Automatically generated concrete helper class of android.support.v4.app.FragmentActivity.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/support/v4/app/FragmentActivity.html android.support.v4.app.FragmentActivity]]`.
+ */
 class SFragmentActivity()
     extends android.support.v4.app.FragmentActivity() with TraitFragmentActivity[SFragmentActivity] {
 
@@ -164,12 +164,12 @@ object SFragmentActivity {
 
 
 /**
-* Automatically generated enriching class of android.support.v4.app.ListFragment.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html android.support.v4.app.ListFragment]]`.
+ */
 class RichListFragment[V <: android.support.v4.app.ListFragment](val basis: V) extends TraitListFragment[V]
 
 /**
- * Automatically generated helper trait of android.support.v4.app.ListFragment. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html android.support.v4.app.ListFragment]]`. This contains several property accessors.
  */
 trait TraitListFragment[V <: android.support.v4.app.ListFragment] extends TraitFragment[V] {
 
@@ -205,8 +205,8 @@ trait TraitListFragment[V <: android.support.v4.app.ListFragment] extends TraitF
 }
 
 /**
-* Automatically generated concrete helper class of android.support.v4.app.ListFragment.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html android.support.v4.app.ListFragment]]`.
+ */
 class SListFragment()
     extends android.support.v4.app.ListFragment() with TraitListFragment[SListFragment] {
 
@@ -224,12 +224,12 @@ object SListFragment {
 
 
 /**
-* Automatically generated enriching class of android.support.v4.app.DialogFragment.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/app/DialogFragment.html android.support.v4.app.DialogFragment]]`.
+ */
 class RichDialogFragment[V <: android.support.v4.app.DialogFragment](val basis: V) extends TraitDialogFragment[V]
 
 /**
- * Automatically generated helper trait of android.support.v4.app.DialogFragment. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/support/v4/app/DialogFragment.html android.support.v4.app.DialogFragment]]`. This contains several property accessors.
  */
 trait TraitDialogFragment[V <: android.support.v4.app.DialogFragment] extends TraitFragment[V] {
 
@@ -252,8 +252,8 @@ trait TraitDialogFragment[V <: android.support.v4.app.DialogFragment] extends Tr
 }
 
 /**
-* Automatically generated concrete helper class of android.support.v4.app.DialogFragment.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/support/v4/app/DialogFragment.html android.support.v4.app.DialogFragment]]`.
+ */
 class SDialogFragment()
     extends android.support.v4.app.DialogFragment() with TraitDialogFragment[SDialogFragment] {
 

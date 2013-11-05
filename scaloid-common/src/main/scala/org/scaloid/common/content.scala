@@ -94,12 +94,12 @@ trait Registerable {
 
 
 /**
-* Automatically generated enriching class of android.content.Context.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/content/Context.html android.content.Context]]`.
+ */
 class RichContext[V <: android.content.Context](val basis: V) extends TraitContext[V]
 
 /**
- * Automatically generated helper trait of android.content.Context. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/content/Context.html android.content.Context]]`. This contains several property accessors.
  */
 trait TraitContext[V <: android.content.Context] {
 
@@ -189,12 +189,12 @@ trait SContext extends Context with TraitContext[SContext] with TagUtil {
 }
 
 /**
-* Automatically generated enriching class of android.content.ContextWrapper.
-*/
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/content/ContextWrapper.html android.content.ContextWrapper]]`.
+ */
 class RichContextWrapper[V <: android.content.ContextWrapper](val basis: V) extends TraitContextWrapper[V]
 
 /**
- * Automatically generated helper trait of android.content.ContextWrapper. This contains several property accessors.
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/content/ContextWrapper.html android.content.ContextWrapper]]`. This contains several property accessors.
  */
 trait TraitContextWrapper[V <: android.content.ContextWrapper] extends TraitContext[V] {
 
@@ -207,8 +207,8 @@ trait TraitContextWrapper[V <: android.content.ContextWrapper] extends TraitCont
 }
 
 /**
-* Automatically generated concrete helper class of android.content.ContextWrapper.
-*/
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/content/ContextWrapper.html android.content.ContextWrapper]]`.
+ */
 class SContextWrapper()(implicit base: android.content.Context)
     extends android.content.ContextWrapper(base) with TraitContextWrapper[SContextWrapper] {
 

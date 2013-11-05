@@ -49,14 +49,10 @@ $mixin; separator=" with "$
 richClassDef(base, mixin) ::= <<$_richClassDef(base.name)$>>
 _richClassDef(name) ::= <<
 
-/**
-* Automatically generated enriching class of $genType(base.tpe, true)$.
-*/
+$richClassScalaDoc(base)$
 class Rich$name$[V <: $genType(base.tpe, true)$](val basis: V) extends $helperTraitName(base)$[V]
 
-/**
- * Automatically generated helper trait of $genType(base.tpe, true)$. This contains several property accessors.
- */
+$helperTraitScalaDoc(base)$
 trait $helperTraitName(base)$[V <: $genType(base.tpe, true)$]$extendClause()$ {
 
   $if(! base.parentType)$def basis: V$endif$
@@ -75,9 +71,7 @@ prefixedClassDef(base) ::= <<$_prefixedClassDef(base, base.name, withClassPrefix
 
 _prefixedClassDef(base, name, sClassName, con) ::= <<
 $if(base.hasBlankConstructor || ClassBodies.(name) || FullConstructors.(name))$
-/**
-* Automatically generated concrete helper class of $genType(base.tpe, true)$.
-*/
+$prefixedClassScalaDoc(base)$
 class $sClassName$$customClassGenerics()$($customClassExplicitArgs()$)$classImplicitArgs()$
     extends $baseClassInstance()$ with $helperTraitName(base)$[$sClassName$$customSimpleClassGenerics()$] {
 
@@ -451,6 +445,33 @@ systemServiceHead(base) ::= <<
 @inline def $decap(base.name)$(implicit context: Context) =
   context.getSystemService(Context.$base.name; format="manager-to-service"$).asInstanceOf[$base.tpe.name$]
 
+>>
+
+
+// scaladoc
+
+androidDocBase() ::= <<https://developer.android.com/reference>>
+
+androidReference(cls) ::= <<
+`[[$androidDocBase()$/$cls.pkg; format="dot-to-slash"$/$cls.name$.html $genType(cls.tpe, true)$]]`
+>>
+
+richClassScalaDoc(cls) ::= <<
+/**
+ * Automatically generated enriching class of $androidReference(cls)$.
+ */
+>>
+
+helperTraitScalaDoc(cls) ::= <<
+/**
+ * Automatically generated helper trait of $androidReference(cls)$. This contains several property accessors.
+ */
+>>
+
+prefixedClassScalaDoc(cls) ::= <<
+/**
+ * Automatically generated concrete helper class of $androidReference(cls)$.
+ */
 >>
 
 // etc
