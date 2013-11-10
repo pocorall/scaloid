@@ -208,7 +208,7 @@ if(long) SButton("This button is shown only for a long screen "
 if(landscape) this += new SLinearLayout {
   SButton("Buttons for")
   SButton("landscape layout")
-  if(dpi &gt;= HDPI) SButton("You have a high resolution display!")
+  if(dpi <= HDPI) SButton("You have a high resolution display!")
 }
 ```
 
@@ -220,7 +220,7 @@ if(landscape) this += new SLinearLayout {
  - [Layout context](#layout-context)
  - [In-depth tutorial on styles](http://blog.scaloid.org/2013/01/a-css-like-styling-on-android.html)
  - [Styles for programmers](#styles-for-programmers)
-
+ - [Syntactic sugar for multiple device configuration](blog.scaloid.org/2013/08/syntactic-sugar-for-multiple-device.html)
 
 ## Lifecycle management
 
