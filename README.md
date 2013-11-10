@@ -11,7 +11,7 @@
  *
  *
  *
- * Copyright 2013 Sung-Ho Lee
+ * Copyright 2013 Sung-Ho Lee and Scaloid team
  *
  * Sung-Ho Lee licenses this file to you under the Apache License,
  * version 2.0 (the "License"); you may not use this file except in compliance
@@ -193,6 +193,22 @@ onCreate {
   setContentView(R.layout.main)
   val name = find[EditText](R.id.name)
   // do something with `name`
+}
+```
+
+### Responsive layout
+
+Basically, a layout written in Scaloid is just an ordinary Scala code, so you can just freely composite the layout according to the device configuration:
+
+```scala
+import org.scaloid.util.Configuration._
+
+if(long) SButton("This button is shown only for a long screen "
+  + "dimension ("+ width + ", " + height + ")")
+if(landscape) this += new SLinearLayout {
+  SButton("Buttons for")
+  SButton("landscape layout")
+  if(dpi &gt;= HDPI) SButton("You have a high resolution display!")
 }
 ```
 
