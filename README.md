@@ -357,6 +357,16 @@ openUri("http://scaloid.org")
 
 , or wherever you want.
 
+
+##### Unit conversion
+
+Units `dip` and `sp` can be converted into the pixel unit.
+
+```scala
+val inPixel:Int = 32.dip
+val inPixel2:Int = 22.sp
+```
+
 ##### Resource IDs
 
 Scaloid provides several implicit conversions that convert from `Int` type resource ID to `CharSequence`, `Array[CharSequence]`, `Array[String]`, `Drawable` and `Movie`.
@@ -376,62 +386,11 @@ warn("Will display the content of the resource: " + R.string.my_message.r2String
 
 Currently, `r2Text`, `r2TextArray`, `r2String`, `r2StringArray`, `r2Drawable` and `r2Movie` is provided.
 
-**Why implicit conversion of Resource ID is cool?**
 
-Android API provides two versions of methods for string resources; One for `CharSequence`, the other for `Int` as a resource ID. If you write a function that handles Android resource, you also have to expose methods for every combination of two versions of resources:
-
-```scala
-def alert(titleId:Int, textId:Int)(implicit context:Context) = {
-  alert(context.getText(titleId), context.getText(textId))
-}
-
-def alert(titleId:Int, text:CharSequence)(implicit context:Context) = {
-  alert(context.getText(titleId), text)
-}
-
-def alert(title:CharSequence, textId:Int)(implicit context:Context) = {
-  alert(title, context.getText(textId))
-}
-
-def alert(title:CharSequence, text:CharSequence) = ...
-```
-
-This is not a smart way. Write just one method that defines the logic:
-
-```scala
-def alert(title:CharSequence, text:CharSequence) = ...
-```
-
-Then Scaloid implicit conversions will take care about these resource type conversions.
+**Further reading:**
+ * [Why implicit conversion of Resource ID is cool?](https://github.com/pocorall/scaloid/wiki/Basics#why-implicit-conversion-of-resource-id-is-cool)
 
 
-##### Unit conversion
-
-Units `dip` and `sp` can be converted into the pixel unit.
-
-```scala
-val inPixel:Int = 32.dip
-val inPixel2:Int = 22.sp
-```
-
-
-##### Runnable
-
-```scala
-(_ => Any) => Runnable
-```
-
-`Runnable` also covered with [rich](#enriched-implicit-classes) and [prefixed classes](https://github.com/pocorall/scaloid/wiki/Basics#prefixed-classes).
-
-There are more implicit conversions available. Check the source code as needed.
-
-##### IntentFilter
-
-String can be converted into `IntentFilter`:
-
-```scala
-implicit string2IntentFilter(str: String) = new IntentFilter(str)
-```
 
 ## Context as an implicit parameter
 Many methods in the Android API require an instance of a class `Context`. Providing this for every method call results in clumsy code. We employ an implicit parameter to eliminate this. Just declare an implicit value that represents current context:
