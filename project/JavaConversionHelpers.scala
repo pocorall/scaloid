@@ -12,6 +12,8 @@ trait JavaConversionHelpers {
       case _ => cls.getInterfaces.headOption
     }
 
+  def isPublic(m: Member): Boolean = Modifier.isPublic(m.getModifiers)
+  def isPublic(c: Class[_]): Boolean = Modifier.isPublic(c.getModifiers)
   def isAbstract(m: Member): Boolean = Modifier.isAbstract(m.getModifiers)
   def isAbstract(c: Class[_]): Boolean = Modifier.isAbstract(c.getModifiers)
   def isFinal(m: Member): Boolean = Modifier.isFinal(m.getModifiers)

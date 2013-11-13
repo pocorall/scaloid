@@ -332,15 +332,15 @@ object AndroidClassExtractor extends JavaConversionHelpers {
 
         val clss = asScalaSet(r.getSubTypesOf(classOf[java.lang.Object]))
         val res = clss.toList
+          .filter(isPublic)
           .filter {
-          s.log.info("Excluding inner classes for now - let's deal with it later")
-          !_.getName.contains("$")
-        }
-          .filter {
-          n =>
+            s.log.info("Excluding inner classes for now - let's deal with it later")
+            !_.getName.contains("$")
+          }
+          .filter { n =>
             val name = n.toString
             !name.contains("webkit") || name.contains("WebView") // excluding android.webkit.* in Android 2.1.1, which is deprecated
-        }
+          }
           .filter(sourceExists)
           .map(toAndroidClass)
           .map(c => c.tpe.name -> c)
