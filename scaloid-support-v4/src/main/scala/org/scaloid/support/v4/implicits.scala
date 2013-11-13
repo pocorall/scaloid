@@ -35,12 +35,14 @@
 
 package org.scaloid.support.v4
 
-import language.implicitConversions
+import scala.language.implicitConversions
 
 
 trait AppImplicits {
   @inline implicit def fragment2RichFragment[V <: android.support.v4.app.Fragment](fragment: V) = new RichFragment[V](fragment)
   @inline implicit def fragmentActivity2RichFragmentActivity[V <: android.support.v4.app.FragmentActivity](fragmentActivity: V) = new RichFragmentActivity[V](fragmentActivity)
+  @inline implicit def fragmentManager2RichFragmentManager[V <: android.support.v4.app.FragmentManager](fragmentManager: V) = new RichFragmentManager[V](fragmentManager)
+  @inline implicit def fragmentTransaction2RichFragmentTransaction[V <: android.support.v4.app.FragmentTransaction](fragmentTransaction: V) = new RichFragmentTransaction[V](fragmentTransaction)
   @inline implicit def listFragment2RichListFragment[V <: android.support.v4.app.ListFragment](listFragment: V) = new RichListFragment[V](listFragment)
   @inline implicit def dialogFragment2RichDialogFragment[V <: android.support.v4.app.DialogFragment](dialogFragment: V) = new RichDialogFragment[V](dialogFragment)
 
