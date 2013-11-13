@@ -11,7 +11,7 @@
  *
  *
  *
- * Copyright 2013 Sung-Ho Lee
+ * Copyright 2013 Sung-Ho Lee and Scaloid team
  *
  * Sung-Ho Lee licenses this file to you under the Apache License,
  * version 2.0 (the "License"); you may not use this file except in compliance
@@ -81,13 +81,13 @@ SButton("Greet", toast("Hello!"))
    * [Styles for programmers](#styles-for-programmers)
    * [Automatic layout converter](#automatic-layout-converter)
  * [Lifecycle management](#lifecycle-management)
- * [Asynchronous task processing](#asynchronous-task-processing)
- * [Implicit conversions](#implicit-conversions)
-   * [Context as an implicit parameter](#context-as-an-implicit-parameter)
-   * [Activity as an implicit parameter](#activity-as-an-implicit-parameter)
-   * [Shorter listeners](#enriched-implicit-classes)
- * [Traits](#traits)
- * [Smarter logging](#logging)
+ * [Asynchronous task processing](https://github.com/pocorall/scaloid/wiki/Basics#asynchronous-task-processing)
+ * [Implicit conversions](https://github.com/pocorall/scaloid/wiki/Basics#implicit-conversions)
+   * [Context as an implicit parameter](https://github.com/pocorall/scaloid/wiki/Basics#context-as-an-implicit-parameter)
+   * [Activity as an implicit parameter](https://github.com/pocorall/scaloid/wiki/Basics#activity-as-an-implicit-parameter)
+   * [Shorter listeners](https://github.com/pocorall/scaloid/wiki/Basics#enriched-implicit-classes)
+ * [Traits](https://github.com/pocorall/scaloid/wiki/Basics#traits)
+ * [Smarter logging](https://github.com/pocorall/scaloid/wiki/Basics#logging)
  * [Improved getters/setters](#scala-getters-and-setters)
  * [Classes](#classes)
    * [Concise dialog builder](#class-alertdialogbuilder)
@@ -196,6 +196,22 @@ onCreate {
 }
 ```
 
+### Responsive layout
+
+Basically, a layout written in Scaloid is just an ordinary Scala code, so you can just freely composite the layout according to the device configuration:
+
+```scala
+import org.scaloid.util.Configuration._
+
+if(long) SButton("This button is shown only for a long screen "
+  + "dimension ("+ width + ", " + height + ")")
+if(landscape) this += new SLinearLayout {
+  SButton("Buttons for")
+  SButton("landscape layout")
+  if(dpi <= HDPI) SButton("You have a high resolution display!")
+}
+```
+
 ### Further readings about Scaloid layout 
 
 *These are highly recommended articles!*
@@ -204,7 +220,7 @@ onCreate {
  - [Layout context](#layout-context)
  - [In-depth tutorial on styles](http://blog.scaloid.org/2013/01/a-css-like-styling-on-android.html)
  - [Styles for programmers](#styles-for-programmers)
-
+ - [Syntactic sugar for multiple device configuration](blog.scaloid.org/2013/08/syntactic-sugar-for-multiple-device.html)
 
 ## Lifecycle management
 
@@ -341,6 +357,16 @@ openUri("http://scaloid.org")
 
 , or wherever you want.
 
+
+##### Unit conversion
+
+Units `dip` and `sp` can be converted into the pixel unit.
+
+```scala
+val inPixel:Int = 32.dip
+val inPixel2:Int = 22.sp
+```
+
 ##### Resource IDs
 
 Scaloid provides several implicit conversions that convert from `Int` type resource ID to `CharSequence`, `Array[CharSequence]`, `Array[String]`, `Drawable` and `Movie`.
@@ -360,62 +386,11 @@ warn("Will display the content of the resource: " + R.string.my_message.r2String
 
 Currently, `r2Text`, `r2TextArray`, `r2String`, `r2StringArray`, `r2Drawable` and `r2Movie` is provided.
 
-**Why implicit conversion of Resource ID is cool?**
 
-Android API provides two versions of methods for string resources; One for `CharSequence`, the other for `Int` as a resource ID. If you write a function that handles Android resource, you also have to expose methods for every combination of two versions of resources:
-
-```scala
-def alert(titleId:Int, textId:Int)(implicit context:Context) = {
-  alert(context.getText(titleId), context.getText(textId))
-}
-
-def alert(titleId:Int, text:CharSequence)(implicit context:Context) = {
-  alert(context.getText(titleId), text)
-}
-
-def alert(title:CharSequence, textId:Int)(implicit context:Context) = {
-  alert(title, context.getText(textId))
-}
-
-def alert(title:CharSequence, text:CharSequence) = ...
-```
-
-This is not a smart way. Write just one method that defines the logic:
-
-```scala
-def alert(title:CharSequence, text:CharSequence) = ...
-```
-
-Then Scaloid implicit conversions will take care about these resource type conversions.
+**Further reading:**
+ * [Why implicit conversion of Resource ID is cool?](https://github.com/pocorall/scaloid/wiki/Basics#why-implicit-conversion-of-resource-id-is-cool)
 
 
-##### Unit conversion
-
-Units `dip` and `sp` can be converted into the pixel unit.
-
-```scala
-val inPixel:Int = 32.dip
-val inPixel2:Int = 22.sp
-```
-
-
-##### Runnable
-
-```scala
-(_ => Any) => Runnable
-```
-
-`Runnable` also covered with [rich](#enriched-implicit-classes) and [prefixed classes](https://github.com/pocorall/scaloid/wiki/Basics#prefixed-classes).
-
-There are more implicit conversions available. Check the source code as needed.
-
-##### IntentFilter
-
-String can be converted into `IntentFilter`:
-
-```scala
-implicit string2IntentFilter(str: String) = new IntentFilter(str)
-```
 
 ## Context as an implicit parameter
 Many methods in the Android API require an instance of a class `Context`. Providing this for every method call results in clumsy code. We employ an implicit parameter to eliminate this. Just declare an implicit value that represents current context:
