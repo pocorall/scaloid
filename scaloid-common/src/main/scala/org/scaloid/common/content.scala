@@ -383,8 +383,8 @@ object SIntent {
  *
  * [[http://blog.scaloid.org/2013/03/introducing-localservice.html]]
  */
-class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUTO_CREATE)(implicit ctx: Context, reg: Registerable, ev: Null <:< S, mf: ClassTag[S]) extends ServiceConnection {
-  var service: S = null
+class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUTO_CREATE)(implicit ctx: Context, reg: Registerable, mf: ClassTag[S]) extends ServiceConnection {
+  var service: Option[S] = None
   var componentName:ComponentName = _
   var binder: IBinder = _
   var onConnected = new EventSource0[Unit]
@@ -394,7 +394,7 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
    * Internal implementation for handling the service connection. You do not need to call this method.
    */
   def onServiceConnected(p1: ComponentName, b: IBinder) {
-    service = (b.asInstanceOf[LocalService#ScaloidServiceBinder]).service.asInstanceOf[S]
+    service = Option(b.asInstanceOf[LocalService#ScaloidServiceBinder].service.asInstanceOf[S])
     componentName = p1
     binder = b
     onConnected.run()
@@ -404,14 +404,14 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
    * Internal implementation for handling the service connection. You do not need to call this method.
    */
   def onServiceDisconnected(p1: ComponentName) {
-    service = null
+    service = None
     onDisconnected.run()
   }
 
   /**
    * Returns true if the service is currently connected.
    */
-  def connected: Boolean = service != null
+  def connected: Boolean = !service.isEmpty
 
   reg.onRegister {
     ctx.bindService(SIntent[S], this, bindFlag)
