@@ -4,7 +4,6 @@ import android.app._
 import android.content._
 import android.os._
 import android.view._
-import annotation.target.{beanGetter, getter}
 
 import language.implicitConversions
 
