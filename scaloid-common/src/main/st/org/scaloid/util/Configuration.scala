@@ -13,8 +13,7 @@ import android.util.DisplayMetrics
  *   if(long) SButton("This button is shown only for a long screen dimension (" + width + ", " + height + ")")
  *   if(landscape) SLinearLayout {
  *     SButton("Buttons for")
- *     SButton("landscape")
- *     SButton("layout")
+ *     SButton("landscape layout")
  *   }
  *   if(dpi >= HDPI) SButton("You have a high resolution display!")
  * }}}
