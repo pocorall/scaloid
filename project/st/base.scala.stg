@@ -136,6 +136,11 @@ customClassBodies() ::= <<$customConst(CustomClassBodies, "")$>>
 CustomClassBodies ::= [
   "View" : {override val parentViewGroup = parentVGroup},
   "TextView" : <<
+def this(text: CharSequence)(implicit context: Context) = {
+  this()
+  this.text = text
+}
+
 def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
   this()
   this.text = text
