@@ -1,3 +1,12 @@
 FragmentActivity_traitBody() ::= <<
 override def basis: V
 >>
+
+
+Fragment_traitBody() ::= <<
+def inTransaction(f: FragmentTransaction => Unit) = {
+  val txn = basis.getFragmentManager.beginTransaction()
+  f(txn)
+  txn.commit()
+}
+>>

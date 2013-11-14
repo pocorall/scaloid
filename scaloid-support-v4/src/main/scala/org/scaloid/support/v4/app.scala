@@ -37,8 +37,8 @@ package org.scaloid.support.v4
 
 import org.scaloid.common._
 import android.support.v4.app._
-import reflect._
 import android.content._
+import scala.reflect._
 
 
 /**
@@ -53,7 +53,11 @@ trait TraitFragment[V <: android.support.v4.app.Fragment] {
 
   def basis: V
 
-
+  def inTransaction(f: FragmentTransaction => Unit) = {
+    val txn = basis.getFragmentManager.beginTransaction()
+    f(txn)
+    txn.commit()
+  }
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html#getActivity() getActivity()]]`
@@ -220,6 +224,8 @@ object SFragment {
 }
 
 
+
+
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/app/FragmentActivity.html android.support.v4.app.FragmentActivity]]`.
  */
@@ -268,6 +274,127 @@ object SFragmentActivity {
     val v = new SFragmentActivity
     v
   }
+
+}
+
+
+/**
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/app/FragmentManager.html android.support.v4.app.FragmentManager]]`.
+ */
+class RichFragmentManager[V <: android.support.v4.app.FragmentManager](val basis: V) extends TraitFragmentManager[V]
+
+/**
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/support/v4/app/FragmentManager.html android.support.v4.app.FragmentManager]]`. This contains several property accessors.
+ */
+trait TraitFragmentManager[V <: android.support.v4.app.FragmentManager] {
+
+  def basis: V
+
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentManager.html#getBackStackEntryCount() getBackStackEntryCount()]]`
+   */
+  @inline def backStackEntryCount = basis.getBackStackEntryCount
+
+
+
+  @inline def onBackStackChanged(f: => Unit): V = {
+    basis.addOnBackStackChangedListener(new android.support.v4.app.FragmentManager.OnBackStackChangedListener {
+      def onBackStackChanged(): Unit = { f }
+    })
+    basis
+  }
+}
+
+
+/**
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html android.support.v4.app.FragmentTransaction]]`.
+ */
+class RichFragmentTransaction[V <: android.support.v4.app.FragmentTransaction](val basis: V) extends TraitFragmentTransaction[V]
+
+/**
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html android.support.v4.app.FragmentTransaction]]`. This contains several property accessors.
+ */
+trait TraitFragmentTransaction[V <: android.support.v4.app.FragmentTransaction] {
+
+  def basis: V
+
+
+
+  @inline def breadCrumbShortTitle(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'breadCrumbShortTitle'")
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#setBreadCrumbShortTitle(int) setBreadCrumbShortTitle(int)]]`
+   */
+  @inline def breadCrumbShortTitle  (p: Int) =            breadCrumbShortTitle_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#setBreadCrumbShortTitle(int) setBreadCrumbShortTitle(int)]]`
+   */
+  @inline def breadCrumbShortTitle_=(p: Int) = { basis.setBreadCrumbShortTitle(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#setBreadCrumbShortTitle(java.lang.CharSequence) setBreadCrumbShortTitle(java.lang.CharSequence)]]`
+   */
+  @inline def breadCrumbShortTitle  (p: java.lang.CharSequence) =            breadCrumbShortTitle_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#setBreadCrumbShortTitle(java.lang.CharSequence) setBreadCrumbShortTitle(java.lang.CharSequence)]]`
+   */
+  @inline def breadCrumbShortTitle_=(p: java.lang.CharSequence) = { basis.setBreadCrumbShortTitle(p); basis }
+
+
+  @inline def breadCrumbTitle(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'breadCrumbTitle'")
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#setBreadCrumbTitle(int) setBreadCrumbTitle(int)]]`
+   */
+  @inline def breadCrumbTitle  (p: Int) =            breadCrumbTitle_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#setBreadCrumbTitle(int) setBreadCrumbTitle(int)]]`
+   */
+  @inline def breadCrumbTitle_=(p: Int) = { basis.setBreadCrumbTitle(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#setBreadCrumbTitle(java.lang.CharSequence) setBreadCrumbTitle(java.lang.CharSequence)]]`
+   */
+  @inline def breadCrumbTitle  (p: java.lang.CharSequence) =            breadCrumbTitle_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#setBreadCrumbTitle(java.lang.CharSequence) setBreadCrumbTitle(java.lang.CharSequence)]]`
+   */
+  @inline def breadCrumbTitle_=(p: java.lang.CharSequence) = { basis.setBreadCrumbTitle(p); basis }
+
+
+  @inline def transition(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'transition'")
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#setTransition(int) setTransition(int)]]`
+   */
+  @inline def transition  (p: Int) =            transition_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#setTransition(int) setTransition(int)]]`
+   */
+  @inline def transition_=(p: Int) = { basis.setTransition(p); basis }
+
+
+  @inline def transitionStyle(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'transitionStyle'")
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#setTransitionStyle(int) setTransitionStyle(int)]]`
+   */
+  @inline def transitionStyle  (p: Int) =            transitionStyle_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#setTransitionStyle(int) setTransitionStyle(int)]]`
+   */
+  @inline def transitionStyle_=(p: Int) = { basis.setTransitionStyle(p); basis }
+
 
 }
 
