@@ -23,6 +23,8 @@ trait TraitActivity[V <: Activity] {
 
   $noGetter("contentView")$
 
+  def intent = Some[Intent](basis.getIntent)
+
   def basis: Activity
 
   def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]

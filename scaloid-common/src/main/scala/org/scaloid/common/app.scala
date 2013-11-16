@@ -56,6 +56,8 @@ trait TraitActivity[V <: Activity] {
 
   @inline def contentView(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'contentView'")
 
+  def intent = Some[Intent](basis.getIntent)
+
   def basis: Activity
 
   def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
