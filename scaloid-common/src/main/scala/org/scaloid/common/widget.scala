@@ -10270,6 +10270,16 @@ object SPaint {
     v
   }
 
+  def apply(color: Int): SPaint = {
+    val v = new SPaint
+    v.color = color
+    v
+  }
+
+
+
+
+
 }
 
 

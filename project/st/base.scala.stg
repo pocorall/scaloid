@@ -231,6 +231,14 @@ def apply[LP <: ViewGroupLayoutParams[_, $sClassName$]](imageResource: android.g
   v
 }
 >>,
+   "Paint" : <<
+def apply(color: Int): $sClassName$ = {
+  val v = new $sClassName$
+  v.color = color
+  v
+}
+
+>>,
   "ArrayAdapter" : <<
 def apply[T <: AnyRef : Manifest](items: T*)(implicit context: Context): $sClassName$[TextView, T] = new $sClassName$[TextView, T](items.toArray)
 
