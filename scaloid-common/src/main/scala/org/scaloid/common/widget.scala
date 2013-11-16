@@ -487,9 +487,21 @@ class SImageButton()(implicit context: android.content.Context, parentVGroup: Tr
 
   def basis = this
   override val parentViewGroup = parentVGroup
-  def this(imageResource: Int)(implicit context: Context) = {
+  def this(imageResource: android.graphics.drawable.Drawable)(implicit context: Context) = {
     this()
-    this.imageResource = imageResource
+    this.imageDrawable = imageResource
+  }
+
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: View => Unit)(implicit context: Context) = {
+    this()
+    this.imageDrawable = imageResource
+    this.setOnClickListener(onClickListener)
+  }
+
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)(implicit context: Context) = {
+    this()
+    this.imageDrawable = imageResource
+    this.setOnClickListener(onClickListener)
   }
 
 
@@ -502,23 +514,23 @@ object SImageButton {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](imageResource: Int)
+  def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](imageResource: android.graphics.drawable.Drawable)
       (implicit context: Context, defaultLayoutParam: (SImageButton) => LP): SImageButton = {
     val v = new SImageButton
-    v.imageResource = imageResource
+    v.imageDrawable = imageResource
     v.<<.parent.+=(v)
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](imageResource: Int, onClickListener: (View) => Unit)
+  def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: (View) => Unit)
       (implicit context: Context, defaultLayoutParam: (SImageButton) => LP): SImageButton = {
     apply(imageResource, func2ViewOnClickListener(onClickListener))
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](imageResource: Int, onClickListener: OnClickListener)
+  def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)
       (implicit context: Context, defaultLayoutParam: (SImageButton) => LP): SImageButton = {
     val v = new SImageButton
-    v.imageResource = imageResource
+    v.imageDrawable = imageResource
     v.setOnClickListener(onClickListener)
     v.<<.parent.+=(v)
     v
@@ -769,7 +781,7 @@ class SEditText()(implicit context: android.content.Context, parentVGroup: Trait
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
     this()
     this.text = text
     this.setOnClickListener(onClickListener)
@@ -1020,9 +1032,21 @@ class SImageView()(implicit context: android.content.Context, parentVGroup: Trai
 
   def basis = this
   override val parentViewGroup = parentVGroup
-  def this(imageResource: Int)(implicit context: Context) = {
+  def this(imageResource: android.graphics.drawable.Drawable)(implicit context: Context) = {
     this()
-    this.imageResource = imageResource
+    this.imageDrawable = imageResource
+  }
+
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: View => Unit)(implicit context: Context) = {
+    this()
+    this.imageDrawable = imageResource
+    this.setOnClickListener(onClickListener)
+  }
+
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)(implicit context: Context) = {
+    this()
+    this.imageDrawable = imageResource
+    this.setOnClickListener(onClickListener)
   }
 
 
@@ -1035,23 +1059,23 @@ object SImageView {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: Int)
+  def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: android.graphics.drawable.Drawable)
       (implicit context: Context, defaultLayoutParam: (SImageView) => LP): SImageView = {
     val v = new SImageView
-    v.imageResource = imageResource
+    v.imageDrawable = imageResource
     v.<<.parent.+=(v)
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: Int, onClickListener: (View) => Unit)
+  def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: android.graphics.drawable.Drawable, onClickListener: (View) => Unit)
       (implicit context: Context, defaultLayoutParam: (SImageView) => LP): SImageView = {
     apply(imageResource, func2ViewOnClickListener(onClickListener))
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: Int, onClickListener: OnClickListener)
+  def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)
       (implicit context: Context, defaultLayoutParam: (SImageView) => LP): SImageView = {
     val v = new SImageView
-    v.imageResource = imageResource
+    v.imageDrawable = imageResource
     v.setOnClickListener(onClickListener)
     v.<<.parent.+=(v)
     v
@@ -1142,7 +1166,7 @@ class SMultiAutoCompleteTextView()(implicit context: android.content.Context, pa
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
     this()
     this.text = text
     this.setOnClickListener(onClickListener)
@@ -2405,7 +2429,7 @@ class SChronometer()(implicit context: android.content.Context, parentVGroup: Tr
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
     this()
     this.text = text
     this.setOnClickListener(onClickListener)
@@ -2547,7 +2571,7 @@ class SCheckedTextView()(implicit context: android.content.Context, parentVGroup
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
     this()
     this.text = text
     this.setOnClickListener(onClickListener)
@@ -4636,7 +4660,7 @@ class SRadioButton()(implicit context: android.content.Context, parentVGroup: Tr
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
     this()
     this.text = text
     this.setOnClickListener(onClickListener)
@@ -4734,9 +4758,21 @@ class SQuickContactBadge()(implicit context: android.content.Context, parentVGro
 
   def basis = this
   override val parentViewGroup = parentVGroup
-  def this(imageResource: Int)(implicit context: Context) = {
+  def this(imageResource: android.graphics.drawable.Drawable)(implicit context: Context) = {
     this()
-    this.imageResource = imageResource
+    this.imageDrawable = imageResource
+  }
+
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: View => Unit)(implicit context: Context) = {
+    this()
+    this.imageDrawable = imageResource
+    this.setOnClickListener(onClickListener)
+  }
+
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)(implicit context: Context) = {
+    this()
+    this.imageDrawable = imageResource
+    this.setOnClickListener(onClickListener)
   }
 
 
@@ -4749,23 +4785,23 @@ object SQuickContactBadge {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: Int)
+  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: android.graphics.drawable.Drawable)
       (implicit context: Context, defaultLayoutParam: (SQuickContactBadge) => LP): SQuickContactBadge = {
     val v = new SQuickContactBadge
-    v.imageResource = imageResource
+    v.imageDrawable = imageResource
     v.<<.parent.+=(v)
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: Int, onClickListener: (View) => Unit)
+  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: android.graphics.drawable.Drawable, onClickListener: (View) => Unit)
       (implicit context: Context, defaultLayoutParam: (SQuickContactBadge) => LP): SQuickContactBadge = {
     apply(imageResource, func2ViewOnClickListener(onClickListener))
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: Int, onClickListener: OnClickListener)
+  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)
       (implicit context: Context, defaultLayoutParam: (SQuickContactBadge) => LP): SQuickContactBadge = {
     val v = new SQuickContactBadge
-    v.imageResource = imageResource
+    v.imageDrawable = imageResource
     v.setOnClickListener(onClickListener)
     v.<<.parent.+=(v)
     v
@@ -4805,7 +4841,7 @@ class SDigitalClock()(implicit context: android.content.Context, parentVGroup: T
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
     this()
     this.text = text
     this.setOnClickListener(onClickListener)
@@ -4914,7 +4950,7 @@ class SToggleButton()(implicit context: android.content.Context, parentVGroup: T
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
     this()
     this.text = text
     this.setOnClickListener(onClickListener)
@@ -4991,7 +5027,7 @@ class SButton()(implicit context: android.content.Context, parentVGroup: TraitVi
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
     this()
     this.text = text
     this.setOnClickListener(onClickListener)
@@ -5068,7 +5104,7 @@ class SCheckBox()(implicit context: android.content.Context, parentVGroup: Trait
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
     this()
     this.text = text
     this.setOnClickListener(onClickListener)
@@ -6348,9 +6384,21 @@ class SZoomButton()(implicit context: android.content.Context, parentVGroup: Tra
 
   def basis = this
   override val parentViewGroup = parentVGroup
-  def this(imageResource: Int)(implicit context: Context) = {
+  def this(imageResource: android.graphics.drawable.Drawable)(implicit context: Context) = {
     this()
-    this.imageResource = imageResource
+    this.imageDrawable = imageResource
+  }
+
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: View => Unit)(implicit context: Context) = {
+    this()
+    this.imageDrawable = imageResource
+    this.setOnClickListener(onClickListener)
+  }
+
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)(implicit context: Context) = {
+    this()
+    this.imageDrawable = imageResource
+    this.setOnClickListener(onClickListener)
   }
 
 
@@ -6363,23 +6411,23 @@ object SZoomButton {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](imageResource: Int)
+  def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](imageResource: android.graphics.drawable.Drawable)
       (implicit context: Context, defaultLayoutParam: (SZoomButton) => LP): SZoomButton = {
     val v = new SZoomButton
-    v.imageResource = imageResource
+    v.imageDrawable = imageResource
     v.<<.parent.+=(v)
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](imageResource: Int, onClickListener: (View) => Unit)
+  def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: (View) => Unit)
       (implicit context: Context, defaultLayoutParam: (SZoomButton) => LP): SZoomButton = {
     apply(imageResource, func2ViewOnClickListener(onClickListener))
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](imageResource: Int, onClickListener: OnClickListener)
+  def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)
       (implicit context: Context, defaultLayoutParam: (SZoomButton) => LP): SZoomButton = {
     val v = new SZoomButton
-    v.imageResource = imageResource
+    v.imageDrawable = imageResource
     v.setOnClickListener(onClickListener)
     v.<<.parent.+=(v)
     v
@@ -7810,7 +7858,7 @@ class STextView()(implicit context: android.content.Context, parentVGroup: Trait
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
     this()
     this.text = text
     this.setOnClickListener(onClickListener)
@@ -8384,7 +8432,7 @@ class SAutoCompleteTextView()(implicit context: android.content.Context, parentV
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
     this()
     this.text = text
     this.setOnClickListener(onClickListener)
@@ -8536,7 +8584,7 @@ class SExtractEditText()(implicit context: android.content.Context, parentVGroup
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
     this()
     this.text = text
     this.setOnClickListener(onClickListener)
