@@ -154,31 +154,6 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
   }
 }
 
-/**
- * Follows a parent's action of onBackPressed().
- * When an activity is a tab that hosted by TabActivity, you may want a common back-button action for each tab.
- *
- * Please refer to [[http://stackoverflow.com/questions/2796050/key-events-in-tabactivities]]
- */
-@deprecated("Use org.scaloid.util package instead. This will be removed from Scaloid 3.0.", "2.0")
-trait FollowParentBackButton extends SActivity {
-  override def onBackPressed() {
-    val p = getParent
-    if (p != null) p.onBackPressed()
-  }
-}
-
-/**
- * Turn screen on and show the activity even if the screen is locked.
- * This is useful when notifying some important information.
- */
-@deprecated("Use org.scaloid.util package instead. This will be removed from Scaloid 3.0.", "2.0")
-trait ScreenOnActivity extends SActivity {
-  onCreate {
-    getWindow.addFlags(FLAG_DISMISS_KEYGUARD | FLAG_SHOW_WHEN_LOCKED | FLAG_TURN_SCREEN_ON)
-  }
-}
-
 
 /**
  * Enriched trait of the class android.app.Service. To enable Scaloid support for subclasses of android.app.Service, extend this trait.

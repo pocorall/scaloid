@@ -35,7 +35,7 @@ $wholeClassDef(android.appwidget.AppWidgetHostView)$
 $wholeClassDef(android.gesture.GestureOverlayView)$
 $wholeClassDef(android.database.DataSetObserver)$
 $wholeClassDef(android.webkit.WebView)$
-
+$wholeClassDef(android.graphics.Paint)$
 
 
 trait WidgetImplicits {

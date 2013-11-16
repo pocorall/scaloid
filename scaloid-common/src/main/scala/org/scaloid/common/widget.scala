@@ -9788,6 +9788,490 @@ object SWebView {
 }
 
 
+/**
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/graphics/Paint.html android.graphics.Paint]]`.
+ */
+class RichPaint[V <: android.graphics.Paint](val basis: V) extends TraitPaint[V]
+
+/**
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/graphics/Paint.html android.graphics.Paint]]`. This contains several property accessors.
+ */
+trait TraitPaint[V <: android.graphics.Paint] {
+
+  def basis: V
+
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getAlpha() getAlpha()]]`
+   */
+  @inline def alpha = basis.getAlpha
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setAlpha(int) setAlpha(int)]]`
+   */
+  @inline def alpha  (p: Int) =            alpha_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setAlpha(int) setAlpha(int)]]`
+   */
+  @inline def alpha_=(p: Int) = { basis.setAlpha(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#isAntiAlias() isAntiAlias()]]`
+   */
+  @inline def antiAlias = basis.isAntiAlias
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setAntiAlias(boolean) setAntiAlias(boolean)]]`
+   */
+  @inline def antiAlias  (p: Boolean) =            antiAlias_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setAntiAlias(boolean) setAntiAlias(boolean)]]`
+   */
+  @inline def antiAlias_=(p: Boolean) = { basis.setAntiAlias(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getColor() getColor()]]`
+   */
+  @inline def color = basis.getColor
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setColor(int) setColor(int)]]`
+   */
+  @inline def color  (p: Int) =            color_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setColor(int) setColor(int)]]`
+   */
+  @inline def color_=(p: Int) = { basis.setColor(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getColorFilter() getColorFilter()]]`
+   */
+  @inline def colorFilter = basis.getColorFilter
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setColorFilter(android.graphics.ColorFilter) setColorFilter(android.graphics.ColorFilter)]]`
+   */
+  @inline def colorFilter  (p: android.graphics.ColorFilter) =            colorFilter_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setColorFilter(android.graphics.ColorFilter) setColorFilter(android.graphics.ColorFilter)]]`
+   */
+  @inline def colorFilter_=(p: android.graphics.ColorFilter) = { basis.setColorFilter(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#isDither() isDither()]]`
+   */
+  @inline def dither = basis.isDither
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setDither(boolean) setDither(boolean)]]`
+   */
+  @inline def dither  (p: Boolean) =            dither_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setDither(boolean) setDither(boolean)]]`
+   */
+  @inline def dither_=(p: Boolean) = { basis.setDither(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#isFakeBoldText() isFakeBoldText()]]`
+   */
+  @inline def fakeBoldText = basis.isFakeBoldText
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setFakeBoldText(boolean) setFakeBoldText(boolean)]]`
+   */
+  @inline def fakeBoldText  (p: Boolean) =            fakeBoldText_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setFakeBoldText(boolean) setFakeBoldText(boolean)]]`
+   */
+  @inline def fakeBoldText_=(p: Boolean) = { basis.setFakeBoldText(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#isFilterBitmap() isFilterBitmap()]]`
+   */
+  @inline def filterBitmap = basis.isFilterBitmap
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setFilterBitmap(boolean) setFilterBitmap(boolean)]]`
+   */
+  @inline def filterBitmap  (p: Boolean) =            filterBitmap_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setFilterBitmap(boolean) setFilterBitmap(boolean)]]`
+   */
+  @inline def filterBitmap_=(p: Boolean) = { basis.setFilterBitmap(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getFlags() getFlags()]]`
+   */
+  @inline def flags = basis.getFlags
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setFlags(int) setFlags(int)]]`
+   */
+  @inline def flags  (p: Int) =            flags_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setFlags(int) setFlags(int)]]`
+   */
+  @inline def flags_=(p: Int) = { basis.setFlags(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getFontMetrics() getFontMetrics()]]`
+   */
+  @inline def fontMetrics = basis.getFontMetrics
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getFontMetricsInt() getFontMetricsInt()]]`
+   */
+  @inline def fontMetricsInt = basis.getFontMetricsInt
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getFontSpacing() getFontSpacing()]]`
+   */
+  @inline def fontSpacing = basis.getFontSpacing
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#isLinearText() isLinearText()]]`
+   */
+  @inline def linearText = basis.isLinearText
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setLinearText(boolean) setLinearText(boolean)]]`
+   */
+  @inline def linearText  (p: Boolean) =            linearText_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setLinearText(boolean) setLinearText(boolean)]]`
+   */
+  @inline def linearText_=(p: Boolean) = { basis.setLinearText(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getMaskFilter() getMaskFilter()]]`
+   */
+  @inline def maskFilter = basis.getMaskFilter
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setMaskFilter(android.graphics.MaskFilter) setMaskFilter(android.graphics.MaskFilter)]]`
+   */
+  @inline def maskFilter  (p: android.graphics.MaskFilter) =            maskFilter_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setMaskFilter(android.graphics.MaskFilter) setMaskFilter(android.graphics.MaskFilter)]]`
+   */
+  @inline def maskFilter_=(p: android.graphics.MaskFilter) = { basis.setMaskFilter(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getPathEffect() getPathEffect()]]`
+   */
+  @inline def pathEffect = basis.getPathEffect
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setPathEffect(android.graphics.PathEffect) setPathEffect(android.graphics.PathEffect)]]`
+   */
+  @inline def pathEffect  (p: android.graphics.PathEffect) =            pathEffect_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setPathEffect(android.graphics.PathEffect) setPathEffect(android.graphics.PathEffect)]]`
+   */
+  @inline def pathEffect_=(p: android.graphics.PathEffect) = { basis.setPathEffect(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getRasterizer() getRasterizer()]]`
+   */
+  @inline def rasterizer = basis.getRasterizer
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setRasterizer(android.graphics.Rasterizer) setRasterizer(android.graphics.Rasterizer)]]`
+   */
+  @inline def rasterizer  (p: android.graphics.Rasterizer) =            rasterizer_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setRasterizer(android.graphics.Rasterizer) setRasterizer(android.graphics.Rasterizer)]]`
+   */
+  @inline def rasterizer_=(p: android.graphics.Rasterizer) = { basis.setRasterizer(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getShader() getShader()]]`
+   */
+  @inline def shader = basis.getShader
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setShader(android.graphics.Shader) setShader(android.graphics.Shader)]]`
+   */
+  @inline def shader  (p: android.graphics.Shader) =            shader_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setShader(android.graphics.Shader) setShader(android.graphics.Shader)]]`
+   */
+  @inline def shader_=(p: android.graphics.Shader) = { basis.setShader(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#isStrikeThruText() isStrikeThruText()]]`
+   */
+  @inline def strikeThruText = basis.isStrikeThruText
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setStrikeThruText(boolean) setStrikeThruText(boolean)]]`
+   */
+  @inline def strikeThruText  (p: Boolean) =            strikeThruText_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setStrikeThruText(boolean) setStrikeThruText(boolean)]]`
+   */
+  @inline def strikeThruText_=(p: Boolean) = { basis.setStrikeThruText(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getStrokeCap() getStrokeCap()]]`
+   */
+  @inline def strokeCap = basis.getStrokeCap
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setStrokeCap(android.graphics.Paint.Cap) setStrokeCap(android.graphics.Paint.Cap)]]`
+   */
+  @inline def strokeCap  (p: android.graphics.Paint.Cap) =            strokeCap_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setStrokeCap(android.graphics.Paint.Cap) setStrokeCap(android.graphics.Paint.Cap)]]`
+   */
+  @inline def strokeCap_=(p: android.graphics.Paint.Cap) = { basis.setStrokeCap(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getStrokeJoin() getStrokeJoin()]]`
+   */
+  @inline def strokeJoin = basis.getStrokeJoin
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setStrokeJoin(android.graphics.Paint.Join) setStrokeJoin(android.graphics.Paint.Join)]]`
+   */
+  @inline def strokeJoin  (p: android.graphics.Paint.Join) =            strokeJoin_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setStrokeJoin(android.graphics.Paint.Join) setStrokeJoin(android.graphics.Paint.Join)]]`
+   */
+  @inline def strokeJoin_=(p: android.graphics.Paint.Join) = { basis.setStrokeJoin(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getStrokeMiter() getStrokeMiter()]]`
+   */
+  @inline def strokeMiter = basis.getStrokeMiter
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setStrokeMiter(float) setStrokeMiter(float)]]`
+   */
+  @inline def strokeMiter  (p: Float) =            strokeMiter_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setStrokeMiter(float) setStrokeMiter(float)]]`
+   */
+  @inline def strokeMiter_=(p: Float) = { basis.setStrokeMiter(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getStrokeWidth() getStrokeWidth()]]`
+   */
+  @inline def strokeWidth = basis.getStrokeWidth
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setStrokeWidth(float) setStrokeWidth(float)]]`
+   */
+  @inline def strokeWidth  (p: Float) =            strokeWidth_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setStrokeWidth(float) setStrokeWidth(float)]]`
+   */
+  @inline def strokeWidth_=(p: Float) = { basis.setStrokeWidth(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getStyle() getStyle()]]`
+   */
+  @inline def style = basis.getStyle
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setStyle(android.graphics.Paint.Style) setStyle(android.graphics.Paint.Style)]]`
+   */
+  @inline def style  (p: android.graphics.Paint.Style) =            style_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setStyle(android.graphics.Paint.Style) setStyle(android.graphics.Paint.Style)]]`
+   */
+  @inline def style_=(p: android.graphics.Paint.Style) = { basis.setStyle(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#isSubpixelText() isSubpixelText()]]`
+   */
+  @inline def subpixelText = basis.isSubpixelText
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setSubpixelText(boolean) setSubpixelText(boolean)]]`
+   */
+  @inline def subpixelText  (p: Boolean) =            subpixelText_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setSubpixelText(boolean) setSubpixelText(boolean)]]`
+   */
+  @inline def subpixelText_=(p: Boolean) = { basis.setSubpixelText(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getTextAlign() getTextAlign()]]`
+   */
+  @inline def textAlign = basis.getTextAlign
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setTextAlign(android.graphics.Paint.Align) setTextAlign(android.graphics.Paint.Align)]]`
+   */
+  @inline def textAlign  (p: android.graphics.Paint.Align) =            textAlign_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setTextAlign(android.graphics.Paint.Align) setTextAlign(android.graphics.Paint.Align)]]`
+   */
+  @inline def textAlign_=(p: android.graphics.Paint.Align) = { basis.setTextAlign(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getTextScaleX() getTextScaleX()]]`
+   */
+  @inline def textScaleX = basis.getTextScaleX
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setTextScaleX(float) setTextScaleX(float)]]`
+   */
+  @inline def textScaleX  (p: Float) =            textScaleX_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setTextScaleX(float) setTextScaleX(float)]]`
+   */
+  @inline def textScaleX_=(p: Float) = { basis.setTextScaleX(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getTextSize() getTextSize()]]`
+   */
+  @inline def textSize = basis.getTextSize
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setTextSize(float) setTextSize(float)]]`
+   */
+  @inline def textSize  (p: Float) =            textSize_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setTextSize(float) setTextSize(float)]]`
+   */
+  @inline def textSize_=(p: Float) = { basis.setTextSize(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getTextSkewX() getTextSkewX()]]`
+   */
+  @inline def textSkewX = basis.getTextSkewX
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setTextSkewX(float) setTextSkewX(float)]]`
+   */
+  @inline def textSkewX  (p: Float) =            textSkewX_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setTextSkewX(float) setTextSkewX(float)]]`
+   */
+  @inline def textSkewX_=(p: Float) = { basis.setTextSkewX(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getTypeface() getTypeface()]]`
+   */
+  @inline def typeface = basis.getTypeface
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setTypeface(android.graphics.Typeface) setTypeface(android.graphics.Typeface)]]`
+   */
+  @inline def typeface  (p: android.graphics.Typeface) =            typeface_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setTypeface(android.graphics.Typeface) setTypeface(android.graphics.Typeface)]]`
+   */
+  @inline def typeface_=(p: android.graphics.Typeface) = { basis.setTypeface(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#isUnderlineText() isUnderlineText()]]`
+   */
+  @inline def underlineText = basis.isUnderlineText
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setUnderlineText(boolean) setUnderlineText(boolean)]]`
+   */
+  @inline def underlineText  (p: Boolean) =            underlineText_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setUnderlineText(boolean) setUnderlineText(boolean)]]`
+   */
+  @inline def underlineText_=(p: Boolean) = { basis.setUnderlineText(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getXfermode() getXfermode()]]`
+   */
+  @inline def xfermode = basis.getXfermode
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setXfermode(android.graphics.Xfermode) setXfermode(android.graphics.Xfermode)]]`
+   */
+  @inline def xfermode  (p: android.graphics.Xfermode) =            xfermode_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setXfermode(android.graphics.Xfermode) setXfermode(android.graphics.Xfermode)]]`
+   */
+  @inline def xfermode_=(p: android.graphics.Xfermode) = { basis.setXfermode(p); basis }
+
+
+}
+
+/**
+ * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/graphics/Paint.html android.graphics.Paint]]`.
+ */
+class SPaint()
+    extends android.graphics.Paint() with TraitPaint[SPaint] {
+
+  def basis = this
+
+}
+
+object SPaint {
+  def apply(): SPaint = {
+    val v = new SPaint
+    v
+  }
+
+}
+
 
 
 
