@@ -213,7 +213,7 @@ if(landscape) this += new SLinearLayout {
 ```
 
 Please refer to this blog post for more detail:
- - [Syntactic sugar for multiple device configuration](blog.scaloid.org/2013/08/syntactic-sugar-for-multiple-device.html)
+ - [Syntactic sugar for multiple device configuration](http://blog.scaloid.org/2013/08/syntactic-sugar-for-multiple-device.html)
 
 ### Further readings about Scaloid layout 
 
