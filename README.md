@@ -1,4 +1,6 @@
-Android-Scala-Common
-====================
+Scaloid API Documentation
+=========================
 
-Common utilities for Scala programming in Android
+- [scaloid-common](http://pocorall.github.io/scaloid/api/scaloid-common)
+- [scaloid-support-v4](http://pocorall.github.io/scaloid/api/scaloid-support-v4)
+- [scaloid-util](http://pocorall.github.io/scaloid/api/scaloid-util)
