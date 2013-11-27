@@ -1,0 +1,2495 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>LocalService - org.scaloid.common.LocalService</title>
+          <meta name="description" content="LocalService - org.scaloid.common.LocalService" />
+          <meta name="keywords" content="LocalService org.scaloid.common.LocalService" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'org.scaloid.common.LocalService';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <img src="../../../lib/trait_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.scaloid">scaloid</a>.<a href="package.html" class="extype" name="org.scaloid.common">common</a></p>
+        <h1>LocalService</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <span class="name">LocalService</span><span class="result"> extends <span class="extype" name="android.app.Service">Service</span> with <a href="SService.html" class="extype" name="org.scaloid.common.SService">SService</a></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>An in-process service that can be bound with <a href="LocalServiceConnection.html" class="extype" name="org.scaloid.common.LocalServiceConnection">LocalServiceConnection</a>. This yields far more concise code than that uses plain-old Android API.</p><p>Please refer to the URL below for more details.</p><p><a href="http://blog.scaloid.org/2013/03/introducing-localservice.html" target="_blank">http://blog.scaloid.org/2013/03/introducing-localservice.html</a>
+</p></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="SService.html" class="extype" name="org.scaloid.common.SService">SService</a>, <a href="Registerable.html" class="extype" name="org.scaloid.common.Registerable">Registerable</a>, <a href="Creatable.html" class="extype" name="org.scaloid.common.Creatable">Creatable</a>, <a href="Destroyable.html" class="extype" name="org.scaloid.common.Destroyable">Destroyable</a>, <a href="SContext.html" class="extype" name="org.scaloid.common.SContext">SContext</a>, <a href="TagUtil.html" class="extype" name="org.scaloid.common.TagUtil">TagUtil</a>, <a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a>[<a href="SContext.html" class="extype" name="org.scaloid.common.SContext">SContext</a>], <span class="extype" name="android.app.Service">Service</span>, <span class="extype" name="android.content.ComponentCallbacks">ComponentCallbacks</span>, <span class="extype" name="android.content.ContextWrapper">ContextWrapper</span>, <span class="extype" name="android.content.Context">Context</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.scaloid.common.LocalService"><span>LocalService</span></li><li class="in" name="org.scaloid.common.SService"><span>SService</span></li><li class="in" name="org.scaloid.common.Registerable"><span>Registerable</span></li><li class="in" name="org.scaloid.common.Creatable"><span>Creatable</span></li><li class="in" name="org.scaloid.common.Destroyable"><span>Destroyable</span></li><li class="in" name="org.scaloid.common.SContext"><span>SContext</span></li><li class="in" name="org.scaloid.common.TagUtil"><span>TagUtil</span></li><li class="in" name="org.scaloid.common.TraitContext"><span>TraitContext</span></li><li class="in" name="android.app.Service"><span>Service</span></li><li class="in" name="android.content.ComponentCallbacks"><span>ComponentCallbacks</span></li><li class="in" name="android.content.ContextWrapper"><span>ContextWrapper</span></li><li class="in" name="android.content.Context"><span>Context</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.scaloid.common.LocalService.ScaloidServiceBinder" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ScaloidServiceBinderextendsBinder"></a>
+      <a id="ScaloidServiceBinder:ScaloidServiceBinder"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="LocalService$ScaloidServiceBinder.html"><span class="name">ScaloidServiceBinder</span></a><span class="result"> extends <span class="extype" name="android.os.Binder">Binder</span></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:AnyRef):Boolean"></a>
+      <a id="!=(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:AnyRef):Boolean"></a>
+      <a id="==(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#applicationContext" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="applicationContext:android.content.Context"></a>
+      <a id="applicationContext:Context"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">applicationContext</span><span class="result">: <span class="extype" name="android.content.Context">Context</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getApplicationContext()" target="_blank">getApplicationContext()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getApplicationContext()" target="_blank">getApplicationContext()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#applicationInfo" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="applicationInfo:android.content.pm.ApplicationInfo"></a>
+      <a id="applicationInfo:ApplicationInfo"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">applicationInfo</span><span class="result">: <span class="extype" name="android.content.pm.ApplicationInfo">ApplicationInfo</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getApplicationInfo()" target="_blank">getApplicationInfo()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getApplicationInfo()" target="_blank">getApplicationInfo()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#assets" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="assets:android.content.res.AssetManager"></a>
+      <a id="assets:AssetManager"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">assets</span><span class="result">: <span class="extype" name="android.content.res.AssetManager">AssetManager</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getAssets()" target="_blank">getAssets()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getAssets()" target="_blank">getAssets()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#attachBaseContext" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="attachBaseContext(x$1:android.content.Context):Unit"></a>
+      <a id="attachBaseContext(Context):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">attachBaseContext</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Context">Context</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../android$content.html" class="extype" name="android.content">android.content</a>] </dd><dt>Definition Classes</dt><dd>ContextWrapper</dd></dl></div>
+    </li><li name="org.scaloid.common.SService#basis" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="basis:org.scaloid.common.SService"></a>
+      <a id="basis:SService"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">basis</span><span class="result">: <a href="SService.html" class="extype" name="org.scaloid.common.SService">SService</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SService.html" class="extype" name="org.scaloid.common.SService">SService</a> → <a href="SContext.html" class="extype" name="org.scaloid.common.SContext">SContext</a> → <a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#bindService" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="bindService[T](p1:android.content.ServiceConnection,p2:Int)(implicitevidence$1:scala.reflect.ClassTag[T],implicitcontext:android.content.Context):Boolean"></a>
+      <a id="bindService[T](ServiceConnection,Int)(ClassTag[T],Context):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bindService</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="p1">p1: <span class="extype" name="android.content.ServiceConnection">ServiceConnection</span></span>, <span name="p2">p2: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="org.scaloid.common.TraitContext.bindService.T">T</span>]</span>, <span name="context">context: <span class="extype" name="android.content.Context">Context</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#bindService" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="bindService(x$1:android.content.Intent,x$2:android.content.ServiceConnection,x$3:Int):Boolean"></a>
+      <a id="bindService(Intent,ServiceConnection,Int):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bindService</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Intent">Intent</span></span>, <span name="arg1">arg1: <span class="extype" name="android.content.ServiceConnection">ServiceConnection</span></span>, <span name="arg2">arg2: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#cacheDir" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="cacheDir:java.io.File"></a>
+      <a id="cacheDir:File"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">cacheDir</span><span class="result">: <span class="extype" name="java.io.File">File</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getCacheDir()" target="_blank">getCacheDir()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getCacheDir()" target="_blank">getCacheDir()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#checkCallingOrSelfPermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="checkCallingOrSelfPermission(x$1:String):Int"></a>
+      <a id="checkCallingOrSelfPermission(String):Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">checkCallingOrSelfPermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#checkCallingOrSelfUriPermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="checkCallingOrSelfUriPermission(x$1:android.net.Uri,x$2:Int):Int"></a>
+      <a id="checkCallingOrSelfUriPermission(Uri,Int):Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">checkCallingOrSelfUriPermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.net.Uri">Uri</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#checkCallingPermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="checkCallingPermission(x$1:String):Int"></a>
+      <a id="checkCallingPermission(String):Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">checkCallingPermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#checkCallingUriPermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="checkCallingUriPermission(x$1:android.net.Uri,x$2:Int):Int"></a>
+      <a id="checkCallingUriPermission(Uri,Int):Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">checkCallingUriPermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.net.Uri">Uri</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#checkPermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="checkPermission(x$1:String,x$2:Int,x$3:Int):Int"></a>
+      <a id="checkPermission(String,Int,Int):Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">checkPermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg2">arg2: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#checkUriPermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="checkUriPermission(x$1:android.net.Uri,x$2:String,x$3:String,x$4:Int,x$5:Int,x$6:Int):Int"></a>
+      <a id="checkUriPermission(Uri,String,String,Int,Int,Int):Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">checkUriPermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.net.Uri">Uri</span></span>, <span name="arg1">arg1: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg2">arg2: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg3">arg3: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg4">arg4: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg5">arg5: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#checkUriPermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="checkUriPermission(x$1:android.net.Uri,x$2:Int,x$3:Int,x$4:Int):Int"></a>
+      <a id="checkUriPermission(Uri,Int,Int,Int):Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">checkUriPermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.net.Uri">Uri</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg2">arg2: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg3">arg3: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#classLoader" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="classLoader:ClassLoader"></a>
+      <a id="classLoader:ClassLoader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">classLoader</span><span class="result">: <span class="extype" name="java.lang.ClassLoader">ClassLoader</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getClassLoader()" target="_blank">getClassLoader()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getClassLoader()" target="_blank">getClassLoader()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#clearWallpaper" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clearWallpaper():Unit"></a>
+      <a id="clearWallpaper():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clearWallpaper</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.io.IOException]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#contentResolver" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="contentResolver:android.content.ContentResolver"></a>
+      <a id="contentResolver:ContentResolver"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">contentResolver</span><span class="result">: <span class="extype" name="android.content.ContentResolver">ContentResolver</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getContentResolver()" target="_blank">getContentResolver()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getContentResolver()" target="_blank">getContentResolver()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#createPackageContext" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="createPackageContext(x$1:String,x$2:Int):android.content.Context"></a>
+      <a id="createPackageContext(String,Int):Context"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">createPackageContext</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="android.content.Context">Context</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[android.content.pm.PackageManager$NameNotFoundException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.SService#ctx" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ctx:org.scaloid.common.SService"></a>
+      <a id="ctx:SService"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ctx</span><span class="result">: <a href="SService.html" class="extype" name="org.scaloid.common.SService">SService</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SService.html" class="extype" name="org.scaloid.common.SService">SService</a> → <a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd></dl></div>
+    </li><li name="android.content.ContextWrapper#databaseList" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="databaseList():Array[String]"></a>
+      <a id="databaseList():Array[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">databaseList</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="java.lang.String">String</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#deleteDatabase" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="deleteDatabase(x$1:String):Boolean"></a>
+      <a id="deleteDatabase(String):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">deleteDatabase</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#deleteFile" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="deleteFile(x$1:String):Boolean"></a>
+      <a id="deleteFile(String):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">deleteFile</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.app.Service#dump" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="dump(x$1:java.io.FileDescriptor,x$2:java.io.PrintWriter,x$3:Array[String]):Unit"></a>
+      <a id="dump(FileDescriptor,PrintWriter,Array[String]):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">dump</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.io.FileDescriptor">FileDescriptor</span></span>, <span name="arg1">arg1: <span class="extype" name="java.io.PrintWriter">PrintWriter</span></span>, <span name="arg2">arg2: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="java.lang.String">String</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../android$app.html" class="extype" name="android.app">android.app</a>] </dd><dt>Definition Classes</dt><dd>Service</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#enforceCallingOrSelfPermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="enforceCallingOrSelfPermission(x$1:String,x$2:String):Unit"></a>
+      <a id="enforceCallingOrSelfPermission(String,String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">enforceCallingOrSelfPermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg1">arg1: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#enforceCallingOrSelfUriPermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="enforceCallingOrSelfUriPermission(x$1:android.net.Uri,x$2:Int,x$3:String):Unit"></a>
+      <a id="enforceCallingOrSelfUriPermission(Uri,Int,String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">enforceCallingOrSelfUriPermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.net.Uri">Uri</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg2">arg2: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#enforceCallingPermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="enforceCallingPermission(x$1:String,x$2:String):Unit"></a>
+      <a id="enforceCallingPermission(String,String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">enforceCallingPermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg1">arg1: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#enforceCallingUriPermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="enforceCallingUriPermission(x$1:android.net.Uri,x$2:Int,x$3:String):Unit"></a>
+      <a id="enforceCallingUriPermission(Uri,Int,String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">enforceCallingUriPermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.net.Uri">Uri</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg2">arg2: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#enforcePermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="enforcePermission(x$1:String,x$2:Int,x$3:Int,x$4:String):Unit"></a>
+      <a id="enforcePermission(String,Int,Int,String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">enforcePermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg2">arg2: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg3">arg3: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#enforceUriPermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="enforceUriPermission(x$1:android.net.Uri,x$2:String,x$3:String,x$4:Int,x$5:Int,x$6:Int,x$7:String):Unit"></a>
+      <a id="enforceUriPermission(Uri,String,String,Int,Int,Int,String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">enforceUriPermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.net.Uri">Uri</span></span>, <span name="arg1">arg1: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg2">arg2: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg3">arg3: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg4">arg4: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg5">arg5: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg6">arg6: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#enforceUriPermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="enforceUriPermission(x$1:android.net.Uri,x$2:Int,x$3:Int,x$4:Int,x$5:String):Unit"></a>
+      <a id="enforceUriPermission(Uri,Int,Int,Int,String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">enforceUriPermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.net.Uri">Uri</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg2">arg2: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg3">arg3: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg4">arg4: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#externalCacheDir" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="externalCacheDir:java.io.File"></a>
+      <a id="externalCacheDir:File"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">externalCacheDir</span><span class="result">: <span class="extype" name="java.io.File">File</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getExternalCacheDir()" target="_blank">getExternalCacheDir()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getExternalCacheDir()" target="_blank">getExternalCacheDir()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#fileList" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fileList():Array[String]"></a>
+      <a id="fileList():Array[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fileList</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="java.lang.String">String</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#filesDir" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="filesDir:java.io.File"></a>
+      <a id="filesDir:File"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">filesDir</span><span class="result">: <span class="extype" name="java.io.File">File</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getFilesDir()" target="_blank">getFilesDir()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getFilesDir()" target="_blank">getFilesDir()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.app.Service#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../android$app.html" class="extype" name="android.app">android.app</a>] </dd><dt>Definition Classes</dt><dd>Service → AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="android.app.Service#getApplication" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getApplication():android.app.Application"></a>
+      <a id="getApplication():Application"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getApplication</span><span class="params">()</span><span class="result">: <span class="extype" name="android.app.Application">Application</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Service</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getApplicationContext" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getApplicationContext():android.content.Context"></a>
+      <a id="getApplicationContext():Context"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getApplicationContext</span><span class="params">()</span><span class="result">: <span class="extype" name="android.content.Context">Context</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getApplicationInfo" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getApplicationInfo():android.content.pm.ApplicationInfo"></a>
+      <a id="getApplicationInfo():ApplicationInfo"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getApplicationInfo</span><span class="params">()</span><span class="result">: <span class="extype" name="android.content.pm.ApplicationInfo">ApplicationInfo</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getAssets" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getAssets():android.content.res.AssetManager"></a>
+      <a id="getAssets():AssetManager"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getAssets</span><span class="params">()</span><span class="result">: <span class="extype" name="android.content.res.AssetManager">AssetManager</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getBaseContext" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getBaseContext():android.content.Context"></a>
+      <a id="getBaseContext():Context"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getBaseContext</span><span class="params">()</span><span class="result">: <span class="extype" name="android.content.Context">Context</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getCacheDir" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getCacheDir():java.io.File"></a>
+      <a id="getCacheDir():File"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getCacheDir</span><span class="params">()</span><span class="result">: <span class="extype" name="java.io.File">File</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getClassLoader" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClassLoader():ClassLoader"></a>
+      <a id="getClassLoader():ClassLoader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClassLoader</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.ClassLoader">ClassLoader</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getContentResolver" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getContentResolver():android.content.ContentResolver"></a>
+      <a id="getContentResolver():ContentResolver"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getContentResolver</span><span class="params">()</span><span class="result">: <span class="extype" name="android.content.ContentResolver">ContentResolver</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getDatabasePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getDatabasePath(x$1:String):java.io.File"></a>
+      <a id="getDatabasePath(String):File"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getDatabasePath</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="java.io.File">File</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getDir" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getDir(x$1:String,x$2:Int):java.io.File"></a>
+      <a id="getDir(String,Int):File"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getDir</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.io.File">File</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getExternalCacheDir" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getExternalCacheDir():java.io.File"></a>
+      <a id="getExternalCacheDir():File"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getExternalCacheDir</span><span class="params">()</span><span class="result">: <span class="extype" name="java.io.File">File</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getExternalFilesDir" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getExternalFilesDir(x$1:String):java.io.File"></a>
+      <a id="getExternalFilesDir(String):File"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getExternalFilesDir</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="java.io.File">File</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getFileStreamPath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getFileStreamPath(x$1:String):java.io.File"></a>
+      <a id="getFileStreamPath(String):File"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getFileStreamPath</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="java.io.File">File</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getFilesDir" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getFilesDir():java.io.File"></a>
+      <a id="getFilesDir():File"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getFilesDir</span><span class="params">()</span><span class="result">: <span class="extype" name="java.io.File">File</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getMainLooper" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getMainLooper():android.os.Looper"></a>
+      <a id="getMainLooper():Looper"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getMainLooper</span><span class="params">()</span><span class="result">: <span class="extype" name="android.os.Looper">Looper</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getPackageCodePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getPackageCodePath():String"></a>
+      <a id="getPackageCodePath():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getPackageCodePath</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getPackageManager" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getPackageManager():android.content.pm.PackageManager"></a>
+      <a id="getPackageManager():PackageManager"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getPackageManager</span><span class="params">()</span><span class="result">: <span class="extype" name="android.content.pm.PackageManager">PackageManager</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getPackageName" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getPackageName():String"></a>
+      <a id="getPackageName():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getPackageName</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getPackageResourcePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getPackageResourcePath():String"></a>
+      <a id="getPackageResourcePath():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getPackageResourcePath</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getResources" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getResources():android.content.res.Resources"></a>
+      <a id="getResources():Resources"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getResources</span><span class="params">()</span><span class="result">: <span class="extype" name="android.content.res.Resources">Resources</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getSharedPreferences" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getSharedPreferences(x$1:String,x$2:Int):android.content.SharedPreferences"></a>
+      <a id="getSharedPreferences(String,Int):SharedPreferences"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getSharedPreferences</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="android.content.SharedPreferences">SharedPreferences</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.Context#getString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getString(x$1:Int,x$2:&lt;repeated...&gt;[Object]):String"></a>
+      <a id="getString(Int,&lt;repeated...&gt;[AnyRef]):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getString</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.&lt;repeated...&gt;">&lt;repeated...&gt;</span>[<span class="extype" name="scala.AnyRef">AnyRef</span>]</span>)</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Context</dd></dl></div>
+    </li><li name="android.content.Context#getString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getString(x$1:Int):String"></a>
+      <a id="getString(Int):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getString</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getSystemService" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getSystemService(x$1:String):Object"></a>
+      <a id="getSystemService(String):AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getSystemService</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.Context#getText" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getText(x$1:Int):CharSequence"></a>
+      <a id="getText(Int):CharSequence"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getText</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.lang.CharSequence">CharSequence</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getTheme" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getTheme():android.content.res.Resources#Theme"></a>
+      <a id="getTheme():Theme"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getTheme</span><span class="params">()</span><span class="result">: <span class="extype" name="android.content.res.Resources.Theme">Theme</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getWallpaper" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getWallpaper():android.graphics.drawable.Drawable"></a>
+      <a id="getWallpaper():Drawable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getWallpaper</span><span class="params">()</span><span class="result">: <span class="extype" name="android.graphics.drawable.Drawable">Drawable</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getWallpaperDesiredMinimumHeight" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getWallpaperDesiredMinimumHeight():Int"></a>
+      <a id="getWallpaperDesiredMinimumHeight():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getWallpaperDesiredMinimumHeight</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#getWallpaperDesiredMinimumWidth" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getWallpaperDesiredMinimumWidth():Int"></a>
+      <a id="getWallpaperDesiredMinimumWidth():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getWallpaperDesiredMinimumWidth</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#grantUriPermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="grantUriPermission(x$1:String,x$2:android.net.Uri,x$3:Int):Unit"></a>
+      <a id="grantUriPermission(String,Uri,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">grantUriPermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg1">arg1: <span class="extype" name="android.net.Uri">Uri</span></span>, <span name="arg2">arg2: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#isRestricted" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isRestricted():Boolean"></a>
+      <a id="isRestricted():Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isRestricted</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="org.scaloid.common.TagUtil#loggerTag" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="loggerTag:org.scaloid.common.LoggerTag"></a>
+      <a id="loggerTag:LoggerTag"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">loggerTag</span><span class="result">: <a href="LoggerTag.html" class="extype" name="org.scaloid.common.LoggerTag">LoggerTag</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TagUtil.html" class="extype" name="org.scaloid.common.TagUtil">TagUtil</a></dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#mainLooper" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mainLooper:android.os.Looper"></a>
+      <a id="mainLooper:Looper"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mainLooper</span><span class="result">: <span class="extype" name="android.os.Looper">Looper</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getMainLooper()" target="_blank">getMainLooper()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getMainLooper()" target="_blank">getMainLooper()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="android.content.Context#obtainStyledAttributes" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="obtainStyledAttributes(x$1:android.util.AttributeSet,x$2:Array[Int],x$3:Int,x$4:Int):android.content.res.TypedArray"></a>
+      <a id="obtainStyledAttributes(AttributeSet,Array[Int],Int,Int):TypedArray"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">obtainStyledAttributes</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.util.AttributeSet">AttributeSet</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="arg2">arg2: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg3">arg3: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="android.content.res.TypedArray">TypedArray</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Context</dd></dl></div>
+    </li><li name="android.content.Context#obtainStyledAttributes" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="obtainStyledAttributes(x$1:android.util.AttributeSet,x$2:Array[Int]):android.content.res.TypedArray"></a>
+      <a id="obtainStyledAttributes(AttributeSet,Array[Int]):TypedArray"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">obtainStyledAttributes</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.util.AttributeSet">AttributeSet</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="result">: <span class="extype" name="android.content.res.TypedArray">TypedArray</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Context</dd></dl></div>
+    </li><li name="android.content.Context#obtainStyledAttributes" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="obtainStyledAttributes(x$1:Int,x$2:Array[Int]):android.content.res.TypedArray"></a>
+      <a id="obtainStyledAttributes(Int,Array[Int]):TypedArray"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">obtainStyledAttributes</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="result">: <span class="extype" name="android.content.res.TypedArray">TypedArray</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Context</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[android.content.res.Resources$NotFoundException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.Context#obtainStyledAttributes" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="obtainStyledAttributes(x$1:Array[Int]):android.content.res.TypedArray"></a>
+      <a id="obtainStyledAttributes(Array[Int]):TypedArray"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">obtainStyledAttributes</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="result">: <span class="extype" name="android.content.res.TypedArray">TypedArray</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Context</dd></dl></div>
+    </li><li name="org.scaloid.common.LocalService#onBind" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onBind(intent:android.content.Intent):android.os.IBinder"></a>
+      <a id="onBind(Intent):IBinder"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onBind</span><span class="params">(<span name="intent">intent: <span class="extype" name="android.content.Intent">Intent</span></span>)</span><span class="result">: <span class="extype" name="android.os.IBinder">IBinder</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.scaloid.common.LocalService">LocalService</a> → Service</dd></dl></div>
+    </li><li name="android.app.Service#onConfigurationChanged" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onConfigurationChanged(x$1:android.content.res.Configuration):Unit"></a>
+      <a id="onConfigurationChanged(Configuration):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onConfigurationChanged</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.res.Configuration">Configuration</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Service → ComponentCallbacks</dd></dl></div>
+    </li><li name="org.scaloid.common.SService#onCreate" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onCreate():Unit"></a>
+      <a id="onCreate():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onCreate</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SService.html" class="extype" name="org.scaloid.common.SService">SService</a> → Service</dd></dl></div>
+    </li><li name="org.scaloid.common.Creatable#onCreate" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onCreate(body:=&gt;Any):()=&gt;Any"></a>
+      <a id="onCreate(⇒Any):()⇒Any"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onCreate</span><span class="params">(<span name="body">body: ⇒ <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: () ⇒ <span class="extype" name="scala.Any">Any</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Creatable.html" class="extype" name="org.scaloid.common.Creatable">Creatable</a></dd></dl></div>
+    </li><li name="org.scaloid.common.Creatable#onCreateBodies" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onCreateBodies:scala.collection.mutable.ArrayBuffer[()=&gt;Any]"></a>
+      <a id="onCreateBodies:ArrayBuffer[()⇒Any]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onCreateBodies</span><span class="result">: <span class="extype" name="scala.collection.mutable.ArrayBuffer">ArrayBuffer</span>[() ⇒ <span class="extype" name="scala.Any">Any</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="Creatable.html" class="extype" name="org.scaloid.common.Creatable">Creatable</a></dd></dl></div>
+    </li><li name="org.scaloid.common.SService#onDestroy" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onDestroy():Unit"></a>
+      <a id="onDestroy():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onDestroy</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SService.html" class="extype" name="org.scaloid.common.SService">SService</a> → Service</dd></dl></div>
+    </li><li name="org.scaloid.common.Destroyable#onDestroy" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onDestroy(body:=&gt;Any):()=&gt;Any"></a>
+      <a id="onDestroy(⇒Any):()⇒Any"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onDestroy</span><span class="params">(<span name="body">body: ⇒ <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: () ⇒ <span class="extype" name="scala.Any">Any</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Destroyable.html" class="extype" name="org.scaloid.common.Destroyable">Destroyable</a></dd></dl></div>
+    </li><li name="org.scaloid.common.Destroyable#onDestroyBodies" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onDestroyBodies:scala.collection.mutable.ArrayBuffer[()=&gt;Any]"></a>
+      <a id="onDestroyBodies:ArrayBuffer[()⇒Any]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onDestroyBodies</span><span class="result">: <span class="extype" name="scala.collection.mutable.ArrayBuffer">ArrayBuffer</span>[() ⇒ <span class="extype" name="scala.Any">Any</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="Destroyable.html" class="extype" name="org.scaloid.common.Destroyable">Destroyable</a></dd></dl></div>
+    </li><li name="android.app.Service#onLowMemory" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onLowMemory():Unit"></a>
+      <a id="onLowMemory():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onLowMemory</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Service → ComponentCallbacks</dd></dl></div>
+    </li><li name="android.app.Service#onRebind" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onRebind(x$1:android.content.Intent):Unit"></a>
+      <a id="onRebind(Intent):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onRebind</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Intent">Intent</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Service</dd></dl></div>
+    </li><li name="org.scaloid.common.SService#onRegister" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onRegister(body:=&gt;Any):()=&gt;Any"></a>
+      <a id="onRegister(⇒Any):()⇒Any"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onRegister</span><span class="params">(<span name="body">body: ⇒ <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: () ⇒ <span class="extype" name="scala.Any">Any</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SService.html" class="extype" name="org.scaloid.common.SService">SService</a> → <a href="Registerable.html" class="extype" name="org.scaloid.common.Registerable">Registerable</a></dd></dl></div>
+    </li><li name="android.app.Service#onStart" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onStart(x$1:android.content.Intent,x$2:Int):Unit"></a>
+      <a id="onStart(Intent,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onStart</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Intent">Intent</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Service</dd></dl></div>
+    </li><li name="android.app.Service#onStartCommand" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onStartCommand(x$1:android.content.Intent,x$2:Int,x$3:Int):Int"></a>
+      <a id="onStartCommand(Intent,Int,Int):Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onStartCommand</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Intent">Intent</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg2">arg2: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Service</dd></dl></div>
+    </li><li name="android.app.Service#onUnbind" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onUnbind(x$1:android.content.Intent):Boolean"></a>
+      <a id="onUnbind(Intent):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onUnbind</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Intent">Intent</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Service</dd></dl></div>
+    </li><li name="org.scaloid.common.SService#onUnregister" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onUnregister(body:=&gt;Any):()=&gt;Any"></a>
+      <a id="onUnregister(⇒Any):()⇒Any"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onUnregister</span><span class="params">(<span name="body">body: ⇒ <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: () ⇒ <span class="extype" name="scala.Any">Any</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SService.html" class="extype" name="org.scaloid.common.SService">SService</a> → <a href="Registerable.html" class="extype" name="org.scaloid.common.Registerable">Registerable</a></dd></dl></div>
+    </li><li name="android.content.ContextWrapper#openFileInput" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="openFileInput(x$1:String):java.io.FileInputStream"></a>
+      <a id="openFileInput(String):FileInputStream"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">openFileInput</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="java.io.FileInputStream">FileInputStream</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.io.FileNotFoundException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#openFileOutput" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="openFileOutput(x$1:String,x$2:Int):java.io.FileOutputStream"></a>
+      <a id="openFileOutput(String,Int):FileOutputStream"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">openFileOutput</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.io.FileOutputStream">FileOutputStream</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.io.FileNotFoundException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#openOrCreateDatabase" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="openOrCreateDatabase(x$1:String,x$2:Int,x$3:android.database.sqlite.SQLiteDatabase.CursorFactory):android.database.sqlite.SQLiteDatabase"></a>
+      <a id="openOrCreateDatabase(String,Int,CursorFactory):SQLiteDatabase"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">openOrCreateDatabase</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg2">arg2: <span class="extype" name="android.database.sqlite.SQLiteDatabase.CursorFactory">CursorFactory</span></span>)</span><span class="result">: <span class="extype" name="android.database.sqlite.SQLiteDatabase">SQLiteDatabase</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#packageCodePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="packageCodePath:String"></a>
+      <a id="packageCodePath:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">packageCodePath</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getPackageCodePath()" target="_blank">getPackageCodePath()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getPackageCodePath()" target="_blank">getPackageCodePath()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#packageManager" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="packageManager:android.content.pm.PackageManager"></a>
+      <a id="packageManager:PackageManager"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">packageManager</span><span class="result">: <span class="extype" name="android.content.pm.PackageManager">PackageManager</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getPackageManager()" target="_blank">getPackageManager()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getPackageManager()" target="_blank">getPackageManager()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#packageName" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="packageName:String"></a>
+      <a id="packageName:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">packageName</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getPackageName()" target="_blank">getPackageName()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getPackageName()" target="_blank">getPackageName()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#packageResourcePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="packageResourcePath:String"></a>
+      <a id="packageResourcePath:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">packageResourcePath</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getPackageResourcePath()" target="_blank">getPackageResourcePath()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getPackageResourcePath()" target="_blank">getPackageResourcePath()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#peekWallpaper" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="peekWallpaper():android.graphics.drawable.Drawable"></a>
+      <a id="peekWallpaper():Drawable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">peekWallpaper</span><span class="params">()</span><span class="result">: <span class="extype" name="android.graphics.drawable.Drawable">Drawable</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#registerReceiver" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="registerReceiver(x$1:android.content.BroadcastReceiver,x$2:android.content.IntentFilter,x$3:String,x$4:android.os.Handler):android.content.Intent"></a>
+      <a id="registerReceiver(BroadcastReceiver,IntentFilter,String,Handler):Intent"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">registerReceiver</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.BroadcastReceiver">BroadcastReceiver</span></span>, <span name="arg1">arg1: <span class="extype" name="android.content.IntentFilter">IntentFilter</span></span>, <span name="arg2">arg2: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg3">arg3: <span class="extype" name="android.os.Handler">Handler</span></span>)</span><span class="result">: <span class="extype" name="android.content.Intent">Intent</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#registerReceiver" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="registerReceiver(x$1:android.content.BroadcastReceiver,x$2:android.content.IntentFilter):android.content.Intent"></a>
+      <a id="registerReceiver(BroadcastReceiver,IntentFilter):Intent"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">registerReceiver</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.BroadcastReceiver">BroadcastReceiver</span></span>, <span name="arg1">arg1: <span class="extype" name="android.content.IntentFilter">IntentFilter</span></span>)</span><span class="result">: <span class="extype" name="android.content.Intent">Intent</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#removeStickyBroadcast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="removeStickyBroadcast[T](implicitevidence$2:scala.reflect.ClassTag[T],implicitcontext:android.content.Context):Unit"></a>
+      <a id="removeStickyBroadcast[T](ClassTag[T],Context):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">removeStickyBroadcast</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="org.scaloid.common.TraitContext.removeStickyBroadcast.T">T</span>]</span>, <span name="context">context: <span class="extype" name="android.content.Context">Context</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#removeStickyBroadcast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="removeStickyBroadcast(x$1:android.content.Intent):Unit"></a>
+      <a id="removeStickyBroadcast(Intent):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">removeStickyBroadcast</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Intent">Intent</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#resources" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="resources:android.content.res.Resources"></a>
+      <a id="resources:Resources"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">resources</span><span class="result">: <span class="extype" name="android.content.res.Resources">Resources</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getResources()" target="_blank">getResources()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getResources()" target="_blank">getResources()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#revokeUriPermission" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="revokeUriPermission(x$1:android.net.Uri,x$2:Int):Unit"></a>
+      <a id="revokeUriPermission(Uri,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">revokeUriPermission</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.net.Uri">Uri</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#sendBroadcast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendBroadcast[T](p:String)(implicitevidence$4:scala.reflect.ClassTag[T],implicitcontext:android.content.Context):Unit"></a>
+      <a id="sendBroadcast[T](String)(ClassTag[T],Context):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sendBroadcast</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="p">p: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="org.scaloid.common.TraitContext.sendBroadcast.T">T</span>]</span>, <span name="context">context: <span class="extype" name="android.content.Context">Context</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#sendBroadcast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendBroadcast[T](implicitevidence$3:scala.reflect.ClassTag[T],implicitcontext:android.content.Context):Unit"></a>
+      <a id="sendBroadcast[T](ClassTag[T],Context):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sendBroadcast</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="org.scaloid.common.TraitContext.sendBroadcast.T">T</span>]</span>, <span name="context">context: <span class="extype" name="android.content.Context">Context</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#sendBroadcast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendBroadcast(x$1:android.content.Intent,x$2:String):Unit"></a>
+      <a id="sendBroadcast(Intent,String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sendBroadcast</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Intent">Intent</span></span>, <span name="arg1">arg1: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#sendBroadcast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendBroadcast(x$1:android.content.Intent):Unit"></a>
+      <a id="sendBroadcast(Intent):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sendBroadcast</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Intent">Intent</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#sendOrderedBroadcast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendOrderedBroadcast[T](p1:String,p2:android.content.BroadcastReceiver,p3:android.os.Handler,p4:Int,p5:String,p6:android.os.Bundle)(implicitevidence$6:scala.reflect.ClassTag[T],implicitcontext:android.content.Context):Unit"></a>
+      <a id="sendOrderedBroadcast[T](String,BroadcastReceiver,Handler,Int,String,Bundle)(ClassTag[T],Context):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sendOrderedBroadcast</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="p1">p1: <span class="extype" name="java.lang.String">String</span></span>, <span name="p2">p2: <span class="extype" name="android.content.BroadcastReceiver">BroadcastReceiver</span></span>, <span name="p3">p3: <span class="extype" name="android.os.Handler">Handler</span></span>, <span name="p4">p4: <span class="extype" name="scala.Int">Int</span></span>, <span name="p5">p5: <span class="extype" name="java.lang.String">String</span></span>, <span name="p6">p6: <span class="extype" name="android.os.Bundle">Bundle</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="org.scaloid.common.TraitContext.sendOrderedBroadcast.T">T</span>]</span>, <span name="context">context: <span class="extype" name="android.content.Context">Context</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#sendOrderedBroadcast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendOrderedBroadcast[T](p:String)(implicitevidence$5:scala.reflect.ClassTag[T],implicitcontext:android.content.Context):Unit"></a>
+      <a id="sendOrderedBroadcast[T](String)(ClassTag[T],Context):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sendOrderedBroadcast</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="p">p: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="org.scaloid.common.TraitContext.sendOrderedBroadcast.T">T</span>]</span>, <span name="context">context: <span class="extype" name="android.content.Context">Context</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#sendOrderedBroadcast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendOrderedBroadcast(x$1:android.content.Intent,x$2:String,x$3:android.content.BroadcastReceiver,x$4:android.os.Handler,x$5:Int,x$6:String,x$7:android.os.Bundle):Unit"></a>
+      <a id="sendOrderedBroadcast(Intent,String,BroadcastReceiver,Handler,Int,String,Bundle):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sendOrderedBroadcast</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Intent">Intent</span></span>, <span name="arg1">arg1: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg2">arg2: <span class="extype" name="android.content.BroadcastReceiver">BroadcastReceiver</span></span>, <span name="arg3">arg3: <span class="extype" name="android.os.Handler">Handler</span></span>, <span name="arg4">arg4: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg5">arg5: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg6">arg6: <span class="extype" name="android.os.Bundle">Bundle</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#sendOrderedBroadcast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendOrderedBroadcast(x$1:android.content.Intent,x$2:String):Unit"></a>
+      <a id="sendOrderedBroadcast(Intent,String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sendOrderedBroadcast</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Intent">Intent</span></span>, <span name="arg1">arg1: <span class="extype" name="java.lang.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#sendStickyBroadcast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendStickyBroadcast[T](implicitevidence$7:scala.reflect.ClassTag[T],implicitcontext:android.content.Context):Unit"></a>
+      <a id="sendStickyBroadcast[T](ClassTag[T],Context):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sendStickyBroadcast</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="org.scaloid.common.TraitContext.sendStickyBroadcast.T">T</span>]</span>, <span name="context">context: <span class="extype" name="android.content.Context">Context</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#sendStickyBroadcast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendStickyBroadcast(x$1:android.content.Intent):Unit"></a>
+      <a id="sendStickyBroadcast(Intent):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sendStickyBroadcast</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Intent">Intent</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#sendStickyOrderedBroadcast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendStickyOrderedBroadcast[T](p1:android.content.BroadcastReceiver,p2:android.os.Handler,p3:Int,p4:String,p5:android.os.Bundle)(implicitevidence$8:scala.reflect.ClassTag[T],implicitcontext:android.content.Context):Unit"></a>
+      <a id="sendStickyOrderedBroadcast[T](BroadcastReceiver,Handler,Int,String,Bundle)(ClassTag[T],Context):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sendStickyOrderedBroadcast</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="p1">p1: <span class="extype" name="android.content.BroadcastReceiver">BroadcastReceiver</span></span>, <span name="p2">p2: <span class="extype" name="android.os.Handler">Handler</span></span>, <span name="p3">p3: <span class="extype" name="scala.Int">Int</span></span>, <span name="p4">p4: <span class="extype" name="java.lang.String">String</span></span>, <span name="p5">p5: <span class="extype" name="android.os.Bundle">Bundle</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="org.scaloid.common.TraitContext.sendStickyOrderedBroadcast.T">T</span>]</span>, <span name="context">context: <span class="extype" name="android.content.Context">Context</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#sendStickyOrderedBroadcast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendStickyOrderedBroadcast(x$1:android.content.Intent,x$2:android.content.BroadcastReceiver,x$3:android.os.Handler,x$4:Int,x$5:String,x$6:android.os.Bundle):Unit"></a>
+      <a id="sendStickyOrderedBroadcast(Intent,BroadcastReceiver,Handler,Int,String,Bundle):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sendStickyOrderedBroadcast</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Intent">Intent</span></span>, <span name="arg1">arg1: <span class="extype" name="android.content.BroadcastReceiver">BroadcastReceiver</span></span>, <span name="arg2">arg2: <span class="extype" name="android.os.Handler">Handler</span></span>, <span name="arg3">arg3: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg4">arg4: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg5">arg5: <span class="extype" name="android.os.Bundle">Bundle</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.app.Service#setForeground" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setForeground(x$1:Boolean):Unit"></a>
+      <a id="setForeground(Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setForeground</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Service</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#setTheme" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setTheme(x$1:Int):Unit"></a>
+      <a id="setTheme(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setTheme</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#setWallpaper" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setWallpaper(x$1:java.io.InputStream):Unit"></a>
+      <a id="setWallpaper(InputStream):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setWallpaper</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="java.io.InputStream">InputStream</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.io.IOException]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#setWallpaper" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setWallpaper(x$1:android.graphics.Bitmap):Unit"></a>
+      <a id="setWallpaper(Bitmap):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setWallpaper</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.graphics.Bitmap">Bitmap</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.io.IOException]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#startActivity" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="startActivity[T](implicitevidence$9:scala.reflect.ClassTag[T],implicitcontext:android.content.Context):Unit"></a>
+      <a id="startActivity[T](ClassTag[T],Context):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">startActivity</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="org.scaloid.common.TraitContext.startActivity.T">T</span>]</span>, <span name="context">context: <span class="extype" name="android.content.Context">Context</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#startActivity" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="startActivity(x$1:android.content.Intent):Unit"></a>
+      <a id="startActivity(Intent):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">startActivity</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Intent">Intent</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.app.Service#startForeground" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="startForeground(x$1:Int,x$2:android.app.Notification):Unit"></a>
+      <a id="startForeground(Int,Notification):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">startForeground</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg1">arg1: <span class="extype" name="android.app.Notification">Notification</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Service</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#startInstrumentation" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="startInstrumentation(x$1:android.content.ComponentName,x$2:String,x$3:android.os.Bundle):Boolean"></a>
+      <a id="startInstrumentation(ComponentName,String,Bundle):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">startInstrumentation</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.ComponentName">ComponentName</span></span>, <span name="arg1">arg1: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg2">arg2: <span class="extype" name="android.os.Bundle">Bundle</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#startIntentSender" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="startIntentSender(x$1:android.content.IntentSender,x$2:android.content.Intent,x$3:Int,x$4:Int,x$5:Int):Unit"></a>
+      <a id="startIntentSender(IntentSender,Intent,Int,Int,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">startIntentSender</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.IntentSender">IntentSender</span></span>, <span name="arg1">arg1: <span class="extype" name="android.content.Intent">Intent</span></span>, <span name="arg2">arg2: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg3">arg3: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg4">arg4: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[android.content.IntentSender$SendIntentException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#startService" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="startService[T](implicitevidence$10:scala.reflect.ClassTag[T],implicitcontext:android.content.Context):android.content.ComponentName"></a>
+      <a id="startService[T](ClassTag[T],Context):ComponentName"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">startService</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="org.scaloid.common.TraitContext.startService.T">T</span>]</span>, <span name="context">context: <span class="extype" name="android.content.Context">Context</span></span>)</span><span class="result">: <span class="extype" name="android.content.ComponentName">ComponentName</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#startService" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="startService(x$1:android.content.Intent):android.content.ComponentName"></a>
+      <a id="startService(Intent):ComponentName"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">startService</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Intent">Intent</span></span>)</span><span class="result">: <span class="extype" name="android.content.ComponentName">ComponentName</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.app.Service#stopForeground" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="stopForeground(x$1:Boolean):Unit"></a>
+      <a id="stopForeground(Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">stopForeground</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Service</dd></dl></div>
+    </li><li name="android.app.Service#stopSelf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="stopSelf(x$1:Int):Unit"></a>
+      <a id="stopSelf(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">stopSelf</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Service</dd></dl></div>
+    </li><li name="android.app.Service#stopSelf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="stopSelf():Unit"></a>
+      <a id="stopSelf():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">stopSelf</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Service</dd></dl></div>
+    </li><li name="android.app.Service#stopSelfResult" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="stopSelfResult(x$1:Int):Boolean"></a>
+      <a id="stopSelfResult(Int):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">stopSelfResult</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Service</dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#stopService" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="stopService[T](implicitevidence$11:scala.reflect.ClassTag[T],implicitcontext:android.content.Context):Boolean"></a>
+      <a id="stopService[T](ClassTag[T],Context):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">stopService</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="org.scaloid.common.TraitContext.stopService.T">T</span>]</span>, <span name="context">context: <span class="extype" name="android.content.Context">Context</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="android.content.ContextWrapper#stopService" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="stopService(x$1:android.content.Intent):Boolean"></a>
+      <a id="stopService(Intent):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">stopService</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.Intent">Intent</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#theme" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="theme(p:Int):V"></a>
+      <a id="theme(Int):SContext"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">theme</span><span class="params">(<span name="p">p: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="SContext.html" class="extype" name="org.scaloid.common.SContext">SContext</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#setTheme(int)" target="_blank">setTheme(int)</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#setTheme(int)" target="_blank">setTheme(int)</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#theme" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="theme:android.content.res.Resources#Theme"></a>
+      <a id="theme:Theme"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">theme</span><span class="result">: <span class="extype" name="android.content.res.Resources.Theme">Theme</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getTheme()" target="_blank">getTheme()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getTheme()" target="_blank">getTheme()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#theme_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="theme_=(p:Int):V"></a>
+      <a id="theme_=(Int):SContext"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: theme_$eq" class="name">theme_=</span><span class="params">(<span name="p">p: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="SContext.html" class="extype" name="org.scaloid.common.SContext">SContext</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#setTheme(int)" target="_blank">setTheme(int)</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#setTheme(int)" target="_blank">setTheme(int)</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#unbindService" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="unbindService(x$1:android.content.ServiceConnection):Unit"></a>
+      <a id="unbindService(ServiceConnection):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">unbindService</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.ServiceConnection">ServiceConnection</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="android.content.ContextWrapper#unregisterReceiver" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="unregisterReceiver(x$1:android.content.BroadcastReceiver):Unit"></a>
+      <a id="unregisterReceiver(BroadcastReceiver):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">unregisterReceiver</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="android.content.BroadcastReceiver">BroadcastReceiver</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ContextWrapper → Context</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#wallpaper" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wallpaper(p:java.io.InputStream):V"></a>
+      <a id="wallpaper(InputStream):SContext"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wallpaper</span><span class="params">(<span name="p">p: <span class="extype" name="java.io.InputStream">InputStream</span></span>)</span><span class="result">: <a href="SContext.html" class="extype" name="org.scaloid.common.SContext">SContext</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#setWallpaper(java.io.InputStream)" target="_blank">setWallpaper(java.io.InputStream)</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#setWallpaper(java.io.InputStream)" target="_blank">setWallpaper(java.io.InputStream)</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#wallpaper" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wallpaper(p:android.graphics.Bitmap):V"></a>
+      <a id="wallpaper(Bitmap):SContext"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wallpaper</span><span class="params">(<span name="p">p: <span class="extype" name="android.graphics.Bitmap">Bitmap</span></span>)</span><span class="result">: <a href="SContext.html" class="extype" name="org.scaloid.common.SContext">SContext</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#setWallpaper(android.graphics.Bitmap)" target="_blank">setWallpaper(android.graphics.Bitmap)</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#setWallpaper(android.graphics.Bitmap)" target="_blank">setWallpaper(android.graphics.Bitmap)</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#wallpaper" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wallpaper:android.graphics.drawable.Drawable"></a>
+      <a id="wallpaper:Drawable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wallpaper</span><span class="result">: <span class="extype" name="android.graphics.drawable.Drawable">Drawable</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getWallpaper()" target="_blank">getWallpaper()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getWallpaper()" target="_blank">getWallpaper()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#wallpaperDesiredMinimumHeight" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wallpaperDesiredMinimumHeight:Int"></a>
+      <a id="wallpaperDesiredMinimumHeight:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wallpaperDesiredMinimumHeight</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getWallpaperDesiredMinimumHeight()" target="_blank">getWallpaperDesiredMinimumHeight()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getWallpaperDesiredMinimumHeight()" target="_blank">getWallpaperDesiredMinimumHeight()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#wallpaperDesiredMinimumWidth" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wallpaperDesiredMinimumWidth:Int"></a>
+      <a id="wallpaperDesiredMinimumWidth:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wallpaperDesiredMinimumWidth</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getWallpaperDesiredMinimumWidth()" target="_blank">getWallpaperDesiredMinimumWidth()</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#getWallpaperDesiredMinimumWidth()" target="_blank">getWallpaperDesiredMinimumWidth()</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#wallpaper_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wallpaper_=(p:java.io.InputStream):V"></a>
+      <a id="wallpaper_=(InputStream):SContext"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: wallpaper_$eq" class="name">wallpaper_=</span><span class="params">(<span name="p">p: <span class="extype" name="java.io.InputStream">InputStream</span></span>)</span><span class="result">: <a href="SContext.html" class="extype" name="org.scaloid.common.SContext">SContext</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#setWallpaper(java.io.InputStream)" target="_blank">setWallpaper(java.io.InputStream)</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#setWallpaper(java.io.InputStream)" target="_blank">setWallpaper(java.io.InputStream)</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scaloid.common.TraitContext#wallpaper_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wallpaper_=(p:android.graphics.Bitmap):V"></a>
+      <a id="wallpaper_=(Bitmap):SContext"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: wallpaper_$eq" class="name">wallpaper_=</span><span class="params">(<span name="p">p: <span class="extype" name="android.graphics.Bitmap">Bitmap</span></span>)</span><span class="result">: <a href="SContext.html" class="extype" name="org.scaloid.common.SContext">SContext</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#setWallpaper(android.graphics.Bitmap)" target="_blank">setWallpaper(android.graphics.Bitmap)</a></code>
+</p><div class="fullcomment"><div class="comment cmt"><p>Shortcut for <code><a href="https://developer.android.com/reference/android/content/Context.html#setWallpaper(android.graphics.Bitmap)" target="_blank">setWallpaper(android.graphics.Bitmap)</a></code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="org.scaloid.common.SService">
+              <h3>Inherited from <a href="SService.html" class="extype" name="org.scaloid.common.SService">SService</a></h3>
+            </div><div class="parent" name="org.scaloid.common.Registerable">
+              <h3>Inherited from <a href="Registerable.html" class="extype" name="org.scaloid.common.Registerable">Registerable</a></h3>
+            </div><div class="parent" name="org.scaloid.common.Creatable">
+              <h3>Inherited from <a href="Creatable.html" class="extype" name="org.scaloid.common.Creatable">Creatable</a></h3>
+            </div><div class="parent" name="org.scaloid.common.Destroyable">
+              <h3>Inherited from <a href="Destroyable.html" class="extype" name="org.scaloid.common.Destroyable">Destroyable</a></h3>
+            </div><div class="parent" name="org.scaloid.common.SContext">
+              <h3>Inherited from <a href="SContext.html" class="extype" name="org.scaloid.common.SContext">SContext</a></h3>
+            </div><div class="parent" name="org.scaloid.common.TagUtil">
+              <h3>Inherited from <a href="TagUtil.html" class="extype" name="org.scaloid.common.TagUtil">TagUtil</a></h3>
+            </div><div class="parent" name="org.scaloid.common.TraitContext">
+              <h3>Inherited from <a href="TraitContext.html" class="extype" name="org.scaloid.common.TraitContext">TraitContext</a>[<a href="SContext.html" class="extype" name="org.scaloid.common.SContext">SContext</a>]</h3>
+            </div><div class="parent" name="android.app.Service">
+              <h3>Inherited from <span class="extype" name="android.app.Service">Service</span></h3>
+            </div><div class="parent" name="android.content.ComponentCallbacks">
+              <h3>Inherited from <span class="extype" name="android.content.ComponentCallbacks">ComponentCallbacks</span></h3>
+            </div><div class="parent" name="android.content.ContextWrapper">
+              <h3>Inherited from <span class="extype" name="android.content.ContextWrapper">ContextWrapper</span></h3>
+            </div><div class="parent" name="android.content.Context">
+              <h3>Inherited from <span class="extype" name="android.content.Context">Context</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../lib/template.js"></script>
+    </body>
+      </html>
