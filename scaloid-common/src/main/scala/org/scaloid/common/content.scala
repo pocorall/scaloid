@@ -406,7 +406,15 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
    * //...
    * val foo = service(_.foo, defaultVal)
    */
-  def apply[T](f: S => T, ifEmpty: T) = if(service.isEmpty) ifEmpty else f(service.get)
+  def apply[T](f: S => T, ifEmpty: => T) = if(service.isEmpty) ifEmpty else f(service.get)
+
+  /**
+   * for example:
+   * val service = new LocalServiceConnection[MyService]
+   * //...
+   * val result = service(_.foo > 3, "3 < " + _.foo, "fail")
+   */
+  def apply[T](test: S => Boolean, ifTrue: S => T, ifFalse: => T) = if(service.nonEmpty && test(service.get)) ifTrue(service.get) else ifFalse
 
   /**
    * Internal implementation for handling the service connection. You do not need to call this method.
