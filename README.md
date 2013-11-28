@@ -1141,7 +1141,7 @@ class Activity extends SActivity {
   val random = new LocalServiceConnection[MyService]
  
   def onButtonClick(v:View) {
-    if(random.connected) toast("number: " + random.service.getRandomNumber())
+    random( s => toast("number: " + s.getRandomNumber()))
   }
 }
 ```
