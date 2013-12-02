@@ -1205,3 +1205,8 @@ If you want look into inside of Scaloid, this document would be helpful:
  
 ### [List of projects using Scaloid](https://github.com/pocorall/scaloid/wiki/Appendix#list-of-projects-using-scaloid)
 
+### We are hiring!
+The company behind the scaloid, onsquare is hiring Scala developers.
+Employees need to work at onsquare office located at Incheon, Korea.
+Please send us your CV via email if you are interested in working at onsqure.
+pocorall@gmail.com
