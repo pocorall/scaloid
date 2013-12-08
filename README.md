@@ -947,7 +947,7 @@ One of the good use case of `uniqueId` is `SRelativeLayout`. Some of the methods
 
 ```scala
 new SRelativeLayout {
-  val btn = SButton("Hi")
+  val btn = SButton(R.string.hi)
   SButton("There").<<.below(btn)
 }
 ```
@@ -1068,7 +1068,7 @@ Also you can build a more complex dialog:
 ```scala
 new AlertDialogBuilder("Exit the app", "Do you really want to exit?") {
   positiveButton("Exit", finishTheApplication())
-  negativeButton("Cancel")
+  negativeButton(android.R.string.cancel)
 }.show()
 ```
 
@@ -1083,7 +1083,7 @@ new AlertDialog.Builder(context)
       finishTheApplication()
     }
   })
-  .setNegativeButton("Cancel", new DialogInterface.OnClickListener {
+  .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener {
     def onClick(dialog: DialogInterface, which: Int) {
       dialog.cancel()
     }
