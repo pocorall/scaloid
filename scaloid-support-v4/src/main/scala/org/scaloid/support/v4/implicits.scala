@@ -50,5 +50,5 @@ trait AppImplicits {
 object AppImplicits extends AppImplicits
 
 
-trait Implicits extends AppImplicits
+trait Implicits extends AppImplicits with ViewImplicits with WidgetImplicits
 object Implicits extends Implicits
