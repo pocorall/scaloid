@@ -53,6 +53,17 @@ trait TraitFragment[V <: android.support.v4.app.Fragment] {
 
   def basis: V
 
+  /**
+   * Implicit context for other Scaloid components.
+   *
+   * [__Caution__] Unlike an activity which is a context by itself,
+   * a fragment needs to get attached to underlying activity in order to access the context. When the fragment is not
+   * yet attached or was detached during the end of its lifecycle, it will be `null`.
+   *
+   * For detail, refer to [[http://developer.android.com/guide/components/fragments.html#Lifecycle]].
+   */
+  implicit def ctx = basis.getActivity
+
   def inTransaction(f: FragmentTransaction => Unit) = {
     val txn = basis.getFragmentManager.beginTransaction()
     f(txn)
