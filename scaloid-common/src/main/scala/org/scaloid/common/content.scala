@@ -392,6 +392,10 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
   var onConnected = new EventSource1[S, Unit]
   var onDisconnected = new EventSource1[S, Unit]
 
+  def run(f: S => Unit) {
+    if(service.isEmpty) onConnected(f) else service.map(f)
+  }
+
   /**
    * for example:
    * val service = new LocalServiceConnection[MyService]
