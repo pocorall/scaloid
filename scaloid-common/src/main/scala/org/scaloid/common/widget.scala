@@ -2226,13 +2226,13 @@ class SRelativeLayout()(implicit context: android.content.Context, parentVGroup:
       this
     }
 
-    def alignBaseline = {
-      addRule(RelativeLayout.ALIGN_BASELINE)
+    def alignBaseline(otherView: View)(implicit activity: Activity) = {
+      addRule(RelativeLayout.ALIGN_BASELINE, otherView.uniqueId)
       this
     }
 
-    def alignBottom = {
-      addRule(RelativeLayout.ALIGN_BOTTOM)
+    def alignBottom(otherView: View)(implicit activity: Activity) = {
+      addRule(RelativeLayout.ALIGN_BOTTOM, otherView.uniqueId)
       this
     }
 
@@ -2241,8 +2241,8 @@ class SRelativeLayout()(implicit context: android.content.Context, parentVGroup:
     //  this
     //}
 
-    def alignLeft = {
-      addRule(RelativeLayout.ALIGN_LEFT)
+    def alignLeft(otherView: View)(implicit activity: Activity) = {
+      addRule(RelativeLayout.ALIGN_LEFT, otherView.uniqueId)
       this
     }
 
@@ -2276,8 +2276,8 @@ class SRelativeLayout()(implicit context: android.content.Context, parentVGroup:
       this
     }
 
-    def alignRight = {
-      addRule(RelativeLayout.ALIGN_RIGHT)
+    def alignRight(otherView: View)(implicit activity: Activity) = {
+      addRule(RelativeLayout.ALIGN_RIGHT, otherView.uniqueId)
       this
     }
 
@@ -2286,8 +2286,8 @@ class SRelativeLayout()(implicit context: android.content.Context, parentVGroup:
     //  this
     //}
 
-    def alignTop = {
-      addRule(RelativeLayout.ALIGN_TOP)
+    def alignTop(otherView: View)(implicit activity: Activity) = {
+      addRule(RelativeLayout.ALIGN_TOP, otherView.uniqueId)
       this
     }
 
