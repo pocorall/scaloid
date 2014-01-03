@@ -1389,7 +1389,17 @@ class STableLayout()(implicit context: android.content.Context, parentVGroup: Tr
 
   def basis = this
   override val parentViewGroup = parentVGroup
+  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
 
+  class LayoutParams[V <: View](v: V) extends TableLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT, 1.0f) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
+    def basis = this
+
+    v.setLayoutParams(this)
+
+    def parent = STableLayout.this
+
+    def >> : V = v
+  }
 }
 
 object STableLayout {
@@ -4352,7 +4362,6 @@ class SLinearLayout()(implicit context: android.content.Context, parentVGroup: T
   <<
 
   class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
-
     def basis = this
 
     v.setLayoutParams(this)
@@ -5246,7 +5255,17 @@ class STableRow()(implicit context: android.content.Context, parentVGroup: Trait
 
   def basis = this
   override val parentViewGroup = parentVGroup
+  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
 
+  class LayoutParams[V <: View](v: V) extends TableRow.LayoutParams(MATCH_PARENT, WRAP_CONTENT, 1.0f) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
+    def basis = this
+
+    v.setLayoutParams(this)
+
+    def parent = STableRow.this
+
+    def >> : V = v
+  }
 }
 
 object STableRow {
