@@ -175,7 +175,6 @@ implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutP
 <<
 
 class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
-
   def basis = this
 
   v.setLayoutParams(this)
@@ -193,6 +192,34 @@ class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARE
 
   def >\> : V = v
 
+}
+>>
+
+TableLayout_concreteBody() ::= <<
+implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+
+class LayoutParams[V <: View](v: V) extends TableLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT, 1.0f) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
+  def basis = this
+
+  v.setLayoutParams(this)
+
+  def parent = STableLayout.this
+
+  def >\> : V = v
+}
+>>
+
+TableRow_concreteBody() ::= <<
+implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+
+class LayoutParams[V <: View](v: V) extends TableRow.LayoutParams(MATCH_PARENT, WRAP_CONTENT, 1.0f) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
+  def basis = this
+
+  v.setLayoutParams(this)
+
+  def parent = STableRow.this
+
+  def >\> : V = v
 }
 >>
 

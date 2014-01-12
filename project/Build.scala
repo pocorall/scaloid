@@ -43,7 +43,7 @@ object ScaloidBuild extends Build {
       _ => false
     },
     pomExtra :=
-      <url>http://jsuereth.com/scala-arm</url>
+      <url>http://scaloid.org</url>
         <licenses>
           <license>
             <name>The Apache Software License, Version 2.0</name>
