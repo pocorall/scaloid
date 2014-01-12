@@ -4,6 +4,7 @@ package org.scaloid.common
 
 import android.app._
 import android.content._
+import android.graphics.drawable.{Drawable, StateListDrawable}
 import android.os._
 import android.view._
 import android.view.WindowManager.LayoutParams._
@@ -272,4 +273,38 @@ class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = n
    * Because this method runs runOnUiThread internally, you can call this method from any thread.
    */
   override def show():AlertDialog = runOnUiThread(super.show())
+}
+
+/**
+ * Scaloid wrapper of android.graphics.drawable.StateListDrawable.
+ * You can write StateListDrawable simply, for example:
+ * {{{
+ * new SStateListDrawable {
+ *   +=(R.drawable.pressed, PRESSED)
+ *   +=(R.drawable.normal)
+ * }
+ * }}}
+ */
+class SStateListDrawable extends StateListDrawable {
+  val ABOVE_ANCHOR = android.R.attr.state_above_anchor
+  val ACTIVE = android.R.attr.state_active
+  val CHECKABLE = android.R.attr.state_checkable
+  val CHECKED = android.R.attr.state_checked
+  val EMPTY = android.R.attr.state_empty
+  val ENABLED = android.R.attr.state_enabled
+  val EXPANDED = android.R.attr.state_expanded
+  val FIRST = android.R.attr.state_first
+  val FOCUSED = android.R.attr.state_focused
+  val LAST = android.R.attr.state_last
+  val LONG_PRESSABLE = android.R.attr.state_long_pressable
+  val MIDDLE = android.R.attr.state_middle
+  val PRESSED = android.R.attr.state_pressed
+  val SELECTED = android.R.attr.state_selected
+  val SINGLE = android.R.attr.state_single
+  val WINDOW_FOCUSED = android.R.attr.state_window_focused
+
+  def +=(drawable: Drawable, states: Int*): SStateListDrawable = {
+    addState(states.toArray, drawable)
+    this
+  }
 }
