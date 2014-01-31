@@ -43,17 +43,20 @@ import android.view._
 import language.implicitConversions
 
 private[scaloid] class UnitConversion(val ext: Double)(implicit context: Context) {
-  def dip: Int = (ext * context.getResources().getDisplayMetrics().density).toInt
-  def sp : Int = (ext * context.getResources().getDisplayMetrics().scaledDensity).toInt
+  @inline private def m = context.getResources.getDisplayMetrics
+  @inline def dip   : Int = (ext * m.density).toInt
+  @inline def sp    : Int = (ext * m.scaledDensity).toInt
+  @inline def px2dip: Int = (ext / m.density).toInt
+  @inline def px2sp : Int = (ext / m.scaledDensity).toInt
 }
 
 private[scaloid] class ResourceConversion(val id: Int)(implicit context: Context) {
-  def r2Text         : CharSequence        = context.getText(id)
-  def r2TextArray    : Array[CharSequence] = context.getResources.getTextArray(id)
-  def r2String       : String              = context.getResources.getString(id)
-  def r2StringArray  : Array[String]       = context.getResources.getStringArray(id)
-  def r2Drawable     : Drawable            = context.getResources.getDrawable(id)
-  def r2Movie        : Movie               = context.getResources.getMovie(id)
+  @inline def r2Text         : CharSequence        = context.getText(id)
+  @inline def r2TextArray    : Array[CharSequence] = context.getResources.getTextArray(id)
+  @inline def r2String       : String              = context.getResources.getString(id)
+  @inline def r2StringArray  : Array[String]       = context.getResources.getStringArray(id)
+  @inline def r2Drawable     : Drawable            = context.getResources.getDrawable(id)
+  @inline def r2Movie        : Movie               = context.getResources.getMovie(id)
 }
 
 trait ConversionImplicits {
