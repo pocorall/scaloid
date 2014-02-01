@@ -3,6 +3,7 @@ $license()$
 package org.scaloid.common
 
 import android.content._
+import android.database.Cursor
 import android.graphics.Movie
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -13,8 +14,8 @@ private[scaloid] class UnitConversion(val ext: Double)(implicit context: Context
   @inline private def m = context.getResources.getDisplayMetrics
   @inline def dip   : Int = (ext * m.density).toInt
   @inline def sp    : Int = (ext * m.scaledDensity).toInt
-  @inline def px2dip: Int = (ext / m.density).toInt
-  @inline def px2sp : Int = (ext / m.scaledDensity).toInt
+  @inline def px2dip: Double = ext / m.density
+  @inline def px2sp : Double = ext / m.scaledDensity
 }
 
 private[scaloid] class ResourceConversion(val id: Int)(implicit context: Context) {
@@ -90,6 +91,36 @@ trait InterfaceImplicits {
 }
 object InterfaceImpliciits extends InterfaceImplicits
 
+class RichCursor(c: Cursor) extends Iterable[Cursor] {
+  def iterator = new CursorIterator
 
-trait Implicits extends ConversionImplicits with InterfaceImplicits with ViewImplicits with WidgetImplicits
+  class CursorIterator extends Iterator[Cursor] {
+    def hasNext = c.getPosition < c.getCount - 1
+
+    def next() = {
+      c.moveToNext()
+      c
+    }
+  }
+
+  def closeAfter[T](body: RichCursor => T) = try body(this) finally c.close()
+
+  def toLong(default: Long): Long = if (c.moveToFirst()) c.getLong(0) else default
+
+  def toString(default: String): String = if (c.moveToFirst()) c.getString(0) else default
+
+  def toShort(default: Short): Short = if (c.moveToFirst()) c.getShort(0) else default
+
+  def toInt(default: Int): Int = if (c.moveToFirst()) c.getInt(0) else default
+
+  def toDouble(default: Double): Double = if (c.moveToFirst()) c.getDouble(0) else default
+
+  def toFloat(default: Float): Float = if (c.moveToFirst()) c.getFloat(0) else default
+}
+
+trait DatabaseImplicits {
+  implicit def cursor2RichCursor(c: Cursor) = new RichCursor(c)
+}
+
+trait Implicits extends ConversionImplicits with InterfaceImplicits with ViewImplicits with WidgetImplicits with DatabaseImplicits
 object Implicits extends Implicits
