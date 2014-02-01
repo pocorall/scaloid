@@ -58,7 +58,7 @@ SButton("Greet", toast("Hello!"))
  * **Simple to use**<br/>
    Check the [quick start guide](https://github.com/pocorall/scaloid/wiki/Installation#quick-start)
  * **Compatible with your legacy code**<br/>
-   You can use both Scaloid and plain-old Java Android API. You can gradually improve your legacy code.
+   You can [use both Scaloid and plain-old Java Android API](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-i-cant-use-scaloid-because-it-does-not-provide-a-functionality-x). You can gradually improve your legacy code.
  * **Maintained actively**<br/>
    Scaloid is a [dogfooding](http://en.wikipedia.org/wiki/Eating_your_own_dog_food) software. This is originally created to be used for [my own](https://play.google.com/store/apps/details?id=com.soundcorset.client.android) [Android apps](https://play.google.com/store/apps/details?id=com.tocplus.client.android).
 
