@@ -367,6 +367,13 @@ val inPixel:Int = 32.dip
 val inPixel2:Int = 22.sp
 ```
 
+Reversely, pixel unit can also be converted into `dip` and `sp` unit.
+
+```scala
+val inDip:Double = 35.px2dip
+val inSp:Double = 27.px2sp
+```
+
 ##### Resource IDs
 
 Scaloid provides several implicit conversions that convert from `Int` type resource ID to `CharSequence`, `Array[CharSequence]`, `Array[String]`, `Drawable` and `Movie`.
