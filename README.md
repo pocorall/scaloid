@@ -30,7 +30,7 @@
 
 # Less painful Android development with Scala
 
-Scaloid is a library that simplifies your Android code. It makes your code easy to understand and maintain by [leveraging Scala language](https://github.com/pocorall/scaloid/wiki/Appendix#faqs-about-scaloid).
+Scaloid is a library that simplifies your Android code. It makes your code easy to understand and maintain by [leveraging Scala language](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-faqs-about-scaloid).
 
 For example, the code block shown below:
 
@@ -56,7 +56,7 @@ SButton("Greet", toast("Hello!"))
  * **Write elegant Android software**<br/>
    Scaloid provides a concise and type-safe way of writing Android application.
  * **Simple to use**<br/>
-   Check the [quick start guide](https://github.com/pocorall/scaloid/wiki/Installation#quick-start)
+   Check the [quick start guide](https://github.com/pocorall/scaloid/wiki/Installation#wiki-quick-start)
  * **Compatible with your legacy code**<br/>
    You can [use both Scaloid and plain-old Java Android API](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-i-cant-use-scaloid-because-it-does-not-provide-a-functionality-x). You can gradually improve your legacy code.
  * **Maintained actively**<br/>
@@ -70,7 +70,7 @@ SButton("Greet", toast("Hello!"))
    Fork this for sbt build.
  * [<b>Scaloid port of apidemos app</b>](https://github.com/pocorall/scaloid-apidemos)<br/>
    Learn how Scaloid can be used in action.
- * [<b>List of projects using Scaloid</b>](https://github.com/pocorall/scaloid/wiki/Appendix#list-of-projects-using-scaloid)
+ * [<b>List of projects using Scaloid</b>](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-list-of-projects-using-scaloid)
  * [<b>Tutorial by Gaston Hillar</b>](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240161584) - [part 1](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240161584) and [part 2](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240162204)
 
 
@@ -86,7 +86,7 @@ SButton("Greet", toast("Hello!"))
    * [Shorter listeners](https://github.com/pocorall/scaloid/wiki/Basics#wiki-enriched-implicit-classes)
    * [Database cursor](http://blog.scaloid.org/2014/02/simple-enhancements-on-accessing.html)
  * [Traits](https://github.com/pocorall/scaloid/wiki/Basics#wiki-traits)
- * [Smarter logging](https://github.com/pocorall/scaloid/wiki/Basics#logging)
+ * [Smarter logging](https://github.com/pocorall/scaloid/wiki/Basics#wiki-logging)
  * [Improved getters/setters](#scala-getters-and-setters)
  * [Classes](#classes)
    * [Concise dialog builder](#class-alertdialogbuilder)
@@ -392,7 +392,7 @@ Currently, `r2Text`, `r2TextArray`, `r2String`, `r2StringArray`, `r2Drawable` an
 
 
 **Further reading:**
- * [Why implicit conversion of Resource ID is cool?](https://github.com/pocorall/scaloid/wiki/Basics#why-implicit-conversion-of-resource-id-is-cool)
+ * [Why implicit conversion of Resource ID is cool?](https://github.com/pocorall/scaloid/wiki/Basics#wiki-why-implicit-conversion-of-resource-id-is-cool)
 
 
 
@@ -678,7 +678,7 @@ override def onCreate(savedInstanceState: Bundle) {
 // ... uses the button somewhere in other methods (e.g. changing text or adding listeners)
 ```
 
-[Prefixed classes](https://github.com/pocorall/scaloid/wiki/Basics#prefixed-classes) in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. These methods also append the component to the layout context that enclose the component. 
+[Prefixed classes](https://github.com/pocorall/scaloid/wiki/Basics#wiki-prefixed-classes) in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. These methods also append the component to the layout context that enclose the component. 
 Therefore, the code block from the above example:
 
 ```scala
@@ -1044,9 +1044,9 @@ STextView("Hello") textSize 15
 
 **Further readings:**
 
- * [Return value of setters](https://github.com/pocorall/scaloid/wiki/Basics#return-value-of-setters)
- * [Prefixed classes](https://github.com/pocorall/scaloid/wiki/Basics#prefixed-classes)
- * [Sweet-little sugar](https://github.com/pocorall/scaloid/wiki/Basics#sweet-little-sugar)
+ * [Return value of setters](https://github.com/pocorall/scaloid/wiki/Basics#wiki-return-value-of-setters)
+ * [Prefixed classes](https://github.com/pocorall/scaloid/wiki/Basics#wiki-prefixed-classes)
+ * [Sweet-little sugar](https://github.com/pocorall/scaloid/wiki/Basics#wiki-sweet-little-sugar)
 
 
 ## Classes
@@ -1094,7 +1094,7 @@ new AlertDialog.Builder(context)
   }).show()
 ```
 
-When you call `show()` or `alert` from non-UI thread, you [don't have to mind about threading](https://github.com/pocorall/scaloid/wiki/Basics#asynchronous-task-processing).
+When you call `show()` or `alert` from non-UI thread, you [don't have to mind about threading](https://github.com/pocorall/scaloid/wiki/Basics#wiki-asynchronous-task-processing).
 
 ### Class `SArrayAdapter`
 
@@ -1207,7 +1207,7 @@ If you want look into inside of Scaloid, this document would be helpful:
  - [Support-v4 package](https://github.com/pocorall/scaloid-support-v4) - Scaloid port of support-v4 compatibility library
 -->
  
-### [List of projects using Scaloid](https://github.com/pocorall/scaloid/wiki/Appendix#list-of-projects-using-scaloid)
+### [List of projects using Scaloid](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-list-of-projects-using-scaloid)
 
 ### We are hiring!
 The company behind Scaloid, onsquare is hiring Scala developers.
