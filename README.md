@@ -1211,6 +1211,8 @@ If you want look into inside of Scaloid, this document would be helpful:
 
 ### We are hiring!
 The company behind Scaloid, onsquare is hiring Scala developers.
-Employees need to work at onsquare office located at Incheon, Korea.
+We are building [a music app](https://play.google.com/store/apps/details?id=com.soundcorset.client.android) and other amazing products.
+We extensively uses Scaloid in our product, and probably it is the best reference of Scaloid application.
 Please send us your CV via email if you are interested in working at onsqure.
+We are located at Incheon, Korea.
 pocorall@gmail.com
