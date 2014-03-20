@@ -40,6 +40,7 @@ import android.util.Log
 import android.os._
 import scala.collection.mutable.ArrayBuffer
 import scala.reflect._
+import android.view.Gravity
 
 
 class EventSource0[T] extends ArrayBuffer[() => T] {
@@ -108,6 +109,8 @@ trait TraitContext[V <: android.content.Context] {
   def basis: V
 
   implicit val ctx = basis
+
+  implicit val gravity = Gravity.CENTER
 
 
   /**
