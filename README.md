@@ -30,7 +30,7 @@
 
 # Less painful Android development with Scala
 
-Scaloid is a library that simplifies your Android code. It makes your code easy to understand and maintain by [leveraging Scala language](https://github.com/pocorall/scaloid/wiki/Appendix#faqs-about-scaloid).
+Scaloid is a library that simplifies your Android code. It makes your code easy to understand and maintain by [leveraging Scala language](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-faqs-about-scaloid).
 
 For example, the code block shown below:
 
@@ -56,9 +56,9 @@ SButton("Greet", toast("Hello!"))
  * **Write elegant Android software**<br/>
    Scaloid provides a concise and type-safe way of writing Android application.
  * **Simple to use**<br/>
-   Check the [quick start guide](https://github.com/pocorall/scaloid/wiki/Installation#quick-start)
+   Check the [quick start guide](https://github.com/pocorall/scaloid/wiki/Installation#wiki-quick-start)
  * **Compatible with your legacy code**<br/>
-   You can use both Scaloid and plain-old Java Android API. You can gradually improve your legacy code.
+   You can [use both Scaloid and plain-old Java Android API](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-i-cant-use-scaloid-because-it-does-not-provide-a-functionality-x). You can gradually improve your legacy code.
  * **Maintained actively**<br/>
    Scaloid is a [dogfooding](http://en.wikipedia.org/wiki/Eating_your_own_dog_food) software. This is originally created to be used for [my own](https://play.google.com/store/apps/details?id=com.soundcorset.client.android) [Android apps](https://play.google.com/store/apps/details?id=com.tocplus.client.android).
 
@@ -70,7 +70,7 @@ SButton("Greet", toast("Hello!"))
    Fork this for sbt build.
  * [<b>Scaloid port of apidemos app</b>](https://github.com/pocorall/scaloid-apidemos)<br/>
    Learn how Scaloid can be used in action.
- * [<b>List of projects using Scaloid</b>](https://github.com/pocorall/scaloid/wiki/Appendix#list-of-projects-using-scaloid)
+ * [<b>List of projects using Scaloid</b>](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-list-of-projects-using-scaloid)
  * [<b>Tutorial by Gaston Hillar</b>](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240161584) - [part 1](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240161584) and [part 2](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240162204)
 
 
@@ -81,13 +81,12 @@ SButton("Greet", toast("Hello!"))
    * [Styles for programmers](#styles-for-programmers)
    * [Automatic layout converter](#automatic-layout-converter)
  * [Lifecycle management](#lifecycle-management)
- * [Asynchronous task processing](https://github.com/pocorall/scaloid/wiki/Basics#asynchronous-task-processing)
- * [Implicit conversions](https://github.com/pocorall/scaloid/wiki/Basics#implicit-conversions)
-   * [Context as an implicit parameter](https://github.com/pocorall/scaloid/wiki/Basics#context-as-an-implicit-parameter)
-   * [Activity as an implicit parameter](https://github.com/pocorall/scaloid/wiki/Basics#activity-as-an-implicit-parameter)
-   * [Shorter listeners](https://github.com/pocorall/scaloid/wiki/Basics#enriched-implicit-classes)
- * [Traits](https://github.com/pocorall/scaloid/wiki/Basics#traits)
- * [Smarter logging](https://github.com/pocorall/scaloid/wiki/Basics#logging)
+ * [Asynchronous task processing](https://github.com/pocorall/scaloid/wiki/Basics#wiki-asynchronous-task-processing)
+ * [Implicit conversions](https://github.com/pocorall/scaloid/wiki/Basics#wiki-implicit-conversions)
+   * [Shorter listeners](https://github.com/pocorall/scaloid/wiki/Basics#wiki-enriched-implicit-classes)
+   * [Database cursor](http://blog.scaloid.org/2014/02/simple-enhancements-on-accessing.html)
+ * [Traits](https://github.com/pocorall/scaloid/wiki/Basics#wiki-traits)
+ * [Smarter logging](https://github.com/pocorall/scaloid/wiki/Basics#wiki-logging)
  * [Improved getters/setters](#scala-getters-and-setters)
  * [Classes](#classes)
    * [Concise dialog builder](#class-alertdialogbuilder)
@@ -96,14 +95,12 @@ SButton("Greet", toast("Hello!"))
    * [Binding services concisely](#class-localservice)  [<sub>`Read in blog`</sub>](http://blog.scaloid.org/2013/03/introducing-localservice.html)
    
 ## Other links   
- * [<b>Quick start guide</b>](https://github.com/pocorall/scaloid/wiki/Installation#quick-start)
+ * [<b>Quick start guide</b>](https://github.com/pocorall/scaloid/wiki/Installation#wiki-quick-start)
  * [<b>API doc</b>](http://docs.scaloid.org/)
  * [<b>Blog</b>](http://blog.scaloid.org/)
  * [<b>Twitter</b>](https://twitter.com/scaloid/)
- * [<b>FAQs</b>](https://github.com/pocorall/scaloid/wiki/Appendix#faqs-about-scala-on-android)
-     * [Why Scala rather than Xtend?](https://github.com/pocorall/scaloid/wiki/Appendix#why-scala-rather-than-xtend)
-     * [Why Scala rather than JRuby?](https://github.com/pocorall/scaloid/wiki/Appendix#why-scala-rather-than-jruby)
-     * [FAQs about Scala on Android](https://github.com/pocorall/scaloid/wiki/Appendix#faqs-about-scala-on-android)
+ * [<b>FAQs</b>](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-faqs-about-scaloid)
+     * [FAQs about Scala on Android](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-faqs-about-scala-on-android)
  * [<b>Inside Scaloid</b>](https://github.com/pocorall/scaloid/wiki/Inside-Scaloid)
 
 ## UI Layout without XML
@@ -367,6 +364,13 @@ val inPixel:Int = 32.dip
 val inPixel2:Int = 22.sp
 ```
 
+Reversely, pixel unit can also be converted into `dip` and `sp` unit.
+
+```scala
+val inDip:Double = 35.px2dip
+val inSp:Double = 27.px2sp
+```
+
 ##### Resource IDs
 
 Scaloid provides several implicit conversions that convert from `Int` type resource ID to `CharSequence`, `Array[CharSequence]`, `Array[String]`, `Drawable` and `Movie`.
@@ -388,7 +392,7 @@ Currently, `r2Text`, `r2TextArray`, `r2String`, `r2StringArray`, `r2Drawable` an
 
 
 **Further reading:**
- * [Why implicit conversion of Resource ID is cool?](https://github.com/pocorall/scaloid/wiki/Basics#why-implicit-conversion-of-resource-id-is-cool)
+ * [Why implicit conversion of Resource ID is cool?](https://github.com/pocorall/scaloid/wiki/Basics#wiki-why-implicit-conversion-of-resource-id-is-cool)
 
 
 
@@ -674,7 +678,7 @@ override def onCreate(savedInstanceState: Bundle) {
 // ... uses the button somewhere in other methods (e.g. changing text or adding listeners)
 ```
 
-[Prefixed classes](https://github.com/pocorall/scaloid/wiki/Basics#prefixed-classes) in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. These methods also append the component to the layout context that enclose the component. 
+[Prefixed classes](https://github.com/pocorall/scaloid/wiki/Basics#wiki-prefixed-classes) in Scaloid (e.g. `SButton`) have a companion object that implements `apply` methods that create a new component. These methods also append the component to the layout context that enclose the component. 
 Therefore, the code block from the above example:
 
 ```scala
@@ -1040,9 +1044,9 @@ STextView("Hello") textSize 15
 
 **Further readings:**
 
- * [Return value of setters](https://github.com/pocorall/scaloid/wiki/Basics#return-value-of-setters)
- * [Prefixed classes](https://github.com/pocorall/scaloid/wiki/Basics#prefixed-classes)
- * [Sweet-little sugar](https://github.com/pocorall/scaloid/wiki/Basics#sweet-little-sugar)
+ * [Return value of setters](https://github.com/pocorall/scaloid/wiki/Basics#wiki-return-value-of-setters)
+ * [Prefixed classes](https://github.com/pocorall/scaloid/wiki/Basics#wiki-prefixed-classes)
+ * [Sweet-little sugar](https://github.com/pocorall/scaloid/wiki/Basics#wiki-sweet-little-sugar)
 
 
 ## Classes
@@ -1090,7 +1094,7 @@ new AlertDialog.Builder(context)
   }).show()
 ```
 
-When you call `show()` or `alert` from non-UI thread, you [don't have to mind about threading](https://github.com/pocorall/scaloid/wiki/Basics#asynchronous-task-processing).
+When you call `show()` or `alert` from non-UI thread, you [don't have to mind about threading](https://github.com/pocorall/scaloid/wiki/Basics#wiki-asynchronous-task-processing).
 
 ### Class `SArrayAdapter`
 
@@ -1203,10 +1207,12 @@ If you want look into inside of Scaloid, this document would be helpful:
  - [Support-v4 package](https://github.com/pocorall/scaloid-support-v4) - Scaloid port of support-v4 compatibility library
 -->
  
-### [List of projects using Scaloid](https://github.com/pocorall/scaloid/wiki/Appendix#list-of-projects-using-scaloid)
+### [List of projects using Scaloid](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-list-of-projects-using-scaloid)
 
 ### We are hiring!
 The company behind Scaloid, onsquare is hiring Scala developers.
-Employees need to work at onsquare office located at Incheon, Korea.
+We are building [a music app](https://play.google.com/store/apps/details?id=com.soundcorset.client.android) and other amazing products.
+We extensively uses Scaloid in our product, and probably it is the best reference of Scaloid application.
 Please send us your CV via email if you are interested in working at onsqure.
+We are located at Incheon, Korea.
 pocorall@gmail.com
