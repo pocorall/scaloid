@@ -110,7 +110,7 @@ trait TraitContext[V <: android.content.Context] {
 
   implicit val ctx = basis
 
-  implicit val gravity = Gravity.CENTER
+  implicit val gravity = Gravity.BOTTOM
 
 
   /**
