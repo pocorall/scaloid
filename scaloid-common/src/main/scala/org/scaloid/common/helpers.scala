@@ -42,6 +42,7 @@ import android.net._
 import android.preference._
 import android.widget._
 import scala.reflect._
+import android.view.Gravity
 
 trait AppHelpers {
 
@@ -161,16 +162,24 @@ trait WidgetHelpers {
    * Displays a toast message.
    * This method can be called from any threads.
    */
-  @inline def toast(message: CharSequence)(implicit context: Context) {
-    runOnUiThread(Toast.makeText(context, message, Toast.LENGTH_SHORT).show())
+  @inline def toast(message: CharSequence)(implicit context: Context, gravity:Int) {
+    runOnUiThread{
+      val t=Toast.makeText(context, message, Toast.LENGTH_SHORT)
+      t.setGravity(gravity,0,0)
+      t.show()
+    }
   }
 
   /**
    * Displays a toast message for a longer time.
    * This method can be called from any threads.
    */
-  @inline def longToast(message: CharSequence)(implicit context: Context) {
-    runOnUiThread(Toast.makeText(context, message, Toast.LENGTH_LONG).show())
+  @inline def longToast(message: CharSequence)(implicit context: Context, gravity:Int) {
+    runOnUiThread{
+      val t=Toast.makeText(context, message, Toast.LENGTH_LONG)
+      t.setGravity(gravity,0,0)
+      t.show()
+    }
   }
 
   /**
