@@ -310,7 +310,7 @@ trait TraitFragmentManager[V <: android.support.v4.app.FragmentManager] {
 
 
 
-  @inline def onBackStackChanged(f: => Unit): V = {
+  @inline def onBackStackChanged[U](f:  => U): V = {
     basis.addOnBackStackChangedListener(new android.support.v4.app.FragmentManager.OnBackStackChangedListener {
       def onBackStackChanged(): Unit = { f }
     })

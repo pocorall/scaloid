@@ -152,7 +152,7 @@ trait TraitViewPager[V <: android.support.v4.view.ViewPager] extends TraitViewGr
   @inline def pageMarginDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setPageMarginDrawable(p); basis }
 
 
-  @inline def onPageScrollStateChanged(f: Int => Unit): V = {
+  @inline def onPageScrollStateChanged[U](f: Int => U): V = {
     basis.setOnPageChangeListener(new android.support.v4.view.ViewPager.OnPageChangeListener {
       def onPageScrollStateChanged(p: Int): Unit = { f(p) }
       def onPageScrolled(p1: Int, p2: Float, p3: Int): Unit = {  }
@@ -161,7 +161,7 @@ trait TraitViewPager[V <: android.support.v4.view.ViewPager] extends TraitViewGr
     basis
   }
 
-  @inline def onPageScrollStateChanged(f: => Unit): V = {
+  @inline def onPageScrollStateChanged[U](f:  => U): V = {
     basis.setOnPageChangeListener(new android.support.v4.view.ViewPager.OnPageChangeListener {
       def onPageScrollStateChanged(p: Int): Unit = { f }
       def onPageScrolled(p1: Int, p2: Float, p3: Int): Unit = {  }
@@ -170,7 +170,7 @@ trait TraitViewPager[V <: android.support.v4.view.ViewPager] extends TraitViewGr
     basis
   }
 
-  @inline def onPageScrolled(f: (Int, Float, Int) => Unit): V = {
+  @inline def onPageScrolled[U](f: (Int, Float, Int) => U): V = {
     basis.setOnPageChangeListener(new android.support.v4.view.ViewPager.OnPageChangeListener {
       def onPageScrollStateChanged(p: Int): Unit = {  }
       def onPageScrolled(p1: Int, p2: Float, p3: Int): Unit = { f(p1, p2, p3) }
@@ -179,7 +179,7 @@ trait TraitViewPager[V <: android.support.v4.view.ViewPager] extends TraitViewGr
     basis
   }
 
-  @inline def onPageScrolled(f: => Unit): V = {
+  @inline def onPageScrolled[U](f:  => U): V = {
     basis.setOnPageChangeListener(new android.support.v4.view.ViewPager.OnPageChangeListener {
       def onPageScrollStateChanged(p: Int): Unit = {  }
       def onPageScrolled(p1: Int, p2: Float, p3: Int): Unit = { f }
@@ -188,7 +188,7 @@ trait TraitViewPager[V <: android.support.v4.view.ViewPager] extends TraitViewGr
     basis
   }
 
-  @inline def onPageSelected(f: Int => Unit): V = {
+  @inline def onPageSelected[U](f: Int => U): V = {
     basis.setOnPageChangeListener(new android.support.v4.view.ViewPager.OnPageChangeListener {
       def onPageScrollStateChanged(p: Int): Unit = {  }
       def onPageScrolled(p1: Int, p2: Float, p3: Int): Unit = {  }
@@ -197,7 +197,7 @@ trait TraitViewPager[V <: android.support.v4.view.ViewPager] extends TraitViewGr
     basis
   }
 
-  @inline def onPageSelected(f: => Unit): V = {
+  @inline def onPageSelected[U](f:  => U): V = {
     basis.setOnPageChangeListener(new android.support.v4.view.ViewPager.OnPageChangeListener {
       def onPageScrollStateChanged(p: Int): Unit = {  }
       def onPageScrolled(p1: Int, p2: Float, p3: Int): Unit = {  }

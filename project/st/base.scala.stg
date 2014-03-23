@@ -10,6 +10,10 @@ isEmpty ::= [
   "" : true
 ]
 
+isUnit ::= [
+  "Unit" : true
+]
+
 // Implicit 
 
 implicitConversions(pkg) ::= <<
@@ -384,9 +388,15 @@ def $method.name$$paramedTypes(paramedTypes, true)$($namedArgs(method.argTypes)$
 
 unitCallbackMethod(method) ::= <<$callbackMethod(method, true)$>>
 
-fullListener(l) ::= <<
-@inline def $l.name$(f: $argTypes(l.argTypes)$ => $genType(l.retType)$): V = {
+commonListener(l, args = "") ::= <<
+$if(isUnit.(l.retType.name))$@inline def $l.name$[U](f: $args$ => U): V = {
+$else$@inline def $l.name$(f: $args$ => $genType(l.retType)$): V = {
+$endif$
   basis.$l.setter$(new $l.callbackClassName$ {
+>>
+
+fullListener(l) ::= <<
+$commonListener(l, argTypes(l.argTypes))$
     $l.callbackMethods:callbackMethod(); separator="\n"$
   })
   basis
@@ -394,8 +404,7 @@ fullListener(l) ::= <<
 >>
 
 unitListener(l) ::= <<
-@inline def $l.name$(f: => $genType(l.retType)$): V = {
-  basis.$l.setter$(new $l.callbackClassName$ {
+$commonListener(l)$
     $l.callbackMethods:unitCallbackMethod(); separator="\n"$
   })
   basis

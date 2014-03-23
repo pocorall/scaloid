@@ -391,7 +391,7 @@ trait TraitPreference[V <: android.preference.Preference] {
     basis
   }
 
-  @inline def onPreferenceChange(f: => Boolean): V = {
+  @inline def onPreferenceChange(f:  => Boolean): V = {
     basis.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener {
       def onPreferenceChange(p1: android.preference.Preference, p2: Any): Boolean = { f }
     })
@@ -405,7 +405,7 @@ trait TraitPreference[V <: android.preference.Preference] {
     basis
   }
 
-  @inline def onPreferenceClick(f: => Boolean): V = {
+  @inline def onPreferenceClick(f:  => Boolean): V = {
     basis.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener {
       def onPreferenceClick(p: android.preference.Preference): Boolean = { f }
     })
