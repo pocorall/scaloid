@@ -8,6 +8,7 @@ import android.media._
 import android.net._
 import android.preference._
 import android.widget._
+import android.view._
 import scala.reflect._
 
 trait AppHelpers {
@@ -124,20 +125,28 @@ object PreferenceHelpers extends PreferenceHelpers
  * Contains helper methods that displaying some UI elements.
  */
 trait WidgetHelpers {
+  @inline private[this] def _toast(message: CharSequence, duration: Int, gravity: Int, view: View)(implicit context: Context) {
+    runOnUiThread {
+      val toast = Toast.makeText(context, message, duration)
+      toast.setGravity(gravity, 0, 0)
+      if(view != null) toast.setView(view)
+      toast.show()
+    }
+  }
   /**
    * Displays a toast message.
    * This method can be called from any threads.
    */
-  @inline def toast(message: CharSequence)(implicit context: Context) {
-    runOnUiThread(Toast.makeText(context, message, Toast.LENGTH_SHORT).show())
+  @inline def toast(message: CharSequence, gravity: Int = Gravity.BOTTOM, view: View = null)(implicit context: Context) {
+    _toast(message, Toast.LENGTH_SHORT, gravity, view)
   }
 
   /**
    * Displays a toast message for a longer time.
    * This method can be called from any threads.
    */
-  @inline def longToast(message: CharSequence)(implicit context: Context) {
-    runOnUiThread(Toast.makeText(context, message, Toast.LENGTH_LONG).show())
+  @inline def longToast(message: CharSequence, gravity: Int = Gravity.BOTTOM, view: View = null)(implicit context: Context) {
+    _toast(message, Toast.LENGTH_LONG, gravity, view)
   }
 
   /**
