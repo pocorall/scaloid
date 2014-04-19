@@ -11,7 +11,7 @@ object Dependencies {
 
   val android = "com.google.android" % "android" % "2.2.1" % "provided"
   val android_support_v4 = "com.google.android" % "support-v4" % "r7" % "provided"
-  val scaloidVersion = "3.3-8-SNAPSHOT"
+  val scaloidVersion = "3.3-8"
   val scaloid = "org.scaloid" %% "scaloid" % scaloidVersion
 }
 
