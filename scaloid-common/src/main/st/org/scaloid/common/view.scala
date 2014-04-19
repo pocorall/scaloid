@@ -12,6 +12,44 @@ import scala.language.implicitConversions
 import ViewImplicits._
 
 
+trait PressAndHoldable {
+  def basis: android.view.View
+
+  class PressAndHoldListener(interval: Int, onPressed: () => Unit) extends View.OnTouchListener with View.OnLongClickListener {
+    var autoIncrementing: Boolean = false
+    private val repeatUpdateHandler = new android.os.Handler()
+
+    override def onTouch(v: View, event: MotionEvent): Boolean = {
+      if (event.getAction == MotionEvent.ACTION_UP && autoIncrementing) {
+        autoIncrementing = false
+      }
+      false
+    }
+
+    override def onLongClick(p1: View): Boolean = {
+      autoIncrementing = true
+      repeatUpdateHandler.post(new RptUpdater)
+      false
+    }
+
+    class RptUpdater extends Runnable {
+      override def run() {
+        if (autoIncrementing) {
+          onPressed()
+          repeatUpdateHandler.postDelayed(this, interval)
+        }
+      }
+    }
+  }
+
+  def onPressAndHold(interval: Int, onPressed: => Unit) {
+    val listener = new PressAndHoldListener(interval, () => onPressed)
+    basis.setOnTouchListener(listener)
+    basis.setOnLongClickListener(listener)
+  }
+}
+
+
 $wholeClassDef(android.view.View)$
 
 $wholeClassDef(android.view.ViewGroup)$
