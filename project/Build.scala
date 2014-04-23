@@ -27,7 +27,7 @@ object ScaloidBuild extends Build {
     organizationHomepage := Some(new URL("http://blog.scaloid.org")),
     description := "Less Painful Android Development with Scala",
     startYear := Some(2012),
-    scalaVersion := "2.11.0",
+    crossScalaVersions := Seq("2.10.4", "2.11.0"),
     version := scaloidVersion,
     resolvers ++= Dependencies.resolutionRepos,
     publishMavenStyle := true,
@@ -79,6 +79,7 @@ object ScaloidBuild extends Build {
 
   //  root project
   lazy val parent = Project("parent", file("."))
+    .settings(basicSettings: _*)
     .settings(scaloidSettings: _*)
     .settings(publish := {}, publishLocal := {})
     .aggregate(common, support_v4, util)
