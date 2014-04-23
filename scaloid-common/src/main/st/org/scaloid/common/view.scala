@@ -12,8 +12,8 @@ import scala.language.implicitConversions
 import ViewImplicits._
 
 
-trait PressAndHoldable {
-  def basis: android.view.View
+trait PressAndHoldable[V <: View] {
+  def basis: V
 
   class PressAndHoldListener(interval: Int, onPressed: () => Unit) extends View.OnTouchListener with View.OnLongClickListener {
     var autoIncrementing: Boolean = false
@@ -42,10 +42,10 @@ trait PressAndHoldable {
     }
   }
 
-  def onPressAndHold(interval: Int, onPressed: => Unit) {
+  def onPressAndHold(interval: Int, onPressed: => Unit): V = {
     val listener = new PressAndHoldListener(interval, () => onPressed)
-    basis.setOnTouchListener(listener)
-    basis.setOnLongClickListener(listener)
+    basis.onTouchListener(listener)
+    basis.onLongClickListener(listener)
   }
 }
 

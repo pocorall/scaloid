@@ -1,4 +1,4 @@
-View_mixin() ::= "ConstantsSupport with PressAndHoldable"
+View_mixin() ::= "ConstantsSupport with PressAndHoldable[V]"
 
 View_traitBody() ::= <<
 def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
