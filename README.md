@@ -102,6 +102,7 @@ SButton("Greet", toast("Hello!"))
  * [<b>FAQs</b>](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-faqs-about-scaloid)
      * [FAQs about Scala on Android](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-faqs-about-scala-on-android)
  * [<b>Inside Scaloid</b>](https://github.com/pocorall/scaloid/wiki/Inside-Scaloid)
+ * [<b>We are hiring!</b>](#we-are-hiring)
 
 ## UI Layout without XML
 <p align="center"><img src="http://o-n2.com/verboseSimple.png"></p>
@@ -1213,6 +1214,7 @@ If you want look into inside of Scaloid, this document would be helpful:
 The company behind Scaloid, onsquare is hiring Scala developers.
 We are building [a music app](https://play.google.com/store/apps/details?id=com.soundcorset.client.android) and other amazing products.
 We extensively uses Scaloid in our product, and probably it is the best reference of Scaloid application.
+For more information about our company, please refer to our website http://o-n2.com .
 Please send us your CV via email if you are interested in working at onsqure.
 We are located at Incheon, Korea.
 pocorall@gmail.com
