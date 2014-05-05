@@ -378,6 +378,22 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getFilterTouchesWhenObscured() getFilterTouchesWhenObscured()]]`
+   */
+  @inline def filterTouchesWhenObscured = basis.getFilterTouchesWhenObscured
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setFilterTouchesWhenObscured(boolean) setFilterTouchesWhenObscured(boolean)]]`
+   */
+  @inline def filterTouchesWhenObscured  (p: Boolean) =            filterTouchesWhenObscured_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setFilterTouchesWhenObscured(boolean) setFilterTouchesWhenObscured(boolean)]]`
+   */
+  @inline def filterTouchesWhenObscured_=(p: Boolean) = { basis.setFilterTouchesWhenObscured(p); basis }
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isFocusable() isFocusable()]]`
    */
   @inline def focusable = basis.isFocusable
@@ -741,6 +757,22 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnTouchListener(android.view.View.OnTouchListener) setOnTouchListener(android.view.View.OnTouchListener)]]`
    */
   @inline def onTouchListener_=(p: android.view.View.OnTouchListener) = { basis.setOnTouchListener(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getOverScrollMode() getOverScrollMode()]]`
+   */
+  @inline def overScrollMode = basis.getOverScrollMode
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOverScrollMode(int) setOverScrollMode(int)]]`
+   */
+  @inline def overScrollMode  (p: Int) =            overScrollMode_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOverScrollMode(int) setOverScrollMode(int)]]`
+   */
+  @inline def overScrollMode_=(p: Int) = { basis.setOverScrollMode(p); basis }
 
 
   /**

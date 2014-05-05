@@ -9,9 +9,9 @@ object Dependencies {
     //    "sonatype snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
   )
 
-  val android = "com.google.android" % "android" % "2.2.1" % "provided"
+  val android = "com.google.android" % "android" % "2.3.3" % "provided"
   val android_support_v4 = "com.google.android" % "support-v4" % "r7" % "provided"
-  val scaloidVersion = "3.4-8-SNAPSHOT"
+  val scaloidVersion = "3.4-10-SNAPSHOT"
   val scaloid = "org.scaloid" %% "scaloid" % scaloidVersion
 }
 
@@ -27,7 +27,7 @@ object ScaloidBuild extends Build {
     organizationHomepage := Some(new URL("http://blog.scaloid.org")),
     description := "Less Painful Android Development with Scala",
     startYear := Some(2012),
-    scalaVersion := "2.10.4",
+    scalaVersion := "2.11.0",
     crossScalaVersions := Seq("2.10.4", "2.11.0"),
     version := scaloidVersion,
     resolvers ++= Dependencies.resolutionRepos,
