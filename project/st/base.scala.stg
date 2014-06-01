@@ -457,8 +457,8 @@ $endif$
 
 switch(name, setter) ::= <<
 $if(setter.name)$
-@inline def  enable$name$               = { basis.$setter.name$(true ); basis }
-@inline def disable$name$               = { basis.$setter.name$(false); basis }
+@inline def  enable$name$()             = { basis.$setter.name$(true ); basis }
+@inline def disable$name$()             = { basis.$setter.name$(false); basis }
 $endif$
 >>
 

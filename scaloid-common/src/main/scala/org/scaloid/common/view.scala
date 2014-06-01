@@ -300,8 +300,8 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    */
   @inline def drawingCacheEnabled_=(p: Boolean) = { basis.setDrawingCacheEnabled(p); basis }
 
-  @inline def  enableDrawingCache               = { basis.setDrawingCacheEnabled(true ); basis }
-  @inline def disableDrawingCache               = { basis.setDrawingCacheEnabled(false); basis }
+  @inline def  enableDrawingCache()             = { basis.setDrawingCacheEnabled(true ); basis }
+  @inline def disableDrawingCache()             = { basis.setDrawingCacheEnabled(false); basis }
 
 
   /**
@@ -341,8 +341,8 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    */
   @inline def duplicateParentStateEnabled_=(p: Boolean) = { basis.setDuplicateParentStateEnabled(p); basis }
 
-  @inline def  enableDuplicateParentState               = { basis.setDuplicateParentStateEnabled(true ); basis }
-  @inline def disableDuplicateParentState               = { basis.setDuplicateParentStateEnabled(false); basis }
+  @inline def  enableDuplicateParentState()             = { basis.setDuplicateParentStateEnabled(true ); basis }
+  @inline def disableDuplicateParentState()             = { basis.setDuplicateParentStateEnabled(false); basis }
 
 
   /**
@@ -360,8 +360,8 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    */
   @inline def enabled_=(p: Boolean) = { basis.setEnabled(p); basis }
 
-  @inline def  enable               = { basis.setEnabled(true ); basis }
-  @inline def disable               = { basis.setEnabled(false); basis }
+  @inline def  enable()             = { basis.setEnabled(true ); basis }
+  @inline def disable()             = { basis.setEnabled(false); basis }
 
 
   @inline def fadingEdgeLength(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'fadingEdgeLength'")
@@ -446,8 +446,8 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    */
   @inline def hapticFeedbackEnabled_=(p: Boolean) = { basis.setHapticFeedbackEnabled(p); basis }
 
-  @inline def  enableHapticFeedback               = { basis.setHapticFeedbackEnabled(true ); basis }
-  @inline def disableHapticFeedback               = { basis.setHapticFeedbackEnabled(false); basis }
+  @inline def  enableHapticFeedback()             = { basis.setHapticFeedbackEnabled(true ); basis }
+  @inline def disableHapticFeedback()             = { basis.setHapticFeedbackEnabled(false); basis }
 
 
   /**
@@ -471,8 +471,8 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    */
   @inline def horizontalFadingEdgeEnabled_=(p: Boolean) = { basis.setHorizontalFadingEdgeEnabled(p); basis }
 
-  @inline def  enableHorizontalFadingEdge               = { basis.setHorizontalFadingEdgeEnabled(true ); basis }
-  @inline def disableHorizontalFadingEdge               = { basis.setHorizontalFadingEdgeEnabled(false); basis }
+  @inline def  enableHorizontalFadingEdge()             = { basis.setHorizontalFadingEdgeEnabled(true ); basis }
+  @inline def disableHorizontalFadingEdge()             = { basis.setHorizontalFadingEdgeEnabled(false); basis }
 
 
   /**
@@ -496,8 +496,8 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    */
   @inline def horizontalScrollBarEnabled_=(p: Boolean) = { basis.setHorizontalScrollBarEnabled(p); basis }
 
-  @inline def  enableHorizontalScrollBar               = { basis.setHorizontalScrollBarEnabled(true ); basis }
-  @inline def disableHorizontalScrollBar               = { basis.setHorizontalScrollBarEnabled(false); basis }
+  @inline def  enableHorizontalScrollBar()             = { basis.setHorizontalScrollBarEnabled(true ); basis }
+  @inline def disableHorizontalScrollBar()             = { basis.setHorizontalScrollBarEnabled(false); basis }
 
 
   /**
@@ -854,8 +854,8 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    */
   @inline def saveEnabled_=(p: Boolean) = { basis.setSaveEnabled(p); basis }
 
-  @inline def  enableSave               = { basis.setSaveEnabled(true ); basis }
-  @inline def disableSave               = { basis.setSaveEnabled(false); basis }
+  @inline def  enableSave()             = { basis.setSaveEnabled(true ); basis }
+  @inline def disableSave()             = { basis.setSaveEnabled(false); basis }
 
 
   /**
@@ -914,8 +914,8 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    */
   @inline def scrollbarFadingEnabled_=(p: Boolean) = { basis.setScrollbarFadingEnabled(p); basis }
 
-  @inline def  enableScrollbarFading               = { basis.setScrollbarFadingEnabled(true ); basis }
-  @inline def disableScrollbarFading               = { basis.setScrollbarFadingEnabled(false); basis }
+  @inline def  enableScrollbarFading()             = { basis.setScrollbarFadingEnabled(true ); basis }
+  @inline def disableScrollbarFading()             = { basis.setScrollbarFadingEnabled(false); basis }
 
 
   /**
@@ -955,8 +955,8 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    */
   @inline def soundEffectsEnabled_=(p: Boolean) = { basis.setSoundEffectsEnabled(p); basis }
 
-  @inline def  enableSoundEffects               = { basis.setSoundEffectsEnabled(true ); basis }
-  @inline def disableSoundEffects               = { basis.setSoundEffectsEnabled(false); basis }
+  @inline def  enableSoundEffects()             = { basis.setSoundEffectsEnabled(true ); basis }
+  @inline def disableSoundEffects()             = { basis.setSoundEffectsEnabled(false); basis }
 
 
   /**
@@ -1018,8 +1018,8 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    */
   @inline def verticalFadingEdgeEnabled_=(p: Boolean) = { basis.setVerticalFadingEdgeEnabled(p); basis }
 
-  @inline def  enableVerticalFadingEdge               = { basis.setVerticalFadingEdgeEnabled(true ); basis }
-  @inline def disableVerticalFadingEdge               = { basis.setVerticalFadingEdgeEnabled(false); basis }
+  @inline def  enableVerticalFadingEdge()             = { basis.setVerticalFadingEdgeEnabled(true ); basis }
+  @inline def disableVerticalFadingEdge()             = { basis.setVerticalFadingEdgeEnabled(false); basis }
 
 
   /**
@@ -1043,8 +1043,8 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    */
   @inline def verticalScrollBarEnabled_=(p: Boolean) = { basis.setVerticalScrollBarEnabled(p); basis }
 
-  @inline def  enableVerticalScrollBar               = { basis.setVerticalScrollBarEnabled(true ); basis }
-  @inline def disableVerticalScrollBar               = { basis.setVerticalScrollBarEnabled(false); basis }
+  @inline def  enableVerticalScrollBar()             = { basis.setVerticalScrollBarEnabled(true ); basis }
+  @inline def disableVerticalScrollBar()             = { basis.setVerticalScrollBarEnabled(false); basis }
 
 
   /**
@@ -1284,8 +1284,8 @@ trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
    */
   @inline def alwaysDrawnWithCacheEnabled_=(p: Boolean) = { basis.setAlwaysDrawnWithCacheEnabled(p); basis }
 
-  @inline def  enableAlwaysDrawnWithCache               = { basis.setAlwaysDrawnWithCacheEnabled(true ); basis }
-  @inline def disableAlwaysDrawnWithCache               = { basis.setAlwaysDrawnWithCacheEnabled(false); basis }
+  @inline def  enableAlwaysDrawnWithCache()             = { basis.setAlwaysDrawnWithCacheEnabled(true ); basis }
+  @inline def disableAlwaysDrawnWithCache()             = { basis.setAlwaysDrawnWithCacheEnabled(false); basis }
 
 
   /**
@@ -1303,8 +1303,8 @@ trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
    */
   @inline def animationCacheEnabled_=(p: Boolean) = { basis.setAnimationCacheEnabled(p); basis }
 
-  @inline def  enableAnimationCache               = { basis.setAnimationCacheEnabled(true ); basis }
-  @inline def disableAnimationCache               = { basis.setAnimationCacheEnabled(false); basis }
+  @inline def  enableAnimationCache()             = { basis.setAnimationCacheEnabled(true ); basis }
+  @inline def disableAnimationCache()             = { basis.setAnimationCacheEnabled(false); basis }
 
 
   /**

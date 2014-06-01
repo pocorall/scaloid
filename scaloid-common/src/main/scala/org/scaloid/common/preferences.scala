@@ -154,8 +154,8 @@ trait TraitPreference[V <: android.preference.Preference] {
    */
   @inline def enabled_=(p: Boolean) = { basis.setEnabled(p); basis }
 
-  @inline def  enable               = { basis.setEnabled(true ); basis }
-  @inline def disable               = { basis.setEnabled(false); basis }
+  @inline def  enable()             = { basis.setEnabled(true ); basis }
+  @inline def disable()             = { basis.setEnabled(false); basis }
 
 
   /**

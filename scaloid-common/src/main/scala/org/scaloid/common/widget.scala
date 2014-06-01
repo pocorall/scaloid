@@ -109,8 +109,8 @@ trait TraitPopupWindow[V <: android.widget.PopupWindow] {
    */
   @inline def clippingEnabled_=(p: Boolean) = { basis.setClippingEnabled(p); basis }
 
-  @inline def  enableClipping               = { basis.setClippingEnabled(true ); basis }
-  @inline def disableClipping               = { basis.setClippingEnabled(false); basis }
+  @inline def  enableClipping()             = { basis.setClippingEnabled(true ); basis }
+  @inline def disableClipping()             = { basis.setClippingEnabled(false); basis }
 
 
   /**
@@ -653,8 +653,8 @@ trait TraitListView[V <: android.widget.ListView] extends TraitAbsListView[V] {
    */
   @inline def footerDividersEnabled_=(p: Boolean) = { basis.setFooterDividersEnabled(p); basis }
 
-  @inline def  enableFooterDividers               = { basis.setFooterDividersEnabled(true ); basis }
-  @inline def disableFooterDividers               = { basis.setFooterDividersEnabled(false); basis }
+  @inline def  enableFooterDividers()             = { basis.setFooterDividersEnabled(true ); basis }
+  @inline def disableFooterDividers()             = { basis.setFooterDividersEnabled(false); basis }
 
 
   /**
@@ -675,8 +675,8 @@ trait TraitListView[V <: android.widget.ListView] extends TraitAbsListView[V] {
    */
   @inline def headerDividersEnabled_=(p: Boolean) = { basis.setHeaderDividersEnabled(p); basis }
 
-  @inline def  enableHeaderDividers               = { basis.setHeaderDividersEnabled(true ); basis }
-  @inline def disableHeaderDividers               = { basis.setHeaderDividersEnabled(false); basis }
+  @inline def  enableHeaderDividers()             = { basis.setHeaderDividersEnabled(true ); basis }
+  @inline def disableHeaderDividers()             = { basis.setHeaderDividersEnabled(false); basis }
 
 
   /**
@@ -3265,8 +3265,8 @@ trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView
    */
   @inline def fastScrollEnabled_=(p: Boolean) = { basis.setFastScrollEnabled(p); basis }
 
-  @inline def  enableFastScroll               = { basis.setFastScrollEnabled(true ); basis }
-  @inline def disableFastScroll               = { basis.setFastScrollEnabled(false); basis }
+  @inline def  enableFastScroll()             = { basis.setFastScrollEnabled(true ); basis }
+  @inline def disableFastScroll()             = { basis.setFastScrollEnabled(false); basis }
 
 
   @inline def filterText(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'filterText'")
@@ -3347,8 +3347,8 @@ trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView
    */
   @inline def scrollingCacheEnabled_=(p: Boolean) = { basis.setScrollingCacheEnabled(p); basis }
 
-  @inline def  enableScrollingCache               = { basis.setScrollingCacheEnabled(true ); basis }
-  @inline def disableScrollingCache               = { basis.setScrollingCacheEnabled(false); basis }
+  @inline def  enableScrollingCache()             = { basis.setScrollingCacheEnabled(true ); basis }
+  @inline def disableScrollingCache()             = { basis.setScrollingCacheEnabled(false); basis }
 
 
   /**
@@ -3393,8 +3393,8 @@ trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView
    */
   @inline def smoothScrollbarEnabled_=(p: Boolean) = { basis.setSmoothScrollbarEnabled(p); basis }
 
-  @inline def  enableSmoothScrollbar               = { basis.setSmoothScrollbarEnabled(true ); basis }
-  @inline def disableSmoothScrollbar               = { basis.setSmoothScrollbarEnabled(false); basis }
+  @inline def  enableSmoothScrollbar()             = { basis.setSmoothScrollbarEnabled(true ); basis }
+  @inline def disableSmoothScrollbar()             = { basis.setSmoothScrollbarEnabled(false); basis }
 
 
   /**
@@ -3434,8 +3434,8 @@ trait TraitAbsListView[V <: android.widget.AbsListView] extends TraitAdapterView
    */
   @inline def textFilterEnabled_=(p: Boolean) = { basis.setTextFilterEnabled(p); basis }
 
-  @inline def  enableTextFilter               = { basis.setTextFilterEnabled(true ); basis }
-  @inline def disableTextFilter               = { basis.setTextFilterEnabled(false); basis }
+  @inline def  enableTextFilter()             = { basis.setTextFilterEnabled(true ); basis }
+  @inline def disableTextFilter()             = { basis.setTextFilterEnabled(false); basis }
 
 
   /**
@@ -3880,8 +3880,8 @@ trait TraitZoomButtonsController[V <: android.widget.ZoomButtonsController] {
    */
   @inline def zoomInEnabled_=(p: Boolean) = { basis.setZoomInEnabled(p); basis }
 
-  @inline def  enableZoomIn               = { basis.setZoomInEnabled(true ); basis }
-  @inline def disableZoomIn               = { basis.setZoomInEnabled(false); basis }
+  @inline def  enableZoomIn()             = { basis.setZoomInEnabled(true ); basis }
+  @inline def disableZoomIn()             = { basis.setZoomInEnabled(false); basis }
 
 
   @inline def zoomOutEnabled(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'zoomOutEnabled'")
@@ -3896,8 +3896,8 @@ trait TraitZoomButtonsController[V <: android.widget.ZoomButtonsController] {
    */
   @inline def zoomOutEnabled_=(p: Boolean) = { basis.setZoomOutEnabled(p); basis }
 
-  @inline def  enableZoomOut               = { basis.setZoomOutEnabled(true ); basis }
-  @inline def disableZoomOut               = { basis.setZoomOutEnabled(false); basis }
+  @inline def  enableZoomOut()             = { basis.setZoomOutEnabled(true ); basis }
+  @inline def disableZoomOut()             = { basis.setZoomOutEnabled(false); basis }
 
 
   @inline def zoomSpeed(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'zoomSpeed'")
@@ -4457,8 +4457,8 @@ trait TraitZoomControls[V <: android.widget.ZoomControls] extends TraitLinearLay
    */
   @inline def isZoomInEnabled_=(p: Boolean) = { basis.setIsZoomInEnabled(p); basis }
 
-  @inline def  enableIsZoomIn               = { basis.setIsZoomInEnabled(true ); basis }
-  @inline def disableIsZoomIn               = { basis.setIsZoomInEnabled(false); basis }
+  @inline def  enableIsZoomIn()             = { basis.setIsZoomInEnabled(true ); basis }
+  @inline def disableIsZoomIn()             = { basis.setIsZoomInEnabled(false); basis }
 
 
   @inline def isZoomOutEnabled(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'isZoomOutEnabled'")
@@ -4473,8 +4473,8 @@ trait TraitZoomControls[V <: android.widget.ZoomControls] extends TraitLinearLay
    */
   @inline def isZoomOutEnabled_=(p: Boolean) = { basis.setIsZoomOutEnabled(p); basis }
 
-  @inline def  enableIsZoomOut               = { basis.setIsZoomOutEnabled(true ); basis }
-  @inline def disableIsZoomOut               = { basis.setIsZoomOutEnabled(false); basis }
+  @inline def  enableIsZoomOut()             = { basis.setIsZoomOutEnabled(true ); basis }
+  @inline def disableIsZoomOut()             = { basis.setIsZoomOutEnabled(false); basis }
 
 
   @inline def onZoomInClickListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onZoomInClickListener'")
@@ -5441,8 +5441,8 @@ trait TraitTabWidget[V <: android.widget.TabWidget] extends TraitLinearLayout[V]
    */
   @inline def stripEnabled_=(p: Boolean) = { basis.setStripEnabled(p); basis }
 
-  @inline def  enableStrip               = { basis.setStripEnabled(true ); basis }
-  @inline def disableStrip               = { basis.setStripEnabled(false); basis }
+  @inline def  enableStrip()             = { basis.setStripEnabled(true ); basis }
+  @inline def disableStrip()             = { basis.setStripEnabled(false); basis }
 
 
   /**
@@ -5938,8 +5938,8 @@ trait TraitHorizontalScrollView[V <: android.widget.HorizontalScrollView] extend
    */
   @inline def smoothScrollingEnabled_=(p: Boolean) = { basis.setSmoothScrollingEnabled(p); basis }
 
-  @inline def  enableSmoothScrolling               = { basis.setSmoothScrollingEnabled(true ); basis }
-  @inline def disableSmoothScrolling               = { basis.setSmoothScrollingEnabled(false); basis }
+  @inline def  enableSmoothScrolling()             = { basis.setSmoothScrollingEnabled(true ); basis }
+  @inline def disableSmoothScrolling()             = { basis.setSmoothScrollingEnabled(false); basis }
 
 
 }
@@ -6167,8 +6167,8 @@ trait TraitScrollView[V <: android.widget.ScrollView] extends TraitFrameLayout[V
    */
   @inline def smoothScrollingEnabled_=(p: Boolean) = { basis.setSmoothScrollingEnabled(p); basis }
 
-  @inline def  enableSmoothScrolling               = { basis.setSmoothScrollingEnabled(true ); basis }
-  @inline def disableSmoothScrolling               = { basis.setSmoothScrollingEnabled(false); basis }
+  @inline def  enableSmoothScrolling()             = { basis.setSmoothScrollingEnabled(true ); basis }
+  @inline def disableSmoothScrolling()             = { basis.setSmoothScrollingEnabled(false); basis }
 
 
 }
@@ -8847,8 +8847,8 @@ trait TraitKeyboardView[V <: android.inputmethodservice.KeyboardView] extends Tr
    */
   @inline def previewEnabled_=(p: Boolean) = { basis.setPreviewEnabled(p); basis }
 
-  @inline def  enablePreview               = { basis.setPreviewEnabled(true ); basis }
-  @inline def disablePreview               = { basis.setPreviewEnabled(false); basis }
+  @inline def  enablePreview()             = { basis.setPreviewEnabled(true ); basis }
+  @inline def disablePreview()             = { basis.setPreviewEnabled(false); basis }
 
 
   /**
@@ -8866,8 +8866,8 @@ trait TraitKeyboardView[V <: android.inputmethodservice.KeyboardView] extends Tr
    */
   @inline def proximityCorrectionEnabled_=(p: Boolean) = { basis.setProximityCorrectionEnabled(p); basis }
 
-  @inline def  enableProximityCorrection               = { basis.setProximityCorrectionEnabled(true ); basis }
-  @inline def disableProximityCorrection               = { basis.setProximityCorrectionEnabled(false); basis }
+  @inline def  enableProximityCorrection()             = { basis.setProximityCorrectionEnabled(true ); basis }
+  @inline def disableProximityCorrection()             = { basis.setProximityCorrectionEnabled(false); basis }
 
 
   /**
@@ -9314,8 +9314,8 @@ trait TraitGestureOverlayView[V <: android.gesture.GestureOverlayView] extends T
    */
   @inline def eventsInterceptionEnabled_=(p: Boolean) = { basis.setEventsInterceptionEnabled(p); basis }
 
-  @inline def  enableEventsInterception               = { basis.setEventsInterceptionEnabled(true ); basis }
-  @inline def disableEventsInterception               = { basis.setEventsInterceptionEnabled(false); basis }
+  @inline def  enableEventsInterception()             = { basis.setEventsInterceptionEnabled(true ); basis }
+  @inline def disableEventsInterception()             = { basis.setEventsInterceptionEnabled(false); basis }
 
 
   /**
@@ -9333,8 +9333,8 @@ trait TraitGestureOverlayView[V <: android.gesture.GestureOverlayView] extends T
    */
   @inline def fadeEnabled_=(p: Boolean) = { basis.setFadeEnabled(p); basis }
 
-  @inline def  enableFade               = { basis.setFadeEnabled(true ); basis }
-  @inline def disableFade               = { basis.setFadeEnabled(false); basis }
+  @inline def  enableFade()             = { basis.setFadeEnabled(true ); basis }
+  @inline def disableFade()             = { basis.setFadeEnabled(false); basis }
 
 
   /**
