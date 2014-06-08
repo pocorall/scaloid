@@ -122,7 +122,7 @@ trait InterfaceImplicits {
       }
     }
 }
-object InterfaceImpliciits extends InterfaceImplicits
+object InterfaceImplicits extends InterfaceImplicits
 
 class RichCursor(c: Cursor) extends Iterable[Cursor] {
   def iterator = new CursorIterator
