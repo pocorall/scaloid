@@ -2,35 +2,25 @@ import sbt._
 import Keys._
 
 object Dependencies {
-  val resolutionRepos = Seq(
-    //    "typesafe releases" at "http://repo.typesafe.com/typesafe/releases",
-    //    "typesafe snapshots" at "http://repo.typesafe.com/typesafe/snapshots",
-    //    "sonatype releases" at "https://oss.sonatype.org/content/repositories/releases",
-    //    "sonatype snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
-  )
-
   val android = "com.google.android" % "android" % "2.3.3" % "provided"
   val android_support_v4 = "com.google.android" % "support-v4" % "r7" % "provided"
   val scaloidVersion = "3.5-10-SNAPSHOT"
   val scaloid = "org.scaloid" %% "scaloid" % scaloidVersion
 }
 
-
 object ScaloidBuild extends Build {
 
   import ScaloidSettings._
   import Dependencies._
-
 
   lazy val basicSettings = Seq(
     organization := "org.scaloid",
     organizationHomepage := Some(new URL("http://blog.scaloid.org")),
     description := "Less Painful Android Development with Scala",
     startYear := Some(2012),
-    scalaVersion := "2.11.0",
-    crossScalaVersions := Seq("2.10.4", "2.11.0"),
+    scalaVersion := "2.11.1",
+    crossScalaVersions := Seq("2.10.4", "2.11.1"),
     version := scaloidVersion,
-    resolvers ++= Dependencies.resolutionRepos,
     publishMavenStyle := true,
     publishTo <<= version {
       (v: String) =>
