@@ -50,6 +50,37 @@ $endif$
   def remove(name: String) {
     preferences.edit().remove(name).commit()
   }
+
+  abstract class TypedPreferences[T] extends Dynamic {
+    def get(name: String): T
+    def selectDynamic(name: String): Option[T] = if(preferences.contains(name)) Some(get(name)) else None
+  }
+
+  val String = new TypedPreferences[String] {
+    override def get(name: String): String = preferences.getString(name, "")
+  }
+
+  val Int = new TypedPreferences[Int] {
+    override def get(name: String): Int = preferences.getInt(name, 0)
+  }
+
+  val Long = new TypedPreferences[Long] {
+    override def get(name: String): Long = preferences.getLong(name, 0L)
+  }
+
+  val Boolean = new TypedPreferences[Boolean] {
+    override def get(name: String): Boolean = preferences.getBoolean(name, true)
+  }
+
+  val Float = new TypedPreferences[Float] {
+    override def get(name: String): Float = preferences.getFloat(name, 0f)
+  }
+
+$if(ver.gte_11)$
+  val StringSet = new TypedPreferences[Set[String]] {
+    override def get(name: String): Set[String] = preferences.getStringSet(name, null).toSet
+  }
+$endif$
 }
 
 object Preferences {
