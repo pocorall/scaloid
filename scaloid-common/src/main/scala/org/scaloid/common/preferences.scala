@@ -109,43 +109,59 @@ object Preferences {
   def apply()(implicit ctx: Context) = new Preferences(defaultSharedPreferences)
 }
 
-class Extra(val activity: SActivity) extends Dynamic {
-  def intent = activity.intent
-  def extra = intent match {
-    case Some(i) if i.getExtras != null => Option(i.getExtras)
-    case _ => None
+
+class Extra(val activity: SActivity) extends AnyVal with Dynamic {
+  def updateDynamic(name: String)(value: Any) {
+    activity.intent.foreach {
+      i => value match {
+        // primitives
+        case v: Boolean => i.putExtra(name, v)
+        case v: Byte => i.putExtra(name, v)
+        case v: Char => i.putExtra(name, v)
+        case v: Short => i.putExtra(name, v)
+        case v: Int => i.putExtra(name, v)
+        case v: Long => i.putExtra(name, v)
+        case v: Float => i.putExtra(name, v)
+        case v: Double => i.putExtra(name, v)
+
+        // simple types
+        case v: String => i.putExtra(name, v)
+        case v: CharSequence => i.putExtra(name, v)
+        case v: android.os.Bundle => i.putExtra(name, v)
+        case v: android.os.Parcelable => i.putExtra(name, v)
+
+        // array types
+        case v: Array[Boolean] => i.putExtra(name, v)
+        case v: Array[Byte] => i.putExtra(name, v)
+        case v: Array[Char] => i.putExtra(name, v)
+        case v: Array[Short] => i.putExtra(name, v)
+        case v: Array[Int] => i.putExtra(name, v)
+        case v: Array[Long] => i.putExtra(name, v)
+        case v: Array[Float] => i.putExtra(name, v)
+        case v: Array[Double] => i.putExtra(name, v)
+        case v: Array[String] => i.putExtra(name, v)
+        case v: Array[CharSequence] => i.putExtra(name, v)
+        case v: Array[android.os.Parcelable] => i.putExtra(name, v)
+
+        // other types
+        case v: Serializable => i.putExtra(name, v) // must be after arrays
+      }
+    }
   }
 
-  def updateDynamic[T](name: String)(value: T) {
-    intent.map(i=> value match {
-      case v:Boolean => i.putExtra(name, v)
-      case v:Byte => i.putExtra(name, v)
-      case v:Char => i.putExtra(name, v)
-      case v:Short => i.putExtra(name, v)
-      case v:Int => i.putExtra(name, v)
-      case v:Long => i.putExtra(name, v)
-      case v:Float => i.putExtra(name, v)
-      case v:Double => i.putExtra(name, v)
-      case v:String => i.putExtra(name, v)
-      case v:CharSequence => i.putExtra(name, v)
-      case v:android.os.Parcelable => i.putExtra(name, v)
-      //        case v: => i.putExtra(name, v)
-      // TODO: more types to add...
-    })
-  }
+  def selectDynamic[T](name: String): Option[T] =
+    activity.intent.flatMap { i =>
+      Option(i.getExtras).flatMap {
+        x => if (x.containsKey(name))
+          Some(x.get(name).asInstanceOf[T])
+        else
+          None
+      }
+    }
 
-  def selectDynamic[T](name: String): Option[T] = {
-    extra.map(x => if (x.containsKey(name)) {
-      try {
-        return Some(x.get(name).asInstanceOf[T])
-      } catch { case e:Exception => println(e.printStackTrace()) }
-    })
-    None
-  }
-
-  def remove(name: String) = intent match { case Some(i) => i.removeExtra(name) }
-
+  def remove(name: String) = activity.intent.foreach { _.removeExtra(name) }
 }
+
 object Extra {
   def apply()(implicit basis: SActivity) = new Extra(basis)
 }
