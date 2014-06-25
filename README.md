@@ -268,7 +268,7 @@ broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =
 
 Then, the receiver is registered onStart, and unregistered onStop.
 
-**Further reading:** Refer to [a blog post](http://blog.scaloid.org/2013/02/better-resource-releasing-in-android.html) for more details.
+**Further reading:** Refer to [this blog post](http://blog.scaloid.org/2013/02/better-resource-releasing-in-android.html) for more details.
  
  
 ## Asynchronous task processing
@@ -307,10 +307,10 @@ new AsyncTask[String, Void, String] {
 }.execute("param")
 ```
 
-Using [`scala.concurrent.future`](http://docs.scala-lang.org/sips/pending/futures-promises.html), the asynchronous job shown above can be rewritten like this:
+Using [`scala.concurrent.Future`](http://docs.scala-lang.org/sips/completed/futures-promises.html), the asynchronous job shown above can be rewritten like this:
 
 ```scala
-future {
+Future {
   val result = doAJobTakeSomeTime(params)
   runOnUiThread(alert("Done!", result))
 }
@@ -319,7 +319,7 @@ future {
 When you don't want to build sophisticate UI interactions, but just want to display something by calling a single Scaloid method (e.g. `alert`, `toast`, and `spinnerDialog`), Scaloid handles `runOnUiThread` for you. Therefore, the code block shown above is reduced to:
 
 ```scala
-future {
+Future {
   alert("Done!", doAJobTakeSomeTime(params))
 }
 ```
@@ -329,7 +329,9 @@ It is a great win as it exposes your idea clearly.
 Just like we thrown away `AsyncTask`, we can also eliminate all other Java helpers for asynchronous job, such as `AsyncQueryHandler` and `AsyncTaskLoader`. Compare with the [original Java code](http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/4.1.1_r1/com/example/android/apis/view/ExpandableList2.java?av=h)
 and a [Scala port](https://github.com/pocorall/scaloid-apidemos/blob/master/src/main/java/com/example/android/apis/view/ExpandableList2.scala) of ApiDemos example app.
 
-Using `future` is just an example of asynchronous task processing in Scaloid. You can freely use any modern task management utilities.
+Using `Future` is just an example of asynchronous task processing in Scaloid. You can freely use any modern task management utilities.
+
+**Further reading:** Refer to [this blog post](http://blog.scaloid.org/2013/11/using-scalaconcurrentfuture-in-android.html) for an important consideration when using `Future` in Android.
 
 
 ## Implicit conversions
@@ -1151,7 +1153,7 @@ class Activity extends SActivity {
 }
 ```
 
-**Further reading:** Refer to [a blog post](http://blog.scaloid.org/2013/03/introducing-localservice.html) to see why this is awesome in compared with the existing method.
+**Further reading:** Refer to [this blog post](http://blog.scaloid.org/2013/03/introducing-localservice.html) to see why this is awesome in compared with the existing method.
 
 ### Class `Preferences`
 
