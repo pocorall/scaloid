@@ -129,7 +129,7 @@ Android SDK leverages XML to build UI layouts. However, XML is considered still 
             android:layout_height="wrap_content" android:id="@+id/signin"
             android:text="Sign in"/>
     <LinearLayout android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <Button android:text="Help" android:id="@+id/help"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
@@ -152,7 +152,7 @@ new SVerticalLayout {
   this += new SLinearLayout {
     SButton("Help")
     SButton("Sign up")
-  }
+  }.<<.wrap.>>
 }.padding(20 dip)
 ```
 
@@ -169,7 +169,7 @@ new SVerticalLayout {
   this += new SLinearLayout {
     SButton("Help", openUri("http://help.url"))
     SButton("Sign up", openUri("http://signup.uri"))
-  }
+  }.<<.wrap.>>
 }.padding(20 dip)
 ```
 
