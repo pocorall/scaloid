@@ -128,12 +128,12 @@ class Extra(val activity: SActivity) extends AnyVal with Dynamic {
   }
 
   def selectDynamic[T](name: String): Option[T] =
-    activity.intent.flatMap { i =>
-      Option(i.getExtras).flatMap {
-        x => if (x.containsKey(name))
+    activity.intent.flatMap {
+      i => i.getExtras match {
+        case x: android.os.Bundle if x.containsKey(name) =>
           Some(x.get(name).asInstanceOf[T])
-        else
-          None
+
+        case _ => None
       }
     }
 
