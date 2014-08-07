@@ -57,14 +57,36 @@ $wholeClassDef(android.view.ViewGroup)$
 trait ViewGroupLayoutParams[LP <: ViewGroupLayoutParams[_,_], V <: View] extends ViewGroup.LayoutParams {
   def basis: LP
 
+  /**
+   * A shorthand for <<(MATCH_PARENT, MATCH_PARENT)
+   */
   def fill = {
     width = ViewGroup.LayoutParams.MATCH_PARENT
     height = ViewGroup.LayoutParams.MATCH_PARENT
     basis
   }
+  /**
+   * A shorthand for <<(WRAP_CONTENT, WRAP_CONTENT)
+   */
   def wrap = {
     width = ViewGroup.LayoutParams.WRAP_CONTENT
     height = ViewGroup.LayoutParams.WRAP_CONTENT
+    basis
+  }
+  /**
+   * A shorthand for <<(MATCH_PARENT, WRAP_CONTENT)
+   */
+  def fw = {
+    width = ViewGroup.LayoutParams.MATCH_PARENT
+    height = ViewGroup.LayoutParams.WRAP_CONTENT
+    basis
+  }
+  /**
+   * A shorthand for <<(WRAP_CONTENT, MATCH_PARENT)
+   */
+  def wf = {
+    width = ViewGroup.LayoutParams.WRAP_CONTENT
+    height = ViewGroup.LayoutParams.MATCH_PARENT
     basis
   }
 

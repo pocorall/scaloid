@@ -400,6 +400,8 @@ object SArrayAdapter {
 
   def apply[T <: AnyRef](textViewResourceId: Int, items: Array[T])(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](items, textViewResourceId)
 
+
+
 }
 
 
@@ -484,6 +486,7 @@ class SImageButton()(implicit context: android.content.Context, parentVGroup: Tr
     extends android.widget.ImageButton(context) with TraitImageButton[SImageButton] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(imageResource: android.graphics.drawable.Drawable)(implicit context: Context) = {
     this()
     this.imageDrawable = imageResource
@@ -500,7 +503,7 @@ class SImageButton()(implicit context: android.content.Context, parentVGroup: Tr
     this.imageDrawable = imageResource
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -532,7 +535,6 @@ object SImageButton {
     v.<<.parent.+=(v)
     v
   }
-
 
 
 }
@@ -805,6 +807,7 @@ class SEditText()(implicit context: android.content.Context, parentVGroup: Trait
     extends android.widget.EditText(context) with TraitEditText[SEditText] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(text: CharSequence)(implicit context: Context) = {
     this()
     this.text = text
@@ -821,7 +824,7 @@ class SEditText()(implicit context: android.content.Context, parentVGroup: Trait
     this.text = text
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -853,9 +856,6 @@ object SEditText {
     v.<<.parent.+=(v)
     v
   }
-
-
-
 
 }
 
@@ -1063,6 +1063,7 @@ class SImageView()(implicit context: android.content.Context, parentVGroup: Trai
     extends android.widget.ImageView(context) with TraitImageView[SImageView] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(imageResource: android.graphics.drawable.Drawable)(implicit context: Context) = {
     this()
     this.imageDrawable = imageResource
@@ -1079,7 +1080,7 @@ class SImageView()(implicit context: android.content.Context, parentVGroup: Trai
     this.imageDrawable = imageResource
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -1111,7 +1112,6 @@ object SImageView {
     v.<<.parent.+=(v)
     v
   }
-
 
 
 }
@@ -1192,6 +1192,7 @@ class SMultiAutoCompleteTextView()(implicit context: android.content.Context, pa
     extends android.widget.MultiAutoCompleteTextView(context) with TraitMultiAutoCompleteTextView[SMultiAutoCompleteTextView] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(text: CharSequence)(implicit context: Context) = {
     this()
     this.text = text
@@ -1208,7 +1209,7 @@ class SMultiAutoCompleteTextView()(implicit context: android.content.Context, pa
     this.text = text
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -1240,9 +1241,6 @@ object SMultiAutoCompleteTextView {
     v.<<.parent.+=(v)
     v
   }
-
-
-
 
 }
 
@@ -2467,6 +2465,7 @@ class SChronometer()(implicit context: android.content.Context, parentVGroup: Tr
     extends android.widget.Chronometer(context) with TraitChronometer[SChronometer] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(text: CharSequence)(implicit context: Context) = {
     this()
     this.text = text
@@ -2483,7 +2482,7 @@ class SChronometer()(implicit context: android.content.Context, parentVGroup: Tr
     this.text = text
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -2515,9 +2514,6 @@ object SChronometer {
     v.<<.parent.+=(v)
     v
   }
-
-
-
 
 }
 
@@ -2611,6 +2607,7 @@ class SCheckedTextView()(implicit context: android.content.Context, parentVGroup
     extends android.widget.CheckedTextView(context) with TraitCheckedTextView[SCheckedTextView] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(text: CharSequence)(implicit context: Context) = {
     this()
     this.text = text
@@ -2627,7 +2624,7 @@ class SCheckedTextView()(implicit context: android.content.Context, parentVGroup
     this.text = text
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -2659,9 +2656,6 @@ object SCheckedTextView {
     v.<<.parent.+=(v)
     v
   }
-
-
-
 
 }
 
@@ -4701,6 +4695,7 @@ class SRadioButton()(implicit context: android.content.Context, parentVGroup: Tr
     extends android.widget.RadioButton(context) with TraitRadioButton[SRadioButton] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(text: CharSequence)(implicit context: Context) = {
     this()
     this.text = text
@@ -4717,7 +4712,7 @@ class SRadioButton()(implicit context: android.content.Context, parentVGroup: Tr
     this.text = text
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -4749,9 +4744,6 @@ object SRadioButton {
     v.<<.parent.+=(v)
     v
   }
-
-
-
 
 }
 
@@ -4806,6 +4798,7 @@ class SQuickContactBadge()(implicit context: android.content.Context, parentVGro
     extends android.widget.QuickContactBadge(context) with TraitQuickContactBadge[SQuickContactBadge] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(imageResource: android.graphics.drawable.Drawable)(implicit context: Context) = {
     this()
     this.imageDrawable = imageResource
@@ -4822,7 +4815,7 @@ class SQuickContactBadge()(implicit context: android.content.Context, parentVGro
     this.imageDrawable = imageResource
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -4856,7 +4849,6 @@ object SQuickContactBadge {
   }
 
 
-
 }
 
 
@@ -4884,6 +4876,7 @@ class SDigitalClock()(implicit context: android.content.Context, parentVGroup: T
     extends android.widget.DigitalClock(context) with TraitDigitalClock[SDigitalClock] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(text: CharSequence)(implicit context: Context) = {
     this()
     this.text = text
@@ -4900,7 +4893,7 @@ class SDigitalClock()(implicit context: android.content.Context, parentVGroup: T
     this.text = text
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -4932,9 +4925,6 @@ object SDigitalClock {
     v.<<.parent.+=(v)
     v
   }
-
-
-
 
 }
 
@@ -4995,6 +4985,7 @@ class SToggleButton()(implicit context: android.content.Context, parentVGroup: T
     extends android.widget.ToggleButton(context) with TraitToggleButton[SToggleButton] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(text: CharSequence)(implicit context: Context) = {
     this()
     this.text = text
@@ -5011,7 +5002,7 @@ class SToggleButton()(implicit context: android.content.Context, parentVGroup: T
     this.text = text
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -5044,9 +5035,6 @@ object SToggleButton {
     v
   }
 
-
-
-
 }
 
 
@@ -5074,6 +5062,7 @@ class SButton()(implicit context: android.content.Context, parentVGroup: TraitVi
     extends android.widget.Button(context) with TraitButton[SButton] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(text: CharSequence)(implicit context: Context) = {
     this()
     this.text = text
@@ -5090,7 +5079,7 @@ class SButton()(implicit context: android.content.Context, parentVGroup: TraitVi
     this.text = text
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -5123,9 +5112,6 @@ object SButton {
     v
   }
 
-
-
-
 }
 
 
@@ -5153,6 +5139,7 @@ class SCheckBox()(implicit context: android.content.Context, parentVGroup: Trait
     extends android.widget.CheckBox(context) with TraitCheckBox[SCheckBox] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(text: CharSequence)(implicit context: Context) = {
     this()
     this.text = text
@@ -5169,7 +5156,7 @@ class SCheckBox()(implicit context: android.content.Context, parentVGroup: Trait
     this.text = text
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -5201,9 +5188,6 @@ object SCheckBox {
     v.<<.parent.+=(v)
     v
   }
-
-
-
 
 }
 
@@ -6450,6 +6434,7 @@ class SZoomButton()(implicit context: android.content.Context, parentVGroup: Tra
     extends android.widget.ZoomButton(context) with TraitZoomButton[SZoomButton] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(imageResource: android.graphics.drawable.Drawable)(implicit context: Context) = {
     this()
     this.imageDrawable = imageResource
@@ -6466,7 +6451,7 @@ class SZoomButton()(implicit context: android.content.Context, parentVGroup: Tra
     this.imageDrawable = imageResource
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -6498,7 +6483,6 @@ object SZoomButton {
     v.<<.parent.+=(v)
     v
   }
-
 
 
 }
@@ -7919,6 +7903,7 @@ class STextView()(implicit context: android.content.Context, parentVGroup: Trait
     extends android.widget.TextView(context) with TraitTextView[STextView] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(text: CharSequence)(implicit context: Context) = {
     this()
     this.text = text
@@ -7935,7 +7920,7 @@ class STextView()(implicit context: android.content.Context, parentVGroup: Trait
     this.text = text
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -7967,9 +7952,6 @@ object STextView {
     v.<<.parent.+=(v)
     v
   }
-
-
-
 
 }
 
@@ -8568,6 +8550,7 @@ class SAutoCompleteTextView()(implicit context: android.content.Context, parentV
     extends android.widget.AutoCompleteTextView(context) with TraitAutoCompleteTextView[SAutoCompleteTextView] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(text: CharSequence)(implicit context: Context) = {
     this()
     this.text = text
@@ -8584,7 +8567,7 @@ class SAutoCompleteTextView()(implicit context: android.content.Context, parentV
     this.text = text
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -8616,9 +8599,6 @@ object SAutoCompleteTextView {
     v.<<.parent.+=(v)
     v
   }
-
-
-
 
 }
 
@@ -8722,6 +8702,7 @@ class SExtractEditText()(implicit context: android.content.Context, parentVGroup
     extends android.inputmethodservice.ExtractEditText(context) with TraitExtractEditText[SExtractEditText] {
 
   def basis = this
+  override val parentViewGroup = parentVGroup
   def this(text: CharSequence)(implicit context: Context) = {
     this()
     this.text = text
@@ -8738,7 +8719,7 @@ class SExtractEditText()(implicit context: android.content.Context, parentVGroup
     this.text = text
     this.setOnClickListener(onClickListener)
   }
-  override val parentViewGroup = parentVGroup
+
 
 }
 
@@ -8770,9 +8751,6 @@ object SExtractEditText {
     v.<<.parent.+=(v)
     v
   }
-
-
-
 
 }
 
@@ -10421,6 +10399,8 @@ object SPaint {
     v.color = color
     v
   }
+
+
 
 
 

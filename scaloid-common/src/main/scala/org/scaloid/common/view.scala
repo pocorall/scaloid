@@ -95,9 +95,9 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
 
   def basis: V
 
-  def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
+  @inline def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
 
-  def uniqueId(implicit activity: Activity): Int = {
+  @inline def uniqueId(implicit activity: Activity): Int = {
     if(basis.getId < 0) {
       basis.setId(getUniqueId)
     }
@@ -107,6 +107,26 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
   val FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT
   val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
   val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
+
+  @inline def fill[LP <: ViewGroupLayoutParams[_,_]](implicit defaultLayoutParam: (V) => LP) = {
+    <<.fill
+    basis
+  }
+
+  @inline def wrap[LP <: ViewGroupLayoutParams[_,_]](implicit defaultLayoutParam: (V) => LP) = {
+    <<.wrap
+    basis
+  }
+
+  @inline def wf[LP <: ViewGroupLayoutParams[_,_]](implicit defaultLayoutParam: (V) => LP) = {
+    <<.wf
+    basis
+  }
+
+  @inline def fw[LP <: ViewGroupLayoutParams[_,_]](implicit defaultLayoutParam: (V) => LP) = {
+    <<.fw
+    basis
+  }
 
   def <<[LP <: ViewGroupLayoutParams[_,_]](implicit defaultLayoutParam: (V) => LP): LP =
     defaultLayoutParam(basis)
@@ -1514,14 +1534,36 @@ trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
 trait ViewGroupLayoutParams[LP <: ViewGroupLayoutParams[_,_], V <: View] extends ViewGroup.LayoutParams {
   def basis: LP
 
+  /**
+   * A shorthand for <<(MATCH_PARENT, MATCH_PARENT)
+   */
   def fill = {
     width = ViewGroup.LayoutParams.MATCH_PARENT
     height = ViewGroup.LayoutParams.MATCH_PARENT
     basis
   }
+  /**
+   * A shorthand for <<(WRAP_CONTENT, WRAP_CONTENT)
+   */
   def wrap = {
     width = ViewGroup.LayoutParams.WRAP_CONTENT
     height = ViewGroup.LayoutParams.WRAP_CONTENT
+    basis
+  }
+  /**
+   * A shorthand for <<(MATCH_PARENT, WRAP_CONTENT)
+   */
+  def fw = {
+    width = ViewGroup.LayoutParams.MATCH_PARENT
+    height = ViewGroup.LayoutParams.WRAP_CONTENT
+    basis
+  }
+  /**
+   * A shorthand for <<(WRAP_CONTENT, MATCH_PARENT)
+   */
+  def wf = {
+    width = ViewGroup.LayoutParams.WRAP_CONTENT
+    height = ViewGroup.LayoutParams.MATCH_PARENT
     basis
   }
 
