@@ -152,7 +152,7 @@ new SVerticalLayout {
   this += new SLinearLayout {
     SButton("Help")
     SButton("Sign up")
-  }.<<.wrap.>>
+  }.wrap
 }.padding(20 dip)
 ```
 
@@ -169,7 +169,7 @@ new SVerticalLayout {
   this += new SLinearLayout {
     SButton("Help", openUri("http://help.url"))
     SButton("Sign up", openUri("http://signup.uri"))
-  }.<<.wrap.>>
+  }.wrap
 }.padding(20 dip)
 ```
 
@@ -730,7 +730,7 @@ val layout = new SFrameLayout {
 }
 ```
 
-#### Methods `fill` and `wrap`
+#### Methods `fill`, `wrap`, `wf` and `fw`
 
 When we get a `LayoutParams` from `<<`, the default values of `width` and `height` properties are `width = FILL_PARENT` and `height = WRAP_CONTENT`. You can override this when you need it:
 
@@ -755,6 +755,8 @@ This is also shortened as:
 ```scala
 SButton("Click").<<.wrap
 ```
+
+Similarly, `<<(WRAP_CONTENT, FILL_PARENT)` and `<<(FILL_PARENT, WRAP_CONTENT)` can also be shortend as `<<.wf` and `<<.fw` respectively.
 
 ## Styles for programmers
 
@@ -1171,6 +1173,12 @@ You can rewrite it as shown below:
 ```scala
 val ec = pref.executionCount(0)
 pref.executionCount = ec + 1
+```
+
+If you are confortable with `Option`, access like this:
+
+```scala
+val ec:Option[Int] = pref.Int.executionCount
 ```
 
 **Further reading:**
