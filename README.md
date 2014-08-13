@@ -758,6 +758,15 @@ SButton("Click").<<.wrap
 
 Similarly, `<<(WRAP_CONTENT, FILL_PARENT)` and `<<(FILL_PARENT, WRAP_CONTENT)` can also be shortend as `<<.wf` and `<<.fw` respectively.
 
+Because there are so many occurences `<<.wrap.>>` pattern in actual Android code, it is allowed to remove `.<<` and `.>>` in this case:
+
+```scala
+SButton("Click").wrap
+```
+
+This pattern also usable for `.fill`, `.fw` and `.wf` methods.
+
+
 ## Styles for programmers
 
 #### Naming conventions
