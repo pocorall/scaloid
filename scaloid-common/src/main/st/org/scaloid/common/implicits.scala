@@ -32,6 +32,11 @@ private[scaloid] class ResourceConversion(val id: Int)(implicit context: Context
   @inline def r2RawResource  : java.io.InputStream = context.getResources.openRawResource(id)
 }
 
+private[scaloid] class StringConversion(val str: String)(implicit context: Context) {
+  @inline def toUri          : Uri          = Uri.parse(str)
+  @inline def toIntentFilter : IntentFilter = new IntentFilter(str)
+}
+
 trait ConversionImplicits {
   @inline implicit def Double2unitConversion(ext: Double)(implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
   @inline implicit def Long2unitConversion  (ext: Long)  (implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
@@ -46,8 +51,9 @@ trait ConversionImplicits {
   @inline implicit def r2Drawable   (id: Int)(implicit context: Context): Drawable            = context.getResources.getDrawable(id)
   @inline implicit def r2Movie      (id: Int)(implicit context: Context): Movie               = context.getResources.getMovie(id)
 
-  @inline implicit def string2Uri           (str: String): Uri            = Uri.parse(str)
-  @inline implicit def string2IntentFilter  (str: String): IntentFilter   = new IntentFilter(str)
+  @inline implicit def string2Uri             (str: String): Uri              = Uri.parse(str)
+  @inline implicit def string2IntentFilter    (str: String): IntentFilter     = new IntentFilter(str)
+  @inline implicit def string2StringConversion(str: String)(implicit context: Context): StringConversion = new StringConversion(str)
 }
 object ConversionImplicits extends ConversionImplicits
 

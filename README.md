@@ -357,6 +357,11 @@ openUri("http://scaloid.org")
 
 , or wherever you want.
 
+Alternatively, you can specify the conversion as:
+
+```scala
+val uri:Uri = "http://scaloid.org".toUri
+```
 
 ##### Unit conversion
 
