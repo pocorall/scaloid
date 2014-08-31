@@ -64,13 +64,13 @@ SButton("Greet", toast("Hello!"))
 
 ### Demos
 
- * Fork one of this to start a new project.<br/>
-   [<b>Hello world of Scaloid for sbt</b>](https://github.com/pocorall/hello-scaloid-sbt) (recommended)<br/>
-   [<b>Hello world of Scaloid for maven</b>](https://github.com/pocorall/hello-scaloid-maven)<br/>
-   [<b>Hello world of Scaloid for gradle</b>](https://github.com/pocorall/hello-scaloid-gradle)<br/>
+Fork one of this to start a new project:
+ * [<b>Hello world of Scaloid for sbt</b>](https://github.com/pocorall/hello-scaloid-sbt) (recommended)
+ * [<b>Hello world of Scaloid for maven</b>](https://github.com/pocorall/hello-scaloid-maven)
+ * [<b>Hello world of Scaloid for gradle</b>](https://github.com/pocorall/hello-scaloid-gradle)
 
- * [<b>Scaloid port of apidemos app</b>](https://github.com/pocorall/scaloid-apidemos)<br/>
-   Learn how Scaloid can be used in action.
+Learn how Scaloid can be used in action:
+ * [<b>Scaloid port of apidemos app</b>](https://github.com/pocorall/scaloid-apidemos)
  * [<b>List of projects using Scaloid</b>](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-list-of-projects-using-scaloid)
  * [<b>Tutorial by Gaston Hillar</b>](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240161584) - [part 1](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240161584) and [part 2](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240162204)
 
