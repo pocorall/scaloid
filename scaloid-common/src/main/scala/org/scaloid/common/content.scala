@@ -392,16 +392,17 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
   var onConnected = new EventSource1[S, Unit]
   var onDisconnected = new EventSource1[S, Unit]
 
-  def run(f: S => Unit) {
-    service.fold(onConnected(f))(f)
-  }
-
   /**
    * for example:
    * val service = new LocalServiceConnection[MyService]
    * //...
-   * service(_.doSomeJob())
+   * service.run(_.doSomeJob())
    */
+  def run(f: S => Unit) {
+    service.fold(onConnected(f))(f)
+  }
+
+  @deprecated("Use run(f: S => Unit) instead.", "3.7")
   def apply[T](f: S => T) = service.map(f)
 
   /**
