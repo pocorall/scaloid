@@ -143,18 +143,20 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
   var onConnected = new EventSource1[S, Unit]
   var onDisconnected = new EventSource1[S, Unit]
 
-  /**
-   * for example:
-   * val service = new LocalServiceConnection[MyService]
-   * //...
-   * service.run(_.doSomeJob())
-   */
+  @deprecated("Use apply(f: S => Unit) instead.", "3.6")
   def run(f: S => Unit) {
     service.fold(onConnected(f))(f)
   }
 
-  @deprecated("Use run(f: S => Unit) instead.", "3.7")
-  def apply[T](f: S => T) = service.map(f)
+  /**
+   * Execute some function with the connected service. If the service is not connected yet, the function
+   * is enqueued and be called when the service is connected.
+   * For example:
+   * val service = new LocalServiceConnection[MyService]
+   * //...
+   * service(_.doSomeJob())
+   */
+  def apply[T](f: S => Unit): Unit = service.fold(onConnected(f))(f)
 
   /**
    * for example:
@@ -162,7 +164,7 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
    * //...
    * val foo = service(_.foo, defaultVal)
    */
-  def apply[T](f: S => T, ifEmpty: => T) = if(service.isEmpty) ifEmpty else f(service.get)
+  def apply[T](f: S => T, ifEmpty: => T): T = service.fold(ifEmpty)(f)
 
   /**
    * for example:
