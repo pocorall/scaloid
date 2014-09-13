@@ -1,24 +1,53 @@
 package org.scaloid.util
 
+import org.scaloid.common._
+
 
 /**
  * A general abstraction of something that can be start and stop.
  */
 trait Playable {
   private var _running: Boolean = false
-  var startTime = 0L
+  private var _startTime = 0L
 
   def running = _running
 
-  def timeElapsed = System.currentTimeMillis() - startTime
+  def startTime = _startTime
+
+  def timeElapsed = System.currentTimeMillis() - _startTime
 
   def start() {
     _running = true
-    startTime = System.currentTimeMillis()
+    _startTime = System.currentTimeMillis()
   }
 
   def stop() {
     _running = false
+  }
+}
+
+/**
+ * Pause the running during the incoming call.
+ */
+trait TelephonePause extends Playable {
+  implicit def ctx: Context
+
+  implicit def reg: Registerable
+
+  private var paused = false
+
+  onCallStateChanged {
+    case (TelephonyManager.CALL_STATE_RINGING, _) =>
+      if (running) {
+        paused = true
+        stop()
+      }
+    case (TelephonyManager.CALL_STATE_IDLE, _) =>
+      if (paused) {
+        paused = false
+        start()
+      }
+    case _ =>
   }
 }
 
