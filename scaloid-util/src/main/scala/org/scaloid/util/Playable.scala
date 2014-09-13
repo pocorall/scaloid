@@ -5,18 +5,20 @@ package org.scaloid.util
  * A general abstraction of something that can be start and stop.
  */
 trait Playable {
-  var running: Boolean = false
+  private var _running: Boolean = false
   var startTime = 0L
+
+  def running = _running
 
   def timeElapsed = System.currentTimeMillis() - startTime
 
   def start() {
-    running = true
+    _running = true
     startTime = System.currentTimeMillis()
   }
 
   def stop() {
-    running = false
+    _running = false
   }
 }
 
