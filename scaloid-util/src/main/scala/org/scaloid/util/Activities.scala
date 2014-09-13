@@ -1,5 +1,6 @@
 package org.scaloid.util
 
+import android.content.pm.ActivityInfo._
 import org.scaloid.common._
 import android.view.WindowManager.LayoutParams._
 
@@ -23,5 +24,18 @@ trait FollowParentBackButton extends SActivity {
 trait ScreenOnActivity extends SActivity {
   onCreate {
     getWindow.addFlags(FLAG_DISMISS_KEYGUARD | FLAG_SHOW_WHEN_LOCKED | FLAG_TURN_SCREEN_ON)
+  }
+}
+
+/**
+ * Prevent the activity is rotated.
+ */
+trait PreventRotateActivity extends SActivity {
+  onResume {
+    setRequestedOrientation(if (Configuration.portrait) SCREEN_ORIENTATION_PORTRAIT else SCREEN_ORIENTATION_LANDSCAPE)
+  }
+
+  onPause {
+    setRequestedOrientation(SCREEN_ORIENTATION_UNSPECIFIED)
   }
 }

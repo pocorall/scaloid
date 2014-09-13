@@ -2,10 +2,9 @@ package org.scaloid.util
 
 
 /**
- * A service that can be start and stop.
+ * A general abstraction of something that can be start and stop.
  */
-@deprecated("Use PlayableConnecter instead.", "3.6")
-trait RunnableService {
+trait Playable {
   var running: Boolean = false
   var startTime = 0L
 
@@ -24,12 +23,19 @@ trait RunnableService {
 import org.scaloid.common._
 import java.util.{TimerTask, Timer}
 
+object UpdateEvent extends Enumeration {
+  type UpdateEvent = Value
+  val OTHERS, ON_CONNECTED, ON_HEARTBEAT, ON_STOPPED, ON_STARTED = Value
+}
 
 import UpdateEvent._
 
-@deprecated("Use PlayableConnecter instead.", "3.6")
-abstract class RunnableServiceConnector(activity: SActivity) {
-  def runnableService: RunnableService
+
+/**
+ * Provides event notifications of a Playable.
+ */
+abstract class PlayableConnector(activity: SActivity) {
+  def playable: Playable
 
   protected var timer: Timer = new Timer()
 
@@ -50,7 +56,7 @@ abstract class RunnableServiceConnector(activity: SActivity) {
 
   def onServiceConnected() {
     runOnUiThread(updateUI(ON_CONNECTED))
-    if (runnableService.running) {
+    if (playable.running) {
       startTimer()
     }
   }
@@ -58,20 +64,20 @@ abstract class RunnableServiceConnector(activity: SActivity) {
   def updateUI(event: UpdateEvent)
 
   def start() {
-    if (runnableService.running) return
-    runnableService.start()
+    if (playable.running) return
+    playable.start()
     runOnUiThread(updateUI(ON_STARTED))
     startTimer()
   }
 
   def stop() {
-    if (!runnableService.running) return
-    runnableService.stop()
+    if (!playable.running) return
+    playable.stop()
     runOnUiThread(updateUI(ON_STOPPED))
     timer.cancel()
   }
 
   def toggle() {
-    if (runnableService.running) stop() else start()
+    if (playable.running) stop() else start()
   }
 }
