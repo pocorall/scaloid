@@ -1,5 +1,7 @@
 package org.scaloid.util
 
+import android.content.Context
+import android.telephony.TelephonyManager
 import org.scaloid.common._
 
 
@@ -51,7 +53,6 @@ trait TelephonePause extends Playable {
   }
 }
 
-import org.scaloid.common._
 import java.util.{TimerTask, Timer}
 
 object UpdateEvent extends Enumeration {
