@@ -9,8 +9,8 @@ import org.scaloid.common._
  * A general abstraction of something that can be start and stop.
  */
 trait Playable {
-  private var _running: Boolean = false
-  private var _startTime = 0L
+  protected var _running: Boolean = false
+  protected var _startTime = 0L
 
   def running = _running
 
