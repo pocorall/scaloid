@@ -28,7 +28,7 @@ import language.implicitConversions
  *
  * [[https://github.com/pocorall/scaloid/#system-services]]
  */
-trait SystemService {
+trait SystemServices {
   $systemServiceHead(android.view.accessibility.AccessibilityManager)$
   $systemServiceHead(android.accounts.AccountManager)$
   $systemServiceHead(android.app.ActivityManager)$
@@ -132,3 +132,5 @@ $endif$
   $systemServiceHead(android.net.wifi.WifiManager)$
   $systemServiceHead(android.view.WindowManager)$
 }
+
+object SystemServices extends SystemServices

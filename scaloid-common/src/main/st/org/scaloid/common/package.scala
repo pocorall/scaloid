@@ -42,7 +42,7 @@ import language.implicitConversions
  *
  * @author Sung-Ho Lee
  */
-package object common extends Logger with SystemService with Helpers with Implicits {
+package object common extends Logger with SystemServices with Helpers with Implicits {
 
   val idSequence = new java.util.concurrent.atomic.AtomicInteger(0)
 

@@ -61,7 +61,7 @@ import language.implicitConversions
  *
  * [[https://github.com/pocorall/scaloid/#system-services]]
  */
-trait SystemService {
+trait SystemServices {
   @inline def accessibilityManager(implicit context: Context) =
     context.getSystemService(Context.ACCESSIBILITY_SERVICE).asInstanceOf[android.view.accessibility.AccessibilityManager]
 
@@ -183,3 +183,5 @@ trait SystemService {
     context.getSystemService(Context.WINDOW_SERVICE).asInstanceOf[android.view.WindowManager]
 
 }
+
+object SystemServices extends SystemServices
