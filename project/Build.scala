@@ -6,6 +6,14 @@ object Dependencies {
   val android_support_v4 = "com.google.android" % "support-v4" % "r7" % "provided"
   val scaloidVersion = "3.6-10-SNAPSHOT"
   val scaloid = "org.scaloid" %% "scaloid" % scaloidVersion
+
+  val robolectric = "org.robolectric" % "robolectric" % "2.3" % "test"
+  val scalaTest = "org.scalatest" %% "scalatest" % "2.2.1" % "test"
+  val junit =  "junit" % "junit" % "4.11" % "test"
+  val junitInterface = "com.novocode" % "junit-interface" % "0.11" % "test"
+
+  //Robolectric supports only API Level 16, 17, and 18
+  val android16 = "com.google.android" % "android" % "4.1.1.4" % "test"
 }
 
 object ScaloidBuild extends Build {
@@ -79,6 +87,9 @@ object ScaloidBuild extends Build {
     .settings(name := "scaloid", exportJars := true)
     .settings(basicSettings: _*)
     .settings(scaloidSettings: _*)
+    .settings(libraryDependencies ++= Seq(robolectric,scalaTest,junit,junitInterface,android16))
+    //RobolectricTestRunner requires "fork" to reflect test code changes without sbt restart.
+    .settings(fork in Test := true)
 
   lazy val support_v4 = Project("support-v4", file("scaloid-support-v4"))
     .settings(name := "scaloid-support-v4", exportJars := true)
