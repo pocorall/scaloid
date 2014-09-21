@@ -31,26 +31,35 @@ trait Playable {
 /**
  * Pause the running during the incoming call.
  */
-trait TelephonePause extends Playable {
+trait PauseOnCall extends Playable {
   implicit def ctx: Context
 
   implicit def reg: Registerable
 
-  private var paused = false
+  private var _paused = false
+
+  protected def paused = _paused
 
   onCallStateChanged {
     case (TelephonyManager.CALL_STATE_RINGING, _) =>
       if (running) {
-        paused = true
+        _paused = true
         stop()
       }
     case (TelephonyManager.CALL_STATE_IDLE, _) =>
       if (paused) {
-        paused = false
+        _paused = false
         start()
       }
     case _ =>
   }
+}
+
+/**
+ * Pause the running during the incoming call.
+ */
+trait StopOnCall extends PauseOnCall {
+  override protected def paused = false
 }
 
 import java.util.{TimerTask, Timer}
