@@ -65,6 +65,7 @@ trait InterfaceImplicits {
       }
     }
 
+  @deprecated("Can cause confusion when this conversion is used for block of code", "3.6")
   implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     new View.OnClickListener() {
       def onClick(view: View) {
@@ -93,6 +94,7 @@ trait InterfaceImplicits {
       }
     }
 
+  @deprecated("Can cause confusion when this conversion is used for block of code", "3.6")
   implicit def lazy2runnable[F](f: => F): Runnable =
     new Runnable() {
       def run() {
