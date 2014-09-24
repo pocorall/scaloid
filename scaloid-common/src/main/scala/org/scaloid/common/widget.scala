@@ -1421,7 +1421,10 @@ class STableLayout()(implicit context: android.content.Context, parentVGroup: Tr
 
   def basis = this
   override val parentViewGroup = parentVGroup
-  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
+    case p: LayoutParams[V] => p
+    case _ => new LayoutParams(v)
+  }
 
   class LayoutParams[V <: View](v: V) extends TableLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT, 1.0f) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
     def basis = this
@@ -2251,7 +2254,10 @@ class SRelativeLayout()(implicit context: android.content.Context, parentVGroup:
 
   def basis = this
   override val parentViewGroup = parentVGroup
-  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
+    case p: LayoutParams[V] => p
+    case _ => new LayoutParams(v)
+  }
 
   class LayoutParams[V <: View](v: V) extends RelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
     def basis = this
@@ -4390,7 +4396,11 @@ class SLinearLayout()(implicit context: android.content.Context, parentVGroup: T
   val VERTICAL = LinearLayout.VERTICAL
   val HORIZONTAL = LinearLayout.HORIZONTAL
 
-  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
+    case p: LayoutParams[V] => p
+    case _ => new LayoutParams(v)
+  }
+
   <<
 
   class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
@@ -5287,7 +5297,10 @@ class STableRow()(implicit context: android.content.Context, parentVGroup: Trait
 
   def basis = this
   override val parentViewGroup = parentVGroup
-  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
+    case p: LayoutParams[V] => p
+    case _ => new LayoutParams(v)
+  }
 
   class LayoutParams[V <: View](v: V) extends TableRow.LayoutParams(MATCH_PARENT, WRAP_CONTENT, 1.0f) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
     def basis = this
@@ -6811,7 +6824,10 @@ class SFrameLayout()(implicit context: android.content.Context, parentVGroup: Tr
 
   def basis = this
   override val parentViewGroup = parentVGroup
-  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
+    case p: LayoutParams[V] => p
+    case _ => new LayoutParams(v)
+  }
 
   class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
 

@@ -1,5 +1,8 @@
 FrameLayout_concreteBody() ::= <<
-implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
+  case p: LayoutParams[V] => p
+  case _ => new LayoutParams(v)
+}
 
 class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
 
@@ -47,7 +50,10 @@ import android.graphics.drawable.Drawable
 >>
 
 RelativeLayout_concreteBody() ::= <<
-implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
+  case p: LayoutParams[V] => p
+  case _ => new LayoutParams(v)
+}
 
 class LayoutParams[V <: View](v: V) extends RelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
   def basis = this
@@ -171,7 +177,11 @@ LinearLayout_concreteBody() ::= <<
 val VERTICAL = LinearLayout.VERTICAL
 val HORIZONTAL = LinearLayout.HORIZONTAL
 
-implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
+  case p: LayoutParams[V] => p
+  case _ => new LayoutParams(v)
+}
+
 <<
 
 class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
@@ -196,7 +206,10 @@ class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARE
 >>
 
 TableLayout_concreteBody() ::= <<
-implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
+  case p: LayoutParams[V] => p
+  case _ => new LayoutParams(v)
+}
 
 class LayoutParams[V <: View](v: V) extends TableLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT, 1.0f) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
   def basis = this
@@ -210,7 +223,10 @@ class LayoutParams[V <: View](v: V) extends TableLayout.LayoutParams(MATCH_PAREN
 >>
 
 TableRow_concreteBody() ::= <<
-implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = new LayoutParams(v)
+implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
+  case p: LayoutParams[V] => p
+  case _ => new LayoutParams(v)
+}
 
 class LayoutParams[V <: View](v: V) extends TableRow.LayoutParams(MATCH_PARENT, WRAP_CONTENT, 1.0f) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
   def basis = this
