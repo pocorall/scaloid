@@ -183,6 +183,7 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
     componentName = p1
     binder = b
     onConnected.run(svc)
+    onConnected.clear()
   }
 
   /**
@@ -192,6 +193,7 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
     val svc = service.get
     service = None
     onDisconnected.run(svc)
+    onDisconnected.clear()
   }
 
   /**
