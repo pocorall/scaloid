@@ -186,7 +186,7 @@ trait WidgetHelpers {
    * Displays a dialog with spinner icon.
    * This method can be called from any threads.
    */
-  @inline def spinnerDialog(title: String, message: String)(implicit context: Context): ProgressDialog =
+  @inline def spinnerDialog(title: CharSequence, message: CharSequence)(implicit context: Context): ProgressDialog =
     runOnUiThread(ProgressDialog.show(context, title, message, true))
 
 }
