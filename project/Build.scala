@@ -68,7 +68,8 @@ object ScaloidBuild extends Build {
     javacOptions ++= Seq(
       "-source", "1.6",
       "-target", "1.6"),
-    resolvers += "Android Repository" at (new File(System.getenv("ANDROID_HOME")) / "extras" / "android" / "m2repository").getCanonicalFile.toURI.toString
+    resolvers += "Android Repository" at (new File(System.getenv("ANDROID_HOME")) / "extras" / "android" / "m2repository").getCanonicalFile.toURI.toString,
+    addCompilerPlugin("org.scalamacros" % "paradise" % "2.0.1" cross CrossVersion.full)
   )
 
   // configure prompt to show current project
@@ -89,7 +90,8 @@ object ScaloidBuild extends Build {
     .settings(name := "scaloid", exportJars := true)
     .settings(basicSettings: _*)
     .settings(scaloidSettings: _*)
-    .settings(libraryDependencies ++= Seq(robolectric,scalaTest,junit,junitInterface,android16))
+    .settings(libraryDependencies ++= Seq(robolectric,scalaTest,junit,junitInterface,android16),
+      libraryDependencies <+= (scalaVersion)("org.scala-lang" % "scala-reflect" % _))
     //RobolectricTestRunner requires "fork" to reflect test code changes without sbt restart.
     .settings(fork in Test := true)
 

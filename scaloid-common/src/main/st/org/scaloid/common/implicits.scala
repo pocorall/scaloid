@@ -8,6 +8,7 @@ import android.graphics.Movie
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view._
+import org.scaloid.common.RichIntent
 import language.implicitConversions
 
 private[scaloid] class UnitConversion(val ext: Double)(implicit context: Context) {
@@ -101,6 +102,8 @@ trait InterfaceImplicits {
         f
       }
     }
+
+  implicit def intent2RichIntent(i: Intent) = new RichIntent(i)
 }
 object InterfaceImplicits extends InterfaceImplicits
 

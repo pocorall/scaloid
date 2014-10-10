@@ -2,12 +2,14 @@ $license()$
 
 package org.scaloid.common
 
+import android.app.Activity
 import android.content._
 import android.util.Log
 import android.os._
 import scala.collection.mutable.ArrayBuffer
 import scala.reflect._
-
+import scala.language.experimental.macros
+import scala.reflect.macros.blackbox.{Context => MacroCtx}
 
 class EventSource0[T] extends ArrayBuffer[() => T] {
   def apply(e: => T) = append(() => e)
@@ -96,8 +98,8 @@ $wholeClassDef(android.content.ContextWrapper)$
  */
 trait UnregisterReceiver extends ContextWrapper with Destroyable {
   /**
-    * Internal implementation for (un)registering the receiver. You do not need to call this method.
-    */
+   * Internal implementation for (un)registering the receiver. You do not need to call this method.
+   */
   override def registerReceiver(receiver: BroadcastReceiver, filter: IntentFilter): android.content.Intent = {
     onDestroy {
       Log.i("ScalaUtils", "Unregister BroadcastReceiver: "+receiver)
@@ -126,6 +128,21 @@ object SIntent {
   @inline def apply[T](implicit context: Context, mt: ClassTag[T]) = new Intent(context, mt.runtimeClass)
 
   @inline def apply[T](action: String)(implicit context: Context, mt: ClassTag[T]): Intent = SIntent[T].setAction(action)
+}
+
+class RichIntent(val intent: Intent) {
+  @inline def start[T <: Activity](implicit context: Context, mt: ClassTag[T]) = {
+    val clazz = mt.runtimeClass
+    intent.setClass(context, clazz)
+    clazz match {
+      case c if classOf[Activity].isAssignableFrom(c) =>
+        context.startActivity(intent)
+      case c if classOf[android.app.Service].isAssignableFrom(c) =>
+        context.startService(intent)
+    }
+  }
+
+  def put(values :Any*): Intent = macro org.scaloid.util.MacroImpl.put_impl
 }
 
 
