@@ -26,8 +26,8 @@ object ScaloidBuild extends Build {
     organizationHomepage := Some(new URL("http://blog.scaloid.org")),
     description := "Less Painful Android Development with Scala",
     startYear := Some(2012),
-    scalaVersion := "2.11.2",
-    crossScalaVersions := Seq("2.10.4", "2.11.2"),
+    scalaVersion := "2.11.3",
+    crossScalaVersions := Seq("2.10.4", "2.11.3"),
     version := scaloidVersion,
     publishMavenStyle := true,
     publishTo <<= version {
