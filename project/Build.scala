@@ -4,7 +4,7 @@ import Keys._
 object Dependencies {
   val android = "com.google.android" % "android" % "2.3.3" % "provided"
   val android_support_v4 = "com.google.android" % "support-v4" % "r7" % "provided"
-  val scaloidVersion = "3.6-10-SNAPSHOT"
+  val scaloidVersion = "3.6-10"
   val scaloid = "org.scaloid" %% "scaloid" % scaloidVersion
 
   val robolectric = "org.robolectric" % "robolectric" % "2.3" % "test"
