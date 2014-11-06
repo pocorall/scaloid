@@ -27,7 +27,7 @@ object ScaloidBuild extends Build {
     description := "Less Painful Android Development with Scala",
     startYear := Some(2012),
     scalaVersion := "2.11.3",
-    crossScalaVersions := Seq("2.10.4", "2.11.3"),
+    crossScalaVersions := Seq("2.10.4", "2.11.4"),
     version := scaloidVersion,
     publishMavenStyle := true,
     publishTo <<= version {
