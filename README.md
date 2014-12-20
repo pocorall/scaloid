@@ -269,6 +269,21 @@ broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =
 
 Then, the receiver is registered onStart, and unregistered onStop.
 
+#### onDestroy can be called in many times!
+
+You can declare `onDestroy` behaviors in many places. This simplifies resource management significantly. Suppose you want to open a stream from a file: 
+
+```scala
+def openFileStream(file: File):InputStream {
+  def stream = new FileInputStream(file)
+  onDestroy(stream.close()) // automatically closed when the Activity is destroyed!!
+  stream
+}
+```
+
+`onDestroy` is a method that adds a function into the job list triggered when the activity is destroyed. We can just use the `InputStream` and forget about releasing it.
+Other lifecycle states (`onStart`, `onResume`, `onStop` and so on) can be treated in the same way.
+
 **Further reading:** Refer to [this blog post](http://blog.scaloid.org/2013/02/better-resource-releasing-in-android.html) for more details.
  
  
@@ -441,6 +456,24 @@ startService[MyService]
 stopService[MyService]
 ```
 
+or
+
+```scala
+val intent = // initialize the intent and put some attributes in it
+intent.start[MyActivity]
+```
+
+An intent that has a long list of extra attributes:
+
+```scala
+new Intent().putExtra("valueA", valueA).putExtra("valueB", valueB).putExtra("valueC", valueC)
+```scala
+
+is reduced to:
+
+```scala
+new Intent().put(valueA, valueB, valueC)
+```scala
 
 ##### Toast
 
