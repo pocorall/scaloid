@@ -2610,6 +2610,50 @@ trait TraitViewStub[V <: android.view.ViewStub] extends TraitView[V] {
 }
 
 
+  /**
+   * Automatically generated enriching class of `[[https://developer.android.com/reference/android/view/ActionProvider.html android.view.ActionProvider]]`.
+   */
+  class RichActionProvider[V <: android.view.ActionProvider](val basis: V) extends TraitActionProvider[V]
+
+  /**
+   * Automatically generated helper trait of `[[https://developer.android.com/reference/android/view/ActionProvider.html android.view.ActionProvider]]`. This contains several property accessors.
+   */
+  trait TraitActionProvider[V <: android.view.ActionProvider] {
+
+    def basis: V
+
+
+
+    @inline def visibilityListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'visibilityListener'")
+
+    /**
+     * Shortcut for `[[https://developer.android.com/reference/android/view/ActionProvider.html#setVisibilityListener(android.view.ActionProvider.VisibilityListener) setVisibilityListener(android.view.ActionProvider.VisibilityListener)]]`
+     */
+    @inline def visibilityListener  (p: android.view.ActionProvider.VisibilityListener) =            visibilityListener_=(p)
+
+    /**
+     * Shortcut for `[[https://developer.android.com/reference/android/view/ActionProvider.html#setVisibilityListener(android.view.ActionProvider.VisibilityListener) setVisibilityListener(android.view.ActionProvider.VisibilityListener)]]`
+     */
+    @inline def visibilityListener_=(p: android.view.ActionProvider.VisibilityListener) = { basis.setVisibilityListener(p); basis }
+
+
+    @inline def onActionProviderVisibilityChanged[U](f: Boolean => U): V = {
+      basis.setVisibilityListener(new android.view.ActionProvider.VisibilityListener {
+        def onActionProviderVisibilityChanged(p: Boolean): Unit = { f(p) }
+      })
+      basis
+    }
+
+    @inline def onActionProviderVisibilityChanged[U](f:  => U): V = {
+      basis.setVisibilityListener(new android.view.ActionProvider.VisibilityListener {
+        def onActionProviderVisibilityChanged(p: Boolean): Unit = { f }
+      })
+      basis
+    }
+  }
+
+
+
 
 trait ViewImplicits {
   @inline implicit def view2RichView[V <: android.view.View](view: V) = new RichView[V](view)
@@ -2618,5 +2662,6 @@ trait ViewImplicits {
   @inline implicit def contextMenu2RichContextMenu[V <: android.view.ContextMenu](contextMenu: V) = new RichContextMenu[V](contextMenu)
   @inline implicit def surfaceView2RichSurfaceView[V <: android.view.SurfaceView](surfaceView: V) = new RichSurfaceView[V](surfaceView)
   @inline implicit def viewStub2RichViewStub[V <: android.view.ViewStub](viewStub: V) = new RichViewStub[V](viewStub)
+  @inline implicit def actionProvider2RichActionProvider[V <: android.view.ActionProvider](actionProvider: V) = new RichActionProvider[V](actionProvider)
 }
 object ViewImplicits extends ViewImplicits

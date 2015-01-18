@@ -63,6 +63,7 @@ class Preferences(val preferences: SharedPreferences) extends Dynamic {
       case v: Long => preferences.edit().putLong(name, v).commit()
       case v: Boolean => preferences.edit().putBoolean(name, v).commit()
       case v: Float => preferences.edit().putFloat(name, v).commit()
+      case v: Set[String] => preferences.edit().putStringSet(name, v).commit()
     }
   }
 
@@ -72,6 +73,7 @@ class Preferences(val preferences: SharedPreferences) extends Dynamic {
     case v: Long => preferences.getLong(name, v).asInstanceOf[T]
     case v: Boolean => preferences.getBoolean(name, v).asInstanceOf[T]
     case v: Float => preferences.getFloat(name, v).asInstanceOf[T]
+    case v: Set[String] => preferences.getStringSet(name, v).toSet.asInstanceOf[T]
   }
 
   def remove(name: String) {
@@ -103,6 +105,9 @@ class Preferences(val preferences: SharedPreferences) extends Dynamic {
     override def get(name: String): Float = preferences.getFloat(name, 0f)
   }
 
+  val StringSet = new TypedPreferences[Set[String]] {
+    override def get(name: String): Set[String] = preferences.getStringSet(name, null).toSet
+  }
 }
 
 object Preferences {

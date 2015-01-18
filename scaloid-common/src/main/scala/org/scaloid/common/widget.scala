@@ -40,6 +40,7 @@ import android.content._
 import android.view._
 import android.view.View._
 import android.widget._
+import scala.reflect._
 import scala.collection.mutable.ArrayBuffer
 import scala.language.implicitConversions
 import WidgetImplicits._
@@ -3101,25 +3102,6 @@ object SChronometer {
     v
   }
 
-}
-
-
-
-
-/**
- * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/RemoteViewsService.html android.widget.RemoteViewsService]]`.
- */
-class RichRemoteViewsService[V <: android.widget.RemoteViewsService](val basis: V) extends TraitRemoteViewsService[V]
-
-/**
- * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/RemoteViewsService.html android.widget.RemoteViewsService]]`. This contains several property accessors.
- */
-trait TraitRemoteViewsService[V <: android.widget.RemoteViewsService] extends TraitService[V] {
-
-
-
-
-  @inline def onGetViewFactory[T: ClassTag](implicit context: Context): android.widget.RemoteViewsService.RemoteViewsFactory = basis.onGetViewFactory(SIntent[T])
 }
 
 
@@ -13145,7 +13127,6 @@ trait WidgetImplicits {
   @inline implicit def relativeLayout2RichRelativeLayout[V <: android.widget.RelativeLayout](relativeLayout: V) = new RichRelativeLayout[V](relativeLayout)
   @inline implicit def numberPicker2RichNumberPicker[V <: android.widget.NumberPicker](numberPicker: V) = new RichNumberPicker[V](numberPicker)
   @inline implicit def chronometer2RichChronometer[V <: android.widget.Chronometer](chronometer: V) = new RichChronometer[V](chronometer)
-  @inline implicit def remoteViewsService2RichRemoteViewsService[V <: android.widget.RemoteViewsService](remoteViewsService: V) = new RichRemoteViewsService[V](remoteViewsService)
   @inline implicit def filterable2RichFilterable[V <: android.widget.Filterable](filterable: V) = new RichFilterable[V](filterable)
   @inline implicit def checkedTextView2RichCheckedTextView[V <: android.widget.CheckedTextView](checkedTextView: V) = new RichCheckedTextView[V](checkedTextView)
   @inline implicit def sectionIndexer2RichSectionIndexer[V <: android.widget.SectionIndexer](sectionIndexer: V) = new RichSectionIndexer[V](sectionIndexer)

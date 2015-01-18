@@ -339,7 +339,11 @@ object AndroidClassExtractor extends JavaConversionHelpers {
           }
           .filter { n =>
             val name = n.toString
-            !name.contains("webkit") || name.contains("WebView") // excluding android.webkit.* in Android 2.1.1, which is deprecated
+            !name.contains("webkit") || name.contains("WebView") // excludes android.webkit.* in Android 2.1.1, which is deprecated
+          }
+          .filter { n =>
+            val name = n.toString
+            !name.contains("RemoteViewsService") // excludes RemoteViewsService, because it is packaged weird place "android.view"
           }
           .filter(sourceExists)
           .map(toAndroidClass)

@@ -16,7 +16,7 @@ object ScaloidSettings {
   lazy val scaloidSettings = Seq(
     generate in Scaloid <<= generateTask,
     extract in Scaloid <<= extractTask,
-    apiVersion in Scaloid := 8,
+    apiVersion in Scaloid := 16,
     libraryDependencies += android
   )
 

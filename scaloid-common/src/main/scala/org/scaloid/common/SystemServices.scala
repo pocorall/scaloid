@@ -94,6 +94,9 @@ trait SystemServices {
   @inline def devicePolicyManager(implicit context: Context) =
     context.getSystemService(Context.DEVICE_POLICY_SERVICE).asInstanceOf[android.app.admin.DevicePolicyManager]
 
+  @inline def downloadManager(implicit context: Context) =
+    context.getSystemService(Context.DOWNLOAD_SERVICE).asInstanceOf[android.app.DownloadManager]
+
   @inline def dropBoxManager(implicit context: Context) =
     context.getSystemService(Context.DROPBOX_SERVICE).asInstanceOf[android.os.DropBoxManager]
 
@@ -109,6 +112,9 @@ trait SystemServices {
   @inline def locationManager(implicit context: Context) =
     context.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[android.location.LocationManager]
 
+  @inline def nfcManager(implicit context: Context) =
+    context.getSystemService(Context.NFC_SERVICE).asInstanceOf[android.nfc.NfcManager]
+
   @inline def notificationManager(implicit context: Context) =
     context.getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[android.app.NotificationManager]
 
@@ -120,6 +126,10 @@ trait SystemServices {
 
   @inline def sensorManager(implicit context: Context) =
     context.getSystemService(Context.SENSOR_SERVICE).asInstanceOf[android.hardware.SensorManager]
+
+  @inline def storageManager(implicit context: Context) =
+    context.getSystemService(Context.STORAGE_SERVICE).asInstanceOf[android.os.storage.StorageManager]
+
 
   @inline def telephonyManager(implicit context: Context) =
     context.getSystemService(Context.TELEPHONY_SERVICE).asInstanceOf[android.telephony.TelephonyManager]
@@ -167,14 +177,22 @@ trait SystemServices {
     }
   }
 
+  @inline def textServicesManager(implicit context: Context) =
+    context.getSystemService(Context.TEXT_SERVICES_MANAGER_SERVICE).asInstanceOf[android.view.textservice.TextServicesManager]
   @inline def uiModeManager(implicit context: Context) =
     context.getSystemService(Context.UI_MODE_SERVICE).asInstanceOf[android.app.UiModeManager]
+
+  @inline def usbManager(implicit context: Context) =
+    context.getSystemService(Context.USB_SERVICE).asInstanceOf[android.hardware.usb.UsbManager]
 
   @inline def vibrator(implicit context: Context) =
     context.getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[android.os.Vibrator]
 
   @inline def wallpaperManager(implicit context: Context) =
     context.getSystemService(Context.WALLPAPER_SERVICE).asInstanceOf[android.app.WallpaperManager]
+
+  @inline def wifiP2pManager(implicit context: Context) =
+    context.getSystemService(Context.WIFI_P2P_SERVICE).asInstanceOf[android.net.wifi.p2p.WifiP2pManager]
 
   @inline def wifiManager(implicit context: Context) =
     context.getSystemService(Context.WIFI_SERVICE).asInstanceOf[android.net.wifi.WifiManager]

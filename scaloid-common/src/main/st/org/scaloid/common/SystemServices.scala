@@ -118,7 +118,8 @@ $endif$
   }
 
 $if(ver.gte_14)$
-  $systemServiceHead(android.view.textservice.TextServicesManager)$
+  @inline def textServicesManager(implicit context: Context) =
+    context.getSystemService(Context.TEXT_SERVICES_MANAGER_SERVICE).asInstanceOf[android.view.textservice.TextServicesManager]
 $endif$
   $systemServiceHead(android.app.UiModeManager)$
 $if(ver.gte_12)$
