@@ -5,12 +5,12 @@ package org.scaloid.support.v4
 import org.scaloid.common._
 
 
-$wrapAllPackageMembers(android.support.v4.widget)$
+$android.support.v4.widget; format="wrap-all-classes"$
 
 
 trait WidgetImplicits {
   import scala.language.implicitConversions
 
-  $implicitConversions(android.support.v4.widget)$
+  $android.support.v4.widget; format="package-implicit-conversions"$
 }
 object WidgetImplicits extends WidgetImplicits

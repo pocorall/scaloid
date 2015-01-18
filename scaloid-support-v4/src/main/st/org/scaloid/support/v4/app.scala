@@ -8,12 +8,12 @@ import android.content._
 import scala.reflect._
 
 
-$wholeClassDef(android.support.v4.app.Fragment)$
+$android.support.v4.app.Fragment; format="whole"$
 
 
-$wholeClassDef(android.support.v4.app.FragmentActivity)$
-$wholeClassDef(android.support.v4.app.FragmentManager)$
-$wholeClassDef(android.support.v4.app.FragmentTransaction)$
-$wholeClassDef(android.support.v4.app.ListFragment)$
-$wholeClassDef(android.support.v4.app.DialogFragment)$
+$android.support.v4.app.FragmentActivity; format="whole"$
+$android.support.v4.app.FragmentManager; format="whole"$
+$android.support.v4.app.FragmentTransaction; format="whole"$
+$android.support.v4.app.ListFragment; format="whole"$
+$android.support.v4.app.DialogFragment; format="whole"$
 

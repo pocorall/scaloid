@@ -17,8 +17,8 @@ class ResponsiveLayout(implicit context: Context) extends SLinearLayout {
 
   override def +=(v: View) = {
     if (first) {
-	  val rv = v:RichView[View]
-	  if(Configuration.portrait) rv.fw else rv.wf
+      val rv = v: RichView[View]
+      if (Configuration.portrait) rv.fw else rv.wf
       first = false
     }
     super.+=(v)

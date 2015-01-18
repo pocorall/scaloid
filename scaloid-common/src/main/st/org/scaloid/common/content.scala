@@ -64,7 +64,7 @@ trait Registerable {
 }
 
 
-$wholeClassDef(android.content.Context)$
+$android.content.Context; format="whole"$
 
 /**
  * Enriched trait of the class android.content.Context. To enable Scaloid support for subclasses android.content.Context, extend this trait.
@@ -78,7 +78,7 @@ trait SContext extends Context with TraitContext[SContext] with TagUtil {
   def basis: SContext = this
 }
 
-$wholeClassDef(android.content.ContextWrapper)$
+$android.content.ContextWrapper; format="whole"$
 
 /**
  * When you register BroadcastReceiver with Context.registerReceiver() you have to unregister it to prevent memory leak.

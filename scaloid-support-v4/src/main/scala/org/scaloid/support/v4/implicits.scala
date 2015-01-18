@@ -1,6 +1,6 @@
-/* 
+/*
  *
- * 
+ *
  *
  *
  * Less painful Android development with Scala
@@ -37,7 +37,6 @@ package org.scaloid.support.v4
 
 import scala.language.implicitConversions
 
-
 trait AppImplicits {
   @inline implicit def fragment2RichFragment[V <: android.support.v4.app.Fragment](fragment: V) = new RichFragment[V](fragment)
   @inline implicit def fragmentActivity2RichFragmentActivity[V <: android.support.v4.app.FragmentActivity](fragmentActivity: V) = new RichFragmentActivity[V](fragmentActivity)
@@ -48,7 +47,6 @@ trait AppImplicits {
 
 }
 object AppImplicits extends AppImplicits
-
 
 trait Implicits extends AppImplicits with ViewImplicits with WidgetImplicits
 object Implicits extends Implicits

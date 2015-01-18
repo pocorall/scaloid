@@ -13,7 +13,7 @@ import scala.language.implicitConversions
 import WidgetImplicits._
 
 
-$wrapAllPackageMembers(android.widget)$
+$android.widget; format="wrap-all-classes"$
 
 class SVerticalLayout(implicit context: Context, parentVGroup: TraitViewGroup[_] = null) extends SLinearLayout {
   orientation = VERTICAL
@@ -29,25 +29,25 @@ object SVerticalLayout {
   }
 }
 
-$wholeClassDef(android.inputmethodservice.ExtractEditText)$
-$richClassDef(android.inputmethodservice.KeyboardView)$
-$wholeClassDef(android.opengl.GLSurfaceView)$
-$wholeClassDef(android.appwidget.AppWidgetHostView)$
-$wholeClassDef(android.gesture.GestureOverlayView)$
-$wholeClassDef(android.database.DataSetObserver)$
-$wholeClassDef(android.webkit.WebView)$
-$wholeClassDef(android.graphics.Paint)$
+$android.inputmethodservice.ExtractEditText; format="whole"$
+$android.inputmethodservice.KeyboardView; format="rich"$
+$android.opengl.GLSurfaceView; format="whole"$
+$android.appwidget.AppWidgetHostView; format="whole"$
+$android.gesture.GestureOverlayView; format="whole"$
+$android.database.DataSetObserver; format="whole"$
+$android.webkit.WebView; format="whole"$
+$android.graphics.Paint; format="whole"$
 
 
 trait WidgetImplicits {
-  $implicitConversions(android.widget)$
+  $android.widget; format="package-implicit-conversions"$
 
-  $implicitConversion(android.inputmethodservice.ExtractEditText)$
-  $implicitConversion(android.inputmethodservice.KeyboardView)$
-  $implicitConversion(android.opengl.GLSurfaceView)$
-  $implicitConversion(android.appwidget.AppWidgetHostView)$
-  $implicitConversion(android.gesture.GestureOverlayView)$
-  $implicitConversion(android.database.DataSetObserver)$
-  $implicitConversion(android.webkit.WebView)$
+  $android.inputmethodservice.ExtractEditText; format="implicit-conversion"$
+  $android.inputmethodservice.KeyboardView; format="implicit-conversion"$
+  $android.opengl.GLSurfaceView; format="implicit-conversion"$
+  $android.appwidget.AppWidgetHostView; format="implicit-conversion"$
+  $android.gesture.GestureOverlayView; format="implicit-conversion"$
+  $android.database.DataSetObserver; format="implicit-conversion"$
+  $android.webkit.WebView; format="implicit-conversion"$
 }
 object WidgetImplicits extends WidgetImplicits

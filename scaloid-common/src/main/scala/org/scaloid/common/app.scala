@@ -1,6 +1,6 @@
-/* 
+/*
  *
- * 
+ *
  *
  *
  * Less painful Android development with Scala
@@ -37,14 +37,13 @@ package org.scaloid.common
 
 import android.app._
 import android.content._
-import android.graphics.drawable.{Drawable, StateListDrawable}
+import android.graphics.drawable.{ Drawable, StateListDrawable }
 import android.os._
 import android.view._
 import android.view.WindowManager.LayoutParams._
 import scala.collection.mutable.ArrayBuffer
 import Implicits._
 import scala.deprecated
-
 
 trait TraitActivity[V <: Activity] {
 
@@ -63,8 +62,8 @@ trait TraitActivity[V <: Activity] {
 
   def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
 
-  def runOnUiThread (f: => Unit)  {
-    if(uiThread == Thread.currentThread) {
+  def runOnUiThread(f: => Unit) {
+    if (uiThread == Thread.currentThread) {
       f
     } else {
       handler.post(new Runnable() {
@@ -127,12 +126,12 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
 
   protected override def onCreate(b: Bundle) {
     super.onCreate(b)
-    onCreateBodies.foreach(_ ())
+    onCreateBodies.foreach(_())
   }
 
   override def onStart {
     super.onStart()
-    onStartBodies.foreach(_ ())
+    onStartBodies.foreach(_())
   }
 
   protected val onStartBodies = new ArrayBuffer[() => Any]
@@ -145,7 +144,7 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
 
   override def onResume {
     super.onResume()
-    onResumeBodies.foreach(_ ())
+    onResumeBodies.foreach(_())
   }
 
   protected val onResumeBodies = new ArrayBuffer[() => Any]
@@ -157,7 +156,7 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
   }
 
   override def onPause {
-    onPauseBodies.foreach(_ ())
+    onPauseBodies.foreach(_())
     super.onPause()
   }
 
@@ -170,7 +169,7 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
   }
 
   override def onStop {
-    onStopBodies.foreach(_ ())
+    onStopBodies.foreach(_())
     super.onStop()
   }
 
@@ -183,11 +182,10 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
   }
 
   override def onDestroy {
-    onDestroyBodies.foreach(_ ())
+    onDestroyBodies.foreach(_())
     super.onDestroy()
   }
 }
-
 
 /**
  * Enriched trait of the class android.app.Service. To enable Scaloid support for subclasses of android.app.Service, extend this trait.
@@ -201,11 +199,11 @@ trait SService extends Service with SContext with Destroyable with Creatable wit
 
   override def onCreate() {
     super.onCreate()
-    onCreateBodies.foreach(_ ())
+    onCreateBodies.foreach(_())
   }
 
   override def onDestroy() {
-    onDestroyBodies.foreach(_ ())
+    onDestroyBodies.foreach(_())
     super.onDestroy()
   }
 }
@@ -249,7 +247,6 @@ trait LocalService extends SService {
 class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = null)(implicit context: Context) extends AlertDialog.Builder(context) {
   if (_title != null) setTitle(_title)
   if (_message != null) setMessage(_message)
-
 
   @inline def positiveButton(name: CharSequence = android.R.string.yes, onClick: => Unit = {}): AlertDialogBuilder =
     positiveButton(name, (_, _) => {
@@ -305,7 +302,7 @@ class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = n
    * Shows the dialog that is currently building.
    * Because this method runs runOnUiThread internally, you can call this method from any thread.
    */
-  override def show():AlertDialog = runOnUiThread(super.show())
+  override def show(): AlertDialog = runOnUiThread(super.show())
 }
 
 /**

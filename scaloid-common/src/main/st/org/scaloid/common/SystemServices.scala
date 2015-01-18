@@ -29,12 +29,12 @@ import language.implicitConversions
  * [[https://github.com/pocorall/scaloid/#system-services]]
  */
 trait SystemServices {
-  $systemServiceHead(android.view.accessibility.AccessibilityManager)$
-  $systemServiceHead(android.accounts.AccountManager)$
-  $systemServiceHead(android.app.ActivityManager)$
-  $systemServiceHead(android.app.AlarmManager)$
-  $systemServiceHead(android.media.AudioManager)$
-  $systemServiceHead(android.text.ClipboardManager)$
+  $android.view.accessibility.AccessibilityManager; format="system-service"$
+  $android.accounts.AccountManager; format="system-service"$
+  $android.app.ActivityManager; format="system-service"$
+  $android.app.AlarmManager; format="system-service"$
+  $android.media.AudioManager; format="system-service"$
+  $android.text.ClipboardManager; format="system-service"$
 
   class RichClipboardManager(cm: android.text.ClipboardManager) {
     def text_=(txt: CharSequence) = cm.setText(txt)
@@ -43,37 +43,37 @@ trait SystemServices {
 
   @inline implicit def richClipboardManager(cm: android.text.ClipboardManager): RichClipboardManager = new RichClipboardManager(cm)
 
-  $systemServiceHead(android.net.ConnectivityManager)$
-  $systemServiceHead(android.app.admin.DevicePolicyManager)$
+  $android.net.ConnectivityManager; format="system-service"$
+  $android.app.admin.DevicePolicyManager; format="system-service"$
 $if(ver.gte_9)$
-  $systemServiceHead(android.app.DownloadManager)$
+  $android.app.DownloadManager; format="system-service"$
 $endif$
-  $systemServiceHead(android.os.DropBoxManager)$
+  $android.os.DropBoxManager; format="system-service"$
 $if(ver.gte_16)$
-  $systemServiceHead(android.hardware.input.InputManager)$
+  $android.hardware.input.InputManager; format="system-service"$
 $endif$
-  $systemServiceHead(android.view.inputmethod.InputMethodManager)$
-  $systemServiceHead(android.app.KeyguardManager)$
-  $systemServiceHead(android.view.LayoutInflater)$
-  $systemServiceHead(android.location.LocationManager)$
+  $android.view.inputmethod.InputMethodManager; format="system-service"$
+  $android.app.KeyguardManager; format="system-service"$
+  $android.view.LayoutInflater; format="system-service"$
+  $android.location.LocationManager; format="system-service"$
 $if(ver.gte_16)$
-  $systemServiceHead(android.media.MediaRouter)$
+  $android.media.MediaRouter; format="system-service"$
 $endif$
 $if(ver.gte_10)$
-  $systemServiceHead(android.nfc.NfcManager)$
+  $android.nfc.NfcManager; format="system-service"$
 $endif$
-  $systemServiceHead(android.app.NotificationManager)$
+  $android.app.NotificationManager; format="system-service"$
 $if(ver.gte_16)$
-  $systemServiceHead(android.net.nsd.NsdManager)$
+  $android.net.nsd.NsdManager; format="system-service"$
 $endif$
-  $systemServiceHead(android.os.PowerManager)$
-  $systemServiceHead(android.app.SearchManager)$
-  $systemServiceHead(android.hardware.SensorManager)$
+  $android.os.PowerManager; format="system-service"$
+  $android.app.SearchManager; format="system-service"$
+  $android.hardware.SensorManager; format="system-service"$
 $if(ver.gte_10)$
-  $systemServiceHead(android.os.storage.StorageManager)$
+  $android.os.storage.StorageManager; format="system-service"$
 $endif$
 
-  $systemServiceHead(android.telephony.TelephonyManager)$
+  $android.telephony.TelephonyManager; format="system-service"$
 
   def onCallForwardingIndicatorChanged(fun: Boolean => Any)(implicit ctx: Context, reg: Registerable) {
     val callStateListener = new PhoneStateListener() {
@@ -121,17 +121,17 @@ $if(ver.gte_14)$
   @inline def textServicesManager(implicit context: Context) =
     context.getSystemService(Context.TEXT_SERVICES_MANAGER_SERVICE).asInstanceOf[android.view.textservice.TextServicesManager]
 $endif$
-  $systemServiceHead(android.app.UiModeManager)$
+  $android.app.UiModeManager; format="system-service"$
 $if(ver.gte_12)$
-  $systemServiceHead(android.hardware.usb.UsbManager)$
+  $android.hardware.usb.UsbManager; format="system-service"$
 $endif$
-  $systemServiceHead(android.os.Vibrator)$
-  $systemServiceHead(android.app.WallpaperManager)$
+  $android.os.Vibrator; format="system-service"$
+  $android.app.WallpaperManager; format="system-service"$
 $if(ver.gte_14)$
-  $systemServiceHead(android.net.wifi.p2p.WifiP2pManager)$
+  $android.net.wifi.p2p.WifiP2pManager; format="system-service"$
 $endif$
-  $systemServiceHead(android.net.wifi.WifiManager)$
-  $systemServiceHead(android.view.WindowManager)$
+  $android.net.wifi.WifiManager; format="system-service"$
+  $android.view.WindowManager; format="system-service"$
 }
 
 object SystemServices extends SystemServices

@@ -5,13 +5,13 @@ package org.scaloid.support.v4
 import org.scaloid.common._
 
 
-$wholeClassDef(android.support.v4.view.ViewPager)$
-$wholeClassDef(android.support.v4.view.PagerAdapter)$
+$android.support.v4.view.ViewPager; format="whole"$
+$android.support.v4.view.PagerAdapter; format="whole"$
 
 
 trait ViewImplicits {
   import scala.language.implicitConversions
-  $implicitConversion(android.support.v4.view.ViewPager)$
-  $ImplicitConversion(android.support.v4.view.PagerAdapter)$
+  $android.support.v4.view.ViewPager; format="implicit-conversion"$
+  $android.support.v4.view.PagerAdapter; format="implicit-conversion"$
 }
 object ViewImplicits extends ViewImplicits

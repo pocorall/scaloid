@@ -2,14 +2,14 @@
 case class ScalaType(
   name: String,
   simpleName: String,
-  params: Seq[ScalaType],
-  bounds: Seq[ScalaType],
+  params: List[ScalaType],
+  bounds: List[ScalaType],
   isVar: Boolean,
   javaName: String
 )
 
 object ScalaType {
-  def apply(name: String, params: Seq[ScalaType] = Nil, bounds: Seq[ScalaType] = Nil, isVar: Boolean = false): ScalaType =
+  def apply(name: String, params: List[ScalaType] = Nil, bounds: List[ScalaType] = Nil, isVar: Boolean = false): ScalaType =
     ScalaType(name, name.split('.').last, params, bounds, isVar, name /* reuse scala name by default */)
 }
 
@@ -21,8 +21,8 @@ case class Argument(
 case class AndroidMethod(
   name: String,
   retType: ScalaType,
-  argTypes: Seq[ScalaType],
-  paramedTypes: Seq[ScalaType],
+  argTypes: List[ScalaType],
+  paramedTypes: List[ScalaType],
   isAbstract: Boolean = false,
   isOverride: Boolean = false
 )
@@ -30,7 +30,7 @@ case class AndroidMethod(
 case class AndroidCallbackMethod(
   name: String,
   retType: ScalaType,
-  argTypes: Seq[ScalaType],
+  argTypes: List[ScalaType],
   hasBody: Boolean = true
 )
 
@@ -38,7 +38,7 @@ case class AndroidProperty(
   name: String,
   tpe: ScalaType,
   getter: Option[AndroidMethod],
-  setters: Seq[AndroidMethod],
+  setters: List[AndroidMethod],
   switch: Option[String],
   nameClashes: Boolean
 )
@@ -46,12 +46,12 @@ case class AndroidProperty(
 case class AndroidListener(
   name: String,
   retType: ScalaType,
-  argTypes: Seq[ScalaType],
+  argTypes: List[ScalaType],
   hasParams: Boolean,
   setter: String,
-  setterArgTypes: Seq[ScalaType],
+  setterArgTypes: List[ScalaType],
   callbackClassName: String,
-  callbackMethods: Seq[AndroidCallbackMethod]
+  callbackMethods: List[AndroidCallbackMethod]
 ) {
   def isSafe: Boolean =
     (! setter.startsWith("set")) || callbackMethods.length == 1 || callbackMethods.forall(_.retType.name == "Unit")
@@ -60,15 +60,15 @@ case class AndroidListener(
 case class AndroidIntentMethod (
   name: String,
   retType: ScalaType,
-  argTypes: Seq[ScalaType],
+  argTypes: List[ScalaType],
   zeroArgs:Boolean
 )
 
 case class ScalaConstructor(
-  args: Seq[Argument],
-  implicitArgs: Seq[Argument],
-  explicitArgs: Seq[Argument],
-  paramedTypes: Seq[ScalaType],
+  args: List[Argument],
+  implicitArgs: List[Argument],
+  explicitArgs: List[Argument],
+  paramedTypes: List[ScalaType],
   isVarArgs: Boolean
 )
 
@@ -77,10 +77,10 @@ case class AndroidClass(
   pkg: String,
   tpe: ScalaType,
   parentType: Option[ScalaType],
-  constructors: Seq[ScalaConstructor],
-  properties: Seq[AndroidProperty],
-  listeners: Seq[AndroidListener],
-  intentMethods: Seq[AndroidIntentMethod],
+  constructors: List[ScalaConstructor],
+  properties: List[AndroidProperty],
+  listeners: List[AndroidListener],
+  intentMethods: List[AndroidIntentMethod],
   isA: Set[String],
   isAbstract: Boolean,
   isFinal: Boolean,

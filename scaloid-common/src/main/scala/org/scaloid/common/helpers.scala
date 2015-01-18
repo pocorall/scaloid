@@ -1,6 +1,6 @@
-/* 
+/*
  *
- * 
+ *
  *
  *
  * Less painful Android development with Scala
@@ -82,26 +82,24 @@ trait AppHelpers {
   @inline def pendingActivity[T](implicit context: Context, ct: ClassTag[T]) =
     PendingIntent.getActivity(context, 0, SIntent[T], 0)
 
-
 }
 
 object AppHelpers extends AppHelpers
-
 
 trait ContentHelpers {
   /**
    * When you register BroadcastReceiver with Context.registerReceiver() you have to unregister it to prevent memory leak.
    * Trait UnregisterReceiver handles these chores for you.
    * All you need to do is append the trait to your class.
-     {{{
-   class MyService extends SService with UnregisterReceiver {
-     def func() {
-       // ...
-       registerReceiver(receiver, intentFilter)
-       // Done! automatically unregistered at UnregisterReceiverService.onDestroy()
-     }
-   }
-     }}}
+   * {{{
+   * class MyService extends SService with UnregisterReceiver {
+   * def func() {
+   * // ...
+   * registerReceiver(receiver, intentFilter)
+   * // Done! automatically unregistered at UnregisterReceiverService.onDestroy()
+   * }
+   * }
+   * }}}
    */
   def broadcastReceiver(filter: IntentFilter)(onReceiveBody: (Context, Intent) => Any)(implicit ctx: Context, reg: Registerable) {
     val receiver = new BroadcastReceiver {
@@ -116,7 +114,6 @@ trait ContentHelpers {
 }
 
 object ContentHelpers extends ContentHelpers
-
 
 trait MediaHelpers {
   /**
@@ -142,7 +139,6 @@ trait MediaHelpers {
 
 object MediaHelpers extends MediaHelpers
 
-
 trait PreferenceHelpers {
   /**
    * Returns DefaultSharedPreferences object for given implicit context.
@@ -162,7 +158,7 @@ trait WidgetHelpers {
     runOnUiThread {
       val toast = Toast.makeText(context, message, duration)
       toast.setGravity(gravity, 0, 0)
-      if(view != null) toast.setView(view)
+      if (view != null) toast.setView(view)
       toast.show()
     }
   }

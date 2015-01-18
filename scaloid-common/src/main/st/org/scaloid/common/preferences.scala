@@ -90,6 +90,8 @@ object Preferences {
 
 class Extra(val activity: SActivity) extends AnyVal with Dynamic {
   def updateDynamic(name: String)(value: Any) {
+    // TODO inline after https://github.com/daniel-trinh/scalariform/issues/44 is fixed 
+    import android.os.Parcelable
     activity.intent.foreach {
       i => value match {
         // primitives
@@ -119,7 +121,7 @@ class Extra(val activity: SActivity) extends AnyVal with Dynamic {
         case v: Array[Double] => i.putExtra(name, v)
         case v: Array[String] => i.putExtra(name, v)
         case v: Array[CharSequence] => i.putExtra(name, v)
-        case v: Array[android.os.Parcelable] => i.putExtra(name, v)
+        case v: Array[Parcelable] => i.putExtra(name, v)
 
         // other types
         case v: Serializable => i.putExtra(name, v) // must be after arrays
@@ -145,6 +147,6 @@ object Extra {
 }
 
 
-$wholeClassDef(android.preference.Preference)$
-$richClassDef(android.preference.DialogPreference)$
-$wholeClassDef(android.preference.EditTextPreference)$
+$android.preference.Preference; format="whole"$
+$android.preference.DialogPreference; format="rich"$
+$android.preference.EditTextPreference; format="whole"$

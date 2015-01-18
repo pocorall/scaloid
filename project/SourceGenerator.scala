@@ -1,5 +1,7 @@
 import sbt._
 import Keys._
+import scalariform.formatter.ScalaFormatter
+import scalariform.formatter.preferences._
 
 
 object SourceGenerator {
@@ -8,16 +10,16 @@ object SourceGenerator {
 
   private def recursiveListFiles(dir: File, filter: FileFilter): Seq[File] = {
     def step(f: File, files: List[File] = Nil): List[File] =
-      if (!f.isDirectory)
-        if (filter.accept(f)) f :: files else files
-      else f.listFiles.map(step(_, files)).flatten.toList
+      if (f.isDirectory) f.listFiles.map(step(_, files)).flatten.toList
+      else if (filter.accept(f)) f :: files
+      else files
 
     step(dir).toSeq
   }
 
   def generateTask =
-    (moduleName, baseDirectory, sourceDirectory in Compile, extract in Scaloid, apiVersion in Scaloid, streams) map {
-      (mName, baseDir, srcDir, androidClasses, ver, s) =>
+    (moduleName, baseDirectory, sourceDirectory in Compile, extract in Scaloid, apiVersion in Scaloid, scalaVersion,streams) map {
+      (mName, baseDir, srcDir, androidClasses, androidApiVersion, scalaVersion, s) =>
         import NameFilter._
 
         if (mName == "parent") Nil
@@ -26,16 +28,48 @@ object SourceGenerator {
           val templateDir = srcDir / "st"
           val relativePath = Path.relativeTo(templateDir)
           val scalaTemplates = recursiveListFiles(templateDir, (s: String) => s.endsWith(".scala"))
-          val stg = new StringTemplateSupport(ver, stGroupsDir / "base.scala.stg")
 
           scalaTemplates.map { (file: File) =>
             val outFile = srcDir / "scala" / relativePath(file).get
+            s.log.info("Generating: " + outFile)
+
+            val stg = new StringTemplateSupport(androidApiVersion, file, s.log)
             val params = androidClasses
-            IO.write(outFile, stg.render(file, params))
-            s.log.info("Generating " + outFile)
+            val generatedCode = stg.render(file, params)
+            IO.write(outFile, generatedCode)
+
+            s.log.info("Formatting: "+ outFile)
+            try {
+              val formattedCode = formatCode(generatedCode, scalaVersion)
+              if (generatedCode != formattedCode) {
+                s.log.info("Reformatted: "+ outFile)
+                IO.write(outFile, formattedCode)
+              }
+            } catch {
+              case e: Throwable =>
+                s.log.error("Failed to generate "+ outFile)
+                s.log.trace(e)
+            }
+
             outFile
           }
         }
     }
+
+  private val scalariformPreferences = {
+    FormattingPreferences()
+      .setPreference(DoubleIndentClassDeclaration, true)
+      .setPreference(PreserveDanglingCloseParenthesis, true)
+  }
+
+  private def formatCode(code: String, scalaVersion: String): String = {
+    ScalaFormatter.format(
+      code,
+      scalariformPreferences,
+      scalaVersion = pureScalaVersion(scalaVersion)
+    )
+  }
+
+  private def pureScalaVersion(scalaVersion: String): String = scalaVersion.split("-").head
 
 }
