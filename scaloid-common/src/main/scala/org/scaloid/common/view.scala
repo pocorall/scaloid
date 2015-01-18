@@ -2653,6 +2653,106 @@ trait TraitViewStub[V <: android.view.ViewStub] extends TraitView[V] {
   }
 
 
+  /**
+   * Automatically generated enriching class of `[[https://developer.android.com/reference/android/view/TextureView.html android.view.TextureView]]`.
+   */
+  class RichTextureView[V <: android.view.TextureView](val basis: V) extends TraitTextureView[V]
+
+  /**
+   * Automatically generated helper trait of `[[https://developer.android.com/reference/android/view/TextureView.html android.view.TextureView]]`. This contains several property accessors.
+   */
+  trait TraitTextureView[V <: android.view.TextureView] extends TraitView[V] {
+
+
+
+
+    /**
+     * Shortcut for `[[https://developer.android.com/reference/android/view/TextureView.html#getBitmap() getBitmap()]]`
+     */
+    @inline def bitmap = basis.getBitmap
+
+
+    @inline def opaque(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'opaque'")
+
+    /**
+     * Shortcut for `[[https://developer.android.com/reference/android/view/TextureView.html#setOpaque(boolean) setOpaque(boolean)]]`
+     */
+    @inline def opaque  (p: Boolean) =            opaque_=(p)
+
+    /**
+     * Shortcut for `[[https://developer.android.com/reference/android/view/TextureView.html#setOpaque(boolean) setOpaque(boolean)]]`
+     */
+    @inline def opaque_=(p: Boolean) = { basis.setOpaque(p); basis }
+
+
+    /**
+     * Shortcut for `[[https://developer.android.com/reference/android/view/TextureView.html#getSurfaceTexture() getSurfaceTexture()]]`
+     */
+    @inline def surfaceTexture = basis.getSurfaceTexture
+
+    /**
+     * Shortcut for `[[https://developer.android.com/reference/android/view/TextureView.html#setSurfaceTexture(android.graphics.SurfaceTexture) setSurfaceTexture(android.graphics.SurfaceTexture)]]`
+     */
+    @inline def surfaceTexture  (p: android.graphics.SurfaceTexture) =            surfaceTexture_=(p)
+
+    /**
+     * Shortcut for `[[https://developer.android.com/reference/android/view/TextureView.html#setSurfaceTexture(android.graphics.SurfaceTexture) setSurfaceTexture(android.graphics.SurfaceTexture)]]`
+     */
+    @inline def surfaceTexture_=(p: android.graphics.SurfaceTexture) = { basis.setSurfaceTexture(p); basis }
+
+
+    /**
+     * Shortcut for `[[https://developer.android.com/reference/android/view/TextureView.html#getSurfaceTextureListener() getSurfaceTextureListener()]]`
+     */
+    @inline def surfaceTextureListener = basis.getSurfaceTextureListener
+
+    /**
+     * Shortcut for `[[https://developer.android.com/reference/android/view/TextureView.html#setSurfaceTextureListener(android.view.TextureView.SurfaceTextureListener) setSurfaceTextureListener(android.view.TextureView.SurfaceTextureListener)]]`
+     */
+    @inline def surfaceTextureListener  (p: android.view.TextureView.SurfaceTextureListener) =            surfaceTextureListener_=(p)
+
+    /**
+     * Shortcut for `[[https://developer.android.com/reference/android/view/TextureView.html#setSurfaceTextureListener(android.view.TextureView.SurfaceTextureListener) setSurfaceTextureListener(android.view.TextureView.SurfaceTextureListener)]]`
+     */
+    @inline def surfaceTextureListener_=(p: android.view.TextureView.SurfaceTextureListener) = { basis.setSurfaceTextureListener(p); basis }
+
+
+    @inline def transform(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'transform'")
+
+    /**
+     * Shortcut for `[[https://developer.android.com/reference/android/view/TextureView.html#setTransform(android.graphics.Matrix) setTransform(android.graphics.Matrix)]]`
+     */
+    @inline def transform  (p: android.graphics.Matrix) =            transform_=(p)
+
+    /**
+     * Shortcut for `[[https://developer.android.com/reference/android/view/TextureView.html#setTransform(android.graphics.Matrix) setTransform(android.graphics.Matrix)]]`
+     */
+    @inline def transform_=(p: android.graphics.Matrix) = { basis.setTransform(p); basis }
+
+
+  }
+
+  /**
+   * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/view/TextureView.html android.view.TextureView]]`.
+   */
+  class STextureView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
+      extends android.view.TextureView(context) with TraitTextureView[STextureView] {
+
+    def basis = this
+    override val parentViewGroup = parentVGroup
+
+  }
+
+  object STextureView {
+    def apply[LP <: ViewGroupLayoutParams[_, STextureView]]()(implicit context: android.content.Context, defaultLayoutParam: STextureView => LP): STextureView = {
+      val v = new STextureView
+      v.<<.parent.+=(v)
+      v
+    }
+
+  }
+
+
 
 
 trait ViewImplicits {
@@ -2663,5 +2763,6 @@ trait ViewImplicits {
   @inline implicit def surfaceView2RichSurfaceView[V <: android.view.SurfaceView](surfaceView: V) = new RichSurfaceView[V](surfaceView)
   @inline implicit def viewStub2RichViewStub[V <: android.view.ViewStub](viewStub: V) = new RichViewStub[V](viewStub)
   @inline implicit def actionProvider2RichActionProvider[V <: android.view.ActionProvider](actionProvider: V) = new RichActionProvider[V](actionProvider)
+  @inline implicit def textureView2RichTextureView[V <: android.view.TextureView](textureView: V) = new RichTextureView[V](textureView)
 }
 object ViewImplicits extends ViewImplicits

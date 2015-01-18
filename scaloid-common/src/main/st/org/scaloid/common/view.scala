@@ -140,6 +140,7 @@ $wholeClassDef(android.view.SurfaceView)$
 $wholeClassDef(android.view.ViewStub)$
 $if(ver.gte_14)$
   $wholeClassDef(android.view.ActionProvider)$
+  $wholeClassDef(android.view.TextureView)$
 $endif$
 
 
@@ -152,6 +153,7 @@ trait ViewImplicits {
   $implicitConversion(android.view.ViewStub)$
 $if(ver.gte_14)$
   $implicitConversion(android.view.ActionProvider)$
+  $implicitConversion(android.view.TextureView)$
 $endif$
 }
 object ViewImplicits extends ViewImplicits
