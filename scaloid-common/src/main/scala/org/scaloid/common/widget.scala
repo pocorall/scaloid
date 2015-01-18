@@ -850,7 +850,10 @@ trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
 
 
 
-  @inline def adjustViewBounds(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'adjustViewBounds'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#getAdjustViewBounds() getAdjustViewBounds()]]`
+   */
+  @inline def adjustViewBounds = basis.getAdjustViewBounds
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#setAdjustViewBounds(boolean) setAdjustViewBounds(boolean)]]`
@@ -901,7 +904,10 @@ trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
   @inline def baselineAlignBottom_=(p: Boolean) = { basis.setBaselineAlignBottom(p); basis }
 
 
-  @inline def colorFilter(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'colorFilter'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#getColorFilter() getColorFilter()]]`
+   */
+  @inline def colorFilter = basis.getColorFilter
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#setColorFilter(int) setColorFilter(int)]]`
@@ -926,9 +932,41 @@ trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#getCropToPadding() getCropToPadding()]]`
+   */
+  @inline def cropToPadding = basis.getCropToPadding
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#setCropToPadding(boolean) setCropToPadding(boolean)]]`
+   */
+  @inline def cropToPadding  (p: Boolean) =            cropToPadding_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#setCropToPadding(boolean) setCropToPadding(boolean)]]`
+   */
+  @inline def cropToPadding_=(p: Boolean) = { basis.setCropToPadding(p); basis }
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#getDrawable() getDrawable()]]`
    */
   @inline def drawable = basis.getDrawable
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#getImageAlpha() getImageAlpha()]]`
+   */
+  @inline def imageAlpha = basis.getImageAlpha
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#setImageAlpha(int) setImageAlpha(int)]]`
+   */
+  @inline def imageAlpha  (p: Int) =            imageAlpha_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#setImageAlpha(int) setImageAlpha(int)]]`
+   */
+  @inline def imageAlpha_=(p: Int) = { basis.setImageAlpha(p); basis }
 
 
   @inline def imageBitmap(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'imageBitmap'")
@@ -1012,7 +1050,10 @@ trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
   @inline def imageURI_=(p: android.net.Uri) = { basis.setImageURI(p); basis }
 
 
-  @inline def maxHeight(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxHeight'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#getMaxHeight() getMaxHeight()]]`
+   */
+  @inline def maxHeight = basis.getMaxHeight
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#setMaxHeight(int) setMaxHeight(int)]]`
@@ -1025,7 +1066,10 @@ trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
   @inline def maxHeight_=(p: Int) = { basis.setMaxHeight(p); basis }
 
 
-  @inline def maxWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxWidth'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#getMaxWidth() getMaxWidth()]]`
+   */
+  @inline def maxWidth = basis.getMaxWidth
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#setMaxWidth(int) setMaxWidth(int)]]`
@@ -1402,7 +1446,10 @@ trait TraitAbsSeekBar[V <: android.widget.AbsSeekBar] extends TraitProgressBar[V
   @inline def keyProgressIncrement_=(p: Int) = { basis.setKeyProgressIncrement(p); basis }
 
 
-  @inline def thumb(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'thumb'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AbsSeekBar.html#getThumb() getThumb()]]`
+   */
+  @inline def thumb = basis.getThumb
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/AbsSeekBar.html#setThumb(android.graphics.drawable.Drawable) setThumb(android.graphics.drawable.Drawable)]]`
@@ -2173,7 +2220,58 @@ trait TraitSpinner[V <: android.widget.Spinner] extends TraitAbsSpinner[V] {
 
 
 
-  @inline def gravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'gravity'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#getDropDownHorizontalOffset() getDropDownHorizontalOffset()]]`
+   */
+  @inline def dropDownHorizontalOffset = basis.getDropDownHorizontalOffset
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#setDropDownHorizontalOffset(int) setDropDownHorizontalOffset(int)]]`
+   */
+  @inline def dropDownHorizontalOffset  (p: Int) =            dropDownHorizontalOffset_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#setDropDownHorizontalOffset(int) setDropDownHorizontalOffset(int)]]`
+   */
+  @inline def dropDownHorizontalOffset_=(p: Int) = { basis.setDropDownHorizontalOffset(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#getDropDownVerticalOffset() getDropDownVerticalOffset()]]`
+   */
+  @inline def dropDownVerticalOffset = basis.getDropDownVerticalOffset
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#setDropDownVerticalOffset(int) setDropDownVerticalOffset(int)]]`
+   */
+  @inline def dropDownVerticalOffset  (p: Int) =            dropDownVerticalOffset_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#setDropDownVerticalOffset(int) setDropDownVerticalOffset(int)]]`
+   */
+  @inline def dropDownVerticalOffset_=(p: Int) = { basis.setDropDownVerticalOffset(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#getDropDownWidth() getDropDownWidth()]]`
+   */
+  @inline def dropDownWidth = basis.getDropDownWidth
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#setDropDownWidth(int) setDropDownWidth(int)]]`
+   */
+  @inline def dropDownWidth  (p: Int) =            dropDownWidth_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#setDropDownWidth(int) setDropDownWidth(int)]]`
+   */
+  @inline def dropDownWidth_=(p: Int) = { basis.setDropDownWidth(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#getGravity() getGravity()]]`
+   */
+  @inline def gravity = basis.getGravity
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#setGravity(int) setGravity(int)]]`
@@ -2184,6 +2282,38 @@ trait TraitSpinner[V <: android.widget.Spinner] extends TraitAbsSpinner[V] {
    * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#setGravity(int) setGravity(int)]]`
    */
   @inline def gravity_=(p: Int) = { basis.setGravity(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#getPopupBackground() getPopupBackground()]]`
+   */
+  @inline def popupBackground = basis.getPopupBackground
+
+
+  @inline def popupBackgroundDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'popupBackgroundDrawable'")
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#setPopupBackgroundDrawable(android.graphics.drawable.Drawable) setPopupBackgroundDrawable(android.graphics.drawable.Drawable)]]`
+   */
+  @inline def popupBackgroundDrawable  (p: android.graphics.drawable.Drawable) =            popupBackgroundDrawable_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#setPopupBackgroundDrawable(android.graphics.drawable.Drawable) setPopupBackgroundDrawable(android.graphics.drawable.Drawable)]]`
+   */
+  @inline def popupBackgroundDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setPopupBackgroundDrawable(p); basis }
+
+
+  @inline def popupBackgroundResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'popupBackgroundResource'")
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#setPopupBackgroundResource(int) setPopupBackgroundResource(int)]]`
+   */
+  @inline def popupBackgroundResource  (p: Int) =            popupBackgroundResource_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Spinner.html#setPopupBackgroundResource(int) setPopupBackgroundResource(int)]]`
+   */
+  @inline def popupBackgroundResource_=(p: Int) = { basis.setPopupBackgroundResource(p); basis }
 
 
   /**
@@ -2296,7 +2426,10 @@ trait TraitGridView[V <: android.widget.GridView] extends TraitAbsListView[V] {
   @inline override def adapter = basis.getAdapter
 
 
-  @inline def columnWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'columnWidth'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/GridView.html#getColumnWidth() getColumnWidth()]]`
+   */
+  @inline def columnWidth = basis.getColumnWidth
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/GridView.html#setColumnWidth(int) setColumnWidth(int)]]`
@@ -2309,7 +2442,10 @@ trait TraitGridView[V <: android.widget.GridView] extends TraitAbsListView[V] {
   @inline def columnWidth_=(p: Int) = { basis.setColumnWidth(p); basis }
 
 
-  @inline def gravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'gravity'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/GridView.html#getGravity() getGravity()]]`
+   */
+  @inline def gravity = basis.getGravity
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/GridView.html#setGravity(int) setGravity(int)]]`
@@ -2322,7 +2458,10 @@ trait TraitGridView[V <: android.widget.GridView] extends TraitAbsListView[V] {
   @inline def gravity_=(p: Int) = { basis.setGravity(p); basis }
 
 
-  @inline def horizontalSpacing(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'horizontalSpacing'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/GridView.html#getHorizontalSpacing() getHorizontalSpacing()]]`
+   */
+  @inline def horizontalSpacing = basis.getHorizontalSpacing
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/GridView.html#setHorizontalSpacing(int) setHorizontalSpacing(int)]]`
@@ -2352,6 +2491,18 @@ trait TraitGridView[V <: android.widget.GridView] extends TraitAbsListView[V] {
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/GridView.html#getRequestedColumnWidth() getRequestedColumnWidth()]]`
+   */
+  @inline def requestedColumnWidth = basis.getRequestedColumnWidth
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/GridView.html#getRequestedHorizontalSpacing() getRequestedHorizontalSpacing()]]`
+   */
+  @inline def requestedHorizontalSpacing = basis.getRequestedHorizontalSpacing
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/GridView.html#getStretchMode() getStretchMode()]]`
    */
   @inline def stretchMode = basis.getStretchMode
@@ -2367,7 +2518,10 @@ trait TraitGridView[V <: android.widget.GridView] extends TraitAbsListView[V] {
   @inline def stretchMode_=(p: Int) = { basis.setStretchMode(p); basis }
 
 
-  @inline def verticalSpacing(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'verticalSpacing'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/GridView.html#getVerticalSpacing() getVerticalSpacing()]]`
+   */
+  @inline def verticalSpacing = basis.getVerticalSpacing
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/GridView.html#setVerticalSpacing(int) setVerticalSpacing(int)]]`
@@ -2418,7 +2572,10 @@ trait TraitRelativeLayout[V <: android.widget.RelativeLayout] extends TraitViewG
 
 
 
-  @inline def gravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'gravity'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/RelativeLayout.html#getGravity() getGravity()]]`
+   */
+  @inline def gravity = basis.getGravity
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/RelativeLayout.html#setGravity(int) setGravity(int)]]`
@@ -3006,7 +3163,10 @@ trait TraitCheckedTextView[V <: android.widget.CheckedTextView] extends TraitTex
 
 
 
-  @inline def checkMarkDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'checkMarkDrawable'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CheckedTextView.html#getCheckMarkDrawable() getCheckMarkDrawable()]]`
+   */
+  @inline def checkMarkDrawable = basis.getCheckMarkDrawable
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/CheckedTextView.html#setCheckMarkDrawable(int) setCheckMarkDrawable(int)]]`
@@ -4474,6 +4634,25 @@ object SStackView {
 
 
 /**
+ * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/Advanceable.html android.widget.Advanceable]]`.
+ */
+class RichAdvanceable[V <: android.widget.Advanceable](val basis: V) extends TraitAdvanceable[V]
+
+/**
+ * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/Advanceable.html android.widget.Advanceable]]`. This contains several property accessors.
+ */
+trait TraitAdvanceable[V <: android.widget.Advanceable] {
+
+  def basis: V
+
+
+
+}
+
+
+
+
+/**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/ZoomButtonsController.html android.widget.ZoomButtonsController]]`.
  */
 class RichZoomButtonsController[V <: android.widget.ZoomButtonsController](val basis: V) extends TraitZoomButtonsController[V]
@@ -4817,6 +4996,22 @@ trait TraitCalendarView[V <: android.widget.CalendarView] extends TraitFrameLayo
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#getDateTextAppearance() getDateTextAppearance()]]`
+   */
+  @inline def dateTextAppearance = basis.getDateTextAppearance
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setDateTextAppearance(int) setDateTextAppearance(int)]]`
+   */
+  @inline def dateTextAppearance  (p: Int) =            dateTextAppearance_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setDateTextAppearance(int) setDateTextAppearance(int)]]`
+   */
+  @inline def dateTextAppearance_=(p: Int) = { basis.setDateTextAppearance(p); basis }
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#getFirstDayOfWeek() getFirstDayOfWeek()]]`
    */
   @inline def firstDayOfWeek = basis.getFirstDayOfWeek
@@ -4830,6 +5025,22 @@ trait TraitCalendarView[V <: android.widget.CalendarView] extends TraitFrameLayo
    * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setFirstDayOfWeek(int) setFirstDayOfWeek(int)]]`
    */
   @inline def firstDayOfWeek_=(p: Int) = { basis.setFirstDayOfWeek(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#getFocusedMonthDateColor() getFocusedMonthDateColor()]]`
+   */
+  @inline def focusedMonthDateColor = basis.getFocusedMonthDateColor
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setFocusedMonthDateColor(int) setFocusedMonthDateColor(int)]]`
+   */
+  @inline def focusedMonthDateColor  (p: Int) =            focusedMonthDateColor_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setFocusedMonthDateColor(int) setFocusedMonthDateColor(int)]]`
+   */
+  @inline def focusedMonthDateColor_=(p: Int) = { basis.setFocusedMonthDateColor(p); basis }
 
 
   /**
@@ -4878,6 +5089,49 @@ trait TraitCalendarView[V <: android.widget.CalendarView] extends TraitFrameLayo
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#getSelectedDateVerticalBar() getSelectedDateVerticalBar()]]`
+   */
+  @inline def selectedDateVerticalBar = basis.getSelectedDateVerticalBar
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setSelectedDateVerticalBar(int) setSelectedDateVerticalBar(int)]]`
+   */
+  @inline def selectedDateVerticalBar  (p: Int) =            selectedDateVerticalBar_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setSelectedDateVerticalBar(int) setSelectedDateVerticalBar(int)]]`
+   */
+  @inline def selectedDateVerticalBar_=(p: Int) = { basis.setSelectedDateVerticalBar(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setSelectedDateVerticalBar(android.graphics.drawable.Drawable) setSelectedDateVerticalBar(android.graphics.drawable.Drawable)]]`
+   */
+  @inline def selectedDateVerticalBar  (p: android.graphics.drawable.Drawable) =            selectedDateVerticalBar_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setSelectedDateVerticalBar(android.graphics.drawable.Drawable) setSelectedDateVerticalBar(android.graphics.drawable.Drawable)]]`
+   */
+  @inline def selectedDateVerticalBar_=(p: android.graphics.drawable.Drawable) = { basis.setSelectedDateVerticalBar(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#getSelectedWeekBackgroundColor() getSelectedWeekBackgroundColor()]]`
+   */
+  @inline def selectedWeekBackgroundColor = basis.getSelectedWeekBackgroundColor
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setSelectedWeekBackgroundColor(int) setSelectedWeekBackgroundColor(int)]]`
+   */
+  @inline def selectedWeekBackgroundColor  (p: Int) =            selectedWeekBackgroundColor_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setSelectedWeekBackgroundColor(int) setSelectedWeekBackgroundColor(int)]]`
+   */
+  @inline def selectedWeekBackgroundColor_=(p: Int) = { basis.setSelectedWeekBackgroundColor(p); basis }
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#getShowWeekNumber() getShowWeekNumber()]]`
    */
   @inline def showWeekNumber = basis.getShowWeekNumber
@@ -4891,6 +5145,86 @@ trait TraitCalendarView[V <: android.widget.CalendarView] extends TraitFrameLayo
    * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setShowWeekNumber(boolean) setShowWeekNumber(boolean)]]`
    */
   @inline def showWeekNumber_=(p: Boolean) = { basis.setShowWeekNumber(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#getShownWeekCount() getShownWeekCount()]]`
+   */
+  @inline def shownWeekCount = basis.getShownWeekCount
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setShownWeekCount(int) setShownWeekCount(int)]]`
+   */
+  @inline def shownWeekCount  (p: Int) =            shownWeekCount_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setShownWeekCount(int) setShownWeekCount(int)]]`
+   */
+  @inline def shownWeekCount_=(p: Int) = { basis.setShownWeekCount(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#getUnfocusedMonthDateColor() getUnfocusedMonthDateColor()]]`
+   */
+  @inline def unfocusedMonthDateColor = basis.getUnfocusedMonthDateColor
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setUnfocusedMonthDateColor(int) setUnfocusedMonthDateColor(int)]]`
+   */
+  @inline def unfocusedMonthDateColor  (p: Int) =            unfocusedMonthDateColor_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setUnfocusedMonthDateColor(int) setUnfocusedMonthDateColor(int)]]`
+   */
+  @inline def unfocusedMonthDateColor_=(p: Int) = { basis.setUnfocusedMonthDateColor(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#getWeekDayTextAppearance() getWeekDayTextAppearance()]]`
+   */
+  @inline def weekDayTextAppearance = basis.getWeekDayTextAppearance
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setWeekDayTextAppearance(int) setWeekDayTextAppearance(int)]]`
+   */
+  @inline def weekDayTextAppearance  (p: Int) =            weekDayTextAppearance_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setWeekDayTextAppearance(int) setWeekDayTextAppearance(int)]]`
+   */
+  @inline def weekDayTextAppearance_=(p: Int) = { basis.setWeekDayTextAppearance(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#getWeekNumberColor() getWeekNumberColor()]]`
+   */
+  @inline def weekNumberColor = basis.getWeekNumberColor
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setWeekNumberColor(int) setWeekNumberColor(int)]]`
+   */
+  @inline def weekNumberColor  (p: Int) =            weekNumberColor_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setWeekNumberColor(int) setWeekNumberColor(int)]]`
+   */
+  @inline def weekNumberColor_=(p: Int) = { basis.setWeekNumberColor(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#getWeekSeparatorLineColor() getWeekSeparatorLineColor()]]`
+   */
+  @inline def weekSeparatorLineColor = basis.getWeekSeparatorLineColor
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setWeekSeparatorLineColor(int) setWeekSeparatorLineColor(int)]]`
+   */
+  @inline def weekSeparatorLineColor  (p: Int) =            weekSeparatorLineColor_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/CalendarView.html#setWeekSeparatorLineColor(int) setWeekSeparatorLineColor(int)]]`
+   */
+  @inline def weekSeparatorLineColor_=(p: Int) = { basis.setWeekSeparatorLineColor(p); basis }
 
 
   @inline def onSelectedDayChange[U](f: (android.widget.CalendarView, Int, Int, Int) => U): V = {
@@ -5548,7 +5882,10 @@ trait TraitLinearLayout[V <: android.widget.LinearLayout] extends TraitViewGroup
   @inline def baselineAlignedChildIndex_=(p: Int) = { basis.setBaselineAlignedChildIndex(p); basis }
 
 
-  @inline def dividerDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'dividerDrawable'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/LinearLayout.html#getDividerDrawable() getDividerDrawable()]]`
+   */
+  @inline def dividerDrawable = basis.getDividerDrawable
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/LinearLayout.html#setDividerDrawable(android.graphics.drawable.Drawable) setDividerDrawable(android.graphics.drawable.Drawable)]]`
@@ -6224,7 +6561,10 @@ trait TraitSearchView[V <: android.widget.SearchView] extends TraitLinearLayout[
   @inline def iconifiedByDefault_=(p: Boolean) = { basis.setIconifiedByDefault(p); basis }
 
 
-  @inline def imeOptions(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'imeOptions'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SearchView.html#getImeOptions() getImeOptions()]]`
+   */
+  @inline def imeOptions = basis.getImeOptions
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/SearchView.html#setImeOptions(int) setImeOptions(int)]]`
@@ -6237,7 +6577,10 @@ trait TraitSearchView[V <: android.widget.SearchView] extends TraitLinearLayout[
   @inline def imeOptions_=(p: Int) = { basis.setImeOptions(p); basis }
 
 
-  @inline def inputType(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'inputType'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SearchView.html#getInputType() getInputType()]]`
+   */
+  @inline def inputType = basis.getInputType
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/SearchView.html#setInputType(int) setInputType(int)]]`
@@ -6250,7 +6593,10 @@ trait TraitSearchView[V <: android.widget.SearchView] extends TraitLinearLayout[
   @inline def inputType_=(p: Int) = { basis.setInputType(p); basis }
 
 
-  @inline def maxWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxWidth'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SearchView.html#getMaxWidth() getMaxWidth()]]`
+   */
+  @inline def maxWidth = basis.getMaxWidth
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/SearchView.html#setMaxWidth(int) setMaxWidth(int)]]`
@@ -6334,7 +6680,10 @@ trait TraitSearchView[V <: android.widget.SearchView] extends TraitLinearLayout[
   @inline def query = basis.getQuery
 
 
-  @inline def queryHint(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'queryHint'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/SearchView.html#getQueryHint() getQueryHint()]]`
+   */
+  @inline def queryHint = basis.getQueryHint
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/SearchView.html#setQueryHint(java.lang.CharSequence) setQueryHint(java.lang.CharSequence)]]`
@@ -6960,8 +7309,6 @@ trait TraitTabWidget[V <: android.widget.TabWidget] extends TraitLinearLayout[V]
    */
   @inline def currentTab_=(p: Int) = { basis.setCurrentTab(p); basis }
 
-
-  @inline def dividerDrawable(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'dividerDrawable'")
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/TabWidget.html#setDividerDrawable(int) setDividerDrawable(int)]]`
@@ -7821,7 +8168,10 @@ trait TraitAdapterViewFlipper[V <: android.widget.AdapterViewFlipper] extends Tr
   @inline def autoStart_=(p: Boolean) = { basis.setAutoStart(p); basis }
 
 
-  @inline def flipInterval(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'flipInterval'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AdapterViewFlipper.html#getFlipInterval() getFlipInterval()]]`
+   */
+  @inline def flipInterval = basis.getFlipInterval
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/AdapterViewFlipper.html#setFlipInterval(int) setFlipInterval(int)]]`
@@ -8674,7 +9024,10 @@ trait TraitFrameLayout[V <: android.widget.FrameLayout] extends TraitViewGroup[V
   @inline def foreground_=(p: android.graphics.drawable.Drawable) = { basis.setForeground(p); basis }
 
 
-  @inline def foregroundGravity(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'foregroundGravity'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/FrameLayout.html#getForegroundGravity() getForegroundGravity()]]`
+   */
+  @inline def foregroundGravity = basis.getForegroundGravity
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/FrameLayout.html#setForegroundGravity(int) setForegroundGravity(int)]]`
@@ -8902,7 +9255,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def currentTextColor = basis.getCurrentTextColor
 
 
-  @inline def cursorVisible(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'cursorVisible'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#isCursorVisible() isCursorVisible()]]`
+   */
+  @inline def cursorVisible = basis.isCursorVisible
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setCursorVisible(boolean) setCursorVisible(boolean)]]`
@@ -9079,7 +9435,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def height_=(p: Int) = { basis.setHeight(p); basis }
 
 
-  @inline def highlightColor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'highlightColor'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getHighlightColor() getHighlightColor()]]`
+   */
+  @inline def highlightColor = basis.getHighlightColor
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setHighlightColor(int) setHighlightColor(int)]]`
@@ -9190,7 +9549,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def imeOptions_=(p: Int) = { basis.setImeOptions(p); basis }
 
 
-  @inline def includeFontPadding(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'includeFontPadding'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getIncludeFontPadding() getIncludeFontPadding()]]`
+   */
+  @inline def includeFontPadding = basis.getIncludeFontPadding
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setIncludeFontPadding(boolean) setIncludeFontPadding(boolean)]]`
@@ -9266,6 +9628,18 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def lineHeight = basis.getLineHeight
 
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getLineSpacingExtra() getLineSpacingExtra()]]`
+   */
+  @inline def lineSpacingExtra = basis.getLineSpacingExtra
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getLineSpacingMultiplier() getLineSpacingMultiplier()]]`
+   */
+  @inline def lineSpacingMultiplier = basis.getLineSpacingMultiplier
+
+
   @inline def lines(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'lines'")
 
   /**
@@ -9325,7 +9699,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def linksClickable_=(p: Boolean) = { basis.setLinksClickable(p); basis }
 
 
-  @inline def marqueeRepeatLimit(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'marqueeRepeatLimit'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getMarqueeRepeatLimit() getMarqueeRepeatLimit()]]`
+   */
+  @inline def marqueeRepeatLimit = basis.getMarqueeRepeatLimit
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setMarqueeRepeatLimit(int) setMarqueeRepeatLimit(int)]]`
@@ -9338,7 +9715,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def marqueeRepeatLimit_=(p: Int) = { basis.setMarqueeRepeatLimit(p); basis }
 
 
-  @inline def maxEms(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxEms'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getMaxEms() getMaxEms()]]`
+   */
+  @inline def maxEms = basis.getMaxEms
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setMaxEms(int) setMaxEms(int)]]`
@@ -9351,7 +9731,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def maxEms_=(p: Int) = { basis.setMaxEms(p); basis }
 
 
-  @inline def maxHeight(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxHeight'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getMaxHeight() getMaxHeight()]]`
+   */
+  @inline def maxHeight = basis.getMaxHeight
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setMaxHeight(int) setMaxHeight(int)]]`
@@ -9364,7 +9747,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def maxHeight_=(p: Int) = { basis.setMaxHeight(p); basis }
 
 
-  @inline def maxLines(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxLines'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getMaxLines() getMaxLines()]]`
+   */
+  @inline def maxLines = basis.getMaxLines
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setMaxLines(int) setMaxLines(int)]]`
@@ -9377,7 +9763,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def maxLines_=(p: Int) = { basis.setMaxLines(p); basis }
 
 
-  @inline def maxWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'maxWidth'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getMaxWidth() getMaxWidth()]]`
+   */
+  @inline def maxWidth = basis.getMaxWidth
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setMaxWidth(int) setMaxWidth(int)]]`
@@ -9390,7 +9779,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def maxWidth_=(p: Int) = { basis.setMaxWidth(p); basis }
 
 
-  @inline def minEms(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minEms'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getMinEms() getMinEms()]]`
+   */
+  @inline def minEms = basis.getMinEms
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setMinEms(int) setMinEms(int)]]`
@@ -9403,7 +9795,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def minEms_=(p: Int) = { basis.setMinEms(p); basis }
 
 
-  @inline def minHeight(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minHeight'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getMinHeight() getMinHeight()]]`
+   */
+  @inline def minHeight = basis.getMinHeight
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setMinHeight(int) setMinHeight(int)]]`
@@ -9416,7 +9811,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def minHeight_=(p: Int) = { basis.setMinHeight(p); basis }
 
 
-  @inline def minLines(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minLines'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getMinLines() getMinLines()]]`
+   */
+  @inline def minLines = basis.getMinLines
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setMinLines(int) setMinLines(int)]]`
@@ -9429,7 +9827,10 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
   @inline def minLines_=(p: Int) = { basis.setMinLines(p); basis }
 
 
-  @inline def minWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minWidth'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getMinWidth() getMinWidth()]]`
+   */
+  @inline def minWidth = basis.getMinWidth
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#setMinWidth(int) setMinWidth(int)]]`
@@ -9558,6 +9959,30 @@ trait TraitTextView[V <: android.widget.TextView] extends TraitView[V] {
    * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getSelectionStart() getSelectionStart()]]`
    */
   @inline def selectionStart = basis.getSelectionStart
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getShadowColor() getShadowColor()]]`
+   */
+  @inline def shadowColor = basis.getShadowColor
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getShadowDx() getShadowDx()]]`
+   */
+  @inline def shadowDx = basis.getShadowDx
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getShadowDy() getShadowDy()]]`
+   */
+  @inline def shadowDy = basis.getShadowDy
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/TextView.html#getShadowRadius() getShadowRadius()]]`
+   */
+  @inline def shadowRadius = basis.getShadowRadius
 
 
   @inline def singleLine(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'singleLine'")
@@ -10264,7 +10689,10 @@ trait TraitAutoCompleteTextView[V <: android.widget.AutoCompleteTextView] extend
   @inline def adapter_=[T <: android.widget.ListAdapter with android.widget.Filterable](p: T) = { basis.setAdapter(p); basis }
 
 
-  @inline def completionHint(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'completionHint'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#getCompletionHint() getCompletionHint()]]`
+   */
+  @inline def completionHint = basis.getCompletionHint
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#setCompletionHint(java.lang.CharSequence) setCompletionHint(java.lang.CharSequence)]]`
@@ -10634,6 +11062,38 @@ trait TraitSwitch[V <: android.widget.Switch] extends TraitCompoundButton[V] {
 
 
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#getSwitchMinWidth() getSwitchMinWidth()]]`
+   */
+  @inline def switchMinWidth = basis.getSwitchMinWidth
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#setSwitchMinWidth(int) setSwitchMinWidth(int)]]`
+   */
+  @inline def switchMinWidth  (p: Int) =            switchMinWidth_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#setSwitchMinWidth(int) setSwitchMinWidth(int)]]`
+   */
+  @inline def switchMinWidth_=(p: Int) = { basis.setSwitchMinWidth(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#getSwitchPadding() getSwitchPadding()]]`
+   */
+  @inline def switchPadding = basis.getSwitchPadding
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#setSwitchPadding(int) setSwitchPadding(int)]]`
+   */
+  @inline def switchPadding  (p: Int) =            switchPadding_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#setSwitchPadding(int) setSwitchPadding(int)]]`
+   */
+  @inline def switchPadding_=(p: Int) = { basis.setSwitchPadding(p); basis }
+
+
   @inline def switchTypeface(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'switchTypeface'")
 
   /**
@@ -10677,6 +11137,80 @@ trait TraitSwitch[V <: android.widget.Switch] extends TraitCompoundButton[V] {
    * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#setTextOn(java.lang.CharSequence) setTextOn(java.lang.CharSequence)]]`
    */
   @inline def textOn_=(p: java.lang.CharSequence) = { basis.setTextOn(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#getThumbDrawable() getThumbDrawable()]]`
+   */
+  @inline def thumbDrawable = basis.getThumbDrawable
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#setThumbDrawable(android.graphics.drawable.Drawable) setThumbDrawable(android.graphics.drawable.Drawable)]]`
+   */
+  @inline def thumbDrawable  (p: android.graphics.drawable.Drawable) =            thumbDrawable_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#setThumbDrawable(android.graphics.drawable.Drawable) setThumbDrawable(android.graphics.drawable.Drawable)]]`
+   */
+  @inline def thumbDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setThumbDrawable(p); basis }
+
+
+  @inline def thumbResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'thumbResource'")
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#setThumbResource(int) setThumbResource(int)]]`
+   */
+  @inline def thumbResource  (p: Int) =            thumbResource_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#setThumbResource(int) setThumbResource(int)]]`
+   */
+  @inline def thumbResource_=(p: Int) = { basis.setThumbResource(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#getThumbTextPadding() getThumbTextPadding()]]`
+   */
+  @inline def thumbTextPadding = basis.getThumbTextPadding
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#setThumbTextPadding(int) setThumbTextPadding(int)]]`
+   */
+  @inline def thumbTextPadding  (p: Int) =            thumbTextPadding_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#setThumbTextPadding(int) setThumbTextPadding(int)]]`
+   */
+  @inline def thumbTextPadding_=(p: Int) = { basis.setThumbTextPadding(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#getTrackDrawable() getTrackDrawable()]]`
+   */
+  @inline def trackDrawable = basis.getTrackDrawable
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#setTrackDrawable(android.graphics.drawable.Drawable) setTrackDrawable(android.graphics.drawable.Drawable)]]`
+   */
+  @inline def trackDrawable  (p: android.graphics.drawable.Drawable) =            trackDrawable_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#setTrackDrawable(android.graphics.drawable.Drawable) setTrackDrawable(android.graphics.drawable.Drawable)]]`
+   */
+  @inline def trackDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setTrackDrawable(p); basis }
+
+
+  @inline def trackResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'trackResource'")
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#setTrackResource(int) setTrackResource(int)]]`
+   */
+  @inline def trackResource  (p: Int) =            trackResource_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/Switch.html#setTrackResource(int) setTrackResource(int)]]`
+   */
+  @inline def trackResource_=(p: Int) = { basis.setTrackResource(p); basis }
 
 
 }
@@ -11839,6 +12373,19 @@ trait TraitWebView[V <: android.webkit.WebView] extends TraitAbsoluteLayout[V] {
   @inline def favicon = basis.getFavicon
 
 
+  @inline def findListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'findListener'")
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/webkit/WebView.html#setFindListener(android.webkit.WebView.FindListener) setFindListener(android.webkit.WebView.FindListener)]]`
+   */
+  @inline def findListener  (p: android.webkit.WebView.FindListener) =            findListener_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/webkit/WebView.html#setFindListener(android.webkit.WebView.FindListener) setFindListener(android.webkit.WebView.FindListener)]]`
+   */
+  @inline def findListener_=(p: android.webkit.WebView.FindListener) = { basis.setFindListener(p); basis }
+
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/webkit/WebView.html#getHitTestResult() getHitTestResult()]]`
    */
@@ -12001,6 +12548,20 @@ trait TraitWebView[V <: android.webkit.WebView] extends TraitAbsoluteLayout[V] {
   @inline def onDownloadStart[U](f:  => U): V = {
     basis.setDownloadListener(new android.webkit.DownloadListener {
       def onDownloadStart(p1: java.lang.String, p2: java.lang.String, p3: java.lang.String, p4: java.lang.String, p5: Long): Unit = { f }
+    })
+    basis
+  }
+
+  @inline def onFindResultReceived[U](f: (Int, Int, Boolean) => U): V = {
+    basis.setFindListener(new android.webkit.WebView.FindListener {
+      def onFindResultReceived(p1: Int, p2: Int, p3: Boolean): Unit = { f(p1, p2, p3) }
+    })
+    basis
+  }
+
+  @inline def onFindResultReceived[U](f:  => U): V = {
+    basis.setFindListener(new android.webkit.WebView.FindListener {
+      def onFindResultReceived(p1: Int, p2: Int, p3: Boolean): Unit = { f }
     })
     basis
   }
@@ -12600,6 +13161,7 @@ trait WidgetImplicits {
   @inline implicit def toast2RichToast[V <: android.widget.Toast](toast: V) = new RichToast[V](toast)
   @inline implicit def listAdapter2RichListAdapter[V <: android.widget.ListAdapter](listAdapter: V) = new RichListAdapter[V](listAdapter)
   @inline implicit def stackView2RichStackView[V <: android.widget.StackView](stackView: V) = new RichStackView[V](stackView)
+  @inline implicit def advanceable2RichAdvanceable[V <: android.widget.Advanceable](advanceable: V) = new RichAdvanceable[V](advanceable)
   @inline implicit def zoomButtonsController2RichZoomButtonsController[V <: android.widget.ZoomButtonsController](zoomButtonsController: V) = new RichZoomButtonsController[V](zoomButtonsController)
   @inline implicit def resourceCursorAdapter2RichResourceCursorAdapter[V <: android.widget.ResourceCursorAdapter](resourceCursorAdapter: V) = new RichResourceCursorAdapter[V](resourceCursorAdapter)
   @inline implicit def viewAnimator2RichViewAnimator[V <: android.widget.ViewAnimator](viewAnimator: V) = new RichViewAnimator[V](viewAnimator)

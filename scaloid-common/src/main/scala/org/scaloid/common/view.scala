@@ -174,6 +174,12 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getAccessibilityNodeProvider() getAccessibilityNodeProvider()]]`
+   */
+  @inline def accessibilityNodeProvider = basis.getAccessibilityNodeProvider
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isActivated() isActivated()]]`
    */
   @inline def activated = basis.isActivated
@@ -231,6 +237,16 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getBackground() getBackground()]]`
    */
   @inline def background = basis.getBackground
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackground(android.graphics.drawable.Drawable) setBackground(android.graphics.drawable.Drawable)]]`
+   */
+  @inline def background  (p: android.graphics.drawable.Drawable) =            background_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackground(android.graphics.drawable.Drawable) setBackground(android.graphics.drawable.Drawable)]]`
+   */
+  @inline def background_=(p: android.graphics.drawable.Drawable) = { basis.setBackground(p); basis }
 
 
   @inline def backgroundColor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'backgroundColor'")
@@ -294,7 +310,10 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
   @inline def bottom_=(p: Int) = { basis.setBottom(p); basis }
 
 
-  @inline def cameraDistance(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'cameraDistance'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getCameraDistance() getCameraDistance()]]`
+   */
+  @inline def cameraDistance = basis.getCameraDistance
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setCameraDistance(float) setCameraDistance(float)]]`
@@ -482,6 +501,11 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getFitsSystemWindows() getFitsSystemWindows()]]`
+   */
+  @inline def fitsSystemWindows = basis.getFitsSystemWindows
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setFitsSystemWindows(boolean) setFitsSystemWindows(boolean)]]`
    */
   @inline def fitsSystemWindows  (p: Boolean) =            fitsSystemWindows_=(p)
@@ -547,6 +571,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
 
   @inline def  enableHapticFeedback()             = { basis.setHapticFeedbackEnabled(true ); basis }
   @inline def disableHapticFeedback()             = { basis.setHapticFeedbackEnabled(false); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setHasTransientState(boolean) setHasTransientState(boolean)]]`
+   */
+  @inline def hasTransientState  (p: Boolean) =            hasTransientState_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setHasTransientState(boolean) setHasTransientState(boolean)]]`
+   */
+  @inline def hasTransientState_=(p: Boolean) = { basis.setHasTransientState(p); basis }
 
 
   /**
@@ -629,6 +664,22 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setId(int) setId(int)]]`
    */
   @inline def id_=(p: Int) = { basis.setId(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getImportantForAccessibility() getImportantForAccessibility()]]`
+   */
+  @inline def importantForAccessibility = basis.getImportantForAccessibility
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setImportantForAccessibility(int) setImportantForAccessibility(int)]]`
+   */
+  @inline def importantForAccessibility  (p: Int) =            importantForAccessibility_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setImportantForAccessibility(int) setImportantForAccessibility(int)]]`
+   */
+  @inline def importantForAccessibility_=(p: Int) = { basis.setImportantForAccessibility(p); basis }
 
 
   /**
@@ -743,7 +794,10 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
   @inline def measuredWidthAndState = basis.getMeasuredWidthAndState
 
 
-  @inline def minimumHeight(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minimumHeight'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getMinimumHeight() getMinimumHeight()]]`
+   */
+  @inline def minimumHeight = basis.getMinimumHeight
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setMinimumHeight(int) setMinimumHeight(int)]]`
@@ -756,7 +810,10 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
   @inline def minimumHeight_=(p: Int) = { basis.setMinimumHeight(p); basis }
 
 
-  @inline def minimumWidth(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minimumWidth'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getMinimumWidth() getMinimumWidth()]]`
+   */
+  @inline def minimumWidth = basis.getMinimumWidth
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setMinimumWidth(int) setMinimumWidth(int)]]`
@@ -1029,6 +1086,12 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getParentForAccessibility() getParentForAccessibility()]]`
+   */
+  @inline def parentForAccessibility = basis.getParentForAccessibility
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getPivotX() getPivotX()]]`
    */
   @inline def pivotX = basis.getPivotX
@@ -1223,6 +1286,54 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getScrollBarDefaultDelayBeforeFade() getScrollBarDefaultDelayBeforeFade()]]`
+   */
+  @inline def scrollBarDefaultDelayBeforeFade = basis.getScrollBarDefaultDelayBeforeFade
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollBarDefaultDelayBeforeFade(int) setScrollBarDefaultDelayBeforeFade(int)]]`
+   */
+  @inline def scrollBarDefaultDelayBeforeFade  (p: Int) =            scrollBarDefaultDelayBeforeFade_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollBarDefaultDelayBeforeFade(int) setScrollBarDefaultDelayBeforeFade(int)]]`
+   */
+  @inline def scrollBarDefaultDelayBeforeFade_=(p: Int) = { basis.setScrollBarDefaultDelayBeforeFade(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getScrollBarFadeDuration() getScrollBarFadeDuration()]]`
+   */
+  @inline def scrollBarFadeDuration = basis.getScrollBarFadeDuration
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollBarFadeDuration(int) setScrollBarFadeDuration(int)]]`
+   */
+  @inline def scrollBarFadeDuration  (p: Int) =            scrollBarFadeDuration_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollBarFadeDuration(int) setScrollBarFadeDuration(int)]]`
+   */
+  @inline def scrollBarFadeDuration_=(p: Int) = { basis.setScrollBarFadeDuration(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getScrollBarSize() getScrollBarSize()]]`
+   */
+  @inline def scrollBarSize = basis.getScrollBarSize
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollBarSize(int) setScrollBarSize(int)]]`
+   */
+  @inline def scrollBarSize  (p: Int) =            scrollBarSize_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollBarSize(int) setScrollBarSize(int)]]`
+   */
+  @inline def scrollBarSize_=(p: Int) = { basis.setScrollBarSize(p); basis }
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getScrollBarStyle() getScrollBarStyle()]]`
    */
   @inline def scrollBarStyle = basis.getScrollBarStyle
@@ -1238,7 +1349,10 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
   @inline def scrollBarStyle_=(p: Int) = { basis.setScrollBarStyle(p); basis }
 
 
-  @inline def scrollContainer(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'scrollContainer'")
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isScrollContainer() isScrollContainer()]]`
+   */
+  @inline def scrollContainer = basis.isScrollContainer
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollContainer(boolean) setScrollContainer(boolean)]]`
@@ -1559,6 +1673,12 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setWillNotDraw(boolean) setWillNotDraw(boolean)]]`
    */
   @inline def willNotDraw_=(p: Boolean) = { basis.setWillNotDraw(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getWindowSystemUiVisibility() getWindowSystemUiVisibility()]]`
+   */
+  @inline def windowSystemUiVisibility = basis.getWindowSystemUiVisibility
 
 
   /**
@@ -2427,6 +2547,22 @@ trait TraitViewStub[V <: android.view.ViewStub] extends TraitView[V] {
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#setInflatedId(int) setInflatedId(int)]]`
    */
   @inline def inflatedId_=(p: Int) = { basis.setInflatedId(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#getLayoutInflater() getLayoutInflater()]]`
+   */
+  @inline def layoutInflater = basis.getLayoutInflater
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#setLayoutInflater(android.view.LayoutInflater) setLayoutInflater(android.view.LayoutInflater)]]`
+   */
+  @inline def layoutInflater  (p: android.view.LayoutInflater) =            layoutInflater_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewStub.html#setLayoutInflater(android.view.LayoutInflater) setLayoutInflater(android.view.LayoutInflater)]]`
+   */
+  @inline def layoutInflater_=(p: android.view.LayoutInflater) = { basis.setLayoutInflater(p); basis }
 
 
   /**

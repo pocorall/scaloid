@@ -275,6 +275,8 @@ trait TraitContext[V <: android.content.Context] {
 
   @inline def startActivity[T: ClassTag](implicit context: Context): Unit = basis.startActivity(SIntent[T])
 
+  @inline def startActivity[T: ClassTag](p: android.os.Bundle)(implicit context: Context): Unit = basis.startActivity(SIntent[T], p)
+
   @inline def startService[T: ClassTag](implicit context: Context): android.content.ComponentName = basis.startService(SIntent[T])
 
   @inline def stopService[T: ClassTag](implicit context: Context): Boolean = basis.stopService(SIntent[T])
