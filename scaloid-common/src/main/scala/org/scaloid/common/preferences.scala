@@ -242,6 +242,55 @@ trait TraitPreference[V <: android.preference.Preference] {
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#getExtras() getExtras()]]`
+   */
+  @inline def extras = basis.getExtras
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#getFragment() getFragment()]]`
+   */
+  @inline def fragment = basis.getFragment
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#setFragment(java.lang.String) setFragment(java.lang.String)]]`
+   */
+  @inline def fragment  (p: java.lang.String) =            fragment_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#setFragment(java.lang.String) setFragment(java.lang.String)]]`
+   */
+  @inline def fragment_=(p: java.lang.String) = { basis.setFragment(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#getIcon() getIcon()]]`
+   */
+  @inline def icon = basis.getIcon
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#setIcon(int) setIcon(int)]]`
+   */
+  @inline def icon  (p: Int) =            icon_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#setIcon(int) setIcon(int)]]`
+   */
+  @inline def icon_=(p: Int) = { basis.setIcon(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#setIcon(android.graphics.drawable.Drawable) setIcon(android.graphics.drawable.Drawable)]]`
+   */
+  @inline def icon  (p: android.graphics.drawable.Drawable) =            icon_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#setIcon(android.graphics.drawable.Drawable) setIcon(android.graphics.drawable.Drawable)]]`
+   */
+  @inline def icon_=(p: android.graphics.drawable.Drawable) = { basis.setIcon(p); basis }
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#getIntent() getIntent()]]`
    */
   @inline def intent = basis.getIntent
@@ -449,6 +498,12 @@ trait TraitPreference[V <: android.preference.Preference] {
    * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#setTitle(java.lang.CharSequence) setTitle(java.lang.CharSequence)]]`
    */
   @inline def title_=(p: java.lang.CharSequence) = { basis.setTitle(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#getTitleRes() getTitleRes()]]`
+   */
+  @inline def titleRes = basis.getTitleRes
 
 
   /**

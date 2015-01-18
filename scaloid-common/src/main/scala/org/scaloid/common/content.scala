@@ -167,6 +167,12 @@ trait TraitContext[V <: android.content.Context] {
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getObbDir() getObbDir()]]`
+   */
+  @inline def obbDir = basis.getObbDir
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getPackageCodePath() getPackageCodePath()]]`
    */
   @inline def packageCodePath = basis.getPackageCodePath

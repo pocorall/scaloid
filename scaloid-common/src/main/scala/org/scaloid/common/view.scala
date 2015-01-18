@@ -160,6 +160,51 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
     basis
   }
 
+  @inline def accessibilityDelegate(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'accessibilityDelegate'")
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setAccessibilityDelegate(android.view.View.AccessibilityDelegate) setAccessibilityDelegate(android.view.View.AccessibilityDelegate)]]`
+   */
+  @inline def accessibilityDelegate  (p: android.view.View.AccessibilityDelegate) =            accessibilityDelegate_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setAccessibilityDelegate(android.view.View.AccessibilityDelegate) setAccessibilityDelegate(android.view.View.AccessibilityDelegate)]]`
+   */
+  @inline def accessibilityDelegate_=(p: android.view.View.AccessibilityDelegate) = { basis.setAccessibilityDelegate(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isActivated() isActivated()]]`
+   */
+  @inline def activated = basis.isActivated
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setActivated(boolean) setActivated(boolean)]]`
+   */
+  @inline def activated  (p: Boolean) =            activated_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setActivated(boolean) setActivated(boolean)]]`
+   */
+  @inline def activated_=(p: Boolean) = { basis.setActivated(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getAlpha() getAlpha()]]`
+   */
+  @inline def alpha = basis.getAlpha
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setAlpha(float) setAlpha(float)]]`
+   */
+  @inline def alpha  (p: Float) =            alpha_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setAlpha(float) setAlpha(float)]]`
+   */
+  @inline def alpha_=(p: Float) = { basis.setAlpha(p); basis }
+
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getAnimation() getAnimation()]]`
    */
@@ -237,6 +282,29 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getBottom() getBottom()]]`
    */
   @inline def bottom = basis.getBottom
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBottom(int) setBottom(int)]]`
+   */
+  @inline def bottom  (p: Int) =            bottom_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBottom(int) setBottom(int)]]`
+   */
+  @inline def bottom_=(p: Int) = { basis.setBottom(p); basis }
+
+
+  @inline def cameraDistance(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'cameraDistance'")
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setCameraDistance(float) setCameraDistance(float)]]`
+   */
+  @inline def cameraDistance  (p: Float) =            cameraDistance_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setCameraDistance(float) setCameraDistance(float)]]`
+   */
+  @inline def cameraDistance_=(p: Float) = { basis.setCameraDistance(p); basis }
 
 
   /**
@@ -414,6 +482,17 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setFitsSystemWindows(boolean) setFitsSystemWindows(boolean)]]`
+   */
+  @inline def fitsSystemWindows  (p: Boolean) =            fitsSystemWindows_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setFitsSystemWindows(boolean) setFitsSystemWindows(boolean)]]`
+   */
+  @inline def fitsSystemWindows_=(p: Boolean) = { basis.setFitsSystemWindows(p); basis }
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isFocusable() isFocusable()]]`
    */
   @inline def focusable = basis.isFocusable
@@ -521,6 +600,22 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isHovered() isHovered()]]`
+   */
+  @inline def hovered = basis.isHovered
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setHovered(boolean) setHovered(boolean)]]`
+   */
+  @inline def hovered  (p: Boolean) =            hovered_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setHovered(boolean) setHovered(boolean)]]`
+   */
+  @inline def hovered_=(p: Boolean) = { basis.setHovered(p); basis }
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getId() getId()]]`
    */
   @inline def id = basis.getId
@@ -559,6 +654,12 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getLayerType() getLayerType()]]`
+   */
+  @inline def layerType = basis.getLayerType
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getLayoutParams() getLayoutParams()]]`
    */
   @inline def layoutParams = basis.getLayoutParams
@@ -579,6 +680,16 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    */
   @inline def left = basis.getLeft
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setLeft(int) setLeft(int)]]`
+   */
+  @inline def left  (p: Int) =            left_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setLeft(int) setLeft(int)]]`
+   */
+  @inline def left_=(p: Int) = { basis.setLeft(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isLongClickable() isLongClickable()]]`
@@ -597,15 +708,39 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getMatrix() getMatrix()]]`
+   */
+  @inline def matrix = basis.getMatrix
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getMeasuredHeight() getMeasuredHeight()]]`
    */
   @inline def measuredHeight = basis.getMeasuredHeight
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getMeasuredHeightAndState() getMeasuredHeightAndState()]]`
+   */
+  @inline def measuredHeightAndState = basis.getMeasuredHeightAndState
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getMeasuredState() getMeasuredState()]]`
+   */
+  @inline def measuredState = basis.getMeasuredState
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getMeasuredWidth() getMeasuredWidth()]]`
    */
   @inline def measuredWidth = basis.getMeasuredWidth
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getMeasuredWidthAndState() getMeasuredWidthAndState()]]`
+   */
+  @inline def measuredWidthAndState = basis.getMeasuredWidthAndState
 
 
   @inline def minimumHeight(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'minimumHeight'")
@@ -648,6 +783,22 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setNextFocusDownId(int) setNextFocusDownId(int)]]`
    */
   @inline def nextFocusDownId_=(p: Int) = { basis.setNextFocusDownId(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getNextFocusForwardId() getNextFocusForwardId()]]`
+   */
+  @inline def nextFocusForwardId = basis.getNextFocusForwardId
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setNextFocusForwardId(int) setNextFocusForwardId(int)]]`
+   */
+  @inline def nextFocusForwardId  (p: Int) =            nextFocusForwardId_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setNextFocusForwardId(int) setNextFocusForwardId(int)]]`
+   */
+  @inline def nextFocusForwardId_=(p: Int) = { basis.setNextFocusForwardId(p); basis }
 
 
   /**
@@ -724,6 +875,19 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
   @inline def onCreateContextMenuListener_=(p: android.view.View.OnCreateContextMenuListener) = { basis.setOnCreateContextMenuListener(p); basis }
 
 
+  @inline def onDragListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onDragListener'")
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnDragListener(android.view.View.OnDragListener) setOnDragListener(android.view.View.OnDragListener)]]`
+   */
+  @inline def onDragListener  (p: android.view.View.OnDragListener) =            onDragListener_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnDragListener(android.view.View.OnDragListener) setOnDragListener(android.view.View.OnDragListener)]]`
+   */
+  @inline def onDragListener_=(p: android.view.View.OnDragListener) = { basis.setOnDragListener(p); basis }
+
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getOnFocusChangeListener() getOnFocusChangeListener()]]`
    */
@@ -738,6 +902,32 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnFocusChangeListener(android.view.View.OnFocusChangeListener) setOnFocusChangeListener(android.view.View.OnFocusChangeListener)]]`
    */
   @inline def onFocusChangeListener_=(p: android.view.View.OnFocusChangeListener) = { basis.setOnFocusChangeListener(p); basis }
+
+
+  @inline def onGenericMotionListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onGenericMotionListener'")
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnGenericMotionListener(android.view.View.OnGenericMotionListener) setOnGenericMotionListener(android.view.View.OnGenericMotionListener)]]`
+   */
+  @inline def onGenericMotionListener  (p: android.view.View.OnGenericMotionListener) =            onGenericMotionListener_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnGenericMotionListener(android.view.View.OnGenericMotionListener) setOnGenericMotionListener(android.view.View.OnGenericMotionListener)]]`
+   */
+  @inline def onGenericMotionListener_=(p: android.view.View.OnGenericMotionListener) = { basis.setOnGenericMotionListener(p); basis }
+
+
+  @inline def onHoverListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onHoverListener'")
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnHoverListener(android.view.View.OnHoverListener) setOnHoverListener(android.view.View.OnHoverListener)]]`
+   */
+  @inline def onHoverListener  (p: android.view.View.OnHoverListener) =            onHoverListener_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnHoverListener(android.view.View.OnHoverListener) setOnHoverListener(android.view.View.OnHoverListener)]]`
+   */
+  @inline def onHoverListener_=(p: android.view.View.OnHoverListener) = { basis.setOnHoverListener(p); basis }
 
 
   @inline def onKeyListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onKeyListener'")
@@ -764,6 +954,19 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnLongClickListener(android.view.View.OnLongClickListener) setOnLongClickListener(android.view.View.OnLongClickListener)]]`
    */
   @inline def onLongClickListener_=(p: android.view.View.OnLongClickListener) = { basis.setOnLongClickListener(p); basis }
+
+
+  @inline def onSystemUiVisibilityChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onSystemUiVisibilityChangeListener'")
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnSystemUiVisibilityChangeListener(android.view.View.OnSystemUiVisibilityChangeListener) setOnSystemUiVisibilityChangeListener(android.view.View.OnSystemUiVisibilityChangeListener)]]`
+   */
+  @inline def onSystemUiVisibilityChangeListener  (p: android.view.View.OnSystemUiVisibilityChangeListener) =            onSystemUiVisibilityChangeListener_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setOnSystemUiVisibilityChangeListener(android.view.View.OnSystemUiVisibilityChangeListener) setOnSystemUiVisibilityChangeListener(android.view.View.OnSystemUiVisibilityChangeListener)]]`
+   */
+  @inline def onSystemUiVisibilityChangeListener_=(p: android.view.View.OnSystemUiVisibilityChangeListener) = { basis.setOnSystemUiVisibilityChangeListener(p); basis }
 
 
   @inline def onTouchListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onTouchListener'")
@@ -826,6 +1029,38 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getPivotX() getPivotX()]]`
+   */
+  @inline def pivotX = basis.getPivotX
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setPivotX(float) setPivotX(float)]]`
+   */
+  @inline def pivotX  (p: Float) =            pivotX_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setPivotX(float) setPivotX(float)]]`
+   */
+  @inline def pivotX_=(p: Float) = { basis.setPivotX(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getPivotY() getPivotY()]]`
+   */
+  @inline def pivotY = basis.getPivotY
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setPivotY(float) setPivotY(float)]]`
+   */
+  @inline def pivotY  (p: Float) =            pivotY_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setPivotY(float) setPivotY(float)]]`
+   */
+  @inline def pivotY_=(p: Float) = { basis.setPivotY(p); basis }
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isPressed() isPressed()]]`
    */
   @inline def pressed = basis.isPressed
@@ -852,11 +1087,69 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    */
   @inline def right = basis.getRight
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setRight(int) setRight(int)]]`
+   */
+  @inline def right  (p: Int) =            right_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setRight(int) setRight(int)]]`
+   */
+  @inline def right_=(p: Int) = { basis.setRight(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getRootView() getRootView()]]`
    */
   @inline def rootView = basis.getRootView
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getRotation() getRotation()]]`
+   */
+  @inline def rotation = basis.getRotation
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setRotation(float) setRotation(float)]]`
+   */
+  @inline def rotation  (p: Float) =            rotation_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setRotation(float) setRotation(float)]]`
+   */
+  @inline def rotation_=(p: Float) = { basis.setRotation(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getRotationX() getRotationX()]]`
+   */
+  @inline def rotationX = basis.getRotationX
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setRotationX(float) setRotationX(float)]]`
+   */
+  @inline def rotationX  (p: Float) =            rotationX_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setRotationX(float) setRotationX(float)]]`
+   */
+  @inline def rotationX_=(p: Float) = { basis.setRotationX(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getRotationY() getRotationY()]]`
+   */
+  @inline def rotationY = basis.getRotationY
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setRotationY(float) setRotationY(float)]]`
+   */
+  @inline def rotationY  (p: Float) =            rotationY_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setRotationY(float) setRotationY(float)]]`
+   */
+  @inline def rotationY_=(p: Float) = { basis.setRotationY(p); basis }
 
 
   /**
@@ -876,6 +1169,57 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
 
   @inline def  enableSave()             = { basis.setSaveEnabled(true ); basis }
   @inline def disableSave()             = { basis.setSaveEnabled(false); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#isSaveFromParentEnabled() isSaveFromParentEnabled()]]`
+   */
+  @inline def saveFromParentEnabled = basis.isSaveFromParentEnabled
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setSaveFromParentEnabled(boolean) setSaveFromParentEnabled(boolean)]]`
+   */
+  @inline def saveFromParentEnabled  (p: Boolean) =            saveFromParentEnabled_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setSaveFromParentEnabled(boolean) setSaveFromParentEnabled(boolean)]]`
+   */
+  @inline def saveFromParentEnabled_=(p: Boolean) = { basis.setSaveFromParentEnabled(p); basis }
+
+  @inline def  enableSaveFromParent()             = { basis.setSaveFromParentEnabled(true ); basis }
+  @inline def disableSaveFromParent()             = { basis.setSaveFromParentEnabled(false); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getScaleX() getScaleX()]]`
+   */
+  @inline def scaleX = basis.getScaleX
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScaleX(float) setScaleX(float)]]`
+   */
+  @inline def scaleX  (p: Float) =            scaleX_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScaleX(float) setScaleX(float)]]`
+   */
+  @inline def scaleX_=(p: Float) = { basis.setScaleX(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getScaleY() getScaleY()]]`
+   */
+  @inline def scaleY = basis.getScaleY
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScaleY(float) setScaleY(float)]]`
+   */
+  @inline def scaleY  (p: Float) =            scaleY_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScaleY(float) setScaleY(float)]]`
+   */
+  @inline def scaleY_=(p: Float) = { basis.setScaleY(p); basis }
 
 
   /**
@@ -912,11 +1256,31 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    */
   @inline def scrollX = basis.getScrollX
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollX(int) setScrollX(int)]]`
+   */
+  @inline def scrollX  (p: Int) =            scrollX_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollX(int) setScrollX(int)]]`
+   */
+  @inline def scrollX_=(p: Int) = { basis.setScrollX(p); basis }
+
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getScrollY() getScrollY()]]`
    */
   @inline def scrollY = basis.getScrollY
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollY(int) setScrollY(int)]]`
+   */
+  @inline def scrollY  (p: Int) =            scrollY_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setScrollY(int) setScrollY(int)]]`
+   */
+  @inline def scrollY_=(p: Int) = { basis.setScrollY(p); basis }
 
 
   /**
@@ -980,6 +1344,22 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
 
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getSystemUiVisibility() getSystemUiVisibility()]]`
+   */
+  @inline def systemUiVisibility = basis.getSystemUiVisibility
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setSystemUiVisibility(int) setSystemUiVisibility(int)]]`
+   */
+  @inline def systemUiVisibility  (p: Int) =            systemUiVisibility_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setSystemUiVisibility(int) setSystemUiVisibility(int)]]`
+   */
+  @inline def systemUiVisibility_=(p: Int) = { basis.setSystemUiVisibility(p); basis }
+
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getTag() getTag()]]`
    */
   @inline def tag = basis.getTag
@@ -999,6 +1379,16 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getTop() getTop()]]`
    */
   @inline def top = basis.getTop
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setTop(int) setTop(int)]]`
+   */
+  @inline def top  (p: Int) =            top_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setTop(int) setTop(int)]]`
+   */
+  @inline def top_=(p: Int) = { basis.setTop(p); basis }
 
 
   /**
@@ -1021,6 +1411,38 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getTouchables() getTouchables()]]`
    */
   @inline def touchables = basis.getTouchables
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getTranslationX() getTranslationX()]]`
+   */
+  @inline def translationX = basis.getTranslationX
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setTranslationX(float) setTranslationX(float)]]`
+   */
+  @inline def translationX  (p: Float) =            translationX_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setTranslationX(float) setTranslationX(float)]]`
+   */
+  @inline def translationX_=(p: Float) = { basis.setTranslationX(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getTranslationY() getTranslationY()]]`
+   */
+  @inline def translationY = basis.getTranslationY
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setTranslationY(float) setTranslationY(float)]]`
+   */
+  @inline def translationY  (p: Float) =            translationY_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setTranslationY(float) setTranslationY(float)]]`
+   */
+  @inline def translationY_=(p: Float) = { basis.setTranslationY(p); basis }
 
 
   /**
@@ -1065,6 +1487,22 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
 
   @inline def  enableVerticalScrollBar()             = { basis.setVerticalScrollBarEnabled(true ); basis }
   @inline def disableVerticalScrollBar()             = { basis.setVerticalScrollBarEnabled(false); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getVerticalScrollbarPosition() getVerticalScrollbarPosition()]]`
+   */
+  @inline def verticalScrollbarPosition = basis.getVerticalScrollbarPosition
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setVerticalScrollbarPosition(int) setVerticalScrollbarPosition(int)]]`
+   */
+  @inline def verticalScrollbarPosition  (p: Int) =            verticalScrollbarPosition_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setVerticalScrollbarPosition(int) setVerticalScrollbarPosition(int)]]`
+   */
+  @inline def verticalScrollbarPosition_=(p: Int) = { basis.setVerticalScrollbarPosition(p); basis }
 
 
   /**
@@ -1135,6 +1573,38 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
   @inline def windowVisibility = basis.getWindowVisibility
 
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getX() getX()]]`
+   */
+  @inline def x = basis.getX
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setX(float) setX(float)]]`
+   */
+  @inline def x  (p: Float) =            x_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setX(float) setX(float)]]`
+   */
+  @inline def x_=(p: Float) = { basis.setX(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getY() getY()]]`
+   */
+  @inline def y = basis.getY
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setY(float) setY(float)]]`
+   */
+  @inline def y  (p: Float) =            y_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setY(float) setY(float)]]`
+   */
+  @inline def y_=(p: Float) = { basis.setY(p); basis }
+
+
   @inline def onClick[U](f: android.view.View => U): V = {
     basis.setOnClickListener(new android.view.View.OnClickListener {
       def onClick(p: android.view.View): Unit = { f(p) }
@@ -1163,6 +1633,20 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
     basis
   }
 
+  @inline def onDrag(f: (android.view.View, android.view.DragEvent) => Boolean): V = {
+    basis.setOnDragListener(new android.view.View.OnDragListener {
+      def onDrag(p1: android.view.View, p2: android.view.DragEvent): Boolean = { f(p1, p2) }
+    })
+    basis
+  }
+
+  @inline def onDrag(f:  => Boolean): V = {
+    basis.setOnDragListener(new android.view.View.OnDragListener {
+      def onDrag(p1: android.view.View, p2: android.view.DragEvent): Boolean = { f }
+    })
+    basis
+  }
+
   @inline def onFocusChange[U](f: (android.view.View, Boolean) => U): V = {
     basis.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener {
       def onFocusChange(p1: android.view.View, p2: Boolean): Unit = { f(p1, p2) }
@@ -1173,6 +1657,34 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
   @inline def onFocusChange[U](f:  => U): V = {
     basis.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener {
       def onFocusChange(p1: android.view.View, p2: Boolean): Unit = { f }
+    })
+    basis
+  }
+
+  @inline def onGenericMotion(f: (android.view.View, android.view.MotionEvent) => Boolean): V = {
+    basis.setOnGenericMotionListener(new android.view.View.OnGenericMotionListener {
+      def onGenericMotion(p1: android.view.View, p2: android.view.MotionEvent): Boolean = { f(p1, p2) }
+    })
+    basis
+  }
+
+  @inline def onGenericMotion(f:  => Boolean): V = {
+    basis.setOnGenericMotionListener(new android.view.View.OnGenericMotionListener {
+      def onGenericMotion(p1: android.view.View, p2: android.view.MotionEvent): Boolean = { f }
+    })
+    basis
+  }
+
+  @inline def onHover(f: (android.view.View, android.view.MotionEvent) => Boolean): V = {
+    basis.setOnHoverListener(new android.view.View.OnHoverListener {
+      def onHover(p1: android.view.View, p2: android.view.MotionEvent): Boolean = { f(p1, p2) }
+    })
+    basis
+  }
+
+  @inline def onHover(f:  => Boolean): V = {
+    basis.setOnHoverListener(new android.view.View.OnHoverListener {
+      def onHover(p1: android.view.View, p2: android.view.MotionEvent): Boolean = { f }
     })
     basis
   }
@@ -1191,6 +1703,20 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
     basis
   }
 
+  @inline def onLayoutChange[U](f: (android.view.View, Int, Int, Int, Int, Int, Int, Int, Int) => U): V = {
+    basis.addOnLayoutChangeListener(new android.view.View.OnLayoutChangeListener {
+      def onLayoutChange(p1: android.view.View, p2: Int, p3: Int, p4: Int, p5: Int, p6: Int, p7: Int, p8: Int, p9: Int): Unit = { f(p1, p2, p3, p4, p5, p6, p7, p8, p9) }
+    })
+    basis
+  }
+
+  @inline def onLayoutChange[U](f:  => U): V = {
+    basis.addOnLayoutChangeListener(new android.view.View.OnLayoutChangeListener {
+      def onLayoutChange(p1: android.view.View, p2: Int, p3: Int, p4: Int, p5: Int, p6: Int, p7: Int, p8: Int, p9: Int): Unit = { f }
+    })
+    basis
+  }
+
   @inline def onLongClick(f: android.view.View => Boolean): V = {
     basis.setOnLongClickListener(new android.view.View.OnLongClickListener {
       def onLongClick(p: android.view.View): Boolean = { f(p) }
@@ -1205,6 +1731,20 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
     basis
   }
 
+  @inline def onSystemUiVisibilityChange[U](f: Int => U): V = {
+    basis.setOnSystemUiVisibilityChangeListener(new android.view.View.OnSystemUiVisibilityChangeListener {
+      def onSystemUiVisibilityChange(p: Int): Unit = { f(p) }
+    })
+    basis
+  }
+
+  @inline def onSystemUiVisibilityChange[U](f:  => U): V = {
+    basis.setOnSystemUiVisibilityChangeListener(new android.view.View.OnSystemUiVisibilityChangeListener {
+      def onSystemUiVisibilityChange(p: Int): Unit = { f }
+    })
+    basis
+  }
+
   @inline def onTouch(f: (android.view.View, android.view.MotionEvent) => Boolean): V = {
     basis.setOnTouchListener(new android.view.View.OnTouchListener {
       def onTouch(p1: android.view.View, p2: android.view.MotionEvent): Boolean = { f(p1, p2) }
@@ -1215,6 +1755,38 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
   @inline def onTouch(f:  => Boolean): V = {
     basis.setOnTouchListener(new android.view.View.OnTouchListener {
       def onTouch(p1: android.view.View, p2: android.view.MotionEvent): Boolean = { f }
+    })
+    basis
+  }
+
+  @inline def onViewAttachedToWindow[U](f: android.view.View => U): V = {
+    basis.addOnAttachStateChangeListener(new android.view.View.OnAttachStateChangeListener {
+      def onViewAttachedToWindow(p: android.view.View): Unit = { f(p) }
+      def onViewDetachedFromWindow(p: android.view.View): Unit = {  }
+    })
+    basis
+  }
+
+  @inline def onViewAttachedToWindow[U](f:  => U): V = {
+    basis.addOnAttachStateChangeListener(new android.view.View.OnAttachStateChangeListener {
+      def onViewAttachedToWindow(p: android.view.View): Unit = { f }
+      def onViewDetachedFromWindow(p: android.view.View): Unit = {  }
+    })
+    basis
+  }
+
+  @inline def onViewDetachedFromWindow[U](f: android.view.View => U): V = {
+    basis.addOnAttachStateChangeListener(new android.view.View.OnAttachStateChangeListener {
+      def onViewAttachedToWindow(p: android.view.View): Unit = {  }
+      def onViewDetachedFromWindow(p: android.view.View): Unit = { f(p) }
+    })
+    basis
+  }
+
+  @inline def onViewDetachedFromWindow[U](f:  => U): V = {
+    basis.addOnAttachStateChangeListener(new android.view.View.OnAttachStateChangeListener {
+      def onViewAttachedToWindow(p: android.view.View): Unit = {  }
+      def onViewDetachedFromWindow(p: android.view.View): Unit = { f }
     })
     basis
   }
@@ -1411,6 +1983,41 @@ trait TraitViewGroup[V <: android.view.ViewGroup] extends TraitView[V] {
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setLayoutAnimationListener(android.view.animation.Animation.AnimationListener) setLayoutAnimationListener(android.view.animation.Animation.AnimationListener)]]`
    */
   @inline def layoutAnimationListener_=(p: android.view.animation.Animation.AnimationListener) = { basis.setLayoutAnimationListener(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#getLayoutTransition() getLayoutTransition()]]`
+   */
+  @inline def layoutTransition = basis.getLayoutTransition
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setLayoutTransition(android.animation.LayoutTransition) setLayoutTransition(android.animation.LayoutTransition)]]`
+   */
+  @inline def layoutTransition  (p: android.animation.LayoutTransition) =            layoutTransition_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setLayoutTransition(android.animation.LayoutTransition) setLayoutTransition(android.animation.LayoutTransition)]]`
+   */
+  @inline def layoutTransition_=(p: android.animation.LayoutTransition) = { basis.setLayoutTransition(p); basis }
+
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#isMotionEventSplittingEnabled() isMotionEventSplittingEnabled()]]`
+   */
+  @inline def motionEventSplittingEnabled = basis.isMotionEventSplittingEnabled
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setMotionEventSplittingEnabled(boolean) setMotionEventSplittingEnabled(boolean)]]`
+   */
+  @inline def motionEventSplittingEnabled  (p: Boolean) =            motionEventSplittingEnabled_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setMotionEventSplittingEnabled(boolean) setMotionEventSplittingEnabled(boolean)]]`
+   */
+  @inline def motionEventSplittingEnabled_=(p: Boolean) = { basis.setMotionEventSplittingEnabled(p); basis }
+
+  @inline def  enableMotionEventSplitting()             = { basis.setMotionEventSplittingEnabled(true ); basis }
+  @inline def disableMotionEventSplitting()             = { basis.setMotionEventSplittingEnabled(false); basis }
 
 
   @inline def onHierarchyChangeListener(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'onHierarchyChangeListener'")
