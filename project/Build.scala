@@ -4,12 +4,12 @@ import Keys._
 object Dependencies {
   val android = "com.google.android" % "android" % "2.3.3" % "provided"
   val android_support_v4 = "com.google.android" % "support-v4" % "r7" % "provided"
-  val scaloidVersion = "3.6.1-10"
+  val scaloidVersion = "3.7-10-SNAPSHOT"
   val scaloid = "org.scaloid" %% "scaloid" % scaloidVersion
 
   val robolectric = "org.robolectric" % "robolectric" % "2.3" % "test"
   val scalaTest = "org.scalatest" %% "scalatest" % "2.2.1" % "test"
-  val junit =  "junit" % "junit" % "4.11" % "test"
+  val junit =  "junit" % "junit" % "4.12" % "test"
   val junitInterface = "com.novocode" % "junit-interface" % "0.11" % "test"
 
   //Robolectric supports only API Level 16, 17, and 18
@@ -26,8 +26,8 @@ object ScaloidBuild extends Build {
     organizationHomepage := Some(new URL("http://blog.scaloid.org")),
     description := "Less Painful Android Development with Scala",
     startYear := Some(2012),
-    scalaVersion := "2.11.4",
-    crossScalaVersions := Seq("2.11.4"), // only 2.11.x for now
+    scalaVersion := "2.11.5",
+    crossScalaVersions := Seq("2.11.5"), // only 2.11.x for now
     version := scaloidVersion,
     publishMavenStyle := true,
     publishTo <<= version {
