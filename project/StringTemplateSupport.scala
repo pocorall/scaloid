@@ -1,51 +1,70 @@
-import sbt._
+import java.util.Locale
+
 import org.stringtemplate.v4._
-import org.stringtemplate.v4.misc._
+import org.stringtemplate.v4.misc.STNoSuchPropertyException
+
+import sbt._
 import scala.collection.JavaConversions._
 
-class StringTemplateSupport(version: Int, baseGroupFile: File) {
+
+class StringTemplateSupport(version: Int, templateFile: File, logger: sbt.Logger) {
+  import StringTemplateSupport._
+
+  def render(file: File, parameters: Map[String, Any]) = {
+    val st = new ST(baseGroup, IO.read(file))
+    expandToPackageMap(parameters).foreach {
+      case (k, v: AndroidClass) =>
+        st.add(k, v)
+
+      case (k, v: Map[String, Any]) =>
+        st.add(k, AndroidPackage(v))
+
+      case (k, _) =>
+        throw new Error("Unexpected parameter: "+ k)
+    }
+    st.render
+  }
+
+  private val companionTemplate = {
+    val maybeSTG =
+      Option(new File(templateFile.absolutePath + ".stg")).filter(_.exists).map { cf =>
+        new STGroupFile(cf.absolutePath, '$', '$')
+      }
+    new STCompanionTemplate(maybeSTG)
+  }
 
   private val verDic = mapAsJavaMap(generateVersionRangeDictionary(version))
 
   private val errorListener = new STErrorListener(){
     import org.stringtemplate.v4.misc.STMessage
-    override def compileTimeError(msg: STMessage) = msg.cause
-    override def runTimeError(msg: STMessage) = msg.cause
-    override def IOError(msg: STMessage) = msg.cause
-    override def internalError(msg: STMessage) = msg.cause
+    override def compileTimeError(msg: STMessage) = handle(msg)
+    override def runTimeError(msg: STMessage) = handle(msg)
+    override def IOError(msg: STMessage) = handle(msg)
+    override def internalError(msg: STMessage) = handle(msg)
+
+    private def handle(msg: STMessage) = {
+      logger.error("ERROR: "+ templateFile.getAbsolutePath)
+      logger.error("Message: "+ msg.toString)
+      logger.trace(msg.cause)
+    }
   }
 
-  private def initGroup(g: STGroup) = {
+  private def baseGroup = {
+    val g = new STGroup('$', '$')
+    g.defineTemplate("license", ScaloidCodeGenerator.license)
+    g.registerRenderer(classOf[AndroidClass], new AndroidClassRenderer(companionTemplate))
+    g.registerRenderer(classOf[AndroidPackage], new AndroidPackageRenderer(companionTemplate))
     g.registerRenderer(classOf[String], new StringRenderer())
+    g.registerModelAdaptor(classOf[AndroidPackage], new AndroidPackageAdaptor)
     g.defineDictionary("ver", verDic)
     g.setListener(errorListener)
     g
   }
 
-  private def baseGroup = initGroup(new STGroupFile(baseGroupFile.getAbsolutePath, '$', '$'))
-
-  private def withCompanionGroup(file: File)(f: STGroup => String) = {
-    val g = baseGroup
-    Option(new File(file.absolutePath + ".stg")) filter (_.exists) foreach { cf =>
-      val cg = initGroup(new STGroupFile(cf.absolutePath, '$', '$'))
-      g.importTemplates(cg)
-    }
-    f(g)
-  }
-
-  def render(file: File, parameters: Map[String, Any]) = withCompanionGroup(file) { g: STGroup =>
-    val st = new ST(g, IO.read(file))
-    val p = toJava(expandToPackageMap(parameters)).asInstanceOf[java.util.Map[String, Any]]
-    p.foreach { case (k, v) =>
-      st.add(k, v)
-    }
-    st.render
-  }
-
   private def generateVersionRangeDictionary(ver: Int): Map[String, Object] =
     (1 to 32).flatMap { v =>
       def kv(prod: Boolean, keys: String*) = keys.map(k => (k +"_"+ v) -> prod.asInstanceOf[Object])
-      (kv(ver == v, "eq", "gte", "lte") ++ kv(ver > v, "gt", "gte") ++ kv(ver < v, "lt", "lte"))
+      kv(ver == v, "eq", "gte", "lte") ++ kv(ver > v, "gt", "gte") ++ kv(ver < v, "lt", "lte")
     }.toMap
 
   private def expandToPackageMap(pkg: Map[String, Any]): Map[String, Any] = {
@@ -64,63 +83,64 @@ class StringTemplateSupport(version: Int, baseGroupFile: File) {
     expand(listKeyMap)
   }
 
-  private def toJava(cc: Any): Any = cc match {
-    case s: java.lang.String => s
-    case xs: Seq[_] => xs.map(toJava).toArray
-    case o: Option[_] => o.map(toJava).getOrElse(null)
-    case m: Map[_, _] => mapAsJavaMap(m.mapValues(toJava))
-    case s: Set[_] => mapAsJavaMap(s.map(toJava).zip(Stream.continually(true)).toMap)
-    case p: Product =>
-      // this covers tuples as well as case classes, so there may be a more specific way
-      val map = p.getClass.getDeclaredFields.map { f =>
-        f.setAccessible(true)
-        f.getName -> toJava(f.get(cc))
-      }.toMap
-      mapAsJavaMap(map)
-    case x => x
+}
+
+object StringTemplateSupport {
+
+  class AndroidPackageRenderer(ct: STCompanionTemplate) extends AttributeRenderer {
+    override def toString(o: scala.Any, s: String, locale: Locale): String = {
+      val wrapped = o.asInstanceOf[AndroidPackage]
+      val classes = wrapped.pkg.values.toList.collect { case c: AndroidClass => c }
+      s match {
+        case null | "" | "wrap-all-classes" => classes.map(new ScaloidCodeGenerator(_, ct).wholeClassDef).mkString("\n\n")
+        case "package-implicit-conversions" => classes.map(new ScaloidCodeGenerator(_, ct).implicitConversion).mkString("\n")
+        case _ => throw new Error("Invalid format: "+ s)
+      }
+    }
   }
 
-  private class StringRenderer extends AttributeRenderer {
 
-    def toString(value: String): String = value 
+  class AndroidClassRenderer(ct: STCompanionTemplate) extends AttributeRenderer {
 
-    override def toString(value: Any, formatName: String, locale: java.util.Locale): String = {
-      val formats = Option(formatName).getOrElse("").split(",").map(_.trim)
-      formats.foldLeft(value.toString)(format)
+    override def toString(o: scala.Any, s: String, locale: Locale): String = {
+      val cls = o.asInstanceOf[AndroidClass]
+      val wrapped = new ScaloidCodeGenerator(cls, ct)
+      s match {
+        case null | "" | "whole" => wrapped.wholeClassDef
+        case "rich" => wrapped.richClassDef
+        case "system-service" => wrapped.systemServiceHead
+        case "implicit-conversion" => wrapped.implicitConversion
+        case _ => throw new Error("Invalid format: "+ s)
+      }
     }
 
-    def decapitalize(s: String) = if (s.isEmpty) s else s(0).toLower + s.substring(1)
-    def simpleName(s: String) = s.split('.').last
-    def toJavaConst(s: String) = (s.head +: "[A-Z]".r.replaceAllIn(s.tail, m => "_"+m.group(0))).toUpperCase
-    def managerToService(s: String) = {
-      val jc = toJavaConst(s.replace("DropBox", "Dropbox"))
-      (if (jc.endsWith("MANAGER")) jc.split('_').init.mkString("_")
-       else jc) + "_SERVICE"
+  }
+
+  case class AndroidPackage(pkg: Map[String, Any]) {
+    def get(key: String) = pkg.get(key)
+  }
+
+  class AndroidPackageAdaptor extends ModelAdaptor {
+
+    override def getProperty(interpreter: Interpreter, self: ST, o: scala.Any, property: scala.Any, propertyName: String): AnyRef = {
+      o.asInstanceOf[AndroidPackage].get(propertyName) match {
+        case Some(cls: AndroidClass) => cls
+        case Some(pkg: Map[String, Any]) => AndroidPackage(pkg)
+        case _ => throw new STNoSuchPropertyException(null, o, propertyName);
+      }
+    }
+  }
+
+  class STCompanionTemplate(stGroup: Option[STGroup]) extends ScaloidCodeGenerator.CompanionTemplate {
+
+    def get(name: String): Option[String] = stGroup.flatMap { stg =>
+      stg.lookupTemplate(name) match {
+        case null => None
+        case compiledST => Some(compiledST.template)
+      }
     }
 
-    def dotToSlash(s: String) = s.replace(".", "/")
-
-    private val reservedKeywordsNotInJava = 
-      Set("def", "extends", "implicit", "import", "match", "lazy", "object", "package",
-        "requires", "sealed", "trait", "type", "val", "var", "with", "yield")
-    def safeIdentifier(s: String) = if (s.matches("^[0-9].*") || reservedKeywordsNotInJava(s)) "`"+s+"`" else s
-
-    def span(s: String, i: Int) = s.padTo(i, " ").mkString
-    val Span = """span(\d+)""".r
-
-    def format(value: String, formatName: String): String = formatName match {
-      case "upper"    | "uppercase"    => value.toUpperCase
-      case "lower"    | "lowercase"    => value.toLowerCase
-      case "cap"      | "capitalize"   => value.capitalize
-      case "decap"    | "decapitalize" => decapitalize(value)
-      case "simple"   | "simplename"   => simpleName(value)
-      case "javaconst"                 => toJavaConst(value)
-      case "manager-to-service"        => managerToService(value) // TODO make proper case class for manager instead of this trick
-      case "safe-ident"                => safeIdentifier(value)
-      case "dot-to-slash"              => dotToSlash(value)
-      case Span(i)                     => span(value, i.toInt)
-      case _                           => value
-    }
+    def safeRender(name: String): String = this.get(name).getOrElse("")
   }
 
 }

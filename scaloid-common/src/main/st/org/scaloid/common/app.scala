@@ -22,7 +22,7 @@ trait TraitActivity[V <: Activity] {
 
   @inline def contentView(p: View) = contentView_=(p)
 
-  $noGetter("contentView")$
+  @inline def contentView(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'contentView'")
 
   def intent = Some[Intent](basis.getIntent)
 

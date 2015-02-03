@@ -4,7 +4,6 @@ import android.content.Context
 import android.telephony.TelephonyManager
 import org.scaloid.common._
 
-
 /**
  * A general abstraction of something that can be start and stop.
  */
@@ -62,7 +61,7 @@ trait StopOnCall extends PauseOnCall {
   override protected def paused = false
 }
 
-import java.util.{TimerTask, Timer}
+import java.util.{ TimerTask, Timer }
 
 object UpdateEvent extends Enumeration {
   type UpdateEvent = Value
@@ -70,7 +69,6 @@ object UpdateEvent extends Enumeration {
 }
 
 import UpdateEvent._
-
 
 /**
  * Provides event notifications of a Playable.

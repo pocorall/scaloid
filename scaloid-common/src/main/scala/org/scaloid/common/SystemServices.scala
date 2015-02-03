@@ -1,6 +1,6 @@
-/* 
+/*
  *
- * 
+ *
  *
  *
  * Less painful Android development with Scala
@@ -64,22 +64,16 @@ import language.implicitConversions
 trait SystemServices {
   @inline def accessibilityManager(implicit context: Context) =
     context.getSystemService(Context.ACCESSIBILITY_SERVICE).asInstanceOf[android.view.accessibility.AccessibilityManager]
-
   @inline def accountManager(implicit context: Context) =
     context.getSystemService(Context.ACCOUNT_SERVICE).asInstanceOf[android.accounts.AccountManager]
-
   @inline def activityManager(implicit context: Context) =
     context.getSystemService(Context.ACTIVITY_SERVICE).asInstanceOf[android.app.ActivityManager]
-
   @inline def alarmManager(implicit context: Context) =
     context.getSystemService(Context.ALARM_SERVICE).asInstanceOf[android.app.AlarmManager]
-
   @inline def audioManager(implicit context: Context) =
     context.getSystemService(Context.AUDIO_SERVICE).asInstanceOf[android.media.AudioManager]
-
   @inline def clipboardManager(implicit context: Context) =
     context.getSystemService(Context.CLIPBOARD_SERVICE).asInstanceOf[android.text.ClipboardManager]
-
 
   class RichClipboardManager(cm: android.text.ClipboardManager) {
     def text_=(txt: CharSequence) = cm.setText(txt)
@@ -90,50 +84,35 @@ trait SystemServices {
 
   @inline def connectivityManager(implicit context: Context) =
     context.getSystemService(Context.CONNECTIVITY_SERVICE).asInstanceOf[android.net.ConnectivityManager]
-
   @inline def devicePolicyManager(implicit context: Context) =
     context.getSystemService(Context.DEVICE_POLICY_SERVICE).asInstanceOf[android.app.admin.DevicePolicyManager]
-
   @inline def downloadManager(implicit context: Context) =
     context.getSystemService(Context.DOWNLOAD_SERVICE).asInstanceOf[android.app.DownloadManager]
-
   @inline def dropBoxManager(implicit context: Context) =
     context.getSystemService(Context.DROPBOX_SERVICE).asInstanceOf[android.os.DropBoxManager]
-
   @inline def inputMethodManager(implicit context: Context) =
     context.getSystemService(Context.INPUT_METHOD_SERVICE).asInstanceOf[android.view.inputmethod.InputMethodManager]
-
   @inline def keyguardManager(implicit context: Context) =
     context.getSystemService(Context.KEYGUARD_SERVICE).asInstanceOf[android.app.KeyguardManager]
-
   @inline def layoutInflater(implicit context: Context) =
     context.getSystemService(Context.LAYOUT_INFLATER_SERVICE).asInstanceOf[android.view.LayoutInflater]
-
   @inline def locationManager(implicit context: Context) =
     context.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[android.location.LocationManager]
-
   @inline def nfcManager(implicit context: Context) =
     context.getSystemService(Context.NFC_SERVICE).asInstanceOf[android.nfc.NfcManager]
-
   @inline def notificationManager(implicit context: Context) =
     context.getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[android.app.NotificationManager]
-
   @inline def powerManager(implicit context: Context) =
     context.getSystemService(Context.POWER_SERVICE).asInstanceOf[android.os.PowerManager]
-
   @inline def searchManager(implicit context: Context) =
     context.getSystemService(Context.SEARCH_SERVICE).asInstanceOf[android.app.SearchManager]
-
   @inline def sensorManager(implicit context: Context) =
     context.getSystemService(Context.SENSOR_SERVICE).asInstanceOf[android.hardware.SensorManager]
-
   @inline def storageManager(implicit context: Context) =
     context.getSystemService(Context.STORAGE_SERVICE).asInstanceOf[android.os.storage.StorageManager]
 
-
   @inline def telephonyManager(implicit context: Context) =
     context.getSystemService(Context.TELEPHONY_SERVICE).asInstanceOf[android.telephony.TelephonyManager]
-
 
   def onCallForwardingIndicatorChanged(fun: Boolean => Any)(implicit ctx: Context, reg: Registerable) {
     val callStateListener = new PhoneStateListener() {
@@ -181,25 +160,18 @@ trait SystemServices {
     context.getSystemService(Context.TEXT_SERVICES_MANAGER_SERVICE).asInstanceOf[android.view.textservice.TextServicesManager]
   @inline def uiModeManager(implicit context: Context) =
     context.getSystemService(Context.UI_MODE_SERVICE).asInstanceOf[android.app.UiModeManager]
-
   @inline def usbManager(implicit context: Context) =
     context.getSystemService(Context.USB_SERVICE).asInstanceOf[android.hardware.usb.UsbManager]
-
   @inline def vibrator(implicit context: Context) =
     context.getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[android.os.Vibrator]
-
   @inline def wallpaperManager(implicit context: Context) =
     context.getSystemService(Context.WALLPAPER_SERVICE).asInstanceOf[android.app.WallpaperManager]
-
   @inline def wifiP2pManager(implicit context: Context) =
     context.getSystemService(Context.WIFI_P2P_SERVICE).asInstanceOf[android.net.wifi.p2p.WifiP2pManager]
-
   @inline def wifiManager(implicit context: Context) =
     context.getSystemService(Context.WIFI_SERVICE).asInstanceOf[android.net.wifi.WifiManager]
-
   @inline def windowManager(implicit context: Context) =
     context.getSystemService(Context.WINDOW_SERVICE).asInstanceOf[android.view.WindowManager]
-
 }
 
 object SystemServices extends SystemServices

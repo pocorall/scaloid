@@ -1,6 +1,6 @@
-/* 
+/*
  *
- * 
+ *
  *
  *
  * Less painful Android development with Scala
@@ -42,7 +42,7 @@ import android.os._
 import scala.collection.mutable.ArrayBuffer
 import scala.reflect._
 import scala.language.experimental.macros
-import scala.reflect.macros.blackbox.{Context => MacroCtx}
+import scala.reflect.macros.blackbox.{ Context => MacroCtx }
 
 class EventSource0[T] extends ArrayBuffer[() => T] {
   def apply(e: => T) = append(() => e)
@@ -96,7 +96,6 @@ trait Registerable {
   def onUnregister(body: => Any): () => Any
 }
 
-
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/content/Context.html android.content.Context]]`.
  */
@@ -111,96 +110,80 @@ trait TraitContext[V <: android.content.Context] {
 
   implicit val ctx = basis
 
-
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getApplicationContext() getApplicationContext()]]`
    */
   @inline def applicationContext = basis.getApplicationContext
-
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getApplicationInfo() getApplicationInfo()]]`
    */
   @inline def applicationInfo = basis.getApplicationInfo
 
-
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getAssets() getAssets()]]`
    */
   @inline def assets = basis.getAssets
-
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getCacheDir() getCacheDir()]]`
    */
   @inline def cacheDir = basis.getCacheDir
 
-
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getClassLoader() getClassLoader()]]`
    */
   @inline def classLoader = basis.getClassLoader
-
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getContentResolver() getContentResolver()]]`
    */
   @inline def contentResolver = basis.getContentResolver
 
-
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getExternalCacheDir() getExternalCacheDir()]]`
    */
   @inline def externalCacheDir = basis.getExternalCacheDir
-
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getFilesDir() getFilesDir()]]`
    */
   @inline def filesDir = basis.getFilesDir
 
-
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getMainLooper() getMainLooper()]]`
    */
   @inline def mainLooper = basis.getMainLooper
-
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getObbDir() getObbDir()]]`
    */
   @inline def obbDir = basis.getObbDir
 
-
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getPackageCodePath() getPackageCodePath()]]`
    */
   @inline def packageCodePath = basis.getPackageCodePath
-
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getPackageManager() getPackageManager()]]`
    */
   @inline def packageManager = basis.getPackageManager
 
-
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getPackageName() getPackageName()]]`
    */
   @inline def packageName = basis.getPackageName
-
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getPackageResourcePath() getPackageResourcePath()]]`
    */
   @inline def packageResourcePath = basis.getPackageResourcePath
 
-
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getResources() getResources()]]`
    */
   @inline def resources = basis.getResources
-
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getTheme() getTheme()]]`
@@ -210,13 +193,12 @@ trait TraitContext[V <: android.content.Context] {
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setTheme(int) setTheme(int)]]`
    */
-  @inline def theme  (p: Int) =            theme_=(p)
+  @inline def theme(p: Int) = theme_=(p)
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setTheme(int) setTheme(int)]]`
    */
   @inline def theme_=(p: Int) = { basis.setTheme(p); basis }
-
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getWallpaper() getWallpaper()]]`
@@ -226,36 +208,32 @@ trait TraitContext[V <: android.content.Context] {
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(android.graphics.Bitmap) setWallpaper(android.graphics.Bitmap)]]`
    */
-  @inline def wallpaper  (p: android.graphics.Bitmap) =            wallpaper_=(p)
+  @inline def wallpaper(p: android.graphics.Bitmap) = wallpaper_=(p)
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(android.graphics.Bitmap) setWallpaper(android.graphics.Bitmap)]]`
    */
   @inline def wallpaper_=(p: android.graphics.Bitmap) = { basis.setWallpaper(p); basis }
 
-
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(java.io.InputStream) setWallpaper(java.io.InputStream)]]`
    */
-  @inline def wallpaper  (p: java.io.InputStream) =            wallpaper_=(p)
+  @inline def wallpaper(p: java.io.InputStream) = wallpaper_=(p)
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(java.io.InputStream) setWallpaper(java.io.InputStream)]]`
    */
   @inline def wallpaper_=(p: java.io.InputStream) = { basis.setWallpaper(p); basis }
 
-
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getWallpaperDesiredMinimumHeight() getWallpaperDesiredMinimumHeight()]]`
    */
   @inline def wallpaperDesiredMinimumHeight = basis.getWallpaperDesiredMinimumHeight
 
-
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getWallpaperDesiredMinimumWidth() getWallpaperDesiredMinimumWidth()]]`
    */
   @inline def wallpaperDesiredMinimumWidth = basis.getWallpaperDesiredMinimumWidth
-
 
   @inline def bindService[T: ClassTag](p1: android.content.ServiceConnection, p2: Int)(implicit context: Context): Boolean = basis.bindService(SIntent[T], p1, p2)
 
@@ -282,8 +260,6 @@ trait TraitContext[V <: android.content.Context] {
   @inline def stopService[T: ClassTag](implicit context: Context): Boolean = basis.stopService(SIntent[T])
 }
 
-
-
 /**
  * Enriched trait of the class android.content.Context. To enable Scaloid support for subclasses android.content.Context, extend this trait.
  *
@@ -306,14 +282,10 @@ class RichContextWrapper[V <: android.content.ContextWrapper](val basis: V) exte
  */
 trait TraitContextWrapper[V <: android.content.ContextWrapper] extends TraitContext[V] {
 
-
-
-
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/ContextWrapper.html#getBaseContext() getBaseContext()]]`
    */
   @inline def baseContext = basis.getBaseContext
-
 
 }
 
@@ -330,12 +302,11 @@ class SContextWrapper()(implicit base: android.content.Context)
 object SContextWrapper {
   def apply()(implicit base: android.content.Context): SContextWrapper = {
     val v = new SContextWrapper
+
     v
   }
 
 }
-
-
 
 /**
  * When you register BroadcastReceiver with Context.registerReceiver() you have to unregister it to prevent memory leak.
@@ -343,13 +314,13 @@ object SContextWrapper {
  * All you need to do is append the trait to your class.
  *
  * {{{
- *class MyService extends SService with UnregisterReceiver {
-   def func() {
-     // ...
-     registerReceiver(receiver, intentFilter)
-     // Done! automatically unregistered at UnregisterReceiverService.onDestroy()
-   }
- }
+ * class MyService extends SService with UnregisterReceiver {
+ * def func() {
+ * // ...
+ * registerReceiver(receiver, intentFilter)
+ * // Done! automatically unregistered at UnregisterReceiverService.onDestroy()
+ * }
+ * }
  * }}}
  * See also: [[https://github.com/pocorall/scaloid/wiki/Basics#trait-unregisterreceiver]]
  */
@@ -359,7 +330,7 @@ trait UnregisterReceiver extends ContextWrapper with Destroyable {
    */
   override def registerReceiver(receiver: BroadcastReceiver, filter: IntentFilter): android.content.Intent = {
     onDestroy {
-      Log.i("ScalaUtils", "Unregister BroadcastReceiver: "+receiver)
+      Log.i("ScalaUtils", "Unregister BroadcastReceiver: " + receiver)
       try {
         unregisterReceiver(receiver)
       } catch {
@@ -399,9 +370,8 @@ class RichIntent(val intent: Intent) {
     }
   }
 
-  def put(values :Any*): Intent = macro org.scaloid.util.MacroImpl.put_impl
+  def put(values: Any*): Intent = macro org.scaloid.util.MacroImpl.put_impl
 }
-
 
 /**
  * An in-process service connector that can bound [[LocalService]]. This yields far more concise code than that uses plain-old Android API.
@@ -412,7 +382,7 @@ class RichIntent(val intent: Intent) {
  */
 class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUTO_CREATE)(implicit ctx: Context, reg: Registerable, mf: ClassTag[S]) extends ServiceConnection {
   var service: Option[S] = None
-  var componentName:ComponentName = _
+  var componentName: ComponentName = _
   var binder: IBinder = _
   var onConnected = new EventSource1[S, Unit]
   var onDisconnected = new EventSource1[S, Unit]
@@ -446,7 +416,7 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
    * //...
    * val result = service(_.foo > 3, "3 < " + _.foo, "fail")
    */
-  def apply[T](test: S => Boolean, ifTrue: S => T, ifFalse: => T) = if(service.nonEmpty && test(service.get)) ifTrue(service.get) else ifFalse
+  def apply[T](test: S => Boolean, ifTrue: S => T, ifFalse: => T) = if (service.nonEmpty && test(service.get)) ifTrue(service.get) else ifFalse
 
   /**
    * Internal implementation for handling the service connection. You do not need to call this method.

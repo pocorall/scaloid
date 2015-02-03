@@ -43,7 +43,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
     tpe.copy(params = tpe.params.map {
       t =>
         if (t.isVar && t.bounds.head.name == "Any") {
-          t.copy(bounds = Seq(ScalaType("AnyRef")))
+          t.copy(bounds = List(ScalaType("AnyRef")))
         } else t
     })
 
@@ -77,7 +77,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
     def toAndroidMethod(m: Method): AndroidMethod = {
       val name = m.getName
       val retType = AndroidClassExtractor.toScalaType(m.getGenericReturnType)
-      val argTypes = m.getGenericParameterTypes.toSeq.map(AndroidClassExtractor.toScalaType(_))
+      val argTypes = m.getGenericParameterTypes.toList.map(AndroidClassExtractor.toScalaType(_))
       val paramedTypes = (retType +: argTypes).filter(_.isVar).distinct
 
       AndroidMethod(name, retType, argTypes, paramedTypes, isAbstract(m), isOverride(m))
@@ -114,7 +114,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
 
     def isSetter(name: String) = name.matches("^set[^a-z].*")
 
-    val props: Seq[AndroidProperty] = {
+    val props: List[AndroidProperty] = {
       val clsMethods = cls.getMethods
       val accessors = clsMethods.filter {
         m =>
@@ -137,7 +137,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
           val (_setters, _getters) = methods.filter {
             !_.toGenericString.contains("static")
           }.partition(_.getName.startsWith("set"))
-          val setters = _setters.map(toAndroidMethod).sortBy(_.argTypes.head.name)
+          val setters = _setters.map(toAndroidMethod).sortBy(_.argTypes.head.name).toList
           val getter = _getters.map(toAndroidMethod).headOption
           def superGetterExists =
             superClass.map(_.getMethods.find(_.getName == "get" + name.capitalize)).flatten.nonEmpty
@@ -151,7 +151,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
 
             Some(AndroidProperty(name, tpe, getter, setters, switch, nameClashes))
           }
-      }.flatten.toSeq.sortBy(_.name)
+      }.flatten.toList.sortBy(_.name)
     }
 
 
@@ -161,9 +161,9 @@ object AndroidClassExtractor extends JavaConversionHelpers {
       AndroidIntentMethod(method.getName, am.retType, args, args.length == 0)
     }
 
-    def toAndroidListeners(method: Method): Seq[AndroidListener] = {
+    def toAndroidListeners(method: Method): List[AndroidListener] = {
       val setter = method.getName
-      val setterArgTypes = method.getGenericParameterTypes.toSeq
+      val setterArgTypes = method.getGenericParameterTypes.toList
       val listenerCls: Class[_] = setterArgTypes.collectFirst {
         case c: Class[_] if c.getName.matches(".+(Listener|Manager|Observer|Watcher).*") => c
       } match {
@@ -182,7 +182,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
             )
         }
 
-      def listenerName(am: AndroidMethod, callbacks: Seq[AndroidCallbackMethod], setter: String) = {
+      def listenerName(am: AndroidMethod, callbacks: List[AndroidCallbackMethod], setter: String) = {
         if (callbacks.length != 1) am.name
         else {
           val transforms = List[String => String](
@@ -219,7 +219,7 @@ object AndroidClassExtractor extends JavaConversionHelpers {
       }.filter(_.isSafe)
     }
 
-    def resolveListenerDuplication(listeners: Seq[AndroidListener]) =
+    def resolveListenerDuplication(listeners: List[AndroidListener]) =
       listeners map {
         l =>
           if (listeners.filter(l2 => l.name == l2.name && l.setterArgTypes == l2.setterArgTypes).length > 1) {
@@ -293,14 +293,14 @@ object AndroidClassExtractor extends JavaConversionHelpers {
       cls.getMethods.view
         .filter(isListenerSetterOrAdder)
         .map(toAndroidListeners)
-        .flatten.toSeq
+        .flatten.toList
         .sortBy(_.name))
 
-    val intentMethods = cls.getMethods.view.filter(hasIntentAsParam).map(toAndroidIntentMethods).toSeq.sortBy(m => m.name + m.argTypes.length)
+    val intentMethods = cls.getMethods.view.filter(hasIntentAsParam).map(toAndroidIntentMethods).toList.sortBy(m => m.name + m.argTypes.length)
 
     val constructors = cls.getConstructors
       .map(toScalaConstructor)
-      .toSeq
+      .toList
       .sortBy(c => (c.explicitArgs.length, -c.implicitArgs.length))
 
     val isA = getHierarchy(cls).toSet

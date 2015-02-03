@@ -1,6 +1,6 @@
-/* 
+/*
  *
- * 
+ *
  *
  *
  * Less painful Android development with Scala
@@ -34,7 +34,6 @@
  */
 
 package org.scaloid.support
-
 
 package object v4 extends Implicits {
 

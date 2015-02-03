@@ -50,9 +50,9 @@ trait PressAndHoldable[V <: View] {
 }
 
 
-$wholeClassDef(android.view.View)$
+$android.view.View; format="whole"$
 
-$wholeClassDef(android.view.ViewGroup)$
+$android.view.ViewGroup; format="whole"$
 
 trait ViewGroupLayoutParams[LP <: ViewGroupLayoutParams[_,_], V <: View] extends ViewGroup.LayoutParams {
   def basis: LP
@@ -134,26 +134,26 @@ trait ViewGroupMarginLayoutParams[LP <: ViewGroupMarginLayoutParams[_,_], V <: V
   }
 }
 
-$wholeClassDef(android.view.Menu)$
-$wholeClassDef(android.view.ContextMenu)$
-$wholeClassDef(android.view.SurfaceView)$
-$wholeClassDef(android.view.ViewStub)$
+$android.view.Menu; format="whole"$
+$android.view.ContextMenu; format="whole"$
+$android.view.SurfaceView; format="whole"$
+$android.view.ViewStub; format="whole"$
 $if(ver.gte_14)$
-  $wholeClassDef(android.view.ActionProvider)$
-  $wholeClassDef(android.view.TextureView)$
+  $android.view.ActionProvider; format="whole"$
+  $android.view.TextureView; format="whole"$
 $endif$
 
 
 trait ViewImplicits {
-  $implicitConversion(android.view.View)$
-  $implicitConversion(android.view.ViewGroup)$
-  $implicitConversion(android.view.Menu)$
-  $implicitConversion(android.view.ContextMenu)$
-  $implicitConversion(android.view.SurfaceView)$
-  $implicitConversion(android.view.ViewStub)$
+  $android.view.View; format="implicit-conversion"$
+  $android.view.ViewGroup; format="implicit-conversion"$
+  $android.view.Menu; format="implicit-conversion"$
+  $android.view.ContextMenu; format="implicit-conversion"$
+  $android.view.SurfaceView; format="implicit-conversion"$
+  $android.view.ViewStub; format="implicit-conversion"$
 $if(ver.gte_14)$
-  $implicitConversion(android.view.ActionProvider)$
-  $implicitConversion(android.view.TextureView)$
+  $android.view.ActionProvider; format="implicit-conversion"$
+  $android.view.TextureView; format="implicit-conversion"$
 $endif$
 }
 object ViewImplicits extends ViewImplicits

@@ -1,6 +1,5 @@
 package org.scaloid.util
 
-
 /**
  * A service that can be start and stop.
  */
@@ -22,8 +21,7 @@ trait RunnableService {
 }
 
 import org.scaloid.common._
-import java.util.{TimerTask, Timer}
-
+import java.util.{ TimerTask, Timer }
 
 import UpdateEvent._
 

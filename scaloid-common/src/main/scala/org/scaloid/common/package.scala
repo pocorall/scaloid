@@ -54,7 +54,6 @@ package object common extends Logger with SystemServices with Helpers with Impli
     candidate
   }
 
-
   /**
    * Provides handler instance and runOnUiThread() utility method.
    */

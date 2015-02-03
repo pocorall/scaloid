@@ -1,6 +1,6 @@
-/* 
+/*
  *
- * 
+ *
  *
  *
  * Less painful Android development with Scala
@@ -35,7 +35,6 @@
 
 package org.scaloid.common
 
-
 private[scaloid] trait ConstantsSupport {
   // android:inputType constants for TextView
 
@@ -61,5 +60,4 @@ private[scaloid] trait ConstantsSupport {
   val TEXT_PASSWORD = TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PASSWORD
   // TODO: write more (http://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType)
 }
-
 
