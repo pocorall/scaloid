@@ -159,7 +159,7 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
 
 
   // Methods
-  
+
   def argTypes(types: List[ScalaType]) = {
     val str = types.map(genType).mkString(", ")
     if (types.length > 1) s"($str)"
@@ -184,7 +184,7 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
 
 
   // listener
-  
+
   def callbackBody(method: AndroidCallbackMethod, isUnit: Boolean = false) =
     if ( ! method.hasBody) ""
     else if (isUnit) "f"
@@ -223,7 +223,7 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
 
 
   // Intent
-  
+
   def intentMethod(l: AndroidIntentMethod) = {
     val da = if (l.zeroArgs) "" else s"(${namedArgs(l.argTypes)})"
     val ca = if (l.zeroArgs) "" else s", ${callArgs(l.argTypes)}"
@@ -247,14 +247,13 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
       }
 
   def setter(prop: AndroidProperty, method: AndroidMethod) = {
-    def _setter(postFix: String, body: String) = {
-      if ( method.isAbstract && method.paramedTypes.nonEmpty) ""
-      else (
+    def _setter(postFix: String, body: String) =
+      if (method.isAbstract && method.paramedTypes.nonEmpty) ""
+      else
         methodScalaDoc(method) +
         s"\n@inline def ${safeIdent(prop.name + postFix)}${paramedTypes(method.paramedTypes)}(${namedArgs(method.argTypes)}) = $body\n"
-      )
-    }
-    _setter("  ", s"            ${prop.name}_=(p)") +"\n"+
+
+    _setter("  ", s"            ${prop.name}_=(p)") + "\n" +
     _setter("_=", s"{ basis.${method.name}(p); basis }")
   }
 
@@ -283,11 +282,11 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
     s"@inline def ${decapitalize(cls.name)}(implicit context: Context) = \n" +
     s"  context.getSystemService(Context.${managerToService(cls.name)}).asInstanceOf[${cls.tpe.name}]"
 
-  
+
   // Scaladoc
   def androidDocBase = "https://developer.android.com/reference"
 
-  def androidClassUrl(c: AndroidClass) = 
+  def androidClassUrl(c: AndroidClass) =
     s"$androidDocBase/${dotToSlash(c.pkg)}/${c.name}.html"
 
   def androidReference(c: AndroidClass) =
@@ -355,7 +354,6 @@ object ScaloidCodeGenerator {
     def safeRender(name: String): String
 
   }
-
 
   type PredefinedCodeMapping = (String, (AndroidClass => String))
   type PredefinedCodeMappings = Seq[PredefinedCodeMapping]
