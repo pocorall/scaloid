@@ -79,6 +79,31 @@ trait ContentHelpers {
     reg.onRegister(ctx.registerReceiver(receiver, filter))
     reg.onUnregister(ctx.unregisterReceiver(receiver))
   }
+  /**
+   * When you register BroadcastReceiver with Context.registerReceiver() you have to unregister it to prevent memory leak.
+   * Trait UnregisterReceiver handles these chores for you.
+   * All you need to do is append the trait to your class.
+     {{{
+   class MyService extends SService with UnregisterReceiver {
+     def func() {
+       // ...
+       registerReceiver(receiver, intentFilter)
+       // Done! automatically unregistered at UnregisterReceiverService.onDestroy()
+     }
+   }
+     }}}
+   */
+  def broadcastReceiver(filterString: String)(onReceiveBody: => Any)(implicit ctx: Context, reg: Registerable) {
+    val receiver = new BroadcastReceiver {
+      def onReceive(context: Context, intent: Intent) {
+        onReceiveBody
+      }
+    }
+    val filter = new IntentFilter()
+    filter.addAction(filterString)
+    reg.onRegister(ctx.registerReceiver(receiver, filter))
+    reg.onUnregister(ctx.unregisterReceiver(receiver))
+  }
 
 }
 

@@ -96,6 +96,7 @@ $android.content.ContextWrapper; format="whole"$
  * }}}
  * See also: [[https://github.com/pocorall/scaloid/wiki/Basics#trait-unregisterreceiver]]
  */
+@deprecated("Use ContentHelper.registerReceiver instead", "4.0")
 trait UnregisterReceiver extends ContextWrapper with Destroyable {
   /**
    * Internal implementation for (un)registering the receiver. You do not need to call this method.
