@@ -521,6 +521,18 @@ class RichListView[V <: android.widget.ListView](val basis: V) extends TraitList
 trait TraitListView[V <: android.widget.ListView] extends TraitAbsListView[V] {
 
   /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ListView.html#setAdapter(android.widget.ListAdapter) setAdapter(android.widget.ListAdapter)]]`
+   * This method is for compatibility with Android API Level 10, which does not has AbstractListView.setAdapter().
+   */
+  @inline override def adapter(p: android.widget.ListAdapter) = adapter_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ListView.html#setAdapter(android.widget.ListAdapter) setAdapter(android.widget.ListAdapter)]]`
+   * This method is for compatibility with Android API Level 10, which does not has AbstractListView.setAdapter().
+   */
+  @inline override def adapter_=(p: android.widget.ListAdapter) = { basis.setAdapter(p); basis }
+
+  /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/ListView.html#getAdapter() getAdapter()]]`
    */
   @inline override def adapter = basis.getAdapter

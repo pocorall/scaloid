@@ -22,6 +22,20 @@ class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PAREN
 }
 >>
 
+ListView_traitBody() ::= <<
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ListView.html#setAdapter(android.widget.ListAdapter) setAdapter(android.widget.ListAdapter)]]`
+   * This method is for compatibility with Android API Level 10, which does not has AbstractListView.setAdapter().
+   */
+  @inline override def adapter(p: android.widget.ListAdapter) = adapter_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/widget/ListView.html#setAdapter(android.widget.ListAdapter) setAdapter(android.widget.ListAdapter)]]`
+   * This method is for compatibility with Android API Level 10, which does not has AbstractListView.setAdapter().
+   */
+  @inline override def adapter_=(p: android.widget.ListAdapter) = { basis.setAdapter(p); basis }
+>>
+
 TextView_traitBody() ::= <<
 import android.graphics.drawable.Drawable
 
