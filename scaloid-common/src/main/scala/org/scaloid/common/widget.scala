@@ -1399,7 +1399,7 @@ class STableLayout()(implicit context: android.content.Context, parentVGroup: Tr
   def basis = this
   override val parentViewGroup = parentVGroup
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
-    case p: LayoutParams[V] => p
+    case p: LayoutParams[V @unchecked] => p
     case _ => new LayoutParams(v)
   }
 
@@ -2366,7 +2366,7 @@ class SRelativeLayout()(implicit context: android.content.Context, parentVGroup:
   def basis = this
   override val parentViewGroup = parentVGroup
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
-    case p: LayoutParams[V] => p
+    case p: LayoutParams[V @unchecked] => p
     case _ => new LayoutParams(v)
   }
 
@@ -5431,7 +5431,7 @@ class SLinearLayout()(implicit context: android.content.Context, parentVGroup: T
   val HORIZONTAL = LinearLayout.HORIZONTAL
 
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
-    case p: LayoutParams[V] => p
+    case p: LayoutParams[V @unchecked] => p
     case _ => new LayoutParams(v)
   }
 
@@ -6529,7 +6529,7 @@ class STableRow()(implicit context: android.content.Context, parentVGroup: Trait
   def basis = this
   override val parentViewGroup = parentVGroup
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
-    case p: LayoutParams[V] => p
+    case p: LayoutParams[V @unchecked] => p
     case _ => new LayoutParams(v)
   }
 
@@ -8132,7 +8132,7 @@ class SFrameLayout()(implicit context: android.content.Context, parentVGroup: Tr
   def basis = this
   override val parentViewGroup = parentVGroup
   implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
-    case p: LayoutParams[V] => p
+    case p: LayoutParams[V @unchecked] => p
     case _ => new LayoutParams(v)
   }
 
