@@ -73,6 +73,18 @@ trait TraitActivity[V <: Activity] {
  *   onCreate(doSomething())
  * }}}
  *
+ * If the `Bundle` is needed in the `onCreate` call to restore saved state, a function can be supplied which accepts
+ * `Option[Bundle]`:
+ *
+ * {{{
+ *   onCreate { ob: Option[Bundle] =>
+ *     // do something for onCreate
+ *     ob.foreach { b =>
+ *       // do things if bundle was defined at onCreate time
+ *     }
+ *   }
+ * }}}
+ *
  * In contrast of method overriding, this shortcut can be called multiple times from different places of your code.
  *
  */
@@ -96,7 +108,17 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
 
   protected override def onCreate(b: Bundle) {
     super.onCreate(b)
-    onCreateBodies.foreach(_ ())
+    AppHelpers.createBundle.withValue(Option(b)) {
+      onCreateBodies.foreach(_ ())
+    }
+  }
+
+  def onCreate(body: Option[Bundle] => Any) = {
+    val el = { () =>
+      body(AppHelpers.createBundle.value)
+    }
+    onCreateBodies += el
+    el
   }
 
   override def onStart {

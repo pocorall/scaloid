@@ -44,6 +44,7 @@ import android.widget._
 import android.view._
 import scala.concurrent.Future
 import scala.reflect._
+import scala.util.DynamicVariable
 
 trait AppHelpers {
 
@@ -82,6 +83,8 @@ trait AppHelpers {
 
   @inline def pendingActivity[T](implicit context: Context, ct: ClassTag[T]) =
     PendingIntent.getActivity(context, 0, SIntent[T], 0)
+
+  private[scaloid] val createBundle = new DynamicVariable[Option[android.os.Bundle]](None)
 
 }
 
