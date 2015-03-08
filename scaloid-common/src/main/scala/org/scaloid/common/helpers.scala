@@ -42,6 +42,7 @@ import android.net._
 import android.preference._
 import android.widget._
 import android.view._
+import scala.concurrent.Future
 import scala.reflect._
 
 trait AppHelpers {
@@ -207,8 +208,8 @@ trait WidgetHelpers {
    * Displays a dialog with spinner icon.
    * This method can be called from any threads.
    */
-  @inline def spinnerDialog(title: CharSequence, message: CharSequence)(implicit context: Context): ProgressDialog =
-    runOnUiThread(ProgressDialog.show(context, title, message, true))
+  @inline def spinnerDialog(title: CharSequence, message: CharSequence)(implicit context: Context): Future[ProgressDialog] =
+    evalOnUiThread(ProgressDialog.show(context, title, message, true))
 
 }
 
