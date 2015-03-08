@@ -19,5 +19,7 @@ object StringUtils {
   def safeIdent(s: String) = if (s.matches("^[0-9].*") || reservedKeywordsNotInJava(s)) "`"+s+"`" else s
 
   def span(s: String, i: Int) = s.padTo(i, " ").mkString
+
+  val deprecatedDecl = """@deprecated("", "") """
 }
 

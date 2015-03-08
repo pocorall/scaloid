@@ -10,7 +10,7 @@ View_traitBody() ::= <<
   basis.getId
 }
 
-val FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT
+@deprecated("", "") val FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT
 val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
 val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
 

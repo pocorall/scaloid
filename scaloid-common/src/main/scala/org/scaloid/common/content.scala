@@ -203,37 +203,37 @@ trait TraitContext[V <: android.content.Context] {
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getWallpaper() getWallpaper()]]`
    */
-  @inline def wallpaper = basis.getWallpaper
+  @deprecated("", "") @inline def wallpaper = basis.getWallpaper
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(android.graphics.Bitmap) setWallpaper(android.graphics.Bitmap)]]`
    */
-  @inline def wallpaper(p: android.graphics.Bitmap) = wallpaper_=(p)
+  @deprecated("", "") @inline def wallpaper(p: android.graphics.Bitmap) = wallpaper_=(p)
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(android.graphics.Bitmap) setWallpaper(android.graphics.Bitmap)]]`
    */
-  @inline def wallpaper_=(p: android.graphics.Bitmap) = { basis.setWallpaper(p); basis }
+  @deprecated("", "") @inline def wallpaper_=(p: android.graphics.Bitmap) = { basis.setWallpaper(p); basis }
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(java.io.InputStream) setWallpaper(java.io.InputStream)]]`
    */
-  @inline def wallpaper(p: java.io.InputStream) = wallpaper_=(p)
+  @deprecated("", "") @inline def wallpaper(p: java.io.InputStream) = wallpaper_=(p)
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#setWallpaper(java.io.InputStream) setWallpaper(java.io.InputStream)]]`
    */
-  @inline def wallpaper_=(p: java.io.InputStream) = { basis.setWallpaper(p); basis }
+  @deprecated("", "") @inline def wallpaper_=(p: java.io.InputStream) = { basis.setWallpaper(p); basis }
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getWallpaperDesiredMinimumHeight() getWallpaperDesiredMinimumHeight()]]`
    */
-  @inline def wallpaperDesiredMinimumHeight = basis.getWallpaperDesiredMinimumHeight
+  @deprecated("", "") @inline def wallpaperDesiredMinimumHeight = basis.getWallpaperDesiredMinimumHeight
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/Context.html#getWallpaperDesiredMinimumWidth() getWallpaperDesiredMinimumWidth()]]`
    */
-  @inline def wallpaperDesiredMinimumWidth = basis.getWallpaperDesiredMinimumWidth
+  @deprecated("", "") @inline def wallpaperDesiredMinimumWidth = basis.getWallpaperDesiredMinimumWidth
 
   @inline def bindService[T: ClassTag](p1: android.content.ServiceConnection, p2: Int)(implicit context: Context): Boolean = basis.bindService(SIntent[T], p1, p2)
 
