@@ -102,7 +102,7 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
     basis.getId
   }
 
-  val FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT
+  @deprecated("", "") val FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT
   val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
   val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
 
@@ -256,12 +256,12 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackgroundDrawable(android.graphics.drawable.Drawable) setBackgroundDrawable(android.graphics.drawable.Drawable)]]`
    */
-  @inline def backgroundDrawable(p: android.graphics.drawable.Drawable) = backgroundDrawable_=(p)
+  @deprecated("", "") @inline def backgroundDrawable(p: android.graphics.drawable.Drawable) = backgroundDrawable_=(p)
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackgroundDrawable(android.graphics.drawable.Drawable) setBackgroundDrawable(android.graphics.drawable.Drawable)]]`
    */
-  @inline def backgroundDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setBackgroundDrawable(p); basis }
+  @deprecated("", "") @inline def backgroundDrawable_=(p: android.graphics.drawable.Drawable) = { basis.setBackgroundDrawable(p); basis }
 
   @inline def backgroundResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'backgroundResource'")
 

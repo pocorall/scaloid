@@ -399,19 +399,19 @@ object SArrayAdapter {
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/AbsoluteLayout.html android.widget.AbsoluteLayout]]`.
  */
-class RichAbsoluteLayout[V <: android.widget.AbsoluteLayout](val basis: V) extends TraitAbsoluteLayout[V]
+@deprecated("", "") class RichAbsoluteLayout[V <: android.widget.AbsoluteLayout](val basis: V) extends TraitAbsoluteLayout[V]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/AbsoluteLayout.html android.widget.AbsoluteLayout]]`. This contains several property accessors.
  */
-trait TraitAbsoluteLayout[V <: android.widget.AbsoluteLayout] extends TraitViewGroup[V] {
+@deprecated("", "") trait TraitAbsoluteLayout[V <: android.widget.AbsoluteLayout] extends TraitViewGroup[V] {
 
 }
 
 /**
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/AbsoluteLayout.html android.widget.AbsoluteLayout]]`.
  */
-class SAbsoluteLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
+@deprecated("", "") class SAbsoluteLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.AbsoluteLayout(context) with TraitAbsoluteLayout[SAbsoluteLayout] {
 
   def basis = this
@@ -419,7 +419,7 @@ class SAbsoluteLayout()(implicit context: android.content.Context, parentVGroup:
 
 }
 
-object SAbsoluteLayout {
+@deprecated("", "") object SAbsoluteLayout {
   def apply[LP <: ViewGroupLayoutParams[_, SAbsoluteLayout]]()(implicit context: android.content.Context, defaultLayoutParam: SAbsoluteLayout => LP): SAbsoluteLayout = {
     val v = new SAbsoluteLayout
     v.<<.parent.+=(v)
@@ -540,7 +540,7 @@ trait TraitListView[V <: android.widget.ListView] extends TraitAbsListView[V] {
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/ListView.html#getCheckItemIds() getCheckItemIds()]]`
    */
-  @inline def checkItemIds = basis.getCheckItemIds
+  @deprecated("", "") @inline def checkItemIds = basis.getCheckItemIds
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/ListView.html#getDivider() getDivider()]]`
@@ -797,12 +797,12 @@ trait TraitImageView[V <: android.widget.ImageView] extends TraitView[V] {
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#setAlpha(int) setAlpha(int)]]`
    */
-  @inline def alpha(p: Int) = alpha_=(p)
+  @deprecated("", "") @inline def alpha(p: Int) = alpha_=(p)
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#setAlpha(int) setAlpha(int)]]`
    */
-  @inline def alpha_=(p: Int) = { basis.setAlpha(p); basis }
+  @deprecated("", "") @inline def alpha_=(p: Int) = { basis.setAlpha(p); basis }
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/ImageView.html#setBaseline(int) setBaseline(int)]]`
@@ -7687,12 +7687,12 @@ object SZoomButton {
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/widget/Gallery.html android.widget.Gallery]]`.
  */
-class RichGallery[V <: android.widget.Gallery](val basis: V) extends TraitGallery[V]
+@deprecated("", "") class RichGallery[V <: android.widget.Gallery](val basis: V) extends TraitGallery[V]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/widget/Gallery.html android.widget.Gallery]]`. This contains several property accessors.
  */
-trait TraitGallery[V <: android.widget.Gallery] extends TraitAbsSpinner[V] {
+@deprecated("", "") trait TraitGallery[V <: android.widget.Gallery] extends TraitAbsSpinner[V] {
 
   @inline def animationDuration(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'animationDuration'")
 
@@ -7759,7 +7759,7 @@ trait TraitGallery[V <: android.widget.Gallery] extends TraitAbsSpinner[V] {
 /**
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/Gallery.html android.widget.Gallery]]`.
  */
-class SGallery()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
+@deprecated("", "") class SGallery()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
     extends android.widget.Gallery(context) with TraitGallery[SGallery] {
 
   def basis = this
@@ -7767,7 +7767,7 @@ class SGallery()(implicit context: android.content.Context, parentVGroup: TraitV
 
 }
 
-object SGallery {
+@deprecated("", "") object SGallery {
   def apply[LP <: ViewGroupLayoutParams[_, SGallery]]()(implicit context: android.content.Context, defaultLayoutParam: SGallery => LP): SGallery = {
     val v = new SGallery
     v.<<.parent.+=(v)
@@ -8074,7 +8074,7 @@ trait TraitFrameLayout[V <: android.widget.FrameLayout] extends TraitViewGroup[V
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/FrameLayout.html#getConsiderGoneChildrenWhenMeasuring() getConsiderGoneChildrenWhenMeasuring()]]`
    */
-  @inline def considerGoneChildrenWhenMeasuring = basis.getConsiderGoneChildrenWhenMeasuring
+  @deprecated("", "") @inline def considerGoneChildrenWhenMeasuring = basis.getConsiderGoneChildrenWhenMeasuring
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/FrameLayout.html#getForeground() getForeground()]]`
@@ -9724,12 +9724,12 @@ trait TraitAutoCompleteTextView[V <: android.widget.AutoCompleteTextView] extend
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#getItemClickListener() getItemClickListener()]]`
    */
-  @inline def itemClickListener = basis.getItemClickListener
+  @deprecated("", "") @inline def itemClickListener = basis.getItemClickListener
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#getItemSelectedListener() getItemSelectedListener()]]`
    */
-  @inline def itemSelectedListener = basis.getItemSelectedListener
+  @deprecated("", "") @inline def itemSelectedListener = basis.getItemSelectedListener
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html#getListSelection() getListSelection()]]`
@@ -11236,12 +11236,12 @@ trait TraitWebView[V <: android.webkit.WebView] extends TraitAbsoluteLayout[V] {
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/webkit/WebView.html#setPictureListener(android.webkit.WebView.PictureListener) setPictureListener(android.webkit.WebView.PictureListener)]]`
    */
-  @inline def pictureListener(p: android.webkit.WebView.PictureListener) = pictureListener_=(p)
+  @deprecated("", "") @inline def pictureListener(p: android.webkit.WebView.PictureListener) = pictureListener_=(p)
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/webkit/WebView.html#setPictureListener(android.webkit.WebView.PictureListener) setPictureListener(android.webkit.WebView.PictureListener)]]`
    */
-  @inline def pictureListener_=(p: android.webkit.WebView.PictureListener) = { basis.setPictureListener(p); basis }
+  @deprecated("", "") @inline def pictureListener_=(p: android.webkit.WebView.PictureListener) = { basis.setPictureListener(p); basis }
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/webkit/WebView.html#getProgress() getProgress()]]`
@@ -11283,7 +11283,7 @@ trait TraitWebView[V <: android.webkit.WebView] extends TraitAbsoluteLayout[V] {
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/webkit/WebView.html#getVisibleTitleHeight() getVisibleTitleHeight()]]`
    */
-  @inline def visibleTitleHeight = basis.getVisibleTitleHeight
+  @deprecated("", "") @inline def visibleTitleHeight = basis.getVisibleTitleHeight
 
   @inline def webChromeClient(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'webChromeClient'")
 
@@ -11337,14 +11337,14 @@ trait TraitWebView[V <: android.webkit.WebView] extends TraitAbsoluteLayout[V] {
     basis
   }
 
-  @inline def onNewPicture[U](f: (android.webkit.WebView, android.graphics.Picture) => U): V = {
+  @deprecated("", "") @inline def onNewPicture[U](f: (android.webkit.WebView, android.graphics.Picture) => U): V = {
     basis.setPictureListener(new android.webkit.WebView.PictureListener {
       def onNewPicture(p1: android.webkit.WebView, p2: android.graphics.Picture): Unit = { f(p1, p2) }
     })
     basis
   }
 
-  @inline def onNewPicture[U](f: => U): V = {
+  @deprecated("", "") @inline def onNewPicture[U](f: => U): V = {
     basis.setPictureListener(new android.webkit.WebView.PictureListener {
       def onNewPicture(p1: android.webkit.WebView, p2: android.graphics.Picture): Unit = { f }
     })
@@ -11538,17 +11538,17 @@ trait TraitPaint[V <: android.graphics.Paint] {
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#isLinearText() isLinearText()]]`
    */
-  @inline def linearText = basis.isLinearText
+  @deprecated("", "") @inline def linearText = basis.isLinearText
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setLinearText(boolean) setLinearText(boolean)]]`
    */
-  @inline def linearText(p: Boolean) = linearText_=(p)
+  @deprecated("", "") @inline def linearText(p: Boolean) = linearText_=(p)
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setLinearText(boolean) setLinearText(boolean)]]`
    */
-  @inline def linearText_=(p: Boolean) = { basis.setLinearText(p); basis }
+  @deprecated("", "") @inline def linearText_=(p: Boolean) = { basis.setLinearText(p); basis }
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getMaskFilter() getMaskFilter()]]`
@@ -11850,7 +11850,7 @@ object SPaint {
 trait WidgetImplicits {
   @inline implicit def popupWindow2RichPopupWindow[V <: android.widget.PopupWindow](popupWindow: V) = new RichPopupWindow[V](popupWindow)
   @inline implicit def arrayAdapter2RichArrayAdapter[V <: android.widget.ArrayAdapter[_]](arrayAdapter: V) = new RichArrayAdapter[V](arrayAdapter)
-  @inline implicit def absoluteLayout2RichAbsoluteLayout[V <: android.widget.AbsoluteLayout](absoluteLayout: V) = new RichAbsoluteLayout[V](absoluteLayout)
+  @deprecated("", "") @inline implicit def absoluteLayout2RichAbsoluteLayout[V <: android.widget.AbsoluteLayout](absoluteLayout: V) = new RichAbsoluteLayout[V](absoluteLayout)
   @inline implicit def spinnerAdapter2RichSpinnerAdapter[V <: android.widget.SpinnerAdapter](spinnerAdapter: V) = new RichSpinnerAdapter[V](spinnerAdapter)
   @inline implicit def imageButton2RichImageButton[V <: android.widget.ImageButton](imageButton: V) = new RichImageButton[V](imageButton)
   @inline implicit def listView2RichListView[V <: android.widget.ListView](listView: V) = new RichListView[V](listView)
@@ -11927,7 +11927,7 @@ trait WidgetImplicits {
   @inline implicit def baseExpandableListAdapter2RichBaseExpandableListAdapter[V <: android.widget.BaseExpandableListAdapter](baseExpandableListAdapter: V) = new RichBaseExpandableListAdapter[V](baseExpandableListAdapter)
   @inline implicit def viewSwitcher2RichViewSwitcher[V <: android.widget.ViewSwitcher](viewSwitcher: V) = new RichViewSwitcher[V](viewSwitcher)
   @inline implicit def zoomButton2RichZoomButton[V <: android.widget.ZoomButton](zoomButton: V) = new RichZoomButton[V](zoomButton)
-  @inline implicit def gallery2RichGallery[V <: android.widget.Gallery](gallery: V) = new RichGallery[V](gallery)
+  @deprecated("", "") @inline implicit def gallery2RichGallery[V <: android.widget.Gallery](gallery: V) = new RichGallery[V](gallery)
   @inline implicit def filterQueryProvider2RichFilterQueryProvider[V <: android.widget.FilterQueryProvider](filterQueryProvider: V) = new RichFilterQueryProvider[V](filterQueryProvider)
   @inline implicit def popupMenu2RichPopupMenu[V <: android.widget.PopupMenu](popupMenu: V) = new RichPopupMenu[V](popupMenu)
   @inline implicit def compoundButton2RichCompoundButton[V <: android.widget.CompoundButton](compoundButton: V) = new RichCompoundButton[V](compoundButton)

@@ -27,7 +27,7 @@ object Configuration {
 
   @inline def landscape(implicit context: Context): Boolean = orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
 
-  @inline def square(implicit context: Context): Boolean = orientation == android.content.res.Configuration.ORIENTATION_SQUARE
+  @deprecated("", "") @inline def square(implicit context: Context): Boolean = orientation == android.content.res.Configuration.ORIENTATION_SQUARE
 
   @inline def long(implicit context: Context): Boolean = (conf.screenLayout & android.content.res.Configuration.SCREENLAYOUT_LONG_YES) != 0
 

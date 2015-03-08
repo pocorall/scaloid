@@ -72,6 +72,8 @@ trait SystemServices {
     context.getSystemService(Context.ALARM_SERVICE).asInstanceOf[android.app.AlarmManager]
   @inline def audioManager(implicit context: Context) =
     context.getSystemService(Context.AUDIO_SERVICE).asInstanceOf[android.media.AudioManager]
+
+  // android.content.ClipboardManager in API 11+, but this is its superclass
   @inline def clipboardManager(implicit context: Context) =
     context.getSystemService(Context.CLIPBOARD_SERVICE).asInstanceOf[android.text.ClipboardManager]
 

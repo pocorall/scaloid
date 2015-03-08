@@ -34,6 +34,8 @@ trait SystemServices {
   $android.app.ActivityManager; format="system-service"$
   $android.app.AlarmManager; format="system-service"$
   $android.media.AudioManager; format="system-service"$
+
+  // android.content.ClipboardManager in API 11+, but this is its superclass
   $android.text.ClipboardManager; format="system-service"$
 
   class RichClipboardManager(cm: android.text.ClipboardManager) {

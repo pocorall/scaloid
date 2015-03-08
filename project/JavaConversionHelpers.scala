@@ -30,6 +30,7 @@ trait JavaConversionHelpers {
         ).nonEmpty
       case None => false
     }
+  def isDeprecated(e: AnnotatedElement) = e.isAnnotationPresent(classOf[java.lang.Deprecated])
 
   def methodSignature(m: Method): String = List(
     m.getName,

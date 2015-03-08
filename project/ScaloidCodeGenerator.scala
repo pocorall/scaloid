@@ -7,7 +7,7 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
 
   def implicitConversion = {
     val name = cls.name
-    s"@inline implicit def ${decapitalize(name)}2Rich$name[V <: ${genType(cls.tpe, erased = true)}]" +
+    s"$deprecated@inline implicit def ${decapitalize(name)}2Rich$name[V <: ${genType(cls.tpe, erased = true)}]" +
       s"(${decapitalize(name)}: V) = new Rich$name[V](${decapitalize(name)})"
   }
 
@@ -19,10 +19,10 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
 
   def richClassDef =
     s"""$richClassScalaDoc
-       |class Rich${cls.name}[V <: ${genType(cls.tpe, erased = true)}](val basis: V) extends $helperTraitName[V]
+       |${deprecated}class Rich${cls.name}[V <: ${genType(cls.tpe, erased = true)}](val basis: V) extends $helperTraitName[V]
        |
        |$helperTraitScalaDoc
-       |trait $helperTraitName[V <: ${genType(cls.tpe, erased = true)}]$extendClause {
+       |${deprecated}trait $helperTraitName[V <: ${genType(cls.tpe, erased = true)}]$extendClause {
        |
        |  ${if (cls.parentType.isEmpty) "def basis: V" else ""}
        |
@@ -34,7 +34,7 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
        |}
      """.stripMargin
 
-
+  def deprecated = if (cls.isDeprecated) deprecatedDecl else ""
   def helperTraitName: String = helperTraitName(cls.name)
   def helperTraitName(name: String): String = "Trait"+ StringUtils.simpleName(name)
 
@@ -51,7 +51,7 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
     val name = cls.name
     if (cls.hasBlankConstructor || CustomClassBodies.toMap.isDefinedAt(name) || FullConstructors.toMap.isDefinedAt(name))
       s"""$prefixedClassScalaDoc
-         |class S$name$customClassGenerics($customClassExplicitArgs)$classImplicitArgs
+         |${deprecated}class S$name$customClassGenerics($customClassExplicitArgs)$classImplicitArgs
          |    extends $baseClassInstance with $helperTraitName[S$name$customSimpleClassGenerics] {
          |
          |  def basis = this
@@ -70,7 +70,7 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
       if (! cls.hasBlankConstructor) ""
       else new ConstructorGenerator(cls.constructors.head).constructor
 
-    s"""object $sClassName {
+    s"""${deprecated}object $sClassName {
        |  $con
        |
        |  $customFullConstructors
@@ -110,8 +110,9 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
   class ConstructorGenerator(con: ScalaConstructor) {
 
     def constructor = {
+      val dp = if (con.isDeprecated) deprecatedDecl else ""
       val appliedType = typeVar(cls.tpe)
-      s"""def apply$constTypeParams($constExplicitArgs)$constImplicitArgs: $sClassName$appliedType = {
+      s"""${dp}def apply$constTypeParams($constExplicitArgs)$constImplicitArgs: $sClassName$appliedType = {
          |  val v = new $sClassName$appliedType
          |  $customConstImplicitBodies
          |  v
@@ -195,11 +196,13 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
     s"{ ${callbackBody(m, isUnit)} }"
   }
 
-  def commonListener(l: AndroidListener, args: String = "") =
-    "@inline def "+ l.name + (
+  def commonListener(l: AndroidListener, args: String = "") = {
+    val dp = if (l.isDeprecated) deprecatedDecl else ""
+    dp + "@inline def " + l.name + (
       if (l.retType.name == "Unit") s"[U](f: $args => U): V = {"
       else s"(f: $args => ${genType(l.retType)}): V = {"
     ) + s"\n  basis.${l.setter}(new ${l.callbackClassName} {"
+  }
 
   def fullListener(l: AndroidListener) =
     s"""${commonListener(l, argTypes(l.argTypes))}
@@ -225,9 +228,10 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
   // Intent
 
   def intentMethod(l: AndroidIntentMethod) = {
+    val dp = if (l.isDeprecated) deprecatedDecl else ""
     val da = if (l.zeroArgs) "" else s"(${namedArgs(l.argTypes)})"
     val ca = if (l.zeroArgs) "" else s", ${callArgs(l.argTypes)}"
-    s"@inline def ${l.name}[T: ClassTag]$da(implicit context: Context): " +
+    s"$dp@inline def ${l.name}[T: ClassTag]$da(implicit context: Context): " +
     s"${genType(l.retType)} = basis.${l.name}(SIntent[T]$ca)"
   }
 
@@ -242,16 +246,19 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
   def getter(prop: AndroidProperty) =
     prop.getter
       .fold( if (prop.nameClashes) "" else noGetter(prop.name) ) { getter =>
+        val dp = if (getter.isDeprecated) deprecatedDecl else ""
         methodScalaDoc(getter) +
-        s"\n@inline${if (getter.isOverride) " override" else ""} def ${safeIdent(prop.name)} = basis.${getter.name}\n"
+        s"\n$dp@inline${if (getter.isOverride) " override" else ""} def ${safeIdent(prop.name)} = basis.${getter.name}\n"
       }
 
   def setter(prop: AndroidProperty, method: AndroidMethod) = {
     def _setter(postFix: String, body: String) =
       if (method.isAbstract && method.paramedTypes.nonEmpty) ""
-      else
+      else {
+        val dp = if (method.isDeprecated) deprecatedDecl else ""
         methodScalaDoc(method) +
-        s"\n@inline def ${safeIdent(prop.name + postFix)}${paramedTypes(method.paramedTypes)}(${namedArgs(method.argTypes)}) = $body\n"
+        s"\n$dp@inline def ${safeIdent(prop.name + postFix)}${paramedTypes(method.paramedTypes)}(${namedArgs(method.argTypes)}) = $body\n"
+      }
 
     _setter("  ", s"            ${prop.name}_=(p)") + "\n" +
     _setter("_=", s"{ basis.${method.name}(p); basis }")
@@ -259,9 +266,10 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
 
   def switch(name: String, setter: Option[AndroidMethod]) =
     setter.fold("") { s =>
+      val dp = if (s.isDeprecated) deprecatedDecl else ""
       val spaces = " " * 13
-      s"@inline def  enable$name()$spaces= { basis.${s.name}(true ); basis }\n" +
-      s"@inline def disable$name()$spaces= { basis.${s.name}(false); basis }\n"
+      s"$dp@inline def  enable$name()$spaces= { basis.${s.name}(true ); basis }\n" +
+      s"$dp@inline def disable$name()$spaces= { basis.${s.name}(false); basis }\n"
     }
 
   def setters(prop: AndroidProperty) =
