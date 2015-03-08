@@ -36,7 +36,7 @@ trait Destroyable {
   protected val onDestroyBodies = new ArrayBuffer[() => Any]
 
   def onDestroy(body: => Any) = {
-    val el = (() => body)
+    val el = body _
     onDestroyBodies += el
     el
   }
@@ -49,7 +49,7 @@ trait Creatable {
   protected val onCreateBodies = new ArrayBuffer[() => Any]
 
   def onCreate(body: => Any) = {
-    val el = (() => body)
+    val el = body _
     onCreateBodies += el
     el
   }
