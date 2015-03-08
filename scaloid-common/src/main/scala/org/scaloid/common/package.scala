@@ -6,6 +6,8 @@ import android.os._
 import android.view._
 
 import language.implicitConversions
+import scala.concurrent._
+import scala.util.Try
 
 /**
  * Scaloid marries Android code with Scala resulting in easier to understand
@@ -61,16 +63,29 @@ package object common extends Logger with SystemServices with Helpers with Impli
 
   lazy val uiThread = Looper.getMainLooper.getThread
 
-  def runOnUiThread[T >: Null](f: => T): T = {
+  def runOnUiThread(f: => Unit): Unit = {
     if (uiThread == Thread.currentThread) {
-      return f
+      f
     } else {
       handler.post(new Runnable() {
         def run() {
           f
         }
       })
-      return null
+    }
+  }
+
+  def evalOnUiThread[T](f: => T): Future[T] = {
+    if (uiThread == Thread.currentThread) {
+      Future.fromTry(Try(f))
+    } else {
+      val p = Promise[T]()
+      handler.post(new Runnable() {
+        def run() {
+          p.complete(Try(f))
+        }
+      })
+      p.future
     }
   }
 

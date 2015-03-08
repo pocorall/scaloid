@@ -9,6 +9,8 @@ import android.os._
 import android.view._
 import android.view.WindowManager.LayoutParams._
 import scala.collection.mutable.ArrayBuffer
+import scala.concurrent.Await
+import scala.concurrent.duration.Duration
 import Implicits._
 import scala.deprecated
 
@@ -271,8 +273,9 @@ class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = n
   /**
    * Shows the dialog that is currently building.
    * Because this method runs runOnUiThread internally, you can call this method from any thread.
+   * This method blocks until the dialog has been built in the UI thread.
    */
-  override def show():AlertDialog = runOnUiThread(super.show())
+  override def show(): AlertDialog = Await.result(evalOnUiThread(super.show()), Duration.Inf)
 }
 
 /**
