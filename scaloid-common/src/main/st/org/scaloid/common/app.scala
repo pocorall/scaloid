@@ -107,7 +107,7 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
   protected val onStartBodies = new ArrayBuffer[() => Any]
 
   def onStart(body: => Any) = {
-    val el = (() => body)
+    val el = body _
     onStartBodies += el
     el
   }
@@ -120,7 +120,7 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
   protected val onResumeBodies = new ArrayBuffer[() => Any]
 
   def onResume(body: => Any) = {
-    val el = (() => body)
+    val el = body _
     onResumeBodies += el
     el
   }
@@ -133,7 +133,7 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
   protected val onPauseBodies = new ArrayBuffer[() => Any]
 
   def onPause(body: => Any) = {
-    val el = (() => body)
+    val el = body _
     onPauseBodies += el
     el
   }
@@ -146,7 +146,7 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
   protected val onStopBodies = new ArrayBuffer[() => Any]
 
   def onStop(body: => Any) = {
-    val el = (() => body)
+    val el = body _
     onStopBodies += el
     el
   }
