@@ -1,6 +1,6 @@
 FrameLayout_concreteBody() ::= <<
 implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
-  case p: LayoutParams[V] => p
+  case p: LayoutParams[V @unchecked] => p
   case _ => new LayoutParams(v)
 }
 
@@ -65,7 +65,7 @@ import android.graphics.drawable.Drawable
 
 RelativeLayout_concreteBody() ::= <<
 implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
-  case p: LayoutParams[V] => p
+  case p: LayoutParams[V @unchecked] => p
   case _ => new LayoutParams(v)
 }
 
@@ -192,7 +192,7 @@ val VERTICAL = LinearLayout.VERTICAL
 val HORIZONTAL = LinearLayout.HORIZONTAL
 
 implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
-  case p: LayoutParams[V] => p
+  case p: LayoutParams[V @unchecked] => p
   case _ => new LayoutParams(v)
 }
 
@@ -221,7 +221,7 @@ class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARE
 
 TableLayout_concreteBody() ::= <<
 implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
-  case p: LayoutParams[V] => p
+  case p: LayoutParams[V @unchecked] => p
   case _ => new LayoutParams(v)
 }
 
@@ -238,7 +238,7 @@ class LayoutParams[V <: View](v: V) extends TableLayout.LayoutParams(MATCH_PAREN
 
 TableRow_concreteBody() ::= <<
 implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
-  case p: LayoutParams[V] => p
+  case p: LayoutParams[V @unchecked] => p
   case _ => new LayoutParams(v)
 }
 
