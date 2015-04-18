@@ -939,25 +939,6 @@ class MyService extends SService with UnregisterReceiver {
 }
 ```
 
-### Trait `SContext`
-
-Trait `SContext` includes several shortcuts for frequently used android idioms, and inherits `TagUtil`.
-
-
-
-##### Starting activity
-
-```scala
-startActivity(new Intent(context, classOf[MyActivity]))
-```
-
-is reduced to:
-
-```scala
-startActivity[MyActivity]
-```
-
-
 ### Trait `SActivity`
 
 Instead of
@@ -1246,11 +1227,6 @@ class MyView(implicit ctx: Context) extends View(ctx) with TraitView[MyView] {
 }
 ```
 
-## Static fields on protected interfaces
-
-Android API has some protected interfaces which has static fields, and inherited it in public classes. For example `android.provider.ContactsContract.Contacts` inherits a protected interface `android.provider.ContactsContract.ContactsColumns`, which defines a static field `ContactsColumns.DISPLAY_NAME`. In Java code, you can access to it with `Contacts.DISPLAY_NAME`. However, Scala does not support accessing in this way (please refer [this](https://issues.scala-lang.org/browse/SI-1806) and [this](http://www.scala-lang.org/faq/4)). It is bad news for an Android-Scala programmer. So we provide a workaround implementation for this problem. Declare `import org.scaloid.Workarounds._`. Then you can use the interfaces publicly which is originally defined as protected.
-
-
 ## Let's make it together!
 
 Scaloid is an Apache licensed project. 
@@ -1259,12 +1235,6 @@ If you want look into inside of Scaloid, this document would be helpful:
 
  * [Inside Scaloid](https://github.com/pocorall/scaloid/wiki/Inside-Scaloid)
 
-<!-- 
-### Sub projects of Scaloid
-
- - [Scaloid common package](https://github.com/pocorall/scaloid) - This project
- - [Support-v4 package](https://github.com/pocorall/scaloid-support-v4) - Scaloid port of support-v4 compatibility library
--->
  
 ### [List of projects using Scaloid](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-list-of-projects-using-scaloid)
 
