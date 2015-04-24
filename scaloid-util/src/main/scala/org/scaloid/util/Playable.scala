@@ -74,7 +74,7 @@ import UpdateEvent._
  * Provides event notifications of a Playable.
  */
 abstract class PlayableConnector(activity: SActivity) {
-  def playable: Playable
+  def playable: Option[Playable]
 
   protected var timer: Timer = new Timer()
 
@@ -95,28 +95,32 @@ abstract class PlayableConnector(activity: SActivity) {
 
   def onServiceConnected() {
     runOnUiThread(updateUI(ON_CONNECTED))
-    if (playable.running) {
+    if (playable.fold(false)(_.running)) {
       startTimer()
     }
   }
 
   def updateUI(event: UpdateEvent)
 
-  def start() {
-    if (playable.running) return
-    playable.start()
+  private def start(p: Playable): Unit = {
+    if (p.running) return
+    p.start()
     runOnUiThread(updateUI(ON_STARTED))
     startTimer()
   }
 
-  def stop() {
-    if (!playable.running) return
-    playable.stop()
+  def start(): Unit = playable.foreach(start)
+
+  private def stop(p: Playable): Unit = {
+    if (!p.running) return
+    p.stop()
     runOnUiThread(updateUI(ON_STOPPED))
     timer.cancel()
   }
 
-  def toggle() {
-    if (playable.running) stop() else start()
+  def stop(): Unit = playable.foreach(stop)
+
+  def toggle(): Unit = playable.foreach { p =>
+    if (p.running) stop(p) else start(p)
   }
 }
