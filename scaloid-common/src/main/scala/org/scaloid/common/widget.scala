@@ -1821,7 +1821,20 @@ class SRadioGroup()(implicit context: android.content.Context, parentVGroup: Tra
 
   def basis = this
   override val parentViewGroup = parentVGroup
+  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
+    case p: LayoutParams[V @unchecked] => p
+    case _ => new LayoutParams(v)
+  }
 
+  class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT, 1.0f) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
+    def basis = this
+
+    v.setLayoutParams(this)
+
+    def parent = SRadioGroup.this
+
+    def >> : V = v
+  }
 }
 
 object SRadioGroup {
