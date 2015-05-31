@@ -3,15 +3,15 @@
  *
  *
  *
+ * Scaloid: Simpler Android
  *
- * Less painful Android development with Scala
  * http://scaloid.org
  *
  *
  *
  *
  *
- * Copyright 2013 Sung-Ho Lee and Scaloid team
+ * Copyright 2013 Sung-Ho Lee and Scaloid contributors
  *
  * Sung-Ho Lee licenses this file to you under the Apache License,
  * version 2.0 (the "License"); you may not use this file except in compliance
@@ -28,7 +28,7 @@
 -->
 <p align="center"><img src="http://o-n2.com/scaloid_logo.png"></p>
 
-# Less painful Android development with Scala
+# Simpler Android
 
 Scaloid is a library that simplifies your Android code. It makes your code easy to understand and maintain by [leveraging Scala language](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-faqs-about-scaloid).
 

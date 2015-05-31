@@ -3,7 +3,7 @@
  *
  *
  *
- * Less painful Android development with Scala
+ * Scaloid: Simpler Android
  *
  * http://scaloid.org
  *
@@ -12,9 +12,9 @@
  *
  *
  *
- * Copyright 2013 Sung-Ho Lee and Scaloid team
+ * Copyright 2013 Sung-Ho Lee and Scaloid contributors
  *
- * Sung-Ho Lee and Scaloid team licenses this file to you under the Apache License,
+ * Sung-Ho Lee and Scaloid contributors licenses this file to you under the Apache License,
  * version 2.0 (the "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at:
  *
