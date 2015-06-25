@@ -50,7 +50,7 @@ trait Styles {
 
   def btn(normal:Int): SStateListDrawable = btn(normal, pressedColor(normal))
 
-  def white = btn(TRANSPARENT)
+  def white = btn(WHITE)
 
   def black = btn(BLACK)
 
