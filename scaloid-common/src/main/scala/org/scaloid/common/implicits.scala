@@ -35,6 +35,7 @@
 
 package org.scaloid.common
 
+import _root_.android.graphics.PorterDuff.Mode
 import android.content._
 import android.database.Cursor
 import android.graphics.Movie
@@ -64,6 +65,12 @@ private[scaloid] class ResourceConversion(val id: Int)(implicit context: Context
   @inline def r2Integer: Int = context.getResources.getInteger(id)
   @inline def r2IntArray: Array[Int] = context.getResources.getIntArray(id)
   @inline def r2RawResource: java.io.InputStream = context.getResources.openRawResource(id)
+
+  @inline def r2Drawable(color: Int, mode: Mode = Mode.MULTIPLY): Drawable = {
+    val drawable = context.getResources.getDrawable(id).mutate
+    drawable.setColorFilter(color, mode)
+    drawable
+  }
 }
 
 private[scaloid] class StringConversion(val str: String)(implicit context: Context) {
