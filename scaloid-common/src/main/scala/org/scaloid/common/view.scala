@@ -157,6 +157,16 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
     basis
   }
 
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackground(android.graphics.drawable.Drawable) setBackground(android.graphics.drawable.Drawable)]]`
+   */
+  @inline def background(p: android.graphics.drawable.Drawable) = background_=(p)
+
+  /**
+   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackground(android.graphics.drawable.Drawable) setBackground(android.graphics.drawable.Drawable)]]`
+   */
+  @inline def background_=(p: android.graphics.drawable.Drawable) = { basis.setBackgroundDrawable(p); basis } // to avoid compatibility issue on API Level < 16, calls setBackgroundDrawable() although it is deprecated.
+
   @inline def accessibilityDelegate(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'accessibilityDelegate'")
 
   /**
@@ -228,16 +238,6 @@ trait TraitView[V <: android.view.View] extends ConstantsSupport with PressAndHo
    * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#getBackground() getBackground()]]`
    */
   @inline def background = basis.getBackground
-
-  /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackground(android.graphics.drawable.Drawable) setBackground(android.graphics.drawable.Drawable)]]`
-   */
-  @inline def background(p: android.graphics.drawable.Drawable) = background_=(p)
-
-  /**
-   * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackground(android.graphics.drawable.Drawable) setBackground(android.graphics.drawable.Drawable)]]`
-   */
-  @inline def background_=(p: android.graphics.drawable.Drawable) = { basis.setBackground(p); basis }
 
   @inline def backgroundColor(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'backgroundColor'")
 

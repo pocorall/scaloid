@@ -127,7 +127,8 @@ object AndroidClassExtractor extends JavaConversionHelpers {
         .filter {
         m =>
           (!cls.getName.endsWith("Service") || !m.getName.equals("setForeground")) && // Android 2.1.1 has a weird undocumented method. manually ignore this.
-            (!cls.getName.endsWith("WebView") || !m.getName.equals("getZoomControls")) //https://github.com/pocorall/scaloid/issues/56
+          (!cls.getName.endsWith("WebView") || !m.getName.equals("getZoomControls")) && //https://github.com/pocorall/scaloid/issues/56
+          (!cls.getName.endsWith("View") || !m.getName.equals("setBackground")) // manually specifies this method
       }
 
       val allMethodNames = clsMethods.map(_.getName).toSet

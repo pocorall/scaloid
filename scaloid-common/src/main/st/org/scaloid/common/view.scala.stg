@@ -65,6 +65,17 @@ val parentViewGroup: TraitViewGroup[_] = null
   basis.setPadding(p1, p2, p3, p4)
   basis
 }
+
+/**
+ * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackground(android.graphics.drawable.Drawable) setBackground(android.graphics.drawable.Drawable)]]`
+ */
+@inline def background(p: android.graphics.drawable.Drawable) = background_=(p)
+
+/**
+ * Shortcut for `[[https://developer.android.com/reference/android/view/View.html#setBackground(android.graphics.drawable.Drawable) setBackground(android.graphics.drawable.Drawable)]]`
+ */
+@inline def background_=(p: android.graphics.drawable.Drawable) = { basis.setBackgroundDrawable(p); basis } // to avoid compatibility issue on API Level < 16, calls setBackgroundDrawable() although it is deprecated.
+
 >>
 
 
