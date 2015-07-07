@@ -401,17 +401,17 @@ object ScaloidCodeGenerator {
           |  this.text = text
           |}
           |
-          |def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
+          |def this(text: CharSequence, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+          |
+          |def this(text: CharSequence, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
           |  this()
           |  this.text = text
-          |  this.setOnClickListener(onClickListener)
+          |  this.setOnClickListener(onClickListener.onClickListener)
+          |  if(interval > 0) onPressAndHold(interval, onClickListener.func(this))
           |}
           |
-          |def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
-          |  this()
-          |  this.text = text
-          |  this.setOnClickListener(onClickListener)
-          |}
+          |def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
+          |
       """.stripMargin
     },
     "ImageView" -> { _ =>
@@ -420,17 +420,17 @@ object ScaloidCodeGenerator {
           |  this.imageDrawable = imageResource
           |}
           |
-          |def this(imageResource: android.graphics.drawable.Drawable, onClickListener: View => Unit)(implicit context: Context) = {
+          |def this(imageResource: android.graphics.drawable.Drawable, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+          |
+          |def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
           |  this()
           |  this.imageDrawable = imageResource
-          |  this.setOnClickListener(onClickListener)
+          |  this.setOnClickListener(onClickListener.onClickListener)
+          |  if(interval > 0) onPressAndHold(interval, onClickListener.func(this))
           |}
           |
-          |def this(imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)(implicit context: Context) = {
-          |  this()
-          |  this.imageDrawable = imageResource
-          |  this.setOnClickListener(onClickListener)
-          |}
+          |def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener)(implicit context: Context) = this(imageResource, onClickListener, 0)
+          |
           |""".stripMargin
     }
   )
@@ -454,12 +454,18 @@ object ScaloidCodeGenerator {
           |  v
           |}
           |
-          |def apply[LP <: ViewGroupLayoutParams[_, $sClassName]](text: CharSequence, onClickListener: (View) => Unit)
+          |def apply(text: CharSequence, ignore: Nothing) = ???  // Just for implicit conversion of ViewOnClickListener
+          |
+          |/**
+          | * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+          | */
+          |def apply[LP <: ViewGroupLayoutParams[_, $sClassName], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)
           |    (implicit context: Context, defaultLayoutParam: ($sClassName) => LP): $sClassName = {
-          |  apply(text, func2ViewOnClickListener(onClickListener))
+          |  val v = apply(text, onClickListener.onClickListener)
+          |  if(interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
           |}
           |
-          |def apply[LP <: ViewGroupLayoutParams[_, $sClassName]](text: CharSequence, onClickListener: OnClickListener)
+          |private def apply[LP <: ViewGroupLayoutParams[_, $sClassName]](text: CharSequence, onClickListener: View.OnClickListener)
           |    (implicit context: Context, defaultLayoutParam: ($sClassName) => LP): $sClassName = {
           |  val v = new $sClassName
           |  v.text = text
@@ -479,12 +485,18 @@ object ScaloidCodeGenerator {
           |  v
           |}
           |
-          |def apply[LP <: ViewGroupLayoutParams[_, $sClassName]](imageResource: android.graphics.drawable.Drawable, onClickListener: (View) => Unit)
+          |def apply(image: android.graphics.drawable.Drawable, ignore: Nothing) = ???  // Just for implicit conversion of ViewOnClickListener
+          |
+          |/**
+          | * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+          | */
+          |def apply[LP <: ViewGroupLayoutParams[_, $sClassName]](imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int = 0)
           |    (implicit context: Context, defaultLayoutParam: ($sClassName) => LP): $sClassName = {
-          |  apply(imageResource, func2ViewOnClickListener(onClickListener))
+          |  val v = apply(imageResource, onClickListener.onClickListener)
+          |  if(interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
           |}
           |
-          |def apply[LP <: ViewGroupLayoutParams[_, $sClassName]](imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)
+          |private def apply[LP <: ViewGroupLayoutParams[_, $sClassName]](imageResource: android.graphics.drawable.Drawable, onClickListener: View.OnClickListener)
           |    (implicit context: Context, defaultLayoutParam: ($sClassName) => LP): $sClassName = {
           |  val v = new $sClassName
           |  v.imageDrawable = imageResource

@@ -9,7 +9,7 @@ import android.graphics.Movie
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view._
-import org.scaloid.common.RichIntent
+import org.scaloid.common.{ViewOnClickListener, RichIntent}
 import language.implicitConversions
 
 private[scaloid] class UnitConversion(val ext: Double)(implicit context: Context) {
@@ -67,6 +67,18 @@ trait ConversionImplicits {
 object ConversionImplicits extends ConversionImplicits
 
 trait InterfaceImplicits {
+  implicit def func2ScaloidViewOnClickListener[F](f: (View) => F): ViewOnClickListener =
+    new ViewOnClickListener() {
+      def func = { v => f(v): Unit }
+      def onClickListener = func2ViewOnClickListener(f)
+    }
+
+  implicit def lazy2ScaloidViewOnClickListener[F](f: => F): ViewOnClickListener =
+    new ViewOnClickListener() {
+      def func = { v => f: Unit }
+      def onClickListener = lazy2ViewOnClickListener(f)
+    }
+
   implicit def func2ViewOnClickListener[F](f: (View) => F): View.OnClickListener =
     new View.OnClickListener() {
       def onClick(view: View) {

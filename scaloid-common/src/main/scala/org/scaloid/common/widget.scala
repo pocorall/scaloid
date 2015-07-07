@@ -468,17 +468,16 @@ class SImageButton()(implicit context: android.content.Context, parentVGroup: Tr
     this.imageDrawable = imageResource
   }
 
-  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(imageResource: android.graphics.drawable.Drawable, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.imageDrawable = imageResource
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.imageDrawable = imageResource
-    this.setOnClickListener(onClickListener)
-  }
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener)(implicit context: Context) = this(imageResource, onClickListener, 0)
 
 }
 
@@ -496,11 +495,17 @@ object SImageButton {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SImageButton) => LP): SImageButton = {
-    apply(imageResource, func2ViewOnClickListener(onClickListener))
+  def apply(image: android.graphics.drawable.Drawable, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SImageButton) => LP): SImageButton = {
+    val v = apply(imageResource, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SImageButton) => LP): SImageButton = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SImageButton) => LP): SImageButton = {
     val v = new SImageButton
     v.imageDrawable = imageResource
     v.setOnClickListener(onClickListener)
@@ -727,17 +732,16 @@ class SEditText()(implicit context: android.content.Context, parentVGroup: Trait
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(text: CharSequence, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.text = text
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.text = text
-    this.setOnClickListener(onClickListener)
-  }
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
 
 }
 
@@ -755,11 +759,17 @@ object SEditText {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SEditText]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SEditText) => LP): SEditText = {
-    apply(text, func2ViewOnClickListener(onClickListener))
+  def apply(text: CharSequence, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SEditText], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SEditText) => LP): SEditText = {
+    val v = apply(text, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SEditText]](text: CharSequence, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SEditText) => LP): SEditText = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SEditText]](text: CharSequence, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SEditText) => LP): SEditText = {
     val v = new SEditText
     v.text = text
     v.setOnClickListener(onClickListener)
@@ -1025,17 +1035,16 @@ class SImageView()(implicit context: android.content.Context, parentVGroup: Trai
     this.imageDrawable = imageResource
   }
 
-  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(imageResource: android.graphics.drawable.Drawable, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.imageDrawable = imageResource
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.imageDrawable = imageResource
-    this.setOnClickListener(onClickListener)
-  }
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener)(implicit context: Context) = this(imageResource, onClickListener, 0)
 
 }
 
@@ -1053,11 +1062,17 @@ object SImageView {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: android.graphics.drawable.Drawable, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SImageView) => LP): SImageView = {
-    apply(imageResource, func2ViewOnClickListener(onClickListener))
+  def apply(image: android.graphics.drawable.Drawable, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SImageView) => LP): SImageView = {
+    val v = apply(imageResource, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SImageView) => LP): SImageView = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: android.graphics.drawable.Drawable, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SImageView) => LP): SImageView = {
     val v = new SImageView
     v.imageDrawable = imageResource
     v.setOnClickListener(onClickListener)
@@ -1137,17 +1152,16 @@ class SMultiAutoCompleteTextView()(implicit context: android.content.Context, pa
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(text: CharSequence, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.text = text
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.text = text
-    this.setOnClickListener(onClickListener)
-  }
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
 
 }
 
@@ -1165,11 +1179,17 @@ object SMultiAutoCompleteTextView {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SMultiAutoCompleteTextView]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SMultiAutoCompleteTextView) => LP): SMultiAutoCompleteTextView = {
-    apply(text, func2ViewOnClickListener(onClickListener))
+  def apply(text: CharSequence, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SMultiAutoCompleteTextView], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SMultiAutoCompleteTextView) => LP): SMultiAutoCompleteTextView = {
+    val v = apply(text, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SMultiAutoCompleteTextView]](text: CharSequence, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SMultiAutoCompleteTextView) => LP): SMultiAutoCompleteTextView = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SMultiAutoCompleteTextView]](text: CharSequence, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SMultiAutoCompleteTextView) => LP): SMultiAutoCompleteTextView = {
     val v = new SMultiAutoCompleteTextView
     v.text = text
     v.setOnClickListener(onClickListener)
@@ -2777,17 +2797,16 @@ class SChronometer()(implicit context: android.content.Context, parentVGroup: Tr
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(text: CharSequence, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.text = text
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.text = text
-    this.setOnClickListener(onClickListener)
-  }
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
 
 }
 
@@ -2805,11 +2824,17 @@ object SChronometer {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SChronometer]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SChronometer) => LP): SChronometer = {
-    apply(text, func2ViewOnClickListener(onClickListener))
+  def apply(text: CharSequence, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SChronometer], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SChronometer) => LP): SChronometer = {
+    val v = apply(text, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SChronometer]](text: CharSequence, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SChronometer) => LP): SChronometer = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SChronometer]](text: CharSequence, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SChronometer) => LP): SChronometer = {
     val v = new SChronometer
     v.text = text
     v.setOnClickListener(onClickListener)
@@ -2904,17 +2929,16 @@ class SCheckedTextView()(implicit context: android.content.Context, parentVGroup
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(text: CharSequence, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.text = text
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.text = text
-    this.setOnClickListener(onClickListener)
-  }
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
 
 }
 
@@ -2932,11 +2956,17 @@ object SCheckedTextView {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SCheckedTextView]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SCheckedTextView) => LP): SCheckedTextView = {
-    apply(text, func2ViewOnClickListener(onClickListener))
+  def apply(text: CharSequence, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SCheckedTextView], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SCheckedTextView) => LP): SCheckedTextView = {
+    val v = apply(text, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SCheckedTextView]](text: CharSequence, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SCheckedTextView) => LP): SCheckedTextView = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SCheckedTextView]](text: CharSequence, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SCheckedTextView) => LP): SCheckedTextView = {
     val v = new SCheckedTextView
     v.text = text
     v.setOnClickListener(onClickListener)
@@ -5730,17 +5760,16 @@ class SRadioButton()(implicit context: android.content.Context, parentVGroup: Tr
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(text: CharSequence, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.text = text
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.text = text
-    this.setOnClickListener(onClickListener)
-  }
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
 
 }
 
@@ -5758,11 +5787,17 @@ object SRadioButton {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SRadioButton) => LP): SRadioButton = {
-    apply(text, func2ViewOnClickListener(onClickListener))
+  def apply(text: CharSequence, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SRadioButton], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SRadioButton) => LP): SRadioButton = {
+    val v = apply(text, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]](text: CharSequence, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SRadioButton) => LP): SRadioButton = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SRadioButton]](text: CharSequence, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SRadioButton) => LP): SRadioButton = {
     val v = new SRadioButton
     v.text = text
     v.setOnClickListener(onClickListener)
@@ -5822,17 +5857,16 @@ class SQuickContactBadge()(implicit context: android.content.Context, parentVGro
     this.imageDrawable = imageResource
   }
 
-  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(imageResource: android.graphics.drawable.Drawable, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.imageDrawable = imageResource
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.imageDrawable = imageResource
-    this.setOnClickListener(onClickListener)
-  }
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener)(implicit context: Context) = this(imageResource, onClickListener, 0)
 
 }
 
@@ -5850,11 +5884,17 @@ object SQuickContactBadge {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: android.graphics.drawable.Drawable, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SQuickContactBadge) => LP): SQuickContactBadge = {
-    apply(imageResource, func2ViewOnClickListener(onClickListener))
+  def apply(image: android.graphics.drawable.Drawable, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SQuickContactBadge) => LP): SQuickContactBadge = {
+    val v = apply(imageResource, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SQuickContactBadge) => LP): SQuickContactBadge = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: android.graphics.drawable.Drawable, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SQuickContactBadge) => LP): SQuickContactBadge = {
     val v = new SQuickContactBadge
     v.imageDrawable = imageResource
     v.setOnClickListener(onClickListener)
@@ -6184,17 +6224,16 @@ class SDigitalClock()(implicit context: android.content.Context, parentVGroup: T
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(text: CharSequence, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.text = text
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.text = text
-    this.setOnClickListener(onClickListener)
-  }
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
 
 }
 
@@ -6212,11 +6251,17 @@ object SDigitalClock {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SDigitalClock]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SDigitalClock) => LP): SDigitalClock = {
-    apply(text, func2ViewOnClickListener(onClickListener))
+  def apply(text: CharSequence, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SDigitalClock], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SDigitalClock) => LP): SDigitalClock = {
+    val v = apply(text, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SDigitalClock]](text: CharSequence, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SDigitalClock) => LP): SDigitalClock = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SDigitalClock]](text: CharSequence, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SDigitalClock) => LP): SDigitalClock = {
     val v = new SDigitalClock
     v.text = text
     v.setOnClickListener(onClickListener)
@@ -6282,17 +6327,16 @@ class SToggleButton()(implicit context: android.content.Context, parentVGroup: T
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(text: CharSequence, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.text = text
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.text = text
-    this.setOnClickListener(onClickListener)
-  }
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
 
 }
 
@@ -6310,11 +6354,17 @@ object SToggleButton {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SToggleButton) => LP): SToggleButton = {
-    apply(text, func2ViewOnClickListener(onClickListener))
+  def apply(text: CharSequence, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SToggleButton], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SToggleButton) => LP): SToggleButton = {
+    val v = apply(text, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]](text: CharSequence, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SToggleButton) => LP): SToggleButton = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SToggleButton]](text: CharSequence, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SToggleButton) => LP): SToggleButton = {
     val v = new SToggleButton
     v.text = text
     v.setOnClickListener(onClickListener)
@@ -6350,17 +6400,16 @@ class SButton()(implicit context: android.content.Context, parentVGroup: TraitVi
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(text: CharSequence, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.text = text
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.text = text
-    this.setOnClickListener(onClickListener)
-  }
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
 
 }
 
@@ -6378,11 +6427,17 @@ object SButton {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SButton]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton = {
-    apply(text, func2ViewOnClickListener(onClickListener))
+  def apply(text: CharSequence, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SButton], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton = {
+    val v = apply(text, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SButton]](text: CharSequence, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SButton]](text: CharSequence, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SButton) => LP): SButton = {
     val v = new SButton
     v.text = text
     v.setOnClickListener(onClickListener)
@@ -6418,17 +6473,16 @@ class SCheckBox()(implicit context: android.content.Context, parentVGroup: Trait
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(text: CharSequence, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.text = text
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.text = text
-    this.setOnClickListener(onClickListener)
-  }
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
 
 }
 
@@ -6446,11 +6500,17 @@ object SCheckBox {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SCheckBox) => LP): SCheckBox = {
-    apply(text, func2ViewOnClickListener(onClickListener))
+  def apply(text: CharSequence, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SCheckBox], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SCheckBox) => LP): SCheckBox = {
+    val v = apply(text, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]](text: CharSequence, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SCheckBox) => LP): SCheckBox = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SCheckBox]](text: CharSequence, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SCheckBox) => LP): SCheckBox = {
     val v = new SCheckBox
     v.text = text
     v.setOnClickListener(onClickListener)
@@ -7655,17 +7715,16 @@ class SZoomButton()(implicit context: android.content.Context, parentVGroup: Tra
     this.imageDrawable = imageResource
   }
 
-  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(imageResource: android.graphics.drawable.Drawable, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.imageDrawable = imageResource
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.imageDrawable = imageResource
-    this.setOnClickListener(onClickListener)
-  }
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener)(implicit context: Context) = this(imageResource, onClickListener, 0)
 
 }
 
@@ -7683,11 +7742,17 @@ object SZoomButton {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SZoomButton) => LP): SZoomButton = {
-    apply(imageResource, func2ViewOnClickListener(onClickListener))
+  def apply(image: android.graphics.drawable.Drawable, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SZoomButton) => LP): SZoomButton = {
+    val v = apply(imageResource, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SZoomButton) => LP): SZoomButton = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SZoomButton) => LP): SZoomButton = {
     val v = new SZoomButton
     v.imageDrawable = imageResource
     v.setOnClickListener(onClickListener)
@@ -9260,17 +9325,16 @@ class STextView()(implicit context: android.content.Context, parentVGroup: Trait
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(text: CharSequence, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.text = text
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.text = text
-    this.setOnClickListener(onClickListener)
-  }
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
 
 }
 
@@ -9288,11 +9352,17 @@ object STextView {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, STextView]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (STextView) => LP): STextView = {
-    apply(text, func2ViewOnClickListener(onClickListener))
+  def apply(text: CharSequence, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, STextView], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (STextView) => LP): STextView = {
+    val v = apply(text, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, STextView]](text: CharSequence, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (STextView) => LP): STextView = {
+  private def apply[LP <: ViewGroupLayoutParams[_, STextView]](text: CharSequence, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (STextView) => LP): STextView = {
     val v = new STextView
     v.text = text
     v.setOnClickListener(onClickListener)
@@ -9881,17 +9951,16 @@ class SAutoCompleteTextView()(implicit context: android.content.Context, parentV
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(text: CharSequence, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.text = text
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.text = text
-    this.setOnClickListener(onClickListener)
-  }
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
 
 }
 
@@ -9909,11 +9978,17 @@ object SAutoCompleteTextView {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SAutoCompleteTextView]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SAutoCompleteTextView) => LP): SAutoCompleteTextView = {
-    apply(text, func2ViewOnClickListener(onClickListener))
+  def apply(text: CharSequence, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SAutoCompleteTextView], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SAutoCompleteTextView) => LP): SAutoCompleteTextView = {
+    val v = apply(text, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SAutoCompleteTextView]](text: CharSequence, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SAutoCompleteTextView) => LP): SAutoCompleteTextView = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SAutoCompleteTextView]](text: CharSequence, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SAutoCompleteTextView) => LP): SAutoCompleteTextView = {
     val v = new SAutoCompleteTextView
     v.text = text
     v.setOnClickListener(onClickListener)
@@ -10114,17 +10189,16 @@ class SSwitch()(implicit context: android.content.Context, parentVGroup: TraitVi
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(text: CharSequence, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.text = text
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.text = text
-    this.setOnClickListener(onClickListener)
-  }
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
 
 }
 
@@ -10142,11 +10216,17 @@ object SSwitch {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SSwitch]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SSwitch) => LP): SSwitch = {
-    apply(text, func2ViewOnClickListener(onClickListener))
+  def apply(text: CharSequence, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SSwitch], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SSwitch) => LP): SSwitch = {
+    val v = apply(text, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SSwitch]](text: CharSequence, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SSwitch) => LP): SSwitch = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SSwitch]](text: CharSequence, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SSwitch) => LP): SSwitch = {
     val v = new SSwitch
     v.text = text
     v.setOnClickListener(onClickListener)
@@ -10219,17 +10299,16 @@ class SExtractEditText()(implicit context: android.content.Context, parentVGroup
     this.text = text
   }
 
-  def this(text: CharSequence, onClickListener: View => Unit)(implicit context: Context) = {
+  def this(text: CharSequence, ignore: Nothing)(implicit context: Context) = this() // Just for implicit conversion of ViewOnClickListener
+
+  def this(text: CharSequence, onClickListener: ViewOnClickListener, interval: Int)(implicit context: Context) = {
     this()
     this.text = text
-    this.setOnClickListener(onClickListener)
+    this.setOnClickListener(onClickListener.onClickListener)
+    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: OnClickListener)(implicit context: Context) = {
-    this()
-    this.text = text
-    this.setOnClickListener(onClickListener)
-  }
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
 
 }
 
@@ -10247,11 +10326,17 @@ object SExtractEditText {
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SExtractEditText]](text: CharSequence, onClickListener: (View) => Unit)(implicit context: Context, defaultLayoutParam: (SExtractEditText) => LP): SExtractEditText = {
-    apply(text, func2ViewOnClickListener(onClickListener))
+  def apply(text: CharSequence, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, SExtractEditText], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SExtractEditText) => LP): SExtractEditText = {
+    val v = apply(text, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SExtractEditText]](text: CharSequence, onClickListener: OnClickListener)(implicit context: Context, defaultLayoutParam: (SExtractEditText) => LP): SExtractEditText = {
+  private def apply[LP <: ViewGroupLayoutParams[_, SExtractEditText]](text: CharSequence, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SExtractEditText) => LP): SExtractEditText = {
     val v = new SExtractEditText
     v.text = text
     v.setOnClickListener(onClickListener)

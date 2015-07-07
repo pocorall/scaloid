@@ -49,6 +49,11 @@ trait PressAndHoldable[V <: View] {
   }
 }
 
+trait ViewOnClickListener {
+  def func: View => Unit
+
+  def onClickListener: View.OnClickListener
+}
 
 $android.view.View; format="whole"$
 

@@ -81,6 +81,12 @@ trait PressAndHoldable[V <: View] {
   }
 }
 
+trait ViewOnClickListener {
+  def func: View => Unit
+
+  def onClickListener: View.OnClickListener
+}
+
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/view/View.html android.view.View]]`.
  */
