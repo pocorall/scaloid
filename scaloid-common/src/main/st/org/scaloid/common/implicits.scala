@@ -27,6 +27,7 @@ private[scaloid] class ResourceConversion(val id: Int)(implicit context: Context
   @inline def r2StringArray  : Array[String]       = context.getResources.getStringArray(id)
   @inline def r2Drawable     : Drawable            = context.getResources.getDrawable(id)
   @inline def r2Movie        : Movie               = context.getResources.getMovie(id)
+  @inline def r2Boolean      : Boolean             = context.getResources.getBoolean(id)
   @inline def r2Color        : Int                 = context.getResources.getColor(id)
   @inline def r2Dimension    : Float               = context.getResources.getDimension(id)
   @inline def r2Integer      : Int                 = context.getResources.getInteger(id)
