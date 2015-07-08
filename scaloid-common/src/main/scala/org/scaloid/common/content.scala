@@ -415,6 +415,14 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
    * for example:
    * val service = new LocalServiceConnection[MyService]
    * //...
+   * val foo = service(_.foo, defaultVal)
+   */
+  def ifAvailable[T](f: S => T): Unit = if (service.nonEmpty) f(service.get)
+
+  /**
+   * for example:
+   * val service = new LocalServiceConnection[MyService]
+   * //...
    * val result = service(_.foo > 3, "3 < " + _.foo, "fail")
    */
   def apply[T](test: S => Boolean, ifTrue: S => T, ifFalse: => T) = if (service.nonEmpty && test(service.get)) ifTrue(service.get) else ifFalse
