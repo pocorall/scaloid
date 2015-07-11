@@ -137,17 +137,94 @@ trait MediaHelpers {
 
 object MediaHelpers extends MediaHelpers
 
+trait PreferenceVal[T] {
+  val defaultValue: T
+
+  def apply(value: T)(implicit pref: SharedPreferences): T
+
+  def apply()(implicit pref: SharedPreferences): T = apply(defaultValue)
+
+  def update(value: T)(implicit pref: SharedPreferences): Unit
+}
 
 trait PreferenceHelpers {
   /**
    * Returns DefaultSharedPreferences object for given implicit context.
    */
-  @inline def defaultSharedPreferences(implicit context: Context): SharedPreferences =
+  @inline implicit def defaultSharedPreferences(implicit context: Context): SharedPreferences =
     PreferenceManager.getDefaultSharedPreferences(context)
+
+  @inline def preferenceVal[T](key: String, defaultVal: T): PreferenceVal[T] = defaultVal match {
+    case v: String => new PreferenceVal[T] {
+      val defaultValue = defaultVal
+
+      override def apply(value: T)(implicit pref: SharedPreferences): T = pref.getString(key, value.asInstanceOf[String]).asInstanceOf[T]
+
+      def update(value: T)(implicit pref: SharedPreferences): Unit = pref.edit().putString(key, value.asInstanceOf[String]).commit()
+    }
+    case v: Set[String] => new PreferenceVal[T] {
+      val defaultValue = defaultVal
+      import scala.collection.JavaConversions._
+      override def apply(value: T)(implicit pref: SharedPreferences): T = pref.getStringSet(key, value.asInstanceOf[Set[String]]).asInstanceOf[T]
+
+      def update(value: T)(implicit pref: SharedPreferences): Unit = pref.edit().putStringSet(key, value.asInstanceOf[Set[String]]).commit()
+    }
+    case v: Int => new PreferenceVal[T] {
+      val defaultValue = defaultVal
+
+      override def apply(value: T)(implicit pref: SharedPreferences): T = pref.getInt(key, value.asInstanceOf[Int]).asInstanceOf[T]
+
+      def update(value: T)(implicit pref: SharedPreferences): Unit = pref.edit().putInt(key, value.asInstanceOf[Int]).commit()
+    }
+    case v: Long => new PreferenceVal[T] {
+      val defaultValue = defaultVal
+
+      override def apply(value: T)(implicit pref: SharedPreferences): T = pref.getLong(key, value.asInstanceOf[Long]).asInstanceOf[T]
+
+      def update(value: T)(implicit pref: SharedPreferences): Unit = pref.edit().putLong(key, value.asInstanceOf[Long]).commit()
+    }
+    case v: Float => new PreferenceVal[T] {
+      val defaultValue = defaultVal
+
+      override def apply(value: T)(implicit pref: SharedPreferences): T = pref.getFloat(key, value.asInstanceOf[Float]).asInstanceOf[T]
+
+      def update(value: T)(implicit pref: SharedPreferences): Unit = pref.edit().putFloat(key, value.asInstanceOf[Float]).commit()
+    }
+    case v: Boolean => new PreferenceVal[T] {
+      val defaultValue = defaultVal
+
+      override def apply(value: T)(implicit pref: SharedPreferences): T = pref.getBoolean(key, value.asInstanceOf[Boolean]).asInstanceOf[T]
+
+      def update(value: T)(implicit pref: SharedPreferences): Unit = pref.edit().putBoolean(key, value.asInstanceOf[Boolean]).commit()
+    }
+    case _ => throw new Exception("Invalid type for SharedPreferences")
+  }
+
+  import scala.language.experimental.macros
+
+  def preferenceVal[T](defaultVal: T): PreferenceVal[T] = macro PreferenceHelpers.preferenceValImpl[T]
 
 }
 
-object PreferenceHelpers extends PreferenceHelpers
+object PreferenceHelpers extends PreferenceHelpers {
+  import scala.language.experimental.macros
+  import scala.reflect.macros.blackbox.Context
+
+  private def getShortName(str: String) = {
+    val pos = str.lastIndexOf(".")
+    if(pos < 0) str else str.substring(pos+1)
+  }
+
+  def preferenceValImpl[T](c: Context)(defaultVal: c.Expr[T]): c.Expr[PreferenceVal[T]] = {
+    import c.universe._
+
+    val enclosingName = getShortName(c.internal.enclosingOwner.fullName)
+    val name = c.Expr[String](Literal(Constant(enclosingName)))
+    reify {
+      preferenceVal(name.splice, defaultVal.splice)
+    }
+  }
+}
 
 /**
  * Contains helper methods that displaying some UI elements.
