@@ -137,14 +137,24 @@ trait MediaHelpers {
 
 object MediaHelpers extends MediaHelpers
 
-trait PreferenceVal[T] {
-  val defaultValue: T
-
+abstract class PreferenceVal[T](val key: String, val defaultValue: T) {
   def apply(value: T)(implicit pref: SharedPreferences): T
 
   def apply()(implicit pref: SharedPreferences): T = apply(defaultValue)
 
-  def update(value: T)(implicit pref: SharedPreferences): Unit
+  def update(value: T)(implicit pref: SharedPreferences): this.type = {
+    val editor = pref.edit()
+    put(value, editor)
+    editor.commit()
+    this
+  }
+
+  protected def put(value: T, editor: SharedPreferences.Editor): Unit
+
+  def remove()(implicit pref: SharedPreferences): this.type = {
+    pref.edit().remove(key).commit()
+    this
+  }
 }
 
 trait PreferenceHelpers {
@@ -155,48 +165,38 @@ trait PreferenceHelpers {
     PreferenceManager.getDefaultSharedPreferences(context)
 
   @inline def preferenceVal[T](key: String, defaultVal: T): PreferenceVal[T] = defaultVal match {
-    case v: String => new PreferenceVal[T] {
-      val defaultValue = defaultVal
+    case v: String => new PreferenceVal[String](key, v) {
+      override def apply(value: String)(implicit pref: SharedPreferences): String = pref.getString(key, value)
 
-      override def apply(value: T)(implicit pref: SharedPreferences): T = pref.getString(key, value.asInstanceOf[String]).asInstanceOf[T]
-
-      def update(value: T)(implicit pref: SharedPreferences): Unit = pref.edit().putString(key, value.asInstanceOf[String]).commit()
-    }
-    case v: Set[String] => new PreferenceVal[T] {
-      val defaultValue = defaultVal
+      def put(value: String, editor: SharedPreferences.Editor): Unit = editor.putString(key, value)
+    }.asInstanceOf[PreferenceVal[T]]
+    case v: Set[String] => new PreferenceVal[Set[String]](key, v) {
       import scala.collection.JavaConversions._
-      override def apply(value: T)(implicit pref: SharedPreferences): T = pref.getStringSet(key, value.asInstanceOf[Set[String]]).asInstanceOf[T]
+      import scala.collection.JavaConverters._
+      override def apply(value: Set[String])(implicit pref: SharedPreferences): Set[String] = pref.getStringSet(key, value).asScala.toSet
 
-      def update(value: T)(implicit pref: SharedPreferences): Unit = pref.edit().putStringSet(key, value.asInstanceOf[Set[String]]).commit()
-    }
-    case v: Int => new PreferenceVal[T] {
-      val defaultValue = defaultVal
+      def put(value: Set[String], editor: SharedPreferences.Editor): Unit = editor.putStringSet(key, value)
+    }.asInstanceOf[PreferenceVal[T]]
+    case v: Int => new PreferenceVal[Int](key, v) {
+      override def apply(value: Int)(implicit pref: SharedPreferences): Int = pref.getInt(key, value)
 
-      override def apply(value: T)(implicit pref: SharedPreferences): T = pref.getInt(key, value.asInstanceOf[Int]).asInstanceOf[T]
+      def put(value: Int, editor: SharedPreferences.Editor): Unit = editor.putInt(key, value)
+    }.asInstanceOf[PreferenceVal[T]]
+    case v: Long => new PreferenceVal[Long](key, v) {
+      override def apply(value: Long)(implicit pref: SharedPreferences): Long = pref.getLong(key, value)
 
-      def update(value: T)(implicit pref: SharedPreferences): Unit = pref.edit().putInt(key, value.asInstanceOf[Int]).commit()
-    }
-    case v: Long => new PreferenceVal[T] {
-      val defaultValue = defaultVal
+      def put(value: Long, editor: SharedPreferences.Editor): Unit = editor.putLong(key, value)
+    }.asInstanceOf[PreferenceVal[T]]
+    case v: Float => new PreferenceVal[Float](key, v) {
+      override def apply(value: Float)(implicit pref: SharedPreferences): Float = pref.getFloat(key, value)
 
-      override def apply(value: T)(implicit pref: SharedPreferences): T = pref.getLong(key, value.asInstanceOf[Long]).asInstanceOf[T]
+      def put(value: Float, editor: SharedPreferences.Editor): Unit = editor.putFloat(key, value)
+    }.asInstanceOf[PreferenceVal[T]]
+    case v: Boolean => new PreferenceVal[Boolean](key, v) {
+      override def apply(value: Boolean)(implicit pref: SharedPreferences): Boolean = pref.getBoolean(key, value)
 
-      def update(value: T)(implicit pref: SharedPreferences): Unit = pref.edit().putLong(key, value.asInstanceOf[Long]).commit()
-    }
-    case v: Float => new PreferenceVal[T] {
-      val defaultValue = defaultVal
-
-      override def apply(value: T)(implicit pref: SharedPreferences): T = pref.getFloat(key, value.asInstanceOf[Float]).asInstanceOf[T]
-
-      def update(value: T)(implicit pref: SharedPreferences): Unit = pref.edit().putFloat(key, value.asInstanceOf[Float]).commit()
-    }
-    case v: Boolean => new PreferenceVal[T] {
-      val defaultValue = defaultVal
-
-      override def apply(value: T)(implicit pref: SharedPreferences): T = pref.getBoolean(key, value.asInstanceOf[Boolean]).asInstanceOf[T]
-
-      def update(value: T)(implicit pref: SharedPreferences): Unit = pref.edit().putBoolean(key, value.asInstanceOf[Boolean]).commit()
-    }
+      def put(value: Boolean, editor: SharedPreferences.Editor): Unit = editor.putBoolean(key, value)
+    }.asInstanceOf[PreferenceVal[T]]
     case _ => throw new Exception("Invalid type for SharedPreferences")
   }
 
