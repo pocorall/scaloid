@@ -382,7 +382,7 @@ object ScaloidCodeGenerator {
   )
 
   val ClassExplicitArgs: PredefinedCodeMappings = List(
-    "ArrayAdapter" -> { _ => "items: Array[T], textViewResourceId: Int = android.R.layout.simple_spinner_item" }
+    "ArrayAdapter" -> { _ => "items: java.util.List[T], textViewResourceId: Int = android.R.layout.simple_spinner_item" }
   )
 
   val BaseClassArgs: PredefinedCodeMappings = List(
@@ -517,13 +517,15 @@ object ScaloidCodeGenerator {
     },
     "ArrayAdapter" -> { cls =>
       val sClassName = "S" + cls.name
-      s"""|def apply[T <: AnyRef : Manifest](items: T*)(implicit context: Context): $sClassName[TextView, T] = new $sClassName[TextView, T](items.toArray)
+      s"""|def apply[T <: AnyRef : Manifest](items: T*)(implicit context: Context): $sClassName[TextView, T] = new $sClassName[TextView, T](java.util.Arrays.asList[T](items:_*))
           |
-          |def apply[T <: AnyRef : Manifest](textViewResourceId: Int, items: T*)(implicit context: Context): $sClassName[TextView, T] = new $sClassName[TextView, T](items.toArray, textViewResourceId)
+          |def apply[T <: AnyRef : Manifest](textViewResourceId: Int, items: T*)(implicit context: Context): $sClassName[TextView, T] = new $sClassName[TextView, T](java.util.Arrays.asList(items:_*), textViewResourceId)
           |
-          |def apply[T <: AnyRef](items: Array[T])(implicit context: Context): $sClassName[TextView, T] = new $sClassName[TextView, T](items)
+          |def apply[T <: AnyRef](items: Array[T])(implicit context: Context): $sClassName[TextView, T] = new $sClassName[TextView, T](java.util.Arrays.asList(items:_*))
           |
-          |def apply[T <: AnyRef](textViewResourceId: Int, items: Array[T])(implicit context: Context): $sClassName[TextView, T] = new $sClassName[TextView, T](items, textViewResourceId)
+          |def apply[T <: AnyRef](items: java.util.List[T])(implicit context: Context): $sClassName[TextView, T] = new $sClassName[TextView, T](items)
+          |
+          |def apply[T <: AnyRef](textViewResourceId: Int, items: Array[T])(implicit context: Context): $sClassName[TextView, T] = new $sClassName[TextView, T](java.util.Arrays.asList(items:_*), textViewResourceId)
           |""".stripMargin
     }
   )

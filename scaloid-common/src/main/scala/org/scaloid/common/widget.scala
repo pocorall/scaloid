@@ -346,7 +346,7 @@ trait TraitArrayAdapter[V <: android.widget.ArrayAdapter[_]] extends TraitBaseAd
 /**
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ArrayAdapter.html android.widget.ArrayAdapter[_]]]`.
  */
-class SArrayAdapter[V <: android.view.View, T <: AnyRef](items: Array[T], textViewResourceId: Int = android.R.layout.simple_spinner_item)(implicit context: android.content.Context)
+class SArrayAdapter[V <: android.view.View, T <: AnyRef](items: java.util.List[T], textViewResourceId: Int = android.R.layout.simple_spinner_item)(implicit context: android.content.Context)
     extends android.widget.ArrayAdapter[T](context, textViewResourceId, items) with TraitArrayAdapter[SArrayAdapter[V, T]] {
 
   def basis = this
@@ -386,13 +386,15 @@ class SArrayAdapter[V <: android.view.View, T <: AnyRef](items: Array[T], textVi
 
 object SArrayAdapter {
 
-  def apply[T <: AnyRef: Manifest](items: T*)(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](items.toArray)
+  def apply[T <: AnyRef: Manifest](items: T*)(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](java.util.Arrays.asList[T](items: _*))
 
-  def apply[T <: AnyRef: Manifest](textViewResourceId: Int, items: T*)(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](items.toArray, textViewResourceId)
+  def apply[T <: AnyRef: Manifest](textViewResourceId: Int, items: T*)(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](java.util.Arrays.asList(items: _*), textViewResourceId)
 
-  def apply[T <: AnyRef](items: Array[T])(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](items)
+  def apply[T <: AnyRef](items: Array[T])(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](java.util.Arrays.asList(items: _*))
 
-  def apply[T <: AnyRef](textViewResourceId: Int, items: Array[T])(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](items, textViewResourceId)
+  def apply[T <: AnyRef](items: java.util.List[T])(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](items)
+
+  def apply[T <: AnyRef](textViewResourceId: Int, items: Array[T])(implicit context: Context): SArrayAdapter[TextView, T] = new SArrayAdapter[TextView, T](java.util.Arrays.asList(items: _*), textViewResourceId)
 
 }
 
