@@ -40,12 +40,12 @@ import org.scaloid.common._
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/widget/ResourceCursorAdapter.html android.support.v4.widget.ResourceCursorAdapter]]`.
  */
-class RichResourceCursorAdapter[V <: android.support.v4.widget.ResourceCursorAdapter](val basis: V) extends TraitResourceCursorAdapter[V]
+class RichResourceCursorAdapter[This <: android.support.v4.widget.ResourceCursorAdapter](val basis: This) extends TraitResourceCursorAdapter[This]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/support/v4/widget/ResourceCursorAdapter.html android.support.v4.widget.ResourceCursorAdapter]]`. This contains several property accessors.
  */
-trait TraitResourceCursorAdapter[V <: android.support.v4.widget.ResourceCursorAdapter] extends TraitCursorAdapter[V] {
+trait TraitResourceCursorAdapter[This <: android.support.v4.widget.ResourceCursorAdapter] extends TraitCursorAdapter[This] {
 
   @inline def dropDownViewResource(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'dropDownViewResource'")
 
@@ -76,12 +76,12 @@ trait TraitResourceCursorAdapter[V <: android.support.v4.widget.ResourceCursorAd
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/widget/CursorAdapter.html android.support.v4.widget.CursorAdapter]]`.
  */
-class RichCursorAdapter[V <: android.support.v4.widget.CursorAdapter](val basis: V) extends TraitCursorAdapter[V]
+class RichCursorAdapter[This <: android.support.v4.widget.CursorAdapter](val basis: This) extends TraitCursorAdapter[This]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/support/v4/widget/CursorAdapter.html android.support.v4.widget.CursorAdapter]]`. This contains several property accessors.
  */
-trait TraitCursorAdapter[V <: android.support.v4.widget.CursorAdapter] extends TraitBaseAdapter[V] {
+trait TraitCursorAdapter[This <: android.support.v4.widget.CursorAdapter] extends TraitBaseAdapter[This] {
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/support/v4/widget/CursorAdapter.html#getCursor() getCursor()]]`
@@ -113,12 +113,12 @@ trait TraitCursorAdapter[V <: android.support.v4.widget.CursorAdapter] extends T
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/widget/SimpleCursorAdapter.html android.support.v4.widget.SimpleCursorAdapter]]`.
  */
-class RichSimpleCursorAdapter[V <: android.support.v4.widget.SimpleCursorAdapter](val basis: V) extends TraitSimpleCursorAdapter[V]
+class RichSimpleCursorAdapter[This <: android.support.v4.widget.SimpleCursorAdapter](val basis: This) extends TraitSimpleCursorAdapter[This]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/support/v4/widget/SimpleCursorAdapter.html android.support.v4.widget.SimpleCursorAdapter]]`. This contains several property accessors.
  */
-trait TraitSimpleCursorAdapter[V <: android.support.v4.widget.SimpleCursorAdapter] extends TraitResourceCursorAdapter[V] {
+trait TraitSimpleCursorAdapter[This <: android.support.v4.widget.SimpleCursorAdapter] extends TraitResourceCursorAdapter[This] {
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/support/v4/widget/SimpleCursorAdapter.html#getCursorToStringConverter() getCursorToStringConverter()]]`

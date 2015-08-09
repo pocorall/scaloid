@@ -1,5 +1,5 @@
 FragmentActivity_traitBody() ::= <<
-override def basis: V
+override def basis: This
 >>
 
 

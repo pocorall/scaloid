@@ -19,12 +19,12 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
 
   def richClassDef =
     s"""$richClassScalaDoc
-       |${deprecated}class Rich${cls.name}[V <: ${genType(cls.tpe, erased = true)}](val basis: V) extends $helperTraitName[V]
+       |${deprecated}class Rich${cls.name}[This <: ${genType(cls.tpe, erased = true)}](val basis: This) extends $helperTraitName[This]
        |
        |$helperTraitScalaDoc
-       |${deprecated}trait $helperTraitName[V <: ${genType(cls.tpe, erased = true)}]$extendClause {
+       |${deprecated}trait $helperTraitName[This <: ${genType(cls.tpe, erased = true)}]$extendClause {
        |
-       |  ${if (cls.parentType.isEmpty) "def basis: V" else ""}
+       |  ${if (cls.parentType.isEmpty) "def basis: This" else ""}
        |
        |  ${ companionTemplate.safeRender(cls.name + "_traitBody") }
        |
@@ -39,7 +39,7 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
   def helperTraitName(name: String): String = "Trait"+ StringUtils.simpleName(name)
 
   def extendClause = {
-    val parent = cls.parentType.map(p => helperTraitName(p.name) + "[V]")
+    val parent = cls.parentType.map(p => helperTraitName(p.name) + "[This]")
     val mixin = companionTemplate.get(cls.name + "_mixin")
     (parent :: mixin :: Nil).flatten match {
       case Nil => ""
@@ -199,8 +199,8 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
   def commonListener(l: AndroidListener, args: String = "") = {
     val dp = if (l.isDeprecated) deprecatedDecl else ""
     dp + "@inline def " + l.name + (
-      if (l.retType.name == "Unit") s"[U](f: $args => U): V = {"
-      else s"(f: $args => ${genType(l.retType)}): V = {"
+      if (l.retType.name == "Unit") s"[U](f: $args => U): This = {"
+      else s"(f: $args => ${genType(l.retType)}): This = {"
     ) + s"\n  basis.${l.setter}(new ${l.callbackClassName} {"
   }
 

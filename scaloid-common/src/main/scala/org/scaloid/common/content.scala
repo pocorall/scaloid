@@ -99,14 +99,14 @@ trait Registerable {
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/content/Context.html android.content.Context]]`.
  */
-class RichContext[V <: android.content.Context](val basis: V) extends TraitContext[V]
+class RichContext[This <: android.content.Context](val basis: This) extends TraitContext[This]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/content/Context.html android.content.Context]]`. This contains several property accessors.
  */
-trait TraitContext[V <: android.content.Context] {
+trait TraitContext[This <: android.content.Context] {
 
-  def basis: V
+  def basis: This
 
   implicit val ctx = basis
 
@@ -275,12 +275,12 @@ trait SContext extends Context with TraitContext[SContext] with TagUtil {
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/content/ContextWrapper.html android.content.ContextWrapper]]`.
  */
-class RichContextWrapper[V <: android.content.ContextWrapper](val basis: V) extends TraitContextWrapper[V]
+class RichContextWrapper[This <: android.content.ContextWrapper](val basis: This) extends TraitContextWrapper[This]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/content/ContextWrapper.html android.content.ContextWrapper]]`. This contains several property accessors.
  */
-trait TraitContextWrapper[V <: android.content.ContextWrapper] extends TraitContext[V] {
+trait TraitContextWrapper[This <: android.content.ContextWrapper] extends TraitContext[This] {
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/content/ContextWrapper.html#getBaseContext() getBaseContext()]]`

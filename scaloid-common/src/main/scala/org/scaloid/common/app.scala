@@ -47,7 +47,7 @@ import scala.concurrent.duration.Duration
 import Implicits._
 import scala.deprecated
 
-trait TraitActivity[V <: Activity] {
+trait TraitActivity[+This <: Activity] {
 
   @inline def contentView_=(p: View) = {
     basis.setContentView(p)

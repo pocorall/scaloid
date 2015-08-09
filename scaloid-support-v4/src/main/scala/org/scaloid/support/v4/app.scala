@@ -43,14 +43,14 @@ import scala.reflect._
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html android.support.v4.app.Fragment]]`.
  */
-class RichFragment[V <: android.support.v4.app.Fragment](val basis: V) extends TraitFragment[V]
+class RichFragment[This <: android.support.v4.app.Fragment](val basis: This) extends TraitFragment[This]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html android.support.v4.app.Fragment]]`. This contains several property accessors.
  */
-trait TraitFragment[V <: android.support.v4.app.Fragment] {
+trait TraitFragment[This <: android.support.v4.app.Fragment] {
 
-  def basis: V
+  def basis: This
 
   /**
    * Implicit context for other Scaloid components.
@@ -222,14 +222,14 @@ object SFragment {
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/app/FragmentActivity.html android.support.v4.app.FragmentActivity]]`.
  */
-class RichFragmentActivity[V <: android.support.v4.app.FragmentActivity](val basis: V) extends TraitFragmentActivity[V]
+class RichFragmentActivity[This <: android.support.v4.app.FragmentActivity](val basis: This) extends TraitFragmentActivity[This]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/support/v4/app/FragmentActivity.html android.support.v4.app.FragmentActivity]]`. This contains several property accessors.
  */
-trait TraitFragmentActivity[V <: android.support.v4.app.FragmentActivity] extends TraitActivity[V] {
+trait TraitFragmentActivity[This <: android.support.v4.app.FragmentActivity] extends TraitActivity[This] {
 
-  override def basis: V
+  override def basis: This
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentActivity.html#getLastCustomNonConfigurationInstance() getLastCustomNonConfigurationInstance()]]`
@@ -270,21 +270,21 @@ object SFragmentActivity {
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/app/FragmentManager.html android.support.v4.app.FragmentManager]]`.
  */
-class RichFragmentManager[V <: android.support.v4.app.FragmentManager](val basis: V) extends TraitFragmentManager[V]
+class RichFragmentManager[This <: android.support.v4.app.FragmentManager](val basis: This) extends TraitFragmentManager[This]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/support/v4/app/FragmentManager.html android.support.v4.app.FragmentManager]]`. This contains several property accessors.
  */
-trait TraitFragmentManager[V <: android.support.v4.app.FragmentManager] {
+trait TraitFragmentManager[This <: android.support.v4.app.FragmentManager] {
 
-  def basis: V
+  def basis: This
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/FragmentManager.html#getBackStackEntryCount() getBackStackEntryCount()]]`
    */
   @inline def backStackEntryCount = basis.getBackStackEntryCount
 
-  @inline def onBackStackChanged[U](f: => U): V = {
+  @inline def onBackStackChanged[U](f: => U): This = {
     basis.addOnBackStackChangedListener(new android.support.v4.app.FragmentManager.OnBackStackChangedListener {
       def onBackStackChanged(): Unit = { f }
     })
@@ -296,14 +296,14 @@ trait TraitFragmentManager[V <: android.support.v4.app.FragmentManager] {
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html android.support.v4.app.FragmentTransaction]]`.
  */
-class RichFragmentTransaction[V <: android.support.v4.app.FragmentTransaction](val basis: V) extends TraitFragmentTransaction[V]
+class RichFragmentTransaction[This <: android.support.v4.app.FragmentTransaction](val basis: This) extends TraitFragmentTransaction[This]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html android.support.v4.app.FragmentTransaction]]`. This contains several property accessors.
  */
-trait TraitFragmentTransaction[V <: android.support.v4.app.FragmentTransaction] {
+trait TraitFragmentTransaction[This <: android.support.v4.app.FragmentTransaction] {
 
-  def basis: V
+  def basis: This
 
   @inline def breadCrumbShortTitle(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'breadCrumbShortTitle'")
 
@@ -378,12 +378,12 @@ trait TraitFragmentTransaction[V <: android.support.v4.app.FragmentTransaction] 
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html android.support.v4.app.ListFragment]]`.
  */
-class RichListFragment[V <: android.support.v4.app.ListFragment](val basis: V) extends TraitListFragment[V]
+class RichListFragment[This <: android.support.v4.app.ListFragment](val basis: This) extends TraitListFragment[This]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html android.support.v4.app.ListFragment]]`. This contains several property accessors.
  */
-trait TraitListFragment[V <: android.support.v4.app.ListFragment] extends TraitFragment[V] {
+trait TraitListFragment[This <: android.support.v4.app.ListFragment] extends TraitFragment[This] {
 
   @inline def emptyText(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'emptyText'")
 
@@ -487,12 +487,12 @@ object SListFragment {
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/support/v4/app/DialogFragment.html android.support.v4.app.DialogFragment]]`.
  */
-class RichDialogFragment[V <: android.support.v4.app.DialogFragment](val basis: V) extends TraitDialogFragment[V]
+class RichDialogFragment[This <: android.support.v4.app.DialogFragment](val basis: This) extends TraitDialogFragment[This]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/support/v4/app/DialogFragment.html android.support.v4.app.DialogFragment]]`. This contains several property accessors.
  */
-trait TraitDialogFragment[V <: android.support.v4.app.DialogFragment] extends TraitFragment[V] {
+trait TraitDialogFragment[This <: android.support.v4.app.DialogFragment] extends TraitFragment[This] {
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/support/v4/app/DialogFragment.html#isCancelable() isCancelable()]]`

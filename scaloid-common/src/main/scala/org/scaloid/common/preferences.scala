@@ -177,14 +177,14 @@ object Extra {
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/preference/Preference.html android.preference.Preference]]`.
  */
-class RichPreference[V <: android.preference.Preference](val basis: V) extends TraitPreference[V]
+class RichPreference[This <: android.preference.Preference](val basis: This) extends TraitPreference[This]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/preference/Preference.html android.preference.Preference]]`. This contains several property accessors.
  */
-trait TraitPreference[V <: android.preference.Preference] {
+trait TraitPreference[This <: android.preference.Preference] {
 
-  def basis: V
+  def basis: This
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/preference/Preference.html#getContext() getContext()]]`
@@ -501,28 +501,28 @@ trait TraitPreference[V <: android.preference.Preference] {
    */
   @inline def widgetLayoutResource_=(p: Int) = { basis.setWidgetLayoutResource(p); basis }
 
-  @inline def onPreferenceChange(f: (android.preference.Preference, Any) => Boolean): V = {
+  @inline def onPreferenceChange(f: (android.preference.Preference, Any) => Boolean): This = {
     basis.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener {
       def onPreferenceChange(p1: android.preference.Preference, p2: Any): Boolean = { f(p1, p2) }
     })
     basis
   }
 
-  @inline def onPreferenceChange(f: => Boolean): V = {
+  @inline def onPreferenceChange(f: => Boolean): This = {
     basis.setOnPreferenceChangeListener(new android.preference.Preference.OnPreferenceChangeListener {
       def onPreferenceChange(p1: android.preference.Preference, p2: Any): Boolean = { f }
     })
     basis
   }
 
-  @inline def onPreferenceClick(f: android.preference.Preference => Boolean): V = {
+  @inline def onPreferenceClick(f: android.preference.Preference => Boolean): This = {
     basis.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener {
       def onPreferenceClick(p: android.preference.Preference): Boolean = { f(p) }
     })
     basis
   }
 
-  @inline def onPreferenceClick(f: => Boolean): V = {
+  @inline def onPreferenceClick(f: => Boolean): This = {
     basis.setOnPreferenceClickListener(new android.preference.Preference.OnPreferenceClickListener {
       def onPreferenceClick(p: android.preference.Preference): Boolean = { f }
     })
@@ -553,12 +553,12 @@ object SPreference {
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/preference/DialogPreference.html android.preference.DialogPreference]]`.
  */
-class RichDialogPreference[V <: android.preference.DialogPreference](val basis: V) extends TraitDialogPreference[V]
+class RichDialogPreference[This <: android.preference.DialogPreference](val basis: This) extends TraitDialogPreference[This]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/preference/DialogPreference.html android.preference.DialogPreference]]`. This contains several property accessors.
  */
-trait TraitDialogPreference[V <: android.preference.DialogPreference] extends TraitPreference[V] {
+trait TraitDialogPreference[This <: android.preference.DialogPreference] extends TraitPreference[This] {
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/preference/DialogPreference.html#getDialog() getDialog()]]`
@@ -710,12 +710,12 @@ trait TraitDialogPreference[V <: android.preference.DialogPreference] extends Tr
 /**
  * Automatically generated enriching class of `[[https://developer.android.com/reference/android/preference/EditTextPreference.html android.preference.EditTextPreference]]`.
  */
-class RichEditTextPreference[V <: android.preference.EditTextPreference](val basis: V) extends TraitEditTextPreference[V]
+class RichEditTextPreference[This <: android.preference.EditTextPreference](val basis: This) extends TraitEditTextPreference[This]
 
 /**
  * Automatically generated helper trait of `[[https://developer.android.com/reference/android/preference/EditTextPreference.html android.preference.EditTextPreference]]`. This contains several property accessors.
  */
-trait TraitEditTextPreference[V <: android.preference.EditTextPreference] extends TraitDialogPreference[V] {
+trait TraitEditTextPreference[This <: android.preference.EditTextPreference] extends TraitDialogPreference[This] {
 
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/preference/EditTextPreference.html#getEditText() getEditText()]]`
