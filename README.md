@@ -1233,10 +1233,9 @@ Define in your function wich creates view for adapter in your Adapter class and 
 
 ```scala
 def itemView: SLinearLayout  = new SLinearLayout {
-
       this += new SVerticalLayout {
       val stvTitle: STextView = STextView("Title of Location").textSize(26 sp).textColor(Color.BLACK).>>.tag("stvTitle")
-      }.tag("svlCentered").clickable(false)
+      				  }.tag("svlCentered").clickable(false)
 this.setLayoutParams(new  AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,110 dip ))
     }
  ```    
@@ -1249,24 +1248,17 @@ def getView(position: Int, convertView: View, parent: ViewGroup): View = {
       
       var row :View  = convertView
       if (row == null) {
-
         // Instead to inflate use your function
         row = itemView
-
         holder = new MyHolder()
-
         val svl : SVerticalLayout = row.findViewWithTag("svlCentered").asInstanceOf[SVerticalLayout]
         holder.stvTitle = svv.findViewWithTag("stvTitle").asInstanceOf[STextView]
-
         row.setTag(holder)
-
-      } else {
+      			} else {
         holder =  row.getTag().asInstanceOf[MyHolder]
-      }
-
+      				}
       holder.stvTitle.text = "Hello view"
       return row
-
     }
 ```
 
