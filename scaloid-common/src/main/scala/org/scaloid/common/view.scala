@@ -108,6 +108,12 @@ trait TraitView[This <: android.view.View] extends ConstantsSupport with PressAn
     basis.getId
   }
 
+  @inline def here[LP <: ViewGroupLayoutParams[_, _]](implicit defaultLayoutParam: This => LP) = {
+    val parent = parentViewGroupIfExists
+    if (parent != null) parent += basis
+    basis
+  }
+
   @deprecated("", "") val FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT
   val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
   val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
@@ -135,6 +141,7 @@ trait TraitView[This <: android.view.View] extends ConstantsSupport with PressAn
   def <<[LP <: ViewGroupLayoutParams[_, _]](implicit defaultLayoutParam: This => LP): LP =
     defaultLayoutParam(basis)
 
+  // TODO: Make the return type as Option[TraitViewGroup[_]]
   protected def parentViewGroupIfExists[LP <: ViewGroupLayoutParams[_, _]](implicit defaultLayoutParam: This => LP = (v: This) => null): TraitViewGroup[_] = {
     val lp = defaultLayoutParam(basis)
     if (lp == null) null else lp.parent
