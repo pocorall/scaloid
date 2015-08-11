@@ -107,10 +107,36 @@ trait TraitView[This <: android.view.View] extends ConstantsSupport with PressAn
     }
     basis.getId
   }
-
+  /**
+   * Place the widget into a ViewGroup.
+   * {{{
+   * lazy val blueText = new STextView("Blue")
+   * contentView = new SVerticalLayout {
+   *   blueText.here textColor Color.BLUE
+   * }
+   * }}}
+   */
   @inline def here[LP <: ViewGroupLayoutParams[_, _]](implicit defaultLayoutParam: This => LP) = {
     val parent = parentViewGroupIfExists
     if (parent != null) parent += basis
+    basis
+  }
+
+  /**
+   * Place the widget into a ViewGroup, without applying styles.
+   * {{{
+   * lazy val blueText = new STextView("Blue") textColor Color.BLUE
+   * contentView = new SVerticalLayout {
+   *   style {
+   *     case t: STextView => t textColor Color.RED
+   *   }
+   *   blueText.hereWithoutStyle
+   * }
+   * }}}
+   */
+  @inline def hereWithoutStyle[LP <: ViewGroupLayoutParams[_, _]](implicit defaultLayoutParam: This => LP) = {
+    val parent = parentViewGroupIfExists
+    if (parent != null) (parent.basis.asInstanceOf[ViewGroup]).addView(basis)
     basis
   }
 
