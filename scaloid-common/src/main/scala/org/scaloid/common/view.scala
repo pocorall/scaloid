@@ -136,7 +136,7 @@ trait TraitView[This <: android.view.View] extends ConstantsSupport with PressAn
    */
   @inline def hereWithoutStyle[LP <: ViewGroupLayoutParams[_, _]](implicit defaultLayoutParam: This => LP) = {
     val parent = parentViewGroupIfExists
-    if (parent != null) (parent.basis.asInstanceOf[ViewGroup]).addView(basis)
+    if (parent != null) (parent.basis.asInstanceOf[ViewGroup]).addView(basis) // TODO remove asInstanceOf
     basis
   }
 

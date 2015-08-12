@@ -8151,6 +8151,28 @@ class RichFrameLayout[This <: android.widget.FrameLayout](val basis: This) exten
  */
 trait TraitFrameLayout[This <: android.widget.FrameLayout] extends TraitViewGroup[This] {
 
+  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
+    case p: LayoutParams[V @unchecked] => p
+    case _ => new LayoutParams(v)
+  }
+
+  class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
+
+    def basis = this
+
+    v.setLayoutParams(this)
+
+    def Gravity(g: Int) = {
+      gravity = g
+      this
+    }
+
+    def parent = TraitFrameLayout.this
+
+    def >> : V = v
+
+  }
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/widget/FrameLayout.html#getConsiderGoneChildrenWhenMeasuring() getConsiderGoneChildrenWhenMeasuring()]]`
    */
@@ -8211,27 +8233,7 @@ class SFrameLayout()(implicit context: android.content.Context, parentVGroup: Tr
 
   def basis = this
   override val parentViewGroup = parentVGroup
-  implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
-    case p: LayoutParams[V @unchecked] => p
-    case _ => new LayoutParams(v)
-  }
 
-  class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT) with ViewGroupMarginLayoutParams[LayoutParams[V], V] {
-
-    def basis = this
-
-    v.setLayoutParams(this)
-
-    def Gravity(g: Int) = {
-      gravity = g
-      this
-    }
-
-    def parent = SFrameLayout.this
-
-    def >> : V = v
-
-  }
 }
 
 object SFrameLayout {

@@ -1,4 +1,4 @@
-FrameLayout_concreteBody() ::= <<
+FrameLayout_traitBody() ::= <<
 implicit def defaultLayoutParams[V <: View](v: V): LayoutParams[V] = v.getLayoutParams() match {
   case p: LayoutParams[V @unchecked] => p
   case _ => new LayoutParams(v)
@@ -15,7 +15,7 @@ class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PAREN
     this
   }
 
-  def parent = SFrameLayout.this
+  def parent = TraitFrameLayout.this
 
   def >\> : V = v
 
