@@ -150,10 +150,10 @@ new SVerticalLayout {
   STextView("Password")
   SEditText() inputType TEXT_PASSWORD
   SButton("Sign in")
-  this += new SLinearLayout {
+  new SLinearLayout {
     SButton("Help")
     SButton("Sign up")
-  }.wrap
+  }.wrap.here
 }.padding(20 dip)
 ```
 
@@ -167,10 +167,10 @@ new SVerticalLayout {
   STextView("Password")
   val pass = SEditText() inputType TEXT_PASSWORD
   SButton("Sign in", signin(userId.text, pass.text))
-  this += new SLinearLayout {
+  new SLinearLayout {
     SButton("Help", openUri("http://help.url"))
     SButton("Sign up", openUri("http://signup.uri"))
-  }.wrap
+  }.wrap.here
 }.padding(20 dip)
 ```
 
@@ -204,11 +204,11 @@ import org.scaloid.util.Configuration._
 
 if(long) SButton("This button is shown only for a long screen "
   + "dimension ("+ width + ", " + height + ")")
-if(landscape) this += new SLinearLayout {
+if(landscape) new SLinearLayout {
   SButton("Buttons for")
   SButton("landscape layout")
   if(dpi <= HDPI) SButton("You have a high resolution display!")
-}
+}.here
 ```
 
 Please refer to this blog post for more detail:
@@ -708,14 +708,11 @@ SButton("Click").<<(40 dip, WRAP_CONTENT)
 Usually, `View` components are referenced multiple times in an `Activity`. For example:
 
 ```scala
-var button: SButton = null
-override def onCreate(savedInstanceState: Bundle) {
-  // ...
-  new SLinearLayout {
-    button = new SButton() text "Click"
-    this += button
+lazy val button = new SButton() text "Click"
+onCreate {
+  contentView = new SLinearLayout {
+    button.here
   }
-  // ...
 }
 // ... uses the button somewhere in other methods (e.g. changing text or adding listeners)
 ```
@@ -725,7 +722,7 @@ Therefore, the code block from the above example:
 
 ```scala
 button = new SButton() text "Click"
-this += button
+button.here
 ```
 
 is equivalent to:
@@ -763,9 +760,9 @@ When the layout context is nested, inner-most layout's context is applied:
 
 ```scala
 val layout = new SFrameLayout {
-  this += new SLinearLayout {
+  new SLinearLayout {
     SButton("Click").<<.Weight(1.0f).>>   // in context of SLinearLayout
-  }
+  }.here
 }
 ```
 
