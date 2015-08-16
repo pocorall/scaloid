@@ -54,18 +54,18 @@ SButton("Greet", toast("Hello!"))
 
 ### Benefits
  * **Write elegant Android software**<br/>
-   Scaloid provides a concise and type-safe way of writing Android application.
- * **Simple to use**<br/>
+   Simplicity is number one principle, keeps programmability and type-safety.
+ * **Easy to use**<br/>
    Check the [quick start guide](https://github.com/pocorall/scaloid/wiki/Installation#wiki-quick-start)
  * **Compatible with your legacy code**<br/>
    You can [use both Scaloid and plain-old Java Android API](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-i-cant-use-scaloid-because-it-does-not-provide-a-functionality-x). You can gradually improve your legacy code.
- * **Maintained actively**<br/>
-   Scaloid is a [dogfooding](http://en.wikipedia.org/wiki/Eating_your_own_dog_food) software. This is originally created to be used for [my own](https://play.google.com/store/apps/details?id=com.soundcorset.client.android) [Android apps](https://play.google.com/store/apps/details?id=com.tocplus.client.android).
+ * **Production quality**<br/>
+   Not a toy project. The creator of Scaloid uses it to build [a millionth downloaded app](https://play.google.com/store/apps/details?id=com.soundcorset.client.android).
 
 ### Demos
 
 Fork one of this to start a new project:
- * [<b>Hello world of Scaloid for sbt</b>](https://github.com/pocorall/hello-scaloid-sbt) (recommended)
+ * [<b>Hello world of Scaloid for sbt</b>](https://github.com/pocorall/hello-scaloid-sbt) (recommended, it builds faster)
  * [<b>Hello world of Scaloid for maven</b>](https://github.com/pocorall/hello-scaloid-maven)
  * [<b>Hello world of Scaloid for gradle</b>](https://github.com/pocorall/hello-scaloid-gradle)
 
@@ -75,8 +75,9 @@ Learn how Scaloid can be used in action:
  * [<b>Tutorial by Gaston Hillar</b>](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240161584) - [part 1](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240161584) and [part 2](http://www.drdobbs.com/mobile/developing-android-apps-with-scala-and-s/240162204)
 
 
-## Features
+## Contents
 
+ * [Core design principle](#core-design-principle)
  * [UI Layout without XML](#ui-layout-without-xml)
    * [Layout context](#layout-context)
    * [Styles for programmers](#styles-for-programmers)
@@ -104,6 +105,10 @@ Learn how Scaloid can be used in action:
      * [FAQs about Scala on Android](https://github.com/pocorall/scaloid/wiki/Appendix#wiki-faqs-about-scala-on-android)
  * [<b>Inside Scaloid</b>](https://github.com/pocorall/scaloid/wiki/Inside-Scaloid)
  * [<b>We are hiring!</b>](#we-are-hiring)
+
+## Core design principle
+
+"Being practically simple" is number one principle of Scaloid. Most frequently used things should be written shorter, like [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding). To do this, I first observed Android programs I wrote, and thought that which part of the code is more fundamental than others. For example, what is the most essential part of buttons? Buttons should have some visible things on it, such as title or image, so the buttons are created like this: `SButton("Hello")`. The second essential part is doing something when it is pressed: `SImageButton(R.drawable.hello, toast("World!"))`. What should be the third one? The answer might not the same for every people, but I think that repetition frequency of press-and-hold action is nice: `SButton("Add", n += 1, 500)` increases `n` for every 500 milliseconds when the user holds the button.
 
 ## UI Layout without XML
 <p align="center"><img src="http://o-n2.com/verboseSimple.png"></p>
@@ -478,12 +483,6 @@ new Intent().put(valueA, valueB, valueC)
 ##### Toast
 
 ```scala
-Toast.makeText(context, "hi, there!", Toast.LENGTH_SHORT).show()
-```
-
-is reduced to:
-
-```scala
 toast("hi, there!")
 ```
 
@@ -528,38 +527,6 @@ is reduced to:
 ```scala
 pendingActivity[MyActivity]
 pendingService[MyService]
-```
-
-##### DefaultSharedPreferences
-
-```scala
-PreferenceManager.getDefaultSharedPreferences(context)
-```
-
-is reduced to:
-
-```scala
-defaultSharedPreferences
-```
-
-##### Play ringtones
-
-Just play the default notification ringtone:
-
-```scala
-play()
-```
-
-specify ringtone resources as a `String`:
-
-```scala
-play("content://media/internal/audio/media/50")
-```
-
-or specify a resource `Uri`:
-
-```scala
-play(alarmSound)
 ```
 
 ##### Open URIs
@@ -1185,30 +1152,17 @@ class Activity extends SActivity {
 
 ### Class `Preferences`
 
-Instead of accesing SharedPreference directly:
+SharedPreference can be accessed in this way:
 
 ```scala
-val ec = pref.getInt("executionCount", 0)
-val editor = pref.edit()
-editor.putInt("executionCount", ec + 1)
-editor.commit()
-```
-
-You can rewrite it as shown below:
-
-```scala
-val ec = pref.executionCount(0)
-pref.executionCount = ec + 1
-```
-
-If you are confortable with `Option`, access like this:
-
-```scala
-val ec:Option[Int] = pref.Int.executionCount
+val executionCount = preferenceVar(0) // default value 0
+val ec = executionCount() // read
+executionCount() = ec + 1 // write
+executionCount.remove() // remove
 ```
 
 **Further reading:**
- - [In-depth look at Scaloid Preferences](http://blog.scaloid.org/2013/03/dynamicly-accessing-sharedpreferences.html)
+ - [Type-safe SharedPreference](http://blog.scaloid.org/2015/07/type-safe-sharedpreference.html)
  - [A simple example: Prompt user to rate your app](http://blog.scaloid.org/2013/03/prompt-user-to-rate-your-android-app.html)
 
 ## Extending View class
