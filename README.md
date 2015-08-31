@@ -149,7 +149,7 @@ is reduced to:
 
 ```scala
 new SVerticalLayout {
-  STextView("Sign in").textSize(24.5 sp).<<.marginBottom(25 dip).>>
+  STextView("Sign in").textSize(24.5.sp).<<.marginBottom(25.dip).>>
   STextView("ID")
   SEditText()
   STextView("Password")
@@ -159,14 +159,14 @@ new SVerticalLayout {
     SButton("Help")
     SButton("Sign up")
   }.wrap.here
-}.padding(20 dip)
+}.padding(20.dip)
 ```
 
 The layout description shown above is highly programmable. You can easily wire your logic into the layout:
 
 ```scala
 new SVerticalLayout {
-  STextView("Sign in").textSize(24.5 sp).<<.marginBottom(25 dip).>>
+  STextView("Sign in").textSize(24.5.sp).<<.marginBottom(25.dip).>>
   STextView("ID")
   val userId = SEditText()
   STextView("Password")
@@ -176,7 +176,7 @@ new SVerticalLayout {
     SButton("Help", openUri("http://help.url"))
     SButton("Sign up", openUri("http://signup.uri"))
   }.wrap.here
-}.padding(20 dip)
+}.padding(20.dip)
 ```
 
 Because a Scaloid layout description is plain Scala code, it is type-safe.
@@ -667,7 +667,7 @@ Compared with XML layout description, Scaloid layout is simple and type-safe.
 The method `<<` is overloaded with parameters `<<(width:Int, height:Int)` which assigns the size of the view component. For example:
 
 ```scala
-SButton("Click").<<(40 dip, WRAP_CONTENT)
+SButton("Click").<<(40.dip, WRAP_CONTENT)
 ```
 
 #### Operator `new` and method `apply`
@@ -801,13 +801,13 @@ Scaloid omits unnecessary `="true"` for the attribute `centerHorizontal`. Equiva
 For layout methods named with four directions (e.g. `...Top`, `...Right`, `...Bottom` and `...Left`), Scaloid provides additional methods that specifies all properties at once. For example, Because Android XML layout defines `margin...` properties(`marginTop(v:Int)`, `marginRight(v:Int)`, `marginBottom(v:Int)` and `marginLeft(v:Int)`), Scaloid provides additional `margin(top:Int, right:Int, bottom:Int, left:Int)` and `margin(amount:Int)` methods that can be used as:
 
 ```scala
-STextView("hello").<<.margin(5 dip, 10 dip, 5 dip, 10 dip)
+STextView("hello").<<.margin(5.dip, 10.dip, 5.dip, 10.dip)
 ```
 
 or
 
 ```scala
-STextView("hello").<<.margin(10 sp)  // assigns the same value for all directions
+STextView("hello").<<.margin(10.sp)  // assigns the same value for all directions
 ```
 
 
@@ -820,16 +820,16 @@ To apply styles in Scaloid, you do not need to learn any syntax or API library, 
 Suppose the following code that repeats some properties:
 
 ```scala
-SButton("first").textSize(20 dip).<<.margin(5 dip).>>
-SButton("prev").textSize(20 dip).<<.margin(5 dip).>>
-SButton("next").textSize(20 dip).<<.margin(5 dip).>>
-SButton("last").textSize(20 dip).<<.margin(5 dip).>>
+SButton("first").textSize(20.dip).<<.margin(5.dip).>>
+SButton("prev").textSize(20.dip).<<.margin(5.dip).>>
+SButton("next").textSize(20.dip).<<.margin(5.dip).>>
+SButton("last").textSize(20.dip).<<.margin(5.dip).>>
 ```
 
 Then we can define a function that applies these properties:
 
 ```scala
-def myStyle = (_: SButton).textSize(20 dip).<<.margin(5 dip).>>
+def myStyle = (_: SButton).textSize(20.dip).<<.margin(5.dip).>>
 myStyle(SButton("first"))
 myStyle(SButton("prev"))
 myStyle(SButton("next"))
@@ -839,7 +839,7 @@ myStyle(SButton("last"))
 Still not satisfying? Here we have a shorter one:
 
 ```scala
-def myStyle = (_: SButton).textSize(20 dip).<<.margin(5 dip).>>
+def myStyle = (_: SButton).textSize(20.dip).<<.margin(5.dip).>>
 List("first", "prev", "next", "last").foreach(title => myStyle(SButton(title)))
 ```
 
@@ -851,7 +851,7 @@ Then the example in the previous subsection becomes:
 
 ```scala
 style {
-  case b: SButton => b.textSize(20 dip).<<.margin(5 dip).>>
+  case b: SButton => b.textSize(20.dip).<<.margin(5.dip).>>
 }
 
 SButton("first")
@@ -865,13 +865,13 @@ Note that individually applying `myStyle` is reduced. Let us see another example
 ```scala
 style {
   case b: SButton => b.textColor(Color.RED).onClick(toast("Bang!"))
-  case t: STextView => t.textSize(10 dip)
+  case t: STextView => t.textSize(10.dip)
   case v => v.backgroundColor(Color.YELLOW)
 }
 
-STextView("I am 10 dip tall")
+STextView("I am 10.dip tall")
 STextView("Me too")
-STextView("I am taller than you").textSize(15 dip) // overriding
+STextView("I am taller than you").textSize(15.dip) // overriding
 SEditText("Yellow input field")
 SButton("Red alert!")
 ```
@@ -1106,7 +1106,7 @@ Then the plain-old Android code is consisted of a chunk of XML and its wiring:
     android:id="@+id/spinner_textview"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-	android:textSize="25 dip" />
+	android:textSize="25.dip" />
 ```
 ```scala
 val adapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, Array("One", "Two", "Three"))
@@ -1116,7 +1116,7 @@ adapter.setDropDownViewResource(R.layout.spinner_dropdown)
 In Scaloid, a directly equivalent code is:
 
 ```scala
-SArrayAdapter("One", "Two", "Three").dropDownStyle(_.textSize(25 dip))
+SArrayAdapter("One", "Two", "Three").dropDownStyle(_.textSize(25.dip))
 ```
 
 If you want to let the text color in the spinner be blue, use the `style` method:
