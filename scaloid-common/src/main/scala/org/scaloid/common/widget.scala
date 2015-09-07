@@ -483,38 +483,14 @@ class SImageButton()(implicit context: android.content.Context, parentVGroup: Tr
 
 }
 
-object SImageButton {
+object SImageButton extends ImageViewCompanion[SImageButton] {
   def apply[LP <: ViewGroupLayoutParams[_, SImageButton]]()(implicit context: android.content.Context, defaultLayoutParam: SImageButton => LP): SImageButton = {
     val v = new SImageButton
     v.<<.parent.+=(v)
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](imageResource: android.graphics.drawable.Drawable)(implicit context: Context, defaultLayoutParam: (SImageButton) => LP): SImageButton = {
-    val v = new SImageButton
-    v.imageDrawable = imageResource
-    v.<<.parent.+=(v)
-    v
-  }
-
-  def apply(image: android.graphics.drawable.Drawable, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
-
-  /**
-   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
-   */
-  def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SImageButton) => LP): SImageButton = {
-    val v = apply(imageResource, onClickListener.onClickListener)
-    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
-  }
-
-  private def apply[LP <: ViewGroupLayoutParams[_, SImageButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SImageButton) => LP): SImageButton = {
-    val v = new SImageButton
-    v.imageDrawable = imageResource
-    v.setOnClickListener(onClickListener)
-    v.<<.parent.+=(v)
-    v
-  }
-
+  def create[LP <: ViewGroupLayoutParams[_, SImageButton]]()(implicit context: Context, defaultLayoutParam: SImageButton => LP) = new SImageButton()
 }
 
 /**
@@ -754,6 +730,7 @@ object SEditText extends TextViewCompanion[SEditText] {
     v
   }
 
+  def create[LP <: ViewGroupLayoutParams[_, SEditText]]()(implicit context: Context, defaultLayoutParam: SEditText => LP) = new SEditText()
 }
 
 /**
@@ -1025,38 +1002,14 @@ class SImageView()(implicit context: android.content.Context, parentVGroup: Trai
 
 }
 
-object SImageView {
+object SImageView extends ImageViewCompanion[SImageView] {
   def apply[LP <: ViewGroupLayoutParams[_, SImageView]]()(implicit context: android.content.Context, defaultLayoutParam: SImageView => LP): SImageView = {
     val v = new SImageView
     v.<<.parent.+=(v)
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: android.graphics.drawable.Drawable)(implicit context: Context, defaultLayoutParam: (SImageView) => LP): SImageView = {
-    val v = new SImageView
-    v.imageDrawable = imageResource
-    v.<<.parent.+=(v)
-    v
-  }
-
-  def apply(image: android.graphics.drawable.Drawable, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
-
-  /**
-   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
-   */
-  def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SImageView) => LP): SImageView = {
-    val v = apply(imageResource, onClickListener.onClickListener)
-    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
-  }
-
-  private def apply[LP <: ViewGroupLayoutParams[_, SImageView]](imageResource: android.graphics.drawable.Drawable, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SImageView) => LP): SImageView = {
-    val v = new SImageView
-    v.imageDrawable = imageResource
-    v.setOnClickListener(onClickListener)
-    v.<<.parent.+=(v)
-    v
-  }
-
+  def create[LP <: ViewGroupLayoutParams[_, SImageView]]()(implicit context: Context, defaultLayoutParam: SImageView => LP) = new SImageView()
 }
 
 /**
@@ -1149,6 +1102,7 @@ object SMultiAutoCompleteTextView extends TextViewCompanion[SMultiAutoCompleteTe
     v
   }
 
+  def create[LP <: ViewGroupLayoutParams[_, SMultiAutoCompleteTextView]]()(implicit context: Context, defaultLayoutParam: SMultiAutoCompleteTextView => LP) = new SMultiAutoCompleteTextView()
 }
 
 /**
@@ -2769,6 +2723,7 @@ object SChronometer extends TextViewCompanion[SChronometer] {
     v
   }
 
+  def create[LP <: ViewGroupLayoutParams[_, SChronometer]]()(implicit context: Context, defaultLayoutParam: SChronometer => LP) = new SChronometer()
 }
 
 /**
@@ -2876,6 +2831,7 @@ object SCheckedTextView extends TextViewCompanion[SCheckedTextView] {
     v
   }
 
+  def create[LP <: ViewGroupLayoutParams[_, SCheckedTextView]]()(implicit context: Context, defaultLayoutParam: SCheckedTextView => LP) = new SCheckedTextView()
 }
 
 /**
@@ -5682,6 +5638,7 @@ object SRadioButton extends TextViewCompanion[SRadioButton] {
     v
   }
 
+  def create[LP <: ViewGroupLayoutParams[_, SRadioButton]]()(implicit context: Context, defaultLayoutParam: SRadioButton => LP) = new SRadioButton()
 }
 
 /**
@@ -5747,38 +5704,14 @@ class SQuickContactBadge()(implicit context: android.content.Context, parentVGro
 
 }
 
-object SQuickContactBadge {
+object SQuickContactBadge extends ImageViewCompanion[SQuickContactBadge] {
   def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]]()(implicit context: android.content.Context, defaultLayoutParam: SQuickContactBadge => LP): SQuickContactBadge = {
     val v = new SQuickContactBadge
     v.<<.parent.+=(v)
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: android.graphics.drawable.Drawable)(implicit context: Context, defaultLayoutParam: (SQuickContactBadge) => LP): SQuickContactBadge = {
-    val v = new SQuickContactBadge
-    v.imageDrawable = imageResource
-    v.<<.parent.+=(v)
-    v
-  }
-
-  def apply(image: android.graphics.drawable.Drawable, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
-
-  /**
-   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
-   */
-  def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SQuickContactBadge) => LP): SQuickContactBadge = {
-    val v = apply(imageResource, onClickListener.onClickListener)
-    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
-  }
-
-  private def apply[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]](imageResource: android.graphics.drawable.Drawable, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SQuickContactBadge) => LP): SQuickContactBadge = {
-    val v = new SQuickContactBadge
-    v.imageDrawable = imageResource
-    v.setOnClickListener(onClickListener)
-    v.<<.parent.+=(v)
-    v
-  }
-
+  def create[LP <: ViewGroupLayoutParams[_, SQuickContactBadge]]()(implicit context: Context, defaultLayoutParam: SQuickContactBadge => LP) = new SQuickContactBadge()
 }
 
 /**
@@ -6121,6 +6054,7 @@ object SDigitalClock extends TextViewCompanion[SDigitalClock] {
     v
   }
 
+  def create[LP <: ViewGroupLayoutParams[_, SDigitalClock]]()(implicit context: Context, defaultLayoutParam: SDigitalClock => LP) = new SDigitalClock()
 }
 
 /**
@@ -6199,6 +6133,7 @@ object SToggleButton extends TextViewCompanion[SToggleButton] {
     v
   }
 
+  def create[LP <: ViewGroupLayoutParams[_, SToggleButton]]()(implicit context: Context, defaultLayoutParam: SToggleButton => LP) = new SToggleButton()
 }
 
 /**
@@ -6247,6 +6182,7 @@ object SButton extends TextViewCompanion[SButton] {
     v
   }
 
+  def create[LP <: ViewGroupLayoutParams[_, SButton]]()(implicit context: Context, defaultLayoutParam: SButton => LP) = new SButton()
 }
 
 /**
@@ -6295,6 +6231,7 @@ object SCheckBox extends TextViewCompanion[SCheckBox] {
     v
   }
 
+  def create[LP <: ViewGroupLayoutParams[_, SCheckBox]]()(implicit context: Context, defaultLayoutParam: SCheckBox => LP) = new SCheckBox()
 }
 
 /**
@@ -7505,38 +7442,14 @@ class SZoomButton()(implicit context: android.content.Context, parentVGroup: Tra
 
 }
 
-object SZoomButton {
+object SZoomButton extends ImageViewCompanion[SZoomButton] {
   def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]]()(implicit context: android.content.Context, defaultLayoutParam: SZoomButton => LP): SZoomButton = {
     val v = new SZoomButton
     v.<<.parent.+=(v)
     v
   }
 
-  def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](imageResource: android.graphics.drawable.Drawable)(implicit context: Context, defaultLayoutParam: (SZoomButton) => LP): SZoomButton = {
-    val v = new SZoomButton
-    v.imageDrawable = imageResource
-    v.<<.parent.+=(v)
-    v
-  }
-
-  def apply(image: android.graphics.drawable.Drawable, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
-
-  /**
-   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
-   */
-  def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: (SZoomButton) => LP): SZoomButton = {
-    val v = apply(imageResource, onClickListener.onClickListener)
-    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
-  }
-
-  private def apply[LP <: ViewGroupLayoutParams[_, SZoomButton]](imageResource: android.graphics.drawable.Drawable, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: (SZoomButton) => LP): SZoomButton = {
-    val v = new SZoomButton
-    v.imageDrawable = imageResource
-    v.setOnClickListener(onClickListener)
-    v.<<.parent.+=(v)
-    v
-  }
-
+  def create[LP <: ViewGroupLayoutParams[_, SZoomButton]]()(implicit context: Context, defaultLayoutParam: SZoomButton => LP) = new SZoomButton()
 }
 
 /**
@@ -9124,6 +9037,7 @@ object STextView extends TextViewCompanion[STextView] {
     v
   }
 
+  def create[LP <: ViewGroupLayoutParams[_, STextView]]()(implicit context: Context, defaultLayoutParam: STextView => LP) = new STextView()
 }
 
 /**
@@ -9725,6 +9639,7 @@ object SAutoCompleteTextView extends TextViewCompanion[SAutoCompleteTextView] {
     v
   }
 
+  def create[LP <: ViewGroupLayoutParams[_, SAutoCompleteTextView]]()(implicit context: Context, defaultLayoutParam: SAutoCompleteTextView => LP) = new SAutoCompleteTextView()
 }
 
 /**
@@ -9938,6 +9853,7 @@ object SSwitch extends TextViewCompanion[SSwitch] {
     v
   }
 
+  def create[LP <: ViewGroupLayoutParams[_, SSwitch]]()(implicit context: Context, defaultLayoutParam: SSwitch => LP) = new SSwitch()
 }
 
 /**
@@ -9977,9 +9893,11 @@ object SVerticalLayout {
   }
 }
 
-class TextViewCompanion[T <: TextView: ClassTag] {
+abstract class TextViewCompanion[T <: TextView: ClassTag] {
+  def create[LP <: ViewGroupLayoutParams[_, T]]()(implicit context: Context, defaultLayoutParam: T => LP): T
+
   def apply[LP <: ViewGroupLayoutParams[_, T]](txt: CharSequence)(implicit context: Context, defaultLayoutParam: T => LP): T = {
-    val v = implicitly[ClassTag[T]].runtimeClass.newInstance.asInstanceOf[T]
+    val v = create()
     v text txt
     v.<<.parent.+=(v)
     v
@@ -9995,8 +9913,37 @@ class TextViewCompanion[T <: TextView: ClassTag] {
   }
 
   private def apply[LP <: ViewGroupLayoutParams[_, T]](text: CharSequence, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: T => LP): T = {
-    val v = implicitly[ClassTag[T]].runtimeClass.newInstance.asInstanceOf[T]
+    val v = create()
     v.text = text
+    v.setOnClickListener(onClickListener)
+    v.<<.parent.+=(v)
+    v
+  }
+}
+
+abstract class ImageViewCompanion[T <: ImageView: ClassTag] {
+  def create[LP <: ViewGroupLayoutParams[_, T]]()(implicit context: Context, defaultLayoutParam: T => LP): T
+
+  def apply[LP <: ViewGroupLayoutParams[_, T]](imageResource: android.graphics.drawable.Drawable)(implicit context: Context, defaultLayoutParam: T => LP): T = {
+    val v = create()
+    v.imageDrawable = imageResource
+    v.<<.parent.+=(v)
+    v
+  }
+
+  def apply(image: android.graphics.drawable.Drawable, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, T]](imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: T => LP): T = {
+    val v = create()
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
+  }
+
+  private def apply[LP <: ViewGroupLayoutParams[_, T]](imageResource: android.graphics.drawable.Drawable, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: T => LP): T = {
+    val v = create()
+    v.imageDrawable = imageResource
     v.setOnClickListener(onClickListener)
     v.<<.parent.+=(v)
     v
@@ -10049,6 +9996,7 @@ object SExtractEditText extends TextViewCompanion[SExtractEditText] {
     v
   }
 
+  def create[LP <: ViewGroupLayoutParams[_, SExtractEditText]]()(implicit context: Context, defaultLayoutParam: SExtractEditText => LP) = new SExtractEditText()
 }
 
 /**
