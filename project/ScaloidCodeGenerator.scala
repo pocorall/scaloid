@@ -70,7 +70,7 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
       if (! cls.hasBlankConstructor) ""
       else new ConstructorGenerator(cls.constructors.head).constructor
 
-    s"""${deprecated}object $sClassName {
+    s"""${deprecated}object $sClassName$customCompanionSuperclass {
        |  $con
        |
        |  $customFullConstructors
@@ -100,6 +100,8 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
   def customConstImplicitBodies = predefinedMapping(ConstImplicitBodies, separator = "\n")
 
   def customFullConstructors = predefinedMapping(FullConstructors, separator = "\n")
+
+  def customCompanionSuperclass = predefinedMapping(CompanionSuperclass, separator = "\n")
 
   private def predefinedMapping(mappings: PredefinedCodeMappings, separator: String = ", ") =
     mappings.collect {
@@ -443,38 +445,13 @@ object ScaloidCodeGenerator {
     "View" -> { _ => "v.<<.parent.+=(v)" }
   )
 
+  val CompanionSuperclass: PredefinedCodeMappings = List(
+  "TextView" -> { cls =>
+    val sClassName = "S"+ cls.name
+    s" extends TextViewCompanion[$sClassName]"}
+  )
+
   val FullConstructors: PredefinedCodeMappings = List(
-    "TextView" -> { cls =>
-      val sClassName = "S"+ cls.name
-      s"""|def apply[LP <: ViewGroupLayoutParams[_, $sClassName]](txt: CharSequence)
-          |                                                       (implicit context: Context, defaultLayoutParam: ($sClassName) => LP): $sClassName =  {
-          |  val v = new $sClassName
-          |  v text txt
-          |  v.<<.parent.+=(v)
-          |  v
-          |}
-          |
-          |def apply(text: CharSequence, ignore: Nothing) = ???  // Just for implicit conversion of ViewOnClickListener
-          |
-          |/**
-          | * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
-          | */
-          |def apply[LP <: ViewGroupLayoutParams[_, $sClassName], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)
-          |    (implicit context: Context, defaultLayoutParam: ($sClassName) => LP): $sClassName = {
-          |  val v = apply(text, onClickListener.onClickListener)
-          |  if(interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
-          |}
-          |
-          |private def apply[LP <: ViewGroupLayoutParams[_, $sClassName]](text: CharSequence, onClickListener: View.OnClickListener)
-          |    (implicit context: Context, defaultLayoutParam: ($sClassName) => LP): $sClassName = {
-          |  val v = new $sClassName
-          |  v.text = text
-          |  v.setOnClickListener(onClickListener)
-          |  v.<<.parent.+=(v)
-          |  v
-          |}
-          |""".stripMargin
-    },
     "ImageView" -> { cls =>
       val sClassName = "S"+ cls.name
       s"""def apply[LP <: ViewGroupLayoutParams[_, $sClassName]](imageResource: android.graphics.drawable.Drawable)

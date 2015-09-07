@@ -29,6 +29,35 @@ object SVerticalLayout {
   }
 }
 
+class TextViewCompanion[T <: TextView : ClassTag] {
+  def apply[LP <: ViewGroupLayoutParams[_, T]](txt: CharSequence)
+                                              (implicit context: Context, defaultLayoutParam: T => LP): T = {
+    val v = implicitly[ClassTag[T]].runtimeClass.newInstance.asInstanceOf[T]
+    v text txt
+    v.<<.parent.+=(v)
+    v
+  }
+
+  def apply(text: CharSequence, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
+  /**
+   * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   */
+  def apply[LP <: ViewGroupLayoutParams[_, T], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)
+                                                 (implicit context: Context, defaultLayoutParam: T => LP): T = {
+    val v = apply(text, onClickListener.onClickListener)
+    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
+  }
+
+  private def apply[LP <: ViewGroupLayoutParams[_, T]](text: CharSequence, onClickListener: View.OnClickListener)
+                                                      (implicit context: Context, defaultLayoutParam: T => LP): T = {
+    val v = implicitly[ClassTag[T]].runtimeClass.newInstance.asInstanceOf[T]
+    v.text = text
+    v.setOnClickListener(onClickListener)
+    v.<<.parent.+=(v)
+    v
+  }
+}
+
 $android.inputmethodservice.ExtractEditText; format="whole"$
 $android.inputmethodservice.KeyboardView; format="rich"$
 $android.opengl.GLSurfaceView; format="whole"$
