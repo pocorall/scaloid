@@ -49,7 +49,7 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
 
   def prefixedClassDef = {
     val name = cls.name
-    if (cls.hasBlankConstructor || CustomClassBodies.toMap.isDefinedAt(name) || FullConstructors.toMap.isDefinedAt(name))
+    if (cls.hasBlankConstructor || CustomClassBodies.toMap.isDefinedAt(name) || companionObjectBodies.toMap.isDefinedAt(name))
       s"""$prefixedClassScalaDoc
          |${deprecated}class S$name$customClassGenerics($customClassExplicitArgs)$classImplicitArgs
          |    extends $baseClassInstance with $helperTraitName[S$name$customSimpleClassGenerics] {
@@ -81,11 +81,11 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
 
   // Constructors
 
-  def customConstTypeParams = predefinedMapping(ConstTypeParams)
+  def customConstTypeParams = predefinedMapping(constTypeParams)
 
-  def customClassGenerics = predefinedMapping(GenericArgs)
+  def customClassGenerics = predefinedMapping(genericArgs)
 
-  def customSimpleClassGenerics = predefinedMapping(SimpleGenericArgs)
+  def customSimpleClassGenerics = predefinedMapping(simpleGenericArgs)
 
   def customClassExplicitArgs = predefinedMapping(ClassExplicitArgs)
 
@@ -99,9 +99,9 @@ class ScaloidCodeGenerator(cls: AndroidClass, companionTemplate: CompanionTempla
 
   def customConstImplicitBodies = predefinedMapping(ConstImplicitBodies, separator = "\n")
 
-  def customFullConstructors = predefinedMapping(FullConstructors, separator = "\n")
+  def customFullConstructors = predefinedMapping(companionObjectBodies, separator = "\n")
 
-  def customCompanionSuperclass = predefinedMapping(CompanionSuperclass, separator = "\n")
+  def customCompanionSuperclass = predefinedMapping(companionObjectExtends, separator = "\n")
 
   private def predefinedMapping(mappings: PredefinedCodeMappings, separator: String = ", ") =
     mappings.collect {
@@ -368,18 +368,18 @@ object ScaloidCodeGenerator {
   type PredefinedCodeMapping = (String, (AndroidClass => String))
   type PredefinedCodeMappings = Seq[PredefinedCodeMapping]
 
-  val ConstTypeParams: PredefinedCodeMappings = List(
+  val constTypeParams: PredefinedCodeMappings = List(
     "View" -> { cls =>
       val sClassName = "S"+ cls.name
       s"LP <: ViewGroupLayoutParams[_, $sClassName]"
     }
   )
 
-  val GenericArgs: PredefinedCodeMappings = List(
+  val genericArgs: PredefinedCodeMappings = List(
     "ArrayAdapter" -> { _ => "[V <: android.view.View, T <: AnyRef]" }
   )
 
-  val SimpleGenericArgs: PredefinedCodeMappings = List(
+  val simpleGenericArgs: PredefinedCodeMappings = List(
     "ArrayAdapter" -> { _ => "[V, T]" }
   )
 
@@ -445,7 +445,7 @@ object ScaloidCodeGenerator {
     "View" -> { _ => "v.<<.parent.+=(v)" }
   )
 
-  val CompanionSuperclass: PredefinedCodeMappings = List(
+  val companionObjectExtends: PredefinedCodeMappings = List(
   "TextView" -> { cls =>
     val sClassName = "S"+ cls.name
     s" extends TextViewCompanion[$sClassName]"},
@@ -454,7 +454,7 @@ object ScaloidCodeGenerator {
     s" extends ImageViewCompanion[$sClassName]"}
   )
 
-  val FullConstructors: PredefinedCodeMappings = List(
+  val companionObjectBodies: PredefinedCodeMappings = List(
     "TextView" -> { cls =>
       val sClassName = "S"+ cls.name
       s"def create[LP <: ViewGroupLayoutParams[_, $sClassName]]()(implicit context: Context, defaultLayoutParam: $sClassName => LP) = new $sClassName()"},
