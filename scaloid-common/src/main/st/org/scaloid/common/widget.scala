@@ -44,7 +44,7 @@ abstract class TextViewCompanion[T <: TextView : ClassTag] {
   /**
    * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
    */
-  def apply[LP <: ViewGroupLayoutParams[_, T], F](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)
+  def apply[LP <: ViewGroupLayoutParams[_, T]](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)
                                                  (implicit context: Context, defaultLayoutParam: T => LP): T = {
     val v = apply(text, onClickListener.onClickListener)
     if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
@@ -78,7 +78,7 @@ abstract class ImageViewCompanion[T <: ImageView : ClassTag] {
     */
   def apply[LP <: ViewGroupLayoutParams[_, T]](imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int = 0)
       (implicit context: Context, defaultLayoutParam: T => LP): T = {
-    val v = create()
+    val v = apply(imageResource, onClickListener.onClickListener)
     if(interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
