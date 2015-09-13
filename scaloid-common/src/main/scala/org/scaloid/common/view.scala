@@ -60,7 +60,10 @@ trait PressAndHoldable[+This <: View] {
 
     override def onLongClick(p1: View): Boolean = {
       autoIncrementing = true
-      repeatUpdateHandler.post(new RptUpdater)
+      if (interval == 0)
+        onPressed()
+      else
+        repeatUpdateHandler.post(new RptUpdater)
       false
     }
 
