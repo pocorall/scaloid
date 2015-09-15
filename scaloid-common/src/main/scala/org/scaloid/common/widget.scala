@@ -476,10 +476,10 @@ class SImageButton()(implicit context: android.content.Context, parentVGroup: Tr
     this()
     this.imageDrawable = imageResource
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener)(implicit context: Context) = this(imageResource, onClickListener, 0)
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener)(implicit context: Context) = this(imageResource, onClickListener, -1)
 
 }
 
@@ -716,10 +716,10 @@ class SEditText()(implicit context: android.content.Context, parentVGroup: Trait
     this()
     this.text = text
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, -1)
 
 }
 
@@ -995,10 +995,10 @@ class SImageView()(implicit context: android.content.Context, parentVGroup: Trai
     this()
     this.imageDrawable = imageResource
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener)(implicit context: Context) = this(imageResource, onClickListener, 0)
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener)(implicit context: Context) = this(imageResource, onClickListener, -1)
 
 }
 
@@ -1088,10 +1088,10 @@ class SMultiAutoCompleteTextView()(implicit context: android.content.Context, pa
     this()
     this.text = text
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, -1)
 
 }
 
@@ -2709,10 +2709,10 @@ class SChronometer()(implicit context: android.content.Context, parentVGroup: Tr
     this()
     this.text = text
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, -1)
 
 }
 
@@ -2817,10 +2817,10 @@ class SCheckedTextView()(implicit context: android.content.Context, parentVGroup
     this()
     this.text = text
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, -1)
 
 }
 
@@ -5624,10 +5624,10 @@ class SRadioButton()(implicit context: android.content.Context, parentVGroup: Tr
     this()
     this.text = text
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, -1)
 
 }
 
@@ -5697,10 +5697,10 @@ class SQuickContactBadge()(implicit context: android.content.Context, parentVGro
     this()
     this.imageDrawable = imageResource
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener)(implicit context: Context) = this(imageResource, onClickListener, 0)
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener)(implicit context: Context) = this(imageResource, onClickListener, -1)
 
 }
 
@@ -6040,10 +6040,10 @@ class SDigitalClock()(implicit context: android.content.Context, parentVGroup: T
     this()
     this.text = text
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, -1)
 
 }
 
@@ -6119,10 +6119,10 @@ class SToggleButton()(implicit context: android.content.Context, parentVGroup: T
     this()
     this.text = text
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, -1)
 
 }
 
@@ -6168,10 +6168,10 @@ class SButton()(implicit context: android.content.Context, parentVGroup: TraitVi
     this()
     this.text = text
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, -1)
 
 }
 
@@ -6217,10 +6217,10 @@ class SCheckBox()(implicit context: android.content.Context, parentVGroup: Trait
     this()
     this.text = text
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, -1)
 
 }
 
@@ -7435,10 +7435,10 @@ class SZoomButton()(implicit context: android.content.Context, parentVGroup: Tra
     this()
     this.imageDrawable = imageResource
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener)(implicit context: Context) = this(imageResource, onClickListener, 0)
+  def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener)(implicit context: Context) = this(imageResource, onClickListener, -1)
 
 }
 
@@ -9023,10 +9023,10 @@ class STextView()(implicit context: android.content.Context, parentVGroup: Trait
     this()
     this.text = text
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, -1)
 
 }
 
@@ -9625,10 +9625,10 @@ class SAutoCompleteTextView()(implicit context: android.content.Context, parentV
     this()
     this.text = text
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, -1)
 
 }
 
@@ -9839,10 +9839,10 @@ class SSwitch()(implicit context: android.content.Context, parentVGroup: TraitVi
     this()
     this.text = text
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, -1)
 
 }
 
@@ -9907,9 +9907,9 @@ abstract class TextViewCompanion[T <: TextView: ClassTag] {
   /**
    * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
    */
-  def apply[LP <: ViewGroupLayoutParams[_, T]](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: T => LP): T = {
+  def apply[LP <: ViewGroupLayoutParams[_, T]](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = -1)(implicit context: Context, defaultLayoutParam: T => LP): T = {
     val v = apply(text, onClickListener.onClickListener)
-    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
+    if (interval >= 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
   private def apply[LP <: ViewGroupLayoutParams[_, T]](text: CharSequence, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: T => LP): T = {
@@ -9936,9 +9936,9 @@ abstract class ImageViewCompanion[T <: ImageView: ClassTag] {
   /**
    * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
    */
-  def apply[LP <: ViewGroupLayoutParams[_, T]](imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int = 0)(implicit context: Context, defaultLayoutParam: T => LP): T = {
+  def apply[LP <: ViewGroupLayoutParams[_, T]](imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int = -1)(implicit context: Context, defaultLayoutParam: T => LP): T = {
     val v = apply(imageResource, onClickListener.onClickListener)
-    if (interval > 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
+    if (interval >= 0) v.onPressAndHold(interval, onClickListener.func(v)) else v
   }
 
   private def apply[LP <: ViewGroupLayoutParams[_, T]](imageResource: android.graphics.drawable.Drawable, onClickListener: View.OnClickListener)(implicit context: Context, defaultLayoutParam: T => LP): T = {
@@ -9982,10 +9982,10 @@ class SExtractEditText()(implicit context: android.content.Context, parentVGroup
     this()
     this.text = text
     this.setOnClickListener(onClickListener.onClickListener)
-    if (interval > 0) onPressAndHold(interval, onClickListener.func(this))
+    if (interval >= 0) onPressAndHold(interval, onClickListener.func(this))
   }
 
-  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
+  def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, -1)
 
 }
 

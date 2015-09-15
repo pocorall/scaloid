@@ -409,10 +409,10 @@ object ScaloidCodeGenerator {
           |  this()
           |  this.text = text
           |  this.setOnClickListener(onClickListener.onClickListener)
-          |  if(interval > 0) onPressAndHold(interval, onClickListener.func(this))
+          |  if(interval >= 0) onPressAndHold(interval, onClickListener.func(this))
           |}
           |
-          |def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, 0)
+          |def this(text: CharSequence, onClickListener: ViewOnClickListener)(implicit context: Context) = this(text, onClickListener, -1)
           |
       """.stripMargin
     },
@@ -428,10 +428,10 @@ object ScaloidCodeGenerator {
           |  this()
           |  this.imageDrawable = imageResource
           |  this.setOnClickListener(onClickListener.onClickListener)
-          |  if(interval > 0) onPressAndHold(interval, onClickListener.func(this))
+          |  if(interval >= 0) onPressAndHold(interval, onClickListener.func(this))
           |}
           |
-          |def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener)(implicit context: Context) = this(imageResource, onClickListener, 0)
+          |def this(imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener)(implicit context: Context) = this(imageResource, onClickListener, -1)
           |
           |""".stripMargin
     }
