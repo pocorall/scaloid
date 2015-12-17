@@ -388,11 +388,6 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
   var onConnected = new EventSource1[S, Unit]
   var onDisconnected = new EventSource1[S, Unit]
 
-  @deprecated("Use apply(f: S => Unit) instead.", "3.6")
-  def run(f: S => Unit) {
-    service.fold(onConnected(f))(f)
-  }
-
   /**
    * Execute given function with the connected service. If the service is not connected yet, the function
    * is enqueued and be called when the service is connected.
@@ -447,9 +442,7 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
    * Internal implementation for handling the service connection. You do not need to call this method.
    */
   def onServiceDisconnected(p1: ComponentName) {
-    val svc = service.get
-    service = None
-    onDisconnected.run(svc)
+    service.foreach(onDisconnected.run _)
     onDisconnected.clear()
   }
 
@@ -463,6 +456,7 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
   }
 
   reg.onUnregister {
+    service = None // prevents apply(...) methods access this after unbound
     ctx.unbindService(this)
     onConnected.clear() // not to be called at the next binding
   }
