@@ -43,6 +43,7 @@ abstract class TextViewCompanion[T <: TextView : ClassTag] {
   def apply(text: CharSequence, ignore: Nothing) = ??? // Just for implicit conversion of ViewOnClickListener
   /**
    * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+   * If it is 0, onClickListener is called once when OnLongClickListener.onLongClick event is triggered.
    */
   def apply[LP <: ViewGroupLayoutParams[_, T]](text: CharSequence, onClickListener: ViewOnClickListener, interval: Int = -1)
                                                  (implicit context: Context, defaultLayoutParam: T => LP): T = {
@@ -75,6 +76,7 @@ abstract class ImageViewCompanion[T <: ImageView : ClassTag] {
 
   /**
     * interval: If it is larger than 0, the button enables press-and-hold action with given interval in milliseconds.
+    * If it is 0, onClickListener is called once when OnLongClickListener.onLongClick event is triggered.
     */
   def apply[LP <: ViewGroupLayoutParams[_, T]](imageResource: android.graphics.drawable.Drawable, onClickListener: ViewOnClickListener, interval: Int = -1)
       (implicit context: Context, defaultLayoutParam: T => LP): T = {
