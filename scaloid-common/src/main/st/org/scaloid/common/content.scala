@@ -12,13 +12,19 @@ import scala.language.experimental.macros
 import scala.reflect.macros.blackbox.{Context => MacroCtx}
 
 class EventSource0[T] extends ArrayBuffer[() => T] {
-  def apply(e: => T) = append(() => e)
+  def apply(e: => T) = {
+    require(e != null)
+    append(() => e)
+  }
 
   def run() = map(_())
 }
 
 class EventSource1[Arg1, Ret] extends ArrayBuffer[Arg1 => Ret] {
-  def apply(e: Arg1 => Ret) = append(e)
+  def apply(e: Arg1 => Ret) = {
+    require(e != null)
+    append(e)
+  }
 
   def run(arg: Arg1) = map(_(arg))
 }

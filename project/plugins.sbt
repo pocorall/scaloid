@@ -7,4 +7,4 @@ libraryDependencies ++= Seq(
   "javax.servlet" % "javax.servlet-api" % "3.0.1" // for reflections
 )
 
-addSbtPlugin("com.danieltrinh" % "sbt-scalariform" % "1.3.0")
+addSbtPlugin("com.danieltrinh" % "sbt-scalariform" % "1.4.0")
