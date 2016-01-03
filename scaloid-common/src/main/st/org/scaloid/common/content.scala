@@ -6,33 +6,43 @@ import android.app.Activity
 import android.content._
 import android.util.Log
 import android.os._
-import scala.collection.mutable.ArrayBuffer
 import scala.reflect._
 import scala.language.experimental.macros
-import scala.reflect.macros.blackbox.{Context => MacroCtx}
 
-class EventSource0[T] extends ArrayBuffer[() => T] {
-  def apply(e: => T) = {
+class EventSource0[T] {
+  var events: Vector[() => T] = Vector()
+  def apply(e: => T): Unit = {
     require(e != null)
-    append(() => e)
+    events :+= (() => e)
   }
 
-  def run() = map(_())
+  def run(): Unit = events.map(_())
+
+  def clear(): Unit = events = Vector()
 }
 
-class EventSource1[Arg1, Ret] extends ArrayBuffer[Arg1 => Ret] {
-  def apply(e: Arg1 => Ret) = {
+class EventSource1[Arg1, Ret] {
+  var events: Vector[Arg1 => Ret] = Vector()
+  def apply(e: Arg1 => Ret): Unit = {
     require(e != null)
-    append(e)
+    events :+= e
   }
 
-  def run(arg: Arg1) = map(_(arg))
+  def run(arg: Arg1): Unit = events.map(_(arg))
+
+  def clear(): Unit = events = Vector()
 }
 
-class EventSource2[Arg1, Arg2, Ret] extends ArrayBuffer[(Arg1, Arg2) => Ret] {
-  def apply(e: (Arg1, Arg2) => Ret) = append(e)
+class EventSource2[Arg1, Arg2, Ret] {
+  var events: Vector[(Arg1, Arg2) => Ret] = Vector()
+  def apply(e: (Arg1, Arg2) => Ret): Unit = {
+    require(e != null)
+    events :+= e
+  }
 
-  def run(arg1: Arg1, arg2: Arg2) = map(_(arg1, arg2))
+  def run(arg1: Arg1, arg2: Arg2): Unit = events.map(_(arg1, arg2))
+
+  def clear(): Unit = events = Vector()
 }
 
 /**
