@@ -40,7 +40,6 @@ import android.content._
 import android.view._
 import android.view.View._
 import android.widget._
-import scala.collection.mutable.ArrayBuffer
 import scala.language.implicitConversions
 import ViewImplicits._
 
@@ -1879,10 +1878,10 @@ trait TraitViewGroup[This <: android.view.ViewGroup] extends TraitView[This] {
     basis
   }
 
-  val styles = new ArrayBuffer[View PartialFunction View]
+  var styles = Vector[View PartialFunction View]()
 
   def style(stl: View PartialFunction View) = {
-    styles += stl
+    styles :+= stl
     basis
   }
 

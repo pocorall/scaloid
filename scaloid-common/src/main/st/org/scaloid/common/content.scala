@@ -39,11 +39,11 @@ class EventSource2[Arg1, Arg2, Ret] extends ArrayBuffer[(Arg1, Arg2) => Ret] {
  * Callback handler for classes that can be destroyed.
  */
 trait Destroyable {
-  protected val onDestroyBodies = new ArrayBuffer[() => Any]
+  protected var onDestroyBodies = Vector[() => Any]()
 
   def onDestroy(body: => Any) = {
     val el = body _
-    onDestroyBodies += el
+    onDestroyBodies :+= el
     el
   }
 }
@@ -52,11 +52,11 @@ trait Destroyable {
  * Callback handler for classes that can be created.
  */
 trait Creatable {
-  protected val onCreateBodies = new ArrayBuffer[() => Any]
+  protected var onCreateBodies = Vector[() => Any]()
 
   def onCreate(body: => Any) = {
     val el = body _
-    onCreateBodies += el
+    onCreateBodies :+= el
     el
   }
 }

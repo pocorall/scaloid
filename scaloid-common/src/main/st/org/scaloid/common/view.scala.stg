@@ -133,10 +133,10 @@ def +=(v: View) = {
   basis
 }
 
-val styles = new ArrayBuffer[View PartialFunction View]
+var styles = Vector[View PartialFunction View]()
 
 def style(stl: View PartialFunction View) = {
-  styles += stl
+  styles :+= stl
   basis
 }
 >>

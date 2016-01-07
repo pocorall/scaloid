@@ -8,7 +8,7 @@ import android.graphics.drawable.{Drawable, StateListDrawable}
 import android.os._
 import android.view._
 import android.view.WindowManager.LayoutParams._
-import scala.collection.mutable.ArrayBuffer
+import scala.collection.immutable.Vector
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 import Implicits._
@@ -117,7 +117,7 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
     val el = { () =>
       body(AppHelpers.createBundle.value)
     }
-    onCreateBodies += el
+    onCreateBodies :+= el
     el
   }
 
@@ -126,11 +126,11 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
     onStartBodies.foreach(_ ())
   }
 
-  protected val onStartBodies = new ArrayBuffer[() => Any]
+  protected var onStartBodies = Vector[() => Any]()
 
   def onStart(body: => Any) = {
     val el = body _
-    onStartBodies += el
+    onStartBodies :+= el
     el
   }
 
@@ -139,11 +139,11 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
     onResumeBodies.foreach(_ ())
   }
 
-  protected val onResumeBodies = new ArrayBuffer[() => Any]
+  protected var onResumeBodies = Vector[() => Any]()
 
   def onResume(body: => Any) = {
     val el = body _
-    onResumeBodies += el
+    onResumeBodies :+= el
     el
   }
 
@@ -152,11 +152,11 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
     super.onPause()
   }
 
-  protected val onPauseBodies = new ArrayBuffer[() => Any]
+  protected var onPauseBodies = Vector[() => Any]()
 
   def onPause(body: => Any) = {
     val el = body _
-    onPauseBodies += el
+    onPauseBodies :+= el
     el
   }
 
@@ -165,11 +165,11 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
     super.onStop()
   }
 
-  protected val onStopBodies = new ArrayBuffer[() => Any]
+  protected var onStopBodies = Vector[() => Any]()
 
   def onStop(body: => Any) = {
     val el = body _
-    onStopBodies += el
+    onStopBodies :+= el
     el
   }
 

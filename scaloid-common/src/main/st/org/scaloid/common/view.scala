@@ -7,7 +7,6 @@ import android.content._
 import android.view._
 import android.view.View._
 import android.widget._
-import scala.collection.mutable.ArrayBuffer
 import scala.language.implicitConversions
 import ViewImplicits._
 

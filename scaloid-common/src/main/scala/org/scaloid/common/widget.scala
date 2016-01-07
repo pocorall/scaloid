@@ -41,7 +41,6 @@ import android.view._
 import android.view.View._
 import android.widget._
 import scala.reflect._
-import scala.collection.mutable.ArrayBuffer
 import scala.language.implicitConversions
 import WidgetImplicits._
 
