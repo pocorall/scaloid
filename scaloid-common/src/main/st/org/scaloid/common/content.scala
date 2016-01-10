@@ -231,22 +231,25 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
    * Internal implementation for handling the service connection. You do not need to call this method.
    */
   def onServiceDisconnected(p1: ComponentName) {
-    service.foreach(onDisconnected.run _)
+    service.foreach(onDisconnected.run)
     onDisconnected.clear()
+    service = None
   }
 
   /**
    * Returns true if the service is currently connected.
    */
-  def connected: Boolean = !service.isEmpty
+  def connected: Boolean = service.isDefined
 
   reg.onRegister {
     ctx.bindService(SIntent[S], this, bindFlag)
   }
 
   reg.onUnregister {
-    service = None // prevents apply(...) methods access this after unbound
-    ctx.unbindService(this)
-    onConnected.clear() // not to be called at the next binding
+    if(connected) {
+      service = None // prevents apply(...) methods access this after unbound
+      ctx.unbindService(this)
+      onConnected.clear() // not to be called at the next binding
+    }
   }
 }
