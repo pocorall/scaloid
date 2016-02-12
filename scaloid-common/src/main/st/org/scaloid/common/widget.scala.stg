@@ -17,8 +17,10 @@ class LayoutParams[V <: View](v: V) extends FrameLayout.LayoutParams(MATCH_PAREN
 
   def parent = TraitFrameLayout.this
 
-  def >\> : V = v
-
+  def >\> : V = {
+    v.setLayoutParams(this) // triggers layout for v, see https://github.com/pocorall/scaloid/issues/144
+    v
+  }
 }
 >>
 
@@ -181,8 +183,10 @@ class LayoutParams[V <: View](v: V) extends RelativeLayout.LayoutParams(MATCH_PA
 
   def parent = SRelativeLayout.this
 
-  def >\> : V = v
-
+  def >\> : V = {
+    v.setLayoutParams(this) // triggers layout for v, see https://github.com/pocorall/scaloid/issues/144
+    v
+  }
 }
 >>
 
@@ -214,8 +218,10 @@ class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARE
   }
   def parent = SLinearLayout.this
 
-  def >\> : V = v
-
+  def >\> : V = {
+    v.setLayoutParams(this) // triggers layout for v, see https://github.com/pocorall/scaloid/issues/144
+    v
+  }
 }
 >>
 
@@ -232,7 +238,10 @@ class LayoutParams[V <: View](v: V) extends TableLayout.LayoutParams(MATCH_PAREN
 
   def parent = STableLayout.this
 
-  def >\> : V = v
+  def >\> : V = {
+    v.setLayoutParams(this) // triggers layout for v, see https://github.com/pocorall/scaloid/issues/144
+    v
+  }
 }
 >>
 
@@ -249,7 +258,10 @@ class LayoutParams[V <: View](v: V) extends TableRow.LayoutParams(MATCH_PARENT, 
 
   def parent = STableRow.this
 
-  def >\> : V = v
+  def >\> : V = {
+    v.setLayoutParams(this) // triggers layout for v, see https://github.com/pocorall/scaloid/issues/144
+    v
+  }
 }
 >>
 
@@ -266,7 +278,10 @@ class LayoutParams[V <: View](v: V) extends LinearLayout.LayoutParams(MATCH_PARE
 
   def parent = SRadioGroup.this
 
-  def >\> : V = v
+  def >\> : V = {
+    v.setLayoutParams(this) // triggers layout for v, see https://github.com/pocorall/scaloid/issues/144
+    v
+  }
 }
 >>
 

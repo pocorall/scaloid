@@ -1335,7 +1335,10 @@ class STableLayout()(implicit context: android.content.Context, parentVGroup: Tr
 
     def parent = STableLayout.this
 
-    def >> : V = v
+    def >> : V = {
+      v.setLayoutParams(this) // triggers layout for v, see https://github.com/pocorall/scaloid/issues/144
+      v
+    }
   }
 }
 
@@ -1758,7 +1761,10 @@ class SRadioGroup()(implicit context: android.content.Context, parentVGroup: Tra
 
     def parent = SRadioGroup.this
 
-    def >> : V = v
+    def >> : V = {
+      v.setLayoutParams(this) // triggers layout for v, see https://github.com/pocorall/scaloid/issues/144
+      v
+    }
   }
 }
 
@@ -2420,8 +2426,10 @@ class SRelativeLayout()(implicit context: android.content.Context, parentVGroup:
 
     def parent = SRelativeLayout.this
 
-    def >> : V = v
-
+    def >> : V = {
+      v.setLayoutParams(this) // triggers layout for v, see https://github.com/pocorall/scaloid/issues/144
+      v
+    }
   }
 }
 
@@ -5353,8 +5361,10 @@ class SLinearLayout()(implicit context: android.content.Context, parentVGroup: T
     }
     def parent = SLinearLayout.this
 
-    def >> : V = v
-
+    def >> : V = {
+      v.setLayoutParams(this) // triggers layout for v, see https://github.com/pocorall/scaloid/issues/144
+      v
+    }
   }
 }
 
@@ -6326,7 +6336,10 @@ class STableRow()(implicit context: android.content.Context, parentVGroup: Trait
 
     def parent = STableRow.this
 
-    def >> : V = v
+    def >> : V = {
+      v.setLayoutParams(this) // triggers layout for v, see https://github.com/pocorall/scaloid/issues/144
+      v
+    }
   }
 }
 
@@ -7856,8 +7869,10 @@ trait TraitFrameLayout[This <: android.widget.FrameLayout] extends TraitViewGrou
 
     def parent = TraitFrameLayout.this
 
-    def >> : V = v
-
+    def >> : V = {
+      v.setLayoutParams(this) // triggers layout for v, see https://github.com/pocorall/scaloid/issues/144
+      v
+    }
   }
 
   /**
