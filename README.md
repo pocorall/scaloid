@@ -254,7 +254,7 @@ def onPause() {
 In Scaloid, the directly equivalent code is:
 
 ```scala
-broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =>
+broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) {
   doSomething()
 }
 ```
@@ -267,7 +267,7 @@ You can override a preference that determine when the register/unregister prefor
 Overriding it is simple as well:
 
 ```scala
-broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) { (context, intent) =>
+broadcastReceiver(ConnectivityManager.CONNECTIVITY_ACTION) {
   doSomething()
 }(this, onStartStop)
 ```
