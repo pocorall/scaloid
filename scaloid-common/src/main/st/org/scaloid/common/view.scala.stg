@@ -139,6 +139,10 @@ def style(stl: View PartialFunction View) = {
   styles :+= stl
   basis
 }
+
+// Fix https://github.com/pocorall/scaloid/issues/112
+def debug(str: String)(implicit tag: LoggerTag) = org.scaloid.common.debug(str)(tag)
+
 >>
 
 

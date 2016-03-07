@@ -46,7 +46,7 @@ import android.util.Log
  */
 case class LoggerTag(_tag: String) {
   private val MAX_TAG_LEN = 22
-  val tag = if (_tag.length < MAX_TAG_LEN) _tag else ":" + _tag.substring(_tag.length - (MAX_TAG_LEN - 1), _tag.length)
+  val tag = if (_tag.length < MAX_TAG_LEN) _tag else "S" + _tag.substring(_tag.length - (MAX_TAG_LEN - 1), _tag.length)
 }
 
 /**

@@ -1885,6 +1885,9 @@ trait TraitViewGroup[This <: android.view.ViewGroup] extends TraitView[This] {
     basis
   }
 
+  // Fix https://github.com/pocorall/scaloid/issues/112
+  def debug(str: String)(implicit tag: LoggerTag) = org.scaloid.common.debug(str)(tag)
+
   /**
    * Shortcut for `[[https://developer.android.com/reference/android/view/ViewGroup.html#setAddStatesFromChildren(boolean) setAddStatesFromChildren(boolean)]]`
    */
