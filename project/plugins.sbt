@@ -8,3 +8,5 @@ libraryDependencies ++= Seq(
 )
 
 addSbtPlugin("com.danieltrinh" % "sbt-scalariform" % "1.4.0")
+
+addSbtPlugin("com.thoughtworks.sbt-api-mappings" % "sbt-api-mappings" % "0.2.2")
