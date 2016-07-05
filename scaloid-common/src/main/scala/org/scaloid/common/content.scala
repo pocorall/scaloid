@@ -397,7 +397,7 @@ class RichIntent(val intent: Intent) {
  *
  * [[http://blog.scaloid.org/2013/03/introducing-localservice.html]]
  */
-class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUTO_CREATE)(implicit ctx: Context, reg: Registerable, mf: ClassTag[S]) extends ServiceConnection {
+class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUTO_CREATE, bindAction: Option[String] = None)(implicit ctx: Context, reg: Registerable, mf: ClassTag[S]) extends ServiceConnection {
   var service: Option[S] = None
   var componentName: ComponentName = _
   var binder: IBinder = _
@@ -479,7 +479,8 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
   def connected: Boolean = service.isDefined
 
   reg.onRegister {
-    ctx.bindService(SIntent[S], this, bindFlag)
+    val intent = bindAction.map(SIntent[S](_)).getOrElse(SIntent[S])
+    ctx.bindService(intent, this, bindFlag)
   }
 
   reg.onUnregister {
