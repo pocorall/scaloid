@@ -478,8 +478,13 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
    */
   def connected: Boolean = service.isDefined
 
+  /**
+   * Creating an intent for ctx.bindService(). Extend this when you need to to something other.
+   */
+  def createIntent(): Intent = SIntent[S]
+
   reg.onRegister {
-    ctx.bindService(SIntent[S], this, bindFlag)
+    ctx.bindService(createIntent(), this, bindFlag)
   }
 
   reg.onUnregister {
