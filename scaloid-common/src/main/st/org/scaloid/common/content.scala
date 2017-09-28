@@ -216,6 +216,16 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
   def apply[T](test: S => Boolean, ifTrue: S => T, ifFalse: => T) = if(service.nonEmpty && test(service.get)) ifTrue(service.get) else ifFalse
 
   /**
+    * Execute given function and returns value if the service is connected.
+    * If the service is not connected yet, this does nothing and returns an empty option
+    * for example:
+    * val service = new LocalServiceConnection[MyService]
+    * //...
+    * val fooOption = service.maybe(_.foo)
+    */
+  def maybe[T](f: S => T): Option[T] = service.map(f)
+
+  /**
    * Internal implementation for handling the service connection. You do not need to call this method.
    */
   def onServiceConnected(p1: ComponentName, b: IBinder) {

@@ -11348,21 +11348,6 @@ trait TraitPaint[This <: android.graphics.Paint] {
   @inline def pathEffect_=(p: android.graphics.PathEffect) = { basis.setPathEffect(p); basis }
 
   /**
-   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getRasterizer() getRasterizer()]]`
-   */
-  @inline def rasterizer = basis.getRasterizer
-
-  /**
-   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setRasterizer(android.graphics.Rasterizer) setRasterizer(android.graphics.Rasterizer)]]`
-   */
-  @inline def rasterizer(p: android.graphics.Rasterizer) = rasterizer_=(p)
-
-  /**
-   * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#setRasterizer(android.graphics.Rasterizer) setRasterizer(android.graphics.Rasterizer)]]`
-   */
-  @inline def rasterizer_=(p: android.graphics.Rasterizer) = { basis.setRasterizer(p); basis }
-
-  /**
    * Shortcut for `[[https://developer.android.com/reference/android/graphics/Paint.html#getShader() getShader()]]`
    */
   @inline def shader = basis.getShader
