@@ -25,13 +25,13 @@ import scala.reflect._
 class Preferences(val preferences: SharedPreferences) extends Dynamic {
   def updateDynamic(name: String)(value: Any) {
     value match {
-      case v: String => preferences.edit().putString(name, v).commit()
-      case v: Int => preferences.edit().putInt(name, v).commit()
-      case v: Long => preferences.edit().putLong(name, v).commit()
-      case v: Boolean => preferences.edit().putBoolean(name, v).commit()
-      case v: Float => preferences.edit().putFloat(name, v).commit()
+      case v: String => preferences.edit().putString(name, v).apply()
+      case v: Int => preferences.edit().putInt(name, v).apply()
+      case v: Long => preferences.edit().putLong(name, v).apply()
+      case v: Boolean => preferences.edit().putBoolean(name, v).apply()
+      case v: Float => preferences.edit().putFloat(name, v).apply()
 $if(ver.gte_11)$
-      case v: Set[String @unchecked] => preferences.edit().putStringSet(name, v).commit()
+      case v: Set[String @unchecked] => preferences.edit().putStringSet(name, v).apply()
 $endif$
     }
   }
@@ -48,7 +48,7 @@ $endif$
   }
 
   def remove(name: String) {
-    preferences.edit().remove(name).commit()
+    preferences.edit().remove(name).apply()
   }
 
   abstract class TypedPreferences[T] extends Dynamic {

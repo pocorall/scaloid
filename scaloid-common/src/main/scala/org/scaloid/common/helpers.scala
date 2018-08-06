@@ -176,14 +176,14 @@ abstract class PreferenceVar[T](val key: String, val defaultValue: T) {
   def update(value: T)(implicit pref: SharedPreferences): this.type = {
     val editor = pref.edit()
     put(value, editor)
-    editor.commit()
+    editor.apply()
     this
   }
 
   protected def put(value: T, editor: SharedPreferences.Editor): Unit
 
   def remove()(implicit pref: SharedPreferences): this.type = {
-    pref.edit().remove(key).commit()
+    pref.edit().remove(key).apply()
     this
   }
 }
