@@ -8,7 +8,7 @@ object Dependencies {
   val scaloid = "org.scaloid" %% "scaloid" % scaloidVersion
 
   val robolectric = "org.robolectric" % "robolectric" % "2.4" % "test"
-  val scalaTest = "org.scalatest" %% "scalatest" % "2.2.5" % "test"
+  val scalaTest = "org.scalatest" %% "scalatest" % "3.0.4" % "test"
   val junit = "junit" % "junit" % "4.12" % "test"
   val junitInterface = "com.novocode" % "junit-interface" % "0.11" % "test"
 }
@@ -23,8 +23,8 @@ object ScaloidBuild extends Build {
     organizationHomepage := Some(new URL("http://blog.scaloid.org")),
     description := "Less Painful Android Development with Scala",
     startYear := Some(2012),
-    scalaVersion := "2.11.8",
-    crossScalaVersions := Seq("2.11.8"), // only 2.11.x for now
+    scalaVersion := "2.11.12",
+    crossScalaVersions := Seq("2.11.12"), // only 2.11.x for now
     version := scaloidVersion,
     publishMavenStyle := true,
     publishTo <<= version {
@@ -66,7 +66,7 @@ object ScaloidBuild extends Build {
       "-source", "1.6",
       "-target", "1.6"),
     resolvers += "Android Repository" at (new File(System.getenv("ANDROID_HOME")) / "extras" / "android" / "m2repository").getCanonicalFile.toURI.toString,
-    addCompilerPlugin("org.scalamacros" % "paradise" % "2.0.1" cross CrossVersion.full)
+    addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
   )
 
   // configure prompt to show current project
