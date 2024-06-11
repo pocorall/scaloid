@@ -116,7 +116,7 @@ object Preferences {
 
 class Extra(val activity: SActivity) extends AnyVal with Dynamic {
   def updateDynamic(name: String)(value: Any) {
-    // TODO inline after https://github.com/daniel-trinh/scalariform/issues/44 is fixed 
+    // TODO inline after https://github.com/daniel-trinh/scalariform/issues/44 is fixed
     import android.os.Parcelable
     activity.intent.foreach {
       i =>
@@ -535,7 +535,7 @@ trait TraitPreference[This <: android.preference.Preference] {
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/preference/Preference.html android.preference.Preference]]`.
  */
 class SPreference()(implicit context: android.content.Context)
-    extends android.preference.Preference(context) with TraitPreference[SPreference] {
+  extends android.preference.Preference(context) with TraitPreference[SPreference] {
 
   def basis = this
 
@@ -743,7 +743,7 @@ trait TraitEditTextPreference[This <: android.preference.EditTextPreference] ext
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/preference/EditTextPreference.html android.preference.EditTextPreference]]`.
  */
 class SEditTextPreference()(implicit context: android.content.Context)
-    extends android.preference.EditTextPreference(context) with TraitEditTextPreference[SEditTextPreference] {
+  extends android.preference.EditTextPreference(context) with TraitEditTextPreference[SEditTextPreference] {
 
   def basis = this
 

@@ -1834,7 +1834,7 @@ trait TraitView[This <: android.view.View] extends ConstantsSupport with PressAn
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/view/View.html android.view.View]]`.
  */
 class SView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.view.View(context) with TraitView[SView] {
+  extends android.view.View(context) with TraitView[SView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -2390,7 +2390,7 @@ trait TraitSurfaceView[This <: android.view.SurfaceView] extends TraitView[This]
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/view/SurfaceView.html android.view.SurfaceView]]`.
  */
 class SSurfaceView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.view.SurfaceView(context) with TraitSurfaceView[SSurfaceView] {
+  extends android.view.SurfaceView(context) with TraitSurfaceView[SSurfaceView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -2604,7 +2604,7 @@ trait TraitTextureView[This <: android.view.TextureView] extends TraitView[This]
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/view/TextureView.html android.view.TextureView]]`.
  */
 class STextureView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.view.TextureView(context) with TraitTextureView[STextureView] {
+  extends android.view.TextureView(context) with TraitTextureView[STextureView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup

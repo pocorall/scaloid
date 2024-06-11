@@ -33,22 +33,22 @@ trait Styles {
 
   @inline def invert(color: Int): Int = transform(color, 255 - _)
 
-  @inline def clamp(c: Int) = if(c > 255) 255 else if(c < 0) 0 else c
+  @inline def clamp(c: Int) = if (c > 255) 255 else if (c < 0) 0 else c
 
   def pressedColor(color: Int): Int = {
     val avg = average(color)
-    if(avg < 80) return invert(pressedColor(invert(color)))
-    def f(c: Int) = clamp((c * 0.7 * (c/(avg+0.01))).asInstanceOf[Int])
+    if (avg < 80) return invert(pressedColor(invert(color)))
+    def f(c: Int) = clamp((c * 0.7 * (c / (avg + 0.01))).asInstanceOf[Int])
     transform(color, f)
   }
 
-  def btn(normal:Int, pressed:Int) = new SStateListDrawable {
+  def btn(normal: Int, pressed: Int) = new SStateListDrawable {
     +=(c(pressed), PRESSED)
     +=(c(LTGRAY), -ENABLED)
     +=(c(normal))
   }
 
-  def btn(normal:Int): SStateListDrawable = btn(normal, pressedColor(normal))
+  def btn(normal: Int): SStateListDrawable = btn(normal, pressedColor(normal))
 
   def white = btn(WHITE)
 

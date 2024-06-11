@@ -1,5 +1,6 @@
 import sbt._
 import Keys._
+import sbt.internal.util.ManagedLogger
 import scalariform.formatter.ScalaFormatter
 import scalariform.formatter.preferences._
 
@@ -17,9 +18,7 @@ object SourceGenerator {
     step(dir).toSeq
   }
 
-  def generateTask =
-    (moduleName, baseDirectory, sourceDirectory in Compile, extract in Scaloid, apiVersion in Scaloid, scalaVersion,streams) map {
-      (mName, baseDir, srcDir, androidClasses, androidApiVersion, scalaVersion, s) =>
+  def generateTask(mName: String, baseDir: File, srcDir: File, androidClasses: Map[String, AndroidClass], androidApiVersion: Int, scalaVersion: String, log: ManagedLogger): Seq[File] = {
         import NameFilter._
 
         if (mName == "parent") Nil
@@ -31,24 +30,24 @@ object SourceGenerator {
 
           scalaTemplates.map { (file: File) =>
             val outFile = srcDir / "scala" / relativePath(file).get
-            s.log.info("Generating: " + outFile)
+            log.info("Generating: " + outFile)
 
-            val stg = new StringTemplateSupport(androidApiVersion, file, s.log)
+            val stg = new StringTemplateSupport(androidApiVersion, file, log)
             val params = androidClasses
             val generatedCode = stg.render(file, params)
             IO.write(outFile, generatedCode)
 
-            s.log.info("Formatting: "+ outFile)
+            log.info("Formatting: "+ outFile)
             try {
               val formattedCode = formatCode(generatedCode, scalaVersion)
               if (generatedCode != formattedCode) {
-                s.log.info("Reformatted: "+ outFile)
+                log.info("Reformatted: "+ outFile)
                 IO.write(outFile, formattedCode)
               }
             } catch {
               case e: Throwable =>
-                s.log.error("Failed to generate "+ outFile)
-                s.log.trace(e)
+                log.error("Failed to generate "+ outFile)
+                log.trace(e)
             }
 
             outFile
@@ -58,8 +57,8 @@ object SourceGenerator {
 
   private val scalariformPreferences = {
     FormattingPreferences()
-      .setPreference(DoubleIndentClassDeclaration, true)
-      .setPreference(PreserveDanglingCloseParenthesis, true)
+      .setPreference(DoubleIndentConstructorArguments, true)
+      .setPreference(DanglingCloseParenthesis, Preserve)
   }
 
   private def formatCode(code: String, scalaVersion: String): String = {

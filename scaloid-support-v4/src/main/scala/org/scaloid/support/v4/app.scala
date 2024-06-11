@@ -204,7 +204,7 @@ trait TraitFragment[This <: android.support.v4.app.Fragment] {
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/support/v4/app/Fragment.html android.support.v4.app.Fragment]]`.
  */
 class SFragment()
-    extends android.support.v4.app.Fragment() with TraitFragment[SFragment] {
+  extends android.support.v4.app.Fragment() with TraitFragment[SFragment] {
 
   def basis = this
 
@@ -252,7 +252,7 @@ trait TraitFragmentActivity[This <: android.support.v4.app.FragmentActivity] ext
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/support/v4/app/FragmentActivity.html android.support.v4.app.FragmentActivity]]`.
  */
 class SFragmentActivity()
-    extends android.support.v4.app.FragmentActivity() with TraitFragmentActivity[SFragmentActivity] {
+  extends android.support.v4.app.FragmentActivity() with TraitFragmentActivity[SFragmentActivity] {
 
   def basis = this
 
@@ -469,7 +469,7 @@ trait TraitListFragment[This <: android.support.v4.app.ListFragment] extends Tra
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/support/v4/app/ListFragment.html android.support.v4.app.ListFragment]]`.
  */
 class SListFragment()
-    extends android.support.v4.app.ListFragment() with TraitListFragment[SListFragment] {
+  extends android.support.v4.app.ListFragment() with TraitListFragment[SListFragment] {
 
   def basis = this
 
@@ -540,7 +540,7 @@ trait TraitDialogFragment[This <: android.support.v4.app.DialogFragment] extends
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/support/v4/app/DialogFragment.html android.support.v4.app.DialogFragment]]`.
  */
 class SDialogFragment()
-    extends android.support.v4.app.DialogFragment() with TraitDialogFragment[SDialogFragment] {
+  extends android.support.v4.app.DialogFragment() with TraitDialogFragment[SDialogFragment] {
 
   def basis = this
 

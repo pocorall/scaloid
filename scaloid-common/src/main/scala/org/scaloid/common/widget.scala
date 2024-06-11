@@ -281,7 +281,7 @@ trait TraitPopupWindow[This <: android.widget.PopupWindow] {
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/PopupWindow.html android.widget.PopupWindow]]`.
  */
 class SPopupWindow()(implicit context: android.content.Context)
-    extends android.widget.PopupWindow(context) with TraitPopupWindow[SPopupWindow] {
+  extends android.widget.PopupWindow(context) with TraitPopupWindow[SPopupWindow] {
 
   def basis = this
 
@@ -346,7 +346,7 @@ trait TraitArrayAdapter[This <: android.widget.ArrayAdapter[_]] extends TraitBas
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ArrayAdapter.html android.widget.ArrayAdapter[_]]]`.
  */
 class SArrayAdapter[V <: android.view.View, T <: AnyRef](items: java.util.List[T], textViewResourceId: Int = android.R.layout.simple_spinner_item)(implicit context: android.content.Context)
-    extends android.widget.ArrayAdapter[T](context, textViewResourceId, items) with TraitArrayAdapter[SArrayAdapter[V, T]] {
+  extends android.widget.ArrayAdapter[T](context, textViewResourceId, items) with TraitArrayAdapter[SArrayAdapter[V, T]] {
 
   def basis = this
 
@@ -413,7 +413,7 @@ object SArrayAdapter {
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/AbsoluteLayout.html android.widget.AbsoluteLayout]]`.
  */
 @deprecated("", "") class SAbsoluteLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.AbsoluteLayout(context) with TraitAbsoluteLayout[SAbsoluteLayout] {
+  extends android.widget.AbsoluteLayout(context) with TraitAbsoluteLayout[SAbsoluteLayout] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -459,7 +459,7 @@ trait TraitImageButton[This <: android.widget.ImageButton] extends TraitImageVie
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ImageButton.html android.widget.ImageButton]]`.
  */
 class SImageButton()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.ImageButton(context) with TraitImageButton[SImageButton] {
+  extends android.widget.ImageButton(context) with TraitImageButton[SImageButton] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -650,7 +650,7 @@ trait TraitListView[This <: android.widget.ListView] extends TraitAbsListView[Th
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ListView.html android.widget.ListView]]`.
  */
 class SListView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.ListView(context) with TraitListView[SListView] {
+  extends android.widget.ListView(context) with TraitListView[SListView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -699,7 +699,7 @@ trait TraitEditText[This <: android.widget.EditText] extends TraitTextView[This]
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/EditText.html android.widget.EditText]]`.
  */
 class SEditText()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.EditText(context) with TraitEditText[SEditText] {
+  extends android.widget.EditText(context) with TraitEditText[SEditText] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -978,7 +978,7 @@ trait TraitImageView[This <: android.widget.ImageView] extends TraitView[This] {
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ImageView.html android.widget.ImageView]]`.
  */
 class SImageView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.ImageView(context) with TraitImageView[SImageView] {
+  extends android.widget.ImageView(context) with TraitImageView[SImageView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -1027,7 +1027,7 @@ trait TraitAnalogClock[This <: android.widget.AnalogClock] extends TraitView[Thi
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/AnalogClock.html android.widget.AnalogClock]]`.
  */
 class SAnalogClock()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.AnalogClock(context) with TraitAnalogClock[SAnalogClock] {
+  extends android.widget.AnalogClock(context) with TraitAnalogClock[SAnalogClock] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -1071,7 +1071,7 @@ trait TraitMultiAutoCompleteTextView[This <: android.widget.MultiAutoCompleteTex
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/MultiAutoCompleteTextView.html android.widget.MultiAutoCompleteTextView]]`.
  */
 class SMultiAutoCompleteTextView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.MultiAutoCompleteTextView(context) with TraitMultiAutoCompleteTextView[SMultiAutoCompleteTextView] {
+  extends android.widget.MultiAutoCompleteTextView(context) with TraitMultiAutoCompleteTextView[SMultiAutoCompleteTextView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -1200,7 +1200,7 @@ trait TraitDatePicker[This <: android.widget.DatePicker] extends TraitFrameLayou
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/DatePicker.html android.widget.DatePicker]]`.
  */
 class SDatePicker()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.DatePicker(context) with TraitDatePicker[SDatePicker] {
+  extends android.widget.DatePicker(context) with TraitDatePicker[SDatePicker] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -1319,7 +1319,7 @@ trait TraitTableLayout[This <: android.widget.TableLayout] extends TraitLinearLa
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TableLayout.html android.widget.TableLayout]]`.
  */
 class STableLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.TableLayout(context) with TraitTableLayout[STableLayout] {
+  extends android.widget.TableLayout(context) with TraitTableLayout[STableLayout] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -1521,7 +1521,7 @@ trait TraitTabHost[This <: android.widget.TabHost] extends TraitFrameLayout[This
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TabHost.html android.widget.TabHost]]`.
  */
 class STabHost()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.TabHost(context) with TraitTabHost[STabHost] {
+  extends android.widget.TabHost(context) with TraitTabHost[STabHost] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -1658,7 +1658,7 @@ trait TraitGridLayout[This <: android.widget.GridLayout] extends TraitViewGroup[
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/GridLayout.html android.widget.GridLayout]]`.
  */
 class SGridLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.GridLayout(context) with TraitGridLayout[SGridLayout] {
+  extends android.widget.GridLayout(context) with TraitGridLayout[SGridLayout] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -1745,7 +1745,7 @@ trait TraitRadioGroup[This <: android.widget.RadioGroup] extends TraitLinearLayo
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/RadioGroup.html android.widget.RadioGroup]]`.
  */
 class SRadioGroup()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.RadioGroup(context) with TraitRadioGroup[SRadioGroup] {
+  extends android.widget.RadioGroup(context) with TraitRadioGroup[SRadioGroup] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -1877,7 +1877,7 @@ trait TraitRatingBar[This <: android.widget.RatingBar] extends TraitAbsSeekBar[T
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/RatingBar.html android.widget.RatingBar]]`.
  */
 class SRatingBar()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.RatingBar(context) with TraitRatingBar[SRatingBar] {
+  extends android.widget.RatingBar(context) with TraitRatingBar[SRatingBar] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -2056,7 +2056,7 @@ trait TraitSpinner[This <: android.widget.Spinner] extends TraitAbsSpinner[This]
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/Spinner.html android.widget.Spinner]]`.
  */
 class SSpinner()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.Spinner(context) with TraitSpinner[SSpinner] {
+  extends android.widget.Spinner(context) with TraitSpinner[SSpinner] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -2222,7 +2222,7 @@ trait TraitGridView[This <: android.widget.GridView] extends TraitAbsListView[Th
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/GridView.html android.widget.GridView]]`.
  */
 class SGridView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.GridView(context) with TraitGridView[SGridView] {
+  extends android.widget.GridView(context) with TraitGridView[SGridView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -2305,7 +2305,7 @@ trait TraitRelativeLayout[This <: android.widget.RelativeLayout] extends TraitVi
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/RelativeLayout.html android.widget.RelativeLayout]]`.
  */
 class SRelativeLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.RelativeLayout(context) with TraitRelativeLayout[SRelativeLayout] {
+  extends android.widget.RelativeLayout(context) with TraitRelativeLayout[SRelativeLayout] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -2609,7 +2609,7 @@ trait TraitNumberPicker[This <: android.widget.NumberPicker] extends TraitLinear
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/NumberPicker.html android.widget.NumberPicker]]`.
  */
 class SNumberPicker()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.NumberPicker(context) with TraitNumberPicker[SNumberPicker] {
+  extends android.widget.NumberPicker(context) with TraitNumberPicker[SNumberPicker] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -2700,7 +2700,7 @@ trait TraitChronometer[This <: android.widget.Chronometer] extends TraitTextView
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/Chronometer.html android.widget.Chronometer]]`.
  */
 class SChronometer()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.Chronometer(context) with TraitChronometer[SChronometer] {
+  extends android.widget.Chronometer(context) with TraitChronometer[SChronometer] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -2808,7 +2808,7 @@ trait TraitCheckedTextView[This <: android.widget.CheckedTextView] extends Trait
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/CheckedTextView.html android.widget.CheckedTextView]]`.
  */
 class SCheckedTextView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.CheckedTextView(context) with TraitCheckedTextView[SCheckedTextView] {
+  extends android.widget.CheckedTextView(context) with TraitCheckedTextView[SCheckedTextView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -2886,7 +2886,7 @@ trait TraitTwoLineListItem[This <: android.widget.TwoLineListItem] extends Trait
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TwoLineListItem.html android.widget.TwoLineListItem]]`.
  */
 class STwoLineListItem()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.TwoLineListItem(context) with TraitTwoLineListItem[STwoLineListItem] {
+  extends android.widget.TwoLineListItem(context) with TraitTwoLineListItem[STwoLineListItem] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -3012,7 +3012,7 @@ trait TraitShareActionProvider[This <: android.widget.ShareActionProvider] exten
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ShareActionProvider.html android.widget.ShareActionProvider]]`.
  */
 class SShareActionProvider()(implicit context: android.content.Context)
-    extends android.widget.ShareActionProvider(context) with TraitShareActionProvider[SShareActionProvider] {
+  extends android.widget.ShareActionProvider(context) with TraitShareActionProvider[SShareActionProvider] {
 
   def basis = this
 
@@ -3079,7 +3079,7 @@ trait TraitImageSwitcher[This <: android.widget.ImageSwitcher] extends TraitView
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ImageSwitcher.html android.widget.ImageSwitcher]]`.
  */
 class SImageSwitcher()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.ImageSwitcher(context) with TraitImageSwitcher[SImageSwitcher] {
+  extends android.widget.ImageSwitcher(context) with TraitImageSwitcher[SImageSwitcher] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -3177,7 +3177,7 @@ trait TraitTimePicker[This <: android.widget.TimePicker] extends TraitFrameLayou
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TimePicker.html android.widget.TimePicker]]`.
  */
 class STimePicker()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.TimePicker(context) with TraitTimePicker[STimePicker] {
+  extends android.widget.TimePicker(context) with TraitTimePicker[STimePicker] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -3386,7 +3386,7 @@ trait TraitExpandableListView[This <: android.widget.ExpandableListView] extends
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ExpandableListView.html android.widget.ExpandableListView]]`.
  */
 class SExpandableListView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.ExpandableListView(context) with TraitExpandableListView[SExpandableListView] {
+  extends android.widget.ExpandableListView(context) with TraitExpandableListView[SExpandableListView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -3892,7 +3892,7 @@ trait TraitSeekBar[This <: android.widget.SeekBar] extends TraitAbsSeekBar[This]
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/SeekBar.html android.widget.SeekBar]]`.
  */
 class SSeekBar()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.SeekBar(context) with TraitSeekBar[SSeekBar] {
+  extends android.widget.SeekBar(context) with TraitSeekBar[SSeekBar] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -4003,7 +4003,7 @@ trait TraitToast[This <: android.widget.Toast] {
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/Toast.html android.widget.Toast]]`.
  */
 class SToast()(implicit context: android.content.Context)
-    extends android.widget.Toast(context) with TraitToast[SToast] {
+  extends android.widget.Toast(context) with TraitToast[SToast] {
 
   def basis = this
 
@@ -4048,7 +4048,7 @@ trait TraitStackView[This <: android.widget.StackView] extends TraitAdapterViewA
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/StackView.html android.widget.StackView]]`.
  */
 class SStackView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.StackView(context) with TraitStackView[SStackView] {
+  extends android.widget.StackView(context) with TraitStackView[SStackView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -4344,7 +4344,7 @@ trait TraitViewAnimator[This <: android.widget.ViewAnimator] extends TraitFrameL
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ViewAnimator.html android.widget.ViewAnimator]]`.
  */
 class SViewAnimator()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.ViewAnimator(context) with TraitViewAnimator[SViewAnimator] {
+  extends android.widget.ViewAnimator(context) with TraitViewAnimator[SViewAnimator] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -4622,7 +4622,7 @@ trait TraitCalendarView[This <: android.widget.CalendarView] extends TraitFrameL
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/CalendarView.html android.widget.CalendarView]]`.
  */
 class SCalendarView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.CalendarView(context) with TraitCalendarView[SCalendarView] {
+  extends android.widget.CalendarView(context) with TraitCalendarView[SCalendarView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -5085,7 +5085,7 @@ trait TraitListPopupWindow[This <: android.widget.ListPopupWindow] {
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ListPopupWindow.html android.widget.ListPopupWindow]]`.
  */
 class SListPopupWindow()(implicit context: android.content.Context)
-    extends android.widget.ListPopupWindow(context) with TraitListPopupWindow[SListPopupWindow] {
+  extends android.widget.ListPopupWindow(context) with TraitListPopupWindow[SListPopupWindow] {
 
   def basis = this
 
@@ -5140,7 +5140,7 @@ trait TraitTextSwitcher[This <: android.widget.TextSwitcher] extends TraitViewSw
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TextSwitcher.html android.widget.TextSwitcher]]`.
  */
 class STextSwitcher()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.TextSwitcher(context) with TraitTextSwitcher[STextSwitcher] {
+  extends android.widget.TextSwitcher(context) with TraitTextSwitcher[STextSwitcher] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -5331,7 +5331,7 @@ trait TraitLinearLayout[This <: android.widget.LinearLayout] extends TraitViewGr
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/LinearLayout.html android.widget.LinearLayout]]`.
  */
 class SLinearLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.LinearLayout(context) with TraitLinearLayout[SLinearLayout] {
+  extends android.widget.LinearLayout(context) with TraitLinearLayout[SLinearLayout] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -5487,7 +5487,7 @@ trait TraitZoomControls[This <: android.widget.ZoomControls] extends TraitLinear
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ZoomControls.html android.widget.ZoomControls]]`.
  */
 class SZoomControls()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.ZoomControls(context) with TraitZoomControls[SZoomControls] {
+  extends android.widget.ZoomControls(context) with TraitZoomControls[SZoomControls] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -5585,7 +5585,7 @@ trait TraitDialerFilter[This <: android.widget.DialerFilter] extends TraitRelati
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/DialerFilter.html android.widget.DialerFilter]]`.
  */
 class SDialerFilter()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.DialerFilter(context) with TraitDialerFilter[SDialerFilter] {
+  extends android.widget.DialerFilter(context) with TraitDialerFilter[SDialerFilter] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -5617,7 +5617,7 @@ trait TraitRadioButton[This <: android.widget.RadioButton] extends TraitCompound
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/RadioButton.html android.widget.RadioButton]]`.
  */
 class SRadioButton()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.RadioButton(context) with TraitRadioButton[SRadioButton] {
+  extends android.widget.RadioButton(context) with TraitRadioButton[SRadioButton] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -5690,7 +5690,7 @@ trait TraitQuickContactBadge[This <: android.widget.QuickContactBadge] extends T
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/QuickContactBadge.html android.widget.QuickContactBadge]]`.
  */
 class SQuickContactBadge()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.QuickContactBadge(context) with TraitQuickContactBadge[SQuickContactBadge] {
+  extends android.widget.QuickContactBadge(context) with TraitQuickContactBadge[SQuickContactBadge] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -6001,7 +6001,7 @@ trait TraitSearchView[This <: android.widget.SearchView] extends TraitLinearLayo
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/SearchView.html android.widget.SearchView]]`.
  */
 class SSearchView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.SearchView(context) with TraitSearchView[SSearchView] {
+  extends android.widget.SearchView(context) with TraitSearchView[SSearchView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -6033,7 +6033,7 @@ trait TraitDigitalClock[This <: android.widget.DigitalClock] extends TraitTextVi
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/DigitalClock.html android.widget.DigitalClock]]`.
  */
 class SDigitalClock()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.DigitalClock(context) with TraitDigitalClock[SDigitalClock] {
+  extends android.widget.DigitalClock(context) with TraitDigitalClock[SDigitalClock] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -6112,7 +6112,7 @@ trait TraitToggleButton[This <: android.widget.ToggleButton] extends TraitCompou
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ToggleButton.html android.widget.ToggleButton]]`.
  */
 class SToggleButton()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.ToggleButton(context) with TraitToggleButton[SToggleButton] {
+  extends android.widget.ToggleButton(context) with TraitToggleButton[SToggleButton] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -6161,7 +6161,7 @@ trait TraitButton[This <: android.widget.Button] extends TraitTextView[This] {
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/Button.html android.widget.Button]]`.
  */
 class SButton()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.Button(context) with TraitButton[SButton] {
+  extends android.widget.Button(context) with TraitButton[SButton] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -6210,7 +6210,7 @@ trait TraitCheckBox[This <: android.widget.CheckBox] extends TraitCompoundButton
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/CheckBox.html android.widget.CheckBox]]`.
  */
 class SCheckBox()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.CheckBox(context) with TraitCheckBox[SCheckBox] {
+  extends android.widget.CheckBox(context) with TraitCheckBox[SCheckBox] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -6283,7 +6283,7 @@ trait TraitMediaController[This <: android.widget.MediaController] extends Trait
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/MediaController.html android.widget.MediaController]]`.
  */
 class SMediaController()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.MediaController(context) with TraitMediaController[SMediaController] {
+  extends android.widget.MediaController(context) with TraitMediaController[SMediaController] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -6320,7 +6320,7 @@ trait TraitTableRow[This <: android.widget.TableRow] extends TraitLinearLayout[T
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TableRow.html android.widget.TableRow]]`.
  */
 class STableRow()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.TableRow(context) with TraitTableRow[STableRow] {
+  extends android.widget.TableRow(context) with TraitTableRow[STableRow] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -6457,7 +6457,7 @@ trait TraitTabWidget[This <: android.widget.TabWidget] extends TraitLinearLayout
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TabWidget.html android.widget.TabWidget]]`.
  */
 class STabWidget()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.TabWidget(context) with TraitTabWidget[STabWidget] {
+  extends android.widget.TabWidget(context) with TraitTabWidget[STabWidget] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -6618,7 +6618,7 @@ trait TraitVideoView[This <: android.widget.VideoView] extends TraitSurfaceView[
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/VideoView.html android.widget.VideoView]]`.
  */
 class SVideoView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.VideoView(context) with TraitVideoView[SVideoView] {
+  extends android.widget.VideoView(context) with TraitVideoView[SVideoView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -6901,7 +6901,7 @@ trait TraitHorizontalScrollView[This <: android.widget.HorizontalScrollView] ext
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/HorizontalScrollView.html android.widget.HorizontalScrollView]]`.
  */
 class SHorizontalScrollView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.HorizontalScrollView(context) with TraitHorizontalScrollView[SHorizontalScrollView] {
+  extends android.widget.HorizontalScrollView(context) with TraitHorizontalScrollView[SHorizontalScrollView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -7038,7 +7038,7 @@ trait TraitProgressBar[This <: android.widget.ProgressBar] extends TraitView[Thi
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ProgressBar.html android.widget.ProgressBar]]`.
  */
 class SProgressBar()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.ProgressBar(context) with TraitProgressBar[SProgressBar] {
+  extends android.widget.ProgressBar(context) with TraitProgressBar[SProgressBar] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -7108,7 +7108,7 @@ trait TraitScrollView[This <: android.widget.ScrollView] extends TraitFrameLayou
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ScrollView.html android.widget.ScrollView]]`.
  */
 class SScrollView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.ScrollView(context) with TraitScrollView[SScrollView] {
+  extends android.widget.ScrollView(context) with TraitScrollView[SScrollView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -7170,7 +7170,7 @@ trait TraitAdapterViewFlipper[This <: android.widget.AdapterViewFlipper] extends
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/AdapterViewFlipper.html android.widget.AdapterViewFlipper]]`.
  */
 class SAdapterViewFlipper()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.AdapterViewFlipper(context) with TraitAdapterViewFlipper[SAdapterViewFlipper] {
+  extends android.widget.AdapterViewFlipper(context) with TraitAdapterViewFlipper[SAdapterViewFlipper] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -7253,7 +7253,7 @@ trait TraitEdgeEffect[This <: android.widget.EdgeEffect] {
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/EdgeEffect.html android.widget.EdgeEffect]]`.
  */
 class SEdgeEffect()(implicit context: android.content.Context)
-    extends android.widget.EdgeEffect(context) with TraitEdgeEffect[SEdgeEffect] {
+  extends android.widget.EdgeEffect(context) with TraitEdgeEffect[SEdgeEffect] {
 
   def basis = this
 
@@ -7387,7 +7387,7 @@ trait TraitViewSwitcher[This <: android.widget.ViewSwitcher] extends TraitViewAn
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ViewSwitcher.html android.widget.ViewSwitcher]]`.
  */
 class SViewSwitcher()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.ViewSwitcher(context) with TraitViewSwitcher[SViewSwitcher] {
+  extends android.widget.ViewSwitcher(context) with TraitViewSwitcher[SViewSwitcher] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -7431,7 +7431,7 @@ trait TraitZoomButton[This <: android.widget.ZoomButton] extends TraitImageButto
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ZoomButton.html android.widget.ZoomButton]]`.
  */
 class SZoomButton()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.ZoomButton(context) with TraitZoomButton[SZoomButton] {
+  extends android.widget.ZoomButton(context) with TraitZoomButton[SZoomButton] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -7540,7 +7540,7 @@ object SZoomButton extends ImageViewCompanion[SZoomButton] {
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/Gallery.html android.widget.Gallery]]`.
  */
 @deprecated("", "") class SGallery()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.Gallery(context) with TraitGallery[SGallery] {
+  extends android.widget.Gallery(context) with TraitGallery[SGallery] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -7931,7 +7931,7 @@ trait TraitFrameLayout[This <: android.widget.FrameLayout] extends TraitViewGrou
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/FrameLayout.html android.widget.FrameLayout]]`.
  */
 class SFrameLayout()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.FrameLayout(context) with TraitFrameLayout[SFrameLayout] {
+  extends android.widget.FrameLayout(context) with TraitFrameLayout[SFrameLayout] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -9021,7 +9021,7 @@ trait TraitTextView[This <: android.widget.TextView] extends TraitView[This] {
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/TextView.html android.widget.TextView]]`.
  */
 class STextView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.TextView(context) with TraitTextView[STextView] {
+  extends android.widget.TextView(context) with TraitTextView[STextView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -9119,7 +9119,7 @@ trait TraitOverScroller[This <: android.widget.OverScroller] {
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/OverScroller.html android.widget.OverScroller]]`.
  */
 class SOverScroller()(implicit context: android.content.Context)
-    extends android.widget.OverScroller(context) with TraitOverScroller[SOverScroller] {
+  extends android.widget.OverScroller(context) with TraitOverScroller[SOverScroller] {
 
   def basis = this
 
@@ -9177,7 +9177,7 @@ trait TraitViewFlipper[This <: android.widget.ViewFlipper] extends TraitViewAnim
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/ViewFlipper.html android.widget.ViewFlipper]]`.
  */
 class SViewFlipper()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.ViewFlipper(context) with TraitViewFlipper[SViewFlipper] {
+  extends android.widget.ViewFlipper(context) with TraitViewFlipper[SViewFlipper] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -9283,7 +9283,7 @@ trait TraitScroller[This <: android.widget.Scroller] {
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/Scroller.html android.widget.Scroller]]`.
  */
 class SScroller()(implicit context: android.content.Context)
-    extends android.widget.Scroller(context) with TraitScroller[SScroller] {
+  extends android.widget.Scroller(context) with TraitScroller[SScroller] {
 
   def basis = this
 
@@ -9623,7 +9623,7 @@ trait TraitAutoCompleteTextView[This <: android.widget.AutoCompleteTextView] ext
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/AutoCompleteTextView.html android.widget.AutoCompleteTextView]]`.
  */
 class SAutoCompleteTextView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.AutoCompleteTextView(context) with TraitAutoCompleteTextView[SAutoCompleteTextView] {
+  extends android.widget.AutoCompleteTextView(context) with TraitAutoCompleteTextView[SAutoCompleteTextView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -9837,7 +9837,7 @@ trait TraitSwitch[This <: android.widget.Switch] extends TraitCompoundButton[Thi
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/widget/Switch.html android.widget.Switch]]`.
  */
 class SSwitch()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.widget.Switch(context) with TraitSwitch[SSwitch] {
+  extends android.widget.Switch(context) with TraitSwitch[SSwitch] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -9982,7 +9982,7 @@ trait TraitExtractEditText[This <: android.inputmethodservice.ExtractEditText] e
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/inputmethodservice/ExtractEditText.html android.inputmethodservice.ExtractEditText]]`.
  */
 class SExtractEditText()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.inputmethodservice.ExtractEditText(context) with TraitExtractEditText[SExtractEditText] {
+  extends android.inputmethodservice.ExtractEditText(context) with TraitExtractEditText[SExtractEditText] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -10440,7 +10440,7 @@ trait TraitGLSurfaceView[This <: android.opengl.GLSurfaceView] extends TraitSurf
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/opengl/GLSurfaceView.html android.opengl.GLSurfaceView]]`.
  */
 class SGLSurfaceView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.opengl.GLSurfaceView(context) with TraitGLSurfaceView[SGLSurfaceView] {
+  extends android.opengl.GLSurfaceView(context) with TraitGLSurfaceView[SGLSurfaceView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -10482,7 +10482,7 @@ trait TraitAppWidgetHostView[This <: android.appwidget.AppWidgetHostView] extend
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/appwidget/AppWidgetHostView.html android.appwidget.AppWidgetHostView]]`.
  */
 class SAppWidgetHostView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.appwidget.AppWidgetHostView(context) with TraitAppWidgetHostView[SAppWidgetHostView] {
+  extends android.appwidget.AppWidgetHostView(context) with TraitAppWidgetHostView[SAppWidgetHostView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -10851,7 +10851,7 @@ trait TraitGestureOverlayView[This <: android.gesture.GestureOverlayView] extend
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/gesture/GestureOverlayView.html android.gesture.GestureOverlayView]]`.
  */
 class SGestureOverlayView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.gesture.GestureOverlayView(context) with TraitGestureOverlayView[SGestureOverlayView] {
+  extends android.gesture.GestureOverlayView(context) with TraitGestureOverlayView[SGestureOverlayView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -11124,7 +11124,7 @@ trait TraitWebView[This <: android.webkit.WebView] extends TraitAbsoluteLayout[T
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/webkit/WebView.html android.webkit.WebView]]`.
  */
 class SWebView()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.webkit.WebView(context) with TraitWebView[SWebView] {
+  extends android.webkit.WebView(context) with TraitWebView[SWebView] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
@@ -11578,7 +11578,7 @@ trait TraitPaint[This <: android.graphics.Paint] {
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/graphics/Paint.html android.graphics.Paint]]`.
  */
 class SPaint()
-    extends android.graphics.Paint() with TraitPaint[SPaint] {
+  extends android.graphics.Paint() with TraitPaint[SPaint] {
 
   def basis = this
 

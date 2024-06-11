@@ -1,12 +1,12 @@
 import sbt._
-import Keys._
 
 import java.beans.Introspector
-import java.lang.reflect.{Array => JavaArray, _}
+import java.lang.reflect._
 import java.util.jar.JarFile
 import org.reflections._
 import org.reflections.scanners._
 import org.reflections.util._
+import sbt.internal.util.ManagedLogger
 import scala.collection.JavaConversions._
 
 
@@ -314,11 +314,10 @@ object AndroidClassExtractor extends JavaConversionHelpers {
     AndroidClass(clsName, pkg, tpe, parentType, constructors, props, listeners, intentMethods, isA, isAbstract(cls), isFinal(cls), hasBlankConstructor, isDeprecated(cls))
   }
 
-  def extractTask = (moduleName, baseDirectory, streams) map {
-    (mName, baseDir, s) =>
+  def extractTask(mName: String, baseDir: File, log: ManagedLogger) =  {
       if (mName == "parent") Map[String, AndroidClass]()
       else {
-        s.log.info("Extracting class info from Android...")
+        log.info("Extracting class info from Android...")
 
         val classLoaders =
           List(ClasspathHelper.contextClassLoader(), ClasspathHelper.staticClassLoader())
@@ -353,11 +352,11 @@ object AndroidClassExtractor extends JavaConversionHelpers {
           .toMap
 
         val values = res.values.toList
-        s.log.info("Done.")
-        s.log.info("Classes: " + values.length)
-        s.log.info("Properties: " + values.map(_.properties).flatten.length)
-        s.log.info("Listeners: " + values.map(_.listeners).flatten.length)
-        s.log.info("Constructors: " + values.map(_.constructors).flatten.length)
+        log.info("Done.")
+        log.info("Classes: " + values.length)
+        log.info("Properties: " + values.map(_.properties).flatten.length)
+        log.info("Listeners: " + values.map(_.listeners).flatten.length)
+        log.info("Constructors: " + values.map(_.constructors).flatten.length)
         res
       }
   }

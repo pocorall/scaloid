@@ -309,7 +309,7 @@ trait TraitContextWrapper[This <: android.content.ContextWrapper] extends TraitC
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/content/ContextWrapper.html android.content.ContextWrapper]]`.
  */
 class SContextWrapper()(implicit base: android.content.Context)
-    extends android.content.ContextWrapper(base) with TraitContextWrapper[SContextWrapper] {
+  extends android.content.ContextWrapper(base) with TraitContextWrapper[SContextWrapper] {
 
   def basis = this
 

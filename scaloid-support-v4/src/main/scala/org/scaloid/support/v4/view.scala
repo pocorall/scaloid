@@ -201,7 +201,7 @@ trait TraitViewPager[This <: android.support.v4.view.ViewPager] extends TraitVie
  * Automatically generated concrete helper class of `[[https://developer.android.com/reference/android/support/v4/view/ViewPager.html android.support.v4.view.ViewPager]]`.
  */
 class SViewPager()(implicit context: android.content.Context, parentVGroup: TraitViewGroup[_] = null)
-    extends android.support.v4.view.ViewPager(context) with TraitViewPager[SViewPager] {
+  extends android.support.v4.view.ViewPager(context) with TraitViewPager[SViewPager] {
 
   def basis = this
   override val parentViewGroup = parentVGroup
