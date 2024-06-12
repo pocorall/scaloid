@@ -11,11 +11,11 @@ trait Playable {
   protected var _startTime = 0L
   val NOT_STARTED = 0L
 
-  final def running: Boolean = _startTime != NOT_STARTED
+  def running: Boolean = _startTime != NOT_STARTED
 
-  final def startTime: Long = _startTime
+  def startTime: Long = _startTime
 
-  final def timeElapsed: Long = {
+  def timeElapsed: Long = {
     val t = _startTime
     if (t == NOT_STARTED) 0L else System.currentTimeMillis() - t
   }
