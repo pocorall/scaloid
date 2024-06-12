@@ -3,9 +3,10 @@ $license()$
 package org.scaloid.common
 
 import android.content.{Context, SharedPreferences}
-import scala.collection.JavaConverters._
+
 import scala.language.dynamics
 import scala.reflect._
+import scala.collection.JavaConverters._
 
 /**
  * An accessor of SharedPreferences.
@@ -23,7 +24,7 @@ import scala.reflect._
  * @param preferences
  */
 class Preferences(val preferences: SharedPreferences) extends Dynamic {
-  def updateDynamic(name: String)(value: Any) {
+  def updateDynamic(name: String)(value: Any): Unit = {
     value match {
       case v: String => preferences.edit().putString(name, v).apply()
       case v: Int => preferences.edit().putInt(name, v).apply()
@@ -47,7 +48,7 @@ $if(ver.gte_11)$
 $endif$
   }
 
-  def remove(name: String) {
+  def remove(name: String): Unit = {
     preferences.edit().remove(name).apply()
   }
 
@@ -89,7 +90,7 @@ object Preferences {
 
 
 class Extra(val activity: SActivity) extends AnyVal with Dynamic {
-  def updateDynamic(name: String)(value: Any) {
+  def updateDynamic(name: String)(value: Any): Unit = {
     // TODO inline after https://github.com/daniel-trinh/scalariform/issues/44 is fixed 
     import android.os.Parcelable
     activity.intent.foreach {

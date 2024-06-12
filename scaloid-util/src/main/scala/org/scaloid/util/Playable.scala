@@ -39,7 +39,7 @@ trait PauseOnCall extends Playable {
 
   private var _paused = false
 
-  protected def paused = _paused
+  protected def paused: Boolean = _paused
 
   onCallStateChanged {
     case (TelephonyManager.CALL_STATE_RINGING, _) =>
@@ -82,10 +82,10 @@ abstract class PlayableConnector(activity: SActivity) {
 
   var timerInterval = 1000
 
-  private def startTimer() {
+  private def startTimer(): Unit = {
     timer = new Timer()
     timer.schedule(new TimerTask {
-      def run() {
+      def run(): Unit = {
         runOnUiThread(updateUI(ON_HEARTBEAT))
       }
     }, timerInterval, timerInterval)
@@ -95,14 +95,14 @@ abstract class PlayableConnector(activity: SActivity) {
     timer.cancel()
   }
 
-  def onServiceConnected() {
+  def onServiceConnected(): Unit = {
     runOnUiThread(updateUI(ON_CONNECTED))
     if (playable.fold(false)(_.running)) {
       startTimer()
     }
   }
 
-  def updateUI(event: UpdateEvent)
+  def updateUI(event: UpdateEvent): Unit
 
   private def start(p: Playable): Unit = {
     if (p.running) return

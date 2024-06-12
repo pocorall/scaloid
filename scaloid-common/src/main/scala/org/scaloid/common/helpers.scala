@@ -42,6 +42,8 @@ import android.net._
 import android.preference._
 import android.widget._
 import android.view._
+import org.scaloid.common.{ AlertDialogBuilder, Registerable, SIntent }
+
 import scala.concurrent.Future
 import scala.reflect._
 import scala.util.DynamicVariable
@@ -55,7 +57,7 @@ trait AppHelpers {
    *
    * @param clickCallback This callback is run when the button is clicked. Does nothing by default.
    */
-  @inline def alert(title: CharSequence, text: CharSequence, clickCallback: => Unit = {})(implicit context: Context) {
+  @inline def alert(title: CharSequence, text: CharSequence, clickCallback: => Unit = {})(implicit context: Context): Unit = {
     new AlertDialogBuilder(title, text) {
       neutralButton(android.R.string.ok, clickCallback)
     }.show()
@@ -68,7 +70,7 @@ trait AppHelpers {
    *   openUri("http://scaloid.org")
    * }}}
    */
-  @inline def openUri(uri: Uri)(implicit context: Context) {
+  @inline def openUri(uri: Uri)(implicit context: Context): Unit = {
     context.startActivity(new Intent(Intent.ACTION_VIEW, uri))
   }
 
@@ -105,9 +107,9 @@ trait ContentHelpers {
    * }
    * }}}
    */
-  def broadcastReceiver(filter: IntentFilter)(onReceiveBody: (Context, Intent) => Any)(implicit ctx: Context, reg: Registerable) {
+  def broadcastReceiver(filter: IntentFilter)(onReceiveBody: (Context, Intent) => Any)(implicit ctx: Context, reg: Registerable): Unit = {
     val receiver = new BroadcastReceiver {
-      def onReceive(context: Context, intent: Intent) {
+      def onReceive(context: Context, intent: Intent): Unit = {
         onReceiveBody(context, intent)
       }
     }
@@ -128,9 +130,9 @@ trait ContentHelpers {
    * }
    * }}}
    */
-  def broadcastReceiver(filterString: String)(onReceiveBody: => Any)(implicit ctx: Context, reg: Registerable) {
+  def broadcastReceiver(filterString: String)(onReceiveBody: => Any)(implicit ctx: Context, reg: Registerable): Unit = {
     val receiver = new BroadcastReceiver {
-      def onReceive(context: Context, intent: Intent) {
+      def onReceive(context: Context, intent: Intent): Unit = {
         onReceiveBody
       }
     }
@@ -151,7 +153,7 @@ trait MediaHelpers {
    *   play("content://media/internal/audio/media/50")
    * }}}
    */
-  def play(uri: Uri = notificationSound)(implicit context: Context) {
+  def play(uri: Uri = notificationSound)(implicit context: Context): Unit = {
     val r = RingtoneManager.getRingtone(context, uri)
     if (r != null) {
       r.play()
@@ -202,6 +204,7 @@ trait PreferenceHelpers {
       def put(value: String, editor: SharedPreferences.Editor): Unit = editor.putString(key, value)
     }.asInstanceOf[PreferenceVar[T]]
     case v: Set[String] => new PreferenceVar[Set[String]](key, v) {
+
       import scala.collection.JavaConverters._
       override def apply(value: Set[String])(implicit pref: SharedPreferences): Set[String] = pref.getStringSet(key, value.asJava).asScala.toSet
 
@@ -260,7 +263,7 @@ object PreferenceHelpers extends PreferenceHelpers {
  * Contains helper methods that displaying some UI elements.
  */
 trait WidgetHelpers {
-  @inline private[this] def _toast(message: CharSequence, duration: Int)(implicit context: Context) {
+  @inline private[this] def _toast(message: CharSequence, duration: Int)(implicit context: Context): Unit = {
     runOnUiThread {
       val toast = Toast.makeText(context, message, duration)
       toast.show()
@@ -270,7 +273,7 @@ trait WidgetHelpers {
    * Displays a toast message.
    * This method can be called from any threads.
    */
-  @inline def toast(message: CharSequence)(implicit context: Context) {
+  @inline def toast(message: CharSequence)(implicit context: Context): Unit = {
     _toast(message, Toast.LENGTH_SHORT)
   }
 
@@ -278,7 +281,7 @@ trait WidgetHelpers {
    * Displays a toast message for a longer time.
    * This method can be called from any threads.
    */
-  @inline def longToast(message: CharSequence)(implicit context: Context) {
+  @inline def longToast(message: CharSequence)(implicit context: Context): Unit = {
     _toast(message, Toast.LENGTH_LONG)
   }
 

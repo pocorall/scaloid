@@ -6,6 +6,8 @@ import android.app.Activity
 import android.content._
 import android.util.Log
 import android.os._
+import org.scaloid.common.LocalService
+
 import scala.reflect._
 import scala.language.experimental.macros
 
@@ -52,7 +54,7 @@ trait Destroyable {
   protected var onDestroyBodies = Vector[() => Any]()
 
   def onDestroy(body: => Any) = {
-    val el = body _
+    val el = () => body
     onDestroyBodies :+= el
     el
   }
@@ -65,7 +67,7 @@ trait Creatable {
   protected var onCreateBodies = Vector[() => Any]()
 
   def onCreate(body: => Any) = {
-    val el = body _
+    val el = () => body
     onCreateBodies :+= el
     el
   }
@@ -228,7 +230,7 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
   /**
    * Internal implementation for handling the service connection. You do not need to call this method.
    */
-  def onServiceConnected(p1: ComponentName, b: IBinder) {
+  def onServiceConnected(p1: ComponentName, b: IBinder): Unit = {
     val svc = b.asInstanceOf[LocalService#ScaloidServiceBinder].service.asInstanceOf[S]
     service = Option(svc)
     componentName = p1
@@ -240,7 +242,7 @@ class LocalServiceConnection[S <: LocalService](bindFlag: Int = Context.BIND_AUT
   /**
    * Internal implementation for handling the service connection. You do not need to call this method.
    */
-  def onServiceDisconnected(p1: ComponentName) {
+  def onServiceDisconnected(p1: ComponentName): Unit = {
     service.foreach(onDisconnected.run)
     onDisconnected.clear()
     service = None

@@ -69,7 +69,7 @@ package object common extends Logger with SystemServices with Helpers with Impli
       f
     } else {
       handler.post(new Runnable() {
-        def run() {
+        def run(): Unit = {
           f
         }
       })
@@ -82,7 +82,7 @@ package object common extends Logger with SystemServices with Helpers with Impli
     } else {
       val p = Promise[T]()
       handler.post(new Runnable() {
-        def run() {
+        def run(): Unit = {
           p.complete(Try(f))
         }
       })

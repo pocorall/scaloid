@@ -81,7 +81,7 @@ private[scaloid] class StringConversion(val str: String)(implicit context: Conte
 
 trait ConversionImplicits {
   @inline implicit def Double2unitConversion(ext: Double)(implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
-  @inline implicit def Long2unitConversion(ext: Long)(implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
+  @inline implicit def Long2unitConversion(ext: Long)(implicit context: Context): UnitConversion = new UnitConversion(ext.toDouble)(context)
   @inline implicit def Int2unitConversion(ext: Int)(implicit context: Context): UnitConversion = new UnitConversion(ext)(context)
 
   @inline implicit def Int2resource(ext: Int)(implicit context: Context): ResourceConversion = new ResourceConversion(ext)(context)
@@ -114,7 +114,7 @@ trait InterfaceImplicits {
 
   implicit def func2ViewOnClickListener[F](f: (View) => F): View.OnClickListener =
     new View.OnClickListener() {
-      def onClick(view: View) {
+      def onClick(view: View): Unit = {
         f(view)
       }
     }
@@ -122,28 +122,28 @@ trait InterfaceImplicits {
   @deprecated("Can cause confusion when this conversion is used for block of code", "3.6")
   implicit def lazy2ViewOnClickListener[F](f: => F): View.OnClickListener =
     new View.OnClickListener() {
-      def onClick(view: View) {
+      def onClick(view: View): Unit = {
         f
       }
     }
 
   implicit def func2DialogOnClickListener[F](f: (DialogInterface, Int) => F): DialogInterface.OnClickListener =
     new DialogInterface.OnClickListener {
-      def onClick(dialog: DialogInterface, which: Int) {
+      def onClick(dialog: DialogInterface, which: Int): Unit = {
         f(dialog, which)
       }
     }
 
   implicit def lazy2DialogOnClickListener[F](f: => F): DialogInterface.OnClickListener =
     new DialogInterface.OnClickListener {
-      def onClick(dialog: DialogInterface, which: Int) {
+      def onClick(dialog: DialogInterface, which: Int): Unit = {
         f
       }
     }
 
   implicit def func2runnable[F](f: () => F): Runnable =
     new Runnable() {
-      def run() {
+      def run(): Unit = {
         f()
       }
     }
@@ -151,7 +151,7 @@ trait InterfaceImplicits {
   @deprecated("Can cause confusion when this conversion is used for block of code", "3.6")
   implicit def lazy2runnable[F](f: => F): Runnable =
     new Runnable() {
-      def run() {
+      def run(): Unit = {
         f
       }
     }

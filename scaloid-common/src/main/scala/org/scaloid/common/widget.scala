@@ -8004,7 +8004,7 @@ trait TraitTextView[This <: android.widget.TextView] extends TraitView[This] {
   }
 
   @inline def textSize(p: Int) = textSize_=(p)
-  @inline def textSize_=(p: Int) = { basis.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, p); basis }
+  @inline def textSize_=(p: Int) = { basis.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, p.toFloat); basis }
 
   @inline def allCaps(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'allCaps'")
 

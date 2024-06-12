@@ -7,8 +7,7 @@ lazy val basicSettings = Seq(
   organizationHomepage := Some(new URL("http://blog.scaloid.org")),
   description := "Less Painful Android Development with Scala",
   startYear := Some(2012),
-  scalaVersion := "2.11.12",
-  crossScalaVersions := Seq("2.11.12"), // only 2.11.x for now
+  crossScalaVersions := Seq("2.11.12", "2.12.7", "2.13.12"),
   version := scaloidVersion,
   publishMavenStyle := true,
   publishTo := {
@@ -43,13 +42,12 @@ lazy val basicSettings = Seq(
         </developer>
       </developers>,
   scalacOptions := Seq(
-    "-target:jvm-1.6", "-deprecation", "-feature"
+    "-target:jvm-1.8", "-deprecation", "-feature"
   ),
   javacOptions ++= Seq(
-    "-source", "1.6",
-    "-target", "1.6"),
-  resolvers += "Android Repository" at (new File(System.getenv("ANDROID_HOME")) / "extras" / "android" / "m2repository").getCanonicalFile.toURI.toString,
-  addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
+    "-source", "1.8",
+    "-target", "1.8"),
+  resolvers += "Android Repository" at (new File(System.getenv("ANDROID_HOME")) / "extras" / "android" / "m2repository").getCanonicalFile.toURI.toString
 )
 
 //  root project

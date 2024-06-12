@@ -1,3 +1,7 @@
+package org.scaloid.common
+
+import android.view.textservice.TextServicesManager
+
 /*
  *
  *
@@ -33,15 +37,12 @@
  * https://github.com/pocorall/scaloid/wiki/Inside-Scaloid
  */
 
-package org.scaloid.common
-
 import android.app._
 import admin.DevicePolicyManager
 import android.view._
 import android.net._
 import android.os._
 import android.media._
-
 import android.view.accessibility._
 import android.accounts._
 import android.view.inputmethod._
@@ -51,6 +52,8 @@ import android.telephony._
 import android.net.wifi._
 import android.content._
 import java.lang.CharSequence
+
+import org.scaloid.common.Registerable
 
 import language.implicitConversions
 
@@ -78,8 +81,8 @@ trait SystemServices {
     context.getSystemService(Context.CLIPBOARD_SERVICE).asInstanceOf[android.text.ClipboardManager]
 
   class RichClipboardManager(cm: android.text.ClipboardManager) {
-    def text_=(txt: CharSequence) = cm.setText(txt)
-    def text = cm.getText
+    def text_=(txt: CharSequence): Unit = cm.setText(txt)
+    def text: CharSequence = cm.getText
   }
 
   @inline implicit def richClipboardManager(cm: android.text.ClipboardManager): RichClipboardManager = new RichClipboardManager(cm)
@@ -116,9 +119,9 @@ trait SystemServices {
   @inline def telephonyManager(implicit context: Context) =
     context.getSystemService(Context.TELEPHONY_SERVICE).asInstanceOf[android.telephony.TelephonyManager]
 
-  def onCallForwardingIndicatorChanged(fun: Boolean => Any)(implicit ctx: Context, reg: Registerable) {
+  def onCallForwardingIndicatorChanged(fun: Boolean => Any)(implicit ctx: Context, reg: Registerable): Unit = {
     val callStateListener = new PhoneStateListener() {
-      override def onCallForwardingIndicatorChanged(cfi: Boolean) {
+      override def onCallForwardingIndicatorChanged(cfi: Boolean): Unit = {
         fun(cfi)
       }
     }
@@ -130,9 +133,9 @@ trait SystemServices {
     }
   }
 
-  def onCallStateChanged(fun: (Int, String) => Any)(implicit ctx: Context, reg: Registerable) {
+  def onCallStateChanged(fun: (Int, String) => Any)(implicit ctx: Context, reg: Registerable): Unit = {
     val callStateListener = new PhoneStateListener() {
-      override def onCallStateChanged(state: Int, incomingNumber: String) {
+      override def onCallStateChanged(state: Int, incomingNumber: String): Unit = {
         fun(state, incomingNumber)
       }
     }
@@ -144,9 +147,9 @@ trait SystemServices {
     }
   }
 
-  def onCellLocationChanged(fun: CellLocation => Any)(implicit ctx: Context, reg: Registerable) {
+  def onCellLocationChanged(fun: CellLocation => Any)(implicit ctx: Context, reg: Registerable): Unit = {
     val callStateListener = new PhoneStateListener() {
-      override def onCellLocationChanged(cellLocation: CellLocation) {
+      override def onCellLocationChanged(cellLocation: CellLocation): Unit = {
         fun(cellLocation)
       }
     }
@@ -158,7 +161,7 @@ trait SystemServices {
     }
   }
 
-  @inline def textServicesManager(implicit context: Context) =
+  @inline def textServicesManager(implicit context: Context): TextServicesManager =
     context.getSystemService(Context.TEXT_SERVICES_MANAGER_SERVICE).asInstanceOf[android.view.textservice.TextServicesManager]
   @inline def uiModeManager(implicit context: Context) =
     context.getSystemService(Context.UI_MODE_SERVICE).asInstanceOf[android.app.UiModeManager]

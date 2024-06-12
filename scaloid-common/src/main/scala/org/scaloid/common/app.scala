@@ -41,20 +41,21 @@ import android.graphics.drawable.{ Drawable, StateListDrawable }
 import android.os._
 import android.view._
 import android.view.WindowManager.LayoutParams._
+import org.scaloid.common.{ AppHelpers, Creatable, Registerable, SContext }
+
 import scala.collection.immutable.Vector
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
-import Implicits._
 import scala.deprecated
 
 trait TraitActivity[+This <: Activity] {
 
-  @inline def contentView_=(p: View) = {
+  @inline def contentView_=(p: View): Activity = {
     basis.setContentView(p)
     basis
   }
 
-  @inline def contentView(p: View) = contentView_=(p)
+  @inline def contentView(p: View): Activity = contentView_=(p)
 
   @inline def contentView(implicit no: NoGetterForThisProperty): Nothing = throw new Error("Android does not support the getter for 'contentView'")
 
@@ -64,12 +65,12 @@ trait TraitActivity[+This <: Activity] {
 
   def find[V <: View](id: Int): V = basis.findViewById(id).asInstanceOf[V]
 
-  def runOnUiThread(f: => Unit) {
+  def runOnUiThread(f: => Unit): Unit = {
     if (uiThread == Thread.currentThread) {
       f
     } else {
       handler.post(new Runnable() {
-        def run() {
+        def run(): Unit = {
           f
         }
       })
@@ -123,22 +124,22 @@ trait TraitActivity[+This <: Activity] {
 trait SActivity extends Activity with SContext with TraitActivity[SActivity] with Destroyable with Creatable with Registerable {
 
   override def basis = this
-  override implicit val ctx = this
+  override implicit val ctx: SActivity = this
 
-  def onRegister(body: => Any) = onResume(body)
-  def onUnregister(body: => Any) = onPause(body)
+  def onRegister(body: => Any): () => Any = onResume(body)
+  def onUnregister(body: => Any): () => Any = onPause(body)
 
   val onStartStop = new Registerable {
-    def onRegister(body: => Any) = onStart(body)
-    def onUnregister(body: => Any) = onStop(body)
+    def onRegister(body: => Any): () => Any = onStart(body)
+    def onUnregister(body: => Any): () => Any = onStop(body)
   }
 
   val onCreateDestroy = new Registerable {
-    def onRegister(body: => Any) = onCreate(body)
-    def onUnregister(body: => Any) = onDestroy(body)
+    def onRegister(body: => Any): () => Any = onCreate(body)
+    def onUnregister(body: => Any): () => Any = onDestroy(body)
   }
 
-  protected override def onCreate(b: Bundle) {
+  protected override def onCreate(b: Bundle): Unit = {
     super.onCreate(b)
     AppHelpers.createBundle.withValue(Option(b)) {
       onCreateBodies.foreach(_())
@@ -153,7 +154,7 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
     el
   }
 
-  override def onStart {
+  override def onStart(): Unit = {
     super.onStart()
     onStartBodies.foreach(_())
   }
@@ -161,12 +162,12 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
   protected var onStartBodies = Vector[() => Any]()
 
   def onStart(body: => Any) = {
-    val el = body _
+    val el = () => body
     onStartBodies :+= el
     el
   }
 
-  override def onResume {
+  override def onResume(): Unit = {
     super.onResume()
     onResumeBodies.foreach(_())
   }
@@ -174,12 +175,12 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
   protected var onResumeBodies = Vector[() => Any]()
 
   def onResume(body: => Any) = {
-    val el = body _
+    val el = () => body
     onResumeBodies :+= el
     el
   }
 
-  override def onPause {
+  override def onPause(): Unit = {
     onPauseBodies.foreach(_())
     super.onPause()
   }
@@ -187,12 +188,12 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
   protected var onPauseBodies = Vector[() => Any]()
 
   def onPause(body: => Any) = {
-    val el = body _
+    val el = () => body
     onPauseBodies :+= el
     el
   }
 
-  override def onStop {
+  override def onStop(): Unit = {
     onStopBodies.foreach(_())
     super.onStop()
   }
@@ -200,12 +201,12 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
   protected var onStopBodies = Vector[() => Any]()
 
   def onStop(body: => Any) = {
-    val el = body _
+    val el = () => body
     onStopBodies :+= el
     el
   }
 
-  override def onDestroy {
+  override def onDestroy(): Unit = {
     onDestroyBodies.foreach(_())
     super.onDestroy()
   }
@@ -216,17 +217,17 @@ trait SActivity extends Activity with SContext with TraitActivity[SActivity] wit
  */
 trait SService extends Service with SContext with Destroyable with Creatable with Registerable {
   override def basis = this
-  override implicit val ctx = this
+  override implicit val ctx: SService = this
 
-  def onRegister(body: => Any) = onCreate(body)
-  def onUnregister(body: => Any) = onDestroy(body)
+  def onRegister(body: => Any): () => Any = onCreate(body)
+  def onUnregister(body: => Any): () => Any = onDestroy(body)
 
-  override def onCreate() {
+  override def onCreate(): Unit = {
     super.onCreate()
     onCreateBodies.foreach(_())
   }
 
-  override def onDestroy() {
+  override def onDestroy(): Unit = {
     onDestroyBodies.foreach(_())
     super.onDestroy()
   }
@@ -304,7 +305,7 @@ class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = n
     this
   }
 
-  var tit: CharSequence = null
+  var tit: CharSequence = _
 
   @inline def title_=(str: CharSequence) = {
     tit = str
@@ -313,7 +314,7 @@ class AlertDialogBuilder(_title: CharSequence = null, _message: CharSequence = n
 
   @inline def title = tit
 
-  var msg: CharSequence = null
+  var msg: CharSequence = _
 
   @inline def message_=(str: CharSequence) = {
     msg = str

@@ -8,14 +8,14 @@ trait RunnableService {
   var running: Boolean = false
   var startTime = 0L
 
-  def timeElapsed = System.currentTimeMillis() - startTime
+  def timeElapsed: Long = System.currentTimeMillis() - startTime
 
-  def start() {
+  def start(): Unit = {
     running = true
     startTime = System.currentTimeMillis()
   }
 
-  def stop() {
+  def stop(): Unit = {
     running = false
   }
 }
@@ -33,10 +33,10 @@ abstract class RunnableServiceConnector(activity: SActivity) {
 
   var timerInterval = 1000
 
-  private def startTimer() {
+  private def startTimer(): Unit = {
     timer = new Timer()
     timer.schedule(new TimerTask {
-      def run() {
+      def run(): Unit = {
         runOnUiThread(updateUI(ON_HEARTBEAT))
       }
     }, timerInterval, timerInterval)
@@ -46,30 +46,30 @@ abstract class RunnableServiceConnector(activity: SActivity) {
     timer.cancel()
   }
 
-  def onServiceConnected() {
+  def onServiceConnected(): Unit = {
     runOnUiThread(updateUI(ON_CONNECTED))
     if (runnableService.running) {
       startTimer()
     }
   }
 
-  def updateUI(event: UpdateEvent)
+  def updateUI(event: UpdateEvent): Unit
 
-  def start() {
+  def start(): Unit = {
     if (runnableService.running) return
     runnableService.start()
     runOnUiThread(updateUI(ON_STARTED))
     startTimer()
   }
 
-  def stop() {
+  def stop(): Unit = {
     if (!runnableService.running) return
     runnableService.stop()
     runOnUiThread(updateUI(ON_STOPPED))
     timer.cancel()
   }
 
-  def toggle() {
+  def toggle(): Unit = {
     if (runnableService.running) stop() else start()
   }
 }

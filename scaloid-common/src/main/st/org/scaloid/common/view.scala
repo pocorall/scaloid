@@ -35,7 +35,7 @@ trait PressAndHoldable[+This <: View] {
     }
 
     class RptUpdater extends Runnable {
-      override def run() {
+      override def run(): Unit = {
         if (autoIncrementing) {
           onPressed()
           repeatUpdateHandler.postDelayed(this, interval)

@@ -11,7 +11,7 @@ import android.view.WindowManager.LayoutParams._
  * Please refer to [[http://stackoverflow.com/questions/2796050/key-events-in-tabactivities]]
  */
 trait FollowParentBackButton extends SActivity {
-  override def onBackPressed() {
+  override def onBackPressed(): Unit = {
     val p = getParent
     if (p != null) p.onBackPressed()
   }

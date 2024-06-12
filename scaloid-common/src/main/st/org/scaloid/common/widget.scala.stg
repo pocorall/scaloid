@@ -62,7 +62,7 @@ import android.graphics.drawable.Drawable
  }
 
   @inline def textSize  (p: Int) =            textSize_=  (p)
-  @inline def textSize_=(p: Int) = { basis.setTextSize    (android.util.TypedValue.COMPLEX_UNIT_PX, p); basis }
+  @inline def textSize_=(p: Int) = { basis.setTextSize    (android.util.TypedValue.COMPLEX_UNIT_PX, p.toFloat); basis }
 >>
 
 RelativeLayout_concreteBody() ::= <<
