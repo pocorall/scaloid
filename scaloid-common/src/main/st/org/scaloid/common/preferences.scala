@@ -3,7 +3,7 @@ $license()$
 package org.scaloid.common
 
 import android.content.{Context, SharedPreferences}
-import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
 import scala.language.dynamics
 import scala.reflect._
 
@@ -31,7 +31,7 @@ class Preferences(val preferences: SharedPreferences) extends Dynamic {
       case v: Boolean => preferences.edit().putBoolean(name, v).apply()
       case v: Float => preferences.edit().putFloat(name, v).apply()
 $if(ver.gte_11)$
-      case v: Set[String @unchecked] => preferences.edit().putStringSet(name, v).apply()
+      case v: Set[String @unchecked] => preferences.edit().putStringSet(name, v.asJava).apply()
 $endif$
     }
   }
@@ -43,7 +43,7 @@ $endif$
     case v: Boolean => preferences.getBoolean(name, v).asInstanceOf[T]
     case v: Float => preferences.getFloat(name, v).asInstanceOf[T]
 $if(ver.gte_11)$
-    case v: Set[String @unchecked] => preferences.getStringSet(name, v).toSet.asInstanceOf[T]
+    case v: Set[String @unchecked] => preferences.getStringSet(name, v.asJava).asScala.toSet.asInstanceOf[T]
 $endif$
   }
 
@@ -78,7 +78,7 @@ $endif$
 
 $if(ver.gte_11)$
   val StringSet = new TypedPreferences[Set[String]] {
-    override def get(name: String): Set[String] = preferences.getStringSet(name, null).toSet
+    override def get(name: String): Set[String] = preferences.getStringSet(name, null).asScala.toSet
   }
 $endif$
 }

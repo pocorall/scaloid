@@ -202,11 +202,10 @@ trait PreferenceHelpers {
       def put(value: String, editor: SharedPreferences.Editor): Unit = editor.putString(key, value)
     }.asInstanceOf[PreferenceVar[T]]
     case v: Set[String] => new PreferenceVar[Set[String]](key, v) {
-      import scala.collection.JavaConversions._
       import scala.collection.JavaConverters._
-      override def apply(value: Set[String])(implicit pref: SharedPreferences): Set[String] = pref.getStringSet(key, value).asScala.toSet
+      override def apply(value: Set[String])(implicit pref: SharedPreferences): Set[String] = pref.getStringSet(key, value.asJava).asScala.toSet
 
-      def put(value: Set[String], editor: SharedPreferences.Editor): Unit = editor.putStringSet(key, value)
+      def put(value: Set[String], editor: SharedPreferences.Editor): Unit = editor.putStringSet(key, value.asJava)
     }.asInstanceOf[PreferenceVar[T]]
     case v: Int => new PreferenceVar[Int](key, v) {
       override def apply(value: Int)(implicit pref: SharedPreferences): Int = pref.getInt(key, value)
