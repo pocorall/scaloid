@@ -8,22 +8,24 @@ import org.scaloid.common._
  * A general abstraction of something that can be start and stop.
  */
 trait Playable {
-  protected var _running: Boolean = false
   protected var _startTime = 0L
+  val NOT_STARTED = 0L
 
-  def running = _running
+  final def running: Boolean = _startTime != NOT_STARTED
 
-  def startTime = _startTime
+  final def startTime: Long = _startTime
 
-  def timeElapsed = System.currentTimeMillis() - _startTime
-
-  def start() {
-    _running = true
-    _startTime = System.currentTimeMillis()
+  final def timeElapsed: Long = {
+    val t = _startTime
+    if (t == NOT_STARTED) 0L else System.currentTimeMillis() - t
   }
 
-  def stop() {
-    _running = false
+  def start(): Unit = synchronized { _startTime = System.currentTimeMillis() }
+
+  def stop(): Long = synchronized {
+    val elapsed = timeElapsed
+    _startTime = NOT_STARTED
+    elapsed
   }
 }
 
