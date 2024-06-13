@@ -117,7 +117,7 @@ object StringTemplateSupport {
   }
 
   case class AndroidPackage(pkg: Map[String, Any]) {
-    def get(key: String) = pkg.get(key)
+    def get(key: String): Option[Any] = pkg.get(key)
   }
 
   class AndroidPackageAdaptor extends ModelAdaptor {

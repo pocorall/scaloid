@@ -64,7 +64,7 @@ lazy val common = Project("scaloid", file("scaloid-common"))
   .settings(libraryDependencies ++= Seq(robolectric, scalaTest, junit, junitInterface, android),
     libraryDependencies += ("org.scala-lang" % "scala-reflect" % scalaVersion.value))
   //RobolectricTestRunner requires "fork" to reflect test code changes without sbt restart.
-  .settings(fork in Test := true)
+  .settings((Test / fork) := true)
 
 lazy val support_v4 = Project("support-v4", file("scaloid-support-v4"))
   .settings(name := "scaloid-support-v4", exportJars := true)

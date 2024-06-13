@@ -1,7 +1,7 @@
-import java.beans.{Introspector, PropertyDescriptor, ParameterDescriptor, IndexedPropertyDescriptor}
+import java.beans.PropertyDescriptor
 import java.lang.reflect.{Array => JavaArray, _}
 import org.reflections.ReflectionUtils._
-import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
 
 
 trait JavaConversionHelpers {
@@ -27,7 +27,7 @@ trait JavaConversionHelpers {
         getAllMethods(c,
           withName(m.getName),
           withParameters(m.getParameterTypes: _*)
-        ).nonEmpty
+        ).asScala.nonEmpty
       case None => false
     }
   def isDeprecated(e: AnnotatedElement) = e.isAnnotationPresent(classOf[java.lang.Deprecated])
